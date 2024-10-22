@@ -42,14 +42,10 @@ public partial class BymlFileAccess : Node
         return ParseBytes(FileAccess.GetFileAsBytes(path));
     }
 
-    public static bool WriteMemoryStream(string path, Dictionary<object, object> dict, out System.IO.MemoryStream stream)
+    public static bool WriteMemoryStream(Dictionary<object, object> dict, out System.IO.MemoryStream stream)
     {
         // Setup out
         stream = new System.IO.MemoryStream();
-
-        // Ensure path is valid
-        if (!DirAccess.DirExistsAbsolute(path.GetBaseDir()))
-            return false;
         
         // Convert dictionary to yaml string
         ISerializer serializer = new SerializerBuilder()
@@ -69,8 +65,13 @@ public partial class BymlFileAccess : Node
 
     public static bool WriteDisk(string path, Dictionary<object, object> dict)
     {
+        // Ensure path is valid
+        if (!DirAccess.DirExistsAbsolute(path.GetBaseDir()))
+            return false;
+        
+        // Create memory stream to later write to disk
         System.IO.MemoryStream stream;
-        if (!WriteMemoryStream(path, dict, out stream))
+        if (!WriteMemoryStream(dict, out stream))
             return false;
 
         // Write memory stream to disk using Godot

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlfwtl2yg6tpr"]
 
 [ext_resource type="Script" path="res://test/test_scene.gd" id="1_dpjeh"]
-[ext_resource type="Script" path="res://addons/nindot/src/BymlFileAccess.cs" id="2_pseqx"]
+[ext_resource type="Script" path="res://addons/nindot/src/sarc/SarcFileAccess.cs" id="2_es8rq"]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_dpjeh")
 
 [node name="BymlFileAccess" type="Node" parent="."]
-script = ExtResource("2_pseqx")
+script = ExtResource("2_es8rq")
