@@ -17,7 +17,7 @@ namespace Nindot
             Msbt msbt = MsbtFileAccess.ParseFile(sourceFile);
 
             // Create a SarcResource class
-            MsbtResource res = new();
+            MsbtResource res = new(msbt);
             
             // Write new resource file using resource saver
             string saveFile = string.Format("{0}.{1}", savePath, _GetSaveExtension());

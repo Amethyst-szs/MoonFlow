@@ -13,8 +13,11 @@ namespace Nindot
 {
     public partial class BymlFileAccess : GodotObject
     {
-        public static Dictionary<object, object> ParseBytes(byte[] data)
+        public static bool ParseBytes(out BymlIter iter, byte[] data)
         {
+            // Set the iter to null
+            iter = null;
+
             // Create an imutable byml from bytes
             RevrsReader reader = new(data);
             ImmutableByml byml = new(ref reader);
@@ -31,20 +34,22 @@ namespace Nindot
 
             // Ensure the yaml deserialize was successful
             if (yaml.GetType() != typeof(Dictionary<object, object>))
-                return [];
-
-            return (Dictionary<object, object>)yaml;
+                return false;
+            
+            iter = new BymlIter((Dictionary<object, object>)yaml);
+            return true;
         }
 
-        public static Dictionary<object, object> ParseFile(string path)
+        public static bool ParseFile(out BymlIter iter, string path)
         {
+            iter = null;
             if (!FileAccess.FileExists(path))
-                return [];
+                return false;
 
-            return ParseBytes(FileAccess.GetFileAsBytes(path));
+            return ParseBytes(out iter, FileAccess.GetFileAsBytes(path));
         }
 
-        public static bool WriteStream(Dictionary<object, object> dict, out System.IO.MemoryStream stream)
+        public static bool WriteStream(BymlIter iter, out System.IO.MemoryStream stream)
         {
             // Setup out
             stream = new System.IO.MemoryStream();
@@ -54,7 +59,7 @@ namespace Nindot
                 .WithNamingConvention(UnderscoredNamingConvention.Instance)
                 .Build();
 
-            string yaml = serializer.Serialize(dict);
+            string yaml = serializer.Serialize(iter);
 
             // Use string to create byml
             Byml byml = Byml.FromText(yaml);
@@ -65,7 +70,7 @@ namespace Nindot
             return true;
         }
 
-        public static bool WriteDisk(string path, Dictionary<object, object> dict)
+        public static bool WriteDisk(string path, BymlIter iter)
         {
             // Ensure path is valid
             if (!DirAccess.DirExistsAbsolute(path.GetBaseDir()))
@@ -73,7 +78,7 @@ namespace Nindot
 
             // Create memory stream to later write to disk
             System.IO.MemoryStream stream;
-            if (!WriteStream(dict, out stream))
+            if (!WriteStream(iter, out stream))
                 return false;
 
             // Write memory stream to disk using Godot

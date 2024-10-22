@@ -19,7 +19,7 @@ namespace Nindot
                 return Error.Failed;
 
             // Create a SarcResource class
-            SarcResource res = new();
+            SarcResource res = new(sarc);
             
             // Write new resource file using resource saver
             string saveFile = string.Format("{0}.{1}", savePath, _GetSaveExtension());

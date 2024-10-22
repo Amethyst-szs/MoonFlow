@@ -14,10 +14,10 @@ namespace Nindot
                 return Error.FileNotFound;
 
             // Generate byml dict from file path
-            System.Collections.Generic.Dictionary<object, object> byml = BymlFileAccess.ParseFile(sourceFile);
+            Byml byml = BymlFileAccess.ParseFile(sourceFile);
 
             // Create a BymlResource class
-            BymlResource res = new();
+            BymlResource res = new(byml);
 
             // Write new resource file using resource saver
             string saveFile = string.Format("{0}.{1}", savePath, _GetSaveExtension());

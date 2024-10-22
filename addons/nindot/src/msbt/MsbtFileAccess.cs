@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 using MessageStudio.Formats.BinaryText;
 
@@ -9,7 +8,8 @@ namespace Nindot
     {
         public static Msbt ParseBytes(byte[] data)
         {
-            return Msbt.FromBinary(data);
+            Msbt msbt = Msbt.FromBinary(data);
+            return msbt;
         }
 
         public static Msbt ParseFile(string path)

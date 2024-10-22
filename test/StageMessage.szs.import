@@ -1,0 +1,14 @@
+[remap]
+
+importer="nindot.sarc"
+type="SarcResource"
+uid="uid://c4d5ddk0eer7n"
+path="res://.godot/imported/StageMessage.szs-fcbddba5410efe1bc7fa1d3b0c089a8b.tres"
+
+[deps]
+
+source_file="res://test/StageMessage.szs"
+dest_files=["res://.godot/imported/StageMessage.szs-fcbddba5410efe1bc7fa1d3b0c089a8b.tres"]
+
+[params]
+

@@ -1,9 +1,9 @@
 extends Node
 
+@onready var msbt := MsbtResource.FromFilePath("res://test/AnimalChaseExStage.msbt")
+@onready var szs := SarcResource.FromFilePath("res://test/TalkNpc.szs")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+	var byml: BymlResource = szs.GetFileByml("GiveShine_Npc.byml")
+	
