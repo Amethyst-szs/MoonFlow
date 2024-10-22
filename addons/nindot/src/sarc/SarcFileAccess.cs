@@ -3,85 +3,71 @@ using Godot;
 using CsYaz0;
 using SarcLibrary;
 
-public partial class SarcFileAccess : Node
+namespace Nindot
 {
-    public override void _Ready()
+    public partial class SarcFileAccess : GodotObject
     {
-        Sarc sarc;
-        ParseFile(out sarc, "D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey1.0Dump/EventData/TalkNpc.szs");
-
-        byte[] fileReplacement = FileAccess.GetFileAsBytes("C:/Users/evils/Downloads/tmp/None.byml");
-        sarc["SimpleMessageSwitchOn.byml"] = fileReplacement;
-
-        System.IO.MemoryStream stream = new();
-        sarc.Write(stream);
-
-        CsYaz0.Marshalling.DataMarshal compress = Yaz0.Compress(stream.ToArray());
-        FileAccess f = FileAccess.Open("user://TalkNpcNew.szs", FileAccess.ModeFlags.Write);
-        f.StoreBuffer(compress.ToArray());
-        f.Close();
-    }
-
-    public static bool ParseBytes(out Sarc sarc, byte[] fileCompressed)
-    {
-        // Decompress file using Yaz0, and return early if this fails
-        byte[] bytes = Yaz0.Decompress(fileCompressed);
-        if (bytes.IsEmpty())
+        public static bool ParseBytes(out Sarc sarc, byte[] fileCompressed)
         {
-            sarc = new Sarc();
-            return false;
+            // Decompress file using Yaz0, and return early if this fails
+            byte[] bytes = Yaz0.Decompress(fileCompressed);
+            if (bytes.IsEmpty())
+            {
+                sarc = new Sarc();
+                return false;
+            }
+
+            // Convert this decompressed file into a sarc object, and return a failure if empty
+            sarc = Sarc.FromBinary(bytes);
+            if (sarc.Count == 0)
+                return false;
+
+            return true;
         }
 
-        // Convert this decompressed file into a sarc object, and return a failure if empty
-        sarc = Sarc.FromBinary(bytes);
-        if (sarc.Count == 0)
-            return false;
-
-        return true;
-    }
-
-    public static bool ParseFile(out Sarc sarc, string path)
-    {
-        // Ensure the file exists, returning early if not
-        if (!FileAccess.FileExists(path))
+        public static bool ParseFile(out Sarc sarc, string path)
         {
-            sarc = new Sarc();
-            return false;
+            // Ensure the file exists, returning early if not
+            if (!FileAccess.FileExists(path))
+            {
+                sarc = new Sarc();
+                return false;
+            }
+
+            byte[] file = FileAccess.GetFileAsBytes(path);
+            ParseBytes(out sarc, file);
+
+            return true;
         }
 
-        byte[] file = FileAccess.GetFileAsBytes(path);
-        ParseBytes(out sarc, file);
+        public static byte[] WriteBytes(Sarc sarc)
+        {
+            // Convert sarc object to memory stream
+            System.IO.MemoryStream stream = new();
+            sarc.Write(stream);
 
-        return true;
-    }
+            // Compress this memory stream using Yaz0
+            CsYaz0.Marshalling.DataMarshal compress = Yaz0.Compress(stream.ToArray());
 
-    public static byte[] WriteBytes(Sarc sarc)
-    {
-        // Convert sarc object to memory stream
-        System.IO.MemoryStream stream = new();
-        sarc.Write(stream);
+            // Return compressed version as byte array
+            return compress.ToArray();
+        }
 
-        // Compress this memory stream using Yaz0
-        CsYaz0.Marshalling.DataMarshal compress = Yaz0.Compress(stream.ToArray());
+        public static bool WriteDisk(Sarc sarc, string path)
+        {
+            // Ensure path is valid
+            if (!DirAccess.DirExistsAbsolute(path.GetBaseDir()))
+                return false;
 
-        // Return compressed version as byte array
-        return compress.ToArray();
-    }
+            // Get byte array of compressed sarc file
+            byte[] stream = WriteBytes(sarc);
 
-    public static bool WriteDisk(Sarc sarc, string path)
-    {
-        // Ensure path is valid
-        if (!DirAccess.DirExistsAbsolute(path.GetBaseDir()))
-            return false;
-        
-        // Get byte array of compressed sarc file
-        byte[] stream = WriteBytes(sarc);
+            // Write byte array to disk
+            FileAccess file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
+            file.StoreBuffer(stream);
+            file.Close();
 
-        // Write byte array to disk
-        FileAccess file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
-        file.StoreBuffer(stream);
-        file.Close();
-
-        return true;
+            return true;
+        }
     }
 }
