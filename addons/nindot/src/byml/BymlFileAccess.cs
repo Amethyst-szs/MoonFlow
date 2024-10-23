@@ -1,13 +1,10 @@
 using Godot;
-using System;
-using System.Buffers;
 using System.Collections.Generic;
 
 using BymlLibrary;
 using Revrs;
 
 using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 
 namespace Nindot
 {
@@ -24,19 +21,20 @@ namespace Nindot
 
             // Convert this byml to yaml string
             string yamlString = byml.ToYaml();
+            GD.Print(yamlString);
 
             // Convert yaml string to C# dictionary
             IDeserializer deserializer = new DeserializerBuilder()
-                .WithNamingConvention(UnderscoredNamingConvention.Instance)
+                .WithTagMapping("!l", typeof(long))
+                .WithTagMapping("!u", typeof(uint))
+                .WithTagMapping("!ul", typeof(ulong))
+                .WithTagMapping("!d", typeof(double))
+                .WithAttemptingUnquotedStringTypeDeserialization()
                 .Build();
 
-            object yaml = deserializer.Deserialize(yamlString);
+            Dictionary<string, object> yaml = deserializer.Deserialize<Dictionary<string, object>>(yamlString);
+            iter = new BymlIter(yaml);
 
-            // Ensure the yaml deserialize was successful
-            if (yaml.GetType() != typeof(Dictionary<object, object>))
-                return false;
-            
-            iter = new BymlIter((Dictionary<object, object>)yaml);
             return true;
         }
 
@@ -56,7 +54,10 @@ namespace Nindot
 
             // Convert dictionary to yaml string
             ISerializer serializer = new SerializerBuilder()
-                .WithNamingConvention(UnderscoredNamingConvention.Instance)
+                .WithTagMapping("!l", typeof(long))
+                .WithTagMapping("!u", typeof(uint))
+                .WithTagMapping("!ul", typeof(ulong))
+                .WithTagMapping("!d", typeof(double))
                 .Build();
 
             string yaml = serializer.Serialize(iter);
