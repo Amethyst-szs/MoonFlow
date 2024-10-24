@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 using MessageStudio.Formats.BinaryText;
@@ -16,16 +17,19 @@ namespace Nindot
             // Generate sarc from file path
             Msbt msbt = MsbtFileAccess.ParseFile(sourceFile);
 
+            GD.Print(options);
+
             // Create a SarcResource class
-            MsbtResource res = new(msbt);
-            
+            int tagLib = (int)options["tag_library"];
+            MsbtResource res = new(msbt, (MsbtTagLibrary.Core.Type)tagLib);
+
             // Write new resource file using resource saver
             string saveFile = string.Format("{0}.{1}", savePath, _GetSaveExtension());
             Error value = ResourceSaver.Save(res, saveFile);
 
             if (value != Error.Ok)
                 GD.PushError("Failed to import MSBT in ResourceSaver: " + value.ToString());
-            
+
             return value;
         }
 
@@ -71,7 +75,23 @@ namespace Nindot
 
         public override Array<Dictionary> _GetImportOptions(string path, int presetIndex)
         {
-            return [];
+            string tagLibList = "";
+            for (int i = 0; i < (int)MsbtTagLibrary.Core.Type.ENUM_SIZE; i++)
+            {
+                tagLibList += MsbtTagLibrary.Core.Name[i] + ":" + i;
+                if (i != (int)MsbtTagLibrary.Core.Type.ENUM_SIZE - 1)
+                    tagLibList += ",";
+            }
+
+            Dictionary dict = new Dictionary
+            {
+                { "name", "tag_library" },
+                { "default_value", 0 },
+                { "property_hint", (int)PropertyHint.Enum },
+                { "hint_string", tagLibList }
+            };
+
+            return [dict];
         }
 
         public override bool _GetOptionVisibility(string path, StringName optionName, Dictionary options)

@@ -1,7 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 using MessageStudio.Formats.BinaryText;
 using SarcLibrary;
@@ -11,22 +8,31 @@ namespace Nindot
     [GlobalClass]
     public partial class MsbtResource : Resource
     {
-        public Msbt MsbtDict;
+        public MsbtTagLibrary.Core.Type TagLib = MsbtTagLibrary.Core.Type.NONE;
+
+        public MsbtContent.Content Content;
 
         // Constructor and Initilzation Functions
 
-        public MsbtResource(Msbt file)
+        public MsbtResource()
         {
-            MsbtDict = file;
+            TagLib = MsbtTagLibrary.Core.Type.NONE;
+            Content = null;
         }
 
-        static public MsbtResource FromFilePath(string path)
+        public MsbtResource(Msbt file, MsbtTagLibrary.Core.Type taglib)
+        {
+            TagLib = taglib;
+            Content = new MsbtContent.Content(file, taglib);
+        }
+
+        static public MsbtResource FromFilePath(string path, MsbtTagLibrary.Core.Type tagLib)
         {
             Msbt msbt = MsbtFileAccess.ParseFile(path);
-            return new MsbtResource(msbt);
+            return new MsbtResource(msbt, tagLib);
         }
 
-        static public MsbtResource FromSarc(SarcResource sarc, string file)
+        static public MsbtResource FromSarc(SarcResource sarc, string file, MsbtTagLibrary.Core.Type tagLib)
         {
             Sarc archive = sarc.SarcDict;
             if (!archive.ContainsKey(file))
@@ -35,70 +41,27 @@ namespace Nindot
             byte[] data = archive[file].ToArray();
 
             Msbt msbt = MsbtFileAccess.ParseBytes(data);
-            return new MsbtResource(msbt);
+            return new MsbtResource(msbt, tagLib);
         }
 
         // GDScript Interfaces
 
+        public bool IsValid()
+        {
+            return Content != null && TagLib != MsbtTagLibrary.Core.Type.ENUM_SIZE;
+        }
+
         public int GetKeyCount()
         {
-            return MsbtDict.Count;
+            return Content.Count;
         }
 
         public string[] GetKeys()
         {
-            string[] keys = new string[MsbtDict.Count];
-            MsbtDict.Keys.CopyTo(keys, 0);
+            string[] keys = new string[Content.Count];
+            Content.Keys.CopyTo(keys, 0);
 
             return keys;
-        }
-
-        public string[] GetTextValues()
-        {
-            MsbtEntry[] valueEntries = new MsbtEntry[MsbtDict.Count];
-            MsbtDict.Values.CopyTo(valueEntries, 0);
-
-            string[] values = [];
-            foreach (MsbtEntry entry in valueEntries)
-            {
-                values.Append(entry.Text);
-            }
-
-            return values;
-        }
-
-        public string[] GetAttributeValues()
-        {
-            MsbtEntry[] valueEntries = new MsbtEntry[MsbtDict.Count];
-            MsbtDict.Values.CopyTo(valueEntries, 0);
-
-            string[] values = [];
-            foreach (MsbtEntry entry in valueEntries)
-            {
-                values.Append(entry.Attribute);
-            }
-
-            return values;
-        }
-
-        public Godot.Collections.Dictionary GetDictionaryGDScript()
-        {
-            string[] keys = GetKeys();
-            string[] values = GetTextValues();
-
-            Godot.Collections.Dictionary dict = [];
-
-            for (int i = 0; i < keys.Count(); i++)
-            {
-                dict.Add(keys[i], values[i]);
-            }
-
-            return dict;
-        }
-
-        public void SetValue(string key, string value)
-        {
-            MsbtDict[key].Text = value;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Nindot
             Sarc sarc;
             if (!SarcFileAccess.ParseFile(out sarc, path))
                 return null;
-            
+
             return new SarcResource(sarc);
         }
 
@@ -43,9 +43,9 @@ namespace Nindot
             return SarcDict[name].ToArray();
         }
 
-        public MsbtResource GetFileMsbt(string name)
+        public MsbtResource GetFileMsbt(string name, MsbtTagLibrary.Core.Type tagLib)
         {
-            return MsbtResource.FromSarc(this, name);
+            return MsbtResource.FromSarc(this, name, tagLib);
         }
 
         public BymlResource GetFileByml(string name)
