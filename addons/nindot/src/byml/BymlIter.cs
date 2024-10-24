@@ -9,14 +9,6 @@ namespace Nindot
     {
         public BymlIter(Dictionary<string, object> dict) : base(dict)
         {
-            if (!ContainsKey("dict"))
-                return;
-
-            GD.Print(this["int"].GetType());
-            GD.Print(this["int64"].GetType());
-            GD.Print(this["str"].GetType());
-            GD.Print(this["boo"].GetType());
-            GD.Print(this["int"].GetType() == typeof(int));
         }
 
         public Type GetType(string key)

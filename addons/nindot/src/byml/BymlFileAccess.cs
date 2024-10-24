@@ -12,9 +12,6 @@ namespace Nindot
     {
         public static bool ParseBytes(out BymlIter iter, byte[] data)
         {
-            // Set the iter to null
-            iter = null;
-
             // Create an imutable byml from bytes
             RevrsReader reader = new(data);
             ImmutableByml byml = new(ref reader);
@@ -25,11 +22,14 @@ namespace Nindot
 
             // Convert yaml string to C# dictionary
             IDeserializer deserializer = new DeserializerBuilder()
-                .WithTagMapping("!l", typeof(long))
+                .WithTagMapping("!s", typeof(string))
+                .WithTagMapping("!b", typeof(bool))
+                .WithTagMapping("!l", typeof(int))
+                .WithTagMapping("!ll", typeof(long))
                 .WithTagMapping("!u", typeof(uint))
                 .WithTagMapping("!ul", typeof(ulong))
+                .WithTagMapping("!f", typeof(float))
                 .WithTagMapping("!d", typeof(double))
-                .WithAttemptingUnquotedStringTypeDeserialization()
                 .Build();
 
             Dictionary<string, object> yaml = deserializer.Deserialize<Dictionary<string, object>>(yamlString);
@@ -54,9 +54,13 @@ namespace Nindot
 
             // Convert dictionary to yaml string
             ISerializer serializer = new SerializerBuilder()
-                .WithTagMapping("!l", typeof(long))
+                .WithTagMapping("!s", typeof(string))
+                .WithTagMapping("!b", typeof(bool))
+                .WithTagMapping("!l", typeof(int))
+                .WithTagMapping("!ll", typeof(long))
                 .WithTagMapping("!u", typeof(uint))
                 .WithTagMapping("!ul", typeof(ulong))
+                .WithTagMapping("!f", typeof(float))
                 .WithTagMapping("!d", typeof(double))
                 .Build();
 
