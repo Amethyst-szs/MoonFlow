@@ -15,7 +15,7 @@ namespace Nindot
 
             public string TextRaw;
 
-            public List<MsbtBaseElement> TextTagList;
+            public List<MsbtBaseElement> ElementList;
 
             public EntryContent(string key, MsbtEntry entry, MsbtTagLibrary.Core.Type tagLib)
             {
@@ -24,8 +24,10 @@ namespace Nindot
                 TagLibrary = tagLib;
                 TextRaw = entry.Text;
 
-                // Build TextElement array
-                TextTagList = MsbtTagLibrary.Core.TextElementsBuildList(entry.Text.ToUtf16Buffer(), TagLibrary);
+                // Build ElementList
+                ElementList = MsbtTagLibrary.Core.BuildElementList(entry.TextBuffer, TagLibrary);
+
+                return;
             }
         }
     }

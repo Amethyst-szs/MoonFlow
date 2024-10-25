@@ -6,7 +6,7 @@ namespace Nindot
 {
     namespace MsbtTagLibrary
     {
-        public struct Core
+        public static class Core
         {
             public enum Type : ushort
             {
@@ -20,26 +20,24 @@ namespace Nindot
                 "Super Mario Odyssey",
             ];
 
-            public static List<MsbtBaseElement> TextElementsBuildList(byte[] buffer, Type type)
+            public static List<MsbtBaseElement> BuildElementList(byte[] buffer, Type type)
             {
-                List<MsbtBaseElement> list = new List<MsbtBaseElement>();
-
                 // Call tag builder for selected tag library
                 switch (type)
                 {
                     case Type.SUPER_MARIO_ODYSSEY:
-                        return [];
+                        return Smo.Builder.Build(buffer);
                     default:
-                        list.Add(new MsbtTextElement(buffer));
+                        List<MsbtBaseElement> list = [new MsbtTextElement(buffer)];
                         return list;
                 }
             }
 
-            public static byte[] TextElementsParseIntoBuffer(EntryContent entry)
+            public static byte[] ParseElementListIntoBuffer(EntryContent entry)
             {
                 MemoryStream buffer = new MemoryStream();
 
-                foreach (MsbtBaseElement element in entry.TextTagList)
+                foreach (MsbtBaseElement element in entry.ElementList)
                 {
                     buffer.Write(element.GetBytes());
                 }
