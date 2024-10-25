@@ -5,10 +5,11 @@ using Godot;
 
 namespace Nindot
 {
-    namespace MsbtContent
+    namespace MsbtTagLibrary
     {
         public abstract class MsbtBaseElement
         {
+            public abstract bool IsTag();
             public abstract string GetText();
             public abstract byte[] GetBytes();
             public abstract void WriteBytes(ref MemoryStream stream);
@@ -50,6 +51,11 @@ namespace Nindot
                 return _initial_text != null;
             }
 
+            public override bool IsTag()
+            {
+                return false;
+            }
+
             public override string GetText()
             {
                 string txt = _text.ToArray().GetStringFromUtf16();
@@ -75,6 +81,11 @@ namespace Nindot
             public MsbtTagElementGeneric(byte[] buf)
             {
                 _buffer = buf;
+            }
+
+            public override bool IsTag()
+            {
+                return true;
             }
 
             public override byte[] GetBytes()

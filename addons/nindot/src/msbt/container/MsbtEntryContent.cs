@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using MessageStudio.Formats.BinaryText;
 
+using Nindot.MsbtTagLibrary;
+
 namespace Nindot
 {
     namespace MsbtContent

@@ -1,3 +1,5 @@
+#if TOOLS
+
 using Godot;
 using Godot.Collections;
 using SarcLibrary;
@@ -92,3 +94,5 @@ namespace Nindot
         }
     }
 }
+
+#endif

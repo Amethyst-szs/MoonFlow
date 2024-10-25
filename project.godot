@@ -22,3 +22,9 @@ project/assembly_name="Nindot"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/nindot/plugin.cfg")
+
+[importer_defaults]
+
+nindot.msbt={
+"tag_library": 1
+}

@@ -61,6 +61,11 @@ public abstract class MsbtTagElement : MsbtBaseElement
         return DataSize;
     }
 
+    public override bool IsTag()
+    {
+        return true;
+    }
+
     public override void WriteBytes(ref MemoryStream stream)
     {
         stream.Write(GetBytes());

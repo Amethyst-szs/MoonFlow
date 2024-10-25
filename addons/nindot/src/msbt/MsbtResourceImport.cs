@@ -1,4 +1,5 @@
-using System;
+#if TOOLS
+
 using Godot;
 using Godot.Collections;
 using MessageStudio.Formats.BinaryText;
@@ -110,3 +111,5 @@ namespace Nindot
         }
     }
 }
+
+#endif

@@ -1,3 +1,5 @@
+#if TOOLS
+
 using Godot;
 using Godot.Collections;
 using BymlLibrary;
@@ -91,3 +93,5 @@ namespace Nindot
         }
     }
 }
+
+#endif
