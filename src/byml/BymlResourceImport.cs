@@ -2,12 +2,12 @@
 
 using Godot;
 using Godot.Collections;
-using MessageStudio.Formats.BinaryText;
+using BymlLibrary;
 
 namespace Nindot
 {
-    [Tool]
-    public partial class MsbtResourceImport : EditorImportPlugin
+    [Tool] [GlobalClass]
+    public partial class BymlResourceImport : EditorImportPlugin
     {
         public override Error _Import(string sourceFile, string savePath, Dictionary options, Array<string> platformVariants, Array<string> genFiles)
         {
@@ -15,37 +15,36 @@ namespace Nindot
             if (!FileAccess.FileExists(sourceFile))
                 return Error.FileNotFound;
 
-            // Generate sarc from file path
-            Msbt msbt;
-            MsbtFileAccess.ParseFile(out msbt, sourceFile);
+            // Generate byml dict from file path
+            BymlIter iter;
+            BymlFileAccess.ParseFile(out iter, sourceFile);
 
-            // Create a SarcResource class
-            int tagLib = (int)options["tag_library"];
-            MsbtResource res = new(msbt, (MsbtTagLibrary.Core.Type)tagLib);
+            // Create a BymlResource class
+            BymlResource res = new(iter);
 
             // Write new resource file using resource saver
             string saveFile = string.Format("{0}.{1}", savePath, _GetSaveExtension());
             Error value = ResourceSaver.Save(res, saveFile);
 
             if (value != Error.Ok)
-                GD.PushError("Failed to import MSBT in ResourceSaver: " + value.ToString());
+                GD.PushError("Failed to import BYML in ResourceSaver: " + value.ToString());
 
             return value;
         }
 
         public override string _GetImporterName()
         {
-            return "nindot.msbt";
+            return "nindot.byml";
         }
 
         public override string _GetVisibleName()
         {
-            return "Message Studio Binary Text";
+            return "Binary YAML";
         }
 
         public override string[] _GetRecognizedExtensions()
         {
-            return ["msbt"];
+            return ["byml", "byaml"];
         }
 
         public override string _GetSaveExtension()
@@ -55,7 +54,7 @@ namespace Nindot
 
         public override string _GetResourceType()
         {
-            return "MsbtResource";
+            return "BymlResource";
         }
 
         public override float _GetPriority()
@@ -75,23 +74,7 @@ namespace Nindot
 
         public override Array<Dictionary> _GetImportOptions(string path, int presetIndex)
         {
-            string tagLibList = "";
-            for (int i = 0; i < (int)MsbtTagLibrary.Core.Type.ENUM_SIZE; i++)
-            {
-                tagLibList += MsbtTagLibrary.Core.Name[i] + ":" + i;
-                if (i != (int)MsbtTagLibrary.Core.Type.ENUM_SIZE - 1)
-                    tagLibList += ",";
-            }
-
-            Dictionary dict = new Dictionary
-            {
-                { "name", "tag_library" },
-                { "default_value", 0 },
-                { "property_hint", (int)PropertyHint.Enum },
-                { "hint_string", tagLibList }
-            };
-
-            return [dict];
+            return [];
         }
 
         public override bool _GetOptionVisibility(string path, StringName optionName, Dictionary options)
@@ -109,6 +92,18 @@ namespace Nindot
             return true;
         }
     }
+}
+
+#else
+
+// If this project is being exported as a release build, lacking this class definition can cause
+// GDScript parsing errors. This empty node-inherited version of the class solves this problem
+// in a very janky and weird way :)
+
+namespace Nindot
+{
+    [GlobalClass]
+    public partial class BymlResourceImport : Node {}
 }
 
 #endif

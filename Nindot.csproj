@@ -4,29 +4,29 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <PackageIcon>Icon.svg</PackageIcon>
-    <PackageReadmeFile>Readme.md</PackageReadmeFile>
-    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <!-- <PackageIcon>icon.svg</PackageIcon> Doesn't support svgs, will have to make a proper icon later -->
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageVersion>0.1.0</PackageVersion>
     <PackageProjectUrl>https://github.com/Amethyst-szs/nindot</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="icon.svg" Link="Assets\Icon.svg">  
+    <None Include="icon.svg" Link="Assets\icon.svg">  
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-  	<None Include="README.md" Link="Assets\Readme.md">
+  	<None Include="README.md" Link="Assets\README.md">
   	  <Pack>True</Pack>
   	  <PackagePath>\</PackagePath>
   	</None>
   </ItemGroup>
 
   <ItemGroup>
-  	<None Include="LICENSE.md" Link="Assets\License.md">
+  	<None Include="LICENSE.md" Link="Assets\LICENSE.md">
   	  <Pack>True</Pack>
   	  <PackagePath>\</PackagePath>
   	</None>

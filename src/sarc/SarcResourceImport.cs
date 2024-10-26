@@ -7,6 +7,7 @@ using SarcLibrary;
 namespace Nindot
 {
     [Tool]
+    [GlobalClass]
     public partial class SarcResourceImport : EditorImportPlugin
     {
         public override Error _Import(string sourceFile, string savePath, Dictionary options, Array<string> platformVariants, Array<string> genFiles)
@@ -22,14 +23,14 @@ namespace Nindot
 
             // Create a SarcResource class
             SarcResource res = new(sarc);
-            
+
             // Write new resource file using resource saver
             string saveFile = string.Format("{0}.{1}", savePath, _GetSaveExtension());
             Error value = ResourceSaver.Save(res, saveFile);
 
             if (value != Error.Ok)
                 GD.PushError("Failed to import SARC in ResourceSaver: " + value.ToString());
-            
+
             return value;
         }
 
@@ -93,6 +94,18 @@ namespace Nindot
             return true;
         }
     }
+}
+
+#else
+
+// If this project is being exported as a release build, lacking this class definition can cause
+// GDScript parsing errors. This empty node-inherited version of the class solves this problem
+// in a very janky and weird way :)
+
+namespace Nindot
+{
+    [GlobalClass]
+    public partial class SarcResourceImport : Node {}
 }
 
 #endif
