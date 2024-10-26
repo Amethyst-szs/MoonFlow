@@ -1,4 +1,4 @@
-#if UNIT_TEST
+#if TOOLS
 using Godot;
 using System;
 

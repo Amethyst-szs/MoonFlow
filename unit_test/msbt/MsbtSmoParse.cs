@@ -1,4 +1,4 @@
-#if UNIT_TEST
+#if TOOLS
 using Godot;
 using System;
 
@@ -25,9 +25,17 @@ public class UnitTestMsbtSmoParse : UnitTestBase
             return UnitTestResult.FAILURE;
         }
 
-        foreach (EntryContent key in msbt.Content.Values)
+        return ScanElements(msbt);
+    }
+
+    public static UnitTestResult ScanElements(MsbtResource res, bool isCheckIntendedFailureKeys = true)
+    {
+        foreach (EntryContent key in res.Content.Values)
         {
             bool isSupposedToError = key.Key.EndsWith("Failure");
+
+            if (isSupposedToError && !isCheckIntendedFailureKeys)
+                continue;
 
             foreach (MsbtBaseElement element in key.ElementList)
             {

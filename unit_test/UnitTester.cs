@@ -1,4 +1,4 @@
-#if UNIT_TEST
+#if TOOLS
 using Godot;
 using System;
 
@@ -7,7 +7,8 @@ namespace Nindot.UnitTest;
 public partial class UnitTester : SceneTree
 {
     protected UnitTestBase[] TestList = [
-        new UnitTestMsbtSmoParse()
+        new UnitTestMsbtSmoParse(),
+        new UnitTestMsbtSmoWrite(),
     ];
 
     protected int TestCount = 0;

@@ -77,7 +77,7 @@ public class MsbtTagElement : MsbtBaseElement
         if (!IsFixedDataSize())
             return (DataSize % 2) == 0;
         
-        bool result = DataSize == FixedDataSizeValue() && (DataSize % 2) == 0;
+        bool result = DataSize == FixedDataSizeValue();
         return result;
     }
 

@@ -37,6 +37,17 @@ namespace Nindot
                 return null;
         }
 
+        static public MsbtResource FromBytes(byte[] data, MsbtTagLibrary.Core.Type tagLib)
+        {
+            Msbt msbt;
+            Error err = MsbtFileAccess.ParseBytes(out msbt, data);
+
+            if (err == Error.Ok)
+                return new MsbtResource(msbt, tagLib);
+            else
+                return null;
+        }
+
         static public MsbtResource FromSarc(SarcResource sarc, string file, MsbtTagLibrary.Core.Type tagLib)
         {
             Sarc archive = sarc.SarcDict;

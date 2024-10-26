@@ -29,7 +29,7 @@ public static class Builder
             if (value == ByteCode_Tag || value == ByteCode_TagClose)
             {
                 // If the current element is a text element, run the finalizer
-                if (curElement.GetType() == typeof(MsbtTextElement))
+                if (curElement != null && curElement.GetType() == typeof(MsbtTextElement))
                     ((MsbtTextElement)curElement).FinalizeAppending();
                 
                 // Wipe the current element and move to the tag element builder
@@ -61,7 +61,7 @@ public static class Builder
         }
 
         // If the current element is a text element, run a finalizer on it to ensure _initial_text is valid
-        if (curElement.GetType() == typeof(MsbtTextElement))
+        if (curElement != null && curElement.GetType() == typeof(MsbtTextElement))
             ((MsbtTextElement)curElement).FinalizeAppending();
 
         return list;
@@ -81,6 +81,7 @@ public static class Builder
             (ushort)TagGroup.SHAKE_ANIMATOR => new MsbtTagElementShake(ref pointer, buffer),
             (ushort)TagGroup.VOICE => new MsbtTagElementVoiceAudio(ref pointer, buffer),
             (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectIcon(ref pointer, buffer),
+            (ushort)TagGroup.TIME => new MsbtTagElementTime(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

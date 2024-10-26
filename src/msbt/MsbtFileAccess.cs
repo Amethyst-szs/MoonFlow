@@ -16,7 +16,12 @@ namespace Nindot
             }
 
             // Use msbt library to read the binary
-            msbt = Msbt.FromBinary(data);
+            MsbtOptions opt = new()
+            {
+                IsGenerateTextStrings = false
+            };
+
+            msbt = Msbt.FromBinary(data, opt);
             return Error.Ok;
         }
 
@@ -32,12 +37,17 @@ namespace Nindot
             return Error.Ok;
         }
 
-        public static byte[] WriteBytes(Msbt msbt)
+        public static byte[] WriteBytes(MsbtContent.Content msbt)
         {
-            return msbt.ToBinary();
+            System.IO.MemoryStream stream = new();
+
+            NindotWriter writer = new();
+            writer.ToBinary(stream, msbt.GenerateToBinaryDictionary());
+
+            return stream.ToArray();
         }
 
-        public static bool WriteDisk(string path, Msbt msbt)
+        public static bool WriteDisk(string path, MsbtContent.Content msbt)
         {
             // Ensure path is valid
             if (!DirAccess.DirExistsAbsolute(path.GetBaseDir()))
@@ -46,6 +56,16 @@ namespace Nindot
             // Get byte array from msbt
             byte[] data = WriteBytes(msbt);
 
+            // Write bytes to disk
+            FileAccess file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
+            file.StoreBuffer(data);
+            file.Close();
+
+            return true;
+        }
+
+        public static bool WriteDisk(string path, byte[] data)
+        {
             // Write bytes to disk
             FileAccess file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
             file.StoreBuffer(data);

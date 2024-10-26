@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MessageStudio.Formats.BinaryText;
 
 using Nindot.MsbtTagLibrary;
+using System.IO;
 
 namespace Nindot
 {
@@ -15,7 +16,7 @@ namespace Nindot
 
             public Core.Type TagLibrary;
 
-            public string TextRaw;
+            public string Attribute;
 
             public List<MsbtBaseElement> ElementList;
 
@@ -24,12 +25,24 @@ namespace Nindot
                 // Setup raw values that require no parsing
                 Key = key;
                 TagLibrary = tagLib;
-                TextRaw = entry.Text;
+                Attribute = entry.Attribute;
 
                 // Build ElementList
                 ElementList = Core.BuildElementList(entry.TextBuffer, TagLibrary);
 
                 return;
+            }
+
+            public readonly byte[] BuildElementList()
+            {
+                MemoryStream stream = new();
+
+                foreach (var item in ElementList)
+                {
+                    stream.Write(item.GetBytes());
+                }
+
+                return stream.ToArray();
             }
         }
     }
