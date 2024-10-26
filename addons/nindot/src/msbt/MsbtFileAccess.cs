@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 using MessageStudio.Formats.BinaryText;
@@ -6,19 +7,29 @@ namespace Nindot
 {
     public partial class MsbtFileAccess : GodotObject
     {
-        public static Msbt ParseBytes(byte[] data)
+        public static Error ParseBytes(out Msbt msbt, byte[] data)
         {
-            Msbt msbt = Msbt.FromBinary(data);
-            return msbt;
+            // Ensure that this data starts with the file signature/magic
+            if (BitConverter.ToUInt64(data, 0) != Msbt.MAGIC) {
+                msbt = null;
+                return Error.FileCantOpen;
+            }
+
+            // Use msbt library to read the binary
+            msbt = Msbt.FromBinary(data);
+            return Error.Ok;
         }
 
-        public static Msbt ParseFile(string path)
+        public static Error ParseFile(out Msbt msbt, string path)
         {
-            if (!FileAccess.FileExists(path))
-                return [];
+            if (!FileAccess.FileExists(path)) {
+                msbt = null;
+                return Error.FileNotFound;
+            }
             
             byte[] data = FileAccess.GetFileAsBytes(path);
-            return ParseBytes(data);
+            ParseBytes(out msbt, data);
+            return Error.Ok;
         }
 
         public static byte[] WriteBytes(Msbt msbt)

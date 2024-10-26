@@ -1,17 +1,18 @@
 using System;
 using System.IO;
+
 using CommunityToolkit.HighPerformance;
-using Nindot.MsbtContent;
+using Godot;
 
 namespace Nindot.MsbtTagLibrary.Smo;
 
 public abstract class MsbtTagElement : MsbtBaseElement
 {
-    internal ushort GroupName = 0xFFFF;
-    internal ushort TagName = 0xFFFF;
-    internal ushort DataSize = 0x0;
+    protected ushort GroupName = 0xFFFF;
+    protected ushort TagName = 0xFFFF;
+    protected ushort DataSize = 0x0;
 
-    internal const int TagHeaderSize = 0x08;
+    protected const int TagHeaderSize = 0x08;
 
     public MsbtTagElement(ref int pointer, byte[] buffer)
     {
@@ -59,6 +60,25 @@ public abstract class MsbtTagElement : MsbtBaseElement
     public ushort GetDataSize()
     {
         return DataSize;
+    }
+
+    public virtual bool IsFixedDataSize()
+    {
+        return true;
+    }
+
+    public virtual int FixedDataSizeValue()
+    {
+        return 0;
+    }
+
+    public override bool IsValid()
+    {
+        if (!IsFixedDataSize())
+            return (DataSize % 2) == 0;
+        
+        bool result = DataSize == FixedDataSizeValue() && (DataSize % 2) == 0;
+        return result;
     }
 
     public override bool IsTag()

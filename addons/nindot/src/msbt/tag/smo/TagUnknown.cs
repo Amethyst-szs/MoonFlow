@@ -1,15 +1,15 @@
+using System;
 using System.IO;
 
 namespace Nindot.MsbtTagLibrary.Smo;
 
-class MsbtTagElementUnknown : MsbtTagElement
+public class MsbtTagElementUnknown : MsbtTagElement
 {
-    internal byte[] Data;
+    protected byte[] Data;
 
     public MsbtTagElementUnknown(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
-        // If DataSize is equal to zero, return early
-        if (DataSize == 0)
+        if (!IsValid())
             return;
         
         // The base constructor has already been called, so pointer is aligned with tag data
@@ -22,7 +22,7 @@ class MsbtTagElementUnknown : MsbtTagElement
 
     public override string GetText()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public override byte[] GetBytes()
@@ -30,5 +30,10 @@ class MsbtTagElementUnknown : MsbtTagElement
         MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(Data);
         return value.ToArray();
+    }
+
+    public override bool IsFixedDataSize()
+    {
+        return false;
     }
 };

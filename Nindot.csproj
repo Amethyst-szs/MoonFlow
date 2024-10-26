@@ -4,7 +4,34 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PackageIcon>Icon.svg</PackageIcon>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageVersion>0.1.0</PackageVersion>
+    <PackageProjectUrl>https://github.com/Amethyst-szs/nindot</PackageProjectUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="icon.svg" Link="Assets\Icon.svg">  
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+  	<None Include="README.md" Link="Assets\Readme.md">
+  	  <Pack>True</Pack>
+  	  <PackagePath>\</PackagePath>
+  	</None>
+  </ItemGroup>
+
+  <ItemGroup>
+  	<None Include="LICENSE.md" Link="Assets\License.md">
+  	  <Pack>True</Pack>
+  	  <PackagePath>\</PackagePath>
+  	</None>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="CsYaz0" Version="1.0.2" />
     <PackageReference Include="Nindot.BymlLibrary" Version="1.0.2" />

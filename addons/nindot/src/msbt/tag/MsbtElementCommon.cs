@@ -10,6 +10,7 @@ namespace Nindot
         public abstract class MsbtBaseElement
         {
             public abstract bool IsTag();
+            public abstract bool IsValid();
             public abstract string GetText();
             public abstract byte[] GetBytes();
             public abstract void WriteBytes(ref MemoryStream stream);
@@ -17,9 +18,9 @@ namespace Nindot
 
         public class MsbtTextElement : MsbtBaseElement
         {
-            internal MemoryStream _text = new();
+            private MemoryStream _text = new();
 
-            internal string _initial_text = null;
+            private string _initial_text = null;
 
             public MsbtTextElement()
             {
@@ -56,6 +57,11 @@ namespace Nindot
                 return false;
             }
 
+            public override bool IsValid()
+            {
+                return _initial_text != null;
+            }
+
             public override string GetText()
             {
                 string txt = _text.ToArray().GetStringFromUtf16();
@@ -76,7 +82,7 @@ namespace Nindot
 
         public class MsbtTagElementGeneric : MsbtBaseElement
         {
-            internal byte[] _buffer;
+            private byte[] _buffer;
 
             public MsbtTagElementGeneric(byte[] buf)
             {
@@ -84,6 +90,11 @@ namespace Nindot
             }
 
             public override bool IsTag()
+            {
+                return true;
+            }
+
+            public override bool IsValid()
             {
                 return true;
             }

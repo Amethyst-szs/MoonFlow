@@ -18,7 +18,6 @@ namespace Nindot
 
             // Convert this byml to yaml string
             string yamlString = byml.ToYaml();
-            GD.Print(yamlString);
 
             // Convert yaml string to C# dictionary
             IDeserializer deserializer = new DeserializerBuilder()

@@ -28,7 +28,10 @@ namespace Nindot
                     case Type.SUPER_MARIO_ODYSSEY:
                         return Smo.Builder.Build(buffer);
                     default:
-                        List<MsbtBaseElement> list = [new MsbtTextElement(buffer)];
+                        MsbtTextElement txt = new MsbtTextElement(buffer);
+                        txt.FinalizeAppending();
+
+                        List<MsbtBaseElement> list = [txt];
                         return list;
                 }
             }

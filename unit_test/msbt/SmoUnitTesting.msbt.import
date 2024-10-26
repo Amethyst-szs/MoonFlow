@@ -1,0 +1,15 @@
+[remap]
+
+importer="nindot.msbt"
+type="MsbtResource"
+uid="uid://dfeqse5mud7g8"
+path="res://.godot/imported/SmoUnitTesting.msbt-718b66feff0ccd187030fa84eb257f9e.tres"
+
+[deps]
+
+source_file="res://unit_test/msbt/SmoUnitTesting.msbt"
+dest_files=["res://.godot/imported/SmoUnitTesting.msbt-718b66feff0ccd187030fa84eb257f9e.tres"]
+
+[params]
+
+tag_library=1

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b86py7l46el0j"]
+
+[ext_resource type="Script" path="res://unit_test/UnitTester.cs" id="1_v7mpa"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_v7mpa")

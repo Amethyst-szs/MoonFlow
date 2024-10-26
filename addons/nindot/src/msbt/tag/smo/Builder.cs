@@ -1,14 +1,13 @@
+using System;
 using System.Collections.Generic;
-using CommunityToolkit.HighPerformance;
 using Godot;
-using Nindot.MsbtContent;
 
 namespace Nindot.MsbtTagLibrary.Smo;
 
 public static class Builder
 {
-    internal const ushort ByteCode_Tag = 0x0E;
-    internal const ushort ByteCode_TagClose = 0x0F;
+    public const ushort ByteCode_Tag = 0x0E;
+    public const ushort ByteCode_TagClose = 0x0F;
 
     public static List<MsbtBaseElement> Build(byte[] buffer)
     {
@@ -24,7 +23,7 @@ public static class Builder
         while (pointer < buffer.Length)
         {
             // Get the data at the current pointer
-            ushort value = System.BitConverter.ToUInt16(buffer, pointer);
+            ushort value = BitConverter.ToUInt16(buffer, pointer);
 
             // If the pointer rests on a Tag bytecode, jump to the tag builder
             if (value == ByteCode_Tag || value == ByteCode_TagClose)
@@ -68,15 +67,44 @@ public static class Builder
         return list;
     }
 
-    internal static MsbtTagElement BuildTagElement(byte[] buffer, ref int pointer)
+    private static MsbtTagElement BuildTagElement(byte[] buffer, ref int pointer)
     {
         // Jump pointer ahead by two to read tag group type byte
         pointer += 2;
 
         // Create a tag element depending on tag group type
-        return buffer[pointer] switch
+        return BitConverter.ToUInt16(buffer, pointer) switch
         {
-            // (byte)TagGroup.SYSTEM => new MsbtTagElementUnknown(ref pointer, buffer),
+            (ushort)TagGroup.SYSTEM => BuildTagElement_GroupNameSystem(buffer, ref pointer),
+            (ushort)TagGroup.PRINT_CONTROL => BuildTagElement_GroupNamePrintControl(buffer, ref pointer),
+            _ => new MsbtTagElementUnknown(ref pointer, buffer),
+        };
+    }
+
+    private static MsbtTagElement BuildTagElement_GroupNameSystem(byte[] buffer, ref int pointer)
+    {
+        // Grab ushort of tag name
+        ushort tag = BitConverter.ToUInt16(buffer, pointer + 2);
+
+        // Determine which class to create based on tag name
+        return tag switch
+        {
+            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementSystemFontSize(ref pointer, buffer),
+            (ushort)TagNameSystem.COLOR => new MsbtTagElementSystemColor(ref pointer, buffer),
+            (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
+            _ => new MsbtTagElementUnknown(ref pointer, buffer),
+        };
+    }
+    private static MsbtTagElement BuildTagElement_GroupNamePrintControl(byte[] buffer, ref int pointer)
+    {
+        // Grab ushort of tag name
+        ushort tag = BitConverter.ToUInt16(buffer, pointer + 2);
+
+        // Determine which class to create based on tag name
+        return tag switch
+        {
+            (ushort)TagNamePrintControl.PRINT_DELAY => new MsbtTagElementPrintDelay(ref pointer, buffer),
+            (ushort)TagNamePrintControl.PRINT_SPEED => new MsbtTagElementPrintSpeed(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

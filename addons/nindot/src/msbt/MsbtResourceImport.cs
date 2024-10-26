@@ -16,9 +16,8 @@ namespace Nindot
                 return Error.FileNotFound;
 
             // Generate sarc from file path
-            Msbt msbt = MsbtFileAccess.ParseFile(sourceFile);
-
-            GD.Print(options);
+            Msbt msbt;
+            MsbtFileAccess.ParseFile(out msbt, sourceFile);
 
             // Create a SarcResource class
             int tagLib = (int)options["tag_library"];

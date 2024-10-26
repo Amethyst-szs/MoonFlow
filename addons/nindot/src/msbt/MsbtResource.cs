@@ -28,8 +28,13 @@ namespace Nindot
 
         static public MsbtResource FromFilePath(string path, MsbtTagLibrary.Core.Type tagLib)
         {
-            Msbt msbt = MsbtFileAccess.ParseFile(path);
-            return new MsbtResource(msbt, tagLib);
+            Msbt msbt;
+            Error err = MsbtFileAccess.ParseFile(out msbt, path);
+
+            if (err == Error.Ok)
+                return new MsbtResource(msbt, tagLib);
+            else
+                return null;
         }
 
         static public MsbtResource FromSarc(SarcResource sarc, string file, MsbtTagLibrary.Core.Type tagLib)
@@ -40,8 +45,13 @@ namespace Nindot
 
             byte[] data = archive[file].ToArray();
 
-            Msbt msbt = MsbtFileAccess.ParseBytes(data);
-            return new MsbtResource(msbt, tagLib);
+            Msbt msbt;
+            Error err = MsbtFileAccess.ParseBytes(out msbt, data);
+
+            if (err == Error.Ok)
+                return new MsbtResource(msbt, tagLib);
+            else
+                return null;
         }
 
         // GDScript Interfaces
