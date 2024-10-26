@@ -1,10 +1,10 @@
-#if TOOLS
+#if UNIT_TEST
 using Godot;
 using System;
 
 namespace Nindot.UnitTest;
 
-public partial class UnitTester : Node
+public partial class UnitTester : SceneTree
 {
     protected UnitTestBase[] TestList = [
         new UnitTestMsbtSmoParse()
@@ -15,7 +15,7 @@ public partial class UnitTester : Node
     protected int TestWarningCount = 0;
     protected int TestFailureCount = 0;
 
-    public override void _Ready()
+    public UnitTester()
     {
         RunTests();
     }

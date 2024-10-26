@@ -6,7 +6,7 @@ using Godot;
 
 namespace Nindot.MsbtTagLibrary.Smo;
 
-public abstract class MsbtTagElement : MsbtBaseElement
+public class MsbtTagElement : MsbtBaseElement
 {
     protected ushort GroupName = 0xFFFF;
     protected ushort TagName = 0xFFFF;
@@ -84,6 +84,16 @@ public abstract class MsbtTagElement : MsbtBaseElement
     public override bool IsTag()
     {
         return true;
+    }
+
+    public override string GetText()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override byte[] GetBytes()
+    {
+        return CreateMemoryStreamWithHeaderData().ToArray();
     }
 
     public override void WriteBytes(ref MemoryStream stream)

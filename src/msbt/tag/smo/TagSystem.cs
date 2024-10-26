@@ -20,11 +20,6 @@ public class MsbtTagElementSystemFontSize : MsbtTagElement
         pointer += 0x2;
     }
 
-    public override string GetText()
-    {
-        throw new NotImplementedException();
-    }
-
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
@@ -40,7 +35,7 @@ public class MsbtTagElementSystemFontSize : MsbtTagElement
 
 public class MsbtTagElementSystemColor : MsbtTagElement
 {
-    enum ColorTable : ushort
+    private enum ColorTable : ushort
     {
         BLACK = 0,
         YELLOW = 1,
@@ -60,7 +55,10 @@ public class MsbtTagElementSystemColor : MsbtTagElement
         set
         {
             if (!Enum.IsDefined(typeof(ColorTable), value)) {
+                #if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag SystemColor to invalid color, set to reset value instead");
+                #endif
+                
                 _color = (ushort)ColorTable.RESET;
             } else {
                 _color = value;
@@ -76,11 +74,6 @@ public class MsbtTagElementSystemColor : MsbtTagElement
         // Copy short from buffer at pointer
         Color = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
-    }
-
-    public override string GetText()
-    {
-        throw new NotImplementedException();
     }
 
     public override byte[] GetBytes()
@@ -100,15 +93,5 @@ public class MsbtTagElementSystemPageBreak : MsbtTagElement
 {
     public MsbtTagElementSystemPageBreak(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
-    }
-
-    public override string GetText()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override byte[] GetBytes()
-    {
-        return CreateMemoryStreamWithHeaderData().ToArray();
     }
 };

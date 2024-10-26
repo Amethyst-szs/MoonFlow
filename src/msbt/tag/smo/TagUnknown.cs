@@ -20,11 +20,6 @@ public class MsbtTagElementUnknown : MsbtTagElement
         pointer = pointerEnd;
     }
 
-    public override string GetText()
-    {
-        throw new NotImplementedException();
-    }
-
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();

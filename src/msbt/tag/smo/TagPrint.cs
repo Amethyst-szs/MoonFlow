@@ -10,7 +10,7 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
 {
     public ushort DelayFrames = 0;
 
-    enum SkipModeTable : ushort {
+    private enum SkipModeTable : ushort {
         NORMAL = 0,
         INPUT_REQUIRED = 1,
     };
@@ -22,7 +22,10 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
         set
         {
             if (!Enum.IsDefined(typeof(SkipModeTable), value)) {
+                #if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag PrintDelay to invalid skip mode, clamped to 1");
+                #endif
+
                 _skipMode = 1;
             } else {
                 _skipMode = value;
@@ -43,11 +46,6 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
         pointer += 0x2;
     }
 
-    public override string GetText()
-    {
-        throw new NotImplementedException();
-    }
-
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
@@ -64,7 +62,7 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
 
 public class MsbtTagElementPrintSpeed : MsbtTagElement
 {
-    enum InstantModeTable : ushort {
+    private enum InstantModeTable : ushort {
         NORMAL = 0,
         INSTANT_PRINT = 1,
     };
@@ -76,7 +74,10 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
         set
         {
             if (!Enum.IsDefined(typeof(InstantModeTable), value)) {
+                #if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag PrintSpeed to invalid instant mode, clamped to 1");
+                #endif
+                
                 _instantMode = 1;
             } else {
                 _instantMode = value;
@@ -117,11 +118,6 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
     public void SetPrintSpeedVeryFast()
     {
         PrintSpeed = 0x2041;
-    }
-
-    public override string GetText()
-    {
-        throw new NotImplementedException();
     }
 
     public override byte[] GetBytes()

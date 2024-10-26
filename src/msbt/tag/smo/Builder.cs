@@ -66,7 +66,7 @@ public static class Builder
 
         return list;
     }
-
+    
     private static MsbtTagElement BuildTagElement(byte[] buffer, ref int pointer)
     {
         // Jump pointer ahead by two to read tag group type byte
@@ -77,6 +77,10 @@ public static class Builder
         {
             (ushort)TagGroup.SYSTEM => BuildTagElement_GroupNameSystem(buffer, ref pointer),
             (ushort)TagGroup.PRINT_CONTROL => BuildTagElement_GroupNamePrintControl(buffer, ref pointer),
+            (ushort)TagGroup.FORMAT_REPLACEMENT => new MsbtTagElementFormatting(ref pointer, buffer),
+            (ushort)TagGroup.SHAKE_ANIMATOR => new MsbtTagElementShake(ref pointer, buffer),
+            (ushort)TagGroup.VOICE => new MsbtTagElementVoiceAudio(ref pointer, buffer),
+            (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectIcon(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

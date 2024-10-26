@@ -1,6 +1,6 @@
 namespace Nindot.MsbtTagLibrary.Smo;
 
-enum TagGroup : ushort
+public enum TagGroup : ushort
 {
     SYSTEM = 0,
     PRINT_CONTROL = 1,
@@ -13,20 +13,20 @@ enum TagGroup : ushort
     DEVICE_FONT = 9,
 }
 
-enum TagNameSystem : ushort
+public enum TagNameSystem : ushort
 {
     FONT_SIZE = 2,
     COLOR = 3,
     PAGE_BREAK = 4,
 }
 
-enum TagNamePrintControl : ushort
+public enum TagNamePrintControl : ushort
 {
     PRINT_DELAY = 0,
     PRINT_SPEED = 1,
 }
 
-enum TagNameShakeAnimator : ushort
+public enum TagNameShakeAnimator : ushort
 {
     LIGHT_SHAKE = 0,
     STRONG_SHAKE = 1,
@@ -35,7 +35,17 @@ enum TagNameShakeAnimator : ushort
     TEXT_BOX_PULSE = 4
 }
 
-enum TagNameTime : ushort
+public enum TagNameProjectIcon : ushort
+{
+    UNKNOWN = 0xFFFF,
+    POWER_MOON = 0,
+    Y = 5,
+    ZL = 8,
+    L_STICK = 10,
+    R_STICK = 11,
+}
+
+public enum TagNameTime : ushort
 {
     YEAR = 0,
     MONTH = 1,

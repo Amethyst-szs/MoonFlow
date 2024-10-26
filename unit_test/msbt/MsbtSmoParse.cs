@@ -1,4 +1,4 @@
-#if TOOLS
+#if UNIT_TEST
 using Godot;
 using System;
 
@@ -47,12 +47,17 @@ public class UnitTestMsbtSmoParse : UnitTestBase
                 // Check the IsValid function of the tag. This is overridable by the specific tag, but the default
                 // behavior will ensure the DataSize matches the FixedDataSize (if that tag has a FixedDataSize)
                 // as well as the DataSize being an even number
-                if (IsElementFaulty(tag.IsValid(), isSupposedToError, key.Key, element))
+                if (IsElementFaulty(tag.IsValid(), isSupposedToError, key.Key, element)) {
+                    GD.PushError("Failed Test");
                     return UnitTestResult.FAILURE;
+                }
                 
                 // Ensure that the GetBytes function returns an array of equal length to the header and data
-                if (IsElementFaulty(tag.GetBytes().Length == tag.GetDataSize() + 0x8, isSupposedToError, key.Key, element))
+                bool isByteLengthValid = tag.GetBytes().Length == tag.GetDataSize() + 0x8 && tag.IsValid();
+                if (IsElementFaulty(isByteLengthValid, isSupposedToError, key.Key, element)) {
+                    GD.PushError("Failed Test");
                     return UnitTestResult.FAILURE;
+                }
                 
                 // Only throw a warning for this, but note down if tag group is of an unknown type, since this should
                 // never happen under normal circumstances, but doesn't inheritely mean something is wrong with the
@@ -67,10 +72,7 @@ public class UnitTestMsbtSmoParse : UnitTestBase
             }
         }
 
-        if (msbt.IsValid())
-            return UnitTestResult.OK;
-        else
-            return UnitTestResult.FAILURE;
+        return UnitTestResult.OK;
     }
 
     public static bool IsElementFaulty(bool value, bool isSupposedToError, string key, MsbtBaseElement element)

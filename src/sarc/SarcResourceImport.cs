@@ -102,6 +102,8 @@ namespace Nindot
 // GDScript parsing errors. This empty node-inherited version of the class solves this problem
 // in a very janky and weird way :)
 
+using Godot;
+
 namespace Nindot
 {
     [GlobalClass]
