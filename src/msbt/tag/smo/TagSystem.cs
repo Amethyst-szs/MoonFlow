@@ -6,11 +6,47 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.MsbtTagLibrary.Smo;
 
-public class MsbtTagElementSystemFontSize : MsbtTagElement
+public class MsbtTagElementSystemFurigana : MsbtTagElementWithTextData
+{
+    public ushort Unknown1 = 0;
+
+    public MsbtTagElementSystemFurigana(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    {
+        // Copy data from buffer at pointer
+        Unknown1 = BitConverter.ToUInt16(buffer, pointer);
+        pointer += 0x2;
+
+        ReadTextData(ref pointer, buffer);
+    }
+
+    public override byte[] GetBytes()
+    {
+        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        value.Write(Unknown1);
+        WriteTextData(ref value);
+
+        return value.ToArray();
+    }
+
+    public override ushort GetDataSizeBase()
+    {
+        return 0x4;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameSystem), TagName))
+            return Enum.GetName(typeof(TagNameSystem), TagName);
+
+        return "Unknown";
+    }
+};
+
+public class MsbtTagElementDeviceFontSize : MsbtTagElement
 {
     public ushort FontSize = 0;
 
-    public MsbtTagElementSystemFontSize(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementDeviceFontSize(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
@@ -27,9 +63,17 @@ public class MsbtTagElementSystemFontSize : MsbtTagElement
         return value.ToArray();
     }
 
-    public override int FixedDataSizeValue()
+    public override ushort GetDataSizeBase()
     {
         return 0x2;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameSystem), TagName))
+            return Enum.GetName(typeof(TagNameSystem), TagName);
+
+        return "Unknown";
     }
 };
 
@@ -54,13 +98,16 @@ public class MsbtTagElementSystemColor : MsbtTagElement
         get { return _color; }
         set
         {
-            if (!Enum.IsDefined(typeof(ColorTable), value)) {
-                #if !UNIT_TEST
+            if (!Enum.IsDefined(typeof(ColorTable), value))
+            {
+#if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag SystemColor to invalid color, set to reset value instead");
-                #endif
-                
+#endif
+
                 _color = (ushort)ColorTable.RESET;
-            } else {
+            }
+            else
+            {
                 _color = value;
             }
         }
@@ -83,9 +130,17 @@ public class MsbtTagElementSystemColor : MsbtTagElement
         return value.ToArray();
     }
 
-    public override int FixedDataSizeValue()
+    public override ushort GetDataSizeBase()
     {
         return 0x2;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameSystem), TagName))
+            return Enum.GetName(typeof(TagNameSystem), TagName);
+
+        return "Unknown";
     }
 };
 
@@ -93,5 +148,13 @@ public class MsbtTagElementSystemPageBreak : MsbtTagElement
 {
     public MsbtTagElementSystemPageBreak(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameSystem), TagName))
+            return Enum.GetName(typeof(TagNameSystem), TagName);
+
+        return "Unknown";
     }
 };

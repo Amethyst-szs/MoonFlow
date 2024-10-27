@@ -31,7 +31,7 @@ public static class Builder
                 // If the current element is a text element, run the finalizer
                 if (curElement != null && curElement.GetType() == typeof(MsbtTextElement))
                     ((MsbtTextElement)curElement).FinalizeAppending();
-                
+
                 // Wipe the current element and move to the tag element builder
                 curElement = null;
 
@@ -66,7 +66,7 @@ public static class Builder
 
         return list;
     }
-    
+
     private static MsbtTagElement BuildTagElement(byte[] buffer, ref int pointer)
     {
         // Jump pointer ahead by two to read tag group type byte
@@ -77,11 +77,14 @@ public static class Builder
         {
             (ushort)TagGroup.SYSTEM => BuildTagElement_GroupNameSystem(buffer, ref pointer),
             (ushort)TagGroup.PRINT_CONTROL => BuildTagElement_GroupNamePrintControl(buffer, ref pointer),
-            (ushort)TagGroup.FORMAT_REPLACEMENT => new MsbtTagElementFormatting(ref pointer, buffer),
+            (ushort)TagGroup.FORMAT_REPLACEMENT => BuildTagElement_GroupNameFormatting(buffer, ref pointer),
             (ushort)TagGroup.SHAKE_ANIMATOR => new MsbtTagElementShake(ref pointer, buffer),
+            (ushort)TagGroup.OBJECTIVE_NAME => new MsbtTagElementObjectiveName(ref pointer, buffer),
             (ushort)TagGroup.VOICE => new MsbtTagElementVoiceAudio(ref pointer, buffer),
             (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectIcon(ref pointer, buffer),
             (ushort)TagGroup.TIME => new MsbtTagElementTime(ref pointer, buffer),
+            (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer),
+            (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
@@ -94,7 +97,8 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementSystemFontSize(ref pointer, buffer),
+            (ushort)TagNameSystem.FURIGANA => new MsbtTagElementSystemFurigana(ref pointer, buffer),
+            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementDeviceFontSize(ref pointer, buffer),
             (ushort)TagNameSystem.COLOR => new MsbtTagElementSystemColor(ref pointer, buffer),
             (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
@@ -110,6 +114,18 @@ public static class Builder
         {
             (ushort)TagNamePrintControl.PRINT_DELAY => new MsbtTagElementPrintDelay(ref pointer, buffer),
             (ushort)TagNamePrintControl.PRINT_SPEED => new MsbtTagElementPrintSpeed(ref pointer, buffer),
+            _ => new MsbtTagElementUnknown(ref pointer, buffer),
+        };
+    }
+    private static MsbtTagElement BuildTagElement_GroupNameFormatting(byte[] buffer, ref int pointer)
+    {
+        // Grab ushort of tag name
+        ushort tag = BitConverter.ToUInt16(buffer, pointer + 2);
+
+        // Determine which class to create based on tag name
+        return tag switch
+        {
+            (ushort)TagNameFormatting.NORMAL => new MsbtTagElementFormatting(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

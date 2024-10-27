@@ -5,6 +5,8 @@ using System;
 using Nindot.MsbtContent;
 using Nindot.MsbtTagLibrary;
 using Nindot.MsbtTagLibrary.Smo;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Nindot.UnitTest;
 
@@ -30,6 +32,10 @@ public class UnitTestMsbtSmoParse : UnitTestBase
 
     public static UnitTestResult ScanElements(MsbtResource res, bool isCheckIntendedFailureKeys = true)
     {
+        Dictionary<string, ushort> dictKeyToTagName = [];
+        Dictionary<string, ushort> dictKeyToCharData = [];
+        Dictionary<ushort, ushort> dictTagToChar = [];
+
         foreach (EntryContent key in res.Content.Values)
         {
             bool isSupposedToError = key.Key.EndsWith("Failure");
@@ -66,17 +72,40 @@ public class UnitTestMsbtSmoParse : UnitTestBase
                     GD.PushError("Failed Test");
                     return UnitTestResult.FAILURE;
                 }
+
+                if ((TagGroup)tag.GetGroupName() == TagGroup.DEVICE_FONT) {
+                    byte[] dat = ((MsbtTagElementDeviceFont)tag).GetBytes();
+                    ushort tagName = BitConverter.ToUInt16(dat, 0x4);
+                    ushort charData = BitConverter.ToUInt16(dat, 0xA);
+
+                    // if (!dictKeyToTagName.Values.Contains(tagName))
+                        dictKeyToTagName[key.Key] = tagName;
+                    
+                    // if (!dictKeyToCharData.Values.Contains(charData))
+                        dictKeyToCharData[key.Key] = charData;
+                    
+                    // if (!dictTagToChar.Keys.Contains(tagName))
+                        dictTagToChar[tagName] = charData;
+                }
                 
                 // Only throw a warning for this, but note down if tag group is of an unknown type, since this should
                 // never happen under normal circumstances, but doesn't inheritely mean something is wrong with the
                 // parser or file
                 if (!Enum.IsDefined(typeof(TagGroup), tag.GetGroupName()) || tag.GetType() == typeof(MsbtTagElementUnknown)) {
-                    string warn = string.Format("Tag in {0} is tag group {1} ({2})\nThis led to tag being initilized as {3}",
-                        key.Key, tag.GetGroupName(), Enum.GetName(typeof(TagGroup), tag.GetGroupName()), tag.GetType()
+                    string warn = string.Format("{0} is tag group {1} ({2}) and subtype {3} ({4}), leading to init of {5}",
+                        key.Key, tag.GetGroupName(), Enum.GetName(typeof(TagGroup), tag.GetGroupName()),
+                        tag.GetTagName(), tag.GetTagNameStr(), tag.GetType()
                     );
 
                     GD.PushWarning(warn);
                 }
+            }
+        }
+
+        if (dictKeyToTagName.Count != 0 || dictKeyToCharData.Count != 0) {
+            foreach(var x in dictTagToChar)
+            {
+                GD.Print(string.Format("0x{0:X}: 0x{1:X}", x.Key, x.Value));
             }
         }
 

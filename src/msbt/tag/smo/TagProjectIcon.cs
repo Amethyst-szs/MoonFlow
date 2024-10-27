@@ -101,4 +101,12 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
     {
         return false;
     }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameProjectIcon), TagName))
+            return Enum.GetName(typeof(TagNameProjectIcon), TagName);
+        
+        return "Unknown";
+    }
 };

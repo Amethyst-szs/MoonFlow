@@ -10,13 +10,16 @@ public class MsbtTagElementTime : MsbtTagElement
         get { return (TagNameTime)TagName; }
         set
         {
-            if (!Enum.IsDefined(typeof(TagNameTime), value)) {
-                #if !UNIT_TEST
+            if (!Enum.IsDefined(typeof(TagNameTime), value))
+            {
+#if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag TimeType to invalid type, value clamped to 6");
-                #endif
-                
+#endif
+
                 TagName = 0x6;
-            } else {
+            }
+            else
+            {
                 TagName = (ushort)value;
             }
         }
@@ -26,8 +29,16 @@ public class MsbtTagElementTime : MsbtTagElement
     {
         if (!IsValid())
             return;
-        
+
         // The tag name is the time type, so make sure to assign it to itself here to run the enum clamper
         TimeType = (TagNameTime)TagName;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameTime), TagName))
+            return Enum.GetName(typeof(TagNameTime), TagName);
+
+        return "Unknown";
     }
 };

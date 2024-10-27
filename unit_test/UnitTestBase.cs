@@ -23,6 +23,11 @@ public class UnitTestBase
     {
     }
 
+    public virtual bool IsRequireRomFs()
+    {
+        return false;
+    }
+
     public void Print(UnitTestStatusCode statusCode, string msg)
     {
         GD.Print(string.Format("UnitTest > {0} > {1} : {2}", statusCode.ToString(), GetType(), msg));
@@ -51,6 +56,11 @@ public class UnitTestBase
     public void PrintTestSkipped()
     {
         Print(UnitTestStatusCode.Skip, "Test Skipped.");
+    }
+
+    public void PrintTestSkippedRomFs()
+    {
+        Print(UnitTestStatusCode.Skip, "Set romfs paths in project settings to run this test");
     }
 
     public void PrintTestError()

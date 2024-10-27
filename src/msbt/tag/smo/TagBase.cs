@@ -20,7 +20,7 @@ public class MsbtTagElement : MsbtBaseElement
         ushort startValue = BitConverter.ToUInt16(buffer, pointer);
         if (startValue == Builder.ByteCode_Tag || startValue == Builder.ByteCode_TagClose)
             pointer += 2;
-        
+
         // Setup header
         GroupName = BitConverter.ToUInt16(buffer, pointer);
         pointer += 2;
@@ -67,17 +67,17 @@ public class MsbtTagElement : MsbtBaseElement
         return true;
     }
 
-    public virtual int FixedDataSizeValue()
+    public virtual ushort GetDataSizeBase()
     {
-        return 0;
+        return 0x0;
     }
 
     public override bool IsValid()
     {
         if (!IsFixedDataSize())
             return (DataSize % 2) == 0;
-        
-        bool result = DataSize == FixedDataSizeValue();
+
+        bool result = DataSize == GetDataSizeBase();
         return result;
     }
 
@@ -99,5 +99,88 @@ public class MsbtTagElement : MsbtBaseElement
     public override void WriteBytes(ref MemoryStream stream)
     {
         stream.Write(GetBytes());
+    }
+
+    public virtual string GetTagNameStr()
+    {
+        return "Unknown";
+    }
+}
+
+public class MsbtTagElementWithTextData : MsbtTagElement
+{
+    protected ushort TextDataLength = 0;
+    protected bool IsTextDataInvalid = false;
+
+    protected string _textData = "";
+    public string TextData
+    {
+        get { return _textData; }
+        set
+        {
+            byte[] valueBuf = value.ToUtf16Buffer();
+
+            TextDataLength = (ushort)valueBuf.Length;
+            DataSize = (ushort)(TextDataLength + GetDataSizeBase());
+            IsTextDataInvalid = false;
+
+            _textData = value;
+        }
+    }
+
+    public MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    {
+        if (GetType() == typeof(MsbtTagElementWithTextData))
+            throw new NotImplementedException();
+    }
+
+    public bool ReadTextData(ref int pointer, byte[] buffer)
+    {
+        TextDataLength = BitConverter.ToUInt16(buffer, pointer);
+        pointer += 0x2;
+
+        // Ensure validity before reading the TextData
+        if (!IsValid()) {
+            // If not valid, set all properties to defaults with an empty string 
+            DataSize = GetDataSizeBase();
+            TextDataLength = 0x0;
+
+            IsTextDataInvalid = true;
+            return false;
+        }
+
+        // Now we can safely read the string out
+        int endPointer = pointer + TextDataLength;
+        TextData = buffer[pointer..endPointer].GetStringFromUtf16();
+
+        pointer = endPointer;
+        return true;
+    }
+
+    public void WriteTextData(ref MemoryStream stream)
+    {
+        stream.Write(TextDataLength);
+
+        if (TextData != null && TextDataLength > 0)
+            stream.Write(TextData.ToUtf16Buffer());
+    }
+
+    public override bool IsValid()
+    {
+        if (IsTextDataInvalid)
+            return false;
+        
+        if (DataSize % 2 != 0 || TextDataLength % 2 != 0)
+            return false;
+        
+        if (DataSize - GetDataSizeBase() != TextDataLength)
+            return false;
+        
+        return true;
+    }
+
+    public override bool IsFixedDataSize()
+    {
+        return false;
     }
 }

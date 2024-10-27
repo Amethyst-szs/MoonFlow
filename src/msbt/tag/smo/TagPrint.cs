@@ -10,24 +10,28 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
 {
     public ushort DelayFrames = 0;
 
-    private enum SkipModeTable : ushort {
+    private enum SkipModeTable : ushort
+    {
         NORMAL = 0,
         INPUT_REQUIRED = 1,
     };
-    
+
     private ushort _skipMode;
     public ushort SkipMode
     {
         get { return _skipMode; }
         set
         {
-            if (!Enum.IsDefined(typeof(SkipModeTable), value)) {
-                #if !UNIT_TEST
+            if (!Enum.IsDefined(typeof(SkipModeTable), value))
+            {
+#if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag PrintDelay to invalid skip mode, clamped to 1");
-                #endif
+#endif
 
                 _skipMode = 1;
-            } else {
+            }
+            else
+            {
                 _skipMode = value;
             }
         }
@@ -37,7 +41,7 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
     {
         if (!IsValid())
             return;
-        
+
         // Copy data from buffer at pointer
         DelayFrames = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
@@ -54,15 +58,24 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
         return value.ToArray();
     }
 
-    public override int FixedDataSizeValue()
+    public override ushort GetDataSizeBase()
     {
         return 0x4;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNamePrintControl), TagName))
+            return Enum.GetName(typeof(TagNamePrintControl), TagName);
+
+        return "Unknown";
     }
 };
 
 public class MsbtTagElementPrintSpeed : MsbtTagElement
 {
-    private enum InstantModeTable : ushort {
+    private enum InstantModeTable : ushort
+    {
         NORMAL = 0,
         INSTANT_PRINT = 1,
     };
@@ -73,13 +86,16 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
         get { return _instantMode; }
         set
         {
-            if (!Enum.IsDefined(typeof(InstantModeTable), value)) {
-                #if !UNIT_TEST
+            if (!Enum.IsDefined(typeof(InstantModeTable), value))
+            {
+#if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag PrintSpeed to invalid instant mode, clamped to 1");
-                #endif
-                
+#endif
+
                 _instantMode = 1;
-            } else {
+            }
+            else
+            {
                 _instantMode = value;
             }
         }
@@ -91,7 +107,7 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
     {
         if (!IsValid())
             return;
-        
+
         // Copy data from buffer at pointer
         InstantMode = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
@@ -128,8 +144,16 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
         return value.ToArray();
     }
 
-    public override int FixedDataSizeValue()
+    public override ushort GetDataSizeBase()
     {
         return 0x4;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNamePrintControl), TagName))
+            return Enum.GetName(typeof(TagNamePrintControl), TagName);
+
+        return "Unknown";
     }
 };
