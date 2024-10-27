@@ -45,3 +45,32 @@ public class MsbtTagElementFormatting : MsbtTagElementWithTextData
         return "Unknown";
     }
 };
+
+public class MsbtTagElementFormattingSimple : MsbtTagElementWithTextData
+{
+    public MsbtTagElementFormattingSimple(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    {
+        ReadTextData(ref pointer, buffer);
+    }
+
+    public override byte[] GetBytes()
+    {
+        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        WriteTextData(ref value);
+
+        return value.ToArray();
+    }
+
+    public override ushort GetDataSizeBase()
+    {
+        return 0x2;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameFormatting), TagName))
+            return Enum.GetName(typeof(TagNameFormatting), TagName);
+
+        return "Unknown";
+    }
+};

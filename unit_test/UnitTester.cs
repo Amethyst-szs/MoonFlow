@@ -10,6 +10,7 @@ public partial class UnitTester : SceneTree
         new UnitTestMsbtSmoParse(),
         new UnitTestMsbtSmoWrite(),
         new UnitTestMsbtUSen(),
+        new UnitTestMsbtAllLang(),
     ];
 
     protected int TestCount = 0;

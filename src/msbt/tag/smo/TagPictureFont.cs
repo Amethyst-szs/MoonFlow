@@ -18,7 +18,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
             if (!Enum.IsDefined(typeof(TagNamePictureFont), value))
             {
 #if !UNIT_TEST
-                GD.PushWarning("Attempted to set Tag IconType to invalid type, clamped to enum maximum");
+                GD.PushWarning("Attempted to set PictureFont Tag IconType to invalid type, clamped to enum maximum");
 #endif
 
                 TagName = (ushort)(TagNamePictureFont.ENUM_END - 1);
@@ -50,9 +50,10 @@ public class MsbtTagElementPictureFont : MsbtTagElement
 
         // Read the char byte and ensure that the IconType matches
         ushort typeChar = BitConverter.ToUInt16(buffer, pointer);
+        ushort calcTypeChar = GetChar16tFromTagName();
         pointer += 2;
 
-        if (typeChar != GetChar16tFromTagName())
+        if (typeChar != calcTypeChar || calcTypeChar == 0x0000)
         {
             GD.PushWarning("PictureFont tag has mismatch between IconType and char data buffer, setting to default icon");
             IconType = (ushort)(TagNamePictureFont.ENUM_END - 1);
@@ -62,7 +63,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
     public ushort GetChar16tFromTagName()
     {
         if (!Enum.IsDefined(typeof(TagNamePictureFont), IconType))
-            return (ushort)(TagNamePictureFont.ENUM_END - 1);
+            return 0x0000;
 
         string enumStr = Enum.GetName(typeof(TagNamePictureFont), IconType);
 

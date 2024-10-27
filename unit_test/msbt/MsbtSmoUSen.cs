@@ -12,7 +12,7 @@ public class UnitTestMsbtUSen : UnitTestMsbtSmoParse
 {
     protected SarcResource SystemMessage = null;
     protected SarcResource StageMessage = null;
-    private SarcResource LayoutMessage = null;
+    protected SarcResource LayoutMessage = null;
 
     protected enum GameVersion {
         v100,
@@ -94,9 +94,9 @@ public class UnitTestMsbtUSen : UnitTestMsbtSmoParse
                 continue;
             }
 
-            // #if UNIT_TEST_VERBOSE
-            // GD.Print("Parsing " + x.Key);
-            // #endif
+            #if UNIT_TEST_VERBOSE
+            GD.Print("Parsing " + x.Key);
+            #endif
 
             byte[] file = [.. x.Value];
 

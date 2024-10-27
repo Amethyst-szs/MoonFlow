@@ -30,7 +30,14 @@ public enum TagNamePrintControl : ushort
 
 public enum TagNameFormatting : ushort
 {
+    // These values use MsbtTagElementFormatting, which includes extra data outside the format string
     NORMAL = 0,
+    RETRY_COIN = 2,
+
+    // These values use MsbtTagElementFormattingSimple, which is mostly just a wrapper around MsbtTagElementWithTextData
+    DATE = 3,
+    RACE_TIME = 4,
+    DATE_DETAIL = 5,
 }
 
 public enum TagNameShakeAnimator : ushort
@@ -155,7 +162,7 @@ public enum TagNameDeviceFont : ushort
     PAD_ARROW_RIGHT = 0x11,
     PLUS = 0x12,
     MINUS = 0x13,
-    UNKNOWN_KEY = 0x14,
+    POWER_BUTTON = 0x14,
     HOME = 0x15,
     SCREENSHOT_CAPTURE = 0x16,
     STICK = 0x17,
@@ -164,10 +171,9 @@ public enum TagNameDeviceFont : ushort
     STICK_PUSH = 0x1A,
     STICKL_PUSH = 0x1B,
     STICKR_PUSH = 0x1C,
-    UNKNOWN_KEY_5 = 0x1D,
-    UNKNOWN_KEY_6 = 0x1E,
-    UNKNOWN_KEY_7 = 0x1F,
-    UNKNOWN_KEY_8 = 0x20,
+
+    // Four keys of padding fit here, no icon is assigned to anything between 0x1C and 0x21 (exclusive)
+
     STICKR_UP_DOWN = 0x21,
     STICKL_UP_DOWN = 0x22,
     STICKR_LEFT_RIGHT = 0x23,
@@ -176,6 +182,7 @@ public enum TagNameDeviceFont : ushort
     JOY_CON_SINGLE_VERTICAL = 0x26,
     JOY_CON_SINGLE_HORIZONTAL = 0x27,
     PRO_CONTROLLER = 0x28,
-    MODE_SELECT_GUIDE = 0x29,
-    HINT_PHOTO_GUIDE = 0x2A,
+    HOME_ALBUM = 0x29,
+    HINT_PHOTO_ARROW = 0x2A,
+    ENUM_END = 0x2B,
 }

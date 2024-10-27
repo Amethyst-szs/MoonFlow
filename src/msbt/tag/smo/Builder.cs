@@ -126,6 +126,10 @@ public static class Builder
         return tag switch
         {
             (ushort)TagNameFormatting.NORMAL => new MsbtTagElementFormatting(ref pointer, buffer),
+            (ushort)TagNameFormatting.RETRY_COIN => new MsbtTagElementFormatting(ref pointer, buffer),
+            (ushort)TagNameFormatting.DATE => new MsbtTagElementFormattingSimple(ref pointer, buffer),
+            (ushort)TagNameFormatting.RACE_TIME => new MsbtTagElementFormattingSimple(ref pointer, buffer),
+            (ushort)TagNameFormatting.DATE_DETAIL => new MsbtTagElementFormattingSimple(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
