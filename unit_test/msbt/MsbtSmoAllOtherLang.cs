@@ -21,10 +21,11 @@ public class UnitTestMsbtAllLang : UnitTestMsbtUSen
         "EUru",
         "JPja",
         "TWzh",
-        "USen",
         "USes",
         "USfr",
     ];
+
+    public string LastLang = "";
 
     public override void SetupTest()
     {
@@ -32,8 +33,11 @@ public class UnitTestMsbtAllLang : UnitTestMsbtUSen
 
     public override UnitTestResult Test()
     {
-        foreach (var lang in LangList) {
-        // Create sarc data
+        foreach (var lang in LangList)
+        {
+            LastLang = lang;
+
+            // Create sarc data
             UnitTestResult res = ReadSarcList(GameVersion.v100, lang);
             if (res != UnitTestResult.OK)
                 return res;
@@ -42,16 +46,17 @@ public class UnitTestMsbtAllLang : UnitTestMsbtUSen
             res = ScanSarcMsbt(SystemMessage);
             if (res != UnitTestResult.OK)
                 return res;
-            
+
             res = ScanSarcMsbt(StageMessage);
             if (res != UnitTestResult.OK)
                 return res;
-            
+
             res = ScanSarcMsbt(LayoutMessage);
             if (res != UnitTestResult.OK)
                 return res;
         }
 
+        LastLang = "";
         return UnitTestResult.OK;
     }
 
@@ -60,6 +65,9 @@ public class UnitTestMsbtAllLang : UnitTestMsbtUSen
         SystemMessage = null;
         StageMessage = null;
         LayoutMessage = null;
+
+        if (LastLang.Length != 0)
+            GD.Print("Failure Language: " + LastLang);
     }
 
     public override void Failure()

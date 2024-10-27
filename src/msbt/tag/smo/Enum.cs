@@ -2,16 +2,17 @@ namespace Nindot.MsbtTagLibrary.Smo;
 
 public enum TagGroup : ushort
 {
-    SYSTEM = 0,
-    PRINT_CONTROL = 1,
-    FORMAT_REPLACEMENT = 2,
-    SHAKE_ANIMATOR = 3,
-    VOICE = 4,
-    OBJECTIVE_NAME = 5,
-    PROJECT_TAG = 6,
-    TIME = 7,
-    PICTURE_FONT = 8,
-    DEVICE_FONT = 9,
+    SYSTEM = 0x0,
+    PRINT_CONTROL = 0x1,
+    FORMAT_REPLACEMENT = 0x2,
+    SHAKE_ANIMATOR = 0x3,
+    VOICE = 0x4,
+    OBJECTIVE_NAME = 0x5,
+    PROJECT_TAG = 0x6,
+    TIME = 0x7,
+    PICTURE_FONT = 0x8,
+    DEVICE_FONT = 0x9,
+    LANGUAGE_SPECIAL = 0xA,
 }
 
 public enum TagNameSystem : ushort

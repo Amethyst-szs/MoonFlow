@@ -85,6 +85,7 @@ public static class Builder
             (ushort)TagGroup.TIME => new MsbtTagElementTime(ref pointer, buffer),
             (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer),
             (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
+            (ushort)TagGroup.LANGUAGE_SPECIAL => new MsbtTagElementLanguageSpecial(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

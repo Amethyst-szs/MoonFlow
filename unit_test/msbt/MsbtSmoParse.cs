@@ -79,6 +79,8 @@ public class UnitTestMsbtSmoParse : UnitTestBase
                     );
 
                     GD.PushWarning(warn);
+                    
+                    return UnitTestResult.FAILURE;
                 }
             }
         }
