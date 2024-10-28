@@ -7,11 +7,12 @@ namespace Nindot.UnitTest;
 public partial class UnitTester : SceneTree
 {
     protected UnitTestBase[] TestList = [
-        new UnitTestLmsHeaderReadWrite(),
         new UnitTestMsbtSmoParse(),
         new UnitTestMsbtSmoWrite(),
         new UnitTestMsbtUSen(),
         new UnitTestMsbtAllLang(),
+        new UnitTestLmsHeaderReadWrite(),
+        new UnitTestMsbpRead(),
     ];
 
     protected int TestCount = 0;

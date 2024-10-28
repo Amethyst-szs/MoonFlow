@@ -23,9 +23,9 @@ public class FileHeader
         INVALID = 0xFF,
     }
 
-    protected const ushort HEADER_SIZE = 0x20;
-    protected const ushort MAGIC_SIZE = 0x8;
-    protected const ushort PADDING_SIZE = 0xA;
+    public const ushort HEADER_SIZE = 0x20;
+    public const ushort MAGIC_SIZE = 0x8;
+    public const ushort PADDING_SIZE = 0xA;
 
     protected readonly string Magic = ""; // 0x0
     protected readonly Endianness Endian = Endianness.INVALID; // 0x8
@@ -38,10 +38,11 @@ public class FileHeader
     
     // 0xA bytes of padding
 
-    public FileHeader(byte[] data)
+    public FileHeader(byte[] data, string requiredMagic = "n/a")
     {
         // Ensure data is large enough to include header
-        if (data.Length < HEADER_SIZE) {
+        if (data.Length < HEADER_SIZE)
+        {
             GD.PushError("Reading LMS header failed, byte data too short");
             return;
         }
@@ -51,6 +52,12 @@ public class FileHeader
         
         // MAGIC
         Magic = data[pointer..MAGIC_SIZE].GetStringFromUtf8();
+        if (Magic != requiredMagic && requiredMagic != "n/a")
+        {
+            GD.PushError(string.Format("Magic in LMS file ({0}) is not equal to {1}", Magic, requiredMagic));
+            return;
+        }
+
         pointer += MAGIC_SIZE;
 
         // ENDIAN
