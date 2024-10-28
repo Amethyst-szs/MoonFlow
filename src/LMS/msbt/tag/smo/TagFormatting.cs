@@ -3,7 +3,7 @@ using System.IO;
 
 using CommunityToolkit.HighPerformance;
 
-namespace Nindot.MsbtTagLibrary.Smo;
+namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementFormatting : MsbtTagElementWithTextData
 {

@@ -6,7 +6,7 @@ using Godot;
 using CommunityToolkit.HighPerformance;
 using System.Linq;
 
-namespace Nindot.MsbtTagLibrary.Smo;
+namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementProjectIcon : MsbtTagElement
 {

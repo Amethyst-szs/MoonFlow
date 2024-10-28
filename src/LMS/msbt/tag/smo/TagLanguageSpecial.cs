@@ -4,7 +4,7 @@ using Godot;
 
 using CommunityToolkit.HighPerformance;
 
-namespace Nindot.MsbtTagLibrary.Smo;
+namespace Nindot.LMS.Msbt.TagLib.Smo;
 public class MsbtTagElementLanguageSpecial : MsbtTagElement
 {
     public MsbtTagElementLanguageSpecial(ref int pointer, byte[] buffer) : base(ref pointer, buffer)

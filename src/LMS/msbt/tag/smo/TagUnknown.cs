@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Nindot.MsbtTagLibrary.Smo;
+namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementUnknown : MsbtTagElement
 {

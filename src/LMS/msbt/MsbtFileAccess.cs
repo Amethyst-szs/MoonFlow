@@ -37,7 +37,7 @@ namespace Nindot
             return Error.Ok;
         }
 
-        public static byte[] WriteBytes(MsbtContent.Content msbt)
+        public static byte[] WriteBytes(LMS.Msbt.Content msbt)
         {
             System.IO.MemoryStream stream = new();
 
@@ -47,7 +47,7 @@ namespace Nindot
             return stream.ToArray();
         }
 
-        public static bool WriteDisk(string path, MsbtContent.Content msbt)
+        public static bool WriteDisk(string path, LMS.Msbt.Content msbt)
         {
             // Ensure path is valid
             if (!DirAccess.DirExistsAbsolute(path.GetBaseDir()))

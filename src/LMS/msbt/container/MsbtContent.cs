@@ -1,12 +1,10 @@
-using MessageStudio.Formats.BinaryText;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace Nindot.MsbtContent;
+namespace Nindot.LMS.Msbt;
 
 public partial class Content : Dictionary<string, EntryContent>
 {
-    public Content(Msbt file, MsbtTagLibrary.Core.Type tagLib)
+    public Content(MessageStudio.Formats.BinaryText.Msbt file, TagLib.Core.Type tagLib)
     {
         // Iterate through every item in the Msbt class and create an MsbtDictionaryEntry
         foreach (var entry in file)

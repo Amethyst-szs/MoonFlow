@@ -8,25 +8,25 @@ namespace Nindot
     [GlobalClass]
     public partial class MsbtResource : Resource
     {
-        public MsbtTagLibrary.Core.Type TagLib = MsbtTagLibrary.Core.Type.NONE;
+        public LMS.Msbt.TagLib.Core.Type TagLib = LMS.Msbt.TagLib.Core.Type.NONE;
 
-        public MsbtContent.Content Content;
+        public LMS.Msbt.Content Content;
 
         // Constructor and Initilzation Functions
 
         public MsbtResource()
         {
-            TagLib = MsbtTagLibrary.Core.Type.NONE;
+            TagLib = LMS.Msbt.TagLib.Core.Type.NONE;
             Content = null;
         }
 
-        public MsbtResource(Msbt file, MsbtTagLibrary.Core.Type taglib)
+        public MsbtResource(Msbt file, LMS.Msbt.TagLib.Core.Type taglib)
         {
             TagLib = taglib;
-            Content = new MsbtContent.Content(file, taglib);
+            Content = new LMS.Msbt.Content(file, taglib);
         }
 
-        static public MsbtResource FromFilePath(string path, MsbtTagLibrary.Core.Type tagLib)
+        static public MsbtResource FromFilePath(string path, LMS.Msbt.TagLib.Core.Type tagLib)
         {
             Msbt msbt;
             Error err = MsbtFileAccess.ParseFile(out msbt, path);
@@ -37,7 +37,7 @@ namespace Nindot
                 return null;
         }
 
-        static public MsbtResource FromBytes(byte[] data, MsbtTagLibrary.Core.Type tagLib)
+        static public MsbtResource FromBytes(byte[] data, LMS.Msbt.TagLib.Core.Type tagLib)
         {
             Msbt msbt;
             Error err = MsbtFileAccess.ParseBytes(out msbt, data);
@@ -48,7 +48,7 @@ namespace Nindot
                 return null;
         }
 
-        static public MsbtResource FromSarc(SarcResource sarc, string file, MsbtTagLibrary.Core.Type tagLib)
+        static public MsbtResource FromSarc(SarcResource sarc, string file, LMS.Msbt.TagLib.Core.Type tagLib)
         {
             Sarc archive = sarc.SarcDict;
             if (!archive.ContainsKey(file))
@@ -69,7 +69,7 @@ namespace Nindot
 
         public bool IsValid()
         {
-            return Content != null && TagLib != MsbtTagLibrary.Core.Type.ENUM_SIZE;
+            return Content != null && TagLib != LMS.Msbt.TagLib.Core.Type.ENUM_SIZE;
         }
 
         public int GetKeyCount()

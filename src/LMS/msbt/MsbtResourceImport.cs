@@ -21,7 +21,7 @@ namespace Nindot
 
             // Create a SarcResource class
             int tagLib = (int)options["tag_library"];
-            MsbtResource res = new(msbt, (MsbtTagLibrary.Core.Type)tagLib);
+            MsbtResource res = new(msbt, (LMS.Msbt.TagLib.Core.Type)tagLib);
 
             // Write new resource file using resource saver
             string saveFile = string.Format("{0}.{1}", savePath, _GetSaveExtension());
@@ -76,10 +76,10 @@ namespace Nindot
         public override Array<Dictionary> _GetImportOptions(string path, int presetIndex)
         {
             string tagLibList = "";
-            for (int i = 0; i < (int)MsbtTagLibrary.Core.Type.ENUM_SIZE; i++)
+            for (int i = 0; i < (int)LMS.Msbt.TagLib.Core.Type.ENUM_SIZE; i++)
             {
-                tagLibList += MsbtTagLibrary.Core.Name[i] + ":" + i;
-                if (i != (int)MsbtTagLibrary.Core.Type.ENUM_SIZE - 1)
+                tagLibList += LMS.Msbt.TagLib.Core.Name[i] + ":" + i;
+                if (i != (int)LMS.Msbt.TagLib.Core.Type.ENUM_SIZE - 1)
                     tagLibList += ",";
             }
 

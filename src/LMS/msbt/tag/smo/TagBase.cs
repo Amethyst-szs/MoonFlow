@@ -4,7 +4,7 @@ using System.IO;
 using CommunityToolkit.HighPerformance;
 using Godot;
 
-namespace Nindot.MsbtTagLibrary.Smo;
+namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElement : MsbtBaseElement
 {

@@ -1,4 +1,4 @@
-namespace Nindot.MsbtTagLibrary.Smo;
+namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public enum TagGroup : ushort
 {

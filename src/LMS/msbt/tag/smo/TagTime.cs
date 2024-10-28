@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Nindot.MsbtTagLibrary.Smo;
+namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementTime : MsbtTagElement
 {

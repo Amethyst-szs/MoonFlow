@@ -2,9 +2,9 @@
 using Godot;
 using System;
 
-using Nindot.MsbtContent;
-using Nindot.MsbtTagLibrary;
-using Nindot.MsbtTagLibrary.Smo;
+using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib;
+using Nindot.LMS.Msbt.TagLib.Smo;
 using System.Collections.Generic;
 using System.Linq;
 
