@@ -41,10 +41,10 @@ public abstract class FileBase
         }
 
         // Call abstract initalization function, handle file extension specific things like blocks here
-        Init(blockKeys);
+        Init(data, blockKeys);
     }
 
-    public abstract void Init(Dictionary<string, int> blockKeys);
+    public abstract void Init(byte[] data, Dictionary<string, int> blockKeys);
 
     public virtual void WriteFile(ref MemoryStream stream)
     {

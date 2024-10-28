@@ -39,7 +39,7 @@ public class BlockHashTable : Block
     {
         private uint LabelCount;
         private uint LabelOffset;
-        public List<HashTableLabel> LabelList;
+        public List<HashTableLabel> LabelList = [];
 
         public HashTableEntry(byte[] entryData)
         {
@@ -56,7 +56,7 @@ public class BlockHashTable : Block
             for (int i = 0; i < LabelCount; i++)
             {
                 int strLen = blockData[pointer];
-                int pointerEnd = pointer + strLen;
+                int pointerEnd = pointer + strLen + HashTableLabel.BASE_SIZE_WITHOUT_STRING;
 
                 HashTableLabel label = new(blockData[pointer..pointerEnd]);
 
@@ -74,9 +74,9 @@ public class BlockHashTable : Block
     public const int HASH_TABLE_ENTRY_SIZE = 0x8;
 
     protected uint SlotCount;
-    protected List<HashTableEntry> HashEntryList;
+    protected List<HashTableEntry> HashEntryList = [];
 
-    public BlockHashTable(byte[] data, string typeName) : base(data, typeName)
+    public BlockHashTable(byte[] data, string typeName, int offset) : base(data, typeName, offset)
     {
     }
 
