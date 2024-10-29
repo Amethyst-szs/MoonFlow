@@ -74,23 +74,40 @@ public class MsbpFile : FileBase
     // =================== Color Utilities ================== //
     // ====================================================== //
 
+    public bool ColorIsFileContainData()
+    {
+        return ColorLabels.IsValid() && Color.IsValid();
+    }
+
     public int ColorGetCount()
     {
+        if (ColorLabels == null)
+            return 0;
+        
         return ColorLabels.CalcLabelCount();
     }
 
     public string[] ColorGetLabelList()
     {
+        if (ColorLabels == null)
+            return [];
+        
         return ColorLabels.GetLabelList();
     }
 
     public ReadOnlyCollection<BlockColor.Entry> ColorGetList()
     {
+        if (Color == null)
+            return null;
+        
         return Color.GetColorList();
     }
 
     public BlockColor.Entry ColorGet(string labelName)
     {
+        if (!ColorIsFileContainData())
+            return null;
+        
         int idx = ColorLabels.GetItemIndex(labelName);
         if (idx == -1)
             return null;
@@ -100,18 +117,27 @@ public class MsbpFile : FileBase
 
     public void ColorAddNew(string name, byte r, byte g, byte b, byte a)
     {
+        if (Color == null || ColorLabels == null)
+            return;
+        
         BlockColor.Entry entry = new(r, g, b, a);
         ColorAddNew(name, entry);
     }
 
     public void ColorAddNew(string name, BlockColor.Entry color)
     {
+        if (Color == null || ColorLabels == null)
+            return;
+        
         int idx = Color.AddColor(color);
         ColorLabels.AddItem(name, idx);
     }
 
     public void ColorMoveIndex(string name, int newIndex)
     {
+        if (Color == null || ColorLabels == null)
+            return;
+        
         int oldIndex = ColorLabels.GetItemIndex(name);
         Color.MoveColor(oldIndex, newIndex);
         ColorLabels.MoveItem(name, newIndex);
@@ -119,6 +145,9 @@ public class MsbpFile : FileBase
 
     public void ColorMoveIndexByOffset(string name, int offset)
     {
+        if (Color == null || ColorLabels == null)
+            return;
+        
         int oldIndex = ColorLabels.GetItemIndex(name);
         Color.MoveColor(oldIndex, oldIndex + offset);
         ColorLabels.MoveItemByOffset(name, offset);
@@ -126,7 +155,63 @@ public class MsbpFile : FileBase
 
     public void ColorRemove(string name)
     {
+        if (Color == null || ColorLabels == null)
+            return;
+        
         int idx = ColorLabels.RemoveItem(name);
         Color.RemoveColor(idx);
+    }
+
+    // ====================================================== //
+    // ================= Attribute Utilities ================ //
+    // ====================================================== //
+
+    public bool AttributeIsFileContainData()
+    {
+        return AttributeInfo.IsValid() && AttributeInfoLabels.IsValid();
+    }
+
+    public int AttributeGetCount()
+    {
+        if (AttributeInfoLabels == null)
+            return 0;
+        
+        return AttributeInfoLabels.CalcLabelCount();
+    }
+
+    public string[] AttributeGetLabelList()
+    {
+        if (AttributeInfoLabels == null)
+            return [];
+        
+        return AttributeInfoLabels.GetLabelList();
+    }
+
+    public ReadOnlyCollection<BlockAttributeInfo.Entry> AttributeGetList()
+    {
+        if (AttributeInfo == null)
+            return null;
+        
+        return AttributeInfo.GetInfoList();
+    }
+
+    public BlockAttributeInfo.Entry AttributeGet(string labelName)
+    {
+        if (!AttributeIsFileContainData())
+            return null;
+        
+        int idx = AttributeInfoLabels.GetItemIndex(labelName);
+        if (idx == -1)
+            return null;
+        
+        return AttributeInfo.GetAttribute(idx);
+    }
+
+    public ReadOnlyCollection<string> AttributeGetContentArrayList(BlockAttributeInfo.Entry attribute)
+    {
+        if (attribute.Type != 0x9)
+            return new ReadOnlyCollection<string>([]);
+        
+        return AttributeLists.GetList(attribute.ListIndex);
     }
 }

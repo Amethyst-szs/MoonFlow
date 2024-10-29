@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using CommunityToolkit.HighPerformance;
 
@@ -7,7 +8,7 @@ namespace Nindot.LMS.Msbp;
 
 public class BlockAttributeInfo : Block
 {
-    public struct Entry
+    public class Entry
     {
         public const int ATTRIBUTE_BYTE_SIZE = 0x8;
 
@@ -56,5 +57,18 @@ public class BlockAttributeInfo : Block
     protected override void WriteBlockData(ref MemoryStream stream)
     {
         throw new System.NotImplementedException();
+    }
+
+    public ReadOnlyCollection<Entry> GetInfoList()
+    {
+        return new ReadOnlyCollection<Entry>(Attributes);
+    }
+
+    public Entry GetAttribute(int idx)
+    {
+        if (idx >= Attributes.Count)
+            return null;
+        
+        return Attributes[idx];
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using Godot;
 
@@ -85,5 +86,13 @@ public class BlockAttributeLists : Block
     protected override void WriteBlockData(ref MemoryStream stream)
     {
         throw new NotImplementedException();
+    }
+
+    public ReadOnlyCollection<string> GetList(int idx)
+    {
+        if (idx >= Lists.Count)
+            return new ReadOnlyCollection<string>([]);
+        
+        return new ReadOnlyCollection<string>(Lists[idx]);
     }
 }

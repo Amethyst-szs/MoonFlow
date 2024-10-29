@@ -67,6 +67,9 @@ public class BlockColor : Block
 
     public Entry GetColor(int idx)
     {
+        if (idx >= Colors.Count)
+            return null;
+        
         return Colors[idx];
     }
 
