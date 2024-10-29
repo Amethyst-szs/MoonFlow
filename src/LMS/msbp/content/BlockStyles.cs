@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using CommunityToolkit.HighPerformance;
 
@@ -7,7 +8,7 @@ namespace Nindot.LMS.Msbp;
 
 public class BlockStyles : Block
 {
-    public struct Style
+    public class Style
     {
         public const int STYLE_BYTE_SIZE = 0x10;
 
@@ -22,6 +23,14 @@ public class BlockStyles : Block
             LineNumber = BitConverter.ToUInt32(entryData, 0x4);
             FontIndex = BitConverter.ToUInt32(entryData, 0x8);
             DefaultColorIndex = BitConverter.ToUInt32(entryData, 0xC);
+        }
+
+        public Style(uint regionWidth, uint lineNumber, uint fontIndex, uint colorIndex)
+        {
+            RegionWidth = regionWidth;
+            LineNumber = lineNumber;
+            FontIndex = fontIndex;
+            DefaultColorIndex = colorIndex;
         }
 
         public void Write(ref MemoryStream stream)
@@ -59,5 +68,43 @@ public class BlockStyles : Block
     protected override void WriteBlockData(ref MemoryStream stream)
     {
         throw new System.NotImplementedException();
+    }
+
+    public ReadOnlyCollection<Style> GetStyleList()
+    {
+        return new ReadOnlyCollection<Style>(Styles);
+    }
+
+    public Style GetStyle(int idx)
+    {
+        if (idx >= Styles.Count)
+            return null;
+        
+        return Styles[idx];
+    }
+
+    internal int AddStyle(Style s)
+    {
+        Styles.Add(s);
+        return Styles.IndexOf(s);
+    }
+
+    internal void MoveStyle(int startIndex, int endIndex)
+    {
+        // Ensure start and end index are both within the bounds of the list
+        if (startIndex < 0 || startIndex >= Styles.Count || endIndex < 0 || endIndex >= Styles.Count)
+            return;
+        
+        Style c = Styles[startIndex];
+        Styles.Remove(c);
+        Styles.Insert(endIndex, c);
+    }
+
+    internal void RemoveStyle(int idx)
+    {
+        if (idx >= Styles.Count)
+            return;
+        
+        Styles.RemoveAt(idx);
     }
 }

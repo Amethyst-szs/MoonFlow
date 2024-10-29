@@ -43,6 +43,12 @@ public class UnitTestMsbpSMORead : UnitTestBase
                 continue;
             }
         }
+
+        foreach (var style in file.StyleGetLabelList())
+        {
+            var styleInfo = file.StyleGet(style);
+            continue;
+        }
         
         return UnitTestResult.OK;
     }

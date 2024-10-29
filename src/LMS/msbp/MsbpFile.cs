@@ -24,10 +24,10 @@ public class MsbpFile : FileBase
     private BlockTagParams TagParams = null; // TGP2
     private BlockTagArrayParams TagArrayParams = null; // TGL2
 
-    private Block Styles = null; // SYL3
+    private BlockStyles Styles = null; // SYL3
     private BlockHashTable StyleLabels = null; // SLB1
 
-    private Block Project = null; // CTI1
+    private BlockProject Project = null; // CTI1
 
     public MsbpFile(byte[] data) : base(data) { }
 
@@ -294,5 +294,97 @@ public class MsbpFile : FileBase
             return null;
         
         return TagParams.GetParam(idx);
+    }
+
+    // ====================================================== //
+    // =================== Style Utilities ================== //
+    // ====================================================== //
+
+    public bool StyleIsFileContainData()
+    {
+        return StyleLabels.IsValid() && Styles.IsValid();
+    }
+
+    public int StyleGetCount()
+    {
+        if (!StyleLabels.IsValid())
+            return 0;
+        
+        return StyleLabels.CalcLabelCount();
+    }
+
+    public string[] StyleGetLabelList()
+    {
+        if (!StyleLabels.IsValid())
+            return [];
+        
+        return StyleLabels.GetLabelList();
+    }
+
+    public ReadOnlyCollection<BlockStyles.Style> StyleGetList()
+    {
+        if (!Styles.IsValid())
+            return null;
+        
+        return Styles.GetStyleList();
+    }
+
+    public BlockStyles.Style StyleGet(string labelName)
+    {
+        if (!StyleIsFileContainData())
+            return null;
+        
+        int idx = StyleLabels.GetItemIndex(labelName);
+        if (idx == -1)
+            return null;
+        
+        return Styles.GetStyle(idx);
+    }
+
+    public void StyleAddNew(string name, uint width = 300, uint lines = 1, uint fontIdx = 12, uint colorIdx = 0xFFFFFFFF)
+    {
+        if (!StyleIsFileContainData())
+            return;
+        
+        BlockStyles.Style entry = new(width, lines, fontIdx, colorIdx);
+        StyleAddNew(name, entry);
+    }
+
+    public void StyleAddNew(string name, BlockStyles.Style style)
+    {
+        if (!StyleIsFileContainData())
+            return;
+        
+        int idx = Styles.AddStyle(style);
+        StyleLabels.AddItem(name, idx);
+    }
+
+    public void StyleMoveIndex(string name, int newIndex)
+    {
+        if (!StyleIsFileContainData())
+            return;
+        
+        int oldIndex = StyleLabels.GetItemIndex(name);
+        Styles.MoveStyle(oldIndex, newIndex);
+        StyleLabels.MoveItem(name, newIndex);
+    }
+
+    public void StyleMoveIndexByOffset(string name, int offset)
+    {
+        if (!StyleIsFileContainData())
+            return;
+        
+        int oldIndex = StyleLabels.GetItemIndex(name);
+        Styles.MoveStyle(oldIndex, oldIndex + offset);
+        StyleLabels.MoveItemByOffset(name, offset);
+    }
+
+    public void StyleRemove(string name)
+    {
+        if (!StyleIsFileContainData())
+            return;
+        
+        int idx = StyleLabels.RemoveItem(name);
+        Styles.RemoveStyle(idx);
     }
 }
