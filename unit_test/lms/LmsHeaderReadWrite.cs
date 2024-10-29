@@ -19,11 +19,11 @@ public class UnitTestLmsHeaderReadWrite : UnitTestBase
         LMS.FileHeader head = new(FileData);
         if (!head.IsValid())
             return UnitTestResult.FAILURE;
-        
+
         MemoryStream stream = new();
-        if (!head.WriteHeader(ref stream))
+        if (!head.WriteHeader(stream))
             return UnitTestResult.FAILURE;
-        
+
         return UnitTestResult.OK;
     }
 

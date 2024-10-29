@@ -12,7 +12,7 @@ public abstract class Block
     public const ushort TYPE_NAME_SIZE = 0x4;
     public const ushort PADDING_SIZE = 0x8;
     public const ushort BLOCK_ALIGNMENT_SIZE = 0x10;
-    
+
     public readonly string TypeName;
     private bool IsBlockHeaderOK = false;
 
@@ -24,7 +24,7 @@ public abstract class Block
 
         if (pointer == -1)
             return;
-        
+
         // Offset pointer by TYPE_NAME_SIZE because we already have the type name from the args
         pointer += TYPE_NAME_SIZE;
 
@@ -44,7 +44,7 @@ public abstract class Block
         InitBlock(rawData);
     }
 
-    public bool WriteBlock(ref MemoryStream stream)
+    public bool WriteBlock(MemoryStream stream)
     {
         if (!IsValid())
             return false;
@@ -61,15 +61,17 @@ public abstract class Block
 
         // Write block data with abstract virtual
         long priorToDataPosition = stream.Position;
-        WriteBlockData(ref stream);
+        WriteBlockData(stream);
 
-        if (stream.Position - priorToDataPosition != dataSize) {
+        if (stream.Position - priorToDataPosition != dataSize)
+        {
             GD.PushError("LMSBlock didn't write correctly! Data and DataSize do not match!");
             return false;
         }
 
         // Pad out stream to align next block with 0x10 grid
-        if (stream.Length % BLOCK_ALIGNMENT_SIZE != 0) {
+        if (stream.Length % BLOCK_ALIGNMENT_SIZE != 0)
+        {
             int endPadLength = BLOCK_ALIGNMENT_SIZE - (int)(stream.Length % BLOCK_ALIGNMENT_SIZE);
             byte[] endPad = Enumerable.Repeat((byte)0xAB, endPadLength).ToArray();
             stream.Write(endPad);
@@ -80,7 +82,7 @@ public abstract class Block
 
     protected abstract void InitBlock(byte[] data);
     protected abstract uint CalcDataSize();
-    protected abstract void WriteBlockData(ref MemoryStream stream);
+    protected abstract void WriteBlockData(MemoryStream stream);
 
     public int LookupBlockOffset(byte[] data)
     {
@@ -88,7 +90,8 @@ public abstract class Block
         while (offset < data.Length)
         {
             int endOffset = offset + (TYPE_NAME_SIZE - 1);
-            if (data[offset..endOffset].GetStringFromUtf8() == TypeName) {
+            if (data[offset..endOffset].GetStringFromUtf8() == TypeName)
+            {
                 return offset;
             }
 
@@ -102,10 +105,10 @@ public abstract class Block
     {
         if (TypeName.Length != TYPE_NAME_SIZE)
             return false;
-        
+
         if (!IsBlockHeaderOK)
             return false;
-        
+
         return true;
     }
 }

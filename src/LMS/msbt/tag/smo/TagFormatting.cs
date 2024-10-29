@@ -27,7 +27,7 @@ public class MsbtTagElementFormatting : MsbtTagElementWithTextData
         MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(Unknown1);
         value.Write(Unknown2);
-        WriteTextData(ref value);
+        WriteTextData(value);
 
         return value.ToArray();
     }
@@ -56,7 +56,7 @@ public class MsbtTagElementFormattingSimple : MsbtTagElementWithTextData
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
-        WriteTextData(ref value);
+        WriteTextData(value);
 
         return value.ToArray();
     }

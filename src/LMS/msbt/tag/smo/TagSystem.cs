@@ -23,7 +23,7 @@ public class MsbtTagElementSystemFurigana : MsbtTagElementWithTextData
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(Unknown1);
-        WriteTextData(ref value);
+        WriteTextData(value);
 
         return value.ToArray();
     }

@@ -20,7 +20,7 @@ public class BlockTagParams : Block
         public ParamInfo(byte[] paramData)
         {
             ParamType = paramData[0];
-            Name = paramData[1 .. (paramData.Length - 1)].GetStringFromUtf8();
+            Name = paramData[1..(paramData.Length - 1)].GetStringFromUtf8();
         }
 
         public virtual int CalcSizeBytes()
@@ -29,7 +29,7 @@ public class BlockTagParams : Block
             return sizeof(byte) + Name.Length + sizeof(byte);
         }
 
-        public virtual void WriteLabel(ref MemoryStream stream)
+        public virtual void WriteLabel(MemoryStream stream)
         {
         }
     }
@@ -54,7 +54,7 @@ public class BlockTagParams : Block
                 pointer += 2;
             }
 
-            Name = paramData[pointer .. (paramData.Length - 1)].GetStringFromUtf8();
+            Name = paramData[pointer..(paramData.Length - 1)].GetStringFromUtf8();
         }
 
         public override int CalcSizeBytes()
@@ -63,7 +63,7 @@ public class BlockTagParams : Block
             return sizeof(ushort) + (ItemIndexList.Count * sizeof(ushort)) + Name.Length + sizeof(byte);
         }
 
-        public override void WriteLabel(ref MemoryStream stream)
+        public override void WriteLabel(MemoryStream stream)
         {
         }
     }
@@ -95,7 +95,7 @@ public class BlockTagParams : Block
                 ushort entryCount = BitConverter.ToUInt16(data, offset + 0x2);
                 endOffset += entryCount * 2;
             }
-            
+
             // Regardless of param type, now append the length of the string to the end offset
             while (endOffset < data.Length)
             {
@@ -129,7 +129,7 @@ public class BlockTagParams : Block
         return size;
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
         throw new NotImplementedException();
     }
@@ -143,7 +143,7 @@ public class BlockTagParams : Block
     {
         if (idx >= ParamList.Count)
             return null;
-        
+
         return ParamList[idx];
     }
 

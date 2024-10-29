@@ -46,9 +46,12 @@ public class BlockAttributeLists : Block
             itemPointer += 8;
 
             int endPointer;
-            if (i < nameCount - 1) {
+            if (i < nameCount - 1)
+            {
                 endPointer = (int)BitConverter.ToUInt32(data, offset + ((i + 1) * 4)) + 7;
-            } else {
+            }
+            else
+            {
                 endPointer = data.Length - 1;
                 while (data[endPointer] == 0x00)
                 {
@@ -83,7 +86,7 @@ public class BlockAttributeLists : Block
         return size;
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
         throw new NotImplementedException();
     }
@@ -92,7 +95,7 @@ public class BlockAttributeLists : Block
     {
         if (idx >= Lists.Count)
             return new ReadOnlyCollection<string>([]);
-        
+
         return new ReadOnlyCollection<string>(Lists[idx]);
     }
 }

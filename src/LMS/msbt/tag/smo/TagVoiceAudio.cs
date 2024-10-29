@@ -16,7 +16,7 @@ public class MsbtTagElementVoiceAudio : MsbtTagElementWithTextData
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
-        WriteTextData(ref value);
+        WriteTextData(value);
         
         return value.ToArray();
     }

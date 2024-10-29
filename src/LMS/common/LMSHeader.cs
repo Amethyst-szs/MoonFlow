@@ -96,7 +96,7 @@ public class FileHeader
         return;
     }
 
-    public bool WriteHeader(ref MemoryStream stream)
+    public bool WriteHeader(MemoryStream stream)
     {
         if (!IsValid())
             return false;

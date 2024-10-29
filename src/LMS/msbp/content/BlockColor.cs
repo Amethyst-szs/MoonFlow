@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 
+using CommunityToolkit.HighPerformance;
+
 namespace Nindot.LMS.Msbp;
 
 public class BlockColor : Block
@@ -28,6 +30,14 @@ public class BlockColor : Block
             G = g;
             B = b;
             A = a;
+        }
+
+        public void WriteColor(MemoryStream stream)
+        {
+            stream.Write(R);
+            stream.Write(G);
+            stream.Write(B);
+            stream.Write(A);
         }
     }
 
@@ -55,9 +65,14 @@ public class BlockColor : Block
         return (uint)(Colors.Count * 0x4) + sizeof(uint);
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new System.NotImplementedException();
+        stream.Write((uint)Colors.Count);
+
+        foreach (var c in Colors)
+        {
+            c.WriteColor(stream);
+        }
     }
 
     public ReadOnlyCollection<Entry> GetColorList()
@@ -69,7 +84,7 @@ public class BlockColor : Block
     {
         if (idx >= Colors.Count)
             return null;
-        
+
         return Colors[idx];
     }
 
@@ -84,7 +99,7 @@ public class BlockColor : Block
         // Ensure start and end index are both within the bounds of the list
         if (startIndex < 0 || startIndex >= Colors.Count || endIndex < 0 || endIndex >= Colors.Count)
             return;
-        
+
         Entry c = Colors[startIndex];
         Colors.Remove(c);
         Colors.Insert(endIndex, c);
@@ -94,7 +109,7 @@ public class BlockColor : Block
     {
         if (idx >= Colors.Count)
             return;
-        
+
         Colors.RemoveAt(idx);
     }
 }

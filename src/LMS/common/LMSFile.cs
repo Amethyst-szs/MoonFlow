@@ -24,7 +24,7 @@ public abstract class FileBase
         while (pointer < data.Length)
         {
             // Read the first four bytes of the block (name) and create dict key
-            string key = data[pointer .. (pointer + Block.TYPE_NAME_SIZE)].GetStringFromUtf8();
+            string key = data[pointer..(pointer + Block.TYPE_NAME_SIZE)].GetStringFromUtf8();
             blockKeys.Add(key, pointer);
             pointer += Block.TYPE_NAME_SIZE;
 
@@ -46,9 +46,20 @@ public abstract class FileBase
 
     public abstract void Init(byte[] data, Dictionary<string, int> blockKeys);
 
-    public virtual void WriteFile(ref MemoryStream stream)
+    public bool WriteFile(MemoryStream stream)
     {
+        if (!Header.WriteHeader(stream))
+            return false;
+        
+        foreach (var b in Blocks)
+        {
+            if (Blocks.IndexOf(b) == 2)
+                return true;
+            
+            b.WriteBlock(stream);
+        }
 
+        return true;
     }
 
     public abstract string GetFileMagic();
@@ -57,7 +68,7 @@ public abstract class FileBase
     {
         if (!Header.IsValid())
             return false;
-        
+
         if (Blocks.Count == 0)
             return false;
 

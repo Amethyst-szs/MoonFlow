@@ -38,13 +38,15 @@ public class BlockHashTable : Block
             return Label.Length + BASE_SIZE_WITHOUT_STRING;
         }
 
-        public void WriteLabel(ref MemoryStream stream)
+        public void WriteLabel(MemoryStream stream)
         {
         }
     }
 
     public struct HashTableEntry
     {
+        public const int ENTRY_SIZE = 0x8;
+
         private readonly uint _initdata_LabelCount;
         private readonly uint _initdata_LabelOffset;
         public List<HashTableLabel> LabelList = [];
@@ -73,7 +75,7 @@ public class BlockHashTable : Block
             }
         }
 
-        public void WriteEntry(ref MemoryStream stream)
+        public void WriteEntry(MemoryStream stream)
         {
         }
     }
@@ -137,9 +139,50 @@ public class BlockHashTable : Block
         return size;
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new NotImplementedException();
+        // Create a list that will store the label offsets for each hash table lost
+        uint[] hashTableLabelOffsets = new uint[HashEntryList.Count];
+
+        // Build a memory stream of the labels first, will append to end of main stream later
+        MemoryStream labelStream = new(HashEntryList.Count * HashTableEntry.ENTRY_SIZE);
+
+        // The GetRawLabelList function returns the labels in-order starting from hash table slot 0
+        // and going on until reaching end. This means we can track the last label's hash and if the
+        // current one is different from the last we can write this offset in the offset array.
+        uint lastHash = 0xFFFF;
+        foreach (var label in GetRawLabelList())
+        {
+            uint hash = (uint)CalcHash(label.Label);
+            if (hash != lastHash)
+                hashTableLabelOffsets[hash] = (uint)labelStream.Position;
+
+            // And then actually write all the data into the labelStream
+            labelStream.Write((byte)label.Label.Length);
+            labelStream.Write(label.Label.ToUtf8Buffer());
+            labelStream.Write(label.ItemIndex);
+        }
+
+        // Now that we have all the label's offsets, calculate slot list size to add to all label offsets
+        // since the current offsets are based on the start of the label table and not the base of the block's data
+        int additionalLabelOffset = HashEntryList.Count * HashTableEntry.ENTRY_SIZE;
+        // And add four to the additional offset to include the hash table slot size uint
+        additionalLabelOffset += 0x4;
+
+        // Now begin writing to the actual main stream
+        stream.Write((uint)HashEntryList.Count);
+
+        for (int i = 0; i < HashEntryList.Count; i++)
+        {
+            HashTableEntry entry = HashEntryList[i];
+            stream.Write((uint)entry.LabelList.Count);
+
+            stream.Write((uint)(hashTableLabelOffsets[i] + additionalLabelOffset));
+        }
+
+        // And append the labels to the end of the stream
+        stream.Write(labelStream.ToArray());
+        return;
     }
 
     // ====================================================== //
@@ -188,6 +231,21 @@ public class BlockHashTable : Block
         }
 
         return new ReadOnlyCollection<string>(list);
+    }
+
+    private HashTableLabel[] GetRawLabelList()
+    {
+        HashTableLabel[] list = new HashTableLabel[CalcLabelCount()];
+
+        foreach (var table in HashEntryList)
+        {
+            foreach (var label in table.LabelList)
+            {
+                list[label.ItemIndex] = label;
+            }
+        }
+
+        return list;
     }
 
     public int GetItemIndex(string labelName)

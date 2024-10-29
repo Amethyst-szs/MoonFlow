@@ -11,7 +11,7 @@ public abstract class MsbtBaseElement
     public abstract bool IsValid();
     public abstract string GetText();
     public abstract byte[] GetBytes();
-    public abstract void WriteBytes(ref MemoryStream stream);
+    public abstract void WriteBytes(MemoryStream stream);
 }
 
 public class MsbtTextElement : MsbtBaseElement
@@ -39,7 +39,7 @@ public class MsbtTextElement : MsbtBaseElement
         // Don't include null terminators in text elements
         if (value == 0x0000)
             return;
-        
+
         byte[] code = BitConverter.GetBytes(value);
         _text.Write(code);
     }
@@ -75,7 +75,7 @@ public class MsbtTextElement : MsbtBaseElement
         return _text.ToArray();
     }
 
-    public override void WriteBytes(ref MemoryStream stream)
+    public override void WriteBytes(MemoryStream stream)
     {
         byte[] buffer = GetBytes();
         stream.Write(buffer);
@@ -111,7 +111,7 @@ public class MsbtTagElementGeneric : MsbtBaseElement
         return _buffer.GetStringFromUtf16();
     }
 
-    public override void WriteBytes(ref MemoryStream stream)
+    public override void WriteBytes(MemoryStream stream)
     {
         stream.Write(_buffer);
     }

@@ -55,7 +55,7 @@ public class BlockTagArrayParams : Block
         return size;
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
         throw new NotImplementedException();
     }

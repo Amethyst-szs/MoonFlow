@@ -96,7 +96,7 @@ public class MsbtTagElement : MsbtBaseElement
         return CreateMemoryStreamWithHeaderData().ToArray();
     }
 
-    public override void WriteBytes(ref MemoryStream stream)
+    public override void WriteBytes(MemoryStream stream)
     {
         stream.Write(GetBytes());
     }
@@ -140,7 +140,8 @@ public class MsbtTagElementWithTextData : MsbtTagElement
         pointer += 0x2;
 
         // Ensure validity before reading the TextData
-        if (!IsValid()) {
+        if (!IsValid())
+        {
             // If not valid, set all properties to defaults with an empty string 
             DataSize = GetDataSizeBase();
             TextDataLength = 0x0;
@@ -157,7 +158,7 @@ public class MsbtTagElementWithTextData : MsbtTagElement
         return true;
     }
 
-    public void WriteTextData(ref MemoryStream stream)
+    public void WriteTextData(MemoryStream stream)
     {
         stream.Write(TextDataLength);
 
@@ -169,13 +170,13 @@ public class MsbtTagElementWithTextData : MsbtTagElement
     {
         if (IsTextDataInvalid)
             return false;
-        
+
         if (DataSize % 2 != 0 || TextDataLength % 2 != 0)
             return false;
-        
+
         if (DataSize - GetDataSizeBase() != TextDataLength)
             return false;
-        
+
         return true;
     }
 

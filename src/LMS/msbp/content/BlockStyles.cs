@@ -33,7 +33,7 @@ public class BlockStyles : Block
             DefaultColorIndex = colorIndex;
         }
 
-        public void Write(ref MemoryStream stream)
+        public void Write(MemoryStream stream)
         {
             stream.Write(RegionWidth);
             stream.Write(LineNumber);
@@ -41,7 +41,7 @@ public class BlockStyles : Block
             stream.Write(DefaultColorIndex);
         }
     }
-    
+
     private List<Style> Styles = [];
 
     public BlockStyles(byte[] data, string typeName, int offset) : base(data, typeName, offset)
@@ -52,20 +52,20 @@ public class BlockStyles : Block
     {
         uint styleCount = BitConverter.ToUInt32(data, 0x0);
 
-        for(int i = 0; i < styleCount; i++)
+        for (int i = 0; i < styleCount; i++)
         {
             int pointer = (i * Style.STYLE_BYTE_SIZE) + 0x4;
-            Style s = new Style(data[pointer .. (pointer + Style.STYLE_BYTE_SIZE)]);
+            Style s = new Style(data[pointer..(pointer + Style.STYLE_BYTE_SIZE)]);
             Styles.Add(s);
         }
     }
-    
+
     protected override uint CalcDataSize()
     {
         return (uint)(Styles.Count * Style.STYLE_BYTE_SIZE) + sizeof(uint);
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
         throw new System.NotImplementedException();
     }
@@ -79,7 +79,7 @@ public class BlockStyles : Block
     {
         if (idx >= Styles.Count)
             return null;
-        
+
         return Styles[idx];
     }
 
@@ -94,7 +94,7 @@ public class BlockStyles : Block
         // Ensure start and end index are both within the bounds of the list
         if (startIndex < 0 || startIndex >= Styles.Count || endIndex < 0 || endIndex >= Styles.Count)
             return;
-        
+
         Style c = Styles[startIndex];
         Styles.Remove(c);
         Styles.Insert(endIndex, c);
@@ -104,7 +104,7 @@ public class BlockStyles : Block
     {
         if (idx >= Styles.Count)
             return;
-        
+
         Styles.RemoveAt(idx);
     }
 }

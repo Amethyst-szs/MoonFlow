@@ -41,7 +41,7 @@ public class BlockTagListing : Block
             return sizeof(ushort) + (ListingIndexList.Count * sizeof(ushort)) + Name.Length + sizeof(byte);
         }
 
-        public void WriteLabel(ref MemoryStream stream)
+        public void WriteLabel(MemoryStream stream)
         {
         }
     }
@@ -72,7 +72,7 @@ public class BlockTagListing : Block
 
             // Calculate the end offset of this section
             int endOffset = offset + (entryCount * 2) + sizeof(int);
-            
+
             while (endOffset < data.Length)
             {
                 endOffset++;
@@ -101,7 +101,7 @@ public class BlockTagListing : Block
         return size;
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
         throw new NotImplementedException();
     }
@@ -133,7 +133,7 @@ public class BlockTagListing : Block
     {
         if (idx >= ListingList.Count)
             return null;
-        
+
         return ListingList[idx];
     }
 }

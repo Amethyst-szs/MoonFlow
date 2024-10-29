@@ -23,14 +23,14 @@ public class BlockAttributeInfo : Block
             Offset = BitConverter.ToUInt32(entryData, 4);
         }
 
-        public void Write(ref MemoryStream stream)
+        public void Write(MemoryStream stream)
         {
             stream.Write(Type);
             stream.Write(ListIndex);
             stream.Write(Offset);
         }
     }
-    
+
     private List<Entry> Attributes = [];
 
     public BlockAttributeInfo(byte[] data, string typeName, int offset) : base(data, typeName, offset)
@@ -41,20 +41,20 @@ public class BlockAttributeInfo : Block
     {
         uint attrCount = BitConverter.ToUInt32(data, 0x0);
 
-        for(int i = 0; i < attrCount; i++)
+        for (int i = 0; i < attrCount; i++)
         {
             int pointer = (i * Entry.ATTRIBUTE_BYTE_SIZE) + 0x4;
-            Entry e = new Entry(data[pointer .. (pointer + Entry.ATTRIBUTE_BYTE_SIZE)]);
+            Entry e = new Entry(data[pointer..(pointer + Entry.ATTRIBUTE_BYTE_SIZE)]);
             Attributes.Add(e);
         }
     }
-    
+
     protected override uint CalcDataSize()
     {
         return (uint)(Attributes.Count * Entry.ATTRIBUTE_BYTE_SIZE) + sizeof(uint);
     }
 
-    protected override void WriteBlockData(ref MemoryStream stream)
+    protected override void WriteBlockData(MemoryStream stream)
     {
         throw new System.NotImplementedException();
     }
@@ -68,7 +68,7 @@ public class BlockAttributeInfo : Block
     {
         if (idx >= Attributes.Count)
             return null;
-        
+
         return Attributes[idx];
     }
 }
