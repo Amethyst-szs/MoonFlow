@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -30,6 +31,7 @@ public class MsbpFile : FileBase
 
     public override void Init(byte[] data, Dictionary<string, int> blockKeys)
     {
+        // Initalize every kind of MSBP blocks using their 4 byte names
         Color = new BlockColor(data, "CLR1", blockKeys.GetValueOrDefault("CLR1", -1));
         Blocks.Add(Color);
         ColorLabels = new BlockHashTable(data, "CLB1", blockKeys.GetValueOrDefault("CLB1", -1));
@@ -51,7 +53,13 @@ public class MsbpFile : FileBase
         TagArrayParams = new BlockTagArrayParams(data, "TGL2", blockKeys.GetValueOrDefault("TGL2", -1));
         Blocks.Add(TagArrayParams);
 
-        GD.Print("msbp parse complete (debug message)");
+        Styles = new BlockStyles(data, "SYL3", blockKeys.GetValueOrDefault("SYL3", -1));
+        Blocks.Add(Styles);
+        StyleLabels = new BlockHashTable(data, "SLB1", blockKeys.GetValueOrDefault("SLB1", -1));
+        Blocks.Add(StyleLabels);
+
+        Project = new BlockProject(data, "CTI1", blockKeys.GetValueOrDefault("CTI1", -1));
+        Blocks.Add(Project);
     }
 
     public override string GetFileMagic()

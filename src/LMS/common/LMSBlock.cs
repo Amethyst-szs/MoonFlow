@@ -14,6 +14,7 @@ public abstract class Block
     public const ushort BLOCK_ALIGNMENT_SIZE = 0x10;
     
     public readonly string TypeName;
+    private bool IsBlockHeaderOK = false;
 
     public Block(byte[] data, string typeName, int offset)
     {
@@ -39,6 +40,7 @@ public abstract class Block
         byte[] rawData = data[pointer..rawDataEnd];
 
         // This method must be overridden by every inheriting class to init the block-specific data
+        IsBlockHeaderOK = true;
         InitBlock(rawData);
     }
 
@@ -99,6 +101,9 @@ public abstract class Block
     public virtual bool IsValid()
     {
         if (TypeName.Length != TYPE_NAME_SIZE)
+            return false;
+        
+        if (!IsBlockHeaderOK)
             return false;
         
         return true;

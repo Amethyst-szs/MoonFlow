@@ -61,12 +61,6 @@ public abstract class FileBase
         if (Blocks.Count == 0)
             return false;
 
-        foreach (var block in Blocks)
-        {
-            if (!block.IsValid())
-                return false;
-        }
-
         return true;
     }
 }
