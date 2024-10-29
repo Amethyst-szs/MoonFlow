@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 
 namespace Nindot.LMS.Msbp;
 
-class BlockColor : Block
+public class BlockColor : Block
 {
     public struct Entry
     {
@@ -43,7 +42,7 @@ class BlockColor : Block
     
     protected override uint CalcDataSize()
     {
-        throw new System.NotImplementedException();
+        return (uint)(Colors.Count * 0x4) + sizeof(uint);
     }
 
     protected override void WriteBlockData(ref MemoryStream stream)
