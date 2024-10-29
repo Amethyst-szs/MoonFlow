@@ -129,17 +129,6 @@ public class BlockHashTable : Block
         throw new NotImplementedException();
     }
 
-    public override bool IsValid()
-    {
-        if (!base.IsValid())
-            return false;
-        
-        if (SlotCount == 0 || HashEntryList.Count != SlotCount)
-            return false;
-        
-        return true;
-    }
-
     protected static ulong CalcHash(string label, uint slotCount)
     {
         ulong hash = 0;

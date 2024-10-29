@@ -12,7 +12,8 @@ public partial class UnitTester : SceneTree
         new UnitTestMsbtUSen(),
         new UnitTestMsbtAllLang(),
         new UnitTestLmsHeaderReadWrite(),
-        new UnitTestMsbpRead(),
+        new UnitTestMsbpSMORead(),
+        new UnitTestMsbp3DWRead(),
     ];
 
     protected int TestCount = 0;

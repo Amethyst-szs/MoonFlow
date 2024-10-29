@@ -5,13 +5,13 @@ using System.IO;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbpRead : UnitTestBase
+public class UnitTestMsbpSMORead : UnitTestBase
 {
     protected byte[] FileData = [];
 
     public override void SetupTest()
     {
-        FileData = Godot.FileAccess.GetFileAsBytes("res://unit_test/msbp/ProjectData.msbp");
+        FileData = Godot.FileAccess.GetFileAsBytes("res://unit_test/msbp/ProjectData-SMO.msbp");
     }
 
     public override UnitTestResult Test()
