@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using Godot;
 
+using CommunityToolkit.HighPerformance;
+
 namespace Nindot.LMS.Msbp;
 
 public class BlockAttributeLists : Block
@@ -78,7 +80,6 @@ public class BlockAttributeLists : Block
 
             foreach (var s in l)
             {
-                // String Offset - String Length - Null Terminator
                 size += (uint)(0x4 + s.Length + 0x1);
             }
         }
@@ -86,9 +87,43 @@ public class BlockAttributeLists : Block
         return size;
     }
 
+    // This code is ass and might not even work correctly, oops!
     protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new NotImplementedException();
+        GD.PushWarning("Writing attribute list blocks is currently experimental! The output MSBP may not be functional!");
+
+        stream.Write((uint)Lists.Count);
+
+        // This first iteration will write down all the of attr list offsets
+        uint offset = (uint)(0x4 + (Lists.Count * 4));
+        foreach (var nameList in Lists)
+        {
+            stream.Write(offset);
+
+            foreach (var name in nameList)
+            {
+                offset += (uint)name.Length;
+            }
+        }
+
+        // This second iteration will write the actual lists and their strings
+        offset = 0;
+        foreach (var nameList in Lists)
+        {
+            stream.Write((uint)nameList.Count);
+
+            foreach (var name in nameList)
+            {
+                stream.Write((uint)((nameList.Count * 4) + offset + 4));
+                offset += (uint)(name.Length + 1);
+            }
+            
+            foreach (var name in nameList)
+            {
+                stream.Write(name.ToUtf8Buffer());
+                stream.Write([0x00]); // Null Terminator
+            }
+        }
     }
 
     public ReadOnlyCollection<string> GetList(int idx)

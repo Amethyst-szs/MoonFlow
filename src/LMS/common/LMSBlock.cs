@@ -46,8 +46,12 @@ public abstract class Block
 
     public bool WriteBlock(MemoryStream stream)
     {
-        if (!IsValid())
+        if (TypeName.Length != TYPE_NAME_SIZE)
             return false;
+        
+        // This means that the block doesn't exist in the file, just skip it and move on
+        if (!IsBlockHeaderOK)
+            return true;
 
         // Write generic block header
         stream.Write(TypeName.ToUtf8Buffer());
@@ -65,7 +69,8 @@ public abstract class Block
 
         if (stream.Position - priorToDataPosition != dataSize)
         {
-            GD.PushError("LMSBlock didn't write correctly! Data and DataSize do not match!");
+            var calcSize = stream.Position - priorToDataPosition;
+            GD.PushError("LMSBlock didn't write correctly! Data and DataSize do not match!\n" + calcSize + " != " + dataSize);
             return false;
         }
 

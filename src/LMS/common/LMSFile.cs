@@ -53,10 +53,11 @@ public abstract class FileBase
         
         foreach (var b in Blocks)
         {
-            if (Blocks.IndexOf(b) == 2)
+            if (Blocks.IndexOf(b) == 5)
                 return true;
             
-            b.WriteBlock(stream);
+            if (!b.WriteBlock(stream))
+                return false;
         }
 
         return true;

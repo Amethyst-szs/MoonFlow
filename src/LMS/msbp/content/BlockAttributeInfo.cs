@@ -26,6 +26,7 @@ public class BlockAttributeInfo : Block
         public void Write(MemoryStream stream)
         {
             stream.Write(Type);
+            stream.Write([0x00]); // Padding byte
             stream.Write(ListIndex);
             stream.Write(Offset);
         }
@@ -56,7 +57,12 @@ public class BlockAttributeInfo : Block
 
     protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new System.NotImplementedException();
+        stream.Write((uint)Attributes.Count);
+
+        foreach (var attr in Attributes)
+        {
+            attr.Write(stream);
+        }
     }
 
     public ReadOnlyCollection<Entry> GetInfoList()
