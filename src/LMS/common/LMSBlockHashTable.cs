@@ -175,7 +175,7 @@ public class BlockHashTable : Block
         return count;
     }
 
-    public string[] GetLabelList()
+    public ReadOnlyCollection<string> GetLabelList()
     {
         string[] list = new string[CalcLabelCount()];
 
@@ -187,7 +187,7 @@ public class BlockHashTable : Block
             }
         }
 
-        return list;
+        return new ReadOnlyCollection<string>(list);
     }
 
     public int GetItemIndex(string labelName)
@@ -206,7 +206,7 @@ public class BlockHashTable : Block
 
             if (cmp.Label.Length != labelName.Length)
                 continue;
-            
+
             if (cmp.Label == labelName)
                 return (int)cmp.ItemIndex;
         }
@@ -230,7 +230,7 @@ public class BlockHashTable : Block
 
             if (cmp.Label.Length != labelName.Length)
                 continue;
-            
+
             if (cmp.Label == labelName)
                 return cmp;
         }
@@ -255,7 +255,7 @@ public class BlockHashTable : Block
     {
         ulong hash = CalcHash(labelName);
         HashTableEntry table = HashEntryList.ElementAt((int)hash);
-        
+
         HashTableLabel label = GetItem(labelName, table);
         label.ItemIndex = (uint)newIndex;
 
@@ -271,7 +271,7 @@ public class BlockHashTable : Block
         int index = GetItemIndex(labelName, table);
         if (index == -1)
             return;
-        
+
         MoveItem(labelName, index + offset);
     }
 
@@ -284,7 +284,7 @@ public class BlockHashTable : Block
         HashTableLabel label = GetItem(labelName, table);
         if (label == null)
             return -1;
-        
+
         table.LabelList.Remove(label);
         return (int)label.ItemIndex;
     }

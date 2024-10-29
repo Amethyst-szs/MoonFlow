@@ -71,93 +71,66 @@ public class MsbpFile : FileBase
     }
 
     // ====================================================== //
+    // == Everything below this point is for Utility Funcs == //
+    // ====================================================== //
     // =================== Color Utilities ================== //
     // ====================================================== //
 
-    public bool ColorIsFileContainData()
-    {
-        return ColorLabels.IsValid() && Color.IsValid();
-    }
-
+    public bool ColorIsFileContainData() { return ColorLabels.IsValid() && Color.IsValid(); }
     public int ColorGetCount()
     {
-        if (!ColorLabels.IsValid())
-            return 0;
-        
+        if (!ColorLabels.IsValid()) return 0;
         return ColorLabels.CalcLabelCount();
     }
-
-    public string[] ColorGetLabelList()
+    public ReadOnlyCollection<string> ColorGetLabelList()
     {
-        if (!ColorLabels.IsValid())
-            return [];
-        
+        if (!ColorLabels.IsValid()) return new ReadOnlyCollection<string>([]);
         return ColorLabels.GetLabelList();
     }
-
     public ReadOnlyCollection<BlockColor.Entry> ColorGetList()
     {
-        if (!Color.IsValid())
-            return null;
-        
+        if (!Color.IsValid()) return null;
         return Color.GetColorList();
     }
-
     public BlockColor.Entry ColorGet(string labelName)
     {
-        if (!ColorIsFileContainData())
-            return null;
-        
+        if (!ColorIsFileContainData()) return null;
+
         int idx = ColorLabels.GetItemIndex(labelName);
-        if (idx == -1)
-            return null;
-        
+        if (idx == -1) return null;
+
         return Color.GetColor(idx);
     }
-
     public void ColorAddNew(string name, byte r, byte g, byte b, byte a)
     {
-        if (!ColorIsFileContainData())
-            return;
-        
+        if (!ColorIsFileContainData()) return;
         BlockColor.Entry entry = new(r, g, b, a);
         ColorAddNew(name, entry);
     }
-
     public void ColorAddNew(string name, BlockColor.Entry color)
     {
-        if (!ColorIsFileContainData())
-            return;
-        
+        if (!ColorIsFileContainData()) return;
         int idx = Color.AddColor(color);
         ColorLabels.AddItem(name, idx);
     }
-
     public void ColorMoveIndex(string name, int newIndex)
     {
-        if (!ColorIsFileContainData())
-            return;
-        
+        if (!ColorIsFileContainData()) return;
         int oldIndex = ColorLabels.GetItemIndex(name);
         Color.MoveColor(oldIndex, newIndex);
         ColorLabels.MoveItem(name, newIndex);
     }
-
     public void ColorMoveIndexByOffset(string name, int offset)
     {
-        if (!ColorIsFileContainData())
-            return;
-        
+        if (!ColorIsFileContainData()) return;
         int oldIndex = ColorLabels.GetItemIndex(name);
         Color.MoveColor(oldIndex, oldIndex + offset);
         ColorLabels.MoveItemByOffset(name, offset);
     }
-
     public void ColorRemove(string name)
     {
-        if (!ColorIsFileContainData())
-            return;
-        
+        if (!ColorIsFileContainData()) return;
+
         int idx = ColorLabels.RemoveItem(name);
         Color.RemoveColor(idx);
     }
@@ -166,52 +139,34 @@ public class MsbpFile : FileBase
     // ================= Attribute Utilities ================ //
     // ====================================================== //
 
-    public bool AttributeIsFileContainData()
-    {
-        return AttributeInfo.IsValid() && AttributeInfoLabels.IsValid();
-    }
-
+    public bool AttributeIsFileContainData() { return AttributeInfo.IsValid() && AttributeInfoLabels.IsValid(); }
     public int AttributeGetCount()
     {
-        if (!AttributeInfoLabels.IsValid())
-            return 0;
-        
+        if (!AttributeInfoLabels.IsValid()) return 0;
         return AttributeInfoLabels.CalcLabelCount();
     }
-
-    public string[] AttributeGetLabelList()
+    public ReadOnlyCollection<string> AttributeGetLabelList()
     {
-        if (!AttributeInfoLabels.IsValid())
-            return [];
-        
+        if (!AttributeInfoLabels.IsValid()) return new ReadOnlyCollection<string>([]);
         return AttributeInfoLabels.GetLabelList();
     }
-
     public ReadOnlyCollection<BlockAttributeInfo.Entry> AttributeGetList()
     {
-        if (!AttributeInfo.IsValid())
-            return new ReadOnlyCollection<BlockAttributeInfo.Entry>([]);
-        
+        if (!AttributeInfo.IsValid()) return new ReadOnlyCollection<BlockAttributeInfo.Entry>([]);
         return AttributeInfo.GetInfoList();
     }
-
     public BlockAttributeInfo.Entry AttributeGet(string labelName)
     {
-        if (!AttributeIsFileContainData())
-            return null;
-        
+        if (!AttributeIsFileContainData()) return null;
+
         int idx = AttributeInfoLabels.GetItemIndex(labelName);
-        if (idx == -1)
-            return null;
-        
+        if (idx == -1) return null;
+
         return AttributeInfo.GetAttribute(idx);
     }
-
     public ReadOnlyCollection<string> AttributeGetContentArrayList(BlockAttributeInfo.Entry attribute)
     {
-        if (attribute.Type != 0x9)
-            return new ReadOnlyCollection<string>([]);
-        
+        if (attribute.Type != 0x9) return new ReadOnlyCollection<string>([]);
         return AttributeLists.GetList(attribute.ListIndex);
     }
 
@@ -223,76 +178,50 @@ public class MsbpFile : FileBase
     {
         return TagGroups.IsValid() && Tags.IsValid() && TagParams.IsValid() && TagArrayParams.IsValid();
     }
-
     public int TagGroupGetCount()
     {
-        if (!TagGroups.IsValid())
-            return 0;
-        
+        if (!TagGroups.IsValid()) return 0;
         return TagGroups.GetListingCount();
     }
-
     public ReadOnlyCollection<BlockTagListing.Listing> TagGroupGetList()
     {
-        if (!TagGroups.IsValid())
-            return new ReadOnlyCollection<BlockTagListing.Listing>([]);
-        
+        if (!TagGroups.IsValid()) return new ReadOnlyCollection<BlockTagListing.Listing>([]);
         return TagGroups.GetListings();
     }
-
     public BlockTagListing.Listing TagGroupGet(int idx)
     {
-        if (!TagGroups.IsValid())
-            return null;
-        
+        if (!TagGroups.IsValid()) return null;
         return TagGroups.GetListing(idx);
     }
-
     public int TagGetCount(BlockTagListing.Listing tagGroup)
     {
-        if (!Tags.IsValid())
-            return 0;
-        
+        if (!Tags.IsValid()) return 0;
         return tagGroup.ListingIndexList.Count;
     }
-
     public ReadOnlyCollection<BlockTagListing.Listing> TagGetList(BlockTagListing.Listing tagGroup)
     {
-        if (!Tags.IsValid())
-            return new ReadOnlyCollection<BlockTagListing.Listing>([]);
-        
+        if (!Tags.IsValid()) return new ReadOnlyCollection<BlockTagListing.Listing>([]);
         return Tags.GetTagsInGroup(tagGroup);
     }
-
     public BlockTagListing.Listing TagGet(int idx)
     {
-        if (!Tags.IsValid())
-            return null;
-        
+        if (!Tags.IsValid()) return null;
         return Tags.GetListing(idx);
     }
-
     public int TagParamGetCount(BlockTagListing.Listing tag)
     {
-        if (!TagParams.IsValid())
-            return 0;
-        
+        if (!TagParams.IsValid()) return 0;
         return TagParams.GetParamCount(tag);
     }
-
     public ReadOnlyCollection<BlockTagParams.ParamInfo> TagParamGetList(BlockTagListing.Listing tag)
     {
-        if (!TagParams.IsValid())
-            return new ReadOnlyCollection<BlockTagParams.ParamInfo>([]);
-        
+        if (!TagParams.IsValid()) return new ReadOnlyCollection<BlockTagParams.ParamInfo>([]);
         return TagParams.GetParamsForTag(tag);
     }
 
     public BlockTagParams.ParamInfo TagParamGet(int idx)
     {
-        if (!Tags.IsValid())
-            return null;
-        
+        if (!Tags.IsValid()) return null;
         return TagParams.GetParam(idx);
     }
 
@@ -300,91 +229,73 @@ public class MsbpFile : FileBase
     // =================== Style Utilities ================== //
     // ====================================================== //
 
-    public bool StyleIsFileContainData()
-    {
-        return StyleLabels.IsValid() && Styles.IsValid();
-    }
-
+    public bool StyleIsFileContainData() { return StyleLabels.IsValid() && Styles.IsValid(); }
     public int StyleGetCount()
     {
-        if (!StyleLabels.IsValid())
-            return 0;
-        
+        if (!StyleLabels.IsValid()) return 0;
         return StyleLabels.CalcLabelCount();
     }
-
-    public string[] StyleGetLabelList()
+    public ReadOnlyCollection<string> StyleGetLabelList()
     {
-        if (!StyleLabels.IsValid())
-            return [];
-        
+        if (!StyleLabels.IsValid()) return new ReadOnlyCollection<string>([]);
         return StyleLabels.GetLabelList();
     }
-
     public ReadOnlyCollection<BlockStyles.Style> StyleGetList()
     {
-        if (!Styles.IsValid())
-            return null;
-        
+        if (!Styles.IsValid()) return null;
         return Styles.GetStyleList();
     }
-
     public BlockStyles.Style StyleGet(string labelName)
     {
-        if (!StyleIsFileContainData())
-            return null;
-        
+        if (!StyleIsFileContainData()) return null;
+
         int idx = StyleLabels.GetItemIndex(labelName);
-        if (idx == -1)
-            return null;
-        
+        if (idx == -1) return null;
+
         return Styles.GetStyle(idx);
     }
-
     public void StyleAddNew(string name, uint width = 300, uint lines = 1, uint fontIdx = 12, uint colorIdx = 0xFFFFFFFF)
     {
-        if (!StyleIsFileContainData())
-            return;
-        
+        if (!StyleIsFileContainData()) return;
         BlockStyles.Style entry = new(width, lines, fontIdx, colorIdx);
         StyleAddNew(name, entry);
     }
-
     public void StyleAddNew(string name, BlockStyles.Style style)
     {
-        if (!StyleIsFileContainData())
-            return;
-        
+        if (!StyleIsFileContainData()) return;
         int idx = Styles.AddStyle(style);
         StyleLabels.AddItem(name, idx);
     }
-
     public void StyleMoveIndex(string name, int newIndex)
     {
-        if (!StyleIsFileContainData())
-            return;
-        
+        if (!StyleIsFileContainData()) return;
         int oldIndex = StyleLabels.GetItemIndex(name);
         Styles.MoveStyle(oldIndex, newIndex);
         StyleLabels.MoveItem(name, newIndex);
     }
-
     public void StyleMoveIndexByOffset(string name, int offset)
     {
-        if (!StyleIsFileContainData())
-            return;
-        
+        if (!StyleIsFileContainData()) return;
         int oldIndex = StyleLabels.GetItemIndex(name);
         Styles.MoveStyle(oldIndex, oldIndex + offset);
         StyleLabels.MoveItemByOffset(name, offset);
     }
-
     public void StyleRemove(string name)
     {
-        if (!StyleIsFileContainData())
-            return;
-        
+        if (!StyleIsFileContainData()) return;
         int idx = StyleLabels.RemoveItem(name);
         Styles.RemoveStyle(idx);
     }
+
+    // ====================================================== //
+    // ================== Project Utilities ================= //
+    // ====================================================== //
+
+    public bool ProjectIsFileContainData() { return Project.IsValid(); }
+    public int ProjectGetSize() { return Project.GetSize(); }
+    public ReadOnlyCollection<string> ProjectGetContent() { return Project.GetContent(); }
+    public string ProjectGetElement(int idx) { return Project.GetElement(idx); }
+
+    public void ProjectAddElement(string value) { Project.AddElement(value); }
+    public void ProjectRemoveElement(string value) { Project.RemoveElement(value); }
 }

@@ -49,6 +49,10 @@ public class UnitTestMsbpSMORead : UnitTestBase
             var styleInfo = file.StyleGet(style);
             continue;
         }
+
+        var project = file.ProjectGetContent();
+        file.ProjectAddElement("123456789");
+        file.ProjectRemoveElement("Viewer/QuickSearch/NPCballoon.msqry");
         
         return UnitTestResult.OK;
     }
