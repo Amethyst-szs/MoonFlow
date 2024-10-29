@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using Godot;
 
@@ -131,5 +132,31 @@ public class BlockTagParams : Block
     protected override void WriteBlockData(ref MemoryStream stream)
     {
         throw new NotImplementedException();
+    }
+
+    public int GetParamCount(BlockTagListing.Listing tag)
+    {
+        return tag.ListingIndexList.Count;
+    }
+
+    public ParamInfo GetParam(int idx)
+    {
+        if (idx >= ParamList.Count)
+            return null;
+        
+        return ParamList[idx];
+    }
+
+    internal ReadOnlyCollection<ParamInfo> GetParamsForTag(BlockTagListing.Listing tag)
+    {
+        int paramCount = tag.ListingIndexList.Count;
+        ParamInfo[] paramList = new ParamInfo[paramCount];
+
+        for (int idx = 0; idx < paramCount; idx++)
+        {
+            paramList[idx] = ParamList[tag.ListingIndexList[idx]];
+        }
+
+        return new ReadOnlyCollection<ParamInfo>(paramList);
     }
 }

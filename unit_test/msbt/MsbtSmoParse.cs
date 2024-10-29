@@ -72,7 +72,7 @@ public class UnitTestMsbtSmoParse : UnitTestBase
                 // Only throw a warning for this, but note down if tag group is of an unknown type, since this should
                 // never happen under normal circumstances, but doesn't inheritely mean something is wrong with the
                 // parser or file
-                if (!Enum.IsDefined(typeof(TagGroup), tag.GetGroupName()) || tag.GetType() == typeof(MsbtTagElementUnknown)) {
+                if (tag.GetType() == typeof(MsbtTagElementUnknown) && tag.GetGroupName() != 0xC9) {
                     string warn = string.Format("{0} is tag group {1} ({2}) and subtype {3} ({4}), leading to init of {5}",
                         key.Key, tag.GetGroupName(), Enum.GetName(typeof(TagGroup), tag.GetGroupName()),
                         tag.GetTagName(), tag.GetTagNameStr(), tag.GetType()

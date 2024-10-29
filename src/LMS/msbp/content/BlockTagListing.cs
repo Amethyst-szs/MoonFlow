@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using Godot;
 
@@ -7,22 +8,23 @@ namespace Nindot.LMS.Msbp;
 
 public class BlockTagListing : Block
 {
-    public struct Listing
+    public class Listing
     {
-        public ushort ListingCount;
-        public List<ushort> ListingIndexList = [];
-        public string Name;
+        public readonly int ParentIndex;
+        public readonly List<ushort> ListingIndexList = [];
+        public readonly string Name;
 
-        public Listing(byte[] listingData)
+        public Listing(byte[] listingData, int groupIdx)
         {
+            ParentIndex = groupIdx;
             int pointer = 0;
 
             // Read listing count from buffer
-            ListingCount = BitConverter.ToUInt16(listingData, pointer);
+            ushort count = BitConverter.ToUInt16(listingData, pointer);
             pointer += 2;
 
             // Read all listing indexes in the table used to access another block's keys
-            while (pointer < (ListingCount * 2) + sizeof(ushort))
+            while (pointer < (count * 2) + sizeof(ushort))
             {
                 ListingIndexList.Add(BitConverter.ToUInt16(listingData, pointer));
                 pointer += 2;
@@ -35,7 +37,7 @@ public class BlockTagListing : Block
 
         public int CalcSizeBytes()
         {
-            //     ListingCount     Byte size of ListingIndexList               Length of name plus null terminator
+            //     Listing Count    Byte size of ListingIndexList               Length of name plus null terminator
             return sizeof(ushort) + (ListingIndexList.Count * sizeof(ushort)) + Name.Length + sizeof(byte);
         }
 
@@ -81,7 +83,7 @@ public class BlockTagListing : Block
 
             // Create array segment and generate listing data
             byte[] segment = data[offset..endOffset];
-            ListingList.Add(new Listing(segment));
+            ListingList.Add(new Listing(segment, i));
         }
 
         return;
@@ -102,5 +104,36 @@ public class BlockTagListing : Block
     protected override void WriteBlockData(ref MemoryStream stream)
     {
         throw new NotImplementedException();
+    }
+
+    public int GetListingCount()
+    {
+        return ListingList.Count;
+    }
+
+    public ReadOnlyCollection<Listing> GetListings()
+    {
+        return new ReadOnlyCollection<Listing>(ListingList);
+    }
+
+    internal ReadOnlyCollection<Listing> GetTagsInGroup(Listing groupTag)
+    {
+        int tagCount = groupTag.ListingIndexList.Count;
+        Listing[] tagList = new Listing[tagCount];
+
+        for (int idx = 0; idx < tagCount; idx++)
+        {
+            tagList[idx] = ListingList[groupTag.ListingIndexList[idx]];
+        }
+
+        return new ReadOnlyCollection<Listing>(tagList);
+    }
+
+    public Listing GetListing(int idx)
+    {
+        if (idx >= ListingList.Count)
+            return null;
+        
+        return ListingList[idx];
     }
 }

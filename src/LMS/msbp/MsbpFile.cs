@@ -81,7 +81,7 @@ public class MsbpFile : FileBase
 
     public int ColorGetCount()
     {
-        if (ColorLabels == null)
+        if (!ColorLabels.IsValid())
             return 0;
         
         return ColorLabels.CalcLabelCount();
@@ -89,7 +89,7 @@ public class MsbpFile : FileBase
 
     public string[] ColorGetLabelList()
     {
-        if (ColorLabels == null)
+        if (!ColorLabels.IsValid())
             return [];
         
         return ColorLabels.GetLabelList();
@@ -97,7 +97,7 @@ public class MsbpFile : FileBase
 
     public ReadOnlyCollection<BlockColor.Entry> ColorGetList()
     {
-        if (Color == null)
+        if (!Color.IsValid())
             return null;
         
         return Color.GetColorList();
@@ -117,7 +117,7 @@ public class MsbpFile : FileBase
 
     public void ColorAddNew(string name, byte r, byte g, byte b, byte a)
     {
-        if (Color == null || ColorLabels == null)
+        if (!ColorIsFileContainData())
             return;
         
         BlockColor.Entry entry = new(r, g, b, a);
@@ -126,7 +126,7 @@ public class MsbpFile : FileBase
 
     public void ColorAddNew(string name, BlockColor.Entry color)
     {
-        if (Color == null || ColorLabels == null)
+        if (!ColorIsFileContainData())
             return;
         
         int idx = Color.AddColor(color);
@@ -135,7 +135,7 @@ public class MsbpFile : FileBase
 
     public void ColorMoveIndex(string name, int newIndex)
     {
-        if (Color == null || ColorLabels == null)
+        if (!ColorIsFileContainData())
             return;
         
         int oldIndex = ColorLabels.GetItemIndex(name);
@@ -145,7 +145,7 @@ public class MsbpFile : FileBase
 
     public void ColorMoveIndexByOffset(string name, int offset)
     {
-        if (Color == null || ColorLabels == null)
+        if (!ColorIsFileContainData())
             return;
         
         int oldIndex = ColorLabels.GetItemIndex(name);
@@ -155,7 +155,7 @@ public class MsbpFile : FileBase
 
     public void ColorRemove(string name)
     {
-        if (Color == null || ColorLabels == null)
+        if (!ColorIsFileContainData())
             return;
         
         int idx = ColorLabels.RemoveItem(name);
@@ -173,7 +173,7 @@ public class MsbpFile : FileBase
 
     public int AttributeGetCount()
     {
-        if (AttributeInfoLabels == null)
+        if (!AttributeInfoLabels.IsValid())
             return 0;
         
         return AttributeInfoLabels.CalcLabelCount();
@@ -181,7 +181,7 @@ public class MsbpFile : FileBase
 
     public string[] AttributeGetLabelList()
     {
-        if (AttributeInfoLabels == null)
+        if (!AttributeInfoLabels.IsValid())
             return [];
         
         return AttributeInfoLabels.GetLabelList();
@@ -189,8 +189,8 @@ public class MsbpFile : FileBase
 
     public ReadOnlyCollection<BlockAttributeInfo.Entry> AttributeGetList()
     {
-        if (AttributeInfo == null)
-            return null;
+        if (!AttributeInfo.IsValid())
+            return new ReadOnlyCollection<BlockAttributeInfo.Entry>([]);
         
         return AttributeInfo.GetInfoList();
     }
@@ -213,5 +213,86 @@ public class MsbpFile : FileBase
             return new ReadOnlyCollection<string>([]);
         
         return AttributeLists.GetList(attribute.ListIndex);
+    }
+
+    // ====================================================== //
+    // ============== Tag Group & Tag Utilities ============= //
+    // ====================================================== //
+
+    public bool TagIsFileContainData()
+    {
+        return TagGroups.IsValid() && Tags.IsValid() && TagParams.IsValid() && TagArrayParams.IsValid();
+    }
+
+    public int TagGroupGetCount()
+    {
+        if (!TagGroups.IsValid())
+            return 0;
+        
+        return TagGroups.GetListingCount();
+    }
+
+    public ReadOnlyCollection<BlockTagListing.Listing> TagGroupGetList()
+    {
+        if (!TagGroups.IsValid())
+            return new ReadOnlyCollection<BlockTagListing.Listing>([]);
+        
+        return TagGroups.GetListings();
+    }
+
+    public BlockTagListing.Listing TagGroupGet(int idx)
+    {
+        if (!TagGroups.IsValid())
+            return null;
+        
+        return TagGroups.GetListing(idx);
+    }
+
+    public int TagGetCount(BlockTagListing.Listing tagGroup)
+    {
+        if (!Tags.IsValid())
+            return 0;
+        
+        return tagGroup.ListingIndexList.Count;
+    }
+
+    public ReadOnlyCollection<BlockTagListing.Listing> TagGetList(BlockTagListing.Listing tagGroup)
+    {
+        if (!Tags.IsValid())
+            return new ReadOnlyCollection<BlockTagListing.Listing>([]);
+        
+        return Tags.GetTagsInGroup(tagGroup);
+    }
+
+    public BlockTagListing.Listing TagGet(int idx)
+    {
+        if (!Tags.IsValid())
+            return null;
+        
+        return Tags.GetListing(idx);
+    }
+
+    public int TagParamGetCount(BlockTagListing.Listing tag)
+    {
+        if (!TagParams.IsValid())
+            return 0;
+        
+        return TagParams.GetParamCount(tag);
+    }
+
+    public ReadOnlyCollection<BlockTagParams.ParamInfo> TagParamGetList(BlockTagListing.Listing tag)
+    {
+        if (!TagParams.IsValid())
+            return new ReadOnlyCollection<BlockTagParams.ParamInfo>([]);
+        
+        return TagParams.GetParamsForTag(tag);
+    }
+
+    public BlockTagParams.ParamInfo TagParamGet(int idx)
+    {
+        if (!Tags.IsValid())
+            return null;
+        
+        return TagParams.GetParam(idx);
     }
 }

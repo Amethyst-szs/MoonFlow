@@ -20,6 +20,30 @@ public class UnitTestMsbpSMORead : UnitTestBase
         if (!file.IsValid())
             return UnitTestResult.FAILURE;
         
+        file.ColorAddNew("Custom Color", 69, 69, 69, 69);
+        foreach (var color in file.ColorGetLabelList())
+        {
+            var c = file.ColorGet(color);
+            file.ColorMoveIndex(color, 0);
+            continue;
+        }
+        file.ColorRemove("Custom Color");
+
+        foreach (var attribute in file.AttributeGetList())
+        {
+            var arrayContent = file.AttributeGetContentArrayList(attribute);
+            continue;
+        }
+
+        foreach (var group in file.TagGroupGetList())
+        {
+            var tags = file.TagGetList(group);
+            foreach (var tag in tags) {
+                var paras = file.TagParamGetList(tag);
+                continue;
+            }
+        }
+        
         return UnitTestResult.OK;
     }
 

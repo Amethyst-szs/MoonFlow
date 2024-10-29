@@ -63,6 +63,7 @@ public enum TagNameProjectIcon : ushort
 {
     UNKNOWN = 0xFFFF,
     POWER_MOON = 0,
+    COIN_COLLECT_CURRENT_WORLD = 1,
     Y = 5,
     ZL = 8,
     L_STICK = 10,
@@ -134,7 +135,7 @@ public enum TagNamePictureFont : ushort
     SHINE_ICON_NULL = 0x2E,
     SHINE_ICON_TRIPLE_DOT = 0x2F,
 
-    UNKNOWN = 0x30,
+    SHINE_ICON_STAR = 0x30,
 
     LIFE_UP_HEART = 0x31,
 

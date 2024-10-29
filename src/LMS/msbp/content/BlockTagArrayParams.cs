@@ -18,6 +18,9 @@ public class BlockTagArrayParams : Block
         // Read how many names are in array
         ushort nameCount = BitConverter.ToUInt16(data, 0);
 
+        if (nameCount == 0)
+            return;
+
         // Iterate over all name offset entries
         for (int i = 0; i < nameCount; i++)
         {
@@ -37,8 +40,6 @@ public class BlockTagArrayParams : Block
             // Create array segment and append name to list
             NameList.Add(data[offset..endOffset].GetStringFromUtf8());
         }
-
-        return;
     }
 
     protected override uint CalcDataSize()
