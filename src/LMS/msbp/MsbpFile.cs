@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Godot;
-using Nindot.LMS;
 
 namespace Nindot.LMS.Msbp;
 
 public class MsbpFile : FileBase
 {
+    // ====================================================== //
+    // ============ Parameters and Initilization ============ //
+    // ====================================================== //
+
     private BlockColor Color = null; // CLR1
     private BlockHashTable ColorLabels = null; // CLB1
 
@@ -25,13 +29,11 @@ public class MsbpFile : FileBase
 
     private Block Project = null; // CTI1
 
-    public MsbpFile(byte[] data) : base(data)
-    {
-    }
+    public MsbpFile(byte[] data) : base(data) { }
 
+    // Initalize every kind of MSBP block using their 4 byte names
     public override void Init(byte[] data, Dictionary<string, int> blockKeys)
     {
-        // Initalize every kind of MSBP blocks using their 4 byte names
         Color = new BlockColor(data, "CLR1", blockKeys.GetValueOrDefault("CLR1", -1));
         Blocks.Add(Color);
         ColorLabels = new BlockHashTable(data, "CLB1", blockKeys.GetValueOrDefault("CLB1", -1));
@@ -62,8 +64,69 @@ public class MsbpFile : FileBase
         Blocks.Add(Project);
     }
 
+    // Ensure that the binary file being read contains this magic, otherwise it isn't an MSBP!
     public override string GetFileMagic()
     {
         return "MsgPrjBn";
+    }
+
+    // ====================================================== //
+    // =================== Color Utilities ================== //
+    // ====================================================== //
+
+    public int ColorGetCount()
+    {
+        return ColorLabels.CalcLabelCount();
+    }
+
+    public string[] ColorGetLabelList()
+    {
+        return ColorLabels.GetLabelList();
+    }
+
+    public ReadOnlyCollection<BlockColor.Entry> ColorGetList()
+    {
+        return Color.GetColorList();
+    }
+
+    public BlockColor.Entry ColorGet(string labelName)
+    {
+        int idx = ColorLabels.GetItemIndex(labelName);
+        if (idx == -1)
+            return null;
+        
+        return Color.GetColor(idx);
+    }
+
+    public void ColorAddNew(string name, byte r, byte g, byte b, byte a)
+    {
+        BlockColor.Entry entry = new(r, g, b, a);
+        ColorAddNew(name, entry);
+    }
+
+    public void ColorAddNew(string name, BlockColor.Entry color)
+    {
+        int idx = Color.AddColor(color);
+        ColorLabels.AddItem(name, idx);
+    }
+
+    public void ColorMoveIndex(string name, int newIndex)
+    {
+        int oldIndex = ColorLabels.GetItemIndex(name);
+        Color.MoveColor(oldIndex, newIndex);
+        ColorLabels.MoveItem(name, newIndex);
+    }
+
+    public void ColorMoveIndexByOffset(string name, int offset)
+    {
+        int oldIndex = ColorLabels.GetItemIndex(name);
+        Color.MoveColor(oldIndex, oldIndex + offset);
+        ColorLabels.MoveItemByOffset(name, offset);
+    }
+
+    public void ColorRemove(string name)
+    {
+        int idx = ColorLabels.RemoveItem(name);
+        Color.RemoveColor(idx);
     }
 }
