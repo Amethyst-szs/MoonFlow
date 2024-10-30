@@ -14,7 +14,7 @@ public abstract class Block
     public const ushort BLOCK_ALIGNMENT_SIZE = 0x10;
 
     public readonly string TypeName;
-    private bool IsBlockHeaderOK = false;
+    protected readonly bool IsBlockHeaderOK = false;
 
     public Block(byte[] data, string typeName, int offset)
     {

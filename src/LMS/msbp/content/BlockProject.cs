@@ -88,6 +88,13 @@ public class BlockProject : Block
         return Content[idx];
     }
 
-    internal void AddElement(string element) { Content.Add(element); }
-    internal void RemoveElement(string element) { Content.Remove(element); }
+    internal void AddElement(string element)
+    {
+        if (IsBlockHeaderOK)
+            Content.Add(element);
+    }
+    internal void RemoveElement(string element) {
+        if (IsBlockHeaderOK)
+            Content.Remove(element);
+    }
 }
