@@ -19,8 +19,8 @@ public class MsbpFile : FileBase
     private BlockHashTable AttributeInfoLabels = null; // ALB1
     private BlockAttributeLists AttributeLists = null; // ALI2
 
-    private BlockTagListing TagGroups = null; // TGG2
-    private BlockTagListing Tags = null; // TAG2
+    private BlockTagCommon TagGroups = null; // TGG2
+    private BlockTagCommon Tags = null; // TAG2
     private BlockTagParams TagParams = null; // TGP2
     private BlockTagArrayParams TagArrayParams = null; // TGL2
 
@@ -46,9 +46,9 @@ public class MsbpFile : FileBase
         AttributeLists = new BlockAttributeLists(data, "ALI2", blockKeys.GetValueOrDefault("ALI2", -1));
         Blocks.Add(AttributeLists);
 
-        TagGroups = new BlockTagListing(data, "TGG2", blockKeys.GetValueOrDefault("TGG2", -1));
+        TagGroups = new BlockTagCommon(data, "TGG2", blockKeys.GetValueOrDefault("TGG2", -1));
         Blocks.Add(TagGroups);
-        Tags = new BlockTagListing(data, "TAG2", blockKeys.GetValueOrDefault("TAG2", -1));
+        Tags = new BlockTagCommon(data, "TAG2", blockKeys.GetValueOrDefault("TAG2", -1));
         Blocks.Add(Tags);
         TagParams = new BlockTagParams(data, "TGP2", blockKeys.GetValueOrDefault("TGP2", -1));
         Blocks.Add(TagParams);
@@ -181,45 +181,45 @@ public class MsbpFile : FileBase
     public int TagGroupGetCount()
     {
         if (!TagGroups.IsValid()) return 0;
-        return TagGroups.GetListingCount();
+        return TagGroups.GetCount();
     }
-    public ReadOnlyCollection<BlockTagListing.Listing> TagGroupGetList()
+    public ReadOnlyCollection<TagGroupInfo> TagGroupGetList()
     {
-        if (!TagGroups.IsValid()) return new ReadOnlyCollection<BlockTagListing.Listing>([]);
-        return TagGroups.GetListings();
+        if (!TagGroups.IsValid()) return new ReadOnlyCollection<TagGroupInfo>([]);
+        return TagGroups.GetList();
     }
-    public BlockTagListing.Listing TagGroupGet(int idx)
+    public TagGroupInfo TagGroupGet(int idx)
     {
         if (!TagGroups.IsValid()) return null;
-        return TagGroups.GetListing(idx);
+        return TagGroups.GetGroup(idx);
     }
-    public int TagGetCount(BlockTagListing.Listing tagGroup)
+    public int TagGetCount(TagGroupInfo tagGroup)
     {
         if (!Tags.IsValid()) return 0;
         return tagGroup.ListingIndexList.Count;
     }
-    public ReadOnlyCollection<BlockTagListing.Listing> TagGetList(BlockTagListing.Listing tagGroup)
+    public ReadOnlyCollection<TagInfo> TagGetList(TagGroupInfo tagGroup)
     {
-        if (!Tags.IsValid()) return new ReadOnlyCollection<BlockTagListing.Listing>([]);
+        if (!Tags.IsValid()) return new ReadOnlyCollection<TagInfo>([]);
         return Tags.GetTagsInGroup(tagGroup);
     }
-    public BlockTagListing.Listing TagGet(int idx)
+    public TagInfo TagGet(int idx)
     {
         if (!Tags.IsValid()) return null;
-        return Tags.GetListing(idx);
+        return Tags.GetTag(idx);
     }
-    public int TagParamGetCount(BlockTagListing.Listing tag)
+    public int TagParamGetCount(TagInfo tag)
     {
         if (!TagParams.IsValid()) return 0;
         return TagParams.GetParamCount(tag);
     }
-    public ReadOnlyCollection<BlockTagParams.ParamInfo> TagParamGetList(BlockTagListing.Listing tag)
+    public ReadOnlyCollection<TagParamInfo> TagParamGetList(TagInfo tag)
     {
-        if (!TagParams.IsValid()) return new ReadOnlyCollection<BlockTagParams.ParamInfo>([]);
+        if (!TagParams.IsValid()) return new ReadOnlyCollection<TagParamInfo>([]);
         return TagParams.GetParamsForTag(tag);
     }
 
-    public BlockTagParams.ParamInfo TagParamGet(int idx)
+    public TagParamInfo TagParamGet(int idx)
     {
         if (!Tags.IsValid()) return null;
         return TagParams.GetParam(idx);

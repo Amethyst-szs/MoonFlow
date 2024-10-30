@@ -2,77 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using CommunityToolkit.HighPerformance;
 using Godot;
 
 namespace Nindot.LMS.Msbp;
 
-public class BlockTagParams : Block
+public class BlockTagParams(byte[] data, string listingName, int offset) : Block(data, listingName, offset)
 {
-    public class ParamInfo
-    {
-        public byte ParamType;
-        public string Name;
-
-        public ParamInfo()
-        {
-        }
-
-        public ParamInfo(byte[] paramData)
-        {
-            ParamType = paramData[0];
-            Name = paramData[1..(paramData.Length - 1)].GetStringFromUtf8();
-        }
-
-        public virtual int CalcSizeBytes()
-        {
-            //     ParamType      Length of name plus null terminator
-            return sizeof(byte) + Name.Length + sizeof(byte);
-        }
-
-        public virtual void WriteLabel(MemoryStream stream)
-        {
-        }
-    }
-
-    public class ParamInfoArray : ParamInfo
-    {
-        public ushort ItemCount;
-        public List<ushort> ItemIndexList = [];
-
-        public ParamInfoArray(byte[] paramData) : base()
-        {
-            ParamType = paramData[0];
-
-            int pointer = 2;
-            ItemCount = BitConverter.ToUInt16(paramData, pointer);
-            pointer += 2;
-
-            // Read all listing indexes in the table used to access another block's keys
-            while (pointer < (ItemCount * 2) + sizeof(ushort))
-            {
-                ItemIndexList.Add(BitConverter.ToUInt16(paramData, pointer));
-                pointer += 2;
-            }
-
-            Name = paramData[pointer..(paramData.Length - 1)].GetStringFromUtf8();
-        }
-
-        public override int CalcSizeBytes()
-        {
-            //     ListingCount     Byte size of ListingIndexList               Length of name plus null terminator
-            return sizeof(ushort) + (ItemIndexList.Count * sizeof(ushort)) + Name.Length + sizeof(byte);
-        }
-
-        public override void WriteLabel(MemoryStream stream)
-        {
-        }
-    }
-
-    List<ParamInfo> ParamList = [];
-
-    public BlockTagParams(byte[] data, string listingName, int offset) : base(data, listingName, offset)
-    {
-    }
+    List<TagParamInfo> ParamList = [];
 
     protected override void InitBlock(byte[] data)
     {
@@ -90,7 +27,7 @@ public class BlockTagParams : Block
 
             // If the current param type is 0x9, extra data will need to be read because that param type is for an array
             byte paramType = data[offset];
-            if (paramType == 0x9)
+            if (paramType == TagParamInfoTypeArray.TYPE_ID_ARRAY)
             {
                 ushort entryCount = BitConverter.ToUInt16(data, offset + 0x2);
                 endOffset += entryCount * 2;
@@ -108,10 +45,10 @@ public class BlockTagParams : Block
             // Create array segment and generate group data
             byte[] segment = data[offset..endOffset];
 
-            if (paramType == 0x9)
-                ParamList.Add(new ParamInfoArray(segment));
+            if (paramType == TagParamInfoTypeArray.TYPE_ID_ARRAY)
+                ParamList.Add(new TagParamInfoTypeArray(segment));
             else
-                ParamList.Add(new ParamInfo(segment));
+                ParamList.Add(new TagParamInfo(segment));
         }
 
         return;
@@ -123,7 +60,7 @@ public class BlockTagParams : Block
 
         foreach (var p in ParamList)
         {
-            size += (uint)(0x4 + p.CalcSizeBytes());
+            size += (uint)(0x4 + p.CalcSizeBytes((int)size));
         }
 
         return size;
@@ -131,15 +68,34 @@ public class BlockTagParams : Block
 
     protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new NotImplementedException();
+        stream.Write((ushort)ParamList.Count);
+        stream.Write((ushort)0x0000); // Padding
+
+        // Create offset table before the group info
+        int offset = 0x4 + (ParamList.Count * sizeof(uint));
+
+        foreach (var item in ParamList)
+        {
+            stream.Write((uint)offset);
+            offset += item.CalcSizeBytes(offset);
+        }
+
+        // Now actually write each group's information
+        foreach (var item in ParamList)
+        {
+            item.Write(stream);
+        }
     }
 
-    public int GetParamCount(BlockTagListing.Listing tag)
+    public int GetParamCount(TagInfo tag)
     {
+        if (!tag.IsTag())
+            return -1;
+
         return tag.ListingIndexList.Count;
     }
 
-    public ParamInfo GetParam(int idx)
+    public TagParamInfo GetParam(int idx)
     {
         if (idx >= ParamList.Count)
             return null;
@@ -147,16 +103,19 @@ public class BlockTagParams : Block
         return ParamList[idx];
     }
 
-    internal ReadOnlyCollection<ParamInfo> GetParamsForTag(BlockTagListing.Listing tag)
+    internal ReadOnlyCollection<TagParamInfo> GetParamsForTag(TagInfo tag)
     {
+        if (!tag.IsTag())
+            return new ReadOnlyCollection<TagParamInfo>([]);
+
         int paramCount = tag.ListingIndexList.Count;
-        ParamInfo[] paramList = new ParamInfo[paramCount];
+        TagParamInfo[] paramList = new TagParamInfo[paramCount];
 
         for (int idx = 0; idx < paramCount; idx++)
         {
             paramList[idx] = ParamList[tag.ListingIndexList[idx]];
         }
 
-        return new ReadOnlyCollection<ParamInfo>(paramList);
+        return new ReadOnlyCollection<TagParamInfo>(paramList);
     }
 }

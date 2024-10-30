@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using CommunityToolkit.HighPerformance;
 using Godot;
 
 namespace Nindot.LMS.Msbp;
 
-public class BlockTagArrayParams : Block
+public class BlockTagArrayParams(byte[] data, string listingName, int offset) : Block(data, listingName, offset)
 {
     List<string> NameList = [];
-
-    public BlockTagArrayParams(byte[] data, string listingName, int offset) : base(data, listingName, offset)
-    {
-    }
 
     protected override void InitBlock(byte[] data)
     {
@@ -57,6 +54,32 @@ public class BlockTagArrayParams : Block
 
     protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new NotImplementedException();
+        stream.Write((ushort)(NameList.Count * sizeof(ushort)));
+        stream.Write((ushort)0x0000); // Padding
+
+        int offset = 0x4 + (NameList.Count * sizeof(uint));
+
+        foreach (var item in NameList)
+        {
+            stream.Write(offset);
+            offset += item.Length + 0x1; // + Null Terminator
+
+            while (offset % TagParamInfo.PARAM_ALIGNMENT_SIZE != 0)
+            {
+                offset += 1;
+            }
+        }
+
+        foreach (var item in NameList)
+        {
+            stream.Write(item.ToUtf8Buffer());
+            stream.Write((byte)0x00); // Null Terminator
+
+            // Align stream to GROUP_ALIGNMENT_SIZE
+            while (stream.Position % TagParamInfo.PARAM_ALIGNMENT_SIZE != 0)
+            {
+                stream.Write([0x00]);
+            }
+        }
     }
 }

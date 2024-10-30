@@ -37,10 +37,6 @@ public class BlockHashTable : Block
         {
             return Label.Length + BASE_SIZE_WITHOUT_STRING;
         }
-
-        public void WriteLabel(MemoryStream stream)
-        {
-        }
     }
 
     public struct HashTableEntry
@@ -73,10 +69,6 @@ public class BlockHashTable : Block
                 LabelList.Add(label);
                 pointer += label.CalcSizeBytes();
             }
-        }
-
-        public void WriteEntry(MemoryStream stream)
-        {
         }
     }
 
