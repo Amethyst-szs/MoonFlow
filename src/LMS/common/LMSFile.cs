@@ -53,9 +53,6 @@ public abstract class FileBase
         
         foreach (var b in Blocks)
         {
-            if (Blocks.IndexOf(b) == 9)
-                return true;
-            
             if (!b.WriteBlock(stream))
                 return false;
         }

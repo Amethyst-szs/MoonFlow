@@ -10,7 +10,7 @@ public class BlockStyles : Block
 {
     public class Style
     {
-        public const int STYLE_BYTE_SIZE = 0x10;
+        public const int STYLE_STRUCT_SIZE = 0x10;
 
         public uint RegionWidth;
         public uint LineNumber;
@@ -54,20 +54,25 @@ public class BlockStyles : Block
 
         for (int i = 0; i < styleCount; i++)
         {
-            int pointer = (i * Style.STYLE_BYTE_SIZE) + 0x4;
-            Style s = new Style(data[pointer..(pointer + Style.STYLE_BYTE_SIZE)]);
+            int pointer = (i * Style.STYLE_STRUCT_SIZE) + 0x4;
+            Style s = new Style(data[pointer..(pointer + Style.STYLE_STRUCT_SIZE)]);
             Styles.Add(s);
         }
     }
 
     protected override uint CalcDataSize()
     {
-        return (uint)(Styles.Count * Style.STYLE_BYTE_SIZE) + sizeof(uint);
+        return (uint)(Styles.Count * Style.STYLE_STRUCT_SIZE) + sizeof(uint);
     }
 
     protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new System.NotImplementedException();
+        stream.Write((uint)Styles.Count);
+
+        foreach (var style in Styles)
+        {
+            style.Write(stream);
+        }
     }
 
     public ReadOnlyCollection<Style> GetStyleList()

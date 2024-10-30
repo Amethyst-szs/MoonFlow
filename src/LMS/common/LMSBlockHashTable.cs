@@ -115,7 +115,7 @@ public class BlockHashTable : Block
 
     protected override uint CalcDataSize()
     {
-        uint size = sizeof(uint); // 0x4 bytes are taken up by SlotCount
+        uint size = sizeof(uint); // 0x4 bytes are taken up by slot count
 
         foreach (var entry in HashEntryList)
         {

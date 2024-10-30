@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using CommunityToolkit.HighPerformance;
 using Godot;
 
 namespace Nindot.LMS.Msbp;
@@ -61,7 +62,20 @@ public class BlockProject : Block
 
     protected override void WriteBlockData(MemoryStream stream)
     {
-        throw new NotImplementedException();
+        stream.Write((uint)Content.Count);
+
+        uint offset = (uint)(0x4 + (Content.Count * 0x4));
+        foreach (var s in Content)
+        {
+            stream.Write(offset);
+            offset += (uint)(s.Length + 0x1); // Null terminator included
+        }
+
+        foreach (var s in Content)
+        {
+            stream.Write(s.ToUtf8Buffer());
+            stream.Write([0x00]); // Null terminator
+        }
     }
 
     public int GetSize() { return Content.Count; }
