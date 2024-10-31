@@ -2,31 +2,29 @@ using System.Collections.Generic;
 
 using Nindot.LMS.Msbt.TagLib;
 using System.IO;
+using Nindot.LMS.Msbp;
 
 namespace Nindot.LMS.Msbt;
 
 public class MsbtEntry
 {
-    public string Key;
-    public List<MsbtBaseElement> ElementList;
+    public MsbtFile Parent { get; private set; } = null;
+    public List<MsbtBaseElement> Elements { get; private set; } = [];
+    protected uint StyleIndex = 0xFFFFFFFF;
 
-    public MsbtEntry(string key, MsbtEntry entry)
+    public MsbtEntry(MsbtFile parent, byte[] txtData, uint styleIndex = 0xFFFFFFFF)
     {
-        // Setup raw values that require no parsing
-        Key = key;
+        Parent = parent;
+        StyleIndex = styleIndex;
 
-        return;
+        Elements = TagLibraryHolder.BuildMsbtElements(txtData, Parent.TagLibrary);
     }
 
-    public byte[] BuildElementList()
+    public void WriteBytes(MemoryStream stream)
     {
-        MemoryStream stream = new();
-
-        foreach (var item in ElementList)
+        foreach (var item in Elements)
         {
             stream.Write(item.GetBytes());
         }
-
-        return stream.ToArray();
     }
 }

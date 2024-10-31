@@ -12,17 +12,24 @@ namespace Nindot.UnitTest;
 public class UnitTestMsbtV2SMOParse : UnitTestBase
 {
     protected byte[] FileData = [];
+    protected byte[] MsbpData = [];
 
     public override void SetupTest()
     {
-        FileData = FileAccess.GetFileAsBytes("res://unit_test/msbt/SmoUnitTesting_TSY.msbt");
+        FileData = FileAccess.GetFileAsBytes("res://unit_test/msbt/SmoUnitTesting.msbt");
+        MsbpData = FileAccess.GetFileAsBytes("res://unit_test/msbp/ProjectData-SMO.msbp");
     }
 
     public override UnitTestResult Test()
     {
+        // Get project file, as this is required for msbt file
+        MsbpFile project = new(MsbpData);
+        if (!project.IsValid())
+            return UnitTestResult.FAILURE;
+        
         // Load in an msbt resource and check it's validity
-        MsbtFile msbt = new(FileData);
-        if (msbt == null || !msbt.IsValid()) {
+        MsbtFile msbt = new(project, TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileData);
+        if (!msbt.IsValid()) {
             GD.PrintErr("Failed to initalize MsbtV2 for unit test!");
             return UnitTestResult.FAILURE;
         }

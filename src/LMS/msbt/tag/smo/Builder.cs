@@ -12,7 +12,7 @@ public static class Builder
     public static List<MsbtBaseElement> Build(byte[] buffer)
     {
         // Establish list to store all created elements
-        List<MsbtBaseElement> list = new();
+        List<MsbtBaseElement> list = [];
 
         // This variable will hold a copy of the current MsbtElement class
         MsbtBaseElement curElement = null;

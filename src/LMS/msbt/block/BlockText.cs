@@ -25,20 +25,16 @@ public class BlockText : Block
 
     protected override void InitBlock(byte[] data)
     {
-        // Read how many mstxt keys are in project
-        ushort nameCount = BitConverter.ToUInt16(data, 0);
+        uint count = BitConverter.ToUInt32(data, 0);
 
-        // Iterate over every single key (oh boy we in for a long one)
-        for (int i = 0; i < nameCount; i++)
+        for (int i = 0; i < count; i++)
         {
-            // Get the offset for the current name in block
             int offset = (int)BitConverter.ToUInt32(data, (i * 4) + 4);
 
-            // Calculate the end offset of the name segment
             int endPointer;
-            if (i < nameCount - 1)
+            if (i < count - 1)
             {
-                endPointer = (int)BitConverter.ToUInt32(data, ((i + 1) * 4) + 4) - 1;
+                endPointer = (int)BitConverter.ToUInt32(data, ((i + 1) * 4) + 4) - 2;
             }
             else
             {
@@ -47,12 +43,10 @@ public class BlockText : Block
                 {
                     endPointer--;
                 }
-                endPointer++;
             }
 
             // Create array segment and append name to list
             TextData.Add(data[offset..endPointer]);
-            continue;
         }
 
         return;

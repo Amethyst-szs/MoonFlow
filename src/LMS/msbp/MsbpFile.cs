@@ -251,6 +251,16 @@ public class MsbpFile : FileBase
 
         return Styles.GetStyle(idx);
     }
+    public uint StyleGetIndex(string labelName)
+    {
+        if (!StyleIsFileContainData()) return 0xFFFFFFFF;
+
+        int idx = StyleLabels.GetItemIndex(labelName);
+        if (idx == -1)
+            return 0xFFFFFFFF;
+        
+        return (uint)idx;
+    }
     public void StyleAddNew(string name, uint width = 300, uint lines = 1, uint fontIdx = 12, uint colorIdx = 0xFFFFFFFF)
     {
         if (!StyleIsFileContainData()) return;

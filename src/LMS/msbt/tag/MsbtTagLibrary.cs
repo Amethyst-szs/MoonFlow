@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Nindot.LMS.Msbt.TagLib;
 
-public static class Core
+public static class TagLibraryHolder
 {
     public enum Type : ushort
     {
@@ -12,36 +12,26 @@ public static class Core
         ENUM_SIZE,
     }
 
-    public static string[] Name = [
+    public readonly static string[] Name = [
         "None",
         "Super Mario Odyssey",
     ];
 
-    public static List<MsbtBaseElement> BuildElementList(byte[] buffer, Type type)
+    public static List<MsbtBaseElement> BuildMsbtElements(byte[] buffer, Type type)
     {
         // Call tag builder for selected tag library
-        switch (type)
-        {
-            case Type.SUPER_MARIO_ODYSSEY:
-                return Smo.Builder.Build(buffer);
-            default:
-                MsbtTextElement txt = new MsbtTextElement(buffer);
-                txt.FinalizeAppending();
-
-                List<MsbtBaseElement> list = [txt];
-                return list;
-        }
+        return type switch {
+            Type.SUPER_MARIO_ODYSSEY => Smo.Builder.Build(buffer),
+            _ => BuildMsbtElementsWithoutTagLibrary(buffer),
+        };
     }
 
-    public static byte[] ParseElementListIntoBuffer(EntryContent entry)
+    public static List<MsbtBaseElement> BuildMsbtElementsWithoutTagLibrary(byte[] buffer)
     {
-        MemoryStream buffer = new MemoryStream();
+        MsbtTextElement txt = new MsbtTextElement(buffer);
+        txt.FinalizeAppending();
 
-        foreach (MsbtBaseElement element in entry.ElementList)
-        {
-            buffer.Write(element.GetBytes());
-        }
-
-        return buffer.ToArray();
+        List<MsbtBaseElement> list = [txt];
+        return list;
     }
 }

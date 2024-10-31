@@ -16,7 +16,7 @@ public class BlockProject : Block
     protected override void InitBlock(byte[] data)
     {
         // Read how many mstxt keys are in project
-        ushort nameCount = BitConverter.ToUInt16(data, 0);
+        uint nameCount = BitConverter.ToUInt32(data, 0);
 
         // Iterate over every single key (oh boy we in for a long one)
         for (int i = 0; i < nameCount; i++)

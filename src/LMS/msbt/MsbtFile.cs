@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using Godot;
+using Nindot.LMS.Msbp;
+using Nindot.LMS.Msbt.TagLib;
 
 namespace Nindot.LMS.Msbt;
 
@@ -11,16 +13,15 @@ public class MsbtFileEntry
 
 }
 
-public class MsbtFile : FileBase
+public class MsbtFile(MsbpFile project, TagLibraryHolder.Type tagLibraryType, byte[] data) : FileBase(data)
 {
     // ====================================================== //
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
-    public MsbtFile(byte[] data) : base(data) { }
-
-    public Dictionary<string, EntryContent> Content = [];
-
-    private BlockAttributeData blockATR = null;
+    public MsbpFile Project { get; private set; } = project;
+    public TagLibraryHolder.Type TagLibrary { get; private set; } = tagLibraryType;
+    public Dictionary<string, MsbtEntry> Content { get; private set; } = [];
+    private BlockAttributeData _blockATR = null;
 
     public override void Init(byte[] data, Dictionary<string, int> blockKeys)
     {
@@ -32,7 +33,7 @@ public class MsbtFile : FileBase
         // This block is stored as a field because, as of now, the ATR1 support is limited
         // only to data preservation. No data will be lost if a file already has ATR1 support,
         // but it cannot easily be read or modified.
-        blockATR = new BlockAttributeData(data, "ATR1", blockKeys.GetValueOrDefault("ATR1", -1));
+        _blockATR = new BlockAttributeData(data, "ATR1", blockKeys.GetValueOrDefault("ATR1", -1));
 
         // Build entry list using block data
         ReadOnlyCollection<BlockHashTable.HashTableLabel> labels = blockLBL.GetRawLabelList();
@@ -44,8 +45,14 @@ public class MsbtFile : FileBase
                 GD.PushWarning("Duplicate key in MSBT!");
                 continue;
             }
+            
+            byte[] txtData = blockTXT.TextData[(int)label.ItemIndex];
+            
+            uint styleIdx = 0xFFFFFFFF;
+            if (blockTSY.IsValid())
+                styleIdx = blockTSY.StyleIndexList[(int)label.ItemIndex];
 
-            Content[label.Label] = new EntryContent();
+            Content[label.Label] = new MsbtEntry(this, txtData, styleIdx);
         }
 
         return;

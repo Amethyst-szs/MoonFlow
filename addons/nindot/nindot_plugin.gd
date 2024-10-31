@@ -12,7 +12,7 @@ const romfs_130_path_key: String = "application/nindot/romfs_130_path_for_debug"
 
 var plugin_sarc: SarcResourceImport = null
 var plugin_byml: BymlResourceImport = null
-var plugin_msbt: MsbtResourceImport = null
+# var plugin_msbt: MsbtResourceImport = null
 
 func _enter_tree():
 	if !Engine.is_editor_hint():
@@ -34,8 +34,8 @@ func _enter_tree():
 	plugin_byml = BymlResourceImport.new()
 	add_import_plugin(plugin_byml)
 	
-	plugin_msbt = MsbtResourceImport.new()
-	add_import_plugin(plugin_msbt)
+	# plugin_msbt = MsbtResourceImport.new()
+	# add_import_plugin(plugin_msbt)
 
 func _exit_tree():
 	if !Engine.is_editor_hint():
@@ -48,5 +48,5 @@ func _exit_tree():
 	remove_import_plugin(plugin_byml)
 	plugin_byml = null
 	
-	remove_import_plugin(plugin_msbt)
-	plugin_msbt = null
+	# remove_import_plugin(plugin_msbt)
+	# plugin_msbt = null

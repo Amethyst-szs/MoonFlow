@@ -43,10 +43,10 @@ namespace Nindot
             return SarcDict[name].ToArray();
         }
 
-        public MsbtResource GetFileMsbt(string name, LMS.Msbt.TagLib.Core.Type tagLib)
-        {
-            return MsbtResource.FromSarc(this, name, tagLib);
-        }
+        // public MsbtResource GetFileMsbt(string name, LMS.Msbt.TagLib.Core.Type tagLib)
+        // {
+        //     return MsbtResource.FromSarc(this, name, tagLib);
+        // }
 
         public BymlResource GetFileByml(string name)
         {

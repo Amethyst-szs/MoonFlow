@@ -15,6 +15,9 @@ public class BlockStyleIndex : Block
 
     public BlockStyleIndex(byte[] data, string name, int offset, uint styleCount) : base(data, name, offset)
     {
+        if (!IsValid())
+            return;
+        
         _initStyleCount = styleCount;
 
         // Parse rest of file data
