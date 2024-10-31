@@ -8,7 +8,7 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementPictureFont : MsbtTagElement
 {
-    public ushort AlwaysSix = 0x6;
+    public const TagFontIndex FontIndex = TagFontIndex.PICTURE_FONT;
 
     public ushort IconType
     {
@@ -17,10 +17,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         {
             if (!Enum.IsDefined(typeof(TagNamePictureFont), value))
             {
-#if !UNIT_TEST
                 GD.PushWarning("Attempted to set PictureFont Tag IconType to invalid type, clamped to enum maximum");
-#endif
-
                 TagName = (ushort)(TagNamePictureFont.ENUM_END - 1);
             }
             else
@@ -39,14 +36,11 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         IconType = TagName;
 
         // Ensure that the first data field is 0x6, cause it is always equal to that
-        AlwaysSix = BitConverter.ToUInt16(buffer, pointer);
+        ushort font = BitConverter.ToUInt16(buffer, pointer);
         pointer += 2;
 
-        if (AlwaysSix != 0x6)
-        {
+        if (font != (ushort)FontIndex)
             GD.PushWarning("PictureFont tag has non-6 value in first data place, setting to 6");
-            AlwaysSix = 0x6;
-        }
 
         // Read the char byte and ensure that the IconType matches
         ushort typeChar = BitConverter.ToUInt16(buffer, pointer);
@@ -89,7 +83,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
-        value.Write(AlwaysSix);
+        value.Write(FontIndex);
         value.Write(GetChar16tFromTagName());
         return value.ToArray();
     }

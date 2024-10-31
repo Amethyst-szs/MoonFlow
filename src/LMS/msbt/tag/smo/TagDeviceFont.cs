@@ -8,7 +8,7 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementDeviceFont : MsbtTagElement
 {
-    public ushort AlwaysZero = 0x0;
+    public const TagFontIndex FontIndex = TagFontIndex.DEVICE_FONT;
 
     public MsbtTagElementDeviceFont(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
@@ -16,14 +16,11 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
             return;
 
         // Ensure that the first data field is 0x0, cause it is always equal to that
-        AlwaysZero = BitConverter.ToUInt16(buffer, pointer);
+        var fntIdx = BitConverter.ToUInt16(buffer, pointer);
         pointer += 2;
 
-        if (AlwaysZero != 0x0)
-        {
+        if (fntIdx != (ushort)FontIndex)
             GD.PushWarning("DeviceFont tag has non-0 value in first data place, setting to 0");
-            AlwaysZero = 0x0;
-        }
 
         // Read the char byte and ensure that the IconType matches
         ushort typeChar = BitConverter.ToUInt16(buffer, pointer);
@@ -48,7 +45,7 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
-        value.Write(AlwaysZero);
+        value.Write(FontIndex);
         value.Write(GetChar16tFromTagName());
         return value.ToArray();
     }
