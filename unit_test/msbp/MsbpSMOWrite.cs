@@ -22,7 +22,8 @@ public class UnitTestMsbpSMOWrite : UnitTestBase
         if (!file.WriteFile(stream))
             return UnitTestResult.FAILURE;
         
-        FileAccess writer = FileAccess.Open("user://output.msbp", FileAccess.ModeFlags.Write);
+        DirAccess.MakeDirAbsolute("user://ProjectData/");
+        FileAccess writer = FileAccess.Open("user://ProjectData/ProjectData.msbp", FileAccess.ModeFlags.Write);
         writer.StoreBuffer(stream.ToArray());
         writer.Close();
         

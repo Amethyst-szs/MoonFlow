@@ -8,14 +8,14 @@ namespace Nindot.LMS;
 
 public class FileHeader
 {
-    protected enum Endianness : ushort
+    public enum Endianness : ushort
     {
         BIG = 0xFEFF,
         LITTLE = 0xFFFE,
         INVALID = 0xFFFF,
     }
 
-    protected enum StringEncoding : byte
+    public enum StringEncoding : byte
     {
         UTF8 = 0,
         UTF16 = 1,
@@ -133,5 +133,10 @@ public class FileHeader
             return false;
         
         return true;
+    }
+
+    public StringEncoding GetStrEncoding()
+    {
+        return Encoding;
     }
 }

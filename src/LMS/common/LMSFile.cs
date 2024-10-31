@@ -45,8 +45,9 @@ public abstract class FileBase
     }
 
     public abstract void Init(byte[] data, Dictionary<string, int> blockKeys);
+    public abstract string GetFileMagic();
 
-    public bool WriteFile(MemoryStream stream)
+    public virtual bool WriteFile(MemoryStream stream)
     {
         if (!Header.WriteHeader(stream))
             return false;
@@ -60,16 +61,8 @@ public abstract class FileBase
         return true;
     }
 
-    public abstract string GetFileMagic();
-
     public bool IsValid()
     {
-        if (!Header.IsValid())
-            return false;
-
-        if (Blocks.Count == 0)
-            return false;
-
-        return true;
+        return Header.IsValid();
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Godot;
 
 using CommunityToolkit.HighPerformance;
+using System.Collections.Generic;
 
 namespace Nindot.LMS;
 
@@ -44,11 +45,19 @@ public abstract class Block
         InitBlock(rawData);
     }
 
+    public Block(List<object> objList, string typeName)
+    {
+        TypeName = typeName;
+
+        IsBlockHeaderOK = true;
+        InitBlockWithList(objList);
+    }
+
     public bool WriteBlock(MemoryStream stream)
     {
         if (TypeName.Length != TYPE_NAME_SIZE)
             return false;
-        
+
         // This means that the block doesn't exist in the file, just skip it and move on
         if (!IsBlockHeaderOK)
             return true;
@@ -85,7 +94,8 @@ public abstract class Block
         return true;
     }
 
-    protected abstract void InitBlock(byte[] data);
+    protected virtual void InitBlock(byte[] data) { throw new NotImplementedException(); }
+    protected virtual void InitBlockWithList(List<object> list) { throw new NotImplementedException(); }
     protected abstract uint CalcDataSize();
     protected abstract void WriteBlockData(MemoryStream stream);
 

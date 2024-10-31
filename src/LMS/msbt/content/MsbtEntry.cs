@@ -1,37 +1,24 @@
-using Godot;
 using System.Collections.Generic;
-
-using MessageStudio.Formats.BinaryText;
 
 using Nindot.LMS.Msbt.TagLib;
 using System.IO;
 
 namespace Nindot.LMS.Msbt;
 
-public struct EntryContent
+public class MsbtEntry
 {
     public string Key;
-
-    public Core.Type TagLibrary;
-
-    public string Attribute;
-
     public List<MsbtBaseElement> ElementList;
 
-    public EntryContent(string key, MessageStudio.Formats.BinaryText.MsbtEntry entry, Core.Type tagLib)
+    public MsbtEntry(string key, MsbtEntry entry)
     {
         // Setup raw values that require no parsing
         Key = key;
-        TagLibrary = tagLib;
-        Attribute = entry.Attribute;
-
-        // Build ElementList
-        ElementList = Core.BuildElementList(entry.TextBuffer, TagLibrary);
 
         return;
     }
 
-    public readonly byte[] BuildElementList()
+    public byte[] BuildElementList()
     {
         MemoryStream stream = new();
 

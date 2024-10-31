@@ -225,7 +225,7 @@ public class BlockHashTable : Block
         return new ReadOnlyCollection<string>(list);
     }
 
-    private HashTableLabel[] GetRawLabelList()
+    public ReadOnlyCollection<HashTableLabel> GetRawLabelList()
     {
         HashTableLabel[] list = new HashTableLabel[CalcLabelCount()];
 
@@ -237,7 +237,7 @@ public class BlockHashTable : Block
             }
         }
 
-        return list;
+        return new ReadOnlyCollection<HashTableLabel>(list);
     }
 
     public int GetItemIndex(string labelName)
