@@ -23,7 +23,7 @@ public class MsbtTagElementObjectiveName : MsbtTagElementWithTextData
         }
     }
 
-    public MsbtTagElementObjectiveName(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementObjectiveName(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         // Copy data from buffer at pointer
         TextDataLength = BitConverter.ToUInt16(buffer, pointer);
@@ -35,7 +35,7 @@ public class MsbtTagElementObjectiveName : MsbtTagElementWithTextData
             // If not valid, set all properties to defaults with an empty string 
             DataSize = GetDataSizeBase();
             TextDataLength = 0x0;
-            
+
             IsTextDataInvalid = true;
 
             pointer += 0x2;
@@ -66,7 +66,7 @@ public class MsbtTagElementObjectiveName : MsbtTagElementWithTextData
 
         if (TextData != null && TextDataLength > 0)
             value.Write(TextData.ToUtf16Buffer());
-        
+
         if (DataSize == 0x4 && TextDataLength == 0x0)
             value.Write((ushort)0x0000);
 
@@ -83,7 +83,7 @@ public class MsbtTagElementObjectiveName : MsbtTagElementWithTextData
 
         if (TextDataLength != 0x0 && DataSize - 0x2 != TextDataLength)
             return false;
-        
+
         if (TextDataLength == 0x0 && DataSize != 0x4)
             return false;
 
@@ -97,8 +97,8 @@ public class MsbtTagElementObjectiveName : MsbtTagElementWithTextData
 
     public override string GetTagNameStr()
     {
-        if (Enum.IsDefined(typeof(TagNameObjectiveName), TagName))
-            return Enum.GetName(typeof(TagNameObjectiveName), TagName);
+        if (Enum.IsDefined(typeof(TagNameFormatString), TagName))
+            return Enum.GetName(typeof(TagNameFormatString), TagName);
 
         return "Unknown";
     }

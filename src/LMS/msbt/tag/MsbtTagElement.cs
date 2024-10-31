@@ -4,21 +4,28 @@ using System.IO;
 using CommunityToolkit.HighPerformance;
 using Godot;
 
-namespace Nindot.LMS.Msbt.TagLib.Smo;
+namespace Nindot.LMS.Msbt.TagLib;
 
 public class MsbtTagElement : MsbtBaseElement
 {
+    public const ushort BYTECODE_TAG = 0x0E;
+    public const ushort BYTECODE_TAG_CLOSE = 0x0F;
+    public const int TAG_HEADER_SIZE = 0x08;
+
+    protected MsbtFile Parent { get; private set; } = null;
+
     protected ushort GroupName = 0xFFFF;
     protected ushort TagName = 0xFFFF;
     protected ushort DataSize = 0x0;
 
-    protected const int TagHeaderSize = 0x08;
-
-    public MsbtTagElement(ref int pointer, byte[] buffer)
+    public MsbtTagElement(ref int pointer, byte[] buffer, MsbtFile parent)
     {
+        // Assign project
+        Parent = parent;
+
         // If the pointer is pointing at an 0x0E or 0x0F, jump ahead to bytes to align with tag group
         ushort startValue = BitConverter.ToUInt16(buffer, pointer);
-        if (startValue == Builder.ByteCode_Tag || startValue == Builder.ByteCode_TagClose)
+        if (startValue == BYTECODE_TAG || startValue == BYTECODE_TAG_CLOSE)
             pointer += 2;
 
         // Setup header
@@ -35,11 +42,11 @@ public class MsbtTagElement : MsbtBaseElement
     public MemoryStream CreateMemoryStreamWithHeaderData()
     {
         // Create stream to store return
-        int size = TagHeaderSize + DataSize;
+        int size = TAG_HEADER_SIZE + DataSize;
         MemoryStream value = new(size);
 
         // Write header properties into stream
-        value.Write(Builder.ByteCode_Tag);
+        value.Write(BYTECODE_TAG);
         value.Write(GroupName);
         value.Write(TagName);
         value.Write(DataSize);
@@ -128,7 +135,7 @@ public class MsbtTagElementWithTextData : MsbtTagElement
         }
     }
 
-    public MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementWithTextData(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         if (GetType() == typeof(MsbtTagElementWithTextData))
             throw new NotImplementedException();

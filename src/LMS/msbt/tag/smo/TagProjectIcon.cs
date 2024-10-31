@@ -10,11 +10,10 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementProjectIcon : MsbtTagElement
 {
-    public List<string> IconTable = [];
+    private List<string> _iconTable = [];
+    private readonly bool _isInvalid = false;
 
-    private bool IsInvalid = false;
-
-    public MsbtTagElementProjectIcon(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementProjectIcon(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         // Iterate through the buffer, copying strings until DataSize is maxed out
         int progress = 0;
@@ -26,7 +25,7 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
             pointer += 2;
 
             byte[] strBuf = buffer[pointer..(pointer + strLen)];
-            IconTable.Add(strBuf.GetStringFromUtf16());
+            _iconTable.Add(strBuf.GetStringFromUtf16());
 
             progress += strLen;
             pointer += strLen;
@@ -34,11 +33,12 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
 
         // If progress has overshot the DataSize at all, some piece of data is corrupted!
         // If corrupted, setup a default project icon state along with setting the IsInvalid flag
-        if (progress > DataSize) {
-            IconTable = [];
+        if (progress > DataSize)
+        {
+            _iconTable = [];
             DataSize = CalcDataSize();
 
-            IsInvalid = true;
+            _isInvalid = true;
             return;
         }
 
@@ -51,7 +51,7 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
     {
         ushort value = 0;
 
-        foreach (string icon in IconTable)
+        foreach (string icon in _iconTable)
         {
             ushort strLen = (ushort)icon.ToUtf16Buffer().Length;
             value += (ushort)(strLen + 2);
@@ -60,16 +60,35 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
         return value;
     }
 
-    public bool TryGetIconType(out TagNameProjectIcon name)
+    public void UpdateIconTableByTag()
     {
-        if (Enum.IsDefined(typeof(TagNameProjectIcon), TagName))
-        {
-            name = (TagNameProjectIcon)TagName;
-            return true;
-        }
+        string tagLabel = GetTagNameStr();
 
-        name = TagNameProjectIcon.UNKNOWN;
-        return false;
+        _iconTable.Clear();
+        foreach (var prefix in _iconTablePrefixes)
+        {
+            _iconTable.Add(tagLabel.Replace("PadStyle", prefix));
+        }
+    }
+
+    public void SetIcon(ushort newTagIndex)
+    {
+        TagName = newTagIndex;
+        UpdateIconTableByTag();
+    }
+
+    public void SetIcon(string padStyleLabel)
+    {
+        Msbp.TagGroupInfo group = Parent.Project.TagGroupGet(GroupName);
+        if (group == null)
+            return;
+        
+        int tagIdx = Parent.Project.TagGetIndex(padStyleLabel);
+        if (tagIdx == -1)
+            return;
+
+        TagName = (ushort)tagIdx;
+        UpdateIconTableByTag();
     }
 
     public override byte[] GetBytes()
@@ -80,7 +99,7 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
         // Now that data size is correct, stream can be created
         MemoryStream value = CreateMemoryStreamWithHeaderData();
 
-        foreach (string icon in IconTable)
+        foreach (string icon in _iconTable)
         {
             byte[] buf = icon.ToUtf16Buffer();
             ushort strLen = (ushort)buf.Length;
@@ -94,7 +113,7 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
 
     public override bool IsValid()
     {
-        return !IsInvalid;
+        return !_isInvalid;
     }
 
     public override bool IsFixedDataSize()
@@ -104,9 +123,23 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
 
     public override string GetTagNameStr()
     {
-        if (Enum.IsDefined(typeof(TagNameProjectIcon), TagName))
-            return Enum.GetName(typeof(TagNameProjectIcon), TagName);
+        Msbp.TagGroupInfo group = Parent.Project.TagGroupGet(GroupName);
+        if (group == null)
+            return "Unknown";
         
-        return "Unknown";
+        int tagIdx = group.ListingIndexList[TagName];
+        Msbp.TagInfo tag = Parent.Project.TagGet(tagIdx);
+        if (tag == null)
+            return "Unknown";
+        
+        return tag.Name;
     }
+
+    private static readonly string[] _iconTablePrefixes = [
+        "Dual",
+        "Handheld",
+        "FullKey",
+        "Left",
+        "Right",
+    ];
 };

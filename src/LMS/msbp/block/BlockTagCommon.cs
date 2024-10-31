@@ -125,12 +125,45 @@ public class BlockTagCommon(byte[] data, string listingName, int offset) : Block
         return List[idx];
     }
 
+    public TagGroupInfo GetGroup(string label)
+    {
+        foreach (var tag in List)
+        {
+            if (tag.Name == label)
+                return tag;
+        }
+
+        return null;
+    }
+
     public TagInfo GetTag(int idx)
     {
         if (idx >= List.Count)
             return null;
 
         return (TagInfo)List[idx];
+    }
+
+    public TagInfo GetTag(string label)
+    {
+        foreach (var tag in List)
+        {
+            if (tag.Name == label)
+                return (TagInfo)tag;
+        }
+
+        return null;
+    }
+
+    public int GetTagIndex(string label)
+    {
+        for (int i = 0; i < List.Count; i++)
+        {
+            if (List[i].Name == label)
+                return i;
+        }
+
+        return -1;
     }
 
     internal ReadOnlyCollection<TagInfo> GetTagsInGroup(TagGroupInfo groupTag)

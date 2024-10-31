@@ -17,11 +17,11 @@ public static class TagLibraryHolder
         "Super Mario Odyssey",
     ];
 
-    public static List<MsbtBaseElement> BuildMsbtElements(byte[] buffer, Type type)
+    public static List<MsbtBaseElement> BuildMsbtElements(byte[] buffer, MsbtFile file)
     {
         // Call tag builder for selected tag library
-        return type switch {
-            Type.SUPER_MARIO_ODYSSEY => Smo.Builder.Build(buffer),
+        return file.TagLibrary switch {
+            Type.SUPER_MARIO_ODYSSEY => Smo.Builder.Build(buffer, file),
             _ => BuildMsbtElementsWithoutTagLibrary(buffer),
         };
     }

@@ -37,7 +37,7 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
         }
     }
 
-    public MsbtTagElementPrintDelay(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementPrintDelay(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         if (!IsValid())
             return;
@@ -65,8 +65,8 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
 
     public override string GetTagNameStr()
     {
-        if (Enum.IsDefined(typeof(TagNamePrintControl), TagName))
-            return Enum.GetName(typeof(TagNamePrintControl), TagName);
+        if (Enum.IsDefined(typeof(TagNameEui), TagName))
+            return Enum.GetName(typeof(TagNameEui), TagName);
 
         return "Unknown";
     }
@@ -103,7 +103,7 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
 
     protected ushort PrintSpeed = 0x803F;
 
-    public MsbtTagElementPrintSpeed(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementPrintSpeed(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         if (!IsValid())
             return;
@@ -151,8 +151,8 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
 
     public override string GetTagNameStr()
     {
-        if (Enum.IsDefined(typeof(TagNamePrintControl), TagName))
-            return Enum.GetName(typeof(TagNamePrintControl), TagName);
+        if (Enum.IsDefined(typeof(TagNameEui), TagName))
+            return Enum.GetName(typeof(TagNameEui), TagName);
 
         return "Unknown";
     }

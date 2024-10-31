@@ -30,7 +30,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         }
     }
 
-    public MsbtTagElementPictureFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementPictureFont(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         if (!IsValid())
             return;
@@ -63,7 +63,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
     public ushort GetChar16tFromTagName()
     {
         if (!Enum.IsDefined(typeof(TagNamePictureFont), IconType))
-            return 0x0000;
+            return 0x40;
 
         string enumStr = Enum.GetName(typeof(TagNamePictureFont), IconType);
 
@@ -73,7 +73,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
             { } when enumStr.StartsWith("COIN_COLLECT") => (ushort)(IconType + 0x40),
             { } when enumStr.StartsWith("WEDDING_TREASURE") => (ushort)(IconType + 0x43),
             { } when enumStr.StartsWith("SHINE_ICON") => (ushort)(IconType + 0x4D),
-            { } when enumStr.Equals("LIFE_UP_HEART") => (ushort)(IconType + 0x6),
+            { } when enumStr.StartsWith("ICON") => (ushort)(IconType + 0x6),
             _ => (ushort)(TagNamePictureFont.ENUM_END - 1),
         };
     }

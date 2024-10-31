@@ -3,71 +3,67 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 public enum TagGroup : ushort
 {
     SYSTEM = 0x0,
-    PRINT_CONTROL = 0x1,
-    FORMAT_REPLACEMENT = 0x2,
-    SHAKE_ANIMATOR = 0x3,
-    VOICE = 0x4,
-    OBJECTIVE_NAME = 0x5,
+    EUI = 0x1,
+    FORMAT_NUMBER = 0x2,
+    TEXT_ANIM = 0x3,
+    PLAY_SE = 0x4,
+    FORMAT_STRING = 0x5,
     PROJECT_TAG = 0x6,
     TIME = 0x7,
     PICTURE_FONT = 0x8,
     DEVICE_FONT = 0x9,
-    LANGUAGE_SPECIAL = 0xA,
+    TEXT_ALIGN = 0xA,
+    GRAMMAR = 0xC9,
 }
 
 public enum TagNameSystem : ushort
 {
-    FURIGANA = 0,
+    RUBY_AND_FURIGANA = 0,
+    FONT = 1,
     FONT_SIZE = 2,
     COLOR = 3,
     PAGE_BREAK = 4,
+    REFERENCE = 5,
 }
 
-public enum TagNamePrintControl : ushort
+public enum TagNameEui : ushort
 {
     PRINT_DELAY = 0,
     PRINT_SPEED = 1,
+    FLUSH = 2,
+    AUTO_NEXT = 3,
+    CHOICE_2 = 4,
+    CHOICE_3 = 5,
+    CHOICE_4 = 6,
 }
 
-public enum TagNameFormatting : ushort
+public enum TagNameFormatNumber : ushort
 {
-    // These values use MsbtTagElementFormatting, which includes extra data outside the format string
-    NORMAL = 0,
-    RETRY_COIN = 2,
+    SCORE = 0, // MsbtTagElementFormatting
+    FIG_02 = 1, // MsbtTagElementUnknown
+    RETRY_COIN = 2, // MsbtTagElementFormatting
 
-    // These values use MsbtTagElementFormattingSimple, which is mostly just a wrapper around MsbtTagElementWithTextData
-    DATE = 3,
-    RACE_TIME = 4,
-    DATE_DETAIL = 5,
+    DATE = 3, // MsbtTagElementFormattingSimple
+    RACE_TIME = 4, // MsbtTagElementFormattingSimple
+    DATE_DETAIL = 5, // MsbtTagElementFormattingSimple
 }
 
-public enum TagNameShakeAnimator : ushort
+public enum TagNameTextAnim : ushort
 {
-    SCARED_LETTER_SHAKE = 0,
-    STRONG_ROTATION_SHAKE = 1,
-    GENTLE_SWAY = 2,
-    VERY_STRONG_SHAKE = 3,
-    PULSE_TEXT_BOX = 4,
+    TREMBLE = 0,
+    SHAKE = 1,
+    WAVE = 2,
+    SCREAM = 3,
+    BEAT = 4,
 };
 
-public enum TagNameObjectiveName : ushort
+public enum TagNameFormatString : ushort
 {
     AMIIBO_NAME = 3,
     SHOP_OUTFIT_NAME = 4,
     MOON_NAME = 5,
     MINIGAME_NAME = 6,
     ACHIVEMENT_NAME = 9,
-}
-
-public enum TagNameProjectIcon : ushort
-{
-    UNKNOWN = 0xFFFF,
-    POWER_MOON = 0,
-    COIN_COLLECT_CURRENT_WORLD = 1,
-    Y = 5,
-    ZL = 8,
-    L_STICK = 10,
-    R_STICK = 11,
 }
 
 public enum TagNameTime : ushort
@@ -121,7 +117,7 @@ public enum TagNamePictureFont : ushort
     WEDDING_TREASURE_CAKE = 0x21,
     WEDDING_TREASURE_STEW = 0x22,
 
-    SHINE_ICON_GENERIC = 0x23,
+    SHINE_ICON_COMMON = 0x23,
     SHINE_ICON_CITY = 0x24,
     SHINE_ICON_FOREST = 0x25,
     SHINE_ICON_SKY = 0x26,
@@ -133,13 +129,13 @@ public enum TagNamePictureFont : ushort
     SHINE_ICON_MOON = 0x2C,
     SHINE_ICON_ALL = 0x2D,
     SHINE_ICON_NULL = 0x2E,
-    SHINE_ICON_TRIPLE_DOT = 0x2F,
 
-    SHINE_ICON_STAR = 0x30,
-
-    LIFE_UP_HEART = 0x31,
-
-    ENUM_END = 0x32,
+    ICON_STAR = 0x2F,
+    ICON_STAR_EMPTY = 0x30,
+    ICON_LIFE_UP_HEART = 0x31,
+    ICON_CAP_ORIGINAL = 0x32,
+    ICON_LUIGI = 0x33,
+    ENUM_END = 0x34,
 }
 
 public enum TagNameDeviceFont : ushort

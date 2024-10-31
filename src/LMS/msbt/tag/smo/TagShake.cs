@@ -13,32 +13,35 @@ public class MsbtTagElementShake : MsbtTagElement
         get { return TagName; }
         set
         {
-            if (!Enum.IsDefined(typeof(TagNameShakeAnimator), value)) {
-                #if !UNIT_TEST
+            if (!Enum.IsDefined(typeof(TagNameTextAnim), value))
+            {
+#if !UNIT_TEST
                 GD.PushWarning("Attempted to set Tag ShakeType to invalid type, clamped to 4");
-                #endif
-                
+#endif
+
                 TagName = 0x4;
-            } else {
+            }
+            else
+            {
                 TagName = value;
             }
         }
     }
 
-    public MsbtTagElementShake(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementShake(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         if (!IsValid())
             return;
-        
+
         // The tag name is the shake type, so make sure to assign it to itself here to run the enum clamper
         ShakeType = TagName;
     }
 
     public override string GetTagNameStr()
     {
-        if (Enum.IsDefined(typeof(TagNameShakeAnimator), TagName))
-            return Enum.GetName(typeof(TagNameShakeAnimator), TagName);
-        
+        if (Enum.IsDefined(typeof(TagNameTextAnim), TagName))
+            return Enum.GetName(typeof(TagNameTextAnim), TagName);
+
         return "Unknown";
     }
 };

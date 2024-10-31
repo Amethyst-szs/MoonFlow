@@ -17,7 +17,7 @@ public class MsbtEntry
         Parent = parent;
         StyleIndex = styleIndex;
 
-        Elements = TagLibraryHolder.BuildMsbtElements(txtData, Parent.TagLibrary);
+        Elements = TagLibraryHolder.BuildMsbtElements(txtData, Parent);
     }
 
     public void WriteBytes(MemoryStream stream)

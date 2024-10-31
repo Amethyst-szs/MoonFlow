@@ -6,10 +6,7 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public static class Builder
 {
-    public const ushort ByteCode_Tag = 0x0E;
-    public const ushort ByteCode_TagClose = 0x0F;
-
-    public static List<MsbtBaseElement> Build(byte[] buffer)
+    public static List<MsbtBaseElement> Build(byte[] buffer, MsbtFile parent)
     {
         // Establish list to store all created elements
         List<MsbtBaseElement> list = [];
@@ -26,7 +23,7 @@ public static class Builder
             ushort value = BitConverter.ToUInt16(buffer, pointer);
 
             // If the pointer rests on a Tag bytecode, jump to the tag builder
-            if (value == ByteCode_Tag || value == ByteCode_TagClose)
+            if (value == MsbtTagElement.BYTECODE_TAG || value == MsbtTagElement.BYTECODE_TAG_CLOSE)
             {
                 // If the current element is a text element, run the finalizer
                 if (curElement != null && curElement.GetType() == typeof(MsbtTextElement))
@@ -35,7 +32,7 @@ public static class Builder
                 // Wipe the current element and move to the tag element builder
                 curElement = null;
 
-                MsbtTagElement tag = BuildTagElement(buffer, ref pointer);
+                MsbtTagElement tag = BuildTagElement(buffer, ref pointer, parent);
                 list.Add(tag);
 
                 continue;
@@ -67,7 +64,7 @@ public static class Builder
         return list;
     }
 
-    private static MsbtTagElement BuildTagElement(byte[] buffer, ref int pointer)
+    private static MsbtTagElement BuildTagElement(byte[] buffer, ref int pointer, MsbtFile parent)
     {
         // Jump pointer ahead by two to read tag group type byte
         pointer += 2;
@@ -75,22 +72,22 @@ public static class Builder
         // Create a tag element depending on tag group type
         return BitConverter.ToUInt16(buffer, pointer) switch
         {
-            (ushort)TagGroup.SYSTEM => BuildTagElement_GroupNameSystem(buffer, ref pointer),
-            (ushort)TagGroup.PRINT_CONTROL => BuildTagElement_GroupNamePrintControl(buffer, ref pointer),
-            (ushort)TagGroup.FORMAT_REPLACEMENT => BuildTagElement_GroupNameFormatting(buffer, ref pointer),
-            (ushort)TagGroup.SHAKE_ANIMATOR => new MsbtTagElementShake(ref pointer, buffer),
-            (ushort)TagGroup.OBJECTIVE_NAME => new MsbtTagElementObjectiveName(ref pointer, buffer),
-            (ushort)TagGroup.VOICE => new MsbtTagElementVoiceAudio(ref pointer, buffer),
-            (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectIcon(ref pointer, buffer),
-            (ushort)TagGroup.TIME => new MsbtTagElementTime(ref pointer, buffer),
-            (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer),
-            (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
-            (ushort)TagGroup.LANGUAGE_SPECIAL => new MsbtTagElementLanguageSpecial(ref pointer, buffer),
-            _ => new MsbtTagElementUnknown(ref pointer, buffer),
+            (ushort)TagGroup.SYSTEM => BuildTagElement_GroupNameSystem(buffer, ref pointer, parent),
+            (ushort)TagGroup.EUI => BuildTagElement_GroupNamePrintControl(buffer, ref pointer, parent),
+            (ushort)TagGroup.FORMAT_NUMBER => BuildTagElement_GroupNameFormatting(buffer, ref pointer, parent),
+            (ushort)TagGroup.TEXT_ANIM => new MsbtTagElementShake(ref pointer, buffer, parent),
+            (ushort)TagGroup.FORMAT_STRING => new MsbtTagElementObjectiveName(ref pointer, buffer, parent),
+            (ushort)TagGroup.PLAY_SE => new MsbtTagElementVoiceAudio(ref pointer, buffer, parent),
+            (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectIcon(ref pointer, buffer, parent),
+            (ushort)TagGroup.TIME => new MsbtTagElementTime(ref pointer, buffer, parent),
+            (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer, parent),
+            (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer, parent),
+            (ushort)TagGroup.TEXT_ALIGN => new MsbtTagElementLanguageSpecial(ref pointer, buffer, parent),
+            _ => new MsbtTagElementUnknown(ref pointer, buffer, parent),
         };
     }
 
-    private static MsbtTagElement BuildTagElement_GroupNameSystem(byte[] buffer, ref int pointer)
+    private static MsbtTagElement BuildTagElement_GroupNameSystem(byte[] buffer, ref int pointer, MsbtFile parent)
     {
         // Grab ushort of tag name
         ushort tag = BitConverter.ToUInt16(buffer, pointer + 2);
@@ -98,14 +95,14 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameSystem.FURIGANA => new MsbtTagElementSystemFurigana(ref pointer, buffer),
-            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementDeviceFontSize(ref pointer, buffer),
-            (ushort)TagNameSystem.COLOR => new MsbtTagElementSystemColor(ref pointer, buffer),
-            (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
-            _ => new MsbtTagElementUnknown(ref pointer, buffer),
+            (ushort)TagNameSystem.RUBY_AND_FURIGANA => new MsbtTagElementSystemFurigana(ref pointer, buffer, parent),
+            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementDeviceFontSize(ref pointer, buffer, parent),
+            (ushort)TagNameSystem.COLOR => new MsbtTagElementSystemColor(ref pointer, buffer, parent),
+            (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemPageBreak(ref pointer, buffer, parent),
+            _ => new MsbtTagElementUnknown(ref pointer, buffer, parent),
         };
     }
-    private static MsbtTagElement BuildTagElement_GroupNamePrintControl(byte[] buffer, ref int pointer)
+    private static MsbtTagElement BuildTagElement_GroupNamePrintControl(byte[] buffer, ref int pointer, MsbtFile parent)
     {
         // Grab ushort of tag name
         ushort tag = BitConverter.ToUInt16(buffer, pointer + 2);
@@ -113,12 +110,12 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNamePrintControl.PRINT_DELAY => new MsbtTagElementPrintDelay(ref pointer, buffer),
-            (ushort)TagNamePrintControl.PRINT_SPEED => new MsbtTagElementPrintSpeed(ref pointer, buffer),
-            _ => new MsbtTagElementUnknown(ref pointer, buffer),
+            (ushort)TagNameEui.PRINT_DELAY => new MsbtTagElementPrintDelay(ref pointer, buffer, parent),
+            (ushort)TagNameEui.PRINT_SPEED => new MsbtTagElementPrintSpeed(ref pointer, buffer, parent),
+            _ => new MsbtTagElementUnknown(ref pointer, buffer, parent),
         };
     }
-    private static MsbtTagElement BuildTagElement_GroupNameFormatting(byte[] buffer, ref int pointer)
+    private static MsbtTagElement BuildTagElement_GroupNameFormatting(byte[] buffer, ref int pointer, MsbtFile parent)
     {
         // Grab ushort of tag name
         ushort tag = BitConverter.ToUInt16(buffer, pointer + 2);
@@ -126,12 +123,12 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameFormatting.NORMAL => new MsbtTagElementFormatting(ref pointer, buffer),
-            (ushort)TagNameFormatting.RETRY_COIN => new MsbtTagElementFormatting(ref pointer, buffer),
-            (ushort)TagNameFormatting.DATE => new MsbtTagElementFormattingSimple(ref pointer, buffer),
-            (ushort)TagNameFormatting.RACE_TIME => new MsbtTagElementFormattingSimple(ref pointer, buffer),
-            (ushort)TagNameFormatting.DATE_DETAIL => new MsbtTagElementFormattingSimple(ref pointer, buffer),
-            _ => new MsbtTagElementUnknown(ref pointer, buffer),
+            (ushort)TagNameFormatNumber.SCORE => new MsbtTagElementFormatting(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.RETRY_COIN => new MsbtTagElementFormatting(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.DATE => new MsbtTagElementFormattingSimple(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.RACE_TIME => new MsbtTagElementFormattingSimple(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.DATE_DETAIL => new MsbtTagElementFormattingSimple(ref pointer, buffer, parent),
+            _ => new MsbtTagElementUnknown(ref pointer, buffer, parent),
         };
     }
 }

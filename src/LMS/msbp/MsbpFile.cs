@@ -190,6 +190,11 @@ public class MsbpFile : FileBase
         if (!TagGroups.IsValid()) return null;
         return TagGroups.GetGroup(idx);
     }
+    public TagGroupInfo TagGroupGet(string label)
+    {
+        if (!TagGroups.IsValid()) return null;
+        return TagGroups.GetGroup(label);
+    }
     public int TagGetCount(TagGroupInfo tagGroup)
     {
         if (!Tags.IsValid()) return 0;
@@ -204,6 +209,16 @@ public class MsbpFile : FileBase
     {
         if (!Tags.IsValid()) return null;
         return Tags.GetTag(idx);
+    }
+    public TagInfo TagGet(string label)
+    {
+        if (!Tags.IsValid()) return null;
+        return Tags.GetTag(label);
+    }
+    public int TagGetIndex(string label)
+    {
+        if (!Tags.IsValid()) return -1;
+        return Tags.GetTagIndex(label);
     }
     public int TagParamGetCount(TagInfo tag)
     {
