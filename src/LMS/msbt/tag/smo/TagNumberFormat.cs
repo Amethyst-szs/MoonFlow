@@ -5,18 +5,18 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementFormatting : MsbtTagElementWithTextData
+public class MsbtTagElementNumberFormat : MsbtTagElementWithTextData
 {
-    public ushort Unknown1 = 0;
-    public ushort Unknown2 = 0;
+    public ushort Figure = 0;
+    public ushort IsJapaneseZenkaku = 0;
 
-    public MsbtTagElementFormatting(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementNumberFormat(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         // Copy data from buffer at pointer
-        Unknown1 = BitConverter.ToUInt16(buffer, pointer);
+        Figure = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
 
-        Unknown2 = BitConverter.ToUInt16(buffer, pointer);
+        IsJapaneseZenkaku = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
 
         ReadTextData(ref pointer, buffer);
@@ -25,8 +25,8 @@ public class MsbtTagElementFormatting : MsbtTagElementWithTextData
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
-        value.Write(Unknown1);
-        value.Write(Unknown2);
+        value.Write(Figure);
+        value.Write(IsJapaneseZenkaku);
         WriteTextData(value);
 
         return value.ToArray();
@@ -46,9 +46,9 @@ public class MsbtTagElementFormatting : MsbtTagElementWithTextData
     }
 };
 
-public class MsbtTagElementFormattingSimple : MsbtTagElementWithTextData
+public class MsbtTagElementNumberFormatSimple : MsbtTagElementWithTextData
 {
-    public MsbtTagElementFormattingSimple(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementNumberFormatSimple(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         ReadTextData(ref pointer, buffer);
     }

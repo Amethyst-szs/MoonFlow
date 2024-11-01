@@ -138,6 +138,12 @@ public enum TagNamePictureFont : ushort
     ENUM_END = 0x34,
 }
 
+public enum TagNameTextAlign : ushort
+{
+    CENTER = 0x0,
+    LEFT = 0x1,
+}
+
 public enum TagFontIndex : ushort
 {
     DEVICE_FONT = 0x0,

@@ -1,0 +1,36 @@
+using System;
+using Godot;
+
+namespace Nindot.LMS.Msbt.TagLib.Smo;
+public class MsbtTagElementTextAlign : MsbtTagElement
+{
+    public TagNameTextAlign TextAlignment
+    {
+        get { return (TagNameTextAlign)TagName; }
+        set
+        {
+            if (!Enum.IsDefined(typeof(TagNameTextAlign), value))
+            {
+                GD.PushWarning("Attempted to set Tag SystemColor to invalid color, set to reset value instead");
+                TagName = (ushort)TagNameTextAlign.LEFT;
+            }
+            else
+            {
+                TagName = (ushort)value;
+            }
+        }
+    }
+
+    public MsbtTagElementTextAlign(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    {
+        TextAlignment = (TagNameTextAlign)TagName;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameTextAlign), TagName))
+            return Enum.GetName(typeof(TagNameTextAlign), TagName);
+
+        return "Unknown";
+    }
+};

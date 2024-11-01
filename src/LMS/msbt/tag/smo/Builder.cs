@@ -76,13 +76,13 @@ public static class Builder
             (ushort)TagGroup.EUI => BuildTagElement_GroupNamePrintControl(buffer, ref pointer, parent),
             (ushort)TagGroup.FORMAT_NUMBER => BuildTagElement_GroupNameFormatting(buffer, ref pointer, parent),
             (ushort)TagGroup.TEXT_ANIM => new MsbtTagElementShake(ref pointer, buffer, parent),
-            (ushort)TagGroup.FORMAT_STRING => new MsbtTagElementObjectiveName(ref pointer, buffer, parent),
+            (ushort)TagGroup.FORMAT_STRING => new MsbtTagElementStringFormat(ref pointer, buffer, parent),
             (ushort)TagGroup.PLAY_SE => new MsbtTagElementVoiceAudio(ref pointer, buffer, parent),
             (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectIcon(ref pointer, buffer, parent),
             (ushort)TagGroup.TIME => new MsbtTagElementTime(ref pointer, buffer, parent),
             (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer, parent),
             (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer, parent),
-            (ushort)TagGroup.TEXT_ALIGN => new MsbtTagElementLanguageSpecial(ref pointer, buffer, parent),
+            (ushort)TagGroup.TEXT_ALIGN => new MsbtTagElementTextAlign(ref pointer, buffer, parent),
             _ => new MsbtTagElementUnknown(ref pointer, buffer, parent),
         };
     }
@@ -123,11 +123,11 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameFormatNumber.SCORE => new MsbtTagElementFormatting(ref pointer, buffer, parent),
-            (ushort)TagNameFormatNumber.RETRY_COIN => new MsbtTagElementFormatting(ref pointer, buffer, parent),
-            (ushort)TagNameFormatNumber.DATE => new MsbtTagElementFormattingSimple(ref pointer, buffer, parent),
-            (ushort)TagNameFormatNumber.RACE_TIME => new MsbtTagElementFormattingSimple(ref pointer, buffer, parent),
-            (ushort)TagNameFormatNumber.DATE_DETAIL => new MsbtTagElementFormattingSimple(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.SCORE => new MsbtTagElementNumberFormat(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.RETRY_COIN => new MsbtTagElementNumberFormat(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.DATE => new MsbtTagElementNumberFormatSimple(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.RACE_TIME => new MsbtTagElementNumberFormatSimple(ref pointer, buffer, parent),
+            (ushort)TagNameFormatNumber.DATE_DETAIL => new MsbtTagElementNumberFormatSimple(ref pointer, buffer, parent),
             _ => new MsbtTagElementUnknown(ref pointer, buffer, parent),
         };
     }

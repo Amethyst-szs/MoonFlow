@@ -6,7 +6,7 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementObjectiveName : MsbtTagElementWithTextData
+public class MsbtTagElementStringFormat : MsbtTagElementWithTextData
 {
     public new string TextData
     {
@@ -23,7 +23,7 @@ public class MsbtTagElementObjectiveName : MsbtTagElementWithTextData
         }
     }
 
-    public MsbtTagElementObjectiveName(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementStringFormat(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
     {
         // Copy data from buffer at pointer
         TextDataLength = BitConverter.ToUInt16(buffer, pointer);
