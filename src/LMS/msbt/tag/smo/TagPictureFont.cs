@@ -27,7 +27,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         }
     }
 
-    public MsbtTagElementPictureFont(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementPictureFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
@@ -76,7 +76,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
     {
         if (IconType >= (ushort)TagNamePictureFont.ENUM_END)
             return "Unknown Icon";
-        
+
         return IconNameTable[IconType];
     }
 
@@ -101,7 +101,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         return "Unknown";
     }
 
-    public static readonly string[] IconNameTable = 
+    public static readonly string[] IconNameTable =
     [
         "Coin",
         "Globe",

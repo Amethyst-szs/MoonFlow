@@ -7,7 +7,7 @@ public class MsbtTagElementUnknown : MsbtTagElement
 {
     protected byte[] Data;
 
-    public MsbtTagElementUnknown(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementUnknown(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;

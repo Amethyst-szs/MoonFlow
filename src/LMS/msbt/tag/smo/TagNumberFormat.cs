@@ -10,7 +10,7 @@ public class MsbtTagElementNumberFormat : MsbtTagElementWithTextData
     public ushort Figure = 0;
     public ushort IsJapaneseZenkaku = 0;
 
-    public MsbtTagElementNumberFormat(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementNumberFormat(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         // Copy data from buffer at pointer
         Figure = BitConverter.ToUInt16(buffer, pointer);
@@ -48,7 +48,7 @@ public class MsbtTagElementNumberFormat : MsbtTagElementWithTextData
 
 public class MsbtTagElementNumberFormatSimple : MsbtTagElementWithTextData
 {
-    public MsbtTagElementNumberFormatSimple(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementNumberFormatSimple(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         ReadTextData(ref pointer, buffer);
     }

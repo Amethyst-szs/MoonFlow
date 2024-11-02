@@ -13,12 +13,11 @@ public class MsbtFileEntry
 
 }
 
-public class MsbtFile(MsbpFile project, TagLibraryHolder.Type tagLibraryType, byte[] data) : FileBase(data)
+public class MsbtFile(TagLibraryHolder.Type tagLibraryType, byte[] data) : FileBase(data)
 {
     // ====================================================== //
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
-    public MsbpFile Project { get; private set; } = project;
     public TagLibraryHolder.Type TagLibrary { get; private set; } = tagLibraryType;
     public Dictionary<string, MsbtEntry> Content { get; private set; } = [];
     private BlockAttributeData _blockATR = null;
@@ -52,7 +51,7 @@ public class MsbtFile(MsbpFile project, TagLibraryHolder.Type tagLibraryType, by
             if (blockTSY.IsValid())
                 styleIdx = blockTSY.StyleIndexList[(int)label.ItemIndex];
 
-            Content[label.Label] = new MsbtEntry(this, txtData, styleIdx);
+            Content[label.Label] = new MsbtEntry(TagLibrary, txtData, styleIdx);
         }
 
         return;

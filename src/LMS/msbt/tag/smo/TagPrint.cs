@@ -37,7 +37,7 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
         }
     }
 
-    public MsbtTagElementPrintDelay(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementPrintDelay(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
@@ -103,7 +103,7 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
 
     protected ushort PrintSpeed = 0x803F;
 
-    public MsbtTagElementPrintSpeed(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementPrintSpeed(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;

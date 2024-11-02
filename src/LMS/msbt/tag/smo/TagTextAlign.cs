@@ -21,7 +21,7 @@ public class MsbtTagElementTextAlign : MsbtTagElement
         }
     }
 
-    public MsbtTagElementTextAlign(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementTextAlign(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         TextAlignment = (TagNameTextAlign)TagName;
     }

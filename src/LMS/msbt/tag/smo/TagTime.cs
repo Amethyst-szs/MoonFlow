@@ -25,7 +25,7 @@ public class MsbtTagElementTime : MsbtTagElement
         }
     }
 
-    public MsbtTagElementTime(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementTime(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;

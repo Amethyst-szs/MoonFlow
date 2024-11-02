@@ -10,7 +10,7 @@ public class MsbtTagElementSystemFurigana : MsbtTagElementWithTextData
 {
     public ushort Unknown1 = 0;
 
-    public MsbtTagElementSystemFurigana(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementSystemFurigana(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         // Copy data from buffer at pointer
         Unknown1 = BitConverter.ToUInt16(buffer, pointer);
@@ -46,7 +46,7 @@ public class MsbtTagElementDeviceFontSize : MsbtTagElement
 {
     public ushort FontSize = 0;
 
-    public MsbtTagElementDeviceFontSize(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementDeviceFontSize(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
@@ -113,7 +113,7 @@ public class MsbtTagElementSystemColor : MsbtTagElement
         }
     }
 
-    public MsbtTagElementSystemColor(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementSystemColor(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
@@ -146,7 +146,7 @@ public class MsbtTagElementSystemColor : MsbtTagElement
 
 public class MsbtTagElementSystemPageBreak : MsbtTagElement
 {
-    public MsbtTagElementSystemPageBreak(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementSystemPageBreak(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
     }
 

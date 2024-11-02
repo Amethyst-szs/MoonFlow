@@ -13,7 +13,7 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
     private List<string> _iconTable = [];
     private readonly bool _isInvalid = false;
 
-    public MsbtTagElementProjectIcon(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementProjectIcon(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         // Iterate through the buffer, copying strings until DataSize is maxed out
         int progress = 0;
@@ -71,23 +71,9 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
         }
     }
 
-    public void SetIcon(ushort newTagIndex)
+    public void SetIcon(ushort tagIdx)
     {
-        TagName = newTagIndex;
-        UpdateIconTableByTag();
-    }
-
-    public void SetIcon(string padStyleLabel)
-    {
-        Msbp.TagGroupInfo group = Parent.Project.TagGroupGet(GroupName);
-        if (group == null)
-            return;
-        
-        int tagIdx = Parent.Project.TagGetIndex(padStyleLabel);
-        if (tagIdx == -1)
-            return;
-
-        TagName = (ushort)tagIdx;
+        TagName = tagIdx;
         UpdateIconTableByTag();
     }
 
@@ -123,16 +109,7 @@ public class MsbtTagElementProjectIcon : MsbtTagElement
 
     public override string GetTagNameStr()
     {
-        Msbp.TagGroupInfo group = Parent.Project.TagGroupGet(GroupName);
-        if (group == null)
-            return "Unknown";
-        
-        int tagIdx = group.ListingIndexList[TagName];
-        Msbp.TagInfo tag = Parent.Project.TagGet(tagIdx);
-        if (tag == null)
-            return "Unknown";
-        
-        return tag.Name;
+        return "Project Icon " + TagName;
     }
 
     private static readonly string[] _iconTablePrefixes = [

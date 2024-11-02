@@ -12,17 +12,12 @@ public class MsbtTagElement : MsbtBaseElement
     public const ushort BYTECODE_TAG_CLOSE = 0x0F;
     public const int TAG_HEADER_SIZE = 0x08;
 
-    protected MsbtFile Parent { get; private set; } = null;
-
     protected ushort GroupName = 0xFFFF;
     protected ushort TagName = 0xFFFF;
     protected ushort DataSize = 0x0;
 
-    public MsbtTagElement(ref int pointer, byte[] buffer, MsbtFile parent)
+    public MsbtTagElement(ref int pointer, byte[] buffer)
     {
-        // Assign project
-        Parent = parent;
-
         // If the pointer is pointing at an 0x0E or 0x0F, jump ahead to bytes to align with tag group
         ushort startValue = BitConverter.ToUInt16(buffer, pointer);
         if (startValue == BYTECODE_TAG || startValue == BYTECODE_TAG_CLOSE)
@@ -135,7 +130,7 @@ public class MsbtTagElementWithTextData : MsbtTagElement
         }
     }
 
-    public MsbtTagElementWithTextData(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (GetType() == typeof(MsbtTagElementWithTextData))
             throw new NotImplementedException();

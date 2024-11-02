@@ -10,7 +10,7 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
 {
     public const TagFontIndex FontIndex = TagFontIndex.DEVICE_FONT;
 
-    public MsbtTagElementDeviceFont(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementDeviceFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
@@ -57,16 +57,7 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
 
     public override string GetTagNameStr()
     {
-        Msbp.TagGroupInfo group = Parent.Project.TagGroupGet(GroupName);
-        if (group == null)
-            return "Unknown";
-        
-        int tagIdx = group.ListingIndexList[TagName];
-        Msbp.TagInfo tag = Parent.Project.TagGet(tagIdx);
-        if (tag == null)
-            return "Unknown";
-        
-        return tag.Name;
+        return "Device Font Icon " + TagName;
     }
 
     public static readonly ushort[] TagToCharTable =

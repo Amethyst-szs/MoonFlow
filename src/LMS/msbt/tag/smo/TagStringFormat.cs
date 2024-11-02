@@ -23,7 +23,7 @@ public class MsbtTagElementStringFormat : MsbtTagElementWithTextData
         }
     }
 
-    public MsbtTagElementStringFormat(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementStringFormat(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         // Copy data from buffer at pointer
         TextDataLength = BitConverter.ToUInt16(buffer, pointer);

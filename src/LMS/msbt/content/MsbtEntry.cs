@@ -8,16 +8,14 @@ namespace Nindot.LMS.Msbt;
 
 public class MsbtEntry
 {
-    public MsbtFile Parent { get; private set; } = null;
     public List<MsbtBaseElement> Elements { get; private set; } = [];
     protected uint StyleIndex = 0xFFFFFFFF;
 
-    public MsbtEntry(MsbtFile parent, byte[] txtData, uint styleIndex = 0xFFFFFFFF)
+    public MsbtEntry(TagLibraryHolder.Type tagLib, byte[] txtData, uint styleIndex = 0xFFFFFFFF)
     {
-        Parent = parent;
         StyleIndex = styleIndex;
 
-        Elements = TagLibraryHolder.BuildMsbtElements(txtData, Parent);
+        Elements = TagLibraryHolder.BuildMsbtElements(txtData, tagLib);
     }
 
     public void WriteBytes(MemoryStream stream)

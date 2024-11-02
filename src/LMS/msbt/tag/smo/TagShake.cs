@@ -28,7 +28,7 @@ public class MsbtTagElementShake : MsbtTagElement
         }
     }
 
-    public MsbtTagElementShake(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementShake(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;

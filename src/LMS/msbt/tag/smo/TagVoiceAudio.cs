@@ -8,7 +8,7 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementVoiceAudio : MsbtTagElementWithTextData
 {
-    public MsbtTagElementVoiceAudio(ref int pointer, byte[] buffer, MsbtFile parent) : base(ref pointer, buffer, parent)
+    public MsbtTagElementVoiceAudio(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         ReadTextData(ref pointer, buffer);
     }
