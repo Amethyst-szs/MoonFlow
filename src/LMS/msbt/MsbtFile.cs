@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Util;
 using Godot;
-using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt.TagLib;
 
 namespace Nindot.LMS.Msbt;
@@ -19,8 +18,8 @@ public class MsbtFile(TagLibraryHolder.Type tagLibraryType, byte[] data) : FileB
     // ====================================================== //
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
-    public TagLibraryHolder.Type TagLibrary { get; private set; } = tagLibraryType;
-    public Dictionary<string, MsbtEntry> Content { get; private set; } = [];
+    public readonly TagLibraryHolder.Type TagLibrary = tagLibraryType;
+    public OrderedDictionary<string, MsbtEntry> Content { get; private set; } = [];
 
     private BlockHashTable BlockLabels = null;
     private BlockText BlockText = null;
@@ -56,7 +55,7 @@ public class MsbtFile(TagLibraryHolder.Type tagLibraryType, byte[] data) : FileB
             if (BlockStyleIndex.IsValid())
                 styleIdx = BlockStyleIndex.StyleIndexList[(int)label.ItemIndex];
 
-            Content[label.Label] = new MsbtEntry(TagLibrary, txtData, styleIdx);
+            Content.Add(label.Label, new MsbtEntry(TagLibrary, txtData, styleIdx));
         }
     }
 
