@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -8,18 +9,13 @@ using Nindot.LMS.Msbt.TagLib;
 
 namespace Nindot.LMS.Msbt;
 
-public class MsbtFileEntry
-{
-
-}
-
 public class MsbtFile(TagLibraryHolder.Type tagLibraryType, byte[] data) : FileBase(data)
 {
     // ====================================================== //
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
     public readonly TagLibraryHolder.Type TagLibrary = tagLibraryType;
-    public OrderedDictionary<string, MsbtEntry> Content { get; private set; } = [];
+    public OrderedDictionary<string, MsbtEntry> Content = [];
 
     private BlockHashTable BlockLabels = null;
     private BlockText BlockText = null;
@@ -83,6 +79,97 @@ public class MsbtFile(TagLibraryHolder.Type tagLibraryType, byte[] data) : FileB
                 return false;
         }
 
+        return true;
+    }
+
+    // ====================================================== //
+    // ================ Constructor Utilities =============== //
+    // ====================================================== //
+
+    static public MsbtFile FromFilePath(string path, TagLibraryHolder.Type tagLib)
+    {
+        if (!Godot.FileAccess.FileExists(path))
+        {
+            GD.PushError("No file exists at the path ", path);
+            return null;
+        }
+
+        var bytes = Godot.FileAccess.GetFileAsBytes(path);
+        if (bytes.Length == 0)
+        {
+            GD.PushError("An error occured opening file ", path, " - ", Godot.FileAccess.GetOpenError());
+            return null;
+        }
+
+        return FromBytes(bytes, tagLib);
+    }
+
+    static public MsbtFile FromBytes(byte[] data, TagLibraryHolder.Type tagLib)
+    {
+        MsbtFile file = new(tagLib, data);
+        if (!file.IsValid())
+        {
+            GD.PushError("File at is not a valid MSBT!");
+            return null;
+        }
+
+        return file;
+    }
+
+    // ====================================================== //
+    // ================== Getter Utilities ================== //
+    // ====================================================== //
+
+    public bool IsContainKey(string label)
+    {
+        return Content.ContainsKey(label);
+    }
+    public int GetEntryCount()
+    {
+        return Content.Count;
+    }
+    public MsbtEntry GetEntry(int idx)
+    {
+        if (idx >= Content.Count)
+            return null;
+        
+        return Content.Values.ElementAt(idx);
+    }
+    public MsbtEntry GetEntry(string label)
+    {
+        if (!Content.ContainsKey(label))
+            return null;
+        
+        return Content[label];
+    }
+    public ReadOnlyCollection<string> GetEntryLabels()
+    {
+        return new ReadOnlyCollection<string>([.. Content.Keys]);
+    }
+
+    // ====================================================== //
+    // ========= File Content Modification Utilities ======== //
+    // ====================================================== //
+    
+    public MsbtEntry AddNew(string label)
+    {
+        MsbtEntry entry = new(TagLibrary);
+        Content.Add(label, entry);
+        return entry;
+    }
+    public MsbtEntry AddNew(string label, string textContent)
+    {
+        MsbtEntry entry = new(TagLibrary, textContent);
+        Content.Add(label, entry);
+        return entry;
+    }
+
+    public bool RemoveEntry(string label)
+    {
+        if (!Content.ContainsKey(label))
+            return false;
+        
+        Content.Remove(label);
         return true;
     }
 }
