@@ -1,4 +1,3 @@
-#if DO_NOT_COMPILE_ME_THANK_YOU_VERY_MUCH_HI_HOW_ARE_YOU_DOING_TODAY_IM_DOING_PRETTY_GOOD_THANKS_FOR_ASKING
 using Godot;
 using System;
 
@@ -74,5 +73,3 @@ public class UnitTestMsbtAllLang : UnitTestMsbtUSen
     {
     }
 }
-
-#endif

@@ -1,4 +1,3 @@
-#if DO_NOT_COMPILE_ME_THANK_YOU_VERY_MUCH_HI_HOW_ARE_YOU_DOING_TODAY_IM_DOING_PRETTY_GOOD_THANKS_FOR_ASKING
 using Godot;
 using System;
 
@@ -8,7 +7,7 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbtUSen : UnitTestMsbtSmoParse
+public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
 {
     protected SarcResource SystemMessage = null;
     protected SarcResource StageMessage = null;
@@ -100,13 +99,13 @@ public class UnitTestMsbtUSen : UnitTestMsbtSmoParse
 
             byte[] file = [.. x.Value];
 
-            MsbtResource msbt = MsbtResource.FromBytes(file, Core.Type.SUPER_MARIO_ODYSSEY);
+            MsbtFile msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, file);
             if (msbt == null || !msbt.IsValid()) {
                 GD.PrintErr(string.Format("Failed to read MSBT - {0}", x.Key));
                 return UnitTestResult.FAILURE;
             }
 
-            UnitTestResult res = ScanElements(msbt, false);
+            UnitTestResult res = ScanElements(msbt.Content, false);
             if (res != UnitTestResult.OK)
                 return res;
         }
@@ -125,5 +124,3 @@ public class UnitTestMsbtUSen : UnitTestMsbtSmoParse
     {
     }
 }
-
-#endif

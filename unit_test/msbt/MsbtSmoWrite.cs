@@ -9,13 +9,11 @@ using Nindot.LMS.Msbp;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbtV2SMOWrite : UnitTestBase
+public class UnitTestMsbtSMOWrite : UnitTestMsbtSMOParse
 {
-    protected byte[] FileData = [];
-
     public override void SetupTest()
     {
-        FileData = FileAccess.GetFileAsBytes("res://unit_test/msbt/AmiiboNpc.msbt");
+        FileData = FileAccess.GetFileAsBytes("res://unit_test/msbt/SmoUnitTesting.msbt");
     }
 
     public override UnitTestResult Test()
@@ -36,12 +34,19 @@ public class UnitTestMsbtV2SMOWrite : UnitTestBase
             return UnitTestResult.FAILURE;
         }
 
-        FileAccess writer = FileAccess.Open("user://AmiiboNpcOUTPUT.msbt", FileAccess.ModeFlags.Write);
+        FileAccess writer = FileAccess.Open("user://SmoUnitTesting_out.msbt", FileAccess.ModeFlags.Write);
         writer.StoreBuffer(stream.ToArray());
         writer.Close();
 
-        return UnitTestResult.OK;
-        // return ScanElements(msbt);
+        // Read this output back in and run element testing on it
+        msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileAccess.GetFileAsBytes("user://SmoUnitTesting_out.msbt"));
+        if (!msbt.IsValid())
+        {
+            GD.PrintErr("Failed to initalize MsbtV2 for unit test!");
+            return UnitTestResult.FAILURE;
+        }
+
+        return ScanElements(msbt.Content);
     }
 
     public override void CleanupTest()

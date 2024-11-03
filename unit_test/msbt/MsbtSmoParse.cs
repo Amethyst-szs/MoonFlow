@@ -1,45 +1,45 @@
-#if DO_NOT_COMPILE_ME_THANK_YOU_VERY_MUCH_HI_HOW_ARE_YOU_DOING_TODAY_IM_DOING_PRETTY_GOOD_THANKS_FOR_ASKING
+#if TOOLS
 using Godot;
 using System;
 
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.LMS.Msbt.TagLib.Smo;
-using System.Collections.Generic;
-using System.Linq;
+using System.Util;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbtSmoParse : UnitTestBase
+public class UnitTestMsbtSMOParse : UnitTestBase
 {
-    private MsbtResource msbt = null;
+    protected byte[] FileData = [];
 
     public override void SetupTest()
     {
+        FileData = FileAccess.GetFileAsBytes("res://unit_test/msbt/SmoUnitTesting.msbt");
     }
 
     public override UnitTestResult Test()
     {
         // Load in an msbt resource and check it's validity
-        msbt = MsbtResource.FromFilePath("res://unit_test/msbt/SmoUnitTesting.msbt", Core.Type.SUPER_MARIO_ODYSSEY);
-        if (msbt == null || !msbt.IsValid()) {
-            GD.PrintErr("Failed to initalize MsbtResource for unit test!");
+        MsbtFile msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileData);
+        if (!msbt.IsValid()) {
+            GD.PrintErr("Failed to initalize MsbtV2 for unit test!");
             return UnitTestResult.FAILURE;
         }
 
-        return ScanElements(msbt);
+        return ScanElements(msbt.Content);
     }
 
-    public static UnitTestResult ScanElements(MsbtResource res, bool isCheckIntendedFailureKeys = true)
+    public static UnitTestResult ScanElements(OrderedDictionary<string, MsbtEntry> msbt, bool isCheckIntendedFailureKeys = true)
     {
-        foreach (EntryContent key in res.Content.Values)
+        foreach (var key in msbt)
         {
             bool isSupposedToError = key.Key.EndsWith("Failure");
 
             if (isSupposedToError && !isCheckIntendedFailureKeys)
                 continue;
 
-            foreach (MsbtBaseElement element in key.ElementList)
+            foreach (MsbtBaseElement element in key.Value.Elements)
             {
                 // If the current element is a text element, check validity and move on
                 if (element.GetType() == typeof(MsbtTextElement)) {
@@ -88,14 +88,14 @@ public class UnitTestMsbtSmoParse : UnitTestBase
         return UnitTestResult.OK;
     }
 
-    public static bool IsElementFaulty(bool value, bool isSupposedToError, string key, MsbtBaseElement element)
+    public static bool IsElementFaulty(bool success, bool isSupposedToError, string key, MsbtBaseElement element)
     {
-        if (value && isSupposedToError) {
+        if (success && isSupposedToError) {
             GD.PrintErr(string.Format("Element {0} in {1} passed as successful when it should have errored", element.GetType(), key));
             return true;
         }
 
-        if (!value && !isSupposedToError) {
+        if (!success && !isSupposedToError) {
             GD.PrintErr(string.Format("Element {0} in {1} errored when it should have succeeded", element.GetType(), key));
             return true;
         }
@@ -105,7 +105,7 @@ public class UnitTestMsbtSmoParse : UnitTestBase
 
     public override void CleanupTest()
     {
-        msbt = null;
+        FileData = null;
     }
 
     public override void Failure()
