@@ -13,7 +13,8 @@ public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
     protected SarcResource StageMessage = null;
     protected SarcResource LayoutMessage = null;
 
-    protected enum GameVersion {
+    protected enum GameVersion
+    {
         v100,
         v130
     };
@@ -33,11 +34,11 @@ public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
         res = ScanSarcMsbt(SystemMessage);
         if (res != UnitTestResult.OK)
             return res;
-        
+
         res = ScanSarcMsbt(StageMessage);
         if (res != UnitTestResult.OK)
             return res;
-        
+
         res = ScanSarcMsbt(LayoutMessage);
         if (res != UnitTestResult.OK)
             return res;
@@ -49,34 +50,40 @@ public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
     {
         // Ensure we have a path to the romfs
         string path;
-        
-        if (ver == GameVersion.v100) {
+
+        if (ver == GameVersion.v100)
+        {
             path = (string)ProjectSettings.GetSetting(UnitTester._100PathKey, "");
-        } else {
+        }
+        else
+        {
             path = (string)ProjectSettings.GetSetting(UnitTester._130PathKey, "");
         }
-        
+
         if (path.Length == 0)
             return UnitTestResult.SKIP;
-        
+
         // Append txt path to romfs path
         path += string.Format("LocalizedData/{0}/MessageData/", lang);
 
         // Read in all three sarcs
         SystemMessage = SarcResource.FromFilePath(path + "SystemMessage.szs");
-        if (SystemMessage == null || SystemMessage.SarcDict.Count == 0) {
+        if (SystemMessage == null || SystemMessage.GetFileCount() == 0)
+        {
             GD.PrintErr("Failed to initalize SystemMessage.szs for unit test!");
             return UnitTestResult.FAILURE;
         }
 
         StageMessage = SarcResource.FromFilePath(path + "StageMessage.szs");
-        if (StageMessage == null || StageMessage.SarcDict.Count == 0) {
+        if (StageMessage == null || StageMessage.GetFileCount() == 0)
+        {
             GD.PrintErr("Failed to initalize StageMessage.szs for unit test!");
             return UnitTestResult.FAILURE;
         }
 
         LayoutMessage = SarcResource.FromFilePath(path + "LayoutMessage.szs");
-        if (LayoutMessage == null || LayoutMessage.SarcDict.Count == 0) {
+        if (LayoutMessage == null || LayoutMessage.GetFileCount() == 0)
+        {
             GD.PrintErr("Failed to initalize LayoutMessage.szs for unit test!");
             return UnitTestResult.FAILURE;
         }
@@ -86,22 +93,24 @@ public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
 
     protected virtual UnitTestResult ScanSarcMsbt(SarcResource sarc)
     {
-        foreach (var x in sarc.SarcDict)
+        foreach (var x in sarc.GetFileList())
         {
-            if (!x.Key.Contains(".msbt")) {
+            if (!x.Contains(".msbt"))
+            {
                 GD.PushWarning("SystemMessage contains non-msbt file? Skipping file...");
                 continue;
             }
 
-            #if UNIT_TEST_VERBOSE
+#if UNIT_TEST_VERBOSE
             GD.Print("Parsing " + x.Key);
-            #endif
+#endif
 
-            byte[] file = [.. x.Value];
+            byte[] file = sarc.GetFile(x);
 
             MsbtFile msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, file);
-            if (msbt == null || !msbt.IsValid()) {
-                GD.PrintErr(string.Format("Failed to read MSBT - {0}", x.Key));
+            if (msbt == null || !msbt.IsValid())
+            {
+                GD.PrintErr(string.Format("Failed to read MSBT - {0}", x));
                 return UnitTestResult.FAILURE;
             }
 
