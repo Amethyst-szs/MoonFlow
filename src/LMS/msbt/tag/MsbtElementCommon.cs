@@ -36,10 +36,6 @@ public class MsbtTextElement : MsbtBaseElement
 
     public void AppendChar16(ushort value)
     {
-        // Don't include null terminators in text elements
-        if (value == 0x0000)
-            return;
-
         byte[] code = BitConverter.GetBytes(value);
         _text.Write(code);
     }

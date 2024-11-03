@@ -17,7 +17,7 @@ public class BlockStyleIndex : Block
     {
         if (!IsValid())
             return;
-        
+
         _initStyleCount = styleCount;
 
         // Parse rest of file data
@@ -35,30 +35,15 @@ public class BlockStyleIndex : Block
         InitBlock(rawData);
     }
 
-    public BlockStyleIndex(List<object> list, string name) : base(list, name)
-    {
-    }
-
     protected override void InitBlock(byte[] data)
     {
         if (_initStyleCount == 0)
             return;
-        
+
         for (int i = 0; i < _initStyleCount; i++)
         {
             StyleIndexList.Add(BitConverter.ToUInt32(data, i * sizeof(uint)));
         }
-    }
-
-    protected override void InitBlockWithList(List<object> list)
-    {
-        if (list.GetType() != typeof(List<uint>))
-        {
-            GD.PushError("Invalid list type in BlockStyleIndex - InitBlockWithList!");
-            return;
-        }
-
-        StyleIndexList = list.Cast<uint>().ToList();
     }
 
     protected override uint CalcDataSize()
@@ -72,6 +57,22 @@ public class BlockStyleIndex : Block
         foreach (var styIdx in StyleIndexList)
         {
             stream.Write(styIdx);
+        }
+    }
+
+    public void UpdateBlock(MsbtEntry[] msbtContents)
+    {
+        // Ensure the block has a valid header
+        if (!IsBlockHeaderOK)
+            return;
+        
+        // Reset index list
+        StyleIndexList.Clear();
+
+        // Copy index data from the entry list to the internal StyleIndexList
+        foreach (var item in msbtContents)
+        {
+            StyleIndexList.Add(item.GetStyleIndex());
         }
     }
 }

@@ -139,4 +139,15 @@ public class FileHeader
     {
         return Encoding;
     }
+
+    public int GetCharSize()
+    {
+        return Encoding switch
+        {
+            StringEncoding.UTF8 => 1,
+            StringEncoding.UTF16 => 2,
+            StringEncoding.UTF32 => 4,
+            _ => 0,
+        };
+    }
 }

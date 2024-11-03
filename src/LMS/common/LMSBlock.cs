@@ -45,14 +45,6 @@ public abstract class Block
         InitBlock(rawData);
     }
 
-    public Block(List<object> objList, string typeName)
-    {
-        TypeName = typeName;
-
-        IsBlockHeaderOK = true;
-        InitBlockWithList(objList);
-    }
-
     public bool WriteBlock(MemoryStream stream)
     {
         if (TypeName.Length != TYPE_NAME_SIZE)
@@ -95,7 +87,6 @@ public abstract class Block
     }
 
     protected virtual void InitBlock(byte[] data) { throw new NotImplementedException(); }
-    protected virtual void InitBlockWithList(List<object> list) { throw new NotImplementedException(); }
     protected abstract uint CalcDataSize();
     protected abstract void WriteBlockData(MemoryStream stream);
 

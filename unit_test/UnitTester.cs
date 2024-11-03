@@ -17,6 +17,7 @@ public partial class UnitTester : SceneTree
         new UnitTestMsbpSMOWrite(),
         new UnitTestMsbp3DWWrite(),
         new UnitTestMsbtV2SMOParse(),
+        new UnitTestMsbtV2SMOWrite(),
     ];
 
     protected int TestCount = 0;

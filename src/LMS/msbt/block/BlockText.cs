@@ -8,20 +8,10 @@ using Godot;
 
 namespace Nindot.LMS.Msbt;
 
-public class BlockText : Block
+public class BlockText(byte[] data, string name, int offset, int charByteSize) : Block(data, name, offset)
 {
-    private readonly FileHeader.StringEncoding encoding;
+    private readonly int _charSize = charByteSize;
     public List<byte[]> TextData = [];
-
-    public BlockText(byte[] data, string name, int offset, FileHeader.StringEncoding enc) : base(data, name, offset)
-    {
-        encoding = enc;
-    }
-
-    public BlockText(List<object> list, string name, FileHeader.StringEncoding enc) : base(list, name)
-    {
-        encoding = enc;
-    }
 
     protected override void InitBlock(byte[] data)
     {
@@ -34,15 +24,11 @@ public class BlockText : Block
             int endPointer;
             if (i < count - 1)
             {
-                endPointer = (int)BitConverter.ToUInt32(data, ((i + 1) * 4) + 4) - 2;
+                endPointer = (int)BitConverter.ToUInt32(data, ((i + 1) * 4) + 4);
             }
             else
             {
-                endPointer = data.Length - 1;
-                while (data[endPointer] == 0x00)
-                {
-                    endPointer--;
-                }
+                endPointer = data.Length;
             }
 
             // Create array segment and append name to list
@@ -52,25 +38,14 @@ public class BlockText : Block
         return;
     }
 
-    protected override void InitBlockWithList(List<object> list)
-    {
-        if (list.GetType() != typeof(List<byte[]>))
-        {
-            GD.PushError("Invalid list type in BlockText - InitBlockWithList!");
-            return;
-        }
-
-        TextData = list.Cast<byte[]>().ToList();
-    }
-
     protected override uint CalcDataSize()
     {
         uint size = 0x4; // Content count
 
         foreach (var p in TextData)
         {
-            // Offset + String Length + Null Terminator
-            size += (uint)(0x4 + p.Length + 0x1);
+            // Offset + String Length
+            size += (uint)(0x4 + p.Length);
         }
 
         return size;
@@ -84,13 +59,28 @@ public class BlockText : Block
         foreach (var s in TextData)
         {
             stream.Write(offset);
-            offset += (uint)(s.Length + 0x1); // Null terminator included
+            offset += (uint)s.Length;
         }
 
         foreach (var s in TextData)
         {
             stream.Write(s);
-            stream.Write([0x00]); // Null terminator
+        }
+    }
+
+    public void UpdateBlock(MsbtEntry[] msbtContents)
+    {
+        // Ensure the block has a valid header
+        if (!IsBlockHeaderOK)
+            return;
+        
+        // Reset text data list
+        TextData.Clear();
+
+        // Copy text data from the entry list to the internal TextData array
+        foreach (var item in msbtContents)
+        {
+            TextData.Add(item.GetBytes());
         }
     }
 

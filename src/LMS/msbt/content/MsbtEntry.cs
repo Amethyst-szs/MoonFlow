@@ -18,11 +18,20 @@ public class MsbtEntry
         Elements = TagLibraryHolder.BuildMsbtElements(txtData, tagLib);
     }
 
-    public void WriteBytes(MemoryStream stream)
+    public byte[] GetBytes()
     {
+        MemoryStream stream = new();
+
         foreach (var item in Elements)
         {
             stream.Write(item.GetBytes());
         }
+
+        return stream.ToArray();
+    }
+
+    public uint GetStyleIndex()
+    {
+        return StyleIndex;
     }
 }

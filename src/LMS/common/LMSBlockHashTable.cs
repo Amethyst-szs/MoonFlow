@@ -70,6 +70,11 @@ public class BlockHashTable : Block
                 pointer += label.CalcSizeBytes();
             }
         }
+
+        public void EmptyLabelList()
+        {
+            LabelList.Clear();
+        }
     }
 
     // ~~~~ Properties of Hash Table block ~~~ //
@@ -177,6 +182,30 @@ public class BlockHashTable : Block
         return;
     }
 
+    public void RebuildTable(string[] labels)
+    {
+        // Ensure the block has a valid header
+        if (!IsBlockHeaderOK)
+            return;
+        
+        // Empty out the hash table of its label contents
+        foreach (var entry in HashEntryList)
+        {
+            entry.EmptyLabelList();
+        }
+
+        // Run through every label in the user-provided list, and insert them
+        // into their coresponding hash table entries
+        for (uint labelIdx = 0; labelIdx < labels.Length; labelIdx++)
+        {
+            string label = labels[labelIdx];
+            ulong hash = CalcHash(label, SlotCount);
+
+            HashTableLabel labelEntry = new(label, labelIdx);
+            HashEntryList[(int)hash].LabelList.Add(labelEntry);
+        }
+    }
+
     // ====================================================== //
     // === Calculation and Getter utilities for LMS files === //
     // ====================================================== //
@@ -196,6 +225,11 @@ public class BlockHashTable : Block
         }
 
         return (hash & 0xFFFFFFFF) % slotCount;
+    }
+
+    public int GetHashTableSize()
+    {
+        return HashEntryList.Count;
     }
 
     public int CalcLabelCount()
