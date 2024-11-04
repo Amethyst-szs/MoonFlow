@@ -5,6 +5,7 @@ using SarcLibrary;
 using System.Collections.ObjectModel;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
+using Nindot.Byml;
 
 namespace Nindot;
 
@@ -70,7 +71,15 @@ public partial class SarcResource : Resource
     {
         return [.. SarcData[name]];
     }
+    public BymlFile GetFileBYML(string name)
+    {
+        return BymlFile.FromBytes([.. SarcData[name]]);
+    }
     public MsbtFile GetFileMSBT(string name, TagLibraryHolder.Type tagLib)
+    {
+        return new MsbtFile(tagLib, [.. SarcData[name]]);
+    }
+    public MsbtFile GetFileAlEventFlow(string name, TagLibraryHolder.Type tagLib)
     {
         return new MsbtFile(tagLib, [.. SarcData[name]]);
     }
