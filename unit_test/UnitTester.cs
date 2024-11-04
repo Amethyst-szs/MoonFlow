@@ -7,6 +7,8 @@ namespace Nindot.UnitTest;
 public partial class UnitTester : SceneTree
 {
     protected UnitTestBase[] TestList = [
+        new UnitTestBymlRead(),
+        new UnitTestBymlWrite(),
         new UnitTestMsbtSMOParse(),
         new UnitTestMsbtSMOWrite(),
         new UnitTestMsbtUSen(),
@@ -27,6 +29,7 @@ public partial class UnitTester : SceneTree
 
     public UnitTester()
     {
+        DirAccess.MakeDirAbsolute("user://unit_test/");
         RunTests();
     }
 

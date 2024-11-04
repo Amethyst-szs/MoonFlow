@@ -13,7 +13,7 @@ public class UnitTestMsbtSMOWrite : UnitTestMsbtSMOParse
 {
     public override void SetupTest()
     {
-        FileData = FileAccess.GetFileAsBytes("res://unit_test/msbt/SmoUnitTesting.msbt");
+        FileData = FileAccess.GetFileAsBytes("res://unit_test/lms/msbt/SmoUnitTesting.msbt");
     }
 
     public override UnitTestResult Test()
@@ -34,12 +34,12 @@ public class UnitTestMsbtSMOWrite : UnitTestMsbtSMOParse
             return UnitTestResult.FAILURE;
         }
 
-        FileAccess writer = FileAccess.Open("user://SmoUnitTesting_out.msbt", FileAccess.ModeFlags.Write);
+        FileAccess writer = FileAccess.Open("user://unit_test/MsbtSMO.msbt", FileAccess.ModeFlags.Write);
         writer.StoreBuffer(stream.ToArray());
         writer.Close();
 
         // Read this output back in and run element testing on it
-        msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileAccess.GetFileAsBytes("user://SmoUnitTesting_out.msbt"));
+        msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileAccess.GetFileAsBytes("user://unit_test/MsbtSMO.msbt"));
         if (!msbt.IsValid())
         {
             GD.PrintErr("Failed to initalize MsbtV2 for unit test!");

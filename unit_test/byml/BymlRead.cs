@@ -1,23 +1,20 @@
 #if TOOLS
 using Godot;
-using System;
-using System.IO;
+
+using Nindot.Byml;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbp3DWRead : UnitTestBase
+public class UnitTestBymlRead : UnitTestBase
 {
-    protected byte[] FileData = [];
-
     public override void SetupTest()
     {
-        FileData = Godot.FileAccess.GetFileAsBytes("res://unit_test/msbp/ProjectData-3DW-BF.msbp");
     }
 
     public override UnitTestResult Test()
     {
-        LMS.Msbp.MsbpFile file = new(FileData);
-        if (!file.IsValid())
+        BymlFile file = BymlFile.FromFilePath("res://unit_test/byml/UnitTest.byml");
+        if (file == null)
             return UnitTestResult.FAILURE;
         
         return UnitTestResult.OK;
@@ -25,7 +22,6 @@ public class UnitTestMsbp3DWRead : UnitTestBase
 
     public override void CleanupTest()
     {
-        FileData = null;
     }
 
     public override void Failure()

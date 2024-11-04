@@ -3,13 +3,13 @@ using Godot;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbpSMOWrite : UnitTestBase
+public class UnitTestMsbp3DWWrite : UnitTestBase
 {
     protected byte[] FileData = [];
 
     public override void SetupTest()
     {
-        FileData = FileAccess.GetFileAsBytes("res://unit_test/msbp/ProjectData-SMO.msbp");
+        FileData = FileAccess.GetFileAsBytes("res://unit_test/lms/msbp/ProjectData-3DW-BF.msbp");
     }
 
     public override UnitTestResult Test()
@@ -17,16 +17,15 @@ public class UnitTestMsbpSMOWrite : UnitTestBase
         LMS.Msbp.MsbpFile file = new(FileData);
         if (!file.IsValid())
             return UnitTestResult.FAILURE;
-        
+
         System.IO.MemoryStream stream = new();
         if (!file.WriteFile(stream))
             return UnitTestResult.FAILURE;
-        
-        DirAccess.MakeDirAbsolute("user://ProjectData/");
-        FileAccess writer = FileAccess.Open("user://ProjectData/ProjectData.msbp", FileAccess.ModeFlags.Write);
+
+        FileAccess writer = FileAccess.Open("user://unit_test/Msbp3DW.msbp", FileAccess.ModeFlags.Write);
         writer.StoreBuffer(stream.ToArray());
         writer.Close();
-        
+
         return UnitTestResult.OK;
     }
 

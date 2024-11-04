@@ -11,7 +11,7 @@ public class UnitTestMsbpSMORead : UnitTestBase
 
     public override void SetupTest()
     {
-        FileData = Godot.FileAccess.GetFileAsBytes("res://unit_test/msbp/ProjectData-SMO.msbp");
+        FileData = Godot.FileAccess.GetFileAsBytes("res://unit_test/lms/msbp/ProjectData-SMO.msbp");
     }
 
     public override UnitTestResult Test()
@@ -19,7 +19,7 @@ public class UnitTestMsbpSMORead : UnitTestBase
         LMS.Msbp.MsbpFile file = new(FileData);
         if (!file.IsValid())
             return UnitTestResult.FAILURE;
-        
+
         file.ColorAddNew("Custom Color", 69, 69, 69, 69);
         foreach (var color in file.ColorGetLabelList())
         {
@@ -38,7 +38,8 @@ public class UnitTestMsbpSMORead : UnitTestBase
         foreach (var group in file.TagGroupGetList())
         {
             var tags = file.TagGetList(group);
-            foreach (var tag in tags) {
+            foreach (var tag in tags)
+            {
                 var paras = file.TagParamGetList(tag);
                 continue;
             }
@@ -53,7 +54,7 @@ public class UnitTestMsbpSMORead : UnitTestBase
         var project = file.ProjectGetContent();
         file.ProjectAddElement("123456789");
         file.ProjectRemoveElement("Viewer/QuickSearch/NPCballoon.msqry");
-        
+
         return UnitTestResult.OK;
     }
 

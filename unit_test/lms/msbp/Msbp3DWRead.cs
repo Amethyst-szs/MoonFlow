@@ -5,23 +5,19 @@ using System.IO;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestLmsHeaderReadWrite : UnitTestBase
+public class UnitTestMsbp3DWRead : UnitTestBase
 {
     protected byte[] FileData = [];
 
     public override void SetupTest()
     {
-        FileData = Godot.FileAccess.GetFileAsBytes("res://unit_test/lms/msbt/SmoUnitTesting.msbt");
+        FileData = Godot.FileAccess.GetFileAsBytes("res://unit_test/lms/msbp/ProjectData-3DW-BF.msbp");
     }
 
     public override UnitTestResult Test()
     {
-        LMS.FileHeader head = new(FileData);
-        if (!head.IsValid())
-            return UnitTestResult.FAILURE;
-
-        MemoryStream stream = new();
-        if (!head.WriteHeader(stream))
+        LMS.Msbp.MsbpFile file = new(FileData);
+        if (!file.IsValid())
             return UnitTestResult.FAILURE;
 
         return UnitTestResult.OK;
