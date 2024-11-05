@@ -13,6 +13,10 @@ public enum GraphGameType : int
 
 public class Graph
 {
+    // ====================================================== //
+    // ============ Parameters and Initilization ============ //
+    // ====================================================== //
+
     private Dictionary<string, NodeBase> EntryPoints = [];
     private Dictionary<int, NodeBase> Nodes = [];
     private bool _isValid = false;
@@ -49,7 +53,7 @@ public class Graph
             };
 
             if (node != null)
-                Nodes.Add(node.Id, node);
+                Nodes.Add(node.GetId(), node);
         }
 
         return true;
@@ -107,8 +111,75 @@ public class Graph
         return new Graph(file, gameType);
     }
 
+    // ====================================================== //
+    // ================== Reading Utilities ================= //
+    // ====================================================== //
+
     public bool IsValid()
     {
         return _isValid;
+    }
+    public bool IsNodeIdValid(int id)
+    {
+        return Nodes.ContainsKey(id);
+    }
+    public bool IsNodeOrphan(NodeBase node)
+    {
+        int id = node.GetId();
+
+        foreach (var cmp in Nodes.Values)
+        {
+            if (cmp.GetNextNodeList().Contains(id))
+                return false;
+        }
+
+        return true;
+    }
+
+    public NodeBase GetNode(int id)
+    {
+        return Nodes[id];
+    }
+    public int GetNextUnusedNodeId()
+    {
+        int maxValue = Nodes.Keys.Max();
+        return Nodes.Keys.ToList().IndexOf(maxValue);
+    }
+
+    // ====================================================== //
+    // ================== Editing Utilities ================= //
+    // ====================================================== //
+
+    public void AddNode(NodeBase node)
+    {
+        // Ensure this Id isn't already in the dictionary
+        // If so, reassign the Id before adding
+        int id = node.GetId();
+        if (Nodes.ContainsKey(id))
+            node.ReassignId(this);
+        
+        Nodes.Add(id, node);
+    }
+
+    public void DestroyNode(NodeBase node)
+    {
+        if (!Nodes.ContainsValue(node))
+            return;
+        
+        // Remove all connections to this node from other nodes in graph
+        int id = node.GetId();
+        foreach (var cmp in Nodes.Values)
+        {
+            int cmpCount = cmp.GetNextNodeCount();
+            for (int i = 0; i < cmpCount; i++)
+            {
+                NodeBase cmpNext = cmp.GetNextNode(this, i);
+                if (cmpNext == node)
+                    cmp.RemoveNextNode(i);
+            }
+        }
+
+        // Remove node from list
+        Nodes.Remove(id);
     }
 }
