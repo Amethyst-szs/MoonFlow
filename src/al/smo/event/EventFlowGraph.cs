@@ -5,12 +5,6 @@ using Nindot.Byml;
 
 namespace Nindot.Al.EventFlow;
 
-public enum GraphGameType : int
-{
-    NONE,
-    SUPER_MARIO_ODYSSEY,
-}
-
 public class Graph
 {
     // ====================================================== //
@@ -19,22 +13,22 @@ public class Graph
 
     private Dictionary<string, NodeBase> EntryPoints = [];
     private Dictionary<int, NodeBase> Nodes = [];
-    private bool _isValid = false;
+    private readonly bool _isValid = false;
 
-    public Graph(BymlFile byml, GraphGameType gameType)
+    public Graph(BymlFile byml)
     {
         // Get access to the two keys on the top of the byml
         if (!byml.TryGetValue(out List<object> entryPointList, "EntryList")) return;
         if (!byml.TryGetValue(out List<object> nodeList, "NodeList")) return;
 
-        if (!InitNodes(nodeList, gameType)) return;
+        if (!InitNodes(nodeList)) return;
         if (!InitEntryPoints(entryPointList)) return;
 
         _isValid = true;
         return;
     }
 
-    private bool InitNodes(List<object> nodeList, GraphGameType gameType)
+    private bool InitNodes(List<object> nodeList)
     {
         foreach (var n in nodeList)
         {
@@ -45,12 +39,7 @@ public class Graph
             }
 
             var dict = (Dictionary<object, object>)n;
-            
-            NodeBase node = gameType switch
-            {
-                GraphGameType.SUPER_MARIO_ODYSSEY => EventFlowFactoryProjectSMO.CreateNodeSMO(dict),
-                _ => EventFlowFactoryBase.CreateNodeBase(dict),
-            };
+            NodeBase node = EventFlowFactory.CreateNode(dict);
 
             if (node != null)
                 Nodes.Add(node.GetId(), node);
@@ -96,19 +85,19 @@ public class Graph
         return true;
     }
 
-    public static Graph FromFilePath(string path, GraphGameType gameType)
+    public static Graph FromFilePath(string path)
     {
         if (!BymlFileAccess.ParseFile(out BymlFile file, path))
             return null;
 
-        return new Graph(file, gameType);
+        return new Graph(file);
     }
-    public static Graph FromBytes(byte[] bytes, GraphGameType gameType)
+    public static Graph FromBytes(byte[] bytes)
     {
         if (!BymlFileAccess.ParseBytes(out BymlFile file, bytes))
             return null;
 
-        return new Graph(file, gameType);
+        return new Graph(file);
     }
 
     // ====================================================== //

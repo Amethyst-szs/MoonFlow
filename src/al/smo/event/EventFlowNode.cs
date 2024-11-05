@@ -1,6 +1,14 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Nindot.Al.EventFlow;
+
+public struct NodeParamInfo(string name, Type type)
+{
+    public string Name = name;
+    public Type Type = type;
+}
 
 public class NodeBase
 {
@@ -14,12 +22,16 @@ public class NodeBase
     protected int Id = int.MinValue;
     protected List<int> EdgeIds = [];
 
+    protected Dictionary<object, object> Params = [];
+
     public NodeBase(Dictionary<object, object> dict)
     {
         if (dict.ContainsKey("Type")) Type = (string)dict["Type"];
         if (dict.ContainsKey("Base")) TypeBase = (string)dict["Base"];
         if (dict.ContainsKey("Id")) Id = (int)dict["Id"];
         if (dict.ContainsKey("NextId")) EdgeIds.Add((int)dict["NextId"]);
+
+        if (dict.ContainsKey("Param")) Params = (Dictionary<object, object>)dict["Param"];
     }
     public NodeBase(Graph graph, string factoryType)
     {
@@ -40,6 +52,9 @@ public class NodeBase
     public virtual bool IsHaveEdges() { return true; }
     public virtual int GetMinEdgeCount() { return 1; }
     public virtual int GetMaxEdgeCount() { return 1; }
+
+    public virtual string[] GetValidTypeList() { return []; }
+    public virtual NodeParamInfo[] GetParamInfo() { return []; }
 
     // ====================================================== //
     // ================== Reading Utilities ================= //
