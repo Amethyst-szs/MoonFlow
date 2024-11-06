@@ -17,13 +17,13 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "CameraStart", typeof(NodeCameraStart) }, // Start camera by name
         { "CheckSwitch", typeof(NodeCheckSwitch) }, // Check if switch at Node.Name is on or off
         { "CheckWaitSwitch", typeof(NodeCheckWaitSwitch) }, // Await switch on before continuing event flow
-        { "DemoAction", typeof(NodeGeneric) },
-        { "DemoCamera", typeof(NodeGeneric) },
-        { "DemoPlayerAction", typeof(NodeGeneric) },
-        { "DemoPlayerHide", typeof(NodeGeneric) },
-        { "DemoPlayerShow", typeof(NodeGeneric) },
-        { "Event", typeof(NodeGeneric) },
-        { "EventQuery", typeof(NodeGeneric) },
+        { "DemoAction", typeof(NodeDemoAction) }, // Play a demo action on this actor
+        { "DemoCamera", typeof(NodeDemoCamera) }, // Play a demo camera
+        { "DemoPlayerAction", typeof(NodeDemoPlayerAction) }, // Play a demo action on the demo player
+        { "DemoPlayerHide", typeof(NodeGeneric) }, // Hide demo player
+        { "DemoPlayerShow", typeof(NodeGeneric) }, // Show demo player
+        { "Event", typeof(NodeEvent) }, // Customizable callusing IEventFlowEventReciever->recieveEvent()
+        { "EventQuery", typeof(NodeEventQuery) }, // Customizable bool CaseEventList using IEventFlowEventReciever->recieveEvent()
         { "Fork", typeof(NodeFork) }, // Split execution in two? Not sure
         { "HitReaction", typeof(NodeGeneric) },
         { "Join", typeof(NodeJoin) }, // Merge a branch back together? Not sure

@@ -34,16 +34,16 @@ public class NodeCaseEventList
             var dict = new Dictionary<string, object>();
 
             dict["NextId"] = c.NextId;
-            
+
             if (c.Index != int.MinValue)
                 dict["Index"] = c.Index;
-            
+
             if (c.Name != null)
                 dict["Name"] = c.Name;
 
             if (c.MessageData != null)
                 dict["MessageData"] = c.MessageData.WriteBuild();
-            
+
             list.Add(dict);
         }
 

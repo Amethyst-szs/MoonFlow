@@ -9,7 +9,7 @@ public abstract class Node
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
 
-    public enum NodeNameOptionType : int
+    public enum NodeOptionType : int
     {
         NO_OPTIONS,
         PRESET_LIST,
@@ -51,12 +51,22 @@ public abstract class Node
     {
         Id = graph.GetNextUnusedNodeId();
         Name = factoryType;
+
+        if (GetSupportedParams(out _) != NodeOptionType.NO_OPTIONS)
+            Params = [];
+        if (IsUseMultipleOutgoingEdges())
+            CaseEventList = new();
     }
-    public Node(Graph graph, string typeBase, string type)
+    public Node(Graph graph, string factoryName, string name)
     {
         Id = graph.GetNextUnusedNodeId();
-        TypeBase = typeBase;
-        Name = type;
+        TypeBase = factoryName;
+        Name = name;
+
+        if (GetSupportedParams(out _) != NodeOptionType.NO_OPTIONS)
+            Params = [];
+        if (IsUseMultipleOutgoingEdges())
+            CaseEventList = new();
     }
 
     // ====================================================== //
@@ -99,8 +109,8 @@ public abstract class Node
     public virtual bool IsUseMultipleOutgoingEdges() { return false; }
     public virtual int GetMaxOutgoingEdges() { return 1; }
 
-    public abstract NodeNameOptionType GetNodeNameOptions(out string[] options);
-    public abstract Dictionary<string, Type> GetSupportedParams();
+    public abstract NodeOptionType GetNodeNameOptions(out string[] options);
+    public abstract NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo);
 
     // ====================================================== //
     // ================== Reading Utilities ================= //
@@ -220,15 +230,15 @@ public abstract class Node
     }
     public void SetName(int nameOptionIndex)
     {
-        NodeNameOptionType type = GetNodeNameOptions(out string[] list);
+        NodeOptionType type = GetNodeNameOptions(out string[] list);
         if (nameOptionIndex < 0 || nameOptionIndex > list.Length) return;
-        if (type == NodeNameOptionType.PRESET_LIST)
+        if (type == NodeOptionType.PRESET_LIST)
             Name = list[nameOptionIndex];
     }
     public void SetName(string name)
     {
-        NodeNameOptionType type = GetNodeNameOptions(out string[] list);
-        if (type == NodeNameOptionType.ANY_VALUE)
+        NodeOptionType type = GetNodeNameOptions(out string[] list);
+        if (type == NodeOptionType.ANY_VALUE)
             Name = name;
     }
 
@@ -245,24 +255,57 @@ public abstract class Node
         // Setup default value for out
         value = default;
 
-        // Ensure this param name is supported by this node
-        var supportList = GetSupportedParams();
-        if (!supportList.TryGetValue(param, out Type requiredType))
+        // Get the param info of this node
+        NodeOptionType paramInfoType = GetSupportedParams(out Dictionary<string, Type> paramInfo);
+
+        // If this node type doesn't support having params, return early
+        if (paramInfoType == NodeOptionType.NO_OPTIONS)
+            return false;
+
+        // If this node type can have any param, directly access Params instead of paramInfo
+        if (paramInfoType == NodeOptionType.ANY_VALUE)
+        {
+            if (!Params.TryGetValue(param, out object data))
+                return false;
+
+            value = (T)data;
+            return true;
+        }
+
+        // This node type must set params from the preset list, check that this param is in the list
+        if (!paramInfo.TryGetValue(param, out Type requiredType))
             return false;
 
         // Ensure the provided type T matches the supported entry
         if (requiredType != typeof(T))
             return false;
 
-        value = (T)Params[param];
+        // Ensure that the Params dictionary contains the param requested
+        if (!Params.TryGetValue(param, out object v))
+            return false;
+
+        value = (T)v;
         return true;
     }
 
     public bool TrySetParam<T>(string param, T value)
     {
-        // Ensure this param name is supported by this node
-        var supportList = GetSupportedParams();
-        if (!supportList.TryGetValue(param, out Type requiredType))
+        // Get the param info of this node
+        NodeOptionType paramInfoType = GetSupportedParams(out Dictionary<string, Type> paramInfo);
+
+        // If this node type doesn't support having params, return early
+        if (paramInfoType == NodeOptionType.NO_OPTIONS)
+            return false;
+
+        // If this node type can have any param, directly access Params instead of paramInfo
+        if (paramInfoType == NodeOptionType.ANY_VALUE)
+        {
+            Params[param] = value;
+            return true;
+        }
+
+        // This node type must set params from the preset list, check that this param is in the list
+        if (!paramInfo.TryGetValue(param, out Type requiredType))
             return false;
 
         // Ensure the provided type T matches the supported entry
@@ -274,12 +317,25 @@ public abstract class Node
     }
     public bool TrySetParamMessageData(string param, NodeMessageResolverData data)
     {
-        // Ensure this param name is supported by this node
-        var supportList = GetSupportedParams();
-        if (!supportList.TryGetValue(param, out Type requiredType))
+        // Get the param info of this node
+        NodeOptionType paramInfoType = GetSupportedParams(out Dictionary<string, Type> paramInfo);
+
+        // If this node type doesn't support having params, return early
+        if (paramInfoType == NodeOptionType.NO_OPTIONS)
             return false;
 
-        // Ensure the requiredType value is equal to NodeMessageResolverData
+        // If this node type can have any param, directly access Params instead of paramInfo
+        if (paramInfoType == NodeOptionType.ANY_VALUE)
+        {
+            Params[param] = data;
+            return true;
+        }
+
+        // This node type must set params from the preset list, check that this param is in the list
+        if (!paramInfo.TryGetValue(param, out Type requiredType))
+            return false;
+
+        // Ensure the provided type T matches the supported entry
         if (requiredType != typeof(NodeMessageResolverData))
             return false;
 

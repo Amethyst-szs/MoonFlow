@@ -9,16 +9,17 @@ public class NodeCameraStart : Node
     public NodeCameraStart(Graph graph, string factoryType) : base(graph, factoryType) { }
     public NodeCameraStart(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
 
-    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    public override NodeOptionType GetNodeNameOptions(out string[] options)
     {
         options = [];
-        return NodeNameOptionType.NO_OPTIONS;
+        return NodeOptionType.NO_OPTIONS;
     }
-    public override Dictionary<string, Type> GetSupportedParams()
+    public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
     {
-        return new Dictionary<string, Type>() {
+        paramInfo = new Dictionary<string, Type>() {
             { "CameraName", typeof(string) },
             { "InterpoleStep", typeof(int) },
         };
+        return NodeOptionType.PRESET_LIST;
     }
 }

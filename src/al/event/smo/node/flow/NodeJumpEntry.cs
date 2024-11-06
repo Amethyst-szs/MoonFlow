@@ -26,12 +26,16 @@ public class NodeJumpEntry : Node
     public override bool IsUseMultipleOutgoingEdges() { return false; }
     public override int GetMaxOutgoingEdges() { return 0; }
 
-    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    public override NodeOptionType GetNodeNameOptions(out string[] options)
     {
         options = [];
-        return NodeNameOptionType.NO_OPTIONS;
+        return NodeOptionType.NO_OPTIONS;
     }
-    public override Dictionary<string, Type> GetSupportedParams() { return []; }
+    public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
+    {
+        paramInfo = [];
+        return NodeOptionType.NO_OPTIONS;
+    }
 
     // ====================================================== //
     // ================ Additional Overrides ================ //

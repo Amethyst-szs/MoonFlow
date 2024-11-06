@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Nindot.Al.EventFlow.Smo;
 
-public class NodeActionLoop : Node
+public class NodeDemoAction : Node
 {
-    public NodeActionLoop(Dictionary<object, object> dict) : base(dict) { }
-    public NodeActionLoop(Graph graph, string factoryType) : base(graph, factoryType) { }
-    public NodeActionLoop(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
+    public NodeDemoAction(Dictionary<object, object> dict) : base(dict) { }
+    public NodeDemoAction(Graph graph, string factoryType) : base(graph, factoryType) { }
+    public NodeDemoAction(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
 
     public override NodeOptionType GetNodeNameOptions(out string[] options)
     {
@@ -18,9 +18,8 @@ public class NodeActionLoop : Node
     {
         paramInfo = new Dictionary<string, Type>() {
             { "ActionName", typeof(string) },
-            { "IsStartRandomFrame", typeof(bool) },
-            { "MaxStep", typeof(int) },
-            { "ActionFrameRate", typeof(float) },
+            { "AudioEventName", typeof(string) },
+            { "IsResetPlayerDynamics", typeof(bool) },
         };
         return NodeOptionType.PRESET_LIST;
     }

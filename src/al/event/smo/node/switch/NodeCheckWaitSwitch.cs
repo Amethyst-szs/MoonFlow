@@ -9,15 +9,16 @@ public class NodeCheckWaitSwitch : Node
     public NodeCheckWaitSwitch(Graph graph, string factoryType) : base(graph, factoryType) { }
     public NodeCheckWaitSwitch(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
 
-    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    public override NodeOptionType GetNodeNameOptions(out string[] options)
     {
         options = [];
-        return NodeNameOptionType.NO_OPTIONS;
+        return NodeOptionType.NO_OPTIONS;
     }
-    public override Dictionary<string, Type> GetSupportedParams()
+    public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
     {
-        return new Dictionary<string, Type>() {
+        paramInfo = new Dictionary<string, Type>() {
             { "SwitchName", typeof(string) },
         };
+        return NodeOptionType.PRESET_LIST;
     }
 }
