@@ -1,16 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Nindot.Al.EventFlow;
 
-public struct NodeParamInfo(string name, Type type)
-{
-    public string Name = name;
-    public Type Type = type;
-}
-
-public class NodeBase
+public abstract class NodeBase
 {
     // ====================================================== //
     // ============ Parameters and Initilization ============ //
@@ -29,7 +22,8 @@ public class NodeBase
         if (dict.ContainsKey("Type")) Type = (string)dict["Type"];
         if (dict.ContainsKey("Base")) TypeBase = (string)dict["Base"];
         if (dict.ContainsKey("Id")) Id = (int)dict["Id"];
-        if (dict.ContainsKey("NextId")) EdgeIds.Add((int)dict["NextId"]);
+
+        if (dict.ContainsKey("NextId") && IsSupportEdges()) EdgeIds.Add((int)dict["NextId"]);
 
         if (dict.ContainsKey("Param")) Params = (Dictionary<object, object>)dict["Param"];
     }
@@ -46,21 +40,21 @@ public class NodeBase
     }
 
     // ====================================================== //
-    // =============== Virtual Configurations =============== //
+    // ================ Virtual Configuration =============== //
     // ====================================================== //
 
-    public virtual bool IsHaveEdges() { return true; }
+    public virtual bool IsSupportEdges() { return true; }
     public virtual int GetMinEdgeCount() { return 1; }
     public virtual int GetMaxEdgeCount() { return 1; }
 
-    public virtual string[] GetValidTypeList() { return []; }
-    public virtual NodeParamInfo[] GetParamInfo() { return []; }
+    public abstract string[] GetNodeTypeOptions();
+    public abstract Dictionary<string, Type> GetSupportedParams();
 
     // ====================================================== //
     // ================== Reading Utilities ================= //
     // ====================================================== //
 
-    public bool IsNodeOrphan(Graph graph) { return graph.IsNodeOrphan(this); }
+    public bool IsNodeOrphanSolo(Graph graph) { return graph.IsNodeOrphanSolo(this); }
     public bool IsRequireMultipleEdges() { return GetMaxEdgeCount() > 1 && GetMinEdgeCount() > 1; }
 
     public int GetId() { return Id; }
@@ -75,7 +69,7 @@ public class NodeBase
         // You cannot access THE next node when multiple edges exist, or no edges exist
         if (IsRequireMultipleEdges() || EdgeIds.Count == 0)
             return null;
-        
+
         if (graph.IsNodeIdValid(EdgeIds[0]))
             return graph.GetNode(EdgeIds[0]);
 
@@ -86,11 +80,11 @@ public class NodeBase
         // If this node doesn't have multiple edges, use standard utility
         if (!IsRequireMultipleEdges())
             return GetNextNode(graph);
-        
+
         // Ensure edgeIndex is within the bounds of the edge count
         if (EdgeIds.Count >= edgeIndex)
             return null;
-        
+
         if (graph.IsNodeIdValid(EdgeIds[edgeIndex]))
             return graph.GetNode(EdgeIds[edgeIndex]);
 
@@ -117,10 +111,10 @@ public class NodeBase
 
     public bool TrySetNextNode(NodeBase next)
     {
-        // You cannot set THE next node when multiple edges exist
-        if (IsRequireMultipleEdges())
+        // You cannot set THE next node when multiple edges exist or if edges are disabled
+        if (IsRequireMultipleEdges() || !IsSupportEdges())
             return false;
-        
+
         EdgeIds.Clear();
         EdgeIds.Add(next.Id);
         return true;
@@ -130,17 +124,21 @@ public class NodeBase
         // If this node doesn't use multiple edges, use standard utility
         if (!IsRequireMultipleEdges())
             return TrySetNextNode(next);
-        
+
+        // Ensure this node type supports having edges
+        if (!IsSupportEdges())
+            return false;
+
         // Ensure the edge index is below the max edge count
         if (edgeIndex >= GetMaxEdgeCount())
             return false;
-        
+
         // Ensure the EdgeIds list is large enough to store this value
         while (EdgeIds.Count < edgeIndex)
         {
             EdgeIds.Add(int.MinValue);
         }
-        
+
         EdgeIds[edgeIndex] = next.Id;
         return true;
     }
@@ -150,7 +148,7 @@ public class NodeBase
         // You cannot remove THE next node when multiple edges exist
         if (IsRequireMultipleEdges())
             return;
-        
+
         EdgeIds.Clear();
     }
     public void RemoveNextNode(int edgeIndex)
@@ -161,17 +159,17 @@ public class NodeBase
             RemoveNextNode();
             return;
         }
-        
+
         // Ensure the edge index is below the max edge count
         if (edgeIndex >= GetMaxEdgeCount())
             return;
-        
+
         // Ensure the EdgeIds list is large enough to store this value
         while (EdgeIds.Count < edgeIndex)
         {
             EdgeIds.Add(int.MinValue);
         }
-        
+
         EdgeIds[edgeIndex] = int.MinValue;
     }
 

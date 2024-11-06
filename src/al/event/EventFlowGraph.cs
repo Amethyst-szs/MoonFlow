@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using Godot;
 using Nindot.Byml;
@@ -15,20 +17,20 @@ public class Graph
     private Dictionary<int, NodeBase> Nodes = [];
     private readonly bool _isValid = false;
 
-    public Graph(BymlFile byml)
+    public Graph(BymlFile byml, EventFlowFactoryBase nodeFactory)
     {
         // Get access to the two keys on the top of the byml
         if (!byml.TryGetValue(out List<object> entryPointList, "EntryList")) return;
         if (!byml.TryGetValue(out List<object> nodeList, "NodeList")) return;
 
-        if (!InitNodes(nodeList)) return;
+        if (!InitNodes(nodeList, nodeFactory)) return;
         if (!InitEntryPoints(entryPointList)) return;
 
         _isValid = true;
         return;
     }
 
-    private bool InitNodes(List<object> nodeList)
+    private bool InitNodes(List<object> nodeList, EventFlowFactoryBase nodeFactory)
     {
         foreach (var n in nodeList)
         {
@@ -39,7 +41,7 @@ public class Graph
             }
 
             var dict = (Dictionary<object, object>)n;
-            NodeBase node = EventFlowFactory.CreateNode(dict);
+            NodeBase node = nodeFactory.CreateNode(dict);
 
             if (node != null)
                 Nodes.Add(node.GetId(), node);
@@ -85,19 +87,19 @@ public class Graph
         return true;
     }
 
-    public static Graph FromFilePath(string path)
+    public static Graph FromFilePath(string path, EventFlowFactoryBase nodeFactory)
     {
         if (!BymlFileAccess.ParseFile(out BymlFile file, path))
             return null;
 
-        return new Graph(file);
+        return new Graph(file, nodeFactory);
     }
-    public static Graph FromBytes(byte[] bytes)
+    public static Graph FromBytes(byte[] bytes, EventFlowFactoryBase nodeFactory)
     {
         if (!BymlFileAccess.ParseBytes(out BymlFile file, bytes))
             return null;
 
-        return new Graph(file);
+        return new Graph(file, nodeFactory);
     }
 
     // ====================================================== //
@@ -112,7 +114,7 @@ public class Graph
     {
         return Nodes.ContainsKey(id);
     }
-    public bool IsNodeOrphan(NodeBase node)
+    public bool IsNodeOrphanSolo(NodeBase node)
     {
         int id = node.GetId();
 
