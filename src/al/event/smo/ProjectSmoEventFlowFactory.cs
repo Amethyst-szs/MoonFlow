@@ -36,9 +36,9 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "TurnToPreDir", typeof(NodeGeneric) }, // Rotate actor?
 
         // ProjectEventFlowNodeFactory (not al namespace)
-        { "AmiiboTouchLayout", typeof(NodeGeneric) },
-        { "AppearMapAmiiboHint", typeof(NodeGeneric) },
-        { "BgmCtrl", typeof(NodeGeneric) },
+        { "AmiiboTouchLayout", typeof(NodeAmiiboTouchLayout) }, // 5-way branch for scanning amiibo
+        { "AppearMapAmiiboHint", typeof(NodeGeneric) }, // Display map screen to showcase new amiibo hints
+        { "BgmCtrl", typeof(NodeBgmCtrl) }, // Control music playback
         { "BindKeepDemoStart", typeof(NodeGeneric) },
         { "CapMessage", typeof(NodeGeneric) },
         { "CapManHeroTalkSetDemoStartPose", typeof(NodeGeneric) },
