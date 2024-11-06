@@ -168,9 +168,10 @@ public abstract class Node
         CaseEventList.RemoveNextNodeForCase(edgeIndex);
     }
 
-    public void ReassignId(Graph graph)
+    public int ReassignId(Graph graph)
     {
         Id = graph.GetNextUnusedNodeId();
+        return Id;
     }
     public void SetType(int typeOptionIndex)
     {

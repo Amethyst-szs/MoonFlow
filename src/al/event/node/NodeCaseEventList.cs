@@ -18,7 +18,7 @@ public class NodeCaseEventList
         {
             if (obj.GetType() != typeof(Dictionary<object, object>))
                 continue;
-            
+
             var item = (Dictionary<object, object>)obj;
             CaseList.Add(new NodeCaseEvent(item));
         }
@@ -26,7 +26,8 @@ public class NodeCaseEventList
 
     public int GetCaseCount() { return CaseList.Count; }
     public int GetCaseNextId(int index) { return CaseList[index].NextId; }
-    public int[] GetCaseNextIdList() {
+    public int[] GetCaseNextIdList()
+    {
         List<int> ids = [];
 
         foreach (var c in CaseList)
@@ -47,7 +48,7 @@ public class NodeCaseEventList
     {
         if (caseIndex >= CaseList.Count)
             return;
-        
+
         CaseList[caseIndex].NextId = int.MinValue;
     }
 
@@ -71,7 +72,7 @@ public class NodeCaseEventList
         public int NextId;
         public string Name;
 
-        public MessageResolverData MessageData;
+        public NodeMessageResolverData MessageData;
 
         public NodeCaseEvent(int index)
         {
@@ -91,20 +92,6 @@ public class NodeCaseEventList
 
             if (dict.ContainsKey("MessageData"))
                 MessageData = new((Dictionary<object, object>)dict["MessageData"]);
-        }
-
-        public class MessageResolverData
-        {
-            public string MessageArchive;
-            public string MessageFile;
-            public string LabelName;
-
-            public MessageResolverData(Dictionary<object, object> dict)
-            {
-                if (dict.ContainsKey("MessageType")) MessageArchive = (string)dict["MessageType"];
-                if (dict.ContainsKey("MessageFileName")) MessageFile = (string)dict["MessageFileName"];
-                if (dict.ContainsKey("LabelName")) LabelName = (string)dict["LabelName"];
-            }
         }
     }
 }

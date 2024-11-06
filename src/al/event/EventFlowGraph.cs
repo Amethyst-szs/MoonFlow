@@ -149,11 +149,15 @@ public class Graph
 
     public void AddNode(Node node)
     {
+        // Ensure this instance isn't already in the dictionary
+        if (Nodes.ContainsValue(node))
+            return;
+        
         // Ensure this Id isn't already in the dictionary
         // If so, reassign the Id before adding
         int id = node.GetId();
         if (Nodes.ContainsKey(id))
-            node.ReassignId(this);
+            id = node.ReassignId(this);
 
         Nodes.Add(id, node);
     }
@@ -168,7 +172,7 @@ public class Graph
         foreach (var cmp in Nodes.Values)
         {
             int cmpCount = cmp.GetNextIds().Length;
-            
+
             for (int i = 0; i < cmpCount; i++)
             {
                 Node cmpNext = cmp.GetNextNode(this, i);
