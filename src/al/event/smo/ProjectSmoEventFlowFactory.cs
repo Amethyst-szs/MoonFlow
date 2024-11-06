@@ -15,8 +15,8 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "AnimCameraStart", typeof(NodeAnimCameraStart) }, // Register a camera in EventFlowDataHolder by name and animation
         { "CameraEnd", typeof(NodeCameraEnd) }, // End camera by name
         { "CameraStart", typeof(NodeCameraStart) }, // Start camera by name
-        { "CheckSwitch", typeof(NodeGeneric) },
-        { "CheckWaitSwitch", typeof(NodeGeneric) },
+        { "CheckSwitch", typeof(NodeCheckSwitch) }, // Check if switch at Node.Name is on or off
+        { "CheckWaitSwitch", typeof(NodeCheckWaitSwitch) }, // Await switch on before continuing event flow
         { "DemoAction", typeof(NodeGeneric) },
         { "DemoCamera", typeof(NodeGeneric) },
         { "DemoPlayerAction", typeof(NodeGeneric) },

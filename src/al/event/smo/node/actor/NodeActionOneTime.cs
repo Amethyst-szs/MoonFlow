@@ -9,7 +9,11 @@ public class NodeActionOneTime : Node
     public NodeActionOneTime(Graph graph, string factoryType) : base(graph, factoryType) { }
     public NodeActionOneTime(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
 
-    public override string[] GetNodeTypeOptions() { return []; }
+    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    {
+        options = [];
+        return NodeNameOptionType.NO_OPTIONS;
+    }
     public override Dictionary<string, Type> GetSupportedParams()
     {
         return new Dictionary<string, Type>() {

@@ -9,7 +9,14 @@ public abstract class Node
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
 
-    protected string Type = null;
+    public enum NodeNameOptionType : int
+    {
+        NO_OPTIONS,
+        PRESET_LIST,
+        ANY_VALUE,
+    }
+
+    protected string Name = null;
     protected string TypeBase = null;
 
     protected int Id = int.MinValue;
@@ -21,12 +28,12 @@ public abstract class Node
     public Node(Dictionary<object, object> dict)
     {
         // Assign node type and id
-        if (dict.ContainsKey("Type")) Type = (string)dict["Type"];
+        if (dict.ContainsKey("Type")) Name = (string)dict["Type"];
         if (dict.ContainsKey("Base")) TypeBase = (string)dict["Base"];
         if (dict.ContainsKey("Id")) Id = (int)dict["Id"];
 
         // Copy the value in Type to Base if base wasn't definied in iter
-        TypeBase ??= Type;
+        TypeBase ??= Name;
 
         // If the node contains a NextId, assign that. Otherwise, attempt to use CaseEventList
         if (dict.ContainsKey("NextId")) NextId = (int)dict["NextId"];
@@ -43,13 +50,13 @@ public abstract class Node
     public Node(Graph graph, string factoryType)
     {
         Id = graph.GetNextUnusedNodeId();
-        Type = factoryType;
+        Name = factoryType;
     }
     public Node(Graph graph, string typeBase, string type)
     {
         Id = graph.GetNextUnusedNodeId();
         TypeBase = typeBase;
-        Type = type;
+        Name = type;
     }
 
     // ====================================================== //
@@ -65,22 +72,22 @@ public abstract class Node
         if (Id == int.MinValue) return false;
         build["Id"] = Id;
 
-        if (Type == null) return false;
-        build["Type"] = Type;
+        if (Name == null) return false;
+        build["Type"] = Name;
 
-        if (TypeBase != Type) build["Base"] = TypeBase;
+        if (TypeBase != Name) build["Base"] = TypeBase;
 
         // Write in NextId or the CaseEventList
         if (CaseEventList != null) // If using a CaseEventList
             build["CaseEventList"] = CaseEventList.WriteBuild();
         else if (NextId != int.MinValue) // If using NextId
             build["NextId"] = NextId;
-        
+
         // Write in parameters
         var paramBuild = Params.WriteBuild();
         if (paramBuild.Count != 0)
             build["Param"] = paramBuild;
-        
+
         return true;
     }
 
@@ -90,10 +97,9 @@ public abstract class Node
 
     public virtual bool IsAllowOutgoingEdges() { return true; }
     public virtual bool IsUseMultipleOutgoingEdges() { return false; }
-    public virtual int GetMinOutgoingEdges() { return 1; }
     public virtual int GetMaxOutgoingEdges() { return 1; }
 
-    public abstract string[] GetNodeTypeOptions();
+    public abstract NodeNameOptionType GetNodeNameOptions(out string[] options);
     public abstract Dictionary<string, Type> GetSupportedParams();
 
     // ====================================================== //
@@ -114,13 +120,13 @@ public abstract class Node
     {
         if (!IsUseMultipleOutgoingEdges() || CaseEventList == null)
             return 1;
-        
+
         return CaseEventList.GetCaseCount();
     }
     public string GetFactoryType()
     {
         if (TypeBase != null) return TypeBase;
-        if (Type != null) return Type;
+        if (Name != null) return Name;
         return null;
     }
 
@@ -212,13 +218,18 @@ public abstract class Node
         Id = graph.GetNextUnusedNodeId();
         return Id;
     }
-    public void SetType(int typeOptionIndex)
+    public void SetName(int nameOptionIndex)
     {
-        string[] list = GetNodeTypeOptions();
-        if (typeOptionIndex < 0 || typeOptionIndex > list.Length)
-            return;
-
-        Type = list[typeOptionIndex];
+        NodeNameOptionType type = GetNodeNameOptions(out string[] list);
+        if (nameOptionIndex < 0 || nameOptionIndex > list.Length) return;
+        if (type == NodeNameOptionType.PRESET_LIST)
+            Name = list[nameOptionIndex];
+    }
+    public void SetName(string name)
+    {
+        NodeNameOptionType type = GetNodeNameOptions(out string[] list);
+        if (type == NodeNameOptionType.ANY_VALUE)
+            Name = name;
     }
 
     // ====================================================== //

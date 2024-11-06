@@ -10,6 +10,10 @@ public class NodeGeneric : Node
     public NodeGeneric(Graph graph, string factoryType) : base(graph, factoryType) { }
     public NodeGeneric(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
 
-    public override string[] GetNodeTypeOptions() { return []; }
+    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    {
+        options = [];
+        return NodeNameOptionType.ANY_VALUE;
+    }
     public override Dictionary<string, Type> GetSupportedParams() { return []; }
 }

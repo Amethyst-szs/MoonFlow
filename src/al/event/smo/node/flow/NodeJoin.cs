@@ -35,10 +35,13 @@ public class NodeJoin : Node
 
     public override bool IsAllowOutgoingEdges() { return true; }
     public override bool IsUseMultipleOutgoingEdges() { return false; }
-    public override int GetMinOutgoingEdges() { return 1; }
     public override int GetMaxOutgoingEdges() { return 1; }
 
-    public override string[] GetNodeTypeOptions() { return []; }
+    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    {
+        options = [];
+        return NodeNameOptionType.NO_OPTIONS;
+    }
     public override Dictionary<string, Type> GetSupportedParams() { return []; }
 
     // ====================================================== //
@@ -49,7 +52,7 @@ public class NodeJoin : Node
     {
         if (!base.TryWriteBuild(out build))
             return false;
-        
+
         build["PreIdList"] = PreIdList.Clone();
         return true;
     }

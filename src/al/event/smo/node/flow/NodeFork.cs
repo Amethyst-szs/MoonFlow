@@ -35,10 +35,13 @@ public class NodeFork : Node
 
     public override bool IsAllowOutgoingEdges() { return true; }
     public override bool IsUseMultipleOutgoingEdges() { return true; }
-    public override int GetMinOutgoingEdges() { return 2; }
     public override int GetMaxOutgoingEdges() { return 2; }
 
-    public override string[] GetNodeTypeOptions() { return []; }
+    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    {
+        options = [];
+        return NodeNameOptionType.NO_OPTIONS;
+    }
     public override Dictionary<string, Type> GetSupportedParams() { return []; }
 
     // ====================================================== //
@@ -49,19 +52,19 @@ public class NodeFork : Node
     {
         if (!base.TryWriteBuild(out build))
             return false;
-        
+
         build["NextIdList"] = NextIdList.Clone();
         return true;
     }
 
     public override int[] GetNextIds() { return NextIdList; }
-    public override int GetNextIdCount() {return NextIdList.Length; }
+    public override int GetNextIdCount() { return NextIdList.Length; }
     public override Node GetNextNode(Graph graph) { return null; }
     public override Node GetNextNode(Graph graph, int edgeIndex)
     {
         if (edgeIndex < 0 || edgeIndex > NextIdList.Length)
             return null;
-        
+
         return graph.GetNode(NextIdList[edgeIndex]);
     }
     public override void RemoveNextNode() { return; }
@@ -69,7 +72,7 @@ public class NodeFork : Node
     {
         if (edgeIndex < 0 || edgeIndex > NextIdList.Length)
             return;
-        
+
         NextIdList[edgeIndex] = int.MinValue;
     }
 
@@ -78,7 +81,7 @@ public class NodeFork : Node
     {
         if (edgeIndex < 0 || edgeIndex > NextIdList.Length)
             return false;
-        
+
         NextIdList[edgeIndex] = next.GetId();
         return true;
     }

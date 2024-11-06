@@ -1,3 +1,4 @@
+#if TOOLS
 using Godot;
 using System;
 
@@ -133,3 +134,4 @@ public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
     {
     }
 }
+#endif

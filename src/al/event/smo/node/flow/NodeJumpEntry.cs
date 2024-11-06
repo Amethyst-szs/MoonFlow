@@ -15,7 +15,7 @@ public class NodeJumpEntry : Node
     {
         if (!dict.ContainsKey("JumpEntryName"))
             return;
-        
+
         JumpEntryName = (string)dict["JumpEntryName"];
     }
 
@@ -24,10 +24,13 @@ public class NodeJumpEntry : Node
 
     public override bool IsAllowOutgoingEdges() { return false; }
     public override bool IsUseMultipleOutgoingEdges() { return false; }
-    public override int GetMinOutgoingEdges() { return 0; }
     public override int GetMaxOutgoingEdges() { return 0; }
 
-    public override string[] GetNodeTypeOptions() { return []; }
+    public override NodeNameOptionType GetNodeNameOptions(out string[] options)
+    {
+        options = [];
+        return NodeNameOptionType.NO_OPTIONS;
+    }
     public override Dictionary<string, Type> GetSupportedParams() { return []; }
 
     // ====================================================== //
@@ -38,7 +41,7 @@ public class NodeJumpEntry : Node
     {
         if (!base.TryWriteBuild(out build))
             return false;
-        
+
         build["JumpEntryName"] = JumpEntryName;
         return true;
     }

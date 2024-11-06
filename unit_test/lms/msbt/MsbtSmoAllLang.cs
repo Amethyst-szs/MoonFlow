@@ -1,3 +1,4 @@
+#if TOOLS
 using Godot;
 using System;
 
@@ -73,3 +74,4 @@ public class UnitTestMsbtAllLang : UnitTestMsbtUSen
     {
     }
 }
+#endif
