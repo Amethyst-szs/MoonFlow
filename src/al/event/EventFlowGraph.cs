@@ -13,8 +13,8 @@ public class Graph
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
 
-    private Dictionary<string, NodeBase> EntryPoints = [];
-    private Dictionary<int, NodeBase> Nodes = [];
+    private Dictionary<string, Node> EntryPoints = [];
+    private Dictionary<int, Node> Nodes = [];
     private readonly bool _isValid = false;
 
     public Graph(BymlFile byml, EventFlowFactoryBase nodeFactory)
@@ -41,7 +41,13 @@ public class Graph
             }
 
             var dict = (Dictionary<object, object>)n;
-            NodeBase node = nodeFactory.CreateNode(dict);
+            Node node = nodeFactory.CreateNode(dict);
+
+            if (Nodes.ContainsKey(node.GetId()))
+            {
+                GD.PushWarning("Duplicate ID keys in EventFlowGraph, attempting to correct error...");
+                node.ReassignId(this);
+            }
 
             if (node != null)
                 Nodes.Add(node.GetId(), node);
@@ -64,7 +70,7 @@ public class Graph
             // Create a dictionary version of the entry object, and create placeholders for name and node
             var dict = (Dictionary<object, object>)enter;
             string name = null;
-            NodeBase node = null;
+            Node node = null;
 
             // Get a copy of the name and node reference
             if (dict.ContainsKey("Name"))
@@ -73,7 +79,7 @@ public class Graph
             if (dict.ContainsKey("NodeId"))
             {
                 int nodeID = (int)dict["NodeId"];
-                if (Nodes.TryGetValue(nodeID, out NodeBase value))
+                if (Nodes.TryGetValue(nodeID, out Node value))
                     node = value;
             }
 
@@ -114,20 +120,20 @@ public class Graph
     {
         return Nodes.ContainsKey(id);
     }
-    public bool IsNodeOrphanSolo(NodeBase node)
+    public bool IsNodeOrphanSolo(Node node)
     {
         int id = node.GetId();
 
         foreach (var cmp in Nodes.Values)
         {
-            if (cmp.GetNextNodeList().Contains(id))
+            if (cmp.GetNextIds().Contains(id))
                 return false;
         }
 
         return true;
     }
 
-    public NodeBase GetNode(int id)
+    public Node GetNode(int id)
     {
         return Nodes[id];
     }
@@ -141,30 +147,31 @@ public class Graph
     // ================== Editing Utilities ================= //
     // ====================================================== //
 
-    public void AddNode(NodeBase node)
+    public void AddNode(Node node)
     {
         // Ensure this Id isn't already in the dictionary
         // If so, reassign the Id before adding
         int id = node.GetId();
         if (Nodes.ContainsKey(id))
             node.ReassignId(this);
-        
+
         Nodes.Add(id, node);
     }
 
-    public void DestroyNode(NodeBase node)
+    public void DestroyNode(Node node)
     {
         if (!Nodes.ContainsValue(node))
             return;
-        
+
         // Remove all connections to this node from other nodes in graph
         int id = node.GetId();
         foreach (var cmp in Nodes.Values)
         {
-            int cmpCount = cmp.GetNextNodeCount();
+            int cmpCount = cmp.GetNextIds().Length;
+            
             for (int i = 0; i < cmpCount; i++)
             {
-                NodeBase cmpNext = cmp.GetNextNode(this, i);
+                Node cmpNext = cmp.GetNextNode(this, i);
                 if (cmpNext == node)
                     cmp.RemoveNextNode(i);
             }

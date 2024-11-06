@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Nindot.Al.EventFlow;
 
-public abstract class NodeBase
+public abstract class Node
 {
     // ====================================================== //
     // ============ Parameters and Initilization ============ //
@@ -13,26 +13,39 @@ public abstract class NodeBase
     protected string TypeBase = null;
 
     protected int Id = int.MinValue;
-    protected List<int> EdgeIds = [];
+    protected int NextId = int.MinValue;
 
-    protected Dictionary<object, object> Params = [];
+    public NodeParams Params = null;
+    public NodeCaseEventList CaseEventList = null;
 
-    public NodeBase(Dictionary<object, object> dict)
+    public Node(Dictionary<object, object> dict)
     {
+        // Assign node type and id
         if (dict.ContainsKey("Type")) Type = (string)dict["Type"];
         if (dict.ContainsKey("Base")) TypeBase = (string)dict["Base"];
         if (dict.ContainsKey("Id")) Id = (int)dict["Id"];
 
-        if (dict.ContainsKey("NextId") && IsSupportEdges()) EdgeIds.Add((int)dict["NextId"]);
+        // Copy the value in Type to Base if base wasn't definied in iter
+        TypeBase ??= Type;
 
-        if (dict.ContainsKey("Param")) Params = (Dictionary<object, object>)dict["Param"];
+        // If the node contains a NextId, assign that. Otherwise, attempt to use CaseEventList
+        if (dict.ContainsKey("NextId")) NextId = (int)dict["NextId"];
+        if (dict.ContainsKey("CaseEventList"))
+        {
+            List<object> list = (List<object>)dict["CaseEventList"];
+            CaseEventList = new(list);
+        }
+
+        // If a params key exists, load it. Otherwise create an empty default
+        if (dict.ContainsKey("Param")) Params = new((Dictionary<object, object>)dict["Param"]);
+        else Params = [];
     }
-    public NodeBase(Graph graph, string factoryType)
+    public Node(Graph graph, string factoryType)
     {
         Id = graph.GetNextUnusedNodeId();
         Type = factoryType;
     }
-    public NodeBase(Graph graph, string typeBase, string type)
+    public Node(Graph graph, string typeBase, string type)
     {
         Id = graph.GetNextUnusedNodeId();
         TypeBase = typeBase;
@@ -43,9 +56,10 @@ public abstract class NodeBase
     // ================ Virtual Configuration =============== //
     // ====================================================== //
 
-    public virtual bool IsSupportEdges() { return true; }
-    public virtual int GetMinEdgeCount() { return 1; }
-    public virtual int GetMaxEdgeCount() { return 1; }
+    public virtual bool IsAllowOutgoingEdges() { return true; }
+    public virtual bool IsUseMultipleOutgoingEdges() { return false; }
+    public virtual int GetMinOutgoingEdges() { return 1; }
+    public virtual int GetMaxOutgoingEdges() { return 1; }
 
     public abstract string[] GetNodeTypeOptions();
     public abstract Dictionary<string, Type> GetSupportedParams();
@@ -55,131 +69,115 @@ public abstract class NodeBase
     // ====================================================== //
 
     public bool IsNodeOrphanSolo(Graph graph) { return graph.IsNodeOrphanSolo(this); }
-    public bool IsRequireMultipleEdges() { return GetMaxEdgeCount() > 1 && GetMinEdgeCount() > 1; }
 
     public int GetId() { return Id; }
+    public int[] GetNextIds()
+    {
+        if (!IsUseMultipleOutgoingEdges() || CaseEventList == null)
+            return [NextId];
+        
+        return CaseEventList.GetCaseNextIdList();
+    }
     public string GetFactoryType()
     {
         if (TypeBase != null) return TypeBase;
         if (Type != null) return Type;
         return null;
     }
-    public NodeBase GetNextNode(Graph graph)
+
+    public Node GetNextNode(Graph graph)
     {
         // You cannot access THE next node when multiple edges exist, or no edges exist
-        if (IsRequireMultipleEdges() || EdgeIds.Count == 0)
+        if (IsUseMultipleOutgoingEdges())
             return null;
 
-        if (graph.IsNodeIdValid(EdgeIds[0]))
-            return graph.GetNode(EdgeIds[0]);
+        if (graph.IsNodeIdValid(NextId))
+            return graph.GetNode(NextId);
 
         return null;
     }
-    public NodeBase GetNextNode(Graph graph, int edgeIndex)
+    public Node GetNextNode(Graph graph, int edgeIndex)
     {
         // If this node doesn't have multiple edges, use standard utility
-        if (!IsRequireMultipleEdges())
+        if (!IsUseMultipleOutgoingEdges() || CaseEventList == null)
             return GetNextNode(graph);
 
         // Ensure edgeIndex is within the bounds of the edge count
-        if (EdgeIds.Count >= edgeIndex)
+        if (CaseEventList.GetCaseCount() >= edgeIndex)
             return null;
 
-        if (graph.IsNodeIdValid(EdgeIds[edgeIndex]))
-            return graph.GetNode(EdgeIds[edgeIndex]);
+        int nextId = CaseEventList.GetCaseNextId(edgeIndex);
+        if (graph.IsNodeIdValid(nextId))
+            return graph.GetNode(nextId);
 
         return null;
     }
-    public List<int> GetNextNodeList() { return EdgeIds; }
-    public List<NodeBase> GetNextNodeList(Graph graph)
-    {
-        List<NodeBase> list = [];
-
-        foreach (var id in EdgeIds)
-        {
-            if (graph.IsNodeIdValid(id))
-                list.Add(graph.GetNode(id));
-        }
-
-        return list;
-    }
-    public int GetNextNodeCount() { return EdgeIds.Count; }
 
     // ====================================================== //
     // ================== Editing Utilities ================= //
     // ====================================================== //
 
-    public bool TrySetNextNode(NodeBase next)
+    public bool TrySetNextNode(Node next)
     {
         // You cannot set THE next node when multiple edges exist or if edges are disabled
-        if (IsRequireMultipleEdges() || !IsSupportEdges())
+        if (IsUseMultipleOutgoingEdges() || !IsAllowOutgoingEdges())
             return false;
 
-        EdgeIds.Clear();
-        EdgeIds.Add(next.Id);
+        NextId = next.Id;
         return true;
     }
-    public bool TrySetNextNode(NodeBase next, int edgeIndex)
+    public bool TrySetNextNode(Node next, int edgeIndex)
     {
         // If this node doesn't use multiple edges, use standard utility
-        if (!IsRequireMultipleEdges())
+        if (!IsUseMultipleOutgoingEdges() || CaseEventList == null)
             return TrySetNextNode(next);
 
         // Ensure this node type supports having edges
-        if (!IsSupportEdges())
+        if (!IsAllowOutgoingEdges())
             return false;
 
         // Ensure the edge index is below the max edge count
-        if (edgeIndex >= GetMaxEdgeCount())
+        if (edgeIndex >= GetMaxOutgoingEdges())
             return false;
 
-        // Ensure the EdgeIds list is large enough to store this value
-        while (EdgeIds.Count < edgeIndex)
-        {
-            EdgeIds.Add(int.MinValue);
-        }
-
-        EdgeIds[edgeIndex] = next.Id;
+        CaseEventList.SetNextNodeForCase(next, edgeIndex);
         return true;
     }
 
     public void RemoveNextNode()
     {
         // You cannot remove THE next node when multiple edges exist
-        if (IsRequireMultipleEdges())
+        if (IsUseMultipleOutgoingEdges())
             return;
 
-        EdgeIds.Clear();
+        NextId = int.MinValue;
     }
     public void RemoveNextNode(int edgeIndex)
     {
         // If this node doesn't use multiple edges, use standard utility
-        if (!IsRequireMultipleEdges())
+        if (!IsUseMultipleOutgoingEdges() || CaseEventList == null)
         {
             RemoveNextNode();
             return;
         }
 
         // Ensure the edge index is below the max edge count
-        if (edgeIndex >= GetMaxEdgeCount())
+        if (edgeIndex >= GetMaxOutgoingEdges())
             return;
 
-        // Ensure the EdgeIds list is large enough to store this value
-        while (EdgeIds.Count < edgeIndex)
-        {
-            EdgeIds.Add(int.MinValue);
-        }
-
-        EdgeIds[edgeIndex] = int.MinValue;
+        CaseEventList.RemoveNextNodeForCase(edgeIndex);
     }
 
     public void ReassignId(Graph graph)
     {
         Id = graph.GetNextUnusedNodeId();
     }
-    public void SetTypeWithoutChangingBaseType(string newType)
+    public void SetType(int typeOptionIndex)
     {
-        TypeBase ??= Type;
-        Type = newType;
+        string[] list = GetNodeTypeOptions();
+        if (typeOptionIndex < 0 || typeOptionIndex > list.Length)
+            return;
+        
+        Type = list[typeOptionIndex];
     }
 }

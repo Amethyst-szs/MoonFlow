@@ -15,7 +15,7 @@ public class UnitTestEventDataRead : UnitTestBase
 
     public override UnitTestResult Test()
     {
-        Graph flow = Graph.FromFilePath("res://unit_test/byml-eventdata/UnitTest.byml", new ProjectSmoEventFlowFactory());
+        Graph flow = Graph.FromFilePath("res://unit_test/byml-eventdata/UnitTest-SphinxQuiz.byml", new ProjectSmoEventFlowFactory());
         if (!flow.IsValid())
             return UnitTestResult.FAILURE;
 

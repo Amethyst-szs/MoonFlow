@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Nindot.Al.EventFlow.Smo;
 
-public class NodeActionLoop : NodeBase
+public class NodeActionLoop : Node
 {
     public NodeActionLoop(Dictionary<object, object> dict) : base(dict) { }
     public NodeActionLoop(Graph graph, string factoryType) : base(graph, factoryType) { }

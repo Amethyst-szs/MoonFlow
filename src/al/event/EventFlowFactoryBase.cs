@@ -5,9 +5,9 @@ namespace Nindot.Al.EventFlow;
 
 public class EventFlowFactoryBase
 {
-    public virtual NodeBase CreateNode(Dictionary<object, object> dict)
+    public virtual Node CreateNode(Dictionary<object, object> dict)
     {
-        return new EventFlowNodeGeneric(dict);
+        return new NodeGeneric(dict);
     }
 
     protected static string GetNodeType(Dictionary<object, object> dict)
