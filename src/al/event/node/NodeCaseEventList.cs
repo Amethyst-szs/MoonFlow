@@ -42,14 +42,14 @@ public class NodeCaseEventList
     public void SetNextNodeForCase(Node node, int caseIndex)
     {
         SetCaseListSize(caseIndex + 1);
-        CaseList[caseIndex].NextId = node.GetId();
+        CaseList[caseIndex].SetNextId(node);
     }
     public void RemoveNextNodeForCase(int caseIndex)
     {
         if (caseIndex >= CaseList.Count)
             return;
 
-        CaseList[caseIndex].NextId = int.MinValue;
+        CaseList[caseIndex].SetNextId(null);
     }
 
     private void SetCaseListSize(int size)
@@ -68,8 +68,8 @@ public class NodeCaseEventList
 
     public class NodeCaseEvent
     {
-        public int Index;
-        public int NextId;
+        public readonly int Index = 0;
+        public int NextId { get; private set; }
         public string Name;
 
         public NodeMessageResolverData MessageData;
@@ -92,6 +92,14 @@ public class NodeCaseEventList
 
             if (dict.ContainsKey("MessageData"))
                 MessageData = new((Dictionary<object, object>)dict["MessageData"]);
+        }
+
+        public void SetNextId(Node node)
+        {
+            if (node == null)
+                NextId = int.MinValue;
+            
+            NextId = node.GetId();
         }
     }
 }

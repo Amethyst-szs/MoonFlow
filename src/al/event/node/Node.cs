@@ -15,7 +15,7 @@ public abstract class Node
     protected int Id = int.MinValue;
     protected int NextId = int.MinValue;
 
-    public NodeParams Params = null;
+    protected NodeParams Params = null;
     public NodeCaseEventList CaseEventList = null;
 
     public Node(Dictionary<object, object> dict)
@@ -180,5 +180,65 @@ public abstract class Node
             return;
         
         Type = list[typeOptionIndex];
+    }
+
+    // ====================================================== //
+    // ================= Parameter Utilities ================ //
+    // ====================================================== //
+
+    public bool IsParamDefined(string param)
+    {
+        return Params.ContainsKey(param);
+    }
+    public bool TryGetParam<T>(string param, out T value)
+    {
+        // Setup default value for out
+        value = default;
+
+        // Ensure this param name is supported by this node
+        var supportList = GetSupportedParams();
+        if (!supportList.TryGetValue(param, out Type requiredType))
+            return false;
+        
+        // Ensure the provided type T matches the supported entry
+        if (requiredType != typeof(T))
+            return false;
+        
+        value = (T)Params[param];
+        return true;
+    }
+
+    public bool TrySetParam<T>(string param, T value)
+    {
+        // Ensure this param name is supported by this node
+        var supportList = GetSupportedParams();
+        if (!supportList.TryGetValue(param, out Type requiredType))
+            return false;
+        
+        // Ensure the provided type T matches the supported entry
+        if (requiredType != typeof(T))
+            return false;
+        
+        Params[param] = value;
+        return true;
+    }
+    public bool TrySetParamMessageData(string param, NodeMessageResolverData data)
+    {
+        // Ensure this param name is supported by this node
+        var supportList = GetSupportedParams();
+        if (!supportList.TryGetValue(param, out Type requiredType))
+            return false;
+        
+        // Ensure the requiredType value is equal to NodeMessageResolverData
+        if (requiredType != typeof(NodeMessageResolverData))
+            return false;
+        
+        Params[param] = data;
+        return true;
+    }
+
+    public bool TryRemoveParam(string param)
+    {
+        return Params.Remove(param);
     }
 }
