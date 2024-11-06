@@ -8,6 +8,7 @@ public partial class UnitTester : SceneTree
 {
     protected UnitTestBase[] TestList = [
         new UnitTestEventDataRead(),
+        new UnitTestEventDataWrite(),
         // new UnitTestBymlRead(),
         // new UnitTestBymlWrite(),
         // new UnitTestMsbtSMOParse(),

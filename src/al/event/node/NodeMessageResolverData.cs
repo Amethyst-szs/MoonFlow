@@ -14,11 +14,19 @@ public class NodeMessageResolverData
         if (dict.ContainsKey("MessageFileName")) MessageFile = (string)dict["MessageFileName"];
         if (dict.ContainsKey("LabelName")) LabelName = (string)dict["LabelName"];
     }
-
     public NodeMessageResolverData(string archive, string file, string label)
     {
         MessageArchive = archive;
         MessageFile = file;
         LabelName = label;
+    }
+
+    public Dictionary<string, string> WriteBuild()
+    {
+        var dict = new Dictionary<string, string>();
+        dict["MessageType"] = MessageArchive;
+        dict["MessageFileName"] = MessageFile;
+        dict["LabelName"] = LabelName;
+        return dict;
     }
 }

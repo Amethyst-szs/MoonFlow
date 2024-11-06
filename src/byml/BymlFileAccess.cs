@@ -32,7 +32,7 @@ public class BymlFileAccess
             .Build();
 
         Dictionary<string, object> yaml = deserializer.Deserialize<Dictionary<string, object>>(yamlString);
-        iter = new BymlFile(yaml);
+        iter = new BymlFile(yaml, byml.Header.Version);
 
         return true;
     }
@@ -46,7 +46,7 @@ public class BymlFileAccess
         return ParseBytes(out iter, FileAccess.GetFileAsBytes(path));
     }
 
-    public static bool WriteFile(System.IO.MemoryStream stream, BymlFile iter)
+    public static bool WriteFile(System.IO.MemoryStream stream, BymlFile iter, ushort version = 3)
     {
         // Convert dictionary to yaml string
         ISerializer serializer = new SerializerBuilder()
@@ -66,7 +66,7 @@ public class BymlFileAccess
         BymlLibrary.Byml byml = BymlLibrary.Byml.FromText(yaml);
 
         // Write this byml to the out stream
-        byml.WriteBinary(stream, Endianness.Little);
+        byml.WriteBinary(stream, Endianness.Little, version);
 
         return true;
     }

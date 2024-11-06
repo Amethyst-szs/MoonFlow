@@ -22,4 +22,30 @@ public class NodeParams : Dictionary<object, object>
             continue;
         }
     }
+
+    public Dictionary<object, object> WriteBuild()
+    {
+        var build = new Dictionary<object, object>();
+
+        foreach (var param in this)
+        {
+            // If the current param is a NodeMessageResolverData, expand structure to original format
+            if (param.Value != null && param.Value.GetType() == typeof(NodeMessageResolverData))
+            {
+                var msgData = (NodeMessageResolverData)param.Value;
+                var newParam = new Dictionary<string, Dictionary<string, string>>
+                {
+                    { "MessageData", msgData.WriteBuild() }
+                };
+
+                build.Add(param.Key, newParam);
+                continue;
+            }
+
+            // If previous conditions failed, just append standard param to build
+            build[param.Key] = param.Value;
+        }
+
+        return build;
+    }
 }

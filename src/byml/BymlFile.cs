@@ -5,8 +5,10 @@ using System.Linq;
 
 namespace Nindot.Byml;
 
-public class BymlFile(Dictionary<string, object> dict) : Dictionary<string, object>(dict)
+public class BymlFile(Dictionary<string, object> dict, ushort version) : Dictionary<string, object>(dict)
 {
+    public readonly ushort Version = version;
+
     public static BymlFile FromFilePath(string path)
     {
         if (!BymlFileAccess.ParseFile(out BymlFile file, path))

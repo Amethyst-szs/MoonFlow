@@ -24,10 +24,10 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "DemoPlayerShow", typeof(NodeGeneric) },
         { "Event", typeof(NodeGeneric) },
         { "EventQuery", typeof(NodeGeneric) },
-        { "Fork", typeof(NodeGeneric) },
+        { "Fork", typeof(NodeFork) }, // Split execution in two? Not sure
         { "HitReaction", typeof(NodeGeneric) },
-        { "Join", typeof(NodeGeneric) },
-        { "JumpEntry", typeof(NodeGeneric) },
+        { "Join", typeof(NodeJoin) }, // Merge a branch back together? Not sure
+        { "JumpEntry", typeof(NodeJumpEntry) }, // End current event and change next entry point
         { "QueryJudge", typeof(NodeGeneric) },
         { "SwitchOff", typeof(NodeGeneric) },
         { "SwitchOn", typeof(NodeGeneric) },

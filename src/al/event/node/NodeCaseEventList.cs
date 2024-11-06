@@ -11,6 +11,7 @@ public class NodeCaseEventList
 
     private List<NodeCaseEvent> CaseList = [];
 
+    public NodeCaseEventList() { }
     public NodeCaseEventList(List<object> array)
     {
         // Initilize all items in array
@@ -22,6 +23,31 @@ public class NodeCaseEventList
             var item = (Dictionary<object, object>)obj;
             CaseList.Add(new NodeCaseEvent(item));
         }
+    }
+
+    internal List<Dictionary<string, object>> WriteBuild()
+    {
+        var list = new List<Dictionary<string, object>>();
+
+        foreach (var c in CaseList)
+        {
+            var dict = new Dictionary<string, object>();
+
+            dict["NextId"] = c.NextId;
+            
+            if (c.Index != int.MinValue)
+                dict["Index"] = c.Index;
+            
+            if (c.Name != null)
+                dict["Name"] = c.Name;
+
+            if (c.MessageData != null)
+                dict["MessageData"] = c.MessageData.WriteBuild();
+            
+            list.Add(dict);
+        }
+
+        return list;
     }
 
     public int GetCaseCount() { return CaseList.Count; }
@@ -68,7 +94,7 @@ public class NodeCaseEventList
 
     public class NodeCaseEvent
     {
-        public readonly int Index = 0;
+        public readonly int Index = int.MinValue;
         public int NextId { get; private set; }
         public string Name;
 
@@ -98,7 +124,7 @@ public class NodeCaseEventList
         {
             if (node == null)
                 NextId = int.MinValue;
-            
+
             NextId = node.GetId();
         }
     }
