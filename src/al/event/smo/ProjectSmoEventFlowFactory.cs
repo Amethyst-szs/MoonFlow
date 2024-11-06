@@ -25,15 +25,15 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "Event", typeof(NodeEvent) }, // Customizable callusing IEventFlowEventReciever->recieveEvent()
         { "EventQuery", typeof(NodeEventQuery) }, // Customizable bool CaseEventList using IEventFlowEventReciever->recieveEvent()
         { "Fork", typeof(NodeFork) }, // Split execution in two? Not sure
-        { "HitReaction", typeof(NodeGeneric) },
+        { "HitReaction", typeof(NodeHitReaction) }, // Play a hit reaction
         { "Join", typeof(NodeJoin) }, // Merge a branch back together? Not sure
         { "JumpEntry", typeof(NodeJumpEntry) }, // End current event and change next entry point
-        { "QueryJudge", typeof(NodeGeneric) },
-        { "SwitchOff", typeof(NodeGeneric) },
-        { "SwitchOn", typeof(NodeGeneric) },
-        { "TurnToPlayer", typeof(NodeGeneric) },
-        { "TurnToPlayerActionOneTime", typeof(NodeGeneric) },
-        { "TurnToPreDir", typeof(NodeGeneric) },
+        { "QueryJudge", typeof(NodeJudgeQuery) }, // Branch based on actor judge function
+        { "SwitchOff", typeof(NodeSwitchOff) }, // Disable a StageSwitch
+        { "SwitchOn", typeof(NodeSwitchOn) }, // Enable a StageSwitch
+        { "TurnToPlayer", typeof(NodeGeneric) }, // Rotate actor to face towards player
+        { "TurnToPlayerActionOneTime", typeof(NodeTurnToPlayerActionOneTime) }, // Rotate actor to face towards player with action
+        { "TurnToPreDir", typeof(NodeGeneric) }, // Rotate actor?
 
         // ProjectEventFlowNodeFactory (not al namespace)
         { "AmiiboTouchLayout", typeof(NodeGeneric) },
