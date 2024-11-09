@@ -23,9 +23,4 @@ public class NodeCapMessage : Node
         };
         return NodeOptionType.PRESET_LIST;
     }
-
-    internal override bool TryWriteBuild(out Dictionary<string, object> build)
-    {
-        return base.TryWriteBuild(out build);
-    }
 }

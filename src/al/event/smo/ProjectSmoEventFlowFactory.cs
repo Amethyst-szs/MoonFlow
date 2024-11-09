@@ -39,51 +39,51 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "AmiiboTouchLayout", typeof(NodeAmiiboTouchLayout) }, // 5-way branch for scanning amiibo
         { "AppearMapAmiiboHint", typeof(NodeGeneric) }, // Display map screen to showcase new amiibo hints
         { "BgmCtrl", typeof(NodeBgmCtrl) }, // Control music playback
-        { "BindKeepDemoStart", typeof(NodeBindKeepDemoStart) }, // Something with demos and binds, not fully understood
+        { "BindKeepDemoStart", typeof(NodeGenericQuery) }, // Something with demos and binds, not fully understood
         { "CapMessage", typeof(NodeGeneric) }, // Display a cappy message from SystemMessage/CapMessage.msbt
-        { "CapManHeroTalkSetDemoStartPose", typeof(NodeGeneric) },
-        { "CapManHeroTalkAppear", typeof(NodeGeneric) },
-        { "CapManHeroTalkFocus", typeof(NodeGeneric) },
-        { "CapManHeroTalkPlayerTurn", typeof(NodeGeneric) },
-        { "CapManHeroTalkReturn", typeof(NodeGeneric) },
-        { "CapManHeroTalkSetDemoEndPose", typeof(NodeGeneric) },
-        { "ChangeStage", typeof(NodeGeneric) },
-        { "ChangeWorldDemoMessage", typeof(NodeGeneric) },
-        { "CheckClear3CollectBgm", typeof(NodeGeneric) },
-        { "CheckCompleteCollectBgm", typeof(NodeGeneric) },
-        { "CheckCostume", typeof(NodeGeneric) },
-        { "CheckCostumeInvisible", typeof(NodeGeneric) },
-        { "CheckCostumeMissMatchPart", typeof(NodeGeneric) },
-        { "CheckCostumePair", typeof(NodeGeneric) },
-        { "CheckCount", typeof(NodeGeneric) },
-        { "CheckFirstTalkCollectBgm", typeof(NodeGeneric) },
-        { "CheckFlag", typeof(NodeGeneric) },
-        { "CheckGetLinkShine", typeof(NodeGeneric) },
-        { "CheckLifeUpItem", typeof(NodeGeneric) },
-        { "CheckLink", typeof(NodeGeneric) },
-        { "CheckMoonLockOpened", typeof(NodeGeneric) },
-        { "CheckOpenDoorSnow", typeof(NodeGeneric) },
-        { "CheckPlayingCollectBgm", typeof(NodeGeneric) },
-        { "CheckPlayerOnGround", typeof(NodeGeneric) },
-        { "CheckYukimaruRaceResult", typeof(NodeGeneric) },
-        { "CloseTalkMessage", typeof(NodeGeneric) },
-        { "CloseTalkMessageNoSe", typeof(NodeGeneric) }, // v1.2.0+
-        { "CoinPayment", typeof(NodeGeneric) },
-        { "CutSceneDemoStart", typeof(NodeGeneric) },
-        { "DemoEnd", typeof(NodeGeneric) },
-        { "DemoForceStartOnGround", typeof(NodeGeneric) },
-        { "DemoForceStart", typeof(NodeGeneric) },
-        { "DemoResetPlayerDynamics", typeof(NodeGeneric) },
-        { "DemoStart", typeof(NodeGeneric) },
-        { "DirectGetLinkShine", typeof(NodeGeneric) },
-        { "EnableHint", typeof(NodeGeneric) },
-        { "FirstTalkEndCollectBgmNpc", typeof(NodeGeneric) },
-        { "ForcePutOnDemoCap", typeof(NodeGeneric) },
-        { "GetAmiiboCostume", typeof(NodeGeneric) },
-        { "GetAmiiboNotSearchHintNum", typeof(NodeGeneric) },
-        { "GetCollectBgmBonus01", typeof(NodeGeneric) },
-        { "GetCollectBgmBonus02", typeof(NodeGeneric) },
-        { "GetSearchAmiibo", typeof(NodeGeneric) },
+        { "CapManHeroTalkSetDemoStartPose", typeof(NodeGeneric) }, // Setup demo cappy's start pose
+        { "CapManHeroTalkAppear", typeof(NodeCapManHeroTalkAppear) }, // Play appear animation for demo cappy
+        { "CapManHeroTalkFocus", typeof(NodeCapManHeroTalkFocus) }, // Define focus point by link from demo cappy
+        { "CapManHeroTalkPlayerTurn", typeof(NodeCapManHeroTalkPlayerTurn) }, // Turn player towards focus point link
+        { "CapManHeroTalkReturn", typeof(NodeGeneric) }, // Return demo cappy to Mario's head with no parameters
+        { "CapManHeroTalkSetDemoEndPose", typeof(NodeCapManHeroTalkSetDemoEndPose) }, // Set demo cappy to his ending pose
+        { "ChangeStage", typeof(NodeChangeStage) }, // Load new stage
+        { "ChangeWorldDemoMessage", typeof(NodeGeneric) }, // Display cappy's tips and dialouge for transitioning kingdoms
+        { "CheckClear3CollectBgm", typeof(NodeGenericQuery) }, // Check if BGM "EndRockSpecial" is collected
+        { "CheckCompleteCollectBgm", typeof(NodeGenericQuery) }, // Check if all unlockable BGMs are collected
+        { "CheckCostume", typeof(NodeCheckCostume) }, // Check if player is using specific costume or costume pattern
+        { "CheckCostumeInvisible", typeof(NodeGenericQuery) }, // Is the player using the invisible cap?
+        { "CheckCostumeMissMatchPart", typeof(NodeCheckCostumeMissMatchPart) }, // Is the player using miss-matching outfit parts?
+        { "CheckCostumePair", typeof(NodeCheckCostumePair) }, // Compare costume to pattern
+        { "CheckCount", typeof(NodeCheckCount) }, // Check "Shine", "Coin", and "BossDeathCount" against some target value
+        { "CheckFirstTalkCollectBgm", typeof(NodeGenericQuery) }, // Has the player spoken to the collect BGM npc before
+        { "CheckFlag", typeof(NodeCheckFlag) }, // Check if one of five specific save data flags have been set
+        { "CheckGetLinkShine", typeof(NodeCheckGetLinkShine) }, // Check if the shine on the end of a link has been collected
+        { "CheckLifeUpItem", typeof(NodeGenericQuery) }, // Check if the player has a life-up heart
+        { "CheckLink", typeof(NodeCheckLink) }, // Check if a "ShineActor" link exists
+        { "CheckMoonLockOpened", typeof(NodeGenericQuery) }, // Is the moon rock opened for the current world?
+        { "CheckOpenDoorSnow", typeof(NodeCheckOpenDoorSnow) }, // Five-way branch depending on number of open doors
+        { "CheckPlayingCollectBgm", typeof(NodeCheckPlayingCollectBgm) }, // Three-way branch if playing requested bgm
+        { "CheckPlayerOnGround", typeof(NodeGenericQuery) }, // Is player grounded?
+        /* Potentially incorrect type! */ { "CheckYukimaruRaceResult", typeof(NodeGenericQuery) }, // Check bound-bowl result
+        { "CloseTalkMessage", typeof(NodeGeneric) }, // Close dialouge balloon
+        /* ! v1.2.0+ ! */ { "CloseTalkMessageNoSe", typeof(NodeGeneric) }, // Close dialouge balloon without sound effects
+        { "CoinPayment", typeof(NodeCoinPayment) }, // Subtract CoinNum amount of coins
+        { "CutSceneDemoStart", typeof(NodeGeneric) }, // Start demo
+        { "DemoEnd", typeof(NodeGeneric) }, // End demo
+        { "DemoForceStartOnGround", typeof(NodeDemoForceStart) }, // Force start demo on ground
+        { "DemoForceStart", typeof(NodeDemoForceStart) }, // Force start demo
+        { "DemoResetPlayerDynamics", typeof(NodeDemoResetPlayerDynamics) }, // Reset player IK and dynamics after DelayStep 
+        { "DemoStart", typeof(NodeDemoStart) }, // Start a demo
+        { "DirectGetLinkShine", typeof(NodeDirectGetLinkShine) }, // Get directly handed a shine from LinkName
+        { "EnableHint", typeof(NodeGeneric) }, // Enable hint for link named "ShineActor", "ShineDummy", or "NoDelete_Shine"
+        { "FirstTalkEndCollectBgmNpc", typeof(NodeGeneric) }, // Set GameDataFile flag for talking to collect bgm npc
+        { "ForcePutOnDemoCap", typeof(NodeGeneric) }, // Force the demo cappy into put on state
+        { "GetAmiiboCostume", typeof(NodeGetAmiiboCostume) }, // Accquire a costume by amiibo, and optionally equip it
+        /* Potentially incorrect type! */ { "GetAmiiboNotSearchHintNum", typeof(NodeGenericQuery) }, // ???
+        { "GetCollectBgmBonus01", typeof(NodeGeneric) }, // Unlock CollectBgm 01
+        { "GetCollectBgmBonus02", typeof(NodeGeneric) }, // Unlock CollectBgm 02
+        { "GetSearchAmiibo", typeof(NodeGetSearchAmiibo) }, // Four-way branch based on searching amiibo
         { "IsCostumeAmiibo", typeof(NodeGeneric) },
         { "IsEnableSearchAmiibo", typeof(NodeGeneric) },
         { "IsTalkAmiiboHelp", typeof(NodeGeneric) },

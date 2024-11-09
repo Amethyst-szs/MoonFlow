@@ -17,7 +17,6 @@ public class NodeAmiiboTouchLayout : Node
 
     public NodeAmiiboTouchLayout(Dictionary<object, object> dict) : base(dict) { }
     public NodeAmiiboTouchLayout(Graph graph, string factoryType) : base(graph, factoryType) { }
-
     public NodeAmiiboTouchLayout(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
 
     public override bool IsUseMultipleOutgoingEdges() { return true; }

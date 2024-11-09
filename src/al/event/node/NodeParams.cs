@@ -9,7 +9,7 @@ public class NodeParams : Dictionary<object, object>
     public NodeParams() { }
     public NodeParams(Dictionary<object, object> iter) : base(iter)
     {
-        // Scan for any keys in the iterator that can be replaced with NodeMessageResolverData
+        // Scan for any keys in the iterator that can be replaced with NodeMessageResolverData(OnlyLabel)
         foreach (var obj in this)
         {
             if (obj.Value == null || obj.Value.GetType() != typeof(Dictionary<object, object>))
