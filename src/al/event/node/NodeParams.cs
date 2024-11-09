@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,17 +7,18 @@ namespace Nindot.Al.EventFlow;
 public class NodeParams : Dictionary<object, object>
 {
     public NodeParams() { }
-    public NodeParams(Dictionary<object, object> iter) : base(iter) {
+    public NodeParams(Dictionary<object, object> iter) : base(iter)
+    {
         // Scan for any keys in the iterator that can be replaced with NodeMessageResolverData
         foreach (var obj in this)
         {
             if (obj.Value == null || obj.Value.GetType() != typeof(Dictionary<object, object>))
                 continue;
-            
+
             var param = (Dictionary<object, object>)obj.Value;
             if (!param.ContainsKey("MessageData"))
                 continue;
-            
+
             var messageData = (Dictionary<object, object>)param["MessageData"];
             this[obj.Key] = new NodeMessageResolverData(messageData);
             continue;
@@ -29,16 +31,23 @@ public class NodeParams : Dictionary<object, object>
 
         foreach (var param in this)
         {
-            // If the current param is a NodeMessageResolverData, expand structure to original format
-            if (param.Value != null && param.Value.GetType() == typeof(NodeMessageResolverData))
+            // If the param is of type null, skip any additional checks and continue
+            if (param.Value == null)
             {
-                var msgData = (NodeMessageResolverData)param.Value;
-                var newParam = new Dictionary<string, Dictionary<string, string>>
-                {
-                    { "MessageData", msgData.WriteBuild() }
-                };
+                build[param.Key] = param.Value;
+                continue;
+            }
 
-                build.Add(param.Key, newParam);
+            // If a NodeMessageResolverData or NodeMessageResolverDataOnlyLabel, expand structure to original format
+            Type type = param.Value.GetType();
+            if (type == typeof(NodeMessageResolverData))
+            {
+                WriteBuildMessageData(ref build, param);
+                continue;
+            }
+            if (type == typeof(NodeMessageResolverDataOnlyLabel))
+            {
+                WriteBuildMessageDataOnlyLabel(ref build, param);
                 continue;
             }
 
@@ -47,5 +56,27 @@ public class NodeParams : Dictionary<object, object>
         }
 
         return build;
+    }
+
+    private static void WriteBuildMessageData(ref Dictionary<object, object> build, KeyValuePair<object, object> param)
+    {
+        var msgData = (NodeMessageResolverData)param.Value;
+        var newParam = new Dictionary<string, Dictionary<string, string>>
+        {
+            { "MessageData", msgData.WriteBuild() }
+        };
+
+        build.Add(param.Key, newParam);
+    }
+
+    private static void WriteBuildMessageDataOnlyLabel(ref Dictionary<object, object> build, KeyValuePair<object, object> param)
+    {
+        var msgData = (NodeMessageResolverDataOnlyLabel)param.Value;
+        var newParam = new Dictionary<string, Dictionary<string, string>>
+        {
+            { "MessageData", msgData.WriteBuild() }
+        };
+
+        build.Add(param.Key, newParam);
     }
 }

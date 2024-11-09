@@ -39,8 +39,8 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "AmiiboTouchLayout", typeof(NodeAmiiboTouchLayout) }, // 5-way branch for scanning amiibo
         { "AppearMapAmiiboHint", typeof(NodeGeneric) }, // Display map screen to showcase new amiibo hints
         { "BgmCtrl", typeof(NodeBgmCtrl) }, // Control music playback
-        { "BindKeepDemoStart", typeof(NodeGeneric) },
-        { "CapMessage", typeof(NodeGeneric) },
+        { "BindKeepDemoStart", typeof(NodeBindKeepDemoStart) }, // Something with demos and binds, not fully understood
+        { "CapMessage", typeof(NodeGeneric) }, // Display a cappy message from SystemMessage/CapMessage.msbt
         { "CapManHeroTalkSetDemoStartPose", typeof(NodeGeneric) },
         { "CapManHeroTalkAppear", typeof(NodeGeneric) },
         { "CapManHeroTalkFocus", typeof(NodeGeneric) },

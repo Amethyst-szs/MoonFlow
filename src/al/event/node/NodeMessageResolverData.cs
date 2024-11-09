@@ -30,3 +30,21 @@ public class NodeMessageResolverData
         return dict;
     }
 }
+
+public class NodeMessageResolverDataOnlyLabel
+{
+    public string LabelName;
+
+    public NodeMessageResolverDataOnlyLabel(Dictionary<object, object> dict)
+    {
+        if (dict.ContainsKey("LabelName")) LabelName = (string)dict["LabelName"];
+    }
+    public NodeMessageResolverDataOnlyLabel(string label) { LabelName = label; }
+
+    public Dictionary<string, string> WriteBuild()
+    {
+        var dict = new Dictionary<string, string>();
+        dict["LabelName"] = LabelName;
+        return dict;
+    }
+}
