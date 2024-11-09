@@ -84,14 +84,14 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "GetCollectBgmBonus01", typeof(NodeGeneric) }, // Unlock CollectBgm 01
         { "GetCollectBgmBonus02", typeof(NodeGeneric) }, // Unlock CollectBgm 02
         { "GetSearchAmiibo", typeof(NodeGetSearchAmiibo) }, // Four-way branch based on searching amiibo
-        { "IsCostumeAmiibo", typeof(NodeGeneric) },
-        { "IsEnableSearchAmiibo", typeof(NodeGeneric) },
-        { "IsTalkAmiiboHelp", typeof(NodeGeneric) },
-        { "KakkuTurn", typeof(NodeGeneric) },
-        { "MessageBalloon", typeof(NodeGeneric) },
-        { "MessageTalk", typeof(NodeGeneric) },
-        { "MessageTalkSpecialPurpose", typeof(NodeGeneric) },
-        { "NextTalkMessage", typeof(NodeGeneric) },
+        { "IsCostumeAmiibo", typeof(NodeGenericQuery) }, // Boolean query for amiibo costume
+        { "IsEnableSearchAmiibo", typeof(NodeGenericQuery) }, // Can amiibo search?
+        { "IsTalkAmiiboHelp", typeof(NodeGenericQuery) }, // Is talking to amiibo help?
+        { "KakkuTurn", typeof(NodeGeneric) }, // Turn glydon
+        { "MessageBalloon", typeof(NodeMessageBalloon) }, // Display a balloon over an actor
+        { "MessageTalk", typeof(NodeMessageTalk) }, // Enter a talking dialogue balloon
+        { "MessageTalkSpecialPurpose", typeof(NodeMessageTalkSpecialPurpose) }, // Special kind of MessageTalk used for peach
+        { "NextTalkMessage", typeof(NodeGeneric) }, // Advance to next talk message
         { "NormalDemoTryStart", typeof(NodeGeneric) },
         { "NpcMoveToLink", typeof(NodeGeneric) },
         { "OpenBgmList", typeof(NodeGeneric) },
