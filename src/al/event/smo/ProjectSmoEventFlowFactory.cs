@@ -92,12 +92,12 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "MessageTalk", typeof(NodeMessageTalk) }, // Enter a talking dialogue balloon
         { "MessageTalkSpecialPurpose", typeof(NodeMessageTalkSpecialPurpose) }, // Special kind of MessageTalk used for peach
         { "NextTalkMessage", typeof(NodeGeneric) }, // Advance to next talk message
-        { "NormalDemoTryStart", typeof(NodeGeneric) },
-        { "NpcMoveToLink", typeof(NodeGeneric) },
-        { "OpenBgmList", typeof(NodeGeneric) },
-        { "PlayerAction", typeof(NodeGeneric) },
-        { "PlayerTurn", typeof(NodeGeneric) },
-        { "PopItem", typeof(NodeGeneric) },
+        { "NormalDemoTryStart", typeof(NodeGeneric) }, // Attempt to start a "normal demo"?
+        { "NpcMoveToLink", typeof(NodeNpcMoveToLink) }, // Move an NPC to a location at LinkName
+        { "OpenBgmList", typeof(NodeGeneric) }, // Open BGM menu
+        { "PlayerAction", typeof(NodePlayerAction) }, // Play an action on the player
+        { "PlayerTurn", typeof(NodePlayerTurn) }, // Turn the player to face the EventFlow's actor
+        { "PopItem", typeof(NodePopItem) }, // Pop out an item using ItemTiming
         { "PopLinkShine", typeof(NodeGeneric) },
         { "ReplacePlayer", typeof(NodeGeneric) },
         { "SceneWipeClose", typeof(NodeGeneric) },
@@ -106,7 +106,7 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "SessionWaitMusician", typeof(NodeGeneric) },
         { "SetDemoInfoDemoName", typeof(NodeGeneric) },
         { "UnlockHint", typeof(NodeGeneric) },
-        { "VrGyroReset", typeof(NodeGeneric) }, // v1.3.0+
+        /* ! v1.3.0+ ! */ { "VrGyroReset", typeof(NodeGeneric) },
         { "WaitWipeOpenEnd", typeof(NodeGeneric) },
         { "WaitSimple", typeof(NodeGeneric) },
         { "WipeFadeBlackClose", typeof(NodeGeneric) },
