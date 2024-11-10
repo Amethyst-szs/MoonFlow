@@ -18,6 +18,9 @@ public partial class Graph
         if (!InitNodes(nodeList, nodeFactory)) return;
         if (!InitEntryPoints(entryPointList)) return;
 
+        byml.TryGetValue(out List<object> itemList, "ItemList");
+        InitItemList(itemList);
+
         _isValid = true;
         return;
     }
@@ -83,6 +86,24 @@ public partial class Graph
         }
 
         return true;
+    }
+
+    private void InitItemList(List<object> list)
+    {
+        if (list == null || list.Count == 0)
+            return;
+        
+        foreach (var item in list)
+        {
+            if (item.GetType() != typeof(string))
+            {
+                GD.PushWarning("Ignoring element in ItemList that isn't string type!");
+                continue;
+            }
+
+            var entry = new ItemEntry((string)item);
+            ItemList.Add(entry);
+        }
     }
 
     public static Graph FromFilePath(string path, EventFlowFactoryBase nodeFactory)

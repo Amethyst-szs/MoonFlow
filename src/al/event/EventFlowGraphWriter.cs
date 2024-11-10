@@ -56,6 +56,10 @@ public partial class Graph
         // Build the two main data structures of the byml dictionary
         build["EntryList"] = WriteBuildEntryPointList();
         build["NodeList"] = WriteBuildNodeList();
+        
+        var itemList = WriteBuildItemList();
+        if (itemList.Count > 0)
+            build["ItemList"] = itemList;
 
         return true;
     }
@@ -89,6 +93,18 @@ public partial class Graph
             }
 
             list.Add(build);
+        }
+
+        return list;
+    }
+
+    public List<string> WriteBuildItemList()
+    {
+        var list = new List<string>();
+
+        foreach (var item in ItemList)
+        {
+            list.Add(item.GetName());
         }
 
         return list;
