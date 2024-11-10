@@ -98,19 +98,19 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "PlayerAction", typeof(NodePlayerAction) }, // Play an action on the player
         { "PlayerTurn", typeof(NodePlayerTurn) }, // Turn the player to face the EventFlow's actor
         { "PopItem", typeof(NodePopItem) }, // Pop out an item using ItemTiming
-        { "PopLinkShine", typeof(NodeGeneric) },
-        { "ReplacePlayer", typeof(NodeGeneric) },
-        { "SceneWipeClose", typeof(NodeGeneric) },
-        { "SelectChoice", typeof(NodeGeneric) },
-        { "SelectYesNo", typeof(NodeGeneric) },
-        { "SessionWaitMusician", typeof(NodeGeneric) },
-        { "SetDemoInfoDemoName", typeof(NodeGeneric) },
-        { "UnlockHint", typeof(NodeGeneric) },
-        /* ! v1.3.0+ ! */ { "VrGyroReset", typeof(NodeGeneric) },
-        { "WaitWipeOpenEnd", typeof(NodeGeneric) },
-        { "WaitSimple", typeof(NodeGeneric) },
-        { "WipeFadeBlackClose", typeof(NodeGeneric) },
-        { "WipeFadeBlackOpen", typeof(NodeGeneric) },
+        { "PopLinkShine", typeof(NodePopLinkShine) }, // Pop out a linked shine using LinkName
+        { "ReplacePlayer", typeof(NodeGeneric) }, // Replace normal version of player with demo player
+        { "SceneWipeClose", typeof(NodeSceneWipeClose) }, // Close a scene with a wipe by SituationName
+        { "SelectChoice", typeof(NodeSelectChoice) }, // Dialouge balloon selection between a variable amount of options
+        { "SelectYesNo", typeof(NodeSelectYesNo) }, // Two-way SelectChoice, strings must still be set in CaseEventItems
+        { "SessionWaitMusician", typeof(NodeSessionWaitMusician) }, // Check if Count amount of musicians are playing
+        { "SetDemoInfoDemoName", typeof(NodeSetDemoInfoDemoName) }, // Set demo name
+        { "UnlockHint", typeof(NodeGeneric) }, // Unlock a random(?) hint for the current world
+        /* ! v1.3.0+ ! */ { "VrGyroReset", typeof(NodeGeneric) }, // ???
+        { "WaitWipeOpenEnd", typeof(NodeGeneric) }, // Wait for the wipe to finish opening
+        { "WaitSimple", typeof(NodeWaitSimple) }, // Pause the event flow for some number of frames
+        { "WipeFadeBlackClose", typeof(NodeWipeFadeBlack) }, // Start the basic fading wipe
+        { "WipeFadeBlackOpen", typeof(NodeWipeFadeBlack) }, // End the basic fading wipe
     };
 
     public override Node CreateNode(Dictionary<object, object> dict)

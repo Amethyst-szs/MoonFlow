@@ -107,6 +107,7 @@ public abstract class Node
 
     public virtual bool IsAllowOutgoingEdges() { return true; }
     public virtual bool IsUseMultipleOutgoingEdges() { return false; }
+    public virtual bool IsForceOutgoingEdgeCount() { return true; }
     public virtual int GetMaxOutgoingEdges() { return 1; }
 
     public abstract NodeOptionType GetNodeNameOptions(out string[] options);
