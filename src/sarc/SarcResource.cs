@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.Byml;
+using Nindot.Al.EventFlow;
+using System;
 
 namespace Nindot;
 
@@ -79,9 +81,9 @@ public partial class SarcResource : Resource
     {
         return new MsbtFile(tagLib, [.. SarcData[name]]);
     }
-    public MsbtFile GetFileAlEventFlow(string name, TagLibraryHolder.Type tagLib)
+    public Graph GetFileAlEventFlow(string name, EventFlowFactoryBase nodeFactory)
     {
-        return new MsbtFile(tagLib, [.. SarcData[name]]);
+        return Graph.FromBytes([.. SarcData[name]], nodeFactory);
     }
 
     // ====================================================== //

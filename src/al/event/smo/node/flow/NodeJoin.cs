@@ -10,7 +10,7 @@ public class NodeJoin : Node
     // ====== Initilization and Standard Virtual Config ===== //
     // ====================================================== //
 
-    private int[] PreIdList = new int[2];
+    private List<int> PreIdList = [];
 
     public NodeJoin(Dictionary<object, object> dict) : base(dict)
     {
@@ -21,7 +21,7 @@ public class NodeJoin : Node
         var list = (List<object>)dict["PreIdList"];
         for (int i = 0; i < list.Count; i++)
         {
-            PreIdList[i] = (int)list[i];
+            PreIdList.Add((int)list[i]);
         }
     }
     public NodeJoin(Graph graph, string factoryType) : base(graph, factoryType)
@@ -57,7 +57,7 @@ public class NodeJoin : Node
         if (!base.TryWriteBuild(out build))
             return false;
 
-        build["PreIdList"] = PreIdList.Clone();
+        build["PreIdList"] = PreIdList;
         return true;
     }
 
@@ -67,7 +67,7 @@ public class NodeJoin : Node
 
     private void ResetPreIdList()
     {
-        for (int i = 0; i < PreIdList.Length; i++)
+        for (int i = 0; i < PreIdList.Count; i++)
             PreIdList[i] = int.MinValue;
     }
 }

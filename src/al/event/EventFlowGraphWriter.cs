@@ -64,7 +64,7 @@ public partial class Graph
         return true;
     }
 
-    public List<Dictionary<string, object>> WriteBuildEntryPointList()
+    private List<Dictionary<string, object>> WriteBuildEntryPointList()
     {
         var list = new List<Dictionary<string, object>>();
 
@@ -80,7 +80,7 @@ public partial class Graph
         return list;
     }
 
-    public List<Dictionary<string, object>> WriteBuildNodeList()
+    private List<Dictionary<string, object>> WriteBuildNodeList()
     {
         var list = new List<Dictionary<string, object>>();
 
@@ -98,7 +98,7 @@ public partial class Graph
         return list;
     }
 
-    public List<string> WriteBuildItemList()
+    private List<string> WriteBuildItemList()
     {
         var list = new List<string>();
 
