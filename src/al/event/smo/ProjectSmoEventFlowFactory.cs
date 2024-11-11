@@ -65,7 +65,7 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "CheckOpenDoorSnow", typeof(NodeCheckOpenDoorSnow) }, // Five-way branch depending on number of open doors
         { "CheckPlayingCollectBgm", typeof(NodeCheckPlayingCollectBgm) }, // Three-way branch if playing requested bgm
         { "CheckPlayerOnGround", typeof(NodeGenericQuery) }, // Is player grounded?
-        /* Potentially incorrect type! */ { "CheckYukimaruRaceResult", typeof(NodeGenericQuery) }, // Check bound-bowl result
+        { "CheckYukimaruRaceResult", typeof(NodeGenericQuery) }, // Check bound-bowl result
         { "CloseTalkMessage", typeof(NodeGeneric) }, // Close dialouge balloon
         /* ! v1.2.0+ ! */ { "CloseTalkMessageNoSe", typeof(NodeGeneric) }, // Close dialouge balloon without sound effects
         { "CoinPayment", typeof(NodeCoinPayment) }, // Subtract CoinNum amount of coins
