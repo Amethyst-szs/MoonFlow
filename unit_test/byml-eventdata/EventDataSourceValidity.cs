@@ -75,6 +75,10 @@ public class UnitTestEventDataSourceValidity : UnitTestBase
             cmp.StoreString(resYaml);
             cmp.Close();
 
+            var resOut = FileAccess.Open("user://unit_test/EventFlowGraphError_Build.byml", FileAccess.ModeFlags.Write);
+            resOut.StoreBuffer(result);
+            resOut.Close();
+
             return false;
         }
 

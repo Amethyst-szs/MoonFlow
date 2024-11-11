@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 namespace Nindot.Al.EventFlow;
 
@@ -27,17 +28,13 @@ public class NodeParams : Dictionary<object, object>
 
     public Dictionary<object, object> WriteBuild()
     {
-        var build = new Dictionary<object, object>();
+        var build = this.ToDictionary(entry => entry.Key, entry => entry.Value);
 
         foreach (var param in this)
         {
-            // If the param is of type null, skip any additional checks and continue
             if (param.Value == null)
-            {
-                build[param.Key] = param.Value;
                 continue;
-            }
-
+            
             // If a NodeMessageResolverData or NodeMessageResolverDataOnlyLabel, expand structure to original format
             Type type = param.Value.GetType();
             if (type == typeof(NodeMessageResolverData))
@@ -45,7 +42,7 @@ public class NodeParams : Dictionary<object, object>
                 WriteBuildMessageData(ref build, param);
                 continue;
             }
-            if (type == typeof(NodeMessageResolverDataOnlyLabel))
+            else if (type == typeof(NodeMessageResolverDataOnlyLabel))
             {
                 WriteBuildMessageDataOnlyLabel(ref build, param);
                 continue;
@@ -66,7 +63,7 @@ public class NodeParams : Dictionary<object, object>
             { "MessageData", msgData.WriteBuild() }
         };
 
-        build.Add(param.Key, newParam);
+        build[param.Key] = newParam;
     }
 
     private static void WriteBuildMessageDataOnlyLabel(ref Dictionary<object, object> build, KeyValuePair<object, object> param)
@@ -77,6 +74,6 @@ public class NodeParams : Dictionary<object, object>
             { "MessageData", msgData.WriteBuild() }
         };
 
-        build.Add(param.Key, newParam);
+        build[param.Key] = newParam;
     }
 }
