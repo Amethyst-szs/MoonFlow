@@ -6,7 +6,6 @@ using BymlLibrary;
 using Revrs;
 
 using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.TypeResolvers;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -33,7 +32,6 @@ public class BymlFileAccess
             .WithTagMapping("!ul", typeof(ulong))
             .WithTagMapping("!f", typeof(float))
             .WithTagMapping("!d", typeof(double))
-            .WithTypeResolver(new StaticTypeResolver())
             .Build();
 
         Dictionary<string, object> yaml = deserializer.Deserialize<Dictionary<string, object>>(yamlString);
@@ -56,7 +54,6 @@ public class BymlFileAccess
         // Convert dictionary to yaml string
         ISerializer serializer = new SerializerBuilder()
             .WithTypeConverter(new YamlTypeTagMapper())
-            .EnsureRoundtrip()
             .Build();
 
         string yaml = serializer.Serialize(iter, typeof(Dictionary<string, object>));
@@ -76,6 +73,8 @@ public class BymlFileAccess
     public class YamlTypeTagMapper : IYamlTypeConverter
     {
         public static readonly Dictionary<Type, string> Table = new(){
+            { typeof(bool), "!b" },
+            { typeof(string), "!s" },
             { typeof(int), "!l" },
             { typeof(long), "!ll" },
             { typeof(uint), "!u" },
@@ -94,7 +93,7 @@ public class BymlFileAccess
         }
         public void WriteYaml(IEmitter emitter, object value, Type type, ObjectSerializer serializer)
         {
-            emitter.Emit(new Scalar("⌂♯" + Table[type], null, value.ToString()));
+            emitter.Emit(new Scalar("⌂♯" + Table[type], null, value.ToString(), ScalarStyle.Any, true, false));
         }
     }
 }
