@@ -10,9 +10,9 @@ public class MsbtTagElementPictureFont : MsbtTagElement
 {
     public const TagFontIndex FontIndex = TagFontIndex.PICTURE_FONT;
 
-    public ushort IconType
+    public TagNamePictureFont IconType
     {
-        get { return TagName; }
+        get { return (TagNamePictureFont)TagName; }
         set
         {
             if (!Enum.IsDefined(typeof(TagNamePictureFont), value))
@@ -22,7 +22,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
             }
             else
             {
-                TagName = value;
+                TagName = (ushort)value;
             }
         }
     }
@@ -33,7 +33,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
             return;
 
         // The tag name is the icon type, so make sure to assign it to itself here to run the enum clamper
-        IconType = TagName;
+        IconType = (TagNamePictureFont)TagName;
 
         // Ensure that the first data field is 0x6, cause it is always equal to that
         ushort font = BitConverter.ToUInt16(buffer, pointer);
@@ -50,7 +50,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         if (typeChar != calcTypeChar || calcTypeChar == 0x0000)
         {
             GD.PushWarning("PictureFont tag has mismatch between IconType and char data buffer, setting to default icon");
-            IconType = (ushort)(TagNamePictureFont.ENUM_END - 1);
+            IconType = TagNamePictureFont.ENUM_END;
         }
     }
 
@@ -74,10 +74,10 @@ public class MsbtTagElementPictureFont : MsbtTagElement
 
     public string GetIconName()
     {
-        if (IconType >= (ushort)TagNamePictureFont.ENUM_END)
+        if (IconType >= TagNamePictureFont.ENUM_END)
             return "Unknown Icon";
 
-        return IconNameTable[IconType];
+        return IconNameTable[(ushort)IconType];
     }
 
     public override byte[] GetBytes()
@@ -153,10 +153,11 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         "Power Moon (Moon Kingdom)",
         "Power Moon",
         "Empty Power Moon",
-        "Power Moon Triple Dot",
 
-        "Unknown Icon",
-
+        "Star Icon",
+        "Star Icon (Empty)",
         "Life-Up Heart",
+        "Cappy",
+        "Luigi",
     ];
 };

@@ -11,7 +11,7 @@ public class MsbtTagElementTextAlign : MsbtTagElement
         {
             if (!Enum.IsDefined(typeof(TagNameTextAlign), value))
             {
-                GD.PushWarning("Attempted to set Tag SystemColor to invalid color, set to reset value instead");
+                GD.PushWarning("Attempted to set Tag TextAlign to invalid alignment, set to default value instead");
                 TagName = (ushort)TagNameTextAlign.LEFT;
             }
             else

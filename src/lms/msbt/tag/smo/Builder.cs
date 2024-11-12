@@ -83,6 +83,7 @@ public static class Builder
             (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer),
             (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
             (ushort)TagGroup.TEXT_ALIGN => new MsbtTagElementTextAlign(ref pointer, buffer),
+            (ushort)TagGroup.GRAMMAR => new MsbtTagElementGrammar(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

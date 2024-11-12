@@ -138,10 +138,51 @@ public enum TagNamePictureFont : ushort
     ENUM_END = 0x34,
 }
 
+public enum TagNameProjectIcon : ushort
+{
+    ShineIconCurrentWorld = 0x0,
+    CoinCollectIconCurrentWorld = 0x1,
+    PadStyleButtonA = 0x2,
+    PadStyleButtonB = 0x3,
+    PadStyleButtonX = 0x4,
+    PadStyleButtonY = 0x5,
+    PadStyleButtonL = 0x6,
+    PadStyleButtonR = 0x7,
+    PadStyleButtonZL = 0x8,
+    PadStyleButtonZR = 0x9,
+    PadStyleButtonMinus = 0xA,
+    PadStyleButtonPlus = 0xB,
+    PadStyleKeyUp = 0xC,
+    PadStyleKeyDown = 0xD,
+    PadStyleKeyLeft = 0xE,
+    PadStyleKeyRight = 0xF,
+    PadStyleStickL = 0x10,
+    PadStyleStickR = 0x11,
+    PadStyleStickPushR = 0x12,
+    PadStyleStickUD = 0x13,
+    PadStyleStickLR = 0x14,
+    PadStyleButtonCapture = 0x15,
+    PadStyleJoyCon = 0x16,
+    PadStyleJoyConR = 0x17,
+    PadStyleReset = 0x18,
+    PadStyleJoyConIconOnly = 0x19,
+    PadStyle2PButtonY = 0x1A,
+    PadStyle2PStickL = 0x1B,
+    PadStyle2PStickR = 0x1C,
+    PadPairMenu = 0x1D,
+    PadPairMap = 0x1E,
+}
+
 public enum TagNameTextAlign : ushort
 {
     CENTER = 0x0,
     LEFT = 0x1,
+}
+
+public enum TagNameGrammar : ushort
+{
+    DECAP = 0x0,
+    CAP = 0x1,
 }
 
 public enum TagFontIndex : ushort
