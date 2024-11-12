@@ -98,6 +98,18 @@ public class MsbpFile : FileBase
 
         return Color.GetColor(idx);
     }
+    public BlockColor.Entry ColorGet(int idx)
+    {
+        if (!ColorIsFileContainData()) return null;
+
+        return Color.GetColor(idx);
+    }
+    public string ColorGetLabel(int idx)
+    {
+        if (!ColorIsFileContainData()) return null;
+
+        return ColorLabels.GetLabelList()[idx];
+    }
     public void ColorAddNew(string name, byte r, byte g, byte b, byte a)
     {
         if (!ColorIsFileContainData()) return;

@@ -6,14 +6,15 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementSystemFurigana : MsbtTagElementWithTextData
+// Used for rendering Japanese Furigana
+public class MsbtTagElementSystemRuby : MsbtTagElementWithTextData
 {
-    public ushort Unknown1 = 0;
+    public ushort Code = 0;
 
-    public MsbtTagElementSystemFurigana(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementSystemRuby(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         // Copy data from buffer at pointer
-        Unknown1 = BitConverter.ToUInt16(buffer, pointer);
+        Code = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
 
         ReadTextData(ref pointer, buffer);
@@ -22,7 +23,7 @@ public class MsbtTagElementSystemFurigana : MsbtTagElementWithTextData
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
-        value.Write(Unknown1);
+        value.Write(Code);
         WriteTextData(value);
 
         return value.ToArray();
@@ -42,9 +43,41 @@ public class MsbtTagElementSystemFurigana : MsbtTagElementWithTextData
     }
 };
 
+public class MsbtTagElementSystemFont : MsbtTagElement
+{
+    public TagFontIndex Font = TagFontIndex.MESSAGE_FONT;
+
+    public MsbtTagElementSystemFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    {
+        // Copy data from buffer at pointer
+        Font = (TagFontIndex)BitConverter.ToUInt16(buffer, pointer);
+    }
+
+    public override byte[] GetBytes()
+    {
+        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        value.Write(Font);
+        return value.ToArray();
+    }
+
+    public override ushort GetDataSizeBase()
+    {
+        return 0x2;
+    }
+
+    public override string GetTagNameStr()
+    {
+        if (Enum.IsDefined(typeof(TagNameSystem), TagName))
+            return Enum.GetName(typeof(TagNameSystem), TagName);
+
+        return "Unknown";
+    }
+};
+
 public class MsbtTagElementDeviceFontSize : MsbtTagElement
 {
-    public ushort FontSize = 0;
+    // Converted to 100-based percentage floating-point number (NEON_ucvtf)
+    public ushort FontSize = 100;
 
     public MsbtTagElementDeviceFontSize(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
@@ -53,7 +86,7 @@ public class MsbtTagElementDeviceFontSize : MsbtTagElement
 
         // Copy short from buffer at pointer
         FontSize = BitConverter.ToUInt16(buffer, pointer);
-        pointer += 0x2;
+        return;
     }
 
     public override byte[] GetBytes()
@@ -79,39 +112,7 @@ public class MsbtTagElementDeviceFontSize : MsbtTagElement
 
 public class MsbtTagElementSystemColor : MsbtTagElement
 {
-    private enum ColorTable : ushort
-    {
-        BLACK = 0,
-        YELLOW = 1,
-        WHITE = 2,
-        RED = 3,
-        GREEN = 4,
-        BLUE = 5,
-        GRAY = 6,
-        LIGHT_BLUE = 7,
-        RESET = 0xFFFF
-    };
-
     private ushort _color;
-    public ushort Color
-    {
-        get { return _color; }
-        set
-        {
-            if (!Enum.IsDefined(typeof(ColorTable), value))
-            {
-#if !UNIT_TEST
-                GD.PushWarning("Attempted to set Tag SystemColor to invalid color, set to reset value instead");
-#endif
-
-                _color = (ushort)ColorTable.RESET;
-            }
-            else
-            {
-                _color = value;
-            }
-        }
-    }
 
     public MsbtTagElementSystemColor(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
@@ -119,14 +120,14 @@ public class MsbtTagElementSystemColor : MsbtTagElement
             return;
 
         // Copy short from buffer at pointer
-        Color = BitConverter.ToUInt16(buffer, pointer);
+        // Color = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
     }
 
     public override byte[] GetBytes()
     {
         MemoryStream value = CreateMemoryStreamWithHeaderData();
-        value.Write(Color);
+        // value.Write(Color);
         return value.ToArray();
     }
 
@@ -141,6 +142,24 @@ public class MsbtTagElementSystemColor : MsbtTagElement
             return Enum.GetName(typeof(TagNameSystem), TagName);
 
         return "Unknown";
+    }
+
+    public ushort GetColorIdx()
+    {
+        return _color;
+    }
+    public Msbp.BlockColor.Entry GetColor(Msbp.MsbpFile project)
+    {
+        return project.ColorGet(_color);
+    }
+    public string GetColorName(Msbp.MsbpFile project)
+    {
+        return project.ColorGetLabel(_color);
+    }
+
+    public void SetColor(Msbp.MsbpFile project, string color)
+    {
+        // project.ColorGet
     }
 };
 

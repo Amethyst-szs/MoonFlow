@@ -18,18 +18,18 @@ public enum TagGroup : ushort
 
 public enum TagNameSystem : ushort
 {
-    RUBY_AND_FURIGANA = 0,
+    RUBY = 0, // Used for rendering Japanese Furigana
     FONT = 1,
     FONT_SIZE = 2,
     COLOR = 3,
     PAGE_BREAK = 4,
-    REFERENCE = 5,
+    /* REFERENCE = 5 (This tag is not implemented by the game, only noted in MSBP) */ 
 }
 
 public enum TagNameEui : ushort
 {
-    PRINT_DELAY = 0,
-    PRINT_SPEED = 1,
+    WAIT = 0,
+    SPEED = 1,
     FLUSH = 2,
     AUTO_NEXT = 3,
     CHOICE_2 = 4,

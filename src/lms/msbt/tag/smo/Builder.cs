@@ -96,7 +96,8 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameSystem.RUBY_AND_FURIGANA => new MsbtTagElementSystemFurigana(ref pointer, buffer),
+            (ushort)TagNameSystem.RUBY => new MsbtTagElementSystemRuby(ref pointer, buffer),
+            (ushort)TagNameSystem.FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
             (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementDeviceFontSize(ref pointer, buffer),
             (ushort)TagNameSystem.COLOR => new MsbtTagElementSystemColor(ref pointer, buffer),
             (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
@@ -111,8 +112,8 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameEui.PRINT_DELAY => new MsbtTagElementPrintDelay(ref pointer, buffer),
-            (ushort)TagNameEui.PRINT_SPEED => new MsbtTagElementPrintSpeed(ref pointer, buffer),
+            (ushort)TagNameEui.WAIT => new MsbtTagElementWait(ref pointer, buffer),
+            (ushort)TagNameEui.SPEED => new MsbtTagElementSpeed(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

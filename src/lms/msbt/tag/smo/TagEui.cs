@@ -6,7 +6,7 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementPrintDelay : MsbtTagElement
+public class MsbtTagElementWait : MsbtTagElement
 {
     public ushort DelayFrames = 0;
 
@@ -37,7 +37,7 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
         }
     }
 
-    public MsbtTagElementPrintDelay(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementWait(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
@@ -72,7 +72,7 @@ public class MsbtTagElementPrintDelay : MsbtTagElement
     }
 };
 
-public class MsbtTagElementPrintSpeed : MsbtTagElement
+public class MsbtTagElementSpeed : MsbtTagElement
 {
     private enum InstantModeTable : ushort
     {
@@ -103,7 +103,7 @@ public class MsbtTagElementPrintSpeed : MsbtTagElement
 
     protected ushort PrintSpeed = 0x803F;
 
-    public MsbtTagElementPrintSpeed(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementSpeed(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
     {
         if (!IsValid())
             return;
