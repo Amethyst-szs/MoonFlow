@@ -155,11 +155,14 @@ public class BlockTagCommon(byte[] data, string listingName, int offset) : Block
         return null;
     }
 
-    public int GetTagIndex(string label)
+    public int GetTagIndexInGroup(string label, TagGroupInfo groupTag)
     {
-        for (int i = 0; i < List.Count; i++)
+        if (Type != BlockType.TAG2)
+            return -1;
+        
+        for (int i = 0; i < groupTag.ListingIndexList.Count; i++)
         {
-            if (List[i].Name == label)
+            if (List[groupTag.ListingIndexList[i]].Name == label)
                 return i;
         }
 

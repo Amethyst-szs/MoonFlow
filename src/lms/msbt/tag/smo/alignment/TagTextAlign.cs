@@ -12,7 +12,7 @@ public class MsbtTagElementTextAlign : MsbtTagElement
 
     public MsbtTagElementTextAlign(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementTextAlign(TagNameTextAlign type)
-        : base((ushort)TagGroup.TEXT_ALIGN, (ushort)type) { }
+        : base((ushort)TagGroup.TextAlign, (ushort)type) { }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize) { }
 

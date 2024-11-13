@@ -59,10 +59,10 @@ public partial class MsbpFile : FileBase
         if (!Tags.IsValid()) return null;
         return Tags.GetTag(label);
     }
-    public int Tag_GetIndex(string label)
+    public int Tag_GetIndex(string label, TagGroupInfo tagGroup)
     {
         if (!Tags.IsValid()) return -1;
-        return Tags.GetTagIndex(label);
+        return Tags.GetTagIndexInGroup(label, tagGroup);
     }
 
     // ====================================================== //

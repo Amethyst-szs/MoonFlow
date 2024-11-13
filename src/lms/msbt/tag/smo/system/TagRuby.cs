@@ -12,7 +12,7 @@ public class MsbtTagElementSystemRuby : MsbtTagElementWithTextData
 
     public MsbtTagElementSystemRuby(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementSystemRuby(ushort code, string content)
-        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.RUBY)
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.Ruby)
     {
         Code = code;
         Text = content;

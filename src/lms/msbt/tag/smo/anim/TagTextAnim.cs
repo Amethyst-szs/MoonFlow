@@ -16,7 +16,7 @@ public class MsbtTagElementTextAnim : MsbtTagElement
 
     public MsbtTagElementTextAnim(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementTextAnim(TagNameTextAnim anim)
-        : base((ushort)TagGroup.TEXT_ANIM, (ushort)anim)
+        : base((ushort)TagGroup.TextAnim, (ushort)anim)
     {
         Anim = anim;
     }

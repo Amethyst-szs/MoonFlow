@@ -5,16 +5,28 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementNumberFormat : MsbtTagElementWithTextData
+public class MsbtTagElementNumberScore : MsbtTagElementWithTextData
 {
+    // Need to do some research on what these properties actually mean
     public ushort Figure = 0;
     public ushort IsJapaneseZenkaku = 0;
 
-    public MsbtTagElementNumberFormat(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
-    public MsbtTagElementNumberFormat(TagNameFormatNumber tagName)
-        : base((ushort)TagGroup.FORMAT_NUMBER, (ushort)tagName)
+    public string ReplacementKey
     {
-        Text = "";
+        get { return Text; }
+        set { Text = value; }
+    }
+
+    public MsbtTagElementNumberScore(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementNumberScore(string replacementKey)
+        : base((ushort)TagGroup.Number, (ushort)TagNameNumber.Score)
+    {
+        ReplacementKey = replacementKey;
+    }
+    internal MsbtTagElementNumberScore(string replacementKey, TagNameNumber tag)
+        : base((ushort)TagGroup.Number, (ushort)tag)
+    {
+        ReplacementKey = replacementKey;
     }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
@@ -39,12 +51,5 @@ public class MsbtTagElementNumberFormat : MsbtTagElementWithTextData
     }
 
     public override ushort CalcDataSize() { return (ushort)(base.CalcDataSize() + sizeof(uint)); }
-
-    public override string GetTagNameStr()
-    {
-        if (Enum.IsDefined(typeof(TagNameFormatNumber), TagName))
-            return Enum.GetName(typeof(TagNameFormatNumber), TagName);
-
-        return "Unknown";
-    }
+    public override string GetTagNameStr() { return "Score"; }
 };

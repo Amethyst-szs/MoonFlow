@@ -37,20 +37,9 @@ public class MsbtTagElementEuiSpeed : MsbtTagElement
 
     protected ushort PrintSpeed = 0x803F;
 
-    public MsbtTagElementEuiSpeed(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
-    {
-        if (!IsValid())
-            return;
+    public MsbtTagElementEuiSpeed(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementEuiSpeed() : base((ushort)TagGroup.Eui, (ushort)TagNameEui.Speed) { }
 
-        // Copy data from buffer at pointer
-        InstantMode = BitConverter.ToUInt16(buffer, pointer);
-        pointer += 0x2;
-
-        PrintSpeed = BitConverter.ToUInt16(buffer, pointer);
-        pointer += 0x2;
-    }
-    public MsbtTagElementEuiSpeed() : base((ushort)TagGroup.EUI, (ushort)TagNameEui.SPEED) { }
-    
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
     {
         InstantMode = BitConverter.ToUInt16(buffer, pointer);

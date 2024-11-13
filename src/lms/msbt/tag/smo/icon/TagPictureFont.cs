@@ -8,7 +8,7 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementPictureFont : MsbtTagElement
 {
-    public const TagFontIndex FontIndex = TagFontIndex.PICTURE_FONT;
+    public const TagFontIndex FontIndex = TagFontIndex.Picture;
 
     public TagNamePictureFont Icon
     {
@@ -17,8 +17,8 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         {
             if (!Enum.IsDefined(typeof(TagNamePictureFont), value))
             {
-                GD.PushWarning("Attempted to set PictureFont Tag IconType to invalid type, clamped to enum maximum");
-                TagName = (ushort)(TagNamePictureFont.ENUM_END - 1);
+                GD.PushWarning("Attempted to set PictureFont Tag IconType to invalid type");
+                TagName = (ushort)TagNamePictureFont.COMMON_COIN;
             }
             else
             {
@@ -29,7 +29,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
 
     public MsbtTagElementPictureFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementPictureFont(TagNamePictureFont icon)
-        : base((ushort)TagGroup.PICTURE_FONT, (ushort)icon)
+        : base((ushort)TagGroup.PictureFont, (ushort)icon)
     {
         Icon = icon;
     }
@@ -51,7 +51,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         if (typeChar != calcTypeChar || calcTypeChar == 0x0000)
         {
             GD.PushWarning("PictureFont tag has mismatch between IconType and char data buffer, setting to default icon");
-            Icon = TagNamePictureFont.ENUM_END;
+            Icon = TagNamePictureFont.COMMON_COIN;
         }
     }
 
@@ -81,14 +81,11 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         return value.ToArray();
     }
 
-    public override ushort CalcDataSize()
-    {
-        return 0x4;
-    }
+    public override ushort CalcDataSize() { return 0x4; }
 
     public override string GetTagNameStr()
     {
-        if (Icon >= TagNamePictureFont.ENUM_END)
+        if (Icon >= TagNamePictureFont.ICON_BALLOON_GAME_SMALL_STAR)
             return "Unknown Icon";
 
         return IconNameTable[(ushort)Icon];
@@ -152,5 +149,9 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         "Life-Up Heart",
         "Cappy",
         "Luigi",
+
+        // v1.2.0+
+        "Balloon World Arrow",
+        "Balloon World Star",
     ];
 };

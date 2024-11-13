@@ -38,7 +38,7 @@ public abstract class MsbtTagElement : MsbtBaseElement
 
         // Ensure the pointer has moved exactly dataSize
         if (pointer - pointerPosBeforeInit != dataSize)
-            GD.PushError("Invalid InitTag implementation! - ", GetTagNameStr());
+            GD.PushError("Invalid InitTag implementation! - ", GetType());
     }
 
     internal MsbtTagElement(ushort group, ushort tag)
@@ -68,10 +68,25 @@ public abstract class MsbtTagElement : MsbtBaseElement
 
     public override bool IsValid()
     {
-        bool result = CalcDataSize() % 2 != 0;
+        bool result = CalcDataSize() % 2 == 0;
         return result;
     }
     public override bool IsTag() { return true; }
+
+    public string GetTagNameInProject(Msbp.MsbpFile project)
+    {
+        Msbp.TagGroupInfo group = project.TagGroup_Get(GroupName);
+        if (group == null || group.ListingIndexList.Count >= TagName)
+            return null;
+        
+        int tagBlockIdx = group.ListingIndexList[TagName];
+
+        Msbp.TagInfo tag = project.Tag_Get(tagBlockIdx);
+        if (tag == null)
+            return null;
+        
+        return tag.Name;
+    }
 
     public ushort GetGroupName() { return GroupName; }
     public ushort GetTagName() { return TagName; }
@@ -83,7 +98,7 @@ public abstract class MsbtTagElement : MsbtBaseElement
 
 public class MsbtTagElementWithTextData : MsbtTagElement
 {
-    public string Text = "";
+    protected string Text = "";
 
     internal MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     internal MsbtTagElementWithTextData(ushort group, ushort tag) : base(group, tag) { }

@@ -13,7 +13,7 @@ public class MsbtTagElementTimeComponent : MsbtTagElement
 
     public MsbtTagElementTimeComponent(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementTimeComponent(TagNameTime timeComponent)
-        : base((ushort)TagGroup.TIME, (ushort)timeComponent) { }
+        : base((ushort)TagGroup.Time, (ushort)timeComponent) { }
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize) { }
 
     public override ushort CalcDataSize() { return 0x0; }

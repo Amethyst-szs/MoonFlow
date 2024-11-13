@@ -12,7 +12,7 @@ public class MsbtTagElementGrammar : MsbtTagElement
 
     public MsbtTagElementGrammar(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementGrammar(TagNameGrammar type)
-        : base((ushort)TagGroup.GRAMMAR, (ushort)type) { }
+        : base((ushort)TagGroup.Grammar, (ushort)type) { }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize) { }
 

@@ -11,17 +11,17 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemCommon
 
     public MsbtTagElementSystemColor(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementSystemColor(Msbp.MsbpFile project, string color)
-        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.COLOR)
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.Color)
     {
         SetColor(project, color);
     }
     public MsbtTagElementSystemColor(int idx)
-        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.COLOR)
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.Color)
     {
         SetColor(idx);
     }
     public MsbtTagElementSystemColor()
-        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.COLOR)
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.Color)
     {
         SetColorResetDefault();
     }

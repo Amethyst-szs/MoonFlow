@@ -4,9 +4,9 @@ using Godot;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public static class Builder
+internal static class Builder
 {
-    public static List<MsbtBaseElement> Build(byte[] buffer)
+    internal static List<MsbtBaseElement> Build(byte[] buffer)
     {
         // Establish list to store all created elements
         List<MsbtBaseElement> list = [];
@@ -72,18 +72,18 @@ public static class Builder
         // Create a tag element depending on tag group type
         return BitConverter.ToUInt16(buffer, pointer) switch
         {
-            (ushort)TagGroup.SYSTEM => BuildTagElement_GroupNameSystem(buffer, ref pointer),
-            (ushort)TagGroup.EUI => BuildTagElement_GroupNamePrintControl(buffer, ref pointer),
-            (ushort)TagGroup.FORMAT_NUMBER => BuildTagElement_GroupNameFormatting(buffer, ref pointer),
-            (ushort)TagGroup.TEXT_ANIM => new MsbtTagElementTextAnim(ref pointer, buffer),
-            (ushort)TagGroup.FORMAT_STRING => new MsbtTagElementStringFormat(ref pointer, buffer),
-            (ushort)TagGroup.PLAY_SE => new MsbtTagElementVoice(ref pointer, buffer),
-            (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectTag(ref pointer, buffer),
-            (ushort)TagGroup.TIME => new MsbtTagElementTimeComponent(ref pointer, buffer),
-            (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer),
-            (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
-            (ushort)TagGroup.TEXT_ALIGN => new MsbtTagElementTextAlign(ref pointer, buffer),
-            (ushort)TagGroup.GRAMMAR => new MsbtTagElementGrammar(ref pointer, buffer),
+            (ushort)TagGroup.System => BuildTagElement_GroupNameSystem(buffer, ref pointer),
+            (ushort)TagGroup.Eui => BuildTagElement_GroupNamePrintControl(buffer, ref pointer),
+            (ushort)TagGroup.Number => BuildTagElement_GroupNameNumber(buffer, ref pointer),
+            (ushort)TagGroup.TextAnim => new MsbtTagElementTextAnim(ref pointer, buffer),
+            (ushort)TagGroup.String => new MsbtTagElementString(ref pointer, buffer),
+            (ushort)TagGroup.PlaySe => new MsbtTagElementVoice(ref pointer, buffer),
+            (ushort)TagGroup.ProjectTag => new MsbtTagElementProjectTag(ref pointer, buffer),
+            (ushort)TagGroup.Time => new MsbtTagElementTimeComponent(ref pointer, buffer),
+            (ushort)TagGroup.PictureFont => new MsbtTagElementPictureFont(ref pointer, buffer),
+            (ushort)TagGroup.DeviceFont => new MsbtTagElementDeviceFont(ref pointer, buffer),
+            (ushort)TagGroup.TextAlign => new MsbtTagElementTextAlign(ref pointer, buffer),
+            (ushort)TagGroup.Grammar => new MsbtTagElementGrammar(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
@@ -96,11 +96,11 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameSystem.RUBY => new MsbtTagElementSystemRuby(ref pointer, buffer),
-            (ushort)TagNameSystem.FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
-            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementSystemFontSize(ref pointer, buffer),
-            (ushort)TagNameSystem.COLOR => new MsbtTagElementSystemColor(ref pointer, buffer),
-            (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
+            (ushort)TagNameSystem.Ruby => new MsbtTagElementSystemRuby(ref pointer, buffer),
+            (ushort)TagNameSystem.Font => new MsbtTagElementDeviceFont(ref pointer, buffer),
+            (ushort)TagNameSystem.FontSize => new MsbtTagElementSystemFontSize(ref pointer, buffer),
+            (ushort)TagNameSystem.Color => new MsbtTagElementSystemColor(ref pointer, buffer),
+            (ushort)TagNameSystem.PageBreak => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
@@ -112,12 +112,12 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameEui.WAIT => new MsbtTagElementEuiWait(ref pointer, buffer),
-            (ushort)TagNameEui.SPEED => new MsbtTagElementEuiSpeed(ref pointer, buffer),
+            (ushort)TagNameEui.Wait => new MsbtTagElementEuiWait(ref pointer, buffer),
+            (ushort)TagNameEui.Speed => new MsbtTagElementEuiSpeed(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
-    private static MsbtTagElement BuildTagElement_GroupNameFormatting(byte[] buffer, ref int pointer)
+    private static MsbtTagElement BuildTagElement_GroupNameNumber(byte[] buffer, ref int pointer)
     {
         // Grab ushort of tag name
         ushort tag = BitConverter.ToUInt16(buffer, pointer + 2);
@@ -125,11 +125,17 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameFormatNumber.SCORE => new MsbtTagElementNumberFormat(ref pointer, buffer),
-            (ushort)TagNameFormatNumber.RETRY_COIN => new MsbtTagElementNumberFormat(ref pointer, buffer),
-            // (ushort)TagNameFormatNumber.DATE => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
-            // (ushort)TagNameFormatNumber.RACE_TIME => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
-            // (ushort)TagNameFormatNumber.DATE_DETAIL => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
+            (ushort)TagNameNumber.Score => new MsbtTagElementNumberScore(ref pointer, buffer),
+            (ushort)TagNameNumber.CoinNum => new MsbtTagElementNumberCoinNum(ref pointer, buffer),
+            (ushort)TagNameNumber.Date => new MsbtTagElementNumberDate(ref pointer, buffer),
+            (ushort)TagNameNumber.RaceTime => new MsbtTagElementNumberRaceTime(ref pointer, buffer),
+            (ushort)TagNameNumber.DateDetail => new MsbtTagElementNumberDateDetail(ref pointer, buffer),
+            
+            //// v1.2.0+
+            (ushort)TagNameNumber.DateEU => new MsbtTagElementNumberDate(ref pointer, buffer),
+            (ushort)TagNameNumber.DateDetailEU => new MsbtTagElementNumberDateDetail(ref pointer, buffer),
+            ////
+            
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

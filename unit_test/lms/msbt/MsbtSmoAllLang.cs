@@ -38,7 +38,7 @@ public class UnitTestMsbtAllLang : UnitTestMsbtUSen
             LastLang = lang;
 
             // Create sarc data
-            UnitTestResult res = ReadSarcList(GameVersion.v100, lang);
+            UnitTestResult res = ReadSarcList(GameVersion.v130, lang);
             if (res != UnitTestResult.OK)
                 return res;
 

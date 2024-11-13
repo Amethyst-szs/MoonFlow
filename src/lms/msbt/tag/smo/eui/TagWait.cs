@@ -39,7 +39,7 @@ public class MsbtTagElementEuiWait : MsbtTagElement
 
     public MsbtTagElementEuiWait(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementEuiWait(ushort frames)
-        : base((ushort)TagGroup.EUI, (ushort)TagNameEui.WAIT)
+        : base((ushort)TagGroup.Eui, (ushort)TagNameEui.Wait)
     {
         DelayFrames = frames;
         SkipMode = 0;

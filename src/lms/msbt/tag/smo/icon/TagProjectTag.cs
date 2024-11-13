@@ -31,7 +31,7 @@ public class MsbtTagElementProjectTag : MsbtTagElement
 
     public MsbtTagElementProjectTag(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementProjectTag(TagNameProjectIcon icon)
-        : base((ushort)TagGroup.PROJECT_TAG, (ushort)icon)
+        : base((ushort)TagGroup.ProjectTag, (ushort)icon)
     {
         Icon = icon;
     }
@@ -103,8 +103,11 @@ public class MsbtTagElementProjectTag : MsbtTagElement
             case "ShineIconCurrentWorld" or "CoinCollectIconCurrentWorld":
                 _iconTable.Clear(); // These two tags do not use the icon table
                 break;
+            case string s when s.StartsWith("PadStyle2P"):
+                UpdateIconTableForPadStyle(tagName, true);
+                break;
             case string s when s.StartsWith("PadStyle"):
-                UpdateIconTableForPadStyle(tagName);
+                UpdateIconTableForPadStyle(tagName, false);
                 break;
             case string s when s.StartsWith("PadPair"):
                 UpdateIconTableForPadPair(tagName);
@@ -115,9 +118,13 @@ public class MsbtTagElementProjectTag : MsbtTagElement
         }
     }
 
-    private void UpdateIconTableForPadStyle(string tagName)
+    private void UpdateIconTableForPadStyle(string tagName, bool is2P)
     {
-        var suffix = tagName.Replace("PadStyle", "");
+        string suffix;
+        if (is2P)
+            suffix = tagName.Replace("PadStyle2P", "");
+        else
+            suffix = tagName.Replace("PadStyle", "");
 
         _iconTable.Clear();
         foreach (var prefix in _padStylePrefixes)

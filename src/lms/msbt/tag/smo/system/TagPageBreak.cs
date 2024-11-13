@@ -10,6 +10,6 @@ public class MsbtTagElementSystemPageBreak : MsbtTagElementWithTextData
 {
     public MsbtTagElementSystemPageBreak(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementSystemPageBreak(ushort code, string content)
-        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.PAGE_BREAK) { }
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.PageBreak) { }
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize) { }
 };

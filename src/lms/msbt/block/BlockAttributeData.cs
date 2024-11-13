@@ -31,6 +31,4 @@ public class BlockAttributeData(byte[] data, string name, int offset) : Block(da
     {
         stream.Write(_attributeData);
     }
-
-    
 }

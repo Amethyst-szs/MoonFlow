@@ -7,11 +7,11 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementSystemFont : MsbtTagElementSystemCommon
 {
-    public TagFontIndex Font = TagFontIndex.MESSAGE_FONT;
+    public TagFontIndex Font = TagFontIndex.Message;
 
     public MsbtTagElementSystemFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementSystemFont(TagFontIndex font)
-        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.FONT)
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.Font)
     {
         Font = font;
     }

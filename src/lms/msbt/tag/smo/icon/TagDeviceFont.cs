@@ -8,11 +8,11 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtTagElementDeviceFont : MsbtTagElement
 {
-    public const TagFontIndex FontIndex = TagFontIndex.DEVICE_FONT;
+    public const TagFontIndex FontIndex = TagFontIndex.Device;
 
     public MsbtTagElementDeviceFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementDeviceFont(ushort tag)
-        : base((ushort)TagGroup.DEVICE_FONT, tag) { }
+        : base((ushort)TagGroup.DeviceFont, tag) { }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
     {

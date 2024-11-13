@@ -12,7 +12,7 @@ public class MsbtTagElementSystemFontSize : MsbtTagElementSystemCommon
 
     public MsbtTagElementSystemFontSize(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementSystemFontSize(ushort fontSizePercentage)
-        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.FONT_SIZE)
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.FontSize)
     {
         FontSize = fontSizePercentage;
     }

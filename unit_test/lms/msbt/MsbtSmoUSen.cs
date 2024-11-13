@@ -27,7 +27,7 @@ public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
     public override UnitTestResult Test()
     {
         // Create sarc data
-        UnitTestResult res = ReadSarcList(GameVersion.v100, "USen");
+        UnitTestResult res = ReadSarcList(GameVersion.v130, "USen");
         if (res != UnitTestResult.OK)
             return res;
 
