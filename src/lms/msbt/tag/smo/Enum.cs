@@ -30,11 +30,13 @@ public enum TagNameEui : ushort
 {
     Wait = 0,
     Speed = 1,
-    Flush = 2,
-    AutoNext = 3,
-    Choice2 = 4,
-    Choice3 = 5,
-    Choice4 = 6,
+    /*
+    "Flush" (ID 2) is implemented in code but unused, not functional?
+    "AutoNext" (ID 3) is referenced in MSBP but with no implementation
+    "Choice2" (ID 4) is referenced in MSBP but with no implementation
+    "Choice3" (ID 5) is referenced in MSBP but with no implementation
+    "Choice4" (ID 6) is referenced in MSBP but with no implementation
+    */
 }
 
 public enum TagNameNumber : ushort
