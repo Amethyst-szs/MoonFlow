@@ -9,14 +9,27 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemCommon
 {
     private ushort _color;
 
-    public MsbtTagElementSystemColor(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementSystemColor(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementSystemColor(Msbp.MsbpFile project, string color)
+        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.COLOR)
     {
-        if (!IsValid())
-            return;
+        SetColor(project, color);
+    }
+    public MsbtTagElementSystemColor(int idx)
+        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.COLOR)
+    {
+        SetColor(idx);
+    }
+    public MsbtTagElementSystemColor()
+        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.COLOR)
+    {
+        SetColorResetDefault();
+    }
 
-        // Copy short from buffer at pointer
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
         _color = BitConverter.ToUInt16(buffer, pointer);
-        pointer += 0x2;
+        pointer += sizeof(ushort);
     }
 
     public override byte[] GetBytes()
@@ -26,10 +39,7 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemCommon
         return value.ToArray();
     }
 
-    public override ushort GetDataSizeBase()
-    {
-        return 0x2;
-    }
+    public override ushort CalcDataSize() { return sizeof(ushort); }
 
     public ushort GetColorIdx()
     {

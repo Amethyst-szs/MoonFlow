@@ -10,14 +10,17 @@ public class MsbtTagElementSystemFontSize : MsbtTagElementSystemCommon
     // Converted to 100-based percentage in floating-point number format (NEON_ucvtf)
     public ushort FontSize = 100;
 
-    public MsbtTagElementSystemFontSize(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementSystemFontSize(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementSystemFontSize(ushort fontSizePercentage)
+        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.FONT_SIZE)
     {
-        if (!IsValid())
-            return;
+        FontSize = fontSizePercentage;
+    }
 
-        // Copy short from buffer at pointer
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
         FontSize = BitConverter.ToUInt16(buffer, pointer);
-        return;
+        pointer += sizeof(ushort);
     }
 
     public override byte[] GetBytes()
@@ -27,8 +30,5 @@ public class MsbtTagElementSystemFontSize : MsbtTagElementSystemCommon
         return value.ToArray();
     }
 
-    public override ushort GetDataSizeBase()
-    {
-        return 0x2;
-    }
+    public override ushort CalcDataSize() { return sizeof(ushort); }
 };

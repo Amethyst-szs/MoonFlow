@@ -6,7 +6,7 @@ using Godot;
 
 namespace Nindot.LMS.Msbt.TagLib;
 
-public class MsbtTagElement : MsbtBaseElement
+public abstract class MsbtTagElement : MsbtBaseElement
 {
     public const ushort BYTECODE_TAG = 0x0E;
     public const ushort BYTECODE_TAG_CLOSE = 0x0F;
@@ -14,7 +14,6 @@ public class MsbtTagElement : MsbtBaseElement
 
     protected ushort GroupName = 0xFFFF;
     protected ushort TagName = 0xFFFF;
-    protected ushort DataSize = 0x0;
 
     public MsbtTagElement(ref int pointer, byte[] buffer)
     {
@@ -30,131 +29,74 @@ public class MsbtTagElement : MsbtBaseElement
         TagName = BitConverter.ToUInt16(buffer, pointer);
         pointer += 2;
 
-        DataSize = BitConverter.ToUInt16(buffer, pointer);
+        ushort dataSize = BitConverter.ToUInt16(buffer, pointer);
         pointer += 2;
+
+        // Initilize data of tag with abstract function
+        int pointerPosBeforeInit = pointer;
+        InitTag(ref pointer, buffer, dataSize);
+
+        // Ensure the pointer has moved exactly dataSize
+        if (pointer - pointerPosBeforeInit != dataSize)
+            GD.PushError("Invalid InitTag implementation! - ", GetTagNameStr());
     }
+
+    internal MsbtTagElement(ushort group, ushort tag)
+    {
+        GroupName = group;
+        TagName = tag;
+    }
+
+    internal abstract void InitTag(ref int pointer, byte[] buffer, ushort dataSize);
+    public abstract ushort CalcDataSize();
 
     public MemoryStream CreateMemoryStreamWithHeaderData()
     {
         // Create stream to store return
-        int size = TAG_HEADER_SIZE + DataSize;
+        ushort dataSize = CalcDataSize();
+        int size = TAG_HEADER_SIZE + dataSize;
         MemoryStream value = new(size);
 
         // Write header properties into stream
         value.Write(BYTECODE_TAG);
         value.Write(GroupName);
         value.Write(TagName);
-        value.Write(DataSize);
+        value.Write(dataSize);
 
         return value;
     }
 
-    public ushort GetGroupName()
-    {
-        return GroupName;
-    }
-
-    public ushort GetTagName()
-    {
-        return TagName;
-    }
-
-    public ushort GetDataSize()
-    {
-        return DataSize;
-    }
-
-    public virtual bool IsFixedDataSize()
-    {
-        return true;
-    }
-
-    public virtual ushort GetDataSizeBase()
-    {
-        return 0x0;
-    }
-
     public override bool IsValid()
     {
-        if (!IsFixedDataSize())
-            return (DataSize % 2) == 0;
-
-        bool result = DataSize == GetDataSizeBase();
+        bool result = CalcDataSize() % 2 != 0;
         return result;
     }
+    public override bool IsTag() { return true; }
 
-    public override bool IsTag()
-    {
-        return true;
-    }
-
-    public override string GetText()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override byte[] GetBytes()
-    {
-        return CreateMemoryStreamWithHeaderData().ToArray();
-    }
-
-    public override void WriteBytes(MemoryStream stream)
-    {
-        stream.Write(GetBytes());
-    }
-
-    public virtual string GetTagNameStr()
-    {
-        return "Unknown";
-    }
+    public ushort GetGroupName() { return GroupName; }
+    public ushort GetTagName() { return TagName; }
+    public virtual string GetTagNameStr() { return "Unknown"; }
+    public override string GetText() { throw new NotImplementedException(); }
+    public override byte[] GetBytes() { return CreateMemoryStreamWithHeaderData().ToArray(); }
+    public override void WriteBytes(MemoryStream stream) { stream.Write(GetBytes()); }
 }
 
-public class MsbtTagElementWithTextData : MsbtTagElement
+public abstract class MsbtTagElementWithTextData : MsbtTagElement
 {
-    protected ushort TextDataLength = 0;
-    protected bool IsTextDataInvalid = false;
+    public string Text = "";
 
-    protected string _textData = "";
-    public string TextData
-    {
-        get { return _textData; }
-        set
-        {
-            byte[] valueBuf = value.ToUtf16Buffer();
-
-            TextDataLength = (ushort)valueBuf.Length;
-            DataSize = (ushort)(TextDataLength + GetDataSizeBase());
-            IsTextDataInvalid = false;
-
-            _textData = value;
-        }
-    }
-
-    public MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
-    {
-        if (GetType() == typeof(MsbtTagElementWithTextData))
-            throw new NotImplementedException();
-    }
+    internal MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    internal MsbtTagElementWithTextData(ushort group, ushort tag) : base(group, tag) { }
 
     public bool ReadTextData(ref int pointer, byte[] buffer)
     {
-        TextDataLength = BitConverter.ToUInt16(buffer, pointer);
-        pointer += 0x2;
+        // Read length of string
+        ushort length = BitConverter.ToUInt16(buffer, pointer);
+        pointer += sizeof(ushort);
 
-        // Ensure validity before reading the TextData
-        if (!IsValid())
-        {
-            // If not valid, set all properties to defaults with an empty string 
-            DataSize = GetDataSizeBase();
-            TextDataLength = 0x0;
-
-            IsTextDataInvalid = true;
-            return false;
-        }
-
-        // Now we can safely read the string out
-        int endPointer = pointer + TextDataLength;
-        TextData = buffer[pointer..endPointer].GetStringFromUtf16();
+        // Convert buffer segment to string
+        int endPointer = pointer + length;
+        Text = buffer[pointer..endPointer].GetStringFromUtf16();
 
         pointer = endPointer;
         return true;
@@ -162,28 +104,19 @@ public class MsbtTagElementWithTextData : MsbtTagElement
 
     public void WriteTextData(MemoryStream stream)
     {
-        stream.Write(TextDataLength);
+        // Calculate length of string data
+        const ushort wordSize = sizeof(ushort);
+        ushort length = (ushort)(Text.Length * wordSize); // UTF16 string length
+        stream.Write(length);
 
-        if (TextData != null && TextDataLength > 0)
-            stream.Write(TextData.ToUtf16Buffer());
+        if (Text != null && length > 0)
+            stream.Write(Text.ToUtf16Buffer());
     }
 
-    public override bool IsValid()
+    public override ushort CalcDataSize()
     {
-        if (IsTextDataInvalid)
-            return false;
-
-        if (DataSize % 2 != 0 || TextDataLength % 2 != 0)
-            return false;
-
-        if (DataSize - GetDataSizeBase() != TextDataLength)
-            return false;
-
-        return true;
-    }
-
-    public override bool IsFixedDataSize()
-    {
-        return false;
+        // Get length of string as char16, and add two bytes for string length prefix
+        const ushort wordSize = sizeof(ushort);
+        return (ushort)((Text.Length * wordSize) + wordSize);
     }
 }

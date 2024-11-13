@@ -9,10 +9,17 @@ public class MsbtTagElementSystemFont : MsbtTagElementSystemCommon
 {
     public TagFontIndex Font = TagFontIndex.MESSAGE_FONT;
 
-    public MsbtTagElementSystemFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementSystemFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementSystemFont(TagFontIndex font)
+        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.FONT)
     {
-        // Copy data from buffer at pointer
+        Font = font;
+    }
+
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
         Font = (TagFontIndex)BitConverter.ToUInt16(buffer, pointer);
+        pointer += sizeof(ushort);
     }
 
     public override byte[] GetBytes()
@@ -22,8 +29,5 @@ public class MsbtTagElementSystemFont : MsbtTagElementSystemCommon
         return value.ToArray();
     }
 
-    public override ushort GetDataSizeBase()
-    {
-        return 0x2;
-    }
+    public override ushort CalcDataSize() { return sizeof(ushort); }
 };

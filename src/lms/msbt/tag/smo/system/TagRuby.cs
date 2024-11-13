@@ -10,11 +10,18 @@ public class MsbtTagElementSystemRuby : MsbtTagElementWithTextData
 {
     public ushort Code = 0;
 
-    public MsbtTagElementSystemRuby(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementSystemRuby(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementSystemRuby(ushort code, string content)
+        : base((ushort)TagGroup.SYSTEM, (ushort)TagNameSystem.RUBY)
     {
-        // Copy data from buffer at pointer
+        Code = code;
+        Text = content;
+    }
+
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
         Code = BitConverter.ToUInt16(buffer, pointer);
-        pointer += 0x2;
+        pointer += sizeof(ushort);
 
         ReadTextData(ref pointer, buffer);
     }
@@ -28,10 +35,7 @@ public class MsbtTagElementSystemRuby : MsbtTagElementWithTextData
         return value.ToArray();
     }
 
-    public override ushort GetDataSizeBase()
-    {
-        return 0x4;
-    }
+    public override ushort CalcDataSize() { return (ushort)(base.CalcDataSize() + sizeof(ushort)); }
 
     public override string GetTagNameStr()
     {
