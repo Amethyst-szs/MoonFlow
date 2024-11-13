@@ -13,18 +13,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
     public TagNamePictureFont Icon
     {
         get { return (TagNamePictureFont)TagName; }
-        set
-        {
-            if (!Enum.IsDefined(typeof(TagNamePictureFont), value))
-            {
-                GD.PushWarning("Attempted to set PictureFont Tag IconType to invalid type");
-                TagName = (ushort)TagNamePictureFont.COMMON_COIN;
-            }
-            else
-            {
-                TagName = (ushort)value;
-            }
-        }
+        set { TagName = (ushort)value; }
     }
 
     public MsbtTagElementPictureFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }

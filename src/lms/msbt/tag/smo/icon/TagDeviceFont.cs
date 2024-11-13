@@ -9,10 +9,16 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 public class MsbtTagElementDeviceFont : MsbtTagElement
 {
     public const TagFontIndex FontIndex = TagFontIndex.Device;
+    
+    public TagNameDeviceFont Icon
+    {
+        get { return (TagNameDeviceFont)TagName; }
+        set { TagName = (ushort)value; }
+    }
 
     public MsbtTagElementDeviceFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
-    public MsbtTagElementDeviceFont(ushort tag)
-        : base((ushort)TagGroup.DeviceFont, tag) { }
+    public MsbtTagElementDeviceFont(TagNameDeviceFont icon)
+        : base((ushort)TagGroup.DeviceFont, (ushort)icon) { }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
     {
@@ -31,7 +37,7 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
         if (typeChar != calcTypeChar || calcTypeChar == 0x0000)
         {
             GD.PushWarning("DeviceFont tag has mismatch between IconType and char data buffer, setting to default icon");
-            TagName = 37; // Joy-Con Icon
+            Icon = TagNameDeviceFont.ButtonA;
         }
     }
 
@@ -51,11 +57,14 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
         return value.ToArray();
     }
 
-    public override ushort CalcDataSize() { return 0x4; }
+    public override ushort CalcDataSize() { return sizeof(uint); }
 
     public override string GetTagNameStr()
     {
-        return "Device Font Icon " + TagName;
+        if (Enum.IsDefined(typeof(TagNameDeviceFont), TagName))
+            return Enum.GetName(typeof(TagNameDeviceFont), TagName);
+
+        return "Unknown";
     }
 
     public static readonly ushort[] TagToCharTable =
@@ -89,7 +98,10 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
         0xE103, // STICK_PUSH
         0xE104, // STICKL_PUSH
         0xE105, // STICKR_PUSH
-        0x0000, 0x0000, 0x0000, 0x0000, // PADDING_FOR_GAP_IN_ICON_LIST
+        0x0000, /////////////////////// KEY_UP (Unknown)
+        0x0000, /////////////////////// KEY_DOWN (Unknown)
+        0x0000, /////////////////////// KEY_LEFT (Unknown)
+        0x0000, /////////////////////// KEY_RIGHT (Unknown)
         0xE0C0, // STICKR_UP_DOWN
         0xE0C1, // STICKL_UP_DOWN
         0xE0C2, // STICKR_LEFT_RIGHT
