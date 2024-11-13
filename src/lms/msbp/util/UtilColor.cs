@@ -40,6 +40,12 @@ public partial class MsbpFile : FileBase
 
         return Color.GetColor(idx);
     }
+    public int Color_GetIndex(string color)
+    {
+        if (!Color_IsFileContainData()) return -1;
+
+        return ColorLabels.GetItemIndex(color);
+    }
     public string Color_GetLabel(int idx)
     {
         if (!Color_IsFileContainData()) return null;

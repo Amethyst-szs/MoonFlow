@@ -14,8 +14,8 @@ config/name="Nindot"
 run/main_scene="res://example/default_scene.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
-nindot/romfs_100_path_for_debug="C:/Odyssey/Odyssey100/romfs/"
-nindot/romfs_130_path_for_debug="C:/Odyssey/Odyssey130/romfs/"
+nindot/romfs_100_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey100/romfs/"
+nindot/romfs_130_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey130/romfs/"
 
 [dotnet]
 

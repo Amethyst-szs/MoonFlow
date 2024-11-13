@@ -98,9 +98,9 @@ public static class Builder
         {
             (ushort)TagNameSystem.RUBY => new MsbtTagElementSystemRuby(ref pointer, buffer),
             (ushort)TagNameSystem.FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
-            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementDeviceFontSize(ref pointer, buffer),
+            (ushort)TagNameSystem.FONT_SIZE => new MsbtTagElementSystemFontSize(ref pointer, buffer),
             (ushort)TagNameSystem.COLOR => new MsbtTagElementSystemColor(ref pointer, buffer),
-            (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
+            (ushort)TagNameSystem.PAGE_BREAK => new MsbtTagElementSystemCommon(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
