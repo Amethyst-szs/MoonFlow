@@ -20,40 +20,40 @@ public class UnitTestMsbpSMORead : UnitTestBase
         if (!file.IsValid())
             return UnitTestResult.FAILURE;
 
-        file.ColorAddNew("Custom Color", 69, 69, 69, 69);
-        foreach (var color in file.ColorGetLabelList())
+        file.Color_AddNew("Custom Color", 69, 69, 69, 69);
+        foreach (var color in file.Color_GetLabelList())
         {
-            var c = file.ColorGet(color);
-            file.ColorMoveIndex(color, 0);
+            var c = file.Color_Get(color);
+            file.Color_MoveIndex(color, 0);
             continue;
         }
-        file.ColorRemove("Custom Color");
+        file.Color_Remove("Custom Color");
 
-        foreach (var attribute in file.AttributeGetList())
+        foreach (var attribute in file.Attribute_GetList())
         {
-            var arrayContent = file.AttributeGetContentArrayList(attribute);
+            var arrayContent = file.Attribute_GetContentArrayList(attribute);
             continue;
         }
 
-        foreach (var group in file.TagGroupGetList())
+        foreach (var group in file.TagGroup_GetList())
         {
-            var tags = file.TagGetList(group);
+            var tags = file.Tag_GetList(group);
             foreach (var tag in tags)
             {
-                var paras = file.TagParamGetList(tag);
+                var paras = file.TagParam_GetList(tag);
                 continue;
             }
         }
 
-        foreach (var style in file.StyleGetLabelList())
+        foreach (var style in file.Style_GetLabelList())
         {
-            var styleInfo = file.StyleGet(style);
+            var styleInfo = file.Style_Get(style);
             continue;
         }
 
-        var project = file.ProjectGetContent();
-        file.ProjectAddElement("123456789");
-        file.ProjectRemoveElement("Viewer/QuickSearch/NPCballoon.msqry");
+        var project = file.Project_GetContent();
+        file.Project_AddElement("123456789");
+        file.Project_RemoveElement("Viewer/QuickSearch/NPCballoon.msqry");
 
         return UnitTestResult.OK;
     }

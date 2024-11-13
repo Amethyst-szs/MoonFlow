@@ -150,11 +150,11 @@ public class MsbtTagElementSystemColor : MsbtTagElement
     }
     public Msbp.BlockColor.Entry GetColor(Msbp.MsbpFile project)
     {
-        return project.ColorGet(_color);
+        return project.Color_Get(_color);
     }
     public string GetColorName(Msbp.MsbpFile project)
     {
-        return project.ColorGetLabel(_color);
+        return project.Color_GetLabel(_color);
     }
 
     public void SetColor(Msbp.MsbpFile project, string color)
