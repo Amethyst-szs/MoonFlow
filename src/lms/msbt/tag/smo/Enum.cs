@@ -74,7 +74,7 @@ public enum TagNameTime : ushort
     HOUR = 3,
     MINUTE = 4,
     SECOND = 5,
-    MILLISECOND = 6
+    CENTISECOND = 6
 }
 
 public enum TagNamePictureFont : ushort

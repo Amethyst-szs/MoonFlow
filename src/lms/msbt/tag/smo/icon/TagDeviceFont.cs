@@ -10,14 +10,15 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
 {
     public const TagFontIndex FontIndex = TagFontIndex.DEVICE_FONT;
 
-    public MsbtTagElementDeviceFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
-    {
-        if (!IsValid())
-            return;
+    public MsbtTagElementDeviceFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementDeviceFont(ushort tag)
+        : base((ushort)TagGroup.DEVICE_FONT, tag) { }
 
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
         // Ensure that the first data field is 0x0, cause it is always equal to that
         var fntIdx = BitConverter.ToUInt16(buffer, pointer);
-        pointer += 2;
+        pointer += sizeof(ushort);
 
         if (fntIdx != (ushort)FontIndex)
             GD.PushWarning("DeviceFont tag has non-0 value in first data place, setting to 0");
@@ -38,7 +39,7 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
     {
         if (TagName >= TagToCharTable.Length)
             return 0x0000;
-        
+
         return TagToCharTable[TagName];
     }
 
@@ -50,10 +51,7 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
         return value.ToArray();
     }
 
-    public override ushort GetDataSizeBase()
-    {
-        return 0x4;
-    }
+    public override ushort CalcDataSize() { return 0x4; }
 
     public override string GetTagNameStr()
     {

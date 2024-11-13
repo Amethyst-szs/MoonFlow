@@ -81,12 +81,24 @@ public abstract class MsbtTagElement : MsbtBaseElement
     public override void WriteBytes(MemoryStream stream) { stream.Write(GetBytes()); }
 }
 
-public abstract class MsbtTagElementWithTextData : MsbtTagElement
+public class MsbtTagElementWithTextData : MsbtTagElement
 {
     public string Text = "";
 
     internal MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     internal MsbtTagElementWithTextData(ushort group, ushort tag) : base(group, tag) { }
+
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
+        ReadTextData(ref pointer, buffer);
+    }
+
+    public override byte[] GetBytes()
+    {
+        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        WriteTextData(value);
+        return value.ToArray();
+    }
 
     public bool ReadTextData(ref int pointer, byte[] buffer)
     {

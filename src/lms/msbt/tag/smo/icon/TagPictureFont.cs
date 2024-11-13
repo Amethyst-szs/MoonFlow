@@ -10,7 +10,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
 {
     public const TagFontIndex FontIndex = TagFontIndex.PICTURE_FONT;
 
-    public TagNamePictureFont IconType
+    public TagNamePictureFont Icon
     {
         get { return (TagNamePictureFont)TagName; }
         set
@@ -27,14 +27,15 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         }
     }
 
-    public MsbtTagElementPictureFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementPictureFont(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementPictureFont(TagNamePictureFont icon)
+        : base((ushort)TagGroup.PICTURE_FONT, (ushort)icon)
     {
-        if (!IsValid())
-            return;
+        Icon = icon;
+    }
 
-        // The tag name is the icon type, so make sure to assign it to itself here to run the enum clamper
-        IconType = (TagNamePictureFont)TagName;
-
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
         // Ensure that the first data field is 0x6, cause it is always equal to that
         ushort font = BitConverter.ToUInt16(buffer, pointer);
         pointer += 2;
@@ -50,34 +51,26 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         if (typeChar != calcTypeChar || calcTypeChar == 0x0000)
         {
             GD.PushWarning("PictureFont tag has mismatch between IconType and char data buffer, setting to default icon");
-            IconType = TagNamePictureFont.ENUM_END;
+            Icon = TagNamePictureFont.ENUM_END;
         }
     }
 
     public ushort GetChar16tFromTagName()
     {
-        if (!Enum.IsDefined(typeof(TagNamePictureFont), IconType))
-            return 0x40;
+        if (!Enum.IsDefined(typeof(TagNamePictureFont), Icon))
+            return 0x0;
 
-        string enumStr = Enum.GetName(typeof(TagNamePictureFont), IconType);
+        string enumStr = Enum.GetName(typeof(TagNamePictureFont), Icon);
 
         return enumStr switch
         {
-            { } when enumStr.StartsWith("COMMON") => (ushort)(IconType + 0x40),
-            { } when enumStr.StartsWith("COIN_COLLECT") => (ushort)(IconType + 0x40),
-            { } when enumStr.StartsWith("WEDDING_TREASURE") => (ushort)(IconType + 0x43),
-            { } when enumStr.StartsWith("SHINE_ICON") => (ushort)(IconType + 0x4D),
-            { } when enumStr.StartsWith("ICON") => (ushort)(IconType + 0x6),
-            _ => (ushort)(TagNamePictureFont.ENUM_END - 1),
+            { } when enumStr.StartsWith("COMMON") => (ushort)(Icon + 0x40),
+            { } when enumStr.StartsWith("COIN_COLLECT") => (ushort)(Icon + 0x40),
+            { } when enumStr.StartsWith("WEDDING_TREASURE") => (ushort)(Icon + 0x43),
+            { } when enumStr.StartsWith("SHINE_ICON") => (ushort)(Icon + 0x4D),
+            { } when enumStr.StartsWith("ICON") => (ushort)(Icon + 0x6),
+            _ => 0x0,
         };
-    }
-
-    public string GetIconName()
-    {
-        if (IconType >= TagNamePictureFont.ENUM_END)
-            return "Unknown Icon";
-
-        return IconNameTable[(ushort)IconType];
     }
 
     public override byte[] GetBytes()
@@ -88,17 +81,17 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         return value.ToArray();
     }
 
-    public override ushort GetDataSizeBase()
+    public override ushort CalcDataSize()
     {
         return 0x4;
     }
 
     public override string GetTagNameStr()
     {
-        if (Enum.IsDefined(typeof(TagNamePictureFont), TagName))
-            return Enum.GetName(typeof(TagNamePictureFont), TagName);
+        if (Icon >= TagNamePictureFont.ENUM_END)
+            return "Unknown Icon";
 
-        return "Unknown";
+        return IconNameTable[(ushort)Icon];
     }
 
     public static readonly string[] IconNameTable =

@@ -10,9 +10,15 @@ public class MsbtTagElementNumberFormat : MsbtTagElementWithTextData
     public ushort Figure = 0;
     public ushort IsJapaneseZenkaku = 0;
 
-    public MsbtTagElementNumberFormat(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
+    public MsbtTagElementNumberFormat(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
+    public MsbtTagElementNumberFormat(TagNameFormatNumber tagName)
+        : base((ushort)TagGroup.FORMAT_NUMBER, (ushort)tagName)
     {
-        // Copy data from buffer at pointer
+        Text = "";
+    }
+
+    internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
+    {
         Figure = BitConverter.ToUInt16(buffer, pointer);
         pointer += 0x2;
 
@@ -32,39 +38,7 @@ public class MsbtTagElementNumberFormat : MsbtTagElementWithTextData
         return value.ToArray();
     }
 
-    public override ushort GetDataSizeBase()
-    {
-        return 0x6;
-    }
-
-    public override string GetTagNameStr()
-    {
-        if (Enum.IsDefined(typeof(TagNameFormatNumber), TagName))
-            return Enum.GetName(typeof(TagNameFormatNumber), TagName);
-
-        return "Unknown";
-    }
-};
-
-public class MsbtTagElementNumberFormatSimple : MsbtTagElementWithTextData
-{
-    public MsbtTagElementNumberFormatSimple(ref int pointer, byte[] buffer) : base(ref pointer, buffer)
-    {
-        ReadTextData(ref pointer, buffer);
-    }
-
-    public override byte[] GetBytes()
-    {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
-        WriteTextData(value);
-
-        return value.ToArray();
-    }
-
-    public override ushort GetDataSizeBase()
-    {
-        return 0x2;
-    }
+    public override ushort CalcDataSize() { return (ushort)(base.CalcDataSize() + sizeof(uint)); }
 
     public override string GetTagNameStr()
     {

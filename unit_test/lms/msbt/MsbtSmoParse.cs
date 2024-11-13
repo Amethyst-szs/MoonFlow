@@ -67,7 +67,7 @@ public class UnitTestMsbtSMOParse : UnitTestBase
                 }
 
                 // Ensure that the GetBytes function returns an array of equal length to the header and data
-                bool isByteLengthValid = tag.GetBytes().Length == tag.GetDataSize() + 0x8 && tag.IsValid();
+                bool isByteLengthValid = tag.GetBytes().Length == tag.CalcDataSize() + 0x8 && tag.IsValid();
                 if (IsElementFaulty(isByteLengthValid, isSupposedToError, key.Key, element))
                 {
                     GD.PushError("Failed Test");

@@ -75,11 +75,11 @@ public static class Builder
             (ushort)TagGroup.SYSTEM => BuildTagElement_GroupNameSystem(buffer, ref pointer),
             (ushort)TagGroup.EUI => BuildTagElement_GroupNamePrintControl(buffer, ref pointer),
             (ushort)TagGroup.FORMAT_NUMBER => BuildTagElement_GroupNameFormatting(buffer, ref pointer),
-            (ushort)TagGroup.TEXT_ANIM => new MsbtTagElementShake(ref pointer, buffer),
+            (ushort)TagGroup.TEXT_ANIM => new MsbtTagElementTextAnim(ref pointer, buffer),
             (ushort)TagGroup.FORMAT_STRING => new MsbtTagElementStringFormat(ref pointer, buffer),
-            (ushort)TagGroup.PLAY_SE => new MsbtTagElementVoiceAudio(ref pointer, buffer),
-            (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectIcon(ref pointer, buffer),
-            (ushort)TagGroup.TIME => new MsbtTagElementTime(ref pointer, buffer),
+            (ushort)TagGroup.PLAY_SE => new MsbtTagElementVoice(ref pointer, buffer),
+            (ushort)TagGroup.PROJECT_TAG => new MsbtTagElementProjectTag(ref pointer, buffer),
+            (ushort)TagGroup.TIME => new MsbtTagElementTimeComponent(ref pointer, buffer),
             (ushort)TagGroup.PICTURE_FONT => new MsbtTagElementPictureFont(ref pointer, buffer),
             (ushort)TagGroup.DEVICE_FONT => new MsbtTagElementDeviceFont(ref pointer, buffer),
             (ushort)TagGroup.TEXT_ALIGN => new MsbtTagElementTextAlign(ref pointer, buffer),
@@ -112,8 +112,8 @@ public static class Builder
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameEui.WAIT => new MsbtTagElementWait(ref pointer, buffer),
-            (ushort)TagNameEui.SPEED => new MsbtTagElementSpeed(ref pointer, buffer),
+            (ushort)TagNameEui.WAIT => new MsbtTagElementEuiWait(ref pointer, buffer),
+            (ushort)TagNameEui.SPEED => new MsbtTagElementEuiSpeed(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
@@ -127,9 +127,9 @@ public static class Builder
         {
             (ushort)TagNameFormatNumber.SCORE => new MsbtTagElementNumberFormat(ref pointer, buffer),
             (ushort)TagNameFormatNumber.RETRY_COIN => new MsbtTagElementNumberFormat(ref pointer, buffer),
-            (ushort)TagNameFormatNumber.DATE => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
-            (ushort)TagNameFormatNumber.RACE_TIME => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
-            (ushort)TagNameFormatNumber.DATE_DETAIL => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
+            // (ushort)TagNameFormatNumber.DATE => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
+            // (ushort)TagNameFormatNumber.RACE_TIME => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
+            // (ushort)TagNameFormatNumber.DATE_DETAIL => new MsbtTagElementNumberFormatSimple(ref pointer, buffer),
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }
