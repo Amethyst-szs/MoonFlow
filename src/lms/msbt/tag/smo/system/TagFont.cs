@@ -5,7 +5,7 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementSystemFont : MsbtTagElementSystemCommon
+public class MsbtTagElementSystemFont : MsbtTagElementSystemBase
 {
     public TagFontIndex Font = TagFontIndex.Message;
 

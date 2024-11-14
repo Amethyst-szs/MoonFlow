@@ -5,7 +5,7 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementSystemFontSize : MsbtTagElementSystemCommon
+public class MsbtTagElementSystemFontSize : MsbtTagElementSystemBase
 {
     // Converted to 100-based percentage in floating-point number format (NEON_ucvtf)
     public ushort FontSize = 100;

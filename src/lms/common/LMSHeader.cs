@@ -42,10 +42,7 @@ public class FileHeader
     {
         // Ensure data is large enough to include header
         if (data.Length < HEADER_SIZE)
-        {
-            GD.PushError("Reading LMS header failed, byte data too short");
-            return;
-        }
+            throw new LMSException("LMS header read failed, byte data too short");
 
         // Setup pointer
         int pointer = 0;
@@ -53,10 +50,7 @@ public class FileHeader
         // MAGIC
         Magic = data[pointer..MAGIC_SIZE].GetStringFromUtf8();
         if (Magic != requiredMagic && requiredMagic != "n/a")
-        {
-            GD.PushError(string.Format("Magic in LMS file ({0}) is not equal to {1}", Magic, requiredMagic));
-            return;
-        }
+            throw new LMSException("LMS header has bad magic!");
 
         pointer += MAGIC_SIZE;
 

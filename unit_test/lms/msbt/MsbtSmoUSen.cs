@@ -108,7 +108,7 @@ public class UnitTestMsbtUSen : UnitTestMsbtSMOParse
 
             byte[] file = sarc.GetFile(x);
 
-            MsbtFile msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, file);
+            MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), file);
             if (msbt == null || !msbt.IsValid())
             {
                 GD.PrintErr(string.Format("Failed to read MSBT - {0}", x));

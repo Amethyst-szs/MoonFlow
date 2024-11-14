@@ -5,7 +5,7 @@ using CommunityToolkit.HighPerformance;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-public class MsbtTagElementSystemColor : MsbtTagElementSystemCommon
+public class MsbtTagElementSystemColor : MsbtTagElementSystemBase
 {
     private ushort _color;
 

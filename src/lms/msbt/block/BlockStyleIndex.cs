@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using CommunityToolkit.HighPerformance;
-using Godot;
 
 namespace Nindot.LMS.Msbt;
 
@@ -72,7 +69,7 @@ public class BlockStyleIndex : Block
         // Copy index data from the entry list to the internal StyleIndexList
         foreach (var item in msbtContents)
         {
-            StyleIndexList.Add(item.GetStyleIndex());
+            StyleIndexList.Add(item.StyleIndex);
         }
     }
 }

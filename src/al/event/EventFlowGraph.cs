@@ -172,3 +172,5 @@ public partial class Graph
         }
     }
 }
+
+public class EventFlowException(string error) : Exception(error);

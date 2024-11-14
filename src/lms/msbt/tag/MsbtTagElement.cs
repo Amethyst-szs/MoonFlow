@@ -9,7 +9,6 @@ namespace Nindot.LMS.Msbt.TagLib;
 public abstract class MsbtTagElement : MsbtBaseElement
 {
     public const ushort BYTECODE_TAG = 0x0E;
-    public const ushort BYTECODE_TAG_CLOSE = 0x0F;
     public const int TAG_HEADER_SIZE = 0x08;
 
     protected ushort GroupName = 0xFFFF;
@@ -17,9 +16,9 @@ public abstract class MsbtTagElement : MsbtBaseElement
 
     public MsbtTagElement(ref int pointer, byte[] buffer)
     {
-        // If the pointer is pointing at an 0x0E or 0x0F, jump ahead to bytes to align with tag group
+        // If the pointer is pointing at a 0x0E, jump ahead two bytes to align with tag group
         ushort startValue = BitConverter.ToUInt16(buffer, pointer);
-        if (startValue == BYTECODE_TAG || startValue == BYTECODE_TAG_CLOSE)
+        if (startValue == BYTECODE_TAG)
             pointer += 2;
 
         // Setup header
@@ -38,7 +37,7 @@ public abstract class MsbtTagElement : MsbtBaseElement
 
         // Ensure the pointer has moved exactly dataSize
         if (pointer - pointerPosBeforeInit != dataSize)
-            GD.PushError("Invalid InitTag implementation! - ", GetType());
+            throw new MsbtException(string.Format("Invalid InitTag implementation for {0}", GetType()));
     }
 
     internal MsbtTagElement(ushort group, ushort tag)

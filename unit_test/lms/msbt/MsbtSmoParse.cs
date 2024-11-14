@@ -21,7 +21,7 @@ public class UnitTestMsbtSMOParse : UnitTestBase
     public override UnitTestResult Test()
     {
         // Load in an msbt resource and check it's validity
-        MsbtFile msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileData);
+        MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData);
         if (!msbt.IsValid())
         {
             GD.PrintErr("Failed to initalize MsbtV2 for unit test!");

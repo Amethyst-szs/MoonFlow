@@ -1,18 +1,14 @@
 using System;
 using System.Collections.Generic;
-using Godot;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
-internal static class Builder
+public class MsbtElementFactoryProjectSmo : MsbtElementFactory
 {
-    internal static List<MsbtBaseElement> Build(byte[] buffer)
+    internal override List<MsbtBaseElement> Build(byte[] buffer)
     {
         // Establish list to store all created elements
         List<MsbtBaseElement> list = [];
-
-        // This variable will hold a copy of the current MsbtElement class
-        MsbtBaseElement curElement = null;
 
         // Create a pointer into the buffer and continue iterating on pointer until completed
         int pointer = 0;
@@ -22,47 +18,53 @@ internal static class Builder
             // Get the data at the current pointer
             ushort value = BitConverter.ToUInt16(buffer, pointer);
 
-            // If the pointer rests on a Tag bytecode, jump to the tag builder
-            if (value == MsbtTagElement.BYTECODE_TAG || value == MsbtTagElement.BYTECODE_TAG_CLOSE)
+            // If the pointer rests on a Tag bytecode, build the tag element
+            if (value == MsbtTagElement.BYTECODE_TAG)
             {
-                // If the current element is a text element, run the finalizer
-                if (curElement != null && curElement.GetType() == typeof(MsbtTextElement))
-                    ((MsbtTextElement)curElement).FinalizeAppending();
-
-                // Wipe the current element and move to the tag element builder
-                curElement = null;
-
                 MsbtTagElement tag = BuildTagElement(buffer, ref pointer);
                 list.Add(tag);
-
                 continue;
             }
 
-            // If the current bytecode isn't a bytecode and we don't have a current element to work with, make a text element
-            if (curElement == null)
+            // If the pointer rests on a Tag End bytecode, insert an end element
+            if (value == MsbtTagCloseElement.BYTECODE_TAG_CLOSE)
             {
-                curElement = new MsbtTextElement();
-                list.Add(curElement);
+                var element = new MsbtTagCloseElement(ref pointer, buffer);
+                list.Add(element);
+                continue;
             }
 
-            // If the current element type isn't text, throw an error and break
-            if (curElement.GetType() != typeof(MsbtTextElement))
+            // By this point we know that the next segment isn't a tag or tag close
+            // Create a text element up to the next tag, or null terminator
+            MsbtTextElement text = null;
+
+            // Search for next tag byte or tag close byte
+            int nextTagIdx = Array.FindIndex(buffer, pointer, c => c == MsbtTagElement.BYTECODE_TAG
+                || c == MsbtTagCloseElement.BYTECODE_TAG_CLOSE);
+
+            // If nextTag is -1, there are no more tags and the entire remaining data can be turned to a text element
+            if (nextTagIdx == -1)
             {
-                GD.PushWarning("Parse error in MSBT : Cannot append to text element due to invalid type");
+                text = new MsbtTextElement(buffer[pointer..]);
+                if (!text.IsEmpty())
+                    list.Add(text);
+                
                 break;
             }
 
-            // Append text to the current text element
-            ((MsbtTextElement)curElement).AppendChar16(value);
-            pointer += 2;
+            // Otherwise, turn the range of pointer -> nextTag into a text element
+            text = new MsbtTextElement(buffer[pointer..nextTagIdx]);
+            if (text.IsEmpty())
+                break;
+            
+            list.Add(text);
+            pointer += text.Text.Length * sizeof(ushort);
         }
-
-        // If the current element is a text element, run a finalizer on it to ensure _initial_text is valid
-        if (curElement != null && curElement.GetType() == typeof(MsbtTextElement))
-            ((MsbtTextElement)curElement).FinalizeAppending();
 
         return list;
     }
+
+    public override string GetFactoryName() { return "Super Mario Odyssey"; }
 
     private static MsbtTagElement BuildTagElement(byte[] buffer, ref int pointer)
     {
@@ -130,12 +132,12 @@ internal static class Builder
             (ushort)TagNameNumber.Date => new MsbtTagElementNumberDate(ref pointer, buffer),
             (ushort)TagNameNumber.RaceTime => new MsbtTagElementNumberRaceTime(ref pointer, buffer),
             (ushort)TagNameNumber.DateDetail => new MsbtTagElementNumberDateDetail(ref pointer, buffer),
-            
+
             //// v1.2.0+
             (ushort)TagNameNumber.DateEU => new MsbtTagElementNumberDate(ref pointer, buffer),
             (ushort)TagNameNumber.DateDetailEU => new MsbtTagElementNumberDateDetail(ref pointer, buffer),
             ////
-            
+
             _ => new MsbtTagElementUnknown(ref pointer, buffer),
         };
     }

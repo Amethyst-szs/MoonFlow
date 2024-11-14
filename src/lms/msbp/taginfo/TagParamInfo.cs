@@ -57,10 +57,8 @@ public class TagParamInfoTypeArray : TagParamInfo
     public TagParamInfoTypeArray(byte[] paramData) : base()
     {
         ParamType = paramData[0];
-        if (ParamType != TYPE_ID_ARRAY) {
-            GD.PushError("Attempting to create a TagParamInfoTypeArray using data that isn't TYPE_ID_ARRAY!");
-            return;
-        }
+        if (ParamType != TYPE_ID_ARRAY)
+            throw new LMSException("Attempting to create a TagParamInfoTypeArray using data that isn't TYPE_ID_ARRAY");
 
         int pointer = 2;
         var itemCount = BitConverter.ToUInt16(paramData, pointer);

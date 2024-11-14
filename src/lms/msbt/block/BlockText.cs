@@ -20,8 +20,8 @@ public class BlockText(byte[] data, string name, int offset, int charByteSize) :
         for (int i = 0; i < count; i++)
         {
             int offset = (int)BitConverter.ToUInt32(data, (i * 4) + 4);
-
             int endPointer;
+            
             if (i < count - 1)
             {
                 endPointer = (int)BitConverter.ToUInt32(data, ((i + 1) * 4) + 4);
@@ -73,14 +73,14 @@ public class BlockText(byte[] data, string name, int offset, int charByteSize) :
         // Ensure the block has a valid header
         if (!IsBlockHeaderOK)
             return;
-        
+
         // Reset text data list
         TextData.Clear();
 
         // Copy text data from the entry list to the internal TextData array
         foreach (var item in msbtContents)
         {
-            TextData.Add(item.GetBytes());
+            TextData.Add(item.BuildText());
         }
     }
 

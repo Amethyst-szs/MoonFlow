@@ -69,11 +69,7 @@ public abstract class Block
         WriteBlockData(stream);
 
         if (stream.Position - priorToDataPosition != dataSize)
-        {
-            var calcSize = stream.Position - priorToDataPosition;
-            GD.PushError("LMSBlock didn't write correctly! Data and DataSize do not match!\n" + calcSize + " != " + dataSize);
-            return false;
-        }
+            throw new LMSException("LMSBlock failed! Data and DataSize do not match!\n");
 
         // Pad out stream to align next block with 0x10 grid
         if (stream.Length % BLOCK_ALIGNMENT_SIZE != 0)

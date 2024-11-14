@@ -66,3 +66,5 @@ public abstract class FileBase
         return Header.IsValid();
     }
 }
+
+public class LMSException(string error) : Exception(error);

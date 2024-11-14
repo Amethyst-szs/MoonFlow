@@ -16,13 +16,7 @@ public partial class Graph
         // Write to disk
         var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
         if (file == null)
-        {
-            GD.PushError(string.Format("Failed to write EventFlowGraph file to {0} ({1})",
-                path,
-                Godot.FileAccess.GetOpenError()
-            ));
-            return false;
-        }
+            throw new EventFlowException(string.Format("Failed to write EventFlowGraph file to {0}", path));
 
         file.StoreBuffer(data);
         file.Close();
@@ -56,7 +50,7 @@ public partial class Graph
         // Build the two main data structures of the byml dictionary
         build["EntryList"] = WriteBuildEntryPointList();
         build["NodeList"] = WriteBuildNodeList();
-        
+
         var itemList = WriteBuildItemList();
         if (itemList.Count > 0)
             build["ItemList"] = itemList;

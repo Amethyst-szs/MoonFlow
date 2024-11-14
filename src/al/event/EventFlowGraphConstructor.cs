@@ -30,10 +30,7 @@ public partial class Graph
         foreach (var n in nodeList)
         {
             if (n.GetType() != typeof(Dictionary<object, object>))
-            {
-                GD.PushError("NodeList element in EventFlowGraph is not a dictionary!");
-                return false;
-            }
+                throw new EventFlowException("NodeList element in EventFlowGraph is not a dictionary!");
 
             var dict = (Dictionary<object, object>)n;
             Node node = nodeFactory.CreateNode(dict);
@@ -57,10 +54,7 @@ public partial class Graph
         foreach (var enter in entryPointList)
         {
             if (enter.GetType() != typeof(Dictionary<object, object>))
-            {
-                GD.PushError("EntryList element in EventFlowGraph is not a dictionary!");
-                return false;
-            }
+                throw new EventFlowException("EntryList element in EventFlowGraph is not a dictionary!");
 
             // Create a dictionary version of the entry object, and create placeholders for name and node
             var dict = (Dictionary<object, object>)enter;

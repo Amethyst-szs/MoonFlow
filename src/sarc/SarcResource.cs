@@ -19,7 +19,7 @@ public partial class SarcResource : Resource
     // ====================================================== //
 
     private Sarc SarcData;
-    
+
     public SarcResource(Sarc file)
     {
         SarcData = file;
@@ -77,9 +77,9 @@ public partial class SarcResource : Resource
     {
         return BymlFile.FromBytes([.. SarcData[name]]);
     }
-    public MsbtFile GetFileMSBT(string name, TagLibraryHolder.Type tagLib)
+    public MsbtFile GetFileMSBT(string name, MsbtElementFactory factory)
     {
-        return new MsbtFile(tagLib, [.. SarcData[name]]);
+        return new MsbtFile(factory, [.. SarcData[name]]);
     }
     public Graph GetFileAlEventFlow(string name, EventFlowFactoryBase nodeFactory)
     {
@@ -94,7 +94,7 @@ public partial class SarcResource : Resource
     {
         if (SarcData.ContainsKey(name))
             return false;
-        
+
         SarcData[name] = data;
         return true;
     }
@@ -107,7 +107,7 @@ public partial class SarcResource : Resource
     {
         if (!SarcData.ContainsKey(oldName) || SarcData.ContainsKey(newName))
             return false;
-        
+
         byte[] data = [.. SarcData[oldName]];
         SarcData.Remove(oldName);
         SarcData[newName] = data;
@@ -117,7 +117,7 @@ public partial class SarcResource : Resource
     {
         if (!SarcData.ContainsKey(name))
             return false;
-        
+
         SarcData.Remove(name);
         return true;
     }

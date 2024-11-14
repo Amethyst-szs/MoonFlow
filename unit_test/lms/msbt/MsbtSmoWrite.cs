@@ -19,7 +19,7 @@ public class UnitTestMsbtSMOWrite : UnitTestMsbtSMOParse
     public override UnitTestResult Test()
     {
         // Load in an msbt resource and check it's validity
-        MsbtFile msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileData);
+        MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData);
         if (!msbt.IsValid())
         {
             GD.PrintErr("Failed to initalize MsbtV2 for unit test!");
@@ -39,7 +39,7 @@ public class UnitTestMsbtSMOWrite : UnitTestMsbtSMOParse
         writer.Close();
 
         // Read this output back in and run element testing on it
-        msbt = new(TagLibraryHolder.Type.SUPER_MARIO_ODYSSEY, FileAccess.GetFileAsBytes("user://unit_test/MsbtSMO.msbt"));
+        msbt = new(new MsbtElementFactoryProjectSmo(), FileAccess.GetFileAsBytes("user://unit_test/MsbtSMO.msbt"));
         if (!msbt.IsValid())
         {
             GD.PrintErr("Failed to initalize MsbtV2 for unit test!");
