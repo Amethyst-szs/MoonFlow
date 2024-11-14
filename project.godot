@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Nindot"
-run/main_scene="res://example/default_scene.tscn"
+run/main_scene="res://example/msbt/msbt_file_test.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 nindot/romfs_100_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey100/romfs/"

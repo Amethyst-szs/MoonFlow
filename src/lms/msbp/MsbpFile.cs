@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+
+using Godot;
 
 namespace Nindot.LMS.Msbp;
 
@@ -65,5 +66,40 @@ public partial class MsbpFile : FileBase
     public override string GetFileMagic()
     {
         return "MsgPrjBn";
+    }
+
+    // ====================================================== //
+    // ================ Constructor Utilities =============== //
+    // ====================================================== //
+
+    static public MsbpFile FromFilePath(string path)
+    {
+        if (!FileAccess.FileExists(path))
+        {
+            GD.PushError("No file exists at the path ", path);
+            return null;
+        }
+
+        var bytes = FileAccess.GetFileAsBytes(path);
+        if (bytes.Length == 0)
+        {
+            GD.PushError("An error occured opening file ", path, " - ", Godot.FileAccess.GetOpenError());
+            return null;
+        }
+
+        return FromBytes(bytes);
+    }
+
+    static public MsbpFile FromBytes(byte[] data)
+    {
+        MsbpFile file;
+        try { file = new(data); }
+        catch
+        {
+            GD.PushError("MsbpFile threw an exception");
+            return null;
+        }
+
+        return file;
     }
 }

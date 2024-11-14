@@ -9,6 +9,7 @@ namespace Nindot.LMS.Msbt.TagLib;
 public abstract class MsbtBaseElement
 {
     public abstract bool IsTag();
+    public abstract bool IsTagClose();
     public abstract bool IsValid();
     public abstract string GetText();
     public abstract byte[] GetBytes();
@@ -28,6 +29,7 @@ public class MsbtTextElement : MsbtBaseElement
     }
 
     public override bool IsTag() { return false; }
+    public override bool IsTagClose() { return false; }
     public override bool IsValid() { return true; }
     public override string GetText() { return Text; }
 
@@ -58,7 +60,8 @@ public class MsbtTagCloseElement : MsbtBaseElement
         pointer += STRUCT_SIZE;
     }
 
-    public override bool IsTag() { return true; }
+    public override bool IsTag() { return false; }
+    public override bool IsTagClose() { return true; }
 
     public override bool IsValid() { return true; }
 

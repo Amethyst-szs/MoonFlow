@@ -71,11 +71,12 @@ public abstract class MsbtTagElement : MsbtBaseElement
         return result;
     }
     public override bool IsTag() { return true; }
+    public override bool IsTagClose() { return false; }
 
     public string GetTagNameInProject(Msbp.MsbpFile project)
     {
         Msbp.TagGroupInfo group = project.TagGroup_Get(GroupName);
-        if (group == null || group.ListingIndexList.Count >= TagName)
+        if (group == null || group.ListingIndexList.Count <= TagName)
             return null;
         
         int tagBlockIdx = group.ListingIndexList[TagName];

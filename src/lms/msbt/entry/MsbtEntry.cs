@@ -8,10 +8,9 @@ namespace Nindot.LMS.Msbt;
 public partial class MsbtEntry
 {
     public string Name { get; internal set; } = "";
-    public MsbtElementFactory Factory = null;
+    internal MsbtElementFactory Factory = null;
 
     internal List<MsbtBaseElement> Elements { get; private set; } = [];
-
     internal uint StyleIndex = 0xFFFFFFFF;
 
     internal MsbtEntry(MsbtElementFactory factory, string name, byte[] txtData, uint styleIndex = 0xFFFFFFFF)
@@ -21,7 +20,6 @@ public partial class MsbtEntry
         Elements = factory.Build(txtData);
         StyleIndex = styleIndex;
     }
-
     public MsbtEntry(MsbtElementFactory factory, string name)
     {
         Factory = factory;
