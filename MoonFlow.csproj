@@ -4,15 +4,15 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <!-- <PackageIcon>icon.svg</PackageIcon> Doesn't support svgs, will have to make a proper icon later -->
+    <PackageIcon>icon.png</PackageIcon> Doesn't support svgs, will have to make a proper icon later
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageVersion>0.2.0</PackageVersion>
-    <PackageProjectUrl>https://github.com/Amethyst-szs/nindot</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Amethyst-szs/MoonFlow</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="icon.svg" Link="Assets\icon.svg">  
+    <None Include="icon.png" Link="Assets\icon.png">  
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
