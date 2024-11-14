@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cge5jtw000aim"]
 
 [ext_resource type="Script" path="res://example/msbt/MsbtFileTest.cs" id="1_iinmc"]
-[ext_resource type="Script" path="res://src/lms/msbt/editor/MsbtEntryEditor.cs" id="2_gwo1f"]
+[ext_resource type="Script" path="res://nindot/lms/msbt/editor/MsbtEntryEditor.cs" id="2_gwo1f"]
 
 [node name="MsbtFileTest" type="Control"]
 layout_mode = 3

@@ -19,11 +19,7 @@ nindot/romfs_130_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mari
 
 [dotnet]
 
-project/assembly_name="Nindot"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/nindot/plugin.cfg")
+project/assembly_name="MoonFlow"
 
 [importer_defaults]
 
