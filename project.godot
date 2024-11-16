@@ -21,6 +21,10 @@ nindot/romfs_130_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mari
 
 project/assembly_name="MoonFlow"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nindot_integration/plugin.cfg")
+
 [importer_defaults]
 
 nindot.msbt={
