@@ -11,54 +11,49 @@ using Revrs;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestEventDataSourceValidity : UnitTestBase
+public class UnitTestEventRomFs : IUnitTest
 {
-    public override void SetupTest()
+    public static void SetupTest()
     {
     }
 
-    public override UnitTestResult Test()
+    public static void RunTest()
     {
         string path = (string)ProjectSettings.GetSetting(UnitTester._130PathKey);
         path += "EventData/";
-        if (!DirAccess.DirExistsAbsolute(path))
-            return UnitTestResult.FAILURE;
-        
+
+        Test.Should(DirAccess.DirExistsAbsolute(path));
+
         var fileList = DirAccess.GetFilesAt(path);
         foreach (var fileName in fileList)
         {
             if (!fileName.EndsWith(".szs"))
                 continue;
-            
+
             var res = SarcResource.FromFilePath(path + fileName);
             foreach (var bymlName in res.GetFileList())
             {
-                if (!TestGraph(res, bymlName))
-                    return UnitTestResult.FAILURE;
+                TestGraph(res, bymlName);
             }
         }
-
-        return UnitTestResult.OK;
     }
 
-    public bool TestGraph(SarcResource res, string bymlName)
+    public static void TestGraph(SarcResource res, string bymlName)
     {
+        // Get bytes from sarc
         var bytes = res.GetFile(bymlName);
-        if (bytes.Length == 0)
-            return false;
-        
+        Test.ShouldNot(bytes.Length == 0);
+
         // Create yaml string of bytes
         RevrsReader bytesReader = new(bytes);
         ImmutableByml bytesByml = new(ref bytesReader);
         string bytesYaml = bytesByml.ToYaml();
-        
+
+        // Create and write graph
         var graph = Graph.FromBytes(bytes, new ProjectSmoEventFlowFactory());
-        if (graph == null || !graph.IsValid())
-            return false;
-        
-        if (!graph.WriteBytes(out byte[] result))
-            return false;
-        
+        Test.Should(graph.IsValid());
+        Test.Should(graph.WriteBytes(out byte[] result));
+
         // Create yaml string of result
         RevrsReader resReader = new(result);
         ImmutableByml resByml = new(ref resReader);
@@ -79,17 +74,11 @@ public class UnitTestEventDataSourceValidity : UnitTestBase
             resOut.StoreBuffer(result);
             resOut.Close();
 
-            return false;
+            throw new UnitTestException();
         }
-
-        return true;
     }
 
-    public override void CleanupTest()
-    {
-    }
-
-    public override void Failure()
+    public static void CleanupTest()
     {
     }
 }

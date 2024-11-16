@@ -14,11 +14,11 @@ public partial class MsbtFileTest : Control
 	public override void _Ready()
 	{
 		// Setup project
-		Project = MsbpFile.FromFilePath("res://unit_test/lms/msbp/ProjectData-SMO.msbp");
+		Project = MsbpFile.FromFilePath("res://test/lms/msbp/ProjectData-SMO.msbp");
 
 		// Setup file
 		var factory = new MsbtElementFactoryProjectSmo();
-		File = MsbtFile.FromFilePath("res://unit_test/lms/msbt/SmoUnitTesting.msbt", factory);
+		File = MsbtFile.FromFilePath("res://test/lms/msbt/SmoUnitTesting.msbt", factory);
 
 		// Create list of keys in file
 		var keyContainer = GetNode<VBoxContainer>("Split/FileKeys/Content");
@@ -37,7 +37,7 @@ public partial class MsbtFileTest : Control
 		var content = GetNode<VBoxContainer>("Split/Content");
 		foreach (var child in content.GetChildren())
 			content.RemoveChild(child);
-		
+
 		// Get access to requested entry
 		File.Content.TryGetValue(entryName, out MsbtEntry entry);
 		if (entry == null) return;
@@ -63,10 +63,10 @@ public partial class MsbtFileTest : Control
 				string name = elementT.GetTagNameInProject(Project);
 
 				label.AppendText(group + " - " + name);
-				
+
 				label.PopAll();
 				continue;
-            }
+			}
 
 			label.AppendText(element.GetText());
 			continue;
