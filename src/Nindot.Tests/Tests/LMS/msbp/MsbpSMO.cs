@@ -2,16 +2,17 @@ using System.IO;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbpSMO : IUnitTest
+public class UnitTestMsbpSMO : IUnitTestGroup
 {
     static private byte[] FileData = [];
 
-    public static void SetupTest()
+    public static void SetupGroup()
     {
         FileData = File.ReadAllBytes("./src/Nindot.Tests/Tests/LMS/msbp/ProjectData-SMO.msbp");
     }
 
-    public static void RunTest()
+    [RunTest]
+    public static void MsbpReadWrite()
     {
         // Load in file
         LMS.Msbp.MsbpFile file = new(FileData);
@@ -27,7 +28,7 @@ public class UnitTestMsbpSMO : IUnitTest
         File.WriteAllBytes(Test.TestOutputDirectory + "MsbpSMO.msbp", stream.ToArray());
     }
 
-    public static void CleanupTest()
+    public static void CleanupGroup()
     {
         FileData = null;
     }

@@ -2,16 +2,17 @@ using System.IO;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestLmsHeaderReadWrite : IUnitTest
+public class UnitTestLmsHeaderReadWrite : IUnitTestGroup
 {
     static private byte[] FileData = [];
 
-    public static void SetupTest()
+    public static void SetupGroup()
     {
-        FileData = File.ReadAllBytes("./src/Nindot.Tests/Tests/LMS/msbt/SmoUnitTesting.msbt");
+        FileData = File.ReadAllBytes("./src/Nindot.Tests/Resources/SmoUnitTesting.msbt");
     }
 
-    public static void RunTest()
+    [RunTest]
+    public static void LmsHeaderReadWrite()
     {
         LMS.FileHeader head = new(FileData);
         Test.Should(head.IsValid());
@@ -20,7 +21,7 @@ public class UnitTestLmsHeaderReadWrite : IUnitTest
         Test.Should(head.WriteHeader(stream));
     }
 
-    public static void CleanupTest()
+    public static void CleanupGroup()
     {
         FileData = null;
     }

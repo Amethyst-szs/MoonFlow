@@ -4,15 +4,23 @@ using Nindot.Byml;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestBymlAccess : IUnitTest
+public class UnitTestBymlAccess : IUnitTestGroup
 {
-    public static void SetupTest()
+    public static void SetupGroup()
     {
     }
 
-    public static void RunTest()
+    [RunTest]
+    public static void ReadByml()
     {
-        BymlFile file = BymlFile.FromFilePath("./src/Nindot.Tests/Tests/Byml/UnitTest.byml");
+        BymlFile file = BymlFile.FromFilePath("./src/Nindot.Tests/Resources/UnitTest.byml");
+        Test.Should(file != null);
+    }
+
+    [RunTest]
+    public static void WriteByml()
+    {
+        BymlFile file = BymlFile.FromFilePath("./src/Nindot.Tests/Resources/UnitTest.byml");
         Test.Should(file != null);
 
         MemoryStream stream = new();
@@ -24,7 +32,7 @@ public class UnitTestBymlAccess : IUnitTest
         Test.Should(file != null);
     }
 
-    public static void CleanupTest()
+    public static void CleanupGroup()
     {
     }
 }

@@ -8,13 +8,14 @@ using Revrs;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestEventRomFs : IUnitTest
+public class UnitTestEventRomFs : IUnitTestGroup
 {
-    public static void SetupTest()
+    public static void SetupGroup()
     {
     }
 
-    public static void RunTest()
+    [RunTest, SmoRomfsTest]
+    public static void TestEventDataRomfs()
     {
         var path = Test.RomfsDirectory + "EventData/";
         Test.Should(Directory.Exists(path));
@@ -62,7 +63,7 @@ public class UnitTestEventRomFs : IUnitTest
         }
     }
 
-    public static void CleanupTest()
+    public static void CleanupGroup()
     {
     }
 }

@@ -9,8 +9,12 @@ namespace Nindot.UnitTest;
 
 public class UnitTester
 {
-    private readonly List<Type> Tests = [];
+    private List<Type> TestGroups = [];
 
+    private RomfsValidation.RomfsVersion SMORomfsVersion = RomfsValidation.RomfsVersion.INVALID_VERSION;
+
+    private int TestCount = 0;
+    private int TestSkipCount = 0;
     private int TestSuccessCount = 0;
     private int TestFailureCount = 0;
 
@@ -23,37 +27,17 @@ public class UnitTester
             if (arg.StartsWith("--game=")) Test.GameName = arg["--game=".Length..];
         }
 
-        // Ensure romfs directory is valid
-        if (!Directory.Exists(Test.RomfsDirectory))
-        {
-            Console.Error.WriteLine("Invalid Romfs directory! Make sure to supply a no-space directory using --romfs=");
-            Environment.Exit(0);
-        }
+        // Set romfs directory to none if the args didn't supply this value
+        if (!Directory.Exists(Test.RomfsDirectory)) Test.RomfsDirectory = "None";
 
-        // Ensure game is valid
-        if (Test.GameName != "SMO")
-        {
-            Console.Error.WriteLine("Nindot.Tests requires game to equal SMO! Make sure to supply the argument --game=SMO");
-            Environment.Exit(0);
-        }
+        // Set game name to unknown if not definied by args
+        Test.GameName ??= "None";
 
-        // Get game version and run hash table check on romfs directory
-        string path = Test.RomfsDirectory;
-        bool isValid = RomfsValidation.ValidateAndUpdatePath(ref path, out RomfsValidation.RomfsVersion ver);
-        Test.RomfsDirectory = path;
+        // If the requested game is "SMO", run romfs validation
+        SMORomfsVersion = RomfsValidation.RomfsVersion.INVALID_VERSION;
+        if (Test.GameName.Equals("SMO"))
+            SMORomfsVersion = SetupRomfsForSMO();
 
-        if (!isValid)
-        {
-            Console.Error.WriteLine("Romfs directory is a valid directory, but it doesn't look like an SMO romfs directory!");
-            Environment.Exit(0);
-        }
-
-        // Get test list and output directory
-        Tests = GetAllUnitTests();
-        Directory.CreateDirectory(Test.TestOutputDirectory);
-
-        // Log to console and start tests
-        Console.WriteLine("  - GAME: {0}\n  - VERSION: {1}", Test.GameName, ver.ToString());
         RunTests();
     }
 
@@ -64,88 +48,157 @@ public class UnitTester
 
     public void RunTests()
     {
-        Console.WriteLine("Unit Test > START");
+        // Get test list and output directory
+        TestGroups = GetAllUnitTests(out TestCount);
+        Directory.CreateDirectory(Test.TestOutputDirectory);
 
-        foreach (var test in Tests)
+        // Log to console and start tests
+        Console.WriteLine(TxtColorCyan + "  - GAME: {0}", Test.GameName);
+
+        if (SMORomfsVersion != RomfsValidation.RomfsVersion.INVALID_VERSION)
+            Console.WriteLine(TxtColorCyan + "  - VERSION: {0}", SMORomfsVersion.ToString());
+
+        Console.Write("\n");
+
+        // Run each test group
+        foreach (var group in TestGroups)
         {
-            RunTest(test);
+            RunTestGroup(group);
         }
 
         PrintTestResults();
     }
 
-    public bool RunTest(Type test)
+    public void RunTestGroup(Type group)
     {
-        if (test.IsSubclassOf(typeof(IUnitTest)))
+        if (group.IsSubclassOf(typeof(IUnitTestGroup)))
         {
             Console.Error.WriteLine("Supplied test does not inherit IUintTest");
-            return false;
+            return;
         }
 
-        test.GetMethod("SetupTest").Invoke(null, []);
+        group.GetMethod("SetupGroup").Invoke(null, []);
 
-        try
+        GroupStart(group);
+        foreach (var method in group.GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
-            TestStart(test);
-            test.GetMethod("RunTest").Invoke(null, []);
-        }
-        catch
-        {
-            TestFailure(test);
-            test.GetMethod("CleanupTest").Invoke(null, []);
-            return false;
-        }
-        finally
-        {
-            TestPass(test);
-            test.GetMethod("CleanupTest").Invoke(null, []);
+            if (method.GetCustomAttribute(typeof(RunTest)) == null)
+                continue;
+
+            // If this is an SMO romfs test and the unit test didn't get the --game=SMO arg, skip test
+            if (method.GetCustomAttribute(typeof(SmoRomfsTest)) != null && !Test.GameName.Equals("SMO"))
+            {
+                TestSkipCount++;
+                TestSkip(group, method);
+                continue;
+            }
+
+            try
+            {
+                TestStart(group, method);
+                method.Invoke(null, []);
+            }
+            catch
+            {
+                TestFailure(group, method);
+            }
+            finally
+            {
+                TestPass(group, method);
+            }
         }
 
-        return true;
+        group.GetMethod("CleanupGroup").Invoke(null, []);
     }
 
-    private static void TestStart(Type test)
+    private static void GroupStart(Type group)
     {
-        Console.WriteLine("Unit Test > {0} > {1}", "BEGIN", test);
+        Console.WriteLine(TxtColorCyan + " Unit Test > {0} > {1}", "GROUP".PadLeft(0x1C), group);
     }
-    private void TestPass(Type test)
+    private static void TestStart(Type group, MethodInfo method)
+    {
+        Console.WriteLine(TxtColorWhite + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), "START", group);
+    }
+    private static void TestSkip(Type group, MethodInfo method)
+    {
+        Console.WriteLine(TxtColorBlue + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), " SKIP", group);
+    }
+    private void TestPass(Type group, MethodInfo method)
     {
         TestSuccessCount += 1;
-        Console.WriteLine("Unit Test > {0} > {1}", "   OK", test);
+        Console.WriteLine(TxtColorGreen + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), "   OK", group);
     }
-    private void TestFailure(Type test)
+    private void TestFailure(Type group, MethodInfo method)
     {
         TestFailureCount += 1;
-        Console.WriteLine("Unit Test > {0} > {1}", "  ERR", test);
+        Console.WriteLine(TxtColorRed + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), "  ERR", group);
     }
     private void PrintTestResults()
     {
         // Print results
-        Console.WriteLine("\nTest Results:");
-        Console.WriteLine("Passed: {0}/{1}", TestSuccessCount, Tests.Count);
+        Console.WriteLine("\n" + TxtColorWhite + " Test Results:");
+        Console.WriteLine(TxtColorWhite + " Passed: {0}/{1}", TestSuccessCount, TestCount - TestSkipCount);
+
+        if (TestSkipCount > 0)
+            Console.Error.WriteLine(TxtColorBlue + " Skipped: {0}", TestSkipCount);
 
         if (TestFailureCount > 0)
-            Console.Error.WriteLine("Error: {0}", TestFailureCount);
+            Console.Error.WriteLine(TxtColorRed + " Error: {0}", TestFailureCount);
 
-        if (Tests.Count == TestSuccessCount)
-            Console.WriteLine("  -  All tests pass! :)");
+        if (TestCount == TestSuccessCount)
+            Console.WriteLine(TxtColorYellow + "  -  All tests pass! :)");
     }
 
-    private static List<Type> GetAllUnitTests()
+    private const string TxtColorWhite = "\u001b[37m";
+    private const string TxtColorRed = "\u001b[31m";
+    private const string TxtColorYellow = "\u001b[33m";
+    private const string TxtColorGreen = "\u001b[32m";
+    private const string TxtColorBlue = "\u001b[34m";
+    private const string TxtColorCyan = "\u001b[36m";
+
+    private static List<Type> GetAllUnitTests(out int testCount)
     {
         List<Type> tests = [];
+        testCount = 0;
 
         foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             foreach (Type type in assembly.GetTypes())
             {
-                if (type.GetInterface("IUnitTest") != null)
+                if (type.GetInterface("IUnitTestGroup") == null)
+                    continue;
+
+                int attributeCount = 0;
+
+                var methods = type.GetMethods(BindingFlags.Static | BindingFlags.Public);
+                foreach (var method in methods)
                 {
-                    tests.Add(type);
+                    if (method.GetCustomAttribute(typeof(RunTest)) != null) attributeCount++;
                 }
+
+                if (attributeCount == 0)
+                    continue;
+
+                testCount += attributeCount;
+                tests.Add(type);
             }
         }
 
         return tests;
+    }
+
+    private static RomfsValidation.RomfsVersion SetupRomfsForSMO()
+    {
+        string path = Test.RomfsDirectory;
+        bool isValid = RomfsValidation.ValidateAndUpdatePath(ref path, out RomfsValidation.RomfsVersion ver);
+        Test.RomfsDirectory = path;
+
+        if (!isValid)
+        {
+            Console.Error.WriteLine("Romfs directory is a valid directory, but it doesn't look like an SMO romfs directory!");
+            Environment.Exit(0);
+        }
+
+        return ver;
     }
 }

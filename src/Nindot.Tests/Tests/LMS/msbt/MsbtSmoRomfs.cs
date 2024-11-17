@@ -3,23 +3,70 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbtUSen : IUnitTest
+public class UnitTestMsbtAllLang : IUnitTestGroup
 {
     static private SarcFile SystemMessage = null;
     static private SarcFile StageMessage = null;
     static private SarcFile LayoutMessage = null;
 
-    public static void SetupTest()
+    private static readonly string[] OtherLangList = [
+        "CNzh",
+        "EUde",
+        "EUen",
+        "EUes",
+        "EUfr",
+        "EUit",
+        "EUnl",
+        "EUru",
+        "TWzh",
+        "USes",
+        "USfr",
+    ];
+
+    public static void SetupGroup()
     {
-        ReadSarcList("USen", out SystemMessage, out StageMessage, out LayoutMessage);
     }
 
-    public static void RunTest()
+    [RunTest, SmoRomfsTest]
+    public static void MsbtReadUSen()
     {
+        ReadSarcList("USen", out SystemMessage, out StageMessage, out LayoutMessage);
         ScanSarcMsbt(SystemMessage);
         ScanSarcMsbt(StageMessage);
         ScanSarcMsbt(LayoutMessage);
     }
+
+    [RunTest, SmoRomfsTest]
+    public static void MsbtReadJPja()
+    {
+        ReadSarcList("JPja", out SystemMessage, out StageMessage, out LayoutMessage);
+        ScanSarcMsbt(SystemMessage);
+        ScanSarcMsbt(StageMessage);
+        ScanSarcMsbt(LayoutMessage);
+    }
+
+    [RunTest, SmoRomfsTest]
+    public static void MsbtReadAllOtherLangs()
+    {
+        foreach (var lang in OtherLangList)
+        {
+            ReadSarcList(lang, out SystemMessage, out StageMessage, out LayoutMessage);
+            ScanSarcMsbt(SystemMessage);
+            ScanSarcMsbt(StageMessage);
+            ScanSarcMsbt(LayoutMessage);
+        }
+    }
+
+    public static void CleanupGroup()
+    {
+        SystemMessage = null;
+        StageMessage = null;
+        LayoutMessage = null;
+    }
+
+    // ====================================================== //
+    // ============ Utilities Called by All Tests =========== //
+    // ====================================================== //
 
     public static void ReadSarcList(string lang, out SarcFile system, out SarcFile stage, out SarcFile layout)
     {
@@ -52,16 +99,5 @@ public class UnitTestMsbtUSen : IUnitTest
 
             // UnitTestMsbtSMOParse.TestAllElements(msbt.Content);
         }
-    }
-
-    public static void CleanupTest()
-    {
-        SystemMessage = null;
-        StageMessage = null;
-        LayoutMessage = null;
-    }
-
-    public static void Failure()
-    {
     }
 }

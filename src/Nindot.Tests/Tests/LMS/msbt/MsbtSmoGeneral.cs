@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 
 using Nindot.LMS.Msbt;
@@ -6,16 +5,17 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace Nindot.UnitTest;
 
-public class UnitTestMsbtSMOWrite : IUnitTest
+public class UnitTestMsbtSMOWrite : IUnitTestGroup
 {
     private static byte[] FileData = [];
 
-    public static void SetupTest()
+    public static void SetupGroup()
     {
-        FileData = File.ReadAllBytes("./src/Nindot.Tests/Tests/LMS/msbt/SmoUnitTesting.msbt");
+        FileData = File.ReadAllBytes("./src/Nindot.Tests/Resources/SmoUnitTesting.msbt");
     }
 
-    public static void RunTest()
+    [RunTest]
+    public static void ReadWriteAndCheckMsbt()
     {
         // Load in an msbt resource and check it's validity
         MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData);
@@ -36,7 +36,7 @@ public class UnitTestMsbtSMOWrite : IUnitTest
         Test.Should(msbt.IsValid());
     }
 
-    public static void CleanupTest()
+    public static void CleanupGroup()
     {
         FileData = null;
     }
