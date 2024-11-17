@@ -8,7 +8,7 @@ public class UnitTestMsbpSMO : IUnitTest
 
     public static void SetupTest()
     {
-        FileData = File.ReadAllBytes("./src/Nindot.Tests/lms/msbp/ProjectData-SMO.msbp");
+        FileData = File.ReadAllBytes("./src/Nindot.Tests/Tests/LMS/msbp/ProjectData-SMO.msbp");
     }
 
     public static void RunTest()

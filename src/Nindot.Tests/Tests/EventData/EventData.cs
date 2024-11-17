@@ -11,7 +11,7 @@ public class UnitTestEventDataWrite : IUnitTest
 
     public static void RunTest()
     {
-        Graph flow = Graph.FromFilePath("./src/Nindot.Tests/eventdata/UnitTest-SphinxQuiz.byml", new ProjectSmoEventFlowFactory());
+        Graph flow = Graph.FromFilePath("./src/Nindot.Tests/Tests/EventData/UnitTest-SphinxQuiz.byml", new ProjectSmoEventFlowFactory());
         Test.Should(flow.IsValid());
 
         Test.Should(flow.WriteFile(Test.TestOutputDirectory + "EventFlowGraphOutput.byml"));

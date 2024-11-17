@@ -12,7 +12,7 @@ public class UnitTestBymlAccess : IUnitTest
 
     public static void RunTest()
     {
-        BymlFile file = BymlFile.FromFilePath("./src/Nindot.Tests/byml/UnitTest.byml");
+        BymlFile file = BymlFile.FromFilePath("./src/Nindot.Tests/Tests/Byml/UnitTest.byml");
         Test.Should(file != null);
 
         MemoryStream stream = new();

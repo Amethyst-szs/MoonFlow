@@ -14,7 +14,7 @@ public class UnitTestMsbtSMOParse : IUnitTest
 
     public static void SetupTest()
     {
-        FileData = File.ReadAllBytes("./src/Nindot.Tests/lms/msbt/SmoUnitTesting.msbt");
+        FileData = File.ReadAllBytes("./src/Nindot.Tests/Tests/LMS/msbt/SmoUnitTesting.msbt");
     }
 
     public static void RunTest()

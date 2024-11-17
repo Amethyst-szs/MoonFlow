@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cge5jtw000aim"]
+[gd_scene load_steps=2 format=3 uid="uid://cge5jtw000aim"]
 
-[ext_resource type="Script" path="res://example/msbt/MsbtFileTest.cs" id="1_iinmc"]
-[ext_resource type="Script" path="res://nindot/lms/msbt/editor/MsbtEntryEditor.cs" id="2_gwo1f"]
+[ext_resource type="Script" path="res://example/msbt/MsbtFileTest.cs" id="2_gwo1f"]
 
 [node name="MsbtFileTest" type="Control"]
 layout_mode = 3
@@ -10,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_iinmc")
+script = ExtResource("2_gwo1f")
 
 [node name="Split" type="SplitContainer" parent="."]
 layout_mode = 1
@@ -32,14 +31,3 @@ layout_mode = 2
 [node name="Content" type="VBoxContainer" parent="Split"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="MsbtEntryEditor" type="RichTextLabel" parent="Split/Content"]
-layout_mode = 2
-focus_mode = 2
-text = "abcdef"
-fit_content = true
-scroll_following = true
-context_menu_enabled = true
-threaded = true
-selection_enabled = true
-script = ExtResource("2_gwo1f")
