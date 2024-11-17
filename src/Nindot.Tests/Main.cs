@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
+using Nindot.Al.SMO;
+
 namespace Nindot.UnitTest;
 
 public class UnitTester
@@ -18,6 +20,7 @@ public class UnitTester
         foreach (var arg in args)
         {
             if (arg.StartsWith("--romfs=")) Test.RomfsDirectory = arg["--romfs=".Length..];
+            if (arg.StartsWith("--game=")) Test.GameName = arg["--game=".Length..];
         }
 
         // Ensure romfs directory is valid
@@ -27,12 +30,30 @@ public class UnitTester
             Environment.Exit(0);
         }
 
-        if (!Test.RomfsDirectory.EndsWith('/')) Test.RomfsDirectory += '/';
+        // Ensure game is valid
+        if (Test.GameName != "SMO")
+        {
+            Console.Error.WriteLine("Nindot.Tests requires game to equal SMO! Make sure to supply the argument --game=SMO");
+            Environment.Exit(0);
+        }
+
+        // Get game version and run hash table check on romfs directory
+        string path = Test.RomfsDirectory;
+        bool isValid = RomfsValidation.ValidateAndUpdatePath(ref path, out RomfsValidation.RomfsVersion ver);
+        Test.RomfsDirectory = path;
+
+        if (!isValid)
+        {
+            Console.Error.WriteLine("Romfs directory is a valid directory, but it doesn't look like an SMO romfs directory!");
+            Environment.Exit(0);
+        }
 
         // Get test list and output directory
         Tests = GetAllUnitTests();
         Directory.CreateDirectory(Test.TestOutputDirectory);
 
+        // Log to console and start tests
+        Console.WriteLine("  - GAME: {0}\n  - VERSION: {1}", Test.GameName, ver.ToString());
         RunTests();
     }
 
