@@ -24,7 +24,19 @@ public class UnitTestMsbtSMOParse : IUnitTest
         MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData);
         Test.Should(msbt.IsValid());
 
+        // Ensure elements pass general validity checks, used by all MSBT unit tests
         TestAllElements(msbt.Content);
+
+        // Test individual entries of the SmoUnitTesting.msbt file
+        MsbtEntry cur = msbt.GetEntry("UnitTest_NoTag");
+        Test.ShouldNot(cur, null);
+        Test.Should(cur.Elements.Count, 1);
+        Test.Should(cur.Elements[0].GetText(), "Hello, World!");
+
+        cur = msbt.GetEntry("UnitTest_PrintDelay");
+        Test.ShouldNot(cur, null);
+        Test.Should(cur.Elements.Count, 3);
+        Test.Should(((MsbtTagElementEuiWait)cur.Elements[1]).DelayFrames == 0x69);
     }
 
     public static void TestAllElements(OrderedDictionary<string, MsbtEntry> msbt)
