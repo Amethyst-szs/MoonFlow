@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageProjectUrl>https://github.com/Amethyst-szs/MoonFlow</PackageProjectUrl>
+    
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <TargetType>exe</TargetType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nindot\Nindot.csproj" />
+  </ItemGroup>
+</Project>
