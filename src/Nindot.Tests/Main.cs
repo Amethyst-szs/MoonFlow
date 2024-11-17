@@ -58,8 +58,6 @@ public class UnitTester
         if (SMORomfsVersion != RomfsValidation.RomfsVersion.INVALID_VERSION)
             Console.WriteLine(TxtColorCyan + "  - VERSION: {0}", SMORomfsVersion.ToString());
 
-        Console.Write("\n");
-
         // Run each test group
         foreach (var group in TestGroups)
         {
@@ -113,25 +111,30 @@ public class UnitTester
 
     private static void GroupStart(Type group)
     {
-        Console.WriteLine(TxtColorCyan + " Unit Test > {0} > {1}", "GROUP".PadLeft(0x1C), group);
+        Console.WriteLine("\n" + TxtColorCyan + " Unit Test > {0} > {1}", "GROUP".PadLeft(0x20),
+            group.ToString().Replace("Nindot.UnitTest.", ""));
     }
     private static void TestStart(Type group, MethodInfo method)
     {
-        Console.WriteLine(TxtColorWhite + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), "START", group);
+        Console.WriteLine(TxtColorWhite + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x18), "START",
+            group.ToString().Replace("Nindot.UnitTest.", ""));
     }
     private static void TestSkip(Type group, MethodInfo method)
     {
-        Console.WriteLine(TxtColorBlue + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), " SKIP", group);
+        Console.WriteLine(TxtColorBlue + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x18), " SKIP",
+            group.ToString().Replace("Nindot.UnitTest.", ""));
     }
     private void TestPass(Type group, MethodInfo method)
     {
         TestSuccessCount += 1;
-        Console.WriteLine(TxtColorGreen + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), "   OK", group);
+        Console.WriteLine(TxtColorGreen + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x18), "   OK",
+            group.ToString().Replace("Nindot.UnitTest.", ""));
     }
     private void TestFailure(Type group, MethodInfo method)
     {
         TestFailureCount += 1;
-        Console.WriteLine(TxtColorRed + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x14), "  ERR", group);
+        Console.WriteLine(TxtColorRed + " Unit Test > {0} > {1} > {2}", method.Name.PadLeft(0x18), "  ERR",
+            group.ToString().Replace("Nindot.UnitTest.", ""));
     }
     private void PrintTestResults()
     {
@@ -195,7 +198,7 @@ public class UnitTester
 
         if (!isValid)
         {
-            Console.Error.WriteLine("Romfs directory is a valid directory, but it doesn't look like an SMO romfs directory!");
+            Console.Error.WriteLine("Romfs directory is \"{0}\", which isn't a valid SMO romfs directory!", path);
             Environment.Exit(0);
         }
 

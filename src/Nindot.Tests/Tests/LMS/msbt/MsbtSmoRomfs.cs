@@ -97,7 +97,7 @@ public class UnitTestMsbtAllLang : IUnitTestGroup
             MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), file);
             Test.Should(msbt.IsValid());
 
-            // UnitTestMsbtSMOParse.TestAllElements(msbt.Content);
+            UnitTestMsbtSMOGeneral.TestAllElements(msbt);
         }
     }
 }

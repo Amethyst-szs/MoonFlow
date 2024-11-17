@@ -10,7 +10,7 @@ public partial class MsbtEntry
     public string Name { get; internal set; } = "";
     internal MsbtElementFactory Factory = null;
 
-    internal List<MsbtBaseElement> Elements { get; private set; } = [];
+    public List<MsbtBaseElement> Elements { get; private set; } = [];
     internal uint StyleIndex = 0xFFFFFFFF;
 
     internal MsbtEntry(MsbtElementFactory factory, string name, byte[] txtData, uint styleIndex = 0xFFFFFFFF)

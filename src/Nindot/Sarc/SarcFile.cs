@@ -9,6 +9,7 @@ using Nindot.LMS.Msbt.TagLib;
 using Nindot.Byml;
 using Nindot.Al.EventFlow;
 using System.IO;
+using Nindot.LMS.Msbp;
 
 namespace Nindot;
 
@@ -66,6 +67,10 @@ public class SarcFile
     public MsbtFile GetFileMSBT(string name, MsbtElementFactory factory)
     {
         return new MsbtFile(factory, [.. SarcData[name]]);
+    }
+    public MsbpFile GetFileMSBP(string name)
+    {
+        return new MsbpFile([.. SarcData[name]]);
     }
     public Graph GetFileAlEventFlow(string name, EventFlowFactoryBase nodeFactory)
     {

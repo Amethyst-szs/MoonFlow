@@ -39,6 +39,18 @@ public class BlockColor(byte[] data, string typeName, int offset, MsbpFile paren
             stream.Write(B);
             stream.Write(A);
         }
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(Entry))
+                return base.Equals(obj);
+            
+            var cmp = (Entry)obj;
+            return R == cmp.R && G == cmp.G && B == cmp.B && A == cmp.A;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     private List<Entry> Colors = [];
