@@ -40,12 +40,11 @@ public static class RomfsValidation
             dirList = Directory.GetDirectories(path);
         }
 
-        // Ensure this directory contains some standard folders an SMO romfs should have
-        if (!dirList.Contains(path + "LocalizedData")) return null;
-        if (!dirList.Contains(path + "EventData")) return null;
-        if (!dirList.Contains(path + "StageData")) return null;
-        if (!dirList.Contains(path + "ObjectData")) return null;
-        if (!dirList.Contains(path + "SystemData")) return null;
+        // Ensure this directory contains the standard folders an SMO romfs should have
+        foreach (var dir in RequiredRomfsDirectories)
+        {
+            if (!dirList.Contains(path + dir)) return null;
+        }
 
         return path;
     }
@@ -58,7 +57,7 @@ public static class RomfsValidation
 
         if (HashTable.TryGetValue(hash, out RomfsVersion version))
             return version;
-        
+
         return RomfsVersion.INVALID_VERSION;
     }
 
@@ -101,4 +100,17 @@ public static class RomfsValidation
         { "437fc064b6916b405fc81db6985e09b2341fd0ce4f6663197ea3d7bac591b85a", RomfsVersion.v120 },
         { "9d1dc8610b5571ea32dad35c4e27a0895dc523c79cb170ffde838c898ed96d58", RomfsVersion.v130 },
     };
+
+    private static readonly string[] RequiredRomfsDirectories = [
+        "EffectData",
+        "EventData",
+        "LayoutData",
+        "LocalizedData",
+        "MovieData",
+        "ObjectData",
+        "ShaderData",
+        "SoundData",
+        "StageData",
+        "SystemData",
+    ];
 }
