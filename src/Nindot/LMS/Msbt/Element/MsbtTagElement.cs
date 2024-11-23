@@ -72,6 +72,7 @@ public abstract class MsbtTagElement : MsbtBaseElement
     }
     public override bool IsTag() { return true; }
     public override bool IsTagClose() { return false; }
+    public override bool IsPageBreak() { return false; }
 
     public string GetTagNameInProject(Msbp.MsbpFile project)
     {

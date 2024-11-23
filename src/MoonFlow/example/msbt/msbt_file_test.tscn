@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cge5jtw000aim"]
 
-[ext_resource type="Script" path="res://addons/nindot_integration/lms/msbt/entry/MsbtEntryEditor.cs" id="2_31sbb"]
+[ext_resource type="Script" path="res://addons/nindot_integration/lms/msbt/page/MsbtPageEditor.cs" id="2_31sbb"]
 [ext_resource type="Script" path="res://example/msbt/MsbtFileTest.cs" id="2_gwo1f"]
 
 [node name="MsbtFileTest" type="Control"]
@@ -33,6 +33,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MsbtEntryEditor" type="TextEdit" parent="Split/Content"]
+[node name="MsbtPageEditor" type="TextEdit" parent="Split/Content"]
+custom_minimum_size = Vector2(0, 315)
 layout_mode = 2
+caret_multiple = false
 script = ExtResource("2_31sbb")

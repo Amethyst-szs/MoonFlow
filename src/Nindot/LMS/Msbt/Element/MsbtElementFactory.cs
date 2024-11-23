@@ -4,14 +4,15 @@ namespace Nindot.LMS.Msbt.TagLib;
 
 public class MsbtElementFactory
 {
-    internal virtual List<MsbtBaseElement> Build(byte[] buffer)
+    internal virtual List<MsbtPage> Build(byte[] buffer)
     {
+        MsbtPage page = [];
+
         MsbtTextElement txt = new(buffer);
         if (txt.IsEmpty())
             return [];
 
-        List<MsbtBaseElement> list = [txt];
-        return list;
+        return [page];
     }
 
     public virtual string GetFactoryName() { return "Base"; }

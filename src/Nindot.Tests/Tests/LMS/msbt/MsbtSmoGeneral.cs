@@ -29,13 +29,15 @@ public class UnitTestMsbtSMOGeneral : IUnitTestGroup
         // Test individual entries of the SmoUnitTesting.msbt file
         MsbtEntry cur = msbt.GetEntry("UnitTest_NoTag");
         Test.ShouldNot(cur, null);
-        Test.Should(cur.Elements.Count, 1);
-        Test.Should(cur.Elements[0].GetText(), "Hello, World!");
+        Test.Should(cur.Pages.Count, 1);
+        Test.Should(cur.Pages[0].Count, 1);
+        Test.Should(cur.Pages[0][0].GetText(), "Hello, World!");
 
         cur = msbt.GetEntry("UnitTest_PrintDelay");
         Test.ShouldNot(cur, null);
-        Test.Should(cur.Elements.Count, 3);
-        Test.Should(((MsbtTagElementEuiWait)cur.Elements[1]).DelayFrames == 0x69);
+        Test.Should(cur.Pages.Count, 1);
+        Test.Should(cur.Pages[0].Count, 3);
+        Test.Should(((MsbtTagElementEuiWait)cur.Pages[0][1]).DelayFrames == 0x69);
     }
 
     [RunTest]
@@ -71,33 +73,41 @@ public class UnitTestMsbtSMOGeneral : IUnitTestGroup
     {
         foreach (var label in msbt.GetEntryLabels())
         {
-            foreach (MsbtBaseElement element in msbt.GetEntry(label).Elements)
+            foreach (MsbtPage page in msbt.GetEntry(label).Pages)
             {
-                // If the current element is a text element, check validity and move on
-                if (element.GetType() == typeof(MsbtTextElement))
-                {
-                    Test.Should(element.IsValid());
-                    continue;
-                }
+                TestPage(label, page);
+            }
+        }
+    }
 
-                // At this point we know it is a tag so we can cast to the tag base class and run some more checks
-                MsbtTagElement tag = (MsbtTagElement)element;
+    public static void TestPage(string label, MsbtPage page)
+    {
+        foreach (var element in page)
+        {
+            // If the current element is a text element, check validity and move on
+            if (element.GetType() == typeof(MsbtTextElement))
+            {
+                Test.Should(element.IsValid());
+                continue;
+            }
 
-                Test.Should(tag.IsValid());
-                Test.Should(tag.GetBytes().Length, tag.CalcDataSize() + 0x8);
+            // At this point we know it is a tag so we can cast to the tag base class and run some more checks
+            MsbtTagElement tag = (MsbtTagElement)element;
 
-                // Only throw a warning for this, but note down if tag group is of an unknown type, since this should
-                // never happen under normal circumstances, but doesn't inheritely mean something is wrong with the
-                // parser or file
-                if (tag.GetType() == typeof(MsbtTagElementUnknown))
-                {
-                    string warn = string.Format("{0} is tag group {1} ({2}) and subtype {3} ({4}), which created TagElementUnknown",
-                        label, tag.GetGroupName(), Enum.GetName(typeof(TagGroup), tag.GetGroupName()),
-                        tag.GetTagName(), tag.GetTagNameStr()
-                    );
+            Test.Should(tag.IsValid());
+            Test.Should(tag.GetBytes().Length, tag.CalcDataSize() + 0x8);
 
-                    Console.WriteLine(warn);
-                }
+            // Only throw a warning for this, but note down if tag group is of an unknown type, since this should
+            // never happen under normal circumstances, but doesn't inheritely mean something is wrong with the
+            // parser or file
+            if (tag.GetType() == typeof(MsbtTagElementUnknown))
+            {
+                string warn = string.Format("{0} is tag group {1} ({2}) and subtype {3} ({4}), which created TagElementUnknown",
+                    label, tag.GetGroupName(), Enum.GetName(typeof(TagGroup), tag.GetGroupName()),
+                    tag.GetTagName(), tag.GetTagNameStr()
+                );
+
+                Console.WriteLine(warn);
             }
         }
     }

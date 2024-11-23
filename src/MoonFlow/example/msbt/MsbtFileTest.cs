@@ -5,6 +5,7 @@ using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib.Smo;
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt.TagLib;
+using System.Linq;
 
 public partial class MsbtFileTest : Control
 {
@@ -48,30 +49,42 @@ public partial class MsbtFileTest : Control
         RichTextLabel label = new()
         {
             FitContent = true,
-            BbcodeEnabled = true,
         };
 
-        foreach (var element in entry.Elements)
+        foreach (var page in entry.Pages)
         {
-            if (element.IsTag())
+            foreach (var element in page)
             {
-                var elementT = (MsbtTagElement)element;
+                if (element.IsTag())
+                {
+                    var elementT = (MsbtTagElement)element;
 
-                label.PushItalics();
-                label.PushColor(new Color(1.0F, 0.7F, 0.7F, 1.0F));
-                label.PushFontSize(14);
+                    label.PushItalics();
+                    label.PushColor(new Color(1.0F, 0.7F, 0.7F, 1.0F));
+                    label.PushFontSize(14);
 
-                string group = Project.TagGroup_Get(elementT.GetGroupName()).Name;
-                string name = elementT.GetTagNameInProject(Project);
+                    string group = Project.TagGroup_Get(elementT.GetGroupName()).Name;
+                    string name = elementT.GetTagNameInProject(Project);
 
-                label.AppendText(group + " - " + name);
+                    label.AppendText(group + " - " + name);
 
-                label.PopAll();
+                    label.PopAll();
+                    continue;
+                }
+
+                label.AppendText(element.GetText());
                 continue;
             }
 
-            label.AppendText(element.GetText());
-            continue;
+            if (page != entry.Pages.Last())
+            {
+                content.AddChild(label);
+                content.AddChild(new HSeparator());
+                label = new()
+                {
+                    FitContent = true,
+                };
+            }
         }
 
         content.AddChild(label);

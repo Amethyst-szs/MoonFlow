@@ -8,12 +8,16 @@ namespace Nindot.LMS.Msbt.TagLib;
 
 public abstract class MsbtBaseElement
 {
+    public bool IsText() { return GetType() == typeof(MsbtTextElement); }
     public abstract bool IsTag();
     public abstract bool IsTagClose();
+    public abstract bool IsPageBreak();
     public abstract bool IsValid();
     public abstract string GetText();
     public abstract byte[] GetBytes();
     public abstract void WriteBytes(MemoryStream stream);
+
+    public MsbtBaseElement Clone() { return (MsbtBaseElement)MemberwiseClone(); }
 }
 
 public class MsbtTextElement : MsbtBaseElement
@@ -30,6 +34,7 @@ public class MsbtTextElement : MsbtBaseElement
 
     public override bool IsTag() { return false; }
     public override bool IsTagClose() { return false; }
+    public override bool IsPageBreak() { return false; }
     public override bool IsValid() { return true; }
     public override string GetText() { return Text; }
 
@@ -62,6 +67,7 @@ public class MsbtTagCloseElement : MsbtBaseElement
 
     public override bool IsTag() { return false; }
     public override bool IsTagClose() { return true; }
+    public override bool IsPageBreak() { return false; }
 
     public override bool IsValid() { return true; }
 

@@ -7,4 +7,6 @@ public class MsbtTagElementSystemPageBreak : MsbtTagElementSystemBase
         : base((ushort)TagGroup.System, (ushort)TagNameSystem.PageBreak) { }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize) { }
+
+    public override bool IsPageBreak() { return true; }
 };

@@ -5,10 +5,12 @@ namespace Nindot.LMS.Msbt.TagLib.Smo;
 
 public class MsbtElementFactoryProjectSmo : MsbtElementFactory
 {
-    internal override List<MsbtBaseElement> Build(byte[] buffer)
+    internal override List<MsbtPage> Build(byte[] buffer)
     {
-        // Establish list to store all created elements
-        List<MsbtBaseElement> list = [];
+        // Create array to store all msbt pages, along with a default first page
+        List<MsbtPage> pageList = [];
+        MsbtPage curPage = [];
+        pageList.Add(curPage);
 
         // Create a pointer into the buffer and continue iterating on pointer until completed
         int pointer = 0;
@@ -22,7 +24,16 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
             if (value == MsbtTagElement.BYTECODE_TAG)
             {
                 MsbtTagElement tag = BuildTagElement(buffer, ref pointer);
-                list.Add(tag);
+
+                // If the current tag has the "IsPageBreak" flag set, create a new page and skip adding this tag
+                if (tag.IsPageBreak())
+                {
+                    curPage = [];
+                    pageList.Add(curPage);
+                    continue;
+                }
+
+                curPage.Add(tag);
                 continue;
             }
 
@@ -30,7 +41,7 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
             if (value == MsbtTagCloseElement.BYTECODE_TAG_CLOSE)
             {
                 var element = new MsbtTagCloseElement(ref pointer, buffer);
-                list.Add(element);
+                curPage.Add(element);
                 continue;
             }
 
@@ -47,7 +58,7 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
             {
                 text = new MsbtTextElement(buffer[pointer..]);
                 if (!text.IsEmpty())
-                    list.Add(text);
+                    curPage.Add(text);
                 
                 break;
             }
@@ -57,11 +68,11 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
             if (text.IsEmpty())
                 break;
             
-            list.Add(text);
+            curPage.Add(text);
             pointer += text.Text.Length * sizeof(ushort);
         }
 
-        return list;
+        return pageList;
     }
 
     public override string GetFactoryName() { return "Super Mario Odyssey"; }
