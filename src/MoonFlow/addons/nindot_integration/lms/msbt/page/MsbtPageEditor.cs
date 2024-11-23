@@ -20,35 +20,45 @@ public partial class MsbtPageEditor : TextEdit
 
     public override void _Ready()
     {
-        // Setup default properties
-        AutowrapMode = TextServer.AutowrapMode.WordSmart;
-        ContextMenuEnabled = true;
+
 
         // TODO: DEBUG BULLSHITTERY REMOVE LATER
-        Setup(null, [new MsbtTextElement("abcde"), new MsbtTagElementEuiSpeed(), new MsbtTextElement("fghijklm")]);
+        Init(null, [new MsbtTextElement("abcde"), new MsbtTagElementEuiSpeed(), new MsbtTextElement("fghijklm")]);
+
+    }
+
+    public MsbtPageEditor Init(MsbpFile project, MsbtPage page)
+    {
+        Project = project;
+        Page = page;
+
+        PrepareTextEdit();
+        return this;
+    }
+
+    private void PrepareTextEdit()
+    {
+        // Setup default properties
+        AutowrapMode = TextServer.AutowrapMode.WordSmart;
+        DragAndDropSelectionEnabled = false;
+        MiddleMousePasteEnabled = false;
+        WrapMode = LineWrappingMode.Boundary;
+
+        // Setup text string to match page elements
+        BeginComplexOperation();
+        Text = "";
         foreach (var item in Page)
         {
             if (item.IsText())
                 Text += item.GetText();
             else
-                Text += ' ';
+                Text += '\u2E3A';
         }
-    }
-
-    public MsbtPageEditor Setup(MsbpFile project, MsbtPage page)
-    {
-        Project = project;
-        Page = page;
-        return this;
+        EndComplexOperation();
     }
 
     public override void _GuiInput(InputEvent @event)
     {
         return;
-    }
-
-    public override void _Draw()
-    {
-        // DrawTextureRect(TestTex, new Rect2(Text.Length, 0.0F, 100.0F, 100.0F), false, null, true);
     }
 }

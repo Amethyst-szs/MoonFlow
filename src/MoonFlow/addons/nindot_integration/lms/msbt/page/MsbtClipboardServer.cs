@@ -16,26 +16,7 @@ public static class MsbtClipboardServer
         Clipboard = [];
 
         int copyLength = end - start;
-        int elementIdx = 0;
-
-        // Find the starting element and align start to be local to that element
-        foreach (var item in page)
-        {
-            // Get the char length of the current element in the page
-            int itemLength = 1;
-            if (item.IsText())
-                itemLength = item.GetText().Length;
-
-            // If the current starting position is higher than the length of this item, continue to next element
-            if (start >= itemLength)
-            {
-                start -= itemLength;
-                elementIdx++;
-                continue;
-            }
-
-            break;
-        }
+        int elementIdx = page.CalcElementIdxAtCharPos(ref start);
 
         // Copy data from page to clipboard
         int copyPos = 0;
@@ -74,25 +55,7 @@ public static class MsbtClipboardServer
     {
         // Get the element index targetted by the charIdx
         int localPosition = charIdx;
-        int elementIdx = 0;
-
-        foreach (var item in page)
-        {
-            // Get the char length of the current element in the page
-            int itemLength = 1;
-            if (item.IsText())
-                itemLength = item.GetText().Length;
-
-            // If the current local position is greater than the length of this item, advance to next item
-            if (localPosition >= itemLength)
-            {
-                localPosition -= itemLength;
-                elementIdx++;
-                continue;
-            }
-
-            break;
-        }
+        int elementIdx = page.CalcElementIdxAtCharPos(ref localPosition);
 
         // If the targetted element is a text element, break in half and insert in middle
         if (elementIdx >= page.Count) throw new IndexOutOfRangeException();
@@ -140,5 +103,25 @@ public static class MsbtClipboardServer
         }
 
         page.Cleanup();
+    }
+
+    public static List<MsbtBaseElement> GetClipboard()
+    {
+        return Clipboard;
+    }
+
+    public static string GetClipboardAsString()
+    {
+        string str = "";
+
+        foreach (var item in Clipboard)
+        {
+            if (item.IsText())
+                str += item.GetText();
+            else
+                str += '\u2E3A';
+        }
+
+        return str;
     }
 }

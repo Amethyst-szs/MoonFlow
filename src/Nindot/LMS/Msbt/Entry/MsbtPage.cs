@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Nindot.LMS.Msbt.TagLib;
 
 namespace Nindot.LMS.Msbt;
@@ -85,6 +86,10 @@ public class MsbtPage : List<MsbtBaseElement>
         if (!curElement.IsText())
         {
             Remove(curElement);
+
+            // Run the cleanup routine to merge neighbor text elements
+            Cleanup();
+
             return;
         }
 
@@ -97,6 +102,9 @@ public class MsbtPage : List<MsbtBaseElement>
 
         // If the page is completely empty with no elements, add an empty text element
         if (Count == 0) Add(new MsbtTextElement(""));
+
+        // Run the cleanup routine to merge neighbor text elements
+        Cleanup();
     }
 
     public void BackspaceRange(int start, int end)
@@ -168,8 +176,11 @@ public class MsbtPage : List<MsbtBaseElement>
             if (item.IsText())
                 itemLength = item.GetText().Length;
 
+            // If the charPos is exactly at the end of the page, return element here
+            if (charPos == itemLength && item == this.Last()) return elementIdx;
+
             // If the current starting position is higher than the length of this item, continue to next element
-            if (charPos > itemLength)
+            if (charPos >= itemLength)
             {
                 charPos -= itemLength;
                 elementIdx++;
@@ -179,7 +190,7 @@ public class MsbtPage : List<MsbtBaseElement>
             return elementIdx;
         }
 
-        throw new ArgumentOutOfRangeException();
+        throw new ArgumentOutOfRangeException(nameof(charPos));
     }
     public int CalcCharPosForElement(MsbtBaseElement element)
     {

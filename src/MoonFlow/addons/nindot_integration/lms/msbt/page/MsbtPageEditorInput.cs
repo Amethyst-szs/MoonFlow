@@ -14,8 +14,8 @@ public partial class MsbtPageEditor : TextEdit
         int charIdx = GetCharIndex(line, col);
 
         string str = Convert.ToChar(unicodeChar).ToString();
-        InsertText(str, line, col);
         Page.InsertString(charIdx, str);
+        InsertText(str, line, col);
     }
 
     public override void _Backspace(int caretIndex)
@@ -32,8 +32,8 @@ public partial class MsbtPageEditor : TextEdit
             int start = GetCharIndex(startL, startC);
             int end = GetCharIndex(endL, endC);
 
-            RemoveText(startL, startC, endL, endC);
             Page.BackspaceRange(start, end);
+            RemoveText(startL, startC, endL, endC);
             return;
         }
 
@@ -61,15 +61,25 @@ public partial class MsbtPageEditor : TextEdit
         if (caretIndex == -1) caretIndex = 0;
 
         _Copy(caretIndex);
-        DeleteSelection(caretIndex);
+
+        // Handles removing the text from both the TextEdit and page
+        _Backspace(caretIndex);
     }
 
     public override void _Paste(int caretIndex)
     {
         if (caretIndex == -1) caretIndex = 0;
 
-        if (HasSelection(caretIndex)) DeleteSelection(caretIndex);
+        // Handles removing the text from both the TextEdit and page
+        if (HasSelection(caretIndex)) _Backspace(caretIndex);
+
         MsbtClipboardServer.Paste(Page, GetCharIndex(caretIndex));
+        InsertTextAtCaret(MsbtClipboardServer.GetClipboardAsString(), caretIndex);
+    }
+
+    public override bool _CanDropData(Vector2 atPosition, Variant data)
+    {
+        return false;
     }
 
     public override void _ShortcutInput(InputEvent @event)
