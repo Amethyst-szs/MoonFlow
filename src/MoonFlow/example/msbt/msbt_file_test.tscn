@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cge5jtw000aim"]
 
-[ext_resource type="Script" path="res://addons/nindot_integration/lms/msbt/page/MsbtPageEditor.cs" id="2_31sbb"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/page/MsbtPageEditor.cs" id="2_31sbb"]
 [ext_resource type="Script" path="res://example/msbt/MsbtFileTest.cs" id="2_gwo1f"]
 
 [node name="MsbtFileTest" type="Control"]
