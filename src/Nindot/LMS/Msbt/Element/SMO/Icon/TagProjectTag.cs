@@ -149,4 +149,6 @@ public class MsbtTagElementProjectTag : MsbtTagElement
         "PlayerL",
         "PlayerR",
     ];
+
+    public override string GetTextureName() { return "DeviceFont_" + GetTagNameStr(); }
 };

@@ -1,7 +1,9 @@
 using System;
+using System.Drawing;
 using System.IO;
 
 using CommunityToolkit.HighPerformance;
+using Nindot.LMS.Msbp;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
@@ -45,13 +47,20 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemBase
     {
         return _color;
     }
-    public void GetColor(Msbp.MsbpFile project, out Msbp.BlockColor.Entry color, out string name)
+    public void GetColor(MsbpFile project, out BlockColor.Entry color, out string name)
     {
+        if (_color == 0xFFFF)
+        {
+            color = new BlockColor.Entry(255, 255, 255, 255);
+            name = "Reset to Default";
+            return;
+        }
+
         color = project.Color_Get(_color);
         name = project.Color_GetLabel(_color);
     }
 
-    public void SetColor(Msbp.MsbpFile project, string color)
+    public void SetColor(MsbpFile project, string color)
     {
         _color = (ushort)project.Color_GetIndex(color);
     }
@@ -62,5 +71,14 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemBase
     public void SetColorResetDefault()
     {
         _color = 0xFFFF;
+    }
+
+    public override string GetTextureName() { return "System_Color"; }
+    public override Color GetModulateColor(MsbpFile project)
+    {
+        if (project == null) return Color.White;
+        
+        GetColor(project, out BlockColor.Entry color, out string _);
+        return Color.FromArgb(color.R, color.G, color.B);
     }
 };

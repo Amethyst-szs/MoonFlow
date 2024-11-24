@@ -24,4 +24,6 @@ public class MsbtTagElementTimeComponent : MsbtTagElement
 
         return "Unknown";
     }
+
+    public override string GetTextureName() { return "Time_" + GetTagNameStr(); }
 };

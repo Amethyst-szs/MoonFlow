@@ -89,4 +89,6 @@ public class MsbtTagElementString : MsbtTagElementWithTextData
     {
         return string.Format("String Tag: {0}", TagName);
     }
+
+    public override string GetTextureName() { return "String"; }
 };

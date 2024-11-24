@@ -24,4 +24,13 @@ public class MsbtTagElementTextAlign : MsbtTagElement
 
         return "Unknown";
     }
+
+    public override string GetTextureName() {
+        return TextAlignment switch
+        {
+            TagNameTextAlign.Left => "TextAlign_Left",
+            TagNameTextAlign.Center => "TextAlign_Center",
+            _ => null,
+        };
+    }
 };

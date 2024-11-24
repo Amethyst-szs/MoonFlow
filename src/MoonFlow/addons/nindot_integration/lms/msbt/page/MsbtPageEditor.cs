@@ -13,18 +13,23 @@ namespace MoonFlow.LMS.Msbt;
 [GlobalClass]
 public partial class MsbtPageEditor : TextEdit
 {
-    MsbpFile Project = null;
-    MsbtPage Page = null;
+    public MsbpFile Project = null;
+    public MsbtPage Page = null;
 
-    CompressedTexture2D TestTex = (CompressedTexture2D)GD.Load("res://iconS.png");
+    public MsbtContextMenu ContextMenu = null;
 
     public override void _Ready()
     {
-
-
         // TODO: DEBUG BULLSHITTERY REMOVE LATER
-        Init(null, [new MsbtTextElement("abcde"), new MsbtTagElementEuiSpeed(), new MsbtTextElement("fghijklm")]);
+        var proj = MsbpFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/ProjectData.msbp"));
+        var file = MsbtFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/SmoUnitTesting.msbt"), new MsbtElementFactoryProjectSmo());
+        var entry = file.GetEntry(2);
+        var page = entry.Pages[0];
 
+        page.Add(new MsbtTagElementPictureFont(TagNamePictureFont.COMMON_MARIO));
+        page.Add(new MsbtTagElementPictureFont(TagNamePictureFont.COMMON_CAPPY));
+        // page.Add(new MsbtTagElementDeviceFont(TagNameDeviceFont.Album));
+        Init(proj, page);
     }
 
     public MsbtPageEditor Init(MsbpFile project, MsbtPage page)
@@ -44,6 +49,13 @@ public partial class MsbtPageEditor : TextEdit
         MiddleMousePasteEnabled = false;
         WrapMode = LineWrappingMode.Boundary;
 
+        // Setup syntax highlighter
+        SyntaxHighlighter = new SyntaxHighlighterMsbtPage();
+
+        // Setup right click context menu
+        ContextMenuEnabled = true;
+        ContextMenu = new(this);
+
         // Setup text string to match page elements
         BeginComplexOperation();
         Text = "";
@@ -55,10 +67,5 @@ public partial class MsbtPageEditor : TextEdit
                 Text += '\u2E3A';
         }
         EndComplexOperation();
-    }
-
-    public override void _GuiInput(InputEvent @event)
-    {
-        return;
     }
 }

@@ -44,4 +44,6 @@ public class MsbtTagElementSystemRuby : MsbtTagElementWithTextData
 
         return "Unknown";
     }
+
+    public override string GetTextureName() { return "System_Ruby"; }
 };

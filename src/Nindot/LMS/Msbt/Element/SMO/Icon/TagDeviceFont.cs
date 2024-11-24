@@ -112,4 +112,6 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
         0xE146, // MODE_SELECT_GUIDE
         0xE134, // HINT_PHOTO_GUIDE
     ];
+
+    public override string GetTextureName() { return "DeviceFont_" + GetTagNameStr(); }
 };

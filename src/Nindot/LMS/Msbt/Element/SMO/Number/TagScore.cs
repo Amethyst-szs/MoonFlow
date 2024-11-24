@@ -52,4 +52,6 @@ public class MsbtTagElementNumberScore : MsbtTagElementWithTextData
 
     public override ushort CalcDataSize() { return (ushort)(base.CalcDataSize() + sizeof(uint)); }
     public override string GetTagNameStr() { return "Score"; }
+
+    public override string GetTextureName() { return "Number_Score"; }
 };

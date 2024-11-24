@@ -11,6 +11,10 @@ public class MsbtTagElementEuiSpeed : MsbtTagElement
 
     public MsbtTagElementEuiSpeed(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementEuiSpeed() : base((ushort)TagGroup.Eui, (ushort)TagNameEui.Speed) { }
+    public MsbtTagElementEuiSpeed(float speedPercent) : base((ushort)TagGroup.Eui, (ushort)TagNameEui.Speed)
+    {
+        PrintSpeed = speedPercent;
+    }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
     {
@@ -39,4 +43,11 @@ public class MsbtTagElementEuiSpeed : MsbtTagElement
     public void SetPrintSpeedNormal() { PrintSpeed = 1.0F; }
     public void SetPrintSpeedFast() { PrintSpeed = 2.0F; }
     public void SetPrintSpeedVeryFast() { PrintSpeed = 10.0F; }
+
+    public override string GetTextureName()
+    {
+        if (PrintSpeed == 1.0F) return "Eui_Speed_Mid";
+        if (PrintSpeed < 1.0F) return "Eui_Speed_Low";
+        return "Eui_Speed_High";
+    }
 };

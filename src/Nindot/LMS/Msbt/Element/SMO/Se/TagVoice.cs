@@ -16,4 +16,5 @@ public class MsbtTagElementVoice : MsbtTagElementWithTextData
     }
 
     public override string GetTagNameStr() { return "Voice"; }
+    public override string GetTextureName() { return "Voice"; }
 };

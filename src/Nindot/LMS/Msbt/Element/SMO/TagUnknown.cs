@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.IO;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
@@ -29,4 +30,6 @@ public class MsbtTagElementUnknown : MsbtTagElement
         value.Write(Data);
         return value.ToArray();
     }
+
+    public override string GetTextureName() { return null; }
 };

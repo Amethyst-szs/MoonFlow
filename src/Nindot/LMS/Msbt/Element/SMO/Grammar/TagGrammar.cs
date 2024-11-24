@@ -24,4 +24,13 @@ public class MsbtTagElementGrammar : MsbtTagElement
 
         return "Unknown";
     }
+
+    public override string GetTextureName() {
+        return Grammar switch
+        {
+            TagNameGrammar.Cap => "Grammar_Cap",
+            TagNameGrammar.Decap => "Grammar_Decap",
+            _ => null,
+        };
+    }
 };

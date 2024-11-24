@@ -75,7 +75,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
     {
         if (Icon >= TagNamePictureFont.ICON_BALLOON_GAME_SMALL_STAR)
             return "Unknown Icon";
-
+        
         return IconNameTable[(ushort)Icon];
     }
 
@@ -142,4 +142,8 @@ public class MsbtTagElementPictureFont : MsbtTagElement
         "Balloon World Arrow",
         "Balloon World Star",
     ];
+
+    public override string GetTextureName() {
+        return string.Format("PictureFont_{0}", GetChar16tFromTagName().ToString("X2"));
+    }
 };

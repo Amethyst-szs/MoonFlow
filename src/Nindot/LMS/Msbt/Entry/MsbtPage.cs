@@ -61,7 +61,23 @@ public class MsbtPage : List<MsbtBaseElement>
     {
         // Get access to the element at this position
         int elementIdx = CalcElementIdxAtCharPos(ref position);
+
+        // If the element index is out of bounds, create a new text element and return
+        if (elementIdx >= Count)
+        {
+            Insert(elementIdx, new MsbtTextElement(str));
+            return;
+        }
+
         var curElement = this[elementIdx];
+
+        // If the current element isn't text, and the position is advanced past position 0, create
+        // a new text element to store the insert into
+        if (!curElement.IsText() && position > 0)
+        {
+            Add(new MsbtTextElement(str));
+            return;
+        }
 
         // If this element isn't a text element (when the cursor is right on the start of a tag)
         // create a new element and insert it at this position, then run cleanup
@@ -164,7 +180,7 @@ public class MsbtPage : List<MsbtBaseElement>
 
     public int CalcElementIdxAtCharPos(ref int charPos)
     {
-        if (Count == 1) return 0;
+        if (Count <= 1) return 0;
 
         int elementIdx = 0;
 

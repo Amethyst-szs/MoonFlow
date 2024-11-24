@@ -1,8 +1,10 @@
 using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
 
 using CommunityToolkit.HighPerformance;
+using Nindot.LMS.Msbp;
 
 namespace Nindot.LMS.Msbt.TagLib;
 
@@ -95,9 +97,12 @@ public abstract class MsbtTagElement : MsbtBaseElement
     public override string GetText() { throw new NotImplementedException(); }
     public override byte[] GetBytes() { return CreateMemoryStreamWithHeaderData().ToArray(); }
     public override void WriteBytes(MemoryStream stream) { stream.Write(GetBytes()); }
+
+    public abstract string GetTextureName();
+    public virtual Color GetModulateColor(MsbpFile project) { return Color.White; }
 }
 
-public class MsbtTagElementWithTextData : MsbtTagElement
+public abstract class MsbtTagElementWithTextData : MsbtTagElement
 {
     protected string Text = "";
 

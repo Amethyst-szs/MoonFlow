@@ -176,7 +176,7 @@ public enum TagNamePictureFont : ushort
 public enum TagNameDeviceFont : ushort
 {
     ButtonGroupRight,
-    ButtonGroupButtom, // Nintendo typo lol, should be "bottom" or "down"
+    ButtonGroupBottom,
     ButtonGroupUp,
     ButtonGroupLeft,
     ButtonA,

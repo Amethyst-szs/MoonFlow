@@ -17,6 +17,7 @@ public static class MsbtClipboardServer
 
         int copyLength = end - start;
         int elementIdx = page.CalcElementIdxAtCharPos(ref start);
+        if (elementIdx >= page.Count) return;
 
         // Copy data from page to clipboard
         int copyPos = 0;
@@ -58,10 +59,10 @@ public static class MsbtClipboardServer
         int elementIdx = page.CalcElementIdxAtCharPos(ref localPosition);
 
         // If the targetted element is a text element, break in half and insert in middle
-        if (elementIdx >= page.Count) throw new IndexOutOfRangeException();
-        var curElement = page[elementIdx];
+        MsbtBaseElement curElement = null;
+        if (elementIdx < page.Count) curElement = page[elementIdx];
 
-        if (curElement.IsText())
+        if (curElement != null && curElement.IsText())
         {
             // Split text element into a front and back half, before removing the element
             var txtElement = (MsbtTextElement)curElement;

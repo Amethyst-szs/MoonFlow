@@ -38,4 +38,6 @@ public class MsbtTagElementEuiWait : MsbtTagElement
 
         return "Unknown";
     }
+
+    public override string GetTextureName() { return "Eui_Wait"; }
 };

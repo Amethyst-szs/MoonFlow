@@ -30,4 +30,12 @@ public class MsbtTagElementSystemFont : MsbtTagElementSystemBase
     }
 
     public override ushort CalcDataSize() { return sizeof(ushort); }
+
+    public override string GetTextureName()
+    {
+        if (!Enum.IsDefined(typeof(TagFontIndex), TagName))
+            return null;
+
+        return "System_Font_" + Enum.GetName(typeof(TagFontIndex), Font);
+    }
 };
