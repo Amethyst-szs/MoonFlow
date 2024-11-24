@@ -17,9 +17,17 @@ public partial class MsbtPageEditor : TextEdit
     public MsbtPage Page = null;
 
     public MsbtContextMenu ContextMenu = null;
+    public Timer ActivityTimer = new();
 
     public override void _Ready()
     {
+        // Setup activity timer
+        ActivityTimer.Autostart = false;
+        ActivityTimer.OneShot = true;
+        ActivityTimer.WaitTime = 0.33;
+        ActivityTimer.Timeout += ActivityTimerTimeout;
+        AddChild(ActivityTimer);
+
         // TODO: DEBUG BULLSHITTERY REMOVE LATER
         var proj = MsbpFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/ProjectData.msbp"));
         var file = MsbtFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/SmoUnitTesting.msbt"), new MsbtElementFactoryProjectSmo());
@@ -57,6 +65,12 @@ public partial class MsbtPageEditor : TextEdit
         ContextMenu = new(this);
 
         // Setup text string to match page elements
+        ReloadTextEdit();
+        RegisterUndoEntry();
+    }
+
+    private void ReloadTextEdit()
+    {
         BeginComplexOperation();
         Text = "";
         foreach (var item in Page)
@@ -67,5 +81,10 @@ public partial class MsbtPageEditor : TextEdit
                 Text += '\u2E3A';
         }
         EndComplexOperation();
+    }
+
+    private void ActivityTimerTimeout()
+    {
+        RegisterUndoEntry();
     }
 }

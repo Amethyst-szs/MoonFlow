@@ -15,6 +15,13 @@ public class MsbtPage : List<MsbtBaseElement>
         Add(firstElement);
     }
 
+    public MsbtPage Clone()
+    {
+        var page = new MsbtPage();
+        foreach (var item in this) page.Add(item.Clone());
+        return page;
+    }
+
     public void WriteBytes(MemoryStream stream)
     {
         foreach (var item in this) { item.WriteBytes(stream); }

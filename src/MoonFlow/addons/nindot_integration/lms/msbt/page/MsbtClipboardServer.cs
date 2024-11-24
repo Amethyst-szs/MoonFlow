@@ -3,6 +3,7 @@ using System;
 
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
+using System.Linq;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -97,6 +98,9 @@ public static class MsbtClipboardServer
         }
 
         // If the element isn't a text element, insert everything in clipboard at current position and cleanup
+        if (curElement == page.Last() && localPosition > 0)
+            elementIdx++;
+        
         foreach (var item in Clipboard)
         {
             page.Insert(elementIdx, item.Clone());

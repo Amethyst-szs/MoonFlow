@@ -50,6 +50,7 @@ public partial class MsbtPageEditor : TextEdit
         InsertText(str, line, col);
 
         AdjustViewportToCaret(caretIndex);
+        ActivityTimer.Start();
     }
 
     public void DeleteViaContextMenu() { if (HasSelection()) _Backspace(-1); }
@@ -71,6 +72,7 @@ public partial class MsbtPageEditor : TextEdit
             RemoveText(startL, startC, endL, endC);
 
             AdjustViewportToCaret(caretIndex);
+            ActivityTimer.Start();
             return;
         }
 
@@ -100,6 +102,7 @@ public partial class MsbtPageEditor : TextEdit
         }
 
         AdjustViewportToCaret(caretIndex);
+        ActivityTimer.Start();
     }
 
     public void CopyViaContextMenu() { _Copy(-1); }
@@ -135,16 +138,9 @@ public partial class MsbtPageEditor : TextEdit
 
         MsbtClipboardServer.Paste(Page, GetCharIndex(caretIndex));
         InsertTextAtCaret(MsbtClipboardServer.GetClipboardAsString(), caretIndex);
-    }
 
-    public new void Undo()
-    {
-        GD.Print("Undo is not currently supported!");
-    }
-
-    public new void Redo()
-    {
-        GD.Print("Redo is not currently supported!");
+        AdjustViewportToCaret(caretIndex);
+        ActivityTimer.Start();
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
