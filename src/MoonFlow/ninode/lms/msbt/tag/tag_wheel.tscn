@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://drb6gmpl7tvlm"]
+
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagWheel.cs" id="1_oonfm"]
+
+[node name="TagWheel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_oonfm")

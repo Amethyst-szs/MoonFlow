@@ -16,8 +16,9 @@ public partial class MsbtPageEditor : TextEdit
     public MsbpFile Project = null;
     public MsbtPage Page = null;
 
-    public MsbtContextMenu ContextMenu = null;
     public Timer ActivityTimer = new();
+
+    private readonly static PackedScene TagWheel = GD.Load<PackedScene>("res://ninode/lms/msbt/tag/tag_wheel.tscn");
 
     public override void _Ready()
     {
@@ -56,13 +57,14 @@ public partial class MsbtPageEditor : TextEdit
         DragAndDropSelectionEnabled = false;
         MiddleMousePasteEnabled = false;
         WrapMode = LineWrappingMode.Boundary;
+        ClipContents = false;
+        ClipChildren = ClipChildrenMode.Disabled;
 
         // Setup syntax highlighter
         SyntaxHighlighter = new SyntaxHighlighterMsbtPage();
 
-        // Setup right click context menu
-        ContextMenuEnabled = true;
-        ContextMenu = new(this);
+        // Disable right click context menu
+        ContextMenuEnabled = false;
 
         // Setup text string to match page elements
         ReloadTextEdit();
@@ -86,5 +88,27 @@ public partial class MsbtPageEditor : TextEdit
     private void ActivityTimerTimeout()
     {
         RegisterUndoEntry();
+    }
+
+    private void SpawnTagWheel(int line, int column)
+    {
+        Editable = false;
+
+        // Calculate start of mouse line position
+        var caretOrigin = GetRectAtLineColumn(line, column);
+        var caretPos = caretOrigin.GetCenter();
+        caretPos.X += caretOrigin.Size.X / 2;
+
+        var wheel = (TagWheel)TagWheel.Instantiate();
+        wheel.TreeExiting += CloseTagWheel;
+        wheel.CaretPosition = caretPos;
+        wheel.SetPosition((Vector2I)GetLocalMousePosition());
+
+        AddChild(wheel);
+    }
+
+    private void CloseTagWheel()
+    {
+        Editable = true;
     }
 }

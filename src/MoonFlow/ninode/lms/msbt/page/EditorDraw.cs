@@ -48,7 +48,6 @@ public partial class MsbtPageEditor : TextEdit
             if (item.IsTagClose())
                 DrawRect(glyphRect, new Color(1, 1, 1));
         }
-
     }
 
     private void CalcLineColumnAtCharIdx(int charIdx, out int line, out int col)
@@ -72,7 +71,7 @@ public partial class MsbtPageEditor : TextEdit
         }
     }
 
-    private Texture2D GetTagTexture(MsbtTagElement tag)
+    public Texture2D GetTagTexture(MsbtTagElement tag)
     {
         // If this texture doesn't exist in the tag table, add it
         string textureName = tag.GetTextureName();

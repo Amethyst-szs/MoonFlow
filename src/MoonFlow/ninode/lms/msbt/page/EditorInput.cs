@@ -8,6 +8,22 @@ public partial class MsbtPageEditor : TextEdit
 {
     public override void _GuiInput(InputEvent @event)
     {
+        // If this is a mouse input, run special case for opening tag wheel
+        if (@event.GetType() == typeof(InputEventMouseButton))
+        {
+            var m = (InputEventMouseButton)@event;
+            if (m.Pressed && m.ButtonIndex == MouseButton.Right && Editable)
+            {
+                var caretPos = GetLineColumnAtPos((Vector2I)GetLocalMousePos());
+                SetCaretLine(caretPos.Y);
+                SetCaretColumn(caretPos.X);
+
+                SpawnTagWheel(caretPos.Y, caretPos.X);
+            }
+
+            return;
+        }
+
         // Only proceed if the event is an InputEventKey type
         if (@event.GetType() != typeof(InputEventKey)) return;
         var input = (InputEventKey)@event;

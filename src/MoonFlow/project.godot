@@ -25,6 +25,10 @@ project/assembly_name="MoonFlow"
 
 enabled=PackedStringArray("res://addons/nindot_integration/plugin.cfg")
 
+[gui]
+
+timers/tooltip_delay_sec=0.07
+
 [importer_defaults]
 
 nindot.msbt={

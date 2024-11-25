@@ -23,6 +23,7 @@ public class MsbtContextMenu
 
 	public MsbtContextMenu(MsbtPageEditor editor)
 	{
+		throw new NotImplementedException();
 		// Setup global variables
 		Editor = editor;
 		Menu = editor.GetMenu();
