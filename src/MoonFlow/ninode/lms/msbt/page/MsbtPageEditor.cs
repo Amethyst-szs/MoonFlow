@@ -104,6 +104,7 @@ public partial class MsbtPageEditor : TextEdit
         wheel.CaretPosition = caretPos;
         wheel.SetPosition((Vector2I)GetLocalMousePosition());
 
+        // Add wheel as child of page editor
         AddChild(wheel);
     }
 
