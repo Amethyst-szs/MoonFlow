@@ -90,7 +90,7 @@ public static class RomfsValidation
         v110,
         v120,
         v130,
-        INVALID_VERSION,
+        INVALID_VERSION = -1,
     };
 
     private static readonly Dictionary<string, RomfsVersion> HashTable = new() {
