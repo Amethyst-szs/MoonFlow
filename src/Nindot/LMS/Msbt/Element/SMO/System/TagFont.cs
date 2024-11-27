@@ -15,6 +15,11 @@ public class MsbtTagElementSystemFont : MsbtTagElementSystemBase
     {
         Font = font;
     }
+    public MsbtTagElementSystemFont()
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.Font)
+    {
+        Font = TagFontIndex.Message;
+    }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
     {
@@ -31,11 +36,5 @@ public class MsbtTagElementSystemFont : MsbtTagElementSystemBase
 
     public override ushort CalcDataSize() { return sizeof(ushort); }
 
-    public override string GetTextureName()
-    {
-        if (!Enum.IsDefined(typeof(TagFontIndex), TagName))
-            return null;
-
-        return "System_Font_" + Enum.GetName(typeof(TagFontIndex), Font);
-    }
+    public override string GetTextureName() { return "System_Font"; }
 };

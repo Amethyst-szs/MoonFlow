@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://r0nay3itfijm"]
+
+[ext_resource type="Script" path="res://ninode/lms/msbt/file/MsbtEditor.cs" id="1_hu01d"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_3q5pt"]
+
+[node name="MsbtEditor" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hu01d")
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="Layout"]
+clip_contents = true
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="Layout/Header"]
+layout_mode = 2
+
+[node name="File" type="PopupMenu" parent="Layout/Header/MenuBar"]
+unique_name_in_owner = true
+
+[node name="FileEntry" type="Label" parent="Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "abcdef"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="TitleEntrySep" type="VSeparator" parent="Layout/Header"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FileTitle" type="Label" parent="Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "abcdef"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HSeparator" type="HSeparator" parent="Layout"]
+layout_mode = 2
+
+[node name="Divider" type="HSplitContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+theme_override_constants/autohide = 0
+split_offset = -200
+
+[node name="List_Scroll" type="ScrollContainer" parent="Layout/Divider"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+script = ExtResource("2_3q5pt")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+hide_scrollbar_over_time = true
+scrollbar_hide_time = 3.0
+force_vertical_scrolling = true
+
+[node name="List" type="VBoxContainer" parent="Layout/Divider/List_Scroll"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="List_Content" type="ScrollContainer" parent="Layout/Divider"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+script = ExtResource("2_3q5pt")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+hide_scrollbar_over_time = true
+scrollbar_hide_time = 3.0
+force_vertical_scrolling = true
+
+[node name="Content" type="VBoxContainer" parent="Layout/Divider/List_Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3

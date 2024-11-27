@@ -1,4 +1,5 @@
 using System;
+using YamlDotNet.Serialization;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 public class MsbtTagElementTextAlign : MsbtTagElement
@@ -12,6 +13,8 @@ public class MsbtTagElementTextAlign : MsbtTagElement
     public MsbtTagElementTextAlign(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     public MsbtTagElementTextAlign(TagNameTextAlign type)
         : base((ushort)TagGroup.TextAlign, (ushort)type) { }
+    public MsbtTagElementTextAlign()
+        : base((ushort)TagGroup.TextAlign, (ushort)TagNameTextAlign.Center) { }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize) { }
 

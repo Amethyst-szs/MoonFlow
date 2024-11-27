@@ -17,6 +17,11 @@ public class MsbtTagElementSystemRuby : MsbtTagElementWithTextData
         Code = code;
         Text = content;
     }
+    public MsbtTagElementSystemRuby()
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.Ruby)
+    {
+        Text = "";
+    }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
     {

@@ -35,7 +35,8 @@ public class MsbtTagElementTextAnim : MsbtTagElement
         return "Unknown";
     }
 
-    public override string GetTextureName() {
+    public override string GetTextureName()
+    {
         return Anim switch
         {
             TagNameTextAnim.Tremble => "TextAnim_Tremble",

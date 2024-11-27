@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cge5jtw000aim"]
+[gd_scene load_steps=2 format=3 uid="uid://cge5jtw000aim"]
 
-[ext_resource type="Script" path="res://ninode/lms/msbt/page/MsbtPageEditor.cs" id="2_31sbb"]
-[ext_resource type="Script" path="res://example/msbt/MsbtFileTest.cs" id="2_gwo1f"]
+[ext_resource type="PackedScene" uid="uid://r0nay3itfijm" path="res://ninode/lms/msbt/file/msbt_editor.tscn" id="1_k0elp"]
 
 [node name="MsbtFileTest" type="Control"]
 layout_mode = 3
@@ -10,32 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_gwo1f")
 
-[node name="Split" type="SplitContainer" parent="."]
+[node name="MsbtEditor" parent="." instance=ExtResource("1_k0elp")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FileKeys" type="ScrollContainer" parent="Split"]
-layout_mode = 2
-size_flags_horizontal = 3
-follow_focus = true
-horizontal_scroll_mode = 0
-
-[node name="Content" type="VBoxContainer" parent="Split/FileKeys"]
-layout_mode = 2
-
-[node name="Content" type="VBoxContainer" parent="Split"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MsbtPageEditor" type="TextEdit" parent="Split/Content"]
-custom_minimum_size = Vector2(0, 620)
-layout_mode = 2
-drag_and_drop_selection_enabled = false
-caret_multiple = false
-script = ExtResource("2_31sbb")

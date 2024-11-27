@@ -53,6 +53,13 @@ public partial class MsbtFile : FileBase
 
         return Content[label];
     }
+    public string GetEntryLabel(int idx)
+    {
+        if (idx >= Content.Count)
+            return null;
+
+        return Content.Keys.ElementAt(idx);
+    }
     public ReadOnlyCollection<string> GetEntryLabels()
     {
         return new ReadOnlyCollection<string>([.. Content.Keys]);

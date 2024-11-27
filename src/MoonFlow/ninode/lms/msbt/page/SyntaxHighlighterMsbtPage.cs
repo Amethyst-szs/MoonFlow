@@ -21,14 +21,14 @@ public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
 
         // Setup result and local vars
         Dictionary<int, Dictionary> result = new(){
-            {0, TextDefault}
+            {0, TextColor}
         };
 
         var edit = (MsbtPageEditor)GetTextEdit();
         var str = edit.GetLine(line);
         int baseCharIdx = edit.GetCharIndex(line, 0);
 
-        bool isLastColumnText = false;
+        bool isLastColumnText = true;
 
         for (int column = 0; column < str.Length; column++)
         {

@@ -25,20 +25,9 @@ public partial class MsbtPageEditor : TextEdit
         // Setup activity timer
         ActivityTimer.Autostart = false;
         ActivityTimer.OneShot = true;
-        ActivityTimer.WaitTime = 0.33;
+        ActivityTimer.WaitTime = 0.45;
         ActivityTimer.Timeout += ActivityTimerTimeout;
         AddChild(ActivityTimer);
-
-        // TODO: DEBUG BULLSHITTERY REMOVE LATER
-        var proj = MsbpFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/ProjectData.msbp"));
-        var file = MsbtFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/SmoUnitTesting.msbt"), new MsbtElementFactoryProjectSmo());
-        var entry = file.GetEntry(2);
-        var page = entry.Pages[0];
-
-        page.Add(new MsbtTagElementPictureFont(TagNamePictureFont.COMMON_MARIO));
-        page.Add(new MsbtTagElementPictureFont(TagNamePictureFont.COMMON_CAPPY));
-        // page.Add(new MsbtTagElementDeviceFont(TagNameDeviceFont.Album));
-        Init(proj, page);
     }
 
     public MsbtPageEditor Init(MsbpFile project, MsbtPage page)
@@ -85,12 +74,7 @@ public partial class MsbtPageEditor : TextEdit
         EndComplexOperation();
     }
 
-    private void ActivityTimerTimeout()
-    {
-        RegisterUndoEntry();
-    }
-
-    private void SpawnTagWheel(int line, int column)
+    private void SpawnTagWheel(int line, int column, bool isMouseSpawner)
     {
         Editable = false;
 
@@ -101,8 +85,14 @@ public partial class MsbtPageEditor : TextEdit
 
         var wheel = (TagWheel)TagWheel.Instantiate();
         wheel.TreeExiting += CloseTagWheel;
+        wheel.FinishedAddTag += CloseTagWheel;
         wheel.CaretPosition = caretPos;
-        wheel.SetPosition((Vector2I)GetLocalMousePosition());
+
+        // Assign wheel's local position
+        if (isMouseSpawner)
+            wheel.SetPosition((Vector2I)GetLocalMousePosition());
+        else
+            wheel.SetPosition(Size / 2);
 
         // Add wheel as child of page editor
         AddChild(wheel);
@@ -111,5 +101,11 @@ public partial class MsbtPageEditor : TextEdit
     private void CloseTagWheel()
     {
         Editable = true;
+        GrabFocus();
+    }
+    private void CloseTagWheel(TagWheelTagResult result)
+    {
+        CloseTagWheel();
+        HandleTagInput(result.Tag, 0);
     }
 }

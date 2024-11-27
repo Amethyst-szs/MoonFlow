@@ -1,8 +1,156 @@
-[gd_scene load_steps=2 format=3 uid="uid://drb6gmpl7tvlm"]
+[gd_scene load_steps=15 format=3 uid="uid://drb6gmpl7tvlm"]
 
 [ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagWheel.cs" id="1_oonfm"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag/component/TagWheelButton.cs" id="2_q0x4n"]
+[ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="3_o1tnp"]
+[ext_resource type="Texture2D" uid="uid://oqgt2610i76c" path="res://asset/nindot/lms/icon/System_Font.png" id="5_78y0d"]
+[ext_resource type="Texture2D" uid="uid://b0u2t701xuf8f" path="res://asset/nindot/lms/icon/TextAlign_Center.png" id="5_7800c"]
+[ext_resource type="Texture2D" uid="uid://erq1jj1b5h6w" path="res://asset/nindot/lms/icon/System_FontSize.png" id="5_e036j"]
+[ext_resource type="Texture2D" uid="uid://bodf31ksyug5a" path="res://asset/nindot/lms/icon/Eui_Speed_Mid.png" id="6_sivq6"]
+[ext_resource type="Texture2D" uid="uid://c2bx3lgpejmuw" path="res://asset/nindot/lms/icon/Eui_Wait.png" id="7_71bop"]
+[ext_resource type="Texture2D" uid="uid://ka03tx6xpx1q" path="res://asset/nindot/lms/icon/TextAnim.png" id="8_j2qy4"]
+[ext_resource type="Texture2D" uid="uid://bagxx0ehdxvjt" path="res://asset/nindot/lms/icon/PictureFont_4C.png" id="9_jdkcm"]
+[ext_resource type="Texture2D" uid="uid://dn1qpf5pk8tt5" path="res://asset/nindot/lms/icon/PictureFont_7C.png" id="9_mnk0o"]
+[ext_resource type="Texture2D" uid="uid://bkbgf330uu3od" path="res://asset/nindot/lms/icon/DeviceFont_ButtonA.png" id="10_jy1my"]
+[ext_resource type="Texture2D" uid="uid://cms0len4y733y" path="res://asset/nindot/lms/icon/Voice.png" id="10_ntb4m"]
+[ext_resource type="Texture2D" uid="uid://cpp2eu0ixnbui" path="res://asset/nindot/lms/icon/ProjectTag.png" id="11_t372d"]
 
 [node name="TagWheel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_oonfm")
+
+[node name="System_Font" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Change the current font"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 2
+Texture = ExtResource("5_78y0d")
+
+[node name="System_FontSize" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Adjust font size"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 3
+Texture = ExtResource("5_e036j")
+
+[node name="TextAlign" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Adjust text alignment"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 10
+Texture = ExtResource("5_7800c")
+
+[node name="Eui_Speed" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Set speed text is printed in
+dialogue balloons"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 4
+Texture = ExtResource("6_sivq6")
+
+[node name="Eui_Wait" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Pause text printing for an
+amount of frames"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 5
+Texture = ExtResource("7_71bop")
+
+[node name="TextAnim" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Apply animation on text characters"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 6
+Texture = ExtResource("8_j2qy4")
+
+[node name="More" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Show more options"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 11
+Texture = ExtResource("9_mnk0o")
+
+[node name="Voice" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Play audio"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 11
+Texture = ExtResource("10_ntb4m")
+
+[node name="ProjectTag" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Add a dynamic icon that changes based
+on kingdom or current controller"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 7
+Texture = ExtResource("11_t372d")
+
+[node name="DeviceFont" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Add device icon"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 9
+Texture = ExtResource("10_jy1my")
+
+[node name="PictureFont" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Add picture icon"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 8
+Texture = ExtResource("9_jdkcm")
+
+[node name="System_Color" type="Button" parent="."]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 56.0
+tooltip_text = "Set text color"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 1
+Texture = ExtResource("3_o1tnp")

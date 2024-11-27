@@ -84,6 +84,19 @@ public class MsbtTagElementProjectTag : MsbtTagElement
         return "Unknown";
     }
 
+    public string GetTagNameStrSuffix()
+    {
+        string str = GetTagNameStr();
+        
+        return str switch
+        {
+            string s when s.StartsWith("PadStyle2P") => str.Replace("PadStyle2P", ""),
+            string s when s.StartsWith("PadStyle") => str.Replace("PadStyle", ""),
+            string s when s.StartsWith("PadPair") => str.Replace("PadPair", ""),
+            _ => str,
+        };
+    }
+
     private void UpdateIconTableByTag()
     {
         var tagName = GetTagNameStr();
@@ -150,5 +163,11 @@ public class MsbtTagElementProjectTag : MsbtTagElement
         "PlayerR",
     ];
 
-    public override string GetTextureName() { return "DeviceFont_" + GetTagNameStr(); }
+    public override string GetTextureName() {
+        return Icon switch {
+            TagNameProjectIcon.ShineIconCurrentWorld => "ProjectTag",
+            TagNameProjectIcon.CoinCollectIconCurrentWorld => "ProjectTag_CoinCollect",
+            _ => GetTagNameStrSuffix(),
+        };
+    }
 };

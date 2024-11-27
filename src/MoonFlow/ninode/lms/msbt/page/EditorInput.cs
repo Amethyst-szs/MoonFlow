@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
+using Nindot.LMS.Msbt.TagLib;
+
 namespace MoonFlow.LMS.Msbt;
 
 public partial class MsbtPageEditor : TextEdit
@@ -18,7 +20,7 @@ public partial class MsbtPageEditor : TextEdit
                 SetCaretLine(caretPos.Y);
                 SetCaretColumn(caretPos.X);
 
-                SpawnTagWheel(caretPos.Y, caretPos.X);
+                SpawnTagWheel(caretPos.Y, caretPos.X, true);
             }
 
             return;
@@ -27,6 +29,12 @@ public partial class MsbtPageEditor : TextEdit
         // Only proceed if the event is an InputEventKey type
         if (@event.GetType() != typeof(InputEventKey)) return;
         var input = (InputEventKey)@event;
+
+        if (input.IsActionPressed("ui_text_indent"))
+        {
+            GetViewport().SetInputAsHandled();
+            return;
+        }
 
         if (input.IsActionPressed("ui_text_newline", true))
         {
@@ -48,6 +56,13 @@ public partial class MsbtPageEditor : TextEdit
             GetViewport().SetInputAsHandled();
             return;
         }
+
+        if (input.IsActionPressed("ui_add_tag", false, true))
+        {
+            SpawnTagWheel(GetCaretLine(), GetCaretColumn(), false);
+            GetViewport().SetInputAsHandled();
+            return;
+        }
     }
 
     public override void _HandleUnicodeInput(int unicodeChar, int caretIndex)
@@ -64,6 +79,24 @@ public partial class MsbtPageEditor : TextEdit
         string str = Convert.ToChar(unicodeChar).ToString();
         Page.InsertString(charIdx, str);
         InsertText(str, line, col);
+
+        AdjustViewportToCaret(caretIndex);
+        ActivityTimer.Start();
+    }
+
+    public void HandleTagInput(MsbtTagElement tag, int caretIndex)
+    {
+        if (caretIndex == -1) caretIndex = 0;
+
+        // If there is currently a selection, run backspace before inputting text
+        if (HasSelection(caretIndex)) _Backspace(caretIndex);
+
+        int line = GetCaretLine(caretIndex);
+        int col = GetCaretColumn(caretIndex);
+        int charIdx = GetCharIndex(line, col);
+
+        Page.InsertTag(charIdx, tag);
+        InsertText("\u2E3A", line, col);
 
         AdjustViewportToCaret(caretIndex);
         ActivityTimer.Start();

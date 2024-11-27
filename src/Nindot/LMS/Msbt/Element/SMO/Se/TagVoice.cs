@@ -14,6 +14,11 @@ public class MsbtTagElementVoice : MsbtTagElementWithTextData
     {
         AudioName = audio;
     }
+    public MsbtTagElementVoice()
+        : base((ushort)TagGroup.PlaySe, 0)
+    {
+        AudioName = "";
+    }
 
     public override string GetTagNameStr() { return "Voice"; }
     public override string GetTextureName() { return "Voice"; }

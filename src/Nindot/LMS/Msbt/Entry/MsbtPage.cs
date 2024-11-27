@@ -44,6 +44,13 @@ public class MsbtPage : List<MsbtBaseElement>
             MsbtTextElement curT = (MsbtTextElement)cur;
             curT.RemoveNullTerminator();
 
+            // Delete text element if completely empty
+            if (curT.Text.Length == 0)
+            {
+                Remove(curT);
+                continue;
+            }
+
             // Attempt to merge neighboring text elements if they exist
             MsbtBaseElement next = this[elementIdx + 1];
             if (next.GetType() == typeof(MsbtTextElement))
@@ -97,6 +104,38 @@ public class MsbtPage : List<MsbtBaseElement>
 
         var txtElement = (MsbtTextElement)curElement;
         txtElement.Text = txtElement.Text.Insert(position, str);
+    }
+
+    public void InsertTag(int position, MsbtTagElement tag)
+    {
+        // Get access to the element at this position
+        int elementIdx = CalcElementIdxAtCharPos(ref position);
+        var curElement = this[elementIdx];
+
+        // If the element index is beyond the final element and that element is a tag, just append tag to end of list
+        if (curElement == this.Last() && position > 0 && !this.Last().IsText())
+        {
+            Add(tag);
+            return;
+        }
+
+        // If the current element is text, split in half at the position dividing point and insert in middle
+        if (curElement.IsText())
+        {
+            var txt = (MsbtTextElement)curElement;
+            string substr1 = txt.Text[..position];
+            string substr2 = txt.Text[position..];
+
+            txt.Text = substr1;
+            Insert(elementIdx + 1, new MsbtTextElement(substr2));
+            Insert(elementIdx + 1, tag);
+
+            Cleanup();
+            return;
+        }
+
+        // Otherwise, just insert tag at position
+        Insert(elementIdx, tag);
     }
 
     public void Backspace(int position)

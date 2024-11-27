@@ -17,7 +17,7 @@ public class MsbtTagElementNumberDate : MsbtTagElementWithTextData
 
     public override string GetTagNameStr() { return "Date"; }
 
-    public override string GetTextureName() { return "Number_Date"; }
+    public override string GetTextureName() { return "Number_Time"; }
 };
 
 public class MsbtTagElementNumberDateDetail : MsbtTagElementWithTextData
@@ -37,7 +37,7 @@ public class MsbtTagElementNumberDateDetail : MsbtTagElementWithTextData
 
     public override string GetTagNameStr() { return "Date (Detail)"; }
 
-    public override string GetTextureName() { return "Number_DateDetail"; }
+    public override string GetTextureName() { return "Number_Time"; }
 };
 
 public class MsbtTagElementNumberRaceTime : MsbtTagElementWithTextData
@@ -57,5 +57,5 @@ public class MsbtTagElementNumberRaceTime : MsbtTagElementWithTextData
 
     public override string GetTagNameStr() { return "Race Time"; }
 
-    public override string GetTextureName() { return "Number_RaceTime"; }
+    public override string GetTextureName() { return "Number_Time"; }
 };

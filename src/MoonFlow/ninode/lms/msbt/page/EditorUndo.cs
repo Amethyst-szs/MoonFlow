@@ -79,9 +79,13 @@ public partial class MsbtPageEditor : TextEdit
     {
         return UndoTree.Count > 1 && UndoTreePosition < UndoTree.Count;
     }
-
     public new bool HasRedo()
     {
         return UndoTreePosition > 1;
+    }
+
+    private void ActivityTimerTimeout()
+    {
+        RegisterUndoEntry();
     }
 }

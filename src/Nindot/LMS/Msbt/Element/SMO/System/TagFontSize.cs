@@ -16,6 +16,10 @@ public class MsbtTagElementSystemFontSize : MsbtTagElementSystemBase
     {
         FontSize = fontSizePercentage;
     }
+    public MsbtTagElementSystemFontSize()
+        : base((ushort)TagGroup.System, (ushort)TagNameSystem.FontSize)
+    {
+    }
 
     internal override void InitTag(ref int pointer, byte[] buffer, ushort dataSize)
     {
