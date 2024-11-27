@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Nindot.LMS.Msbp;
 
-public partial class MsbpFile(byte[] data) : FileBase(data)
+public partial class MsbpFile(byte[] data, string name) : FileBase(data, name)
 {
     // ====================================================== //
     // ============ Parameters and Initilization ============ //
@@ -72,15 +73,28 @@ public partial class MsbpFile(byte[] data) : FileBase(data)
 
     static public MsbpFile FromFilePath(string path)
     {
-        var bytes = File.ReadAllBytes(path);
-        return FromBytes(bytes);
+        if (!File.Exists(path))
+            throw new FileNotFoundException(path);
+
+        byte[] bytes;
+
+        try
+        {
+            bytes = File.ReadAllBytes(path);
+        }
+        catch
+        {
+            throw new FileLoadException(path);
+        }
+
+        return FromBytes(bytes, path.Split(['/', '\\']).Last());
     }
 
-    static public MsbpFile FromBytes(byte[] data)
+    static public MsbpFile FromBytes(byte[] data, string name)
     {
         MsbpFile file;
-        
-        try { file = new(data); }
+
+        try { file = new(data, name); }
         catch { throw new LMSException("Failed to parse MSBP file"); }
 
         return file;

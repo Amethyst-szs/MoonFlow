@@ -66,11 +66,11 @@ public class SarcFile
     }
     public MsbtFile GetFileMSBT(string name, MsbtElementFactory factory)
     {
-        return new MsbtFile(factory, [.. SarcData[name]]);
+        return new MsbtFile(factory, [.. SarcData[name]], name);
     }
     public MsbpFile GetFileMSBP(string name)
     {
-        return new MsbpFile([.. SarcData[name]]);
+        return new MsbpFile([.. SarcData[name]], name);
     }
     public Graph GetFileAlEventFlow(string name, EventFlowFactoryBase nodeFactory)
     {

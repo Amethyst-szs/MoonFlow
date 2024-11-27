@@ -8,7 +8,7 @@ using Nindot.LMS.Msbt.TagLib;
 
 namespace Nindot.LMS.Msbt;
 
-public partial class MsbtFile(MsbtElementFactory factory, byte[] data) : FileBase(data)
+public partial class MsbtFile(MsbtElementFactory factory, byte[] data, string name) : FileBase(data, name)
 {
     // ====================================================== //
     // ============ Parameters and Initilization ============ //

@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bbndf5ewp2sd1"]
+
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_cjti2"]
+[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/msbt/stylebox/msbt_button_normal.tres" id="1_g4a3i"]
+[ext_resource type="StyleBox" uid="uid://bs7cbsqc1muw5" path="res://asset/theme/msbt/stylebox/msbt_button_hover.tres" id="1_us5q1"]
+[ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/msbt/stylebox/msbt_button_focus.tres" id="2_14hhd"]
+[ext_resource type="StyleBox" uid="uid://b6uxtqriwct6l" path="res://asset/theme/msbt/stylebox/msbt_button_pressed_hover.tres" id="2_23nn6"]
+[ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/msbt/stylebox/msbt_button_pressed.tres" id="3_oj5aq"]
+[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="4_32u22"]
+[ext_resource type="StyleBox" uid="uid://ct3r0pr6ukvk" path="res://asset/theme/msbt/stylebox/msbt_textedit_normal.tres" id="8_drpjo"]
+[ext_resource type="StyleBox" uid="uid://b5wl2cmcttc7h" path="res://asset/theme/msbt/stylebox/msbt_textedit_read_only.tres" id="9_cf6ur"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_24gye"]
+color = Color(1, 0.737255, 0.258824, 0.713726)
+grow_begin = -12.0
+grow_end = -12.0
+thickness = 2
+
+[resource]
+Button/constants/icon_max_width = 28
+Button/fonts/font = ExtResource("1_cjti2")
+Button/styles/focus = ExtResource("2_14hhd")
+Button/styles/hover = ExtResource("1_us5q1")
+Button/styles/hover_pressed = ExtResource("2_23nn6")
+Button/styles/normal = ExtResource("1_g4a3i")
+Button/styles/pressed = ExtResource("3_oj5aq")
+HSeparator/constants/separation = 8
+HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
+Label/fonts/font = ExtResource("1_cjti2")
+LineEdit/fonts/font = ExtResource("1_cjti2")
+LineEdit/styles/focus = ExtResource("2_14hhd")
+LineEdit/styles/normal = ExtResource("1_us5q1")
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 6
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 6
+ScrollContainer/styles/panel = ExtResource("4_32u22")
+TextEdit/colors/caret_color = Color(0.94, 0.71252, 0.3196, 1)
+TextEdit/colors/current_line_color = Color(0.00679999, 0.212273, 0.34, 0.4)
+TextEdit/fonts/font = ExtResource("1_cjti2")
+TextEdit/styles/focus = ExtResource("2_14hhd")
+TextEdit/styles/normal = ExtResource("8_drpjo")
+TextEdit/styles/read_only = ExtResource("9_cf6ur")

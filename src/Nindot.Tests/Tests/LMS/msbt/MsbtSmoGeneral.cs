@@ -20,7 +20,7 @@ public class UnitTestMsbtSMOGeneral : IUnitTestGroup
     public static void ParseUnitTestingMsbt()
     {
         // Load in an msbt resource and check it's validity
-        MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData);
+        MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData, "NoName");
         Test.Should(msbt.IsValid());
 
         // Ensure elements pass general validity checks, used by all MSBT unit tests
@@ -44,7 +44,7 @@ public class UnitTestMsbtSMOGeneral : IUnitTestGroup
     public static void ReadWriteAndCheckMsbt()
     {
         // Load in an msbt resource and check it's validity
-        MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData);
+        MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), FileData, "NoName");
         Test.Should(msbt.IsValid());
 
         TestAllElements(msbt);
@@ -58,7 +58,7 @@ public class UnitTestMsbtSMOGeneral : IUnitTestGroup
 
         // Read the msbt back in from write
         FileData = File.ReadAllBytes(Test.TestOutputDirectory + "MsbtSMO.msbt");
-        msbt = new(new MsbtElementFactoryProjectSmo(), FileData);
+        msbt = new(new MsbtElementFactoryProjectSmo(), FileData, "NoName");
         Test.Should(msbt.IsValid());
 
         TestAllElements(msbt);

@@ -1,10 +1,10 @@
 using Godot;
 using System;
+using System.Linq;
 
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib.Smo;
-using System.Linq;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -12,7 +12,6 @@ public partial class MsbtEditor : PanelContainer
 {
 	private MsbpFile Project = null;
 	private MsbtFile File = null;
-	private string FileName = "";
 
 	private VBoxContainer EntryList = null;
 	private VBoxContainer EntryContent = null;
@@ -26,12 +25,15 @@ public partial class MsbtEditor : PanelContainer
 	[Signal]
 	public delegate void EntrySelectedEventHandler(string label);
 
+	[Signal]
+	public delegate void EntryCountUpdatedEventHandler(int total, int matchSearch);
+
 	public MsbtEditor()
 	{
 		// TODO: DEBUG BULLSHITTERY REMOVE LATER
-		var proj = MsbpFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/ProjectData.msbp"));
-		var file = MsbtFile.FromBytes(FileAccess.GetFileAsBytes("res://example/msbt/SphinxQuiz.msbt"), new MsbtElementFactoryProjectSmo());
-		OpenFile("NA", file, proj);
+		var proj = MsbpFileExt.FromGodotFilePath("res://example/msbt/ProjectData.msbp");
+		var file = MsbtFileExt.FromGodotFilePath("res://example/msbt/SphinxQuiz.msbt", new MsbtElementFactoryProjectSmo());
+		OpenFile(file, proj);
 	}
 
 	public override void _Ready()
@@ -63,48 +65,26 @@ public partial class MsbtEditor : PanelContainer
 		var labelList = File.GetEntryLabels().ToArray();
 		Array.Sort(labelList, string.Compare);
 
-		foreach (var label in labelList)
-		{
-			var button = new Button
-			{
-				Name = label,
-				Text = label,
-				ToggleMode = true,
-				TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis
-			};
-
-			button.ButtonDown += () => OnEntrySelected(label);
-			button.Pressed += () => OnEntrySelected(label);
-			button.MouseEntered += () => OnEntryHovered(label);
-			EntryList.AddChild(button, true);
-		}
+		foreach (var label in labelList) { CreateEntryListButton(label); }
 
 		// Create entry content
-		for (int i = 0; i < File.GetEntryCount(); i++)
-		{
-			var editor = new MsbtEntryEditor(Project, File.GetEntry(i))
-			{
-				Name = File.GetEntryLabel(i),
-				Visible = false,
-				SizeFlagsHorizontal = SizeFlags.ExpandFill,
-				SizeFlagsVertical = SizeFlags.ExpandFill,
-			};
-
-			EntryContent.AddChild(editor, true);
-		}
+		for (int i = 0; i < File.GetEntryCount(); i++) { CreateEntryContentEditor(i); }
 
 		// Select first entry
 		var firstItem = (Button)EntryList.GetChild(0);
-		CallDeferred("OnEntrySelected", firstItem.Name);
+		CallDeferred("OnEntrySelected", firstItem.Name, true);
+
+		// Update entry count in other components
+		int entryCount = File.GetEntryCount();
+		EmitSignal(SignalName.EntryCountUpdated, [entryCount, entryCount]);
 	}
 
 	// ====================================================== //
 	// ================ File Access Utilities =============== //
 	// ====================================================== //
 
-	public void OpenFile(string fileName, MsbtFile file, MsbpFile project)
+	public void OpenFile(MsbtFile file, MsbpFile project)
 	{
-		FileName = fileName;
 		Project = project;
 		File = file;
 	}
@@ -124,14 +104,18 @@ public partial class MsbtEditor : PanelContainer
 			OnEntrySelected(label);
 	}
 
-	private void OnEntrySelected(string label)
+	private void OnEntrySelected(string label, bool isGrabFocus = true)
 	{
 		// Close old selection
 		if (IsInstanceValid(EntryListSelection))
 			EntryListSelection.ButtonPressed = false;
-		
+
 		if (IsInstanceValid(EntryContentSelection))
 			EntryContentSelection.Hide();
+
+		// Ensure string is not empty
+		if (label == string.Empty)
+			return;
 
 		// Open entry
 		var button = EntryList.GetNode<Button>(label);
@@ -139,18 +123,19 @@ public partial class MsbtEditor : PanelContainer
 
 		if (button == null)
 			return;
-		
+
 		button.ButtonPressed = true;
-		button.GrabFocus();
+		if (isGrabFocus)
+			button.GrabFocus();
 
 		var content = EntryContent.GetNode<MsbtEntryEditor>(label);
 		EntryContentSelection = content;
 
 		if (IsInstanceValid(content))
 			content.Show();
-		
+
 		// Update file name and entry header
-		FileTitleName.Text = FileName;
+		FileTitleName.Text = File.Name;
 		FileEntryName.Text = label;
 	}
 }

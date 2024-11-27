@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqq2fg3a6fqij"]
+
+[ext_resource type="Script" path="res://ninode/lms/msbt/entry/components/MsbtEntryPageHolder.cs" id="1_ruo46"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/Trash.svg" id="2_1ma0b"]
+[ext_resource type="Texture2D" uid="uid://88b10dmyi3mg" path="res://asset/material/ArrowU.png" id="2_rajdl"]
+[ext_resource type="Texture2D" uid="uid://bnmjrmui5gyis" path="res://asset/material/ArrowD.png" id="4_o5ewx"]
+
+[node name="MsbtEntryPageHolder" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ruo46")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Button_OrganizeUp" type="Button" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Move page up"
+icon = ExtResource("2_rajdl")
+icon_alignment = 1
+
+[node name="Button_Trash" type="Button" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Delete page"
+icon = ExtResource("2_1ma0b")
+icon_alignment = 1
+
+[node name="Button_OrganizeDown" type="Button" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Move page down"
+icon = ExtResource("4_o5ewx")
+icon_alignment = 1
+
+[connection signal="pressed" from="VBox/Button_OrganizeUp" to="." method="OnPressOrganize" binds= [-1]]
+[connection signal="pressed" from="VBox/Button_Trash" to="." method="OnDeleteConfirmed"]
+[connection signal="pressed" from="VBox/Button_OrganizeDown" to="." method="OnPressOrganize" binds= [1]]

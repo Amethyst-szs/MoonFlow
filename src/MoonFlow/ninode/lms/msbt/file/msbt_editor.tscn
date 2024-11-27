@@ -1,7 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://r0nay3itfijm"]
+[gd_scene load_steps=18 format=3 uid="uid://r0nay3itfijm"]
 
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_celu7"]
 [ext_resource type="Script" path="res://ninode/lms/msbt/file/MsbtEditor.cs" id="1_hu01d"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_3q5pt"]
+[ext_resource type="StyleBox" uid="uid://6q8316epejjf" path="res://asset/theme/msbt/stylebox/msbt_panel_main.tres" id="2_aikmg"]
+[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="5_m5aci"]
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/Search.svg" id="6_317no"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/file/components/EntryListControls.gd" id="6_dxkv3"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="6_sxopc"]
+[ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/Warning.svg" id="7_5wcxg"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/Trash.svg" id="8_ex2fj"]
+[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/msbt/stylebox/msbt_button_normal.tres" id="10_ac7ij"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_bpujh"]
+action = &"msbt_add_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_pq416"]
+events = [SubResource("InputEventAction_bpujh")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_sr0fp"]
+action = &"msbt_find_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_7w4d7"]
+events = [SubResource("InputEventAction_sr0fp")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_b4aij"]
+action = &"msbt_delete_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_ysvcm"]
+events = [SubResource("InputEventAction_b4aij")]
 
 [node name="MsbtEditor" type="PanelContainer"]
 anchors_preset = 15
@@ -11,6 +38,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_celu7")
+theme_override_styles/panel = ExtResource("2_aikmg")
 script = ExtResource("1_hu01d")
 
 [node name="Layout" type="VBoxContainer" parent="."]
@@ -31,7 +60,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "abcdef"
 horizontal_alignment = 2
 vertical_alignment = 1
 text_overrun_behavior = 3
@@ -45,7 +73,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-text = "abcdef"
 horizontal_alignment = 2
 vertical_alignment = 1
 text_overrun_behavior = 3
@@ -60,30 +87,114 @@ theme_override_constants/separation = 16
 theme_override_constants/autohide = 0
 split_offset = -200
 
-[node name="List_Scroll" type="ScrollContainer" parent="Layout/Divider"]
+[node name="EntryList" type="VBoxContainer" parent="Layout/Divider"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Scroll" type="ScrollContainer" parent="Layout/Divider/EntryList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
 horizontal_scroll_mode = 0
 script = ExtResource("2_3q5pt")
 drag_with_mouse = false
+follow_focus_margin = 120
 allow_horizontal_scroll = false
 hide_scrollbar_over_time = true
 scrollbar_hide_time = 3.0
 force_vertical_scrolling = true
 
-[node name="List" type="VBoxContainer" parent="Layout/Divider/List_Scroll"]
+[node name="List" type="VBoxContainer" parent="Layout/Divider/EntryList/Scroll"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="HSep" type="HSeparator" parent="Layout/Divider/EntryList"]
+layout_mode = 2
+
+[node name="Controls" type="PanelContainer" parent="Layout/Divider/EntryList"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_m5aci")
+script = ExtResource("6_dxkv3")
+
+[node name="VBox" type="VBoxContainer" parent="Layout/Divider/EntryList/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBox_AddEntry" type="HBoxContainer" parent="Layout/Divider/EntryList/Controls/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Line_EntryName" type="LineEdit" parent="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Entry Name"
+max_length = 64
+clear_button_enabled = true
+
+[node name="Button_Add" type="Button" parent="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry"]
+layout_mode = 2
+icon = ExtResource("6_sxopc")
+
+[node name="Texture_Warning" type="TextureRect" parent="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry"]
+modulate = Color(1, 0.266667, 0, 1)
+layout_mode = 2
+tooltip_text = "Entry name is invalid!
+- Name must be unique
+- Use only UTF8 characters
+- No spaces
+- Cannot be empty"
+texture = ExtResource("7_5wcxg")
+stretch_mode = 5
+
+[node name="Line_Search" type="LineEdit" parent="Layout/Divider/EntryList/Controls/VBox"]
+layout_mode = 2
+placeholder_text = "Search Entries"
+max_length = 22
+right_icon = ExtResource("6_317no")
+
+[node name="HBox" type="HBoxContainer" parent="Layout/Divider/EntryList/Controls/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Add" type="Button" parent="Layout/Divider/EntryList/Controls/VBox/HBox"]
+layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_pq416")
+icon = ExtResource("6_sxopc")
+
+[node name="Search" type="Button" parent="Layout/Divider/EntryList/Controls/VBox/HBox"]
+layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_7w4d7")
+icon = ExtResource("6_317no")
+
+[node name="Trash" type="Button" parent="Layout/Divider/EntryList/Controls/VBox/HBox"]
+layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_ysvcm")
+icon = ExtResource("8_ex2fj")
+
+[node name="EntryCount" type="Label" parent="Layout/Divider/EntryList/Controls/VBox/HBox"]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = ExtResource("10_ac7ij")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="List_Content" type="ScrollContainer" parent="Layout/Divider"]
-clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_scroll_mode = 0
 script = ExtResource("2_3q5pt")
 drag_with_mouse = false
+follow_focus_margin = 40
 allow_horizontal_scroll = false
 hide_scrollbar_over_time = true
 scrollbar_hide_time = 3.0
@@ -94,3 +205,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="AddNewEntryValidity" from="." to="Layout/Divider/EntryList/Controls" method="_on_msbt_editor_add_new_entry_validity"]
+[connection signal="EntryCountUpdated" from="." to="Layout/Divider/EntryList/Controls" method="_on_msbt_editor_entry_count_updated"]
+[connection signal="text_changed" from="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry/Line_EntryName" to="." method="OnAddEntryNameChanged"]
+[connection signal="text_submitted" from="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry/Line_EntryName" to="." method="OnAddEntryNameSubmitted"]
+[connection signal="text_submitted" from="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry/Line_EntryName" to="Layout/Divider/EntryList/Controls" method="_on_line_new_entry_text_submitted"]
+[connection signal="pressed" from="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry/Button_Add" to="Layout/Divider/EntryList/Controls" method="_on_button_add_entry_pressed"]
+[connection signal="text_changed" from="Layout/Divider/EntryList/Controls/VBox/Line_Search" to="." method="OnSearchEntryListUpdated"]
+[connection signal="toggled" from="Layout/Divider/EntryList/Controls/VBox/HBox/Add" to="Layout/Divider/EntryList/Controls" method="_on_add_toggled"]
+[connection signal="toggled" from="Layout/Divider/EntryList/Controls/VBox/HBox/Search" to="Layout/Divider/EntryList/Controls" method="_on_search_toggled"]
+[connection signal="pressed" from="Layout/Divider/EntryList/Controls/VBox/HBox/Trash" to="Layout/Divider/EntryList/Controls" method="_on_trash_pressed"]

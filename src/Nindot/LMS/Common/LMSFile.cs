@@ -7,11 +7,15 @@ namespace Nindot.LMS;
 
 public abstract class FileBase
 {
+    public string Name { get; private set; } = null;
     protected FileHeader Header;
     protected List<Block> Blocks = [];
 
-    public FileBase(byte[] data)
+    public FileBase(byte[] data, string name)
     {
+        // Set name
+        Name = name;
+        
         // Load header and ensure validity before continuing
         Header = new(data, GetFileMagic());
         if (!Header.IsValid())

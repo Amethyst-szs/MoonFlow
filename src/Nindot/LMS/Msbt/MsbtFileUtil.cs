@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -13,15 +14,29 @@ public partial class MsbtFile : FileBase
 
     static public MsbtFile FromFilePath(string path, MsbtElementFactory factory)
     {
-        var bytes = File.ReadAllBytes(path);
-        return FromBytes(bytes, factory);
+        if (!File.Exists(path))
+            throw new FileNotFoundException(path);
+
+        byte[] bytes;
+
+        try
+        {
+            bytes = File.ReadAllBytes(path);
+        }
+        catch
+        {
+            throw new FileLoadException(path);
+        }
+
+
+        return FromBytes(bytes, path.Split(['/', '\\']).Last(), factory);
     }
 
-    static public MsbtFile FromBytes(byte[] data, MsbtElementFactory factory)
+    static public MsbtFile FromBytes(byte[] data, string name, MsbtElementFactory factory)
     {
         MsbtFile file;
 
-        try { file = new(factory, data); }
+        try { file = new(factory, data, name); }
         catch { throw new MsbtException("Failed to parse MsbtFile"); }
 
         return file;
@@ -52,6 +67,10 @@ public partial class MsbtFile : FileBase
             return null;
 
         return Content[label];
+    }
+    public int GetEntryIndex(string label)
+    {
+        return Array.FindIndex([.. Content.Keys], x => x.Equals(label));
     }
     public string GetEntryLabel(int idx)
     {

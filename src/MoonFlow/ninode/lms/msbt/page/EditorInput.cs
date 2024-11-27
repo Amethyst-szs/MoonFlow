@@ -43,6 +43,14 @@ public partial class MsbtPageEditor : TextEdit
             return;
         }
 
+        if (input.IsActionPressed("ui_text_delete", true))
+        {
+            SetCaretColumn(GetCaretColumn() + 1);
+            _Backspace(0);
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+
         if (input.IsActionPressed("ui_undo", true, true))
         {
             Undo();

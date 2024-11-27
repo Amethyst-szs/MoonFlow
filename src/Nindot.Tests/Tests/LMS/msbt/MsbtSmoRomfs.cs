@@ -94,7 +94,7 @@ public class UnitTestMsbtAllLang : IUnitTestGroup
             Test.Should(x.Contains(".msbt"));
 
             byte[] file = sarc.GetFile(x);
-            MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), file);
+            MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), file, "NoName");
             Test.Should(msbt.IsValid());
 
             UnitTestMsbtSMOGeneral.TestAllElements(msbt);
