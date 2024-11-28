@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bcb23wjw20ifi"]
 
 [ext_resource type="Script" path="res://scene/settings/romfs/RomfsAccessorConfigApp.cs" id="1_r13aa"]
-[ext_resource type="Texture2D" uid="uid://bqq23lp3pujw0" path="res://asset/nindot/lms/icon/TextAnim_Wave.png" id="2_32brs"]
+[ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="2_6p26v"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_4xqn7"]
 [ext_resource type="StyleBox" uid="uid://6q8316epejjf" path="res://asset/theme/msbt/stylebox/msbt_panel_main.tres" id="4_wpo7m"]
 [ext_resource type="FontFile" uid="uid://c5btw8xoivg1g" path="res://asset/font/FontNewRodin.ttf" id="5_3fo2x"]
@@ -25,7 +25,7 @@ grow_vertical = 2
 script = ExtResource("1_r13aa")
 AppName = "RomfsAccessorConfig"
 AppTaskbarTitle = "Romfs Setup"
-AppIcon = ExtResource("2_32brs")
+AppIcon = ExtResource("2_6p26v")
 AppFlags = 10
 
 [node name="PathPicker" type="FileDialog" parent="."]

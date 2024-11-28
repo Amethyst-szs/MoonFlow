@@ -5,7 +5,7 @@ using MoonFlow.Scene.Settings;
 
 namespace MoonFlow.Scene;
 
-[Icon("res://asset/nindot/lms/icon/TextAlign_Center.png")]
+[Icon("res://asset/app/icon/front_door.png")]
 [ScenePath("res://scene/front_door/front_door.tscn")]
 public partial class FrontDoor : AppScene
 {

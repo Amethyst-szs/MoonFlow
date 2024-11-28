@@ -7,7 +7,7 @@ using MoonFlow.Fs.Rom;
 
 namespace MoonFlow.Scene.Settings;
 
-[Icon("res://asset/nindot/lms/icon/TextAnim_Wave.png")]
+[Icon("res://asset/app/icon/romfs_accessor_config.png")]
 [ScenePath("res://scene/settings/romfs/romfs_accessor_config_app.tscn")]
 public partial class RomfsAccessorConfigApp : AppScene
 {
