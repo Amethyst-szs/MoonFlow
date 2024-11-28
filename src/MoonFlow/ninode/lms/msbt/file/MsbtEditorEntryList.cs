@@ -110,4 +110,26 @@ public partial class MsbtEditor : PanelContainer
         EmitSignal(SignalName.AddNewEntryValidity, false);
         EmitSignal(SignalName.EntryCountUpdated, [entryCount, entryCount]);
     }
+
+    private void OnDeleteEntryTrash()
+    {
+        if (!IsInstanceValid(EntryListSelection) || !IsInstanceValid(EntryContentSelection))
+            return;
+        
+        string entry = EntryListSelection.Name;
+        string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
+
+        File.RemoveEntry(entry);
+
+        EntryListSelection.QueueFree();
+        EntryContentSelection.QueueFree();
+
+        if (prevEntry != null && prevEntry != string.Empty)
+            OnEntrySelected(prevEntry);
+        
+        // Update entry count in other components
+        int entryCount = File.GetEntryCount();
+        EmitSignal(SignalName.AddNewEntryValidity, false);
+        EmitSignal(SignalName.EntryCountUpdated, [entryCount, entryCount]);
+    }
 }

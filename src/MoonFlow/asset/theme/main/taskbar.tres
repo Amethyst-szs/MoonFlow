@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://2yk8byukiy02"]
+
+[ext_resource type="StyleBox" uid="uid://blp0uj3c82ngl" path="res://asset/theme/main/stylebox/taskbar_normal.tres" id="1_l6yyo"]
+[ext_resource type="StyleBox" uid="uid://bnkb2ow3rj55t" path="res://asset/theme/main/stylebox/taskbar_hover.tres" id="1_lyel1"]
+[ext_resource type="StyleBox" uid="uid://kedxnuje0t2c" path="res://asset/theme/main/stylebox/taskbar_hover_pressed.tres" id="2_aqn5l"]
+[ext_resource type="StyleBox" uid="uid://dulv8j46q2im0" path="res://asset/theme/main/stylebox/taskbar_pressed.tres" id="3_f5due"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hadqt"]
+draw_center = false
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1ejc"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.100782, 0.184118, 0.235361, 1)
+border_width_top = 2
+border_color = Color(0.988235, 0.792157, 0.27451, 1)
+corner_detail = 2
+shadow_color = Color(0, 0, 0, 0.172549)
+shadow_size = 6
+shadow_offset = Vector2(0, -4)
+
+[resource]
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_hadqt")
+Button/styles/hover = ExtResource("1_lyel1")
+Button/styles/hover_pressed = ExtResource("2_aqn5l")
+Button/styles/normal = ExtResource("1_l6yyo")
+Button/styles/pressed = ExtResource("3_f5due")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_l1ejc")

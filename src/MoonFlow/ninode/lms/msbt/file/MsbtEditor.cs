@@ -44,9 +44,6 @@ public partial class MsbtEditor : PanelContainer
 		FileTitleName = GetNode<Label>("%FileTitle");
 		FileEntryName = GetNode<Label>("%FileEntry");
 
-		// Setup components
-		InitHeader();
-
 		if (File != null && Project != null)
 			InitEditor();
 	}

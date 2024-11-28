@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://38ktfo0b5x45"]
+
+[ext_resource type="Shader" path="res://asset/shader/sheet/spritesheet.gdshader" id="1_fa8fp"]
+[ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
+[ext_resource type="Texture2D" uid="uid://cdnimgp2jhh8l" path="res://asset/animation_sheet/icon_sheet.png" id="2_qj3uu"]
+[ext_resource type="Script" path="res://scene/main/header/StatusIcon.cs" id="3_npfaf"]
+[ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
+[ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="4_youw0"]
+[ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jhrf"]
+shader = ExtResource("1_fa8fp")
+shader_parameter/sheet_position = 0
+shader_parameter/sheet_width = 18
+shader_parameter/sheet_height = 8
+
+[node name="Main" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jewxx")
+
+[node name="Header" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="StatusIcon" type="TextureRect" parent="Header"]
+material = SubResource("ShaderMaterial_8jhrf")
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("2_qj3uu")
+expand_mode = 2
+script = ExtResource("3_npfaf")
+
+[node name="Apps" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Home" parent="Apps" instance=ExtResource("4_youw0")]
+layout_mode = 1
+
+[node name="TaskbarPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("6_2jriu")
+
+[node name="Taskbar" type="Control" parent="TaskbarPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+script = ExtResource("4_kco4x")

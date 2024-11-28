@@ -74,7 +74,7 @@ public partial class MsbtFile : FileBase
     }
     public string GetEntryLabel(int idx)
     {
-        if (idx >= Content.Count)
+        if (idx < 0 || idx >= Content.Count)
             return null;
 
         return Content.Keys.ElementAt(idx);

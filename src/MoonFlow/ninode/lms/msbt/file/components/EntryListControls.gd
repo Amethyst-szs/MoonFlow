@@ -58,9 +58,6 @@ func _on_search_toggled(toggled_on: bool) -> void:
 		line_search.show()
 		line_search.grab_focus()
 
-func _on_trash_pressed() -> void:
-	_hide_control_inputs(button_trash)
-
 #endregion
 
 #region Utilities

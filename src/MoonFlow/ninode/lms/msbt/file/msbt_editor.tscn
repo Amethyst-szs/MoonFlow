@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://r0nay3itfijm"]
+[gd_scene load_steps=21 format=3 uid="uid://r0nay3itfijm"]
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_celu7"]
 [ext_resource type="Script" path="res://ninode/lms/msbt/file/MsbtEditor.cs" id="1_hu01d"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_3q5pt"]
 [ext_resource type="StyleBox" uid="uid://6q8316epejjf" path="res://asset/theme/msbt/stylebox/msbt_panel_main.tres" id="2_aikmg"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_2flhd"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="5_m5aci"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/Search.svg" id="6_317no"]
 [ext_resource type="Script" path="res://ninode/lms/msbt/file/components/EntryListControls.gd" id="6_dxkv3"]
@@ -11,6 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/Warning.svg" id="7_5wcxg"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/Trash.svg" id="8_ex2fj"]
 [ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/msbt/stylebox/msbt_button_normal.tres" id="10_ac7ij"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ojxu"]
+font = ExtResource("4_2flhd")
+
+[sub_resource type="LabelSettings" id="LabelSettings_iuuba"]
+font = ExtResource("4_2flhd")
 
 [sub_resource type="InputEventAction" id="InputEventAction_bpujh"]
 action = &"msbt_add_entry"
@@ -49,33 +56,30 @@ layout_mode = 2
 clip_contents = true
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="Layout/Header"]
+[node name="Start" type="VSeparator" parent="Layout/Header"]
 layout_mode = 2
-
-[node name="File" type="PopupMenu" parent="Layout/Header/MenuBar"]
-unique_name_in_owner = true
 
 [node name="FileEntry" type="Label" parent="Layout/Header"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
-size_flags_horizontal = 10
-horizontal_alignment = 2
+size_flags_horizontal = 3
+text = "abcdef"
+label_settings = SubResource("LabelSettings_3ojxu")
 vertical_alignment = 1
 text_overrun_behavior = 3
-
-[node name="TitleEntrySep" type="VSeparator" parent="Layout/Header"]
-layout_mode = 2
-theme_override_constants/separation = 8
 
 [node name="FileTitle" type="Label" parent="Layout/Header"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
+text = "acbdef"
+label_settings = SubResource("LabelSettings_iuuba")
 horizontal_alignment = 2
 vertical_alignment = 1
 text_overrun_behavior = 3
+
+[node name="End" type="VSeparator" parent="Layout/Header"]
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Layout"]
 layout_mode = 2
@@ -215,4 +219,4 @@ size_flags_horizontal = 3
 [connection signal="text_changed" from="Layout/Divider/EntryList/Controls/VBox/Line_Search" to="." method="OnSearchEntryListUpdated"]
 [connection signal="toggled" from="Layout/Divider/EntryList/Controls/VBox/HBox/Add" to="Layout/Divider/EntryList/Controls" method="_on_add_toggled"]
 [connection signal="toggled" from="Layout/Divider/EntryList/Controls/VBox/HBox/Search" to="Layout/Divider/EntryList/Controls" method="_on_search_toggled"]
-[connection signal="pressed" from="Layout/Divider/EntryList/Controls/VBox/HBox/Trash" to="Layout/Divider/EntryList/Controls" method="_on_trash_pressed"]
+[connection signal="pressed" from="Layout/Divider/EntryList/Controls/VBox/HBox/Trash" to="." method="OnDeleteEntryTrash"]
