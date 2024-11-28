@@ -41,7 +41,7 @@ public partial class Taskbar : Control
 
         // If no app is currently selected, select this new app
         if (scene.GetActiveApp() == null)
-            app.FocusApp();
+            app.AppFocus();
     }
 
     public bool TrySelectAppByIndex(int idx)
@@ -50,7 +50,7 @@ public partial class Taskbar : Control
         if (idx < 0 || idx >= childCount)
             return false;
 
-        GetChild<TaskbarButton>(idx).App.FocusApp();
+        GetChild<TaskbarButton>(idx).App.AppFocus();
         return true;
     }
 

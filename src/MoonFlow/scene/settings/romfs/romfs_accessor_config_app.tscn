@@ -26,7 +26,7 @@ script = ExtResource("1_r13aa")
 AppName = "RomfsAccessorConfig"
 AppTaskbarTitle = "Romfs Setup"
 AppIcon = ExtResource("2_32brs")
-AppFlags = 11
+AppFlags = 10
 
 [node name="PathPicker" type="FileDialog" parent="."]
 disable_3d = true
@@ -68,7 +68,7 @@ horizontal_alignment = 1
 [node name="Label_Desc" type="Label" parent="Content/HBox/Option"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "Please provide paths to your original and unmodified Super Mario Odyssey Romfs. You can add a path for each game version, or just the game version of the projects you'll be working with."
+text = "Please provide paths to your original unmodified Super Mario Odyssey Romfs. You can add a path for each game version, or just the game version you'll be working with."
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -130,19 +130,23 @@ layout_mode = 2
 [node name="v101" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
+version_label = "v1.0.1"
 
 [node name="v110" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
+version_label = "v1.1.0"
 
 [node name="v120" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
+version_label = "v1.2.0"
 
 [node name="v130" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
+version_label = "v1.3.0"
 
 [connection signal="dir_selected" from="PathPicker" to="." method="OnPathPickerSelection"]
 [connection signal="pressed" from="Content/HBox/Option/Button_Add" to="PathPicker" method="popup_centered"]
-[connection signal="pressed" from="Content/HBox/Option/Button_Save" to="." method="CloseApp" binds= [true]]
+[connection signal="pressed" from="Content/HBox/Option/Button_Save" to="." method="AppClose" binds= [true]]

@@ -13,10 +13,8 @@ public partial class RomfsAccessorConfigApp : AppScene
 {
     private VBoxContainer PathError = null;
 
-    public override void _Ready()
+    protected override void AppInit()
     {
-        base._Ready();
-
         PathError = GetNode<VBoxContainer>("%VBox_PathError");
         PathError.Hide();
 
@@ -29,6 +27,14 @@ public partial class RomfsAccessorConfigApp : AppScene
                 continue;
 
             var pathDisplay = GetNode<HBoxContainer>(nodePath);
+
+            // Connect to path display signal
+            if (!pathDisplay.HasSignal("delete_pressed"))
+                throw new Exception("Path Display node missing delete signal!");
+
+            pathDisplay.Connect("delete_pressed", Callable.From(new Action<string>(OnDeletePath)));
+
+            // Update path display with path if available
             if (RomfsAccessor.VersionDirectories.TryGetValue(versionEnum, out string value))
                 pathDisplay.Call("set_path", value);
             else
@@ -55,6 +61,19 @@ public partial class RomfsAccessorConfigApp : AppScene
 
         var pathDisplay = GetNode<HBoxContainer>(string.Format("%{0}", Enum.GetName(version)));
         pathDisplay.Call("set_path", dir);
+    }
+
+    private void OnDeletePath(string verStr)
+    {
+        if (!Enum.TryParse(verStr, out RomfsValidation.RomfsVersion ver))
+            throw new Exception("Name doesn't exist in enum");
+        
+        RomfsAccessor.TryUnassignDirectory(ver);
+
+        if (RomfsAccessor.VersionDirectories.Count == 0)
+            ExitButtonHide();
+        else
+            ExitButtonShow();
     }
 
     private void OnInvalidPathSelected()

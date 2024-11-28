@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdgrcigpyveoj"]
+[gd_scene load_steps=9 format=3 uid="uid://cdgrcigpyveoj"]
 
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="1_24kqu"]
 [ext_resource type="Script" path="res://scene/settings/romfs/path_display.gd" id="1_gb6pm"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_1o7wq"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="4_4c36o"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/Trash.svg" id="4_22wqa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_svss0"]
 font = ExtResource("2_1o7wq")
@@ -14,7 +16,7 @@ font_size = 13
 font_size = 13
 font_color = Color(0.72, 0.72, 0.72, 1)
 
-[node name="v100" type="HBoxContainer"]
+[node name="PathDisplay" type="HBoxContainer"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0
@@ -50,3 +52,10 @@ text = "No Path"
 label_settings = SubResource("LabelSettings_5g6us")
 horizontal_alignment = 1
 text_overrun_behavior = 3
+
+[node name="Button_Delete" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("4_4c36o")
+icon = ExtResource("4_22wqa")
+
+[connection signal="pressed" from="Button_Delete" to="." method="_on_button_delete_pressed"]

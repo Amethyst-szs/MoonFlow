@@ -160,4 +160,18 @@ public static class RomfsAccessor
 
         config.Save(ConfigDirectory);
     }
+
+    public static void TryUnassignDirectory(RomfsValidation.RomfsVersion version)
+    {
+        if (!VersionDirectories.ContainsKey(version))
+            return;
+        
+        if (version == ActiveVersion)
+        {
+            ActiveDirectory = null;
+            ActiveVersion = RomfsValidation.RomfsVersion.INVALID_VERSION;
+        }
+
+        VersionDirectories.Remove(version);
+    }
 }

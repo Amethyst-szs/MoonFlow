@@ -34,8 +34,10 @@ public partial class AppScene : Control
 	public AppFlagEnum AppFlags = AppFlagEnum.IsAllowUserClose;
 
 	// ====================================================== //
-	// ==================== Stored Values =================== //
+	// ================== Stored References ================= //
 	// ====================================================== //
+
+	public MainSceneRoot Scene { get; protected set; } = null;
 
 	private TaskbarButton _taskbarButton = null;
 	public TaskbarButton TaskbarButton
@@ -44,13 +46,16 @@ public partial class AppScene : Control
 		set { _taskbarButton ??= value; }
 	}
 
-	protected MainSceneRoot Scene = null;
-
 	// ====================================================== //
-	// ============ App Setup And Close Functions =========== //
+	// ================== App Initilization ================= //
 	// ====================================================== //
 
-	public override void _Ready()
+	public AppScene()
+	{
+		Ready += InitReferences;
+	}
+
+	private void InitReferences()
 	{
 		// Get access to the main
 		var treeRoot = GetTree().CurrentScene;
@@ -60,12 +65,24 @@ public partial class AppScene : Control
 
 		Scene = (MainSceneRoot)treeRoot;
 
+		// Ensure this node was initilized from a scene, not a raw node
+		if (SceneFilePath == null || SceneFilePath == string.Empty)
+			throw new Exception(GetType().Name +
+				" cannot be initilized without a scene! Use SceneCreator utility and ScenePath attribute.");
+
 		// Queue taskbar item init for once main has completed ready
-		Scene.Ready += InitTaskbarItem;
+		if (!Scene.IsNodeReady())
+		{
+			Scene.Ready += InitAfterScene;
+			return;
+		}
+
+		InitAfterScene();
 	}
 
-	private void InitTaskbarItem()
+	private void InitAfterScene()
 	{
+		// Setup taskbar button
 		Scene.NodeTaskbar.AddApplication(this);
 
 		// If this is the home scene, move self to the front of the taskbar
@@ -76,10 +93,19 @@ public partial class AppScene : Control
 		}
 
 		if (IsAppExclusive() || IsAppFocusOnOpen())
-			FocusApp();
+			AppFocus();
+
+		// Initilize run virtual app init function
+		AppInit();
 	}
 
-	public void FocusApp()
+	// ====================================================== //
+	// ==================== App Virtuals ==================== //
+	// ====================================================== //
+
+	protected virtual void AppInit() { }
+
+	public virtual void AppFocus()
 	{
 		if (!IsInstanceValid(Scene)) return;
 
@@ -87,20 +113,19 @@ public partial class AppScene : Control
 		var focusingApp = this;
 
 		var activeApp = Scene.GetActiveApp();
-		if (IsInstanceValid(activeApp))
+		if (IsInstanceValid(activeApp) && !activeApp.IsQueuedForDeletion())
 		{
 			// If the active app is exclusive and this app isn't, don't let the focused app change
-			if (activeApp.IsAppExclusive() && !this.IsAppExclusive())
+			if (activeApp.IsAppExclusive() && !IsAppExclusive())
 				focusingApp = activeApp;
-			
+
 			// If they are both exclusive, pick item with higher index
-			else if (activeApp.IsAppExclusive() && this.IsAppExclusive())
+			else if (activeApp.IsAppExclusive() && IsAppExclusive())
 			{
 				if (activeApp.GetIndex() > focusingApp.GetIndex())
 					focusingApp = activeApp;
 			}
 		}
-
 
 		// Select this app's taskbar button
 		foreach (var node in Scene.NodeTaskbar.GetChildren())
@@ -134,11 +159,14 @@ public partial class AppScene : Control
 		}
 	}
 
-	public virtual void CloseApp(bool isEndExclusive = false)
+	public virtual void AppClose(bool isEndExclusive = false)
 	{
 		if (IsAppExclusive() && !isEndExclusive)
 			return;
-		
+
+		TaskbarButton.QueueFree();
+		QueueFree();
+
 		if (Visible)
 		{
 			int appIndex = TaskbarButton.GetIndex();
@@ -146,9 +174,6 @@ public partial class AppScene : Control
 			if (!isPreviousOK)
 				Scene.NodeTaskbar.TrySelectAppByIndex(appIndex + 1);
 		}
-
-		TaskbarButton.QueueFree();
-		QueueFree();
 	}
 
 	// ====================================================== //

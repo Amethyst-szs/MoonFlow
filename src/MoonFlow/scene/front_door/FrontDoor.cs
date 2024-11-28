@@ -9,10 +9,8 @@ namespace MoonFlow.Scene;
 [ScenePath("res://scene/front_door/front_door.tscn")]
 public partial class FrontDoor : AppScene
 {
-	public override void _Ready()
-	{
-		base._Ready();
-
+    protected override void AppInit()
+    {
 		// Check if user needs to provide a RomFS path
 		if (!RomfsAccessor.IsValid())
 			ForceOpenRomfsAccessorApp();

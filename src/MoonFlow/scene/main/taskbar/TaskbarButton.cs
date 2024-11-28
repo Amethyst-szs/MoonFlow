@@ -29,6 +29,14 @@ public partial class TaskbarButton : Button
 	{
 		if ((Input.GetMouseButtonMask() & MouseButtonMask.Middle) != 0)
 		{
+			// If the active app is exclusive (and this isn't the active app), ignore
+			var activeApp = App.Scene.GetActiveApp();
+			if (activeApp != App && activeApp.IsAppExclusive())
+			{
+				SetPressedNoSignal(false);
+				return;
+			}
+
 			// Do not allow closing the home page application
 			if (!App.IsAppAllowUserToClose())
 			{
@@ -36,11 +44,11 @@ public partial class TaskbarButton : Button
 				return;
 			}
 
-			App.CloseApp();
+			App.AppClose(true);
 			return;
 		}
 
 		// If not a middle click, just focus app normally
-		App.FocusApp();
+		App.AppFocus();
 	}
 }
