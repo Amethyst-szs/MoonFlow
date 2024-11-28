@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=7 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
+[ext_resource type="Texture2D" uid="uid://q3nk4e6vew7r" path="res://iconTxt.png" id="3_2iugp"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_ctmb3"]
+[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="4_7nrof"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="6_clkik"]
 
 [node name="FrontDoor" type="Control"]
 layout_mode = 3
@@ -15,3 +19,49 @@ AppName = "FrontDoor"
 AppTaskbarTitle = "Welcome"
 AppIcon = ExtResource("2_jf1ga")
 AppFlags = 14
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ctmb3")
+theme_override_styles/panel = ExtResource("4_7nrof")
+
+[node name="Layout" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Quickbar" type="VBoxContainer" parent="Content/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Texture_Logo" type="TextureRect" parent="Content/Layout/Quickbar"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+texture = ExtResource("3_2iugp")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Content/Layout/Quickbar"]
+layout_mode = 2
+
+[node name="Button_New" type="Button" parent="Content/Layout/Quickbar"]
+layout_mode = 2
+text = "New Project"
+icon = ExtResource("6_clkik")
+icon_alignment = 2
+
+[node name="Button_Open" type="Button" parent="Content/Layout/Quickbar"]
+layout_mode = 2
+text = "Open Project"
+icon = ExtResource("6_clkik")
+icon_alignment = 2
+
+[node name="MenuButton" type="MenuButton" parent="Content/Layout/Quickbar"]
+layout_mode = 2
+text = "Recent Project"
+icon = ExtResource("6_clkik")
+flat = false
+icon_alignment = 2

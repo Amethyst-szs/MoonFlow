@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="6_sxopc"]
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/Warning.svg" id="7_5wcxg"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/Trash.svg" id="8_ex2fj"]
-[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/msbt/stylebox/msbt_button_normal.tres" id="10_ac7ij"]
+[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="10_ac7ij"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3ojxu"]
 font = ExtResource("4_2flhd")

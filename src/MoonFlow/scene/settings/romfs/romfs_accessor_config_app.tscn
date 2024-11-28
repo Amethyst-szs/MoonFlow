@@ -1,16 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcb23wjw20ifi"]
+[gd_scene load_steps=11 format=3 uid="uid://bcb23wjw20ifi"]
 
 [ext_resource type="Script" path="res://scene/settings/romfs/RomfsAccessorConfigApp.cs" id="1_r13aa"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="2_6p26v"]
-[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_4xqn7"]
-[ext_resource type="StyleBox" uid="uid://6q8316epejjf" path="res://asset/theme/msbt/stylebox/msbt_panel_main.tres" id="4_wpo7m"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_etysk"]
 [ext_resource type="FontFile" uid="uid://c5btw8xoivg1g" path="res://asset/font/FontNewRodin.ttf" id="5_3fo2x"]
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/Warning.svg" id="6_li4wf"]
 [ext_resource type="PackedScene" uid="uid://cdgrcigpyveoj" path="res://scene/settings/romfs/path_display.tscn" id="7_x1uik"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blbrj"]
+content_margin_left = 12.0
+content_margin_top = 32.0
+content_margin_right = 12.0
+content_margin_bottom = 32.0
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+corner_detail = 1
+
 [sub_resource type="LabelSettings" id="LabelSettings_e2o0d"]
 font = ExtResource("5_3fo2x")
 font_size = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6kli"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_phx0g"]
 font_color = Color(1, 0.42, 0.42, 1)
@@ -47,8 +56,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_4xqn7")
-theme_override_styles/panel = ExtResource("4_wpo7m")
+theme = ExtResource("3_etysk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_blbrj")
 
 [node name="HBox" type="HBoxContainer" parent="Content"]
 layout_mode = 2
@@ -57,13 +66,17 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 18
-alignment = 1
 
 [node name="Label_Header" type="Label" parent="Content/HBox/Option"]
 layout_mode = 2
+size_flags_vertical = 0
 text = "Romfs Config"
 label_settings = SubResource("LabelSettings_e2o0d")
 horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Content/HBox/Option"]
+layout_mode = 2
+theme_override_constants/separation = 18
 
 [node name="Label_Desc" type="Label" parent="Content/HBox/Option"]
 custom_minimum_size = Vector2(128, 0)
@@ -72,16 +85,20 @@ text = "Please provide paths to your original unmodified Super Mario Odyssey Rom
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="Content/HBox/Option"]
+[node name="InvisSep" type="HSeparator" parent="Content/HBox/Option"]
 layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_k6kli")
 
 [node name="Button_Add" type="Button" parent="Content/HBox/Option"]
 layout_mode = 2
+size_flags_vertical = 8
 text = "Add Path"
 
 [node name="Button_Save" type="Button" parent="Content/HBox/Option"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
 text = "Save & Continue"
 
 [node name="Button_CannotContinue" type="Button" parent="Content/HBox/Option"]
@@ -114,14 +131,18 @@ layout_mode = 2
 [node name="Preview" type="VBoxContainer" parent="Content/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 12
-alignment = 1
+theme_override_constants/separation = 18
 
 [node name="Label_Header" type="Label" parent="Content/HBox/Preview"]
 layout_mode = 2
 text = "Paths"
 label_settings = SubResource("LabelSettings_e2o0d")
 horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Content/HBox/Preview"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 18
 
 [node name="v100" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true

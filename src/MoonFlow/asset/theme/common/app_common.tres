@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dbung3qmbw5gp"]
+
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_rr64a"]
+[ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_5axl7"]
+[ext_resource type="StyleBox" uid="uid://bs7cbsqc1muw5" path="res://asset/theme/common/stylebox/common_button_hover.tres" id="3_4jtef"]
+[ext_resource type="StyleBox" uid="uid://b6uxtqriwct6l" path="res://asset/theme/common/stylebox/common_button_pressed_hover.tres" id="4_45awj"]
+[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="5_r0ksc"]
+[ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/common/stylebox/common_button_pressed.tres" id="6_jgcfe"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_24gye"]
+color = Color(1, 0.737255, 0.258824, 0.713726)
+grow_begin = -12.0
+grow_end = -12.0
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_o0anw"]
+color = Color(1, 0.737255, 0.258824, 0.713726)
+grow_begin = -3.0
+grow_end = -3.0
+thickness = 2
+vertical = true
+
+[resource]
+Button/constants/icon_max_width = 28
+Button/fonts/font = ExtResource("1_rr64a")
+Button/styles/focus = ExtResource("2_5axl7")
+Button/styles/hover = ExtResource("3_4jtef")
+Button/styles/hover_pressed = ExtResource("4_45awj")
+Button/styles/normal = ExtResource("5_r0ksc")
+Button/styles/pressed = ExtResource("6_jgcfe")
+HSeparator/constants/separation = 8
+HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
+Label/fonts/font = ExtResource("1_rr64a")
+MenuButton/fonts/font = ExtResource("1_rr64a")
+MenuButton/styles/focus = ExtResource("2_5axl7")
+MenuButton/styles/hover = ExtResource("3_4jtef")
+MenuButton/styles/hover_pressed = ExtResource("4_45awj")
+MenuButton/styles/normal = ExtResource("5_r0ksc")
+MenuButton/styles/pressed = ExtResource("6_jgcfe")
+VSeparator/constants/separation = 24
+VSeparator/styles/separator = SubResource("StyleBoxLine_o0anw")
