@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcb23wjw20ifi"]
+
+[ext_resource type="Script" path="res://scene/settings/romfs/RomfsAccessorConfigApp.cs" id="1_r13aa"]
+[ext_resource type="Texture2D" uid="uid://bqq23lp3pujw0" path="res://asset/nindot/lms/icon/TextAnim_Wave.png" id="2_32brs"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_4xqn7"]
+[ext_resource type="StyleBox" uid="uid://6q8316epejjf" path="res://asset/theme/msbt/stylebox/msbt_panel_main.tres" id="4_wpo7m"]
+[ext_resource type="FontFile" uid="uid://c5btw8xoivg1g" path="res://asset/font/FontNewRodin.ttf" id="5_3fo2x"]
+[ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/Warning.svg" id="6_li4wf"]
+[ext_resource type="PackedScene" uid="uid://cdgrcigpyveoj" path="res://scene/settings/romfs/path_display.tscn" id="7_x1uik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e2o0d"]
+font = ExtResource("5_3fo2x")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_phx0g"]
+font_color = Color(1, 0.42, 0.42, 1)
+
+[node name="RomfsAccessorConfigApp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r13aa")
+AppName = "RomfsAccessorConfig"
+AppTaskbarTitle = "Romfs Setup"
+AppIcon = ExtResource("2_32brs")
+AppFlags = 11
+
+[node name="PathPicker" type="FileDialog" parent="."]
+disable_3d = true
+title = "Open a Directory"
+initial_position = 4
+size = Vector2i(640, 480)
+ok_button_text = "Select Current Folder"
+dialog_autowrap = true
+file_mode = 2
+access = 2
+filters = PackedStringArray("romfs")
+use_native_dialog = true
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4xqn7")
+theme_override_styles/panel = ExtResource("4_wpo7m")
+
+[node name="HBox" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Option" type="VBoxContainer" parent="Content/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Label_Header" type="Label" parent="Content/HBox/Option"]
+layout_mode = 2
+text = "Romfs Config"
+label_settings = SubResource("LabelSettings_e2o0d")
+horizontal_alignment = 1
+
+[node name="Label_Desc" type="Label" parent="Content/HBox/Option"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "Please provide paths to your original and unmodified Super Mario Odyssey Romfs. You can add a path for each game version, or just the game version of the projects you'll be working with."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="Content/HBox/Option"]
+layout_mode = 2
+
+[node name="Button_Add" type="Button" parent="Content/HBox/Option"]
+layout_mode = 2
+text = "Add Path"
+
+[node name="Button_Save" type="Button" parent="Content/HBox/Option"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save & Continue"
+
+[node name="Button_CannotContinue" type="Button" parent="Content/HBox/Option"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "At least 1 path is required"
+
+[node name="VBox_PathError" type="VBoxContainer" parent="Content/HBox/Option"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Texture_Warn" type="TextureRect" parent="Content/HBox/Option/VBox_PathError"]
+modulate = Color(1, 0.419608, 0.419608, 1)
+layout_mode = 2
+texture = ExtResource("6_li4wf")
+stretch_mode = 5
+
+[node name="Label_Warn" type="Label" parent="Content/HBox/Option/VBox_PathError"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "Hmm... Something doesn't seem right about that path! Try again and make sure you select the correct path."
+label_settings = SubResource("LabelSettings_phx0g")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="Content/HBox"]
+layout_mode = 2
+
+[node name="Preview" type="VBoxContainer" parent="Content/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Label_Header" type="Label" parent="Content/HBox/Preview"]
+layout_mode = 2
+text = "Paths"
+label_settings = SubResource("LabelSettings_e2o0d")
+horizontal_alignment = 1
+
+[node name="v100" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="v101" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="v110" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="v120" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="v130" parent="Content/HBox/Preview" instance=ExtResource("7_x1uik")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="dir_selected" from="PathPicker" to="." method="OnPathPickerSelection"]
+[connection signal="pressed" from="Content/HBox/Option/Button_Add" to="PathPicker" method="popup_centered"]
+[connection signal="pressed" from="Content/HBox/Option/Button_Save" to="." method="CloseApp" binds= [true]]

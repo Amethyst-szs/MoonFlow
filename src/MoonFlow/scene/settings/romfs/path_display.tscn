@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdgrcigpyveoj"]
+
+[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="1_24kqu"]
+[ext_resource type="Script" path="res://scene/settings/romfs/path_display.gd" id="1_gb6pm"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_1o7wq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_svss0"]
+font = ExtResource("2_1o7wq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_vtur7"]
+font_size = 13
+
+[sub_resource type="LabelSettings" id="LabelSettings_5g6us"]
+font_size = 13
+font_color = Color(0.72, 0.72, 0.72, 1)
+
+[node name="v100" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+script = ExtResource("1_gb6pm")
+
+[node name="Panel_Label" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_24kqu")
+
+[node name="Label" type="Label" parent="Panel_Label"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_svss0")
+horizontal_alignment = 1
+
+[node name="Panel_Path" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_24kqu")
+
+[node name="Label_Set" type="Label" parent="Panel_Path"]
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_vtur7")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+text_direction = 2
+
+[node name="Label_Unset" type="Label" parent="Panel_Path"]
+layout_mode = 2
+text = "No Path"
+label_settings = SubResource("LabelSettings_5g6us")
+horizontal_alignment = 1
+text_overrun_behavior = 3

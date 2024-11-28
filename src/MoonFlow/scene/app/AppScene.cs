@@ -31,7 +31,7 @@ public partial class AppScene : Control
 	}
 
 	[Export(PropertyHint.Flags)]
-	private AppFlagEnum AppFlags = AppFlagEnum.IsAllowUserClose;
+	public AppFlagEnum AppFlags = AppFlagEnum.IsAllowUserClose;
 
 	// ====================================================== //
 	// ==================== Stored Values =================== //
@@ -44,7 +44,7 @@ public partial class AppScene : Control
 		set { _taskbarButton ??= value; }
 	}
 
-	private MainSceneRoot Scene = null;
+	protected MainSceneRoot Scene = null;
 
 	// ====================================================== //
 	// ============ App Setup And Close Functions =========== //
@@ -85,12 +85,20 @@ public partial class AppScene : Control
 
 		// Set which app is being focused (usually "this" unless special window flags say otherwise)
 		var focusingApp = this;
+
 		var activeApp = Scene.GetActiveApp();
 		if (IsInstanceValid(activeApp))
 		{
-			// If the active app is exclusive, don't let the focused app change
-			if (activeApp.IsAppExclusive())
+			// If the active app is exclusive and this app isn't, don't let the focused app change
+			if (activeApp.IsAppExclusive() && !this.IsAppExclusive())
 				focusingApp = activeApp;
+			
+			// If they are both exclusive, pick item with higher index
+			else if (activeApp.IsAppExclusive() && this.IsAppExclusive())
+			{
+				if (activeApp.GetIndex() > focusingApp.GetIndex())
+					focusingApp = activeApp;
+			}
 		}
 
 
@@ -126,8 +134,11 @@ public partial class AppScene : Control
 		}
 	}
 
-	public virtual void CloseApp()
+	public virtual void CloseApp(bool isEndExclusive = false)
 	{
+		if (IsAppExclusive() && !isEndExclusive)
+			return;
+		
 		if (Visible)
 		{
 			int appIndex = TaskbarButton.GetIndex();

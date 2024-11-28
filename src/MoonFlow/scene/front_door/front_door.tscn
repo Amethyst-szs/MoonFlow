@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://qcjh1t51akmr"]
+
+[ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
+[ext_resource type="Texture2D" uid="uid://b0u2t701xuf8f" path="res://asset/nindot/lms/icon/TextAlign_Center.png" id="2_tnsx1"]
+
+[node name="FrontDoor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_plewj")
+AppName = "FrontDoor"
+AppTaskbarTitle = "Welcome"
+AppIcon = ExtResource("2_tnsx1")
+AppFlags = 14

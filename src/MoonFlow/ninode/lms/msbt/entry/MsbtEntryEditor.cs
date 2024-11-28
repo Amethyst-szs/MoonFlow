@@ -13,25 +13,21 @@ public partial class MsbtEntryEditor(MsbpFile project, MsbtEntry entry) : VBoxCo
 
 	public override void _Ready()
 	{
-		var pageHolder = GD.Load<PackedScene>("res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn");
-		var pageSeparator = GD.Load<PackedScene>("res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn");
-
-		BuildSeparator(pageSeparator, -1);
+		BuildSeparator(-1);
 
 		for (int i = 0; i < Entry.Pages.Count; i++)
 		{
 			var page = Entry.Pages[i];
 
-			var holder = (MsbtEntryPageHolder)pageHolder.Instantiate();
+			var holder = SceneCreator<MsbtEntryPageHolder>.Create();
 
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageDelete,
 				Callable.From(new Action<MsbtPageEditor>(OnDeletePage)));
-
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageOrganize,
 				Callable.From(new Action<MsbtPageEditor, int>(OnOrganizePage)));
 
 			AddChild(holder.Init(Project, page));
-			BuildSeparator(pageSeparator, i);
+			BuildSeparator(i);
 		}
 
 		UpdateOrganizationButtons();
@@ -78,9 +74,9 @@ public partial class MsbtEntryEditor(MsbpFile project, MsbtEntry entry) : VBoxCo
 	// ====================== Utilities ===================== //
 	// ====================================================== //
 
-	private void BuildSeparator(PackedScene scene, int index)
+	private void BuildSeparator(int index)
 	{
-		var sep = (MsbtEntryPageSeparator)scene.Instantiate();
+		var sep = SceneCreator<MsbtEntryPageSeparator>.Create();
 		sep.SizeFlagsHorizontal = SizeFlags.ExpandFill;
 		sep.PageIndex = index;
 

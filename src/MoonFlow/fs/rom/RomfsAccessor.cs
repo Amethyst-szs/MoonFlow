@@ -68,6 +68,7 @@ public static class RomfsAccessor
     // =========== Initilization and Configuration ========== //
     // ====================================================== //
 
+    [Task.StartupTask]
     public static void InitAccessor()
     {
         var config = new ConfigFile();
@@ -111,11 +112,8 @@ public static class RomfsAccessor
         ActiveVersion = ver;
     }
 
-    public static void TryAssignDirectory(RomfsValidation.RomfsVersion version, string directory)
+    public static void TryAssignDirectory(ref string directory, out RomfsValidation.RomfsVersion version)
     {
-        if (version == RomfsValidation.RomfsVersion.INVALID_VERSION || directory == string.Empty)
-            return;
-
         // Ensure new directory is valid
         bool isValid = RomfsValidation.ValidateAndUpdatePath(ref directory, out version);
         if (!isValid) return;
@@ -124,12 +122,19 @@ public static class RomfsAccessor
         VersionDirectories[version] = directory;
 
         // Update configuration file on disk
+        var verName = Enum.GetName(version);
+
         var config = new ConfigFile();
-        if (config.Load(ConfigDirectory) != Error.Ok) return;
+        if (config.Load(ConfigDirectory) != Error.Ok)
+        {
+            // In the event of a load failure, create a default state
+            config.SetValue("path", verName, directory);
+            config.SetValue("target", "ver", verName);
+            config.Save(ConfigDirectory);
+            return;
+        }
 
-        var verName = Enum.GetName<RomfsValidation.RomfsVersion>(version);
         config.SetValue("path", verName, directory);
-
         config.Save(ConfigDirectory);
     }
 

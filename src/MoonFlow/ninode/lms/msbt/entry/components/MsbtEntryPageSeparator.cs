@@ -3,6 +3,7 @@ using System;
 
 namespace MoonFlow.LMS.Msbt;
 
+[ScenePath("res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn")]
 public partial class MsbtEntryPageSeparator : HBoxContainer
 {
 	public int PageIndex = 0;

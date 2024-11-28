@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace MoonFlow.LMS.Msbt;
 
+[ScenePath("res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn")]
 public partial class MsbtEntryPageHolder : HBoxContainer
 {
 	public MsbtPageEditor PageEditor = new()

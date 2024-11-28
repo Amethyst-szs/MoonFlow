@@ -14,6 +14,10 @@ public partial class MainSceneRoot : VBoxContainer
     {
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
         NodeApps = GetNode<Control>("%Apps");
+
+        // Create starting scene
+        var frontDoor = SceneCreator<FrontDoor>.Create();
+        NodeApps.AddChild(frontDoor);
     }
 
     public IEnumerable<AppScene> GetApps()

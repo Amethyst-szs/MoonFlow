@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=8 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Shader" path="res://asset/shader/sheet/spritesheet.gdshader" id="1_fa8fp"]
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
 [ext_resource type="Texture2D" uid="uid://cdnimgp2jhh8l" path="res://asset/animation_sheet/icon_sheet.png" id="2_qj3uu"]
 [ext_resource type="Script" path="res://scene/main/header/StatusIcon.cs" id="3_npfaf"]
 [ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
-[ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="4_youw0"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8jhrf"]
@@ -38,9 +37,6 @@ script = ExtResource("3_npfaf")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Home" parent="Apps" instance=ExtResource("4_youw0")]
-layout_mode = 1
 
 [node name="TaskbarPanel" type="PanelContainer" parent="."]
 layout_mode = 2

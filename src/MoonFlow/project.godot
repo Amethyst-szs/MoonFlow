@@ -17,6 +17,10 @@ config/icon="res://iconS.png"
 nindot/romfs_100_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey100/romfs/"
 nindot/romfs_130_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey130/romfs/"
 
+[autoload]
+
+TaskRunner="*res://addons/TaskRunner.cs"
+
 [dotnet]
 
 project/assembly_name="MoonFlow"
