@@ -21,4 +21,9 @@ public partial class FrontDoor : AppScene
 		var app = SceneCreator<RomfsAccessorConfigApp>.Create();
 		Scene.NodeApps.AddChild(app);
 	}
+
+	private void OnOpenProjectPressedForDebug()
+	{
+		ProjectManager.TryOpenProject("C:/Users/evils/AppData/Roaming/Godot/app_userdata/MoonFlow/debug/");
+	}
 }

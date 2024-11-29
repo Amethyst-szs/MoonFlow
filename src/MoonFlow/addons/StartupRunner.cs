@@ -4,13 +4,13 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 
-namespace MoonFlow.Task;
+namespace MoonFlow;
 
 // Flag a method as something to run during TaskRunner init (before scene)
 [AttributeUsage(AttributeTargets.Method)]
 public class StartupTask : Attribute;
 
-public partial class TaskRunner : Node
+public partial class StartupRunner : Node
 {
     public override void _Ready()
     {

@@ -30,7 +30,7 @@ nindot/version="0.1.0"
 
 [autoload]
 
-TaskRunner="*res://addons/TaskRunner.cs"
+StartupRunner="*res://addons/StartupRunner.cs"
 
 [dotnet]
 
@@ -82,4 +82,4 @@ msbt_delete_entry={
 
 locale/translation_remaps={}
 locale/translations=PackedStringArray("res://lang/en.mo")
-locale/translations_pot_files=PackedStringArray("res://scene/settings/romfs/romfs_accessor_config_app.tscn", "res://scene/settings/romfs/path_display.tscn", "res://scene/front_door/front_door.tscn", "res://ninode/lms/msbt/file/msbt_editor.tscn", "res://ninode/lms/msbt/tag/tag_wheel.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn")
+locale/translations_pot_files=PackedStringArray("res://scene/settings/romfs/romfs_accessor_config_app.tscn", "res://scene/settings/romfs/path_display.tscn", "res://scene/front_door/front_door.tscn", "res://ninode/lms/msbt/file/msbt_editor.tscn", "res://ninode/lms/msbt/tag/tag_wheel.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn", "res://scene/front_door/load/project_loading.tscn")

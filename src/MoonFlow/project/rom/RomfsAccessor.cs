@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 
 using Nindot.Al.SMO;
@@ -64,11 +65,31 @@ public static class RomfsAccessor
         }
     }
 
+    public static async Task<byte[]> TryGetFileAsync(string path)
+    {
+        if (!IsValid())
+            return [];
+
+        path = ActiveDirectory + path;
+        if (!System.IO.File.Exists(path))
+            return [];
+
+        try
+        {
+            return await System.IO.File.ReadAllBytesAsync(path);
+        }
+        catch
+        {
+            GD.PushError("Failed to open file at ", path);
+            return [];
+        }
+    }
+
     // ====================================================== //
     // =========== Initilization and Configuration ========== //
     // ====================================================== //
 
-    [Task.StartupTask]
+    [StartupTask]
     public static void InitAccessor()
     {
         var config = new ConfigFile();
@@ -165,7 +186,7 @@ public static class RomfsAccessor
     {
         if (!VersionDirectories.ContainsKey(version))
             return;
-        
+
         if (version == ActiveVersion)
         {
             ActiveDirectory = null;

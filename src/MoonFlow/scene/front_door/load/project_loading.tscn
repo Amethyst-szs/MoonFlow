@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://cio2gvsywxhso"]
+
+[ext_resource type="Script" path="res://scene/front_door/load/ProjectLoading.cs" id="1_jo062"]
+[ext_resource type="Texture2D" uid="uid://ch0r84d2bcetl" path="res://asset/nindot/lms/icon/PictureFont_7B.png" id="2_1y5mh"]
+[ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="4_gajvy"]
+[ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="5_ysjnh"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_mwncf"]
+[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/main/header/moonflow_status_icon.tscn" id="7_4pbl6"]
+[ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="7_io7id"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqp1u"]
+font = ExtResource("6_mwncf")
+font_size = 28
+
+[sub_resource type="GDScript" id="GDScript_aq741"]
+script/source = "extends Label
+
+var time: float = 0.0
+
+func _ready() -> void:
+	visible_characters = text.length() - 3
+
+func _process(delta: float) -> void:
+	time += delta
+	
+	if (time > 0.4):
+		time -= 0.4
+	else:
+		return
+	
+	visible_characters += 1
+	if visible_characters > text.length():
+		visible_characters = text.length() - 3
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jo062")
+Msg_Starting = "STARTUP"
+Msg_Temp = "DEBUG"
+AppName = "ProjectLoading"
+AppTaskbarTitle = "Loading"
+AppIcon = ExtResource("2_1y5mh")
+AppFlags = 14
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gajvy")
+theme_override_styles/panel = ExtResource("5_ysjnh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="StatusIcon" parent="Content/VBoxContainer" instance=ExtResource("7_4pbl6")]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Label_Load" type="Label" parent="Content/VBoxContainer"]
+layout_mode = 2
+text = "Loading..."
+label_settings = SubResource("LabelSettings_qqp1u")
+horizontal_alignment = 1
+visible_characters_behavior = 1
+visible_ratio = -0.1
+script = SubResource("GDScript_aq741")
+
+[node name="HSeparator" type="HSeparator" parent="Content/VBoxContainer"]
+layout_mode = 2
+
+[node name="Progress" type="ProgressBar" parent="Content/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("7_io7id")
+show_percentage = false
+indeterminate = true
+editor_preview_indeterminate = false
+
+[node name="Label_ProgressTask" type="Label" parent="Content/VBoxContainer/Progress"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Task"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3

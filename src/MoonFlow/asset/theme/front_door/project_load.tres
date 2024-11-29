@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://d3lkqxfgd0ex7"]
+
+[ext_resource type="FontFile" uid="uid://c5btw8xoivg1g" path="res://asset/font/FontNewRodin.ttf" id="1_fw20g"]
+[ext_resource type="StyleBox" uid="uid://drg4yqnm8maky" path="res://asset/theme/front_door/stylebox/project_loading_progress_background.tres" id="2_vd6q4"]
+[ext_resource type="StyleBox" uid="uid://cw826ca5fhhed" path="res://asset/theme/front_door/stylebox/project_loading_progress_fill.tres" id="3_cu63t"]
+
+[resource]
+Label/constants/outline_size = 12
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("1_fw20g")
+ProgressBar/font_sizes/font_size = 18
+ProgressBar/styles/background = ExtResource("2_vd6q4")
+ProgressBar/styles/fill = ExtResource("3_cu63t")

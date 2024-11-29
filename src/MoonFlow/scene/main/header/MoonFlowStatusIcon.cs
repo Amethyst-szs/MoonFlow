@@ -3,7 +3,8 @@ using System;
 
 namespace MoonFlow.Scene.Main;
 
-public partial class StatusIcon : TextureRect
+[GlobalClass]
+public partial class MoonFlowStatusIcon : TextureRect
 {
 	public enum AnimationStates : int
 	{
@@ -12,9 +13,9 @@ public partial class StatusIcon : TextureRect
 		IDLE = 2,
 	}
 
+	[Export]
 	public AnimationStates AnimationState = AnimationStates.SPINNING;
 
-	[Export]
 	private double AnimationTimer = 0.0F;
 
 	private const double AnimationLength = 2.0F;
