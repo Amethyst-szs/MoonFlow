@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Godot;
 
@@ -5,26 +6,26 @@ using MoonFlow.Scene;
 
 namespace MoonFlow.Project;
 
-public class ProjectState
+public class ProjectState(string path, ConfigFile config, ProjectLoading loadScreen)
 {
-    public string Path { get; private set; } = null;
+    // Initilzation properties
+    public string Path { get; private set; } = path;
+    private ConfigFile Config = config;
+    private ProjectLoading LoadingScreen = loadScreen;
+
+    // Status
     private bool IsInitComplete = false;
 
-    public ProjectState(string path, ConfigFile config, ProjectLoading loadScreen)
-    {
-        Path = path;
-        InitProject(config, loadScreen);
-    }
+    // Project Components
+    public ProjectLMSHolder HolderLMS = null;
 
-    public async void InitProject(ConfigFile config, ProjectLoading loadScreen)
+    public void InitProject()
     {
-        // Get file as test
-        var file = await RomfsAccessor.TryGetFileAsync("ObjectData/BandMan.szs");
-        loadScreen.LoadingUpdateProgress(loadScreen.Msg_Temp);
-
         // Complete Initilization
+        Config = null;
+        LoadingScreen = null;
         IsInitComplete = true;
-        loadScreen.LoadingComplete();
+        LoadingScreen.LoadingComplete();
     }
 
     public bool IsReady() { return IsInitComplete; }

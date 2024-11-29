@@ -10,7 +10,7 @@ vec2 rotate(vec2 uv, vec2 pivot, float angle)
 {
 	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
 						vec2(cos(angle), sin(angle)));
-	
+
 	uv -= pivot;
 	uv = uv * rotation;
 	uv += pivot;
@@ -19,7 +19,7 @@ vec2 rotate(vec2 uv, vec2 pivot, float angle)
 
 void fragment() {
 	vec2 uv = rotate(UV, vec2(0.5, 0.5), color_angle);
-	
+
 	float pos = round(smoothstep(0,1,(position + uv.y) / 2.0) * float(stepIntensify));
 	COLOR = mix(first_color,second_color,pos/float(stepIntensify));
 }

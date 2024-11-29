@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 using MoonFlow.Scene;
 using MoonFlow.Scene.Home;
@@ -72,6 +73,10 @@ public static class ProjectManager
 
         // Initilize project
         Project = new(path, config, loadScreen);
+
+        Task task = Task.Run(new Action(Project.InitProject));
+        loadScreen.LoadingStart(task);
+
         return OpenProjectResult.OK;
     }
 }

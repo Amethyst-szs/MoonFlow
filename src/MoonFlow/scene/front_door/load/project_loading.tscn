@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cio2gvsywxhso"]
+[gd_scene load_steps=11 format=3 uid="uid://cio2gvsywxhso"]
 
 [ext_resource type="Script" path="res://scene/front_door/load/ProjectLoading.cs" id="1_jo062"]
 [ext_resource type="Texture2D" uid="uid://ch0r84d2bcetl" path="res://asset/nindot/lms/icon/PictureFont_7B.png" id="2_1y5mh"]
@@ -32,6 +32,10 @@ func _process(delta: float) -> void:
 	if visible_characters > text.length():
 		visible_characters = text.length() - 3
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rl7s"]
+font_size = 13
+font_color = Color(1, 0.62, 0.62, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -78,7 +82,6 @@ text = "Loading..."
 label_settings = SubResource("LabelSettings_qqp1u")
 horizontal_alignment = 1
 visible_characters_behavior = 1
-visible_ratio = -0.1
 script = SubResource("GDScript_aq741")
 
 [node name="HSeparator" type="HSeparator" parent="Content/VBoxContainer"]
@@ -105,3 +108,32 @@ text = "Task"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+
+[node name="Scroll_LoadException" type="ScrollContainer" parent="Content/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(620, 280)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Content/VBoxContainer/Scroll_LoadException"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparatorError" type="HSeparator" parent="Content/VBoxContainer/Scroll_LoadException/VBox"]
+modulate = Color(1, 0.05, 0.05, 1)
+layout_mode = 2
+
+[node name="Button_FrontDoor" type="Button" parent="Content/VBoxContainer/Scroll_LoadException/VBox"]
+modulate = Color(1, 0.24, 0.24, 1)
+layout_mode = 2
+text = "Okay :("
+
+[node name="Label_Exception" type="Label" parent="Content/VBoxContainer/Scroll_LoadException/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_5rl7s")
+autowrap_mode = 3
+
+[connection signal="pressed" from="Content/VBoxContainer/Scroll_LoadException/VBox/Button_FrontDoor" to="." method="OnButtonExceptionQuitPressed"]

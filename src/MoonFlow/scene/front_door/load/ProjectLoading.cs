@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 
 using MoonFlow.Project;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene;
 
@@ -13,13 +14,60 @@ public partial class ProjectLoading : AppScene
 	[Export] public string Msg_Starting { get; private set; } = "";
 	[Export] public string Msg_Temp { get; private set; } = "";
 
-	public void LoadingUpdateProgress(string msg)
+	private Task LoadingTask = null;
+
+	private Label LabelProgress = null;
+	private ScrollContainer ContainerException = null;
+	private Label LabelException = null;
+
+    public override void _Ready()
+    {
+        LabelProgress = GetNode<Label>("%Label_ProgressTask");
+		ContainerException = GetNode<ScrollContainer>("%Scroll_LoadException");
+		LabelException = GetNode<Label>("%Label_Exception");
+
+		LabelProgress.Text = Msg_Starting;
+		ContainerException.Hide();
+    }
+
+    public override void _Process(double _)
+    {
+		if (!ContainerException.Visible && LoadingTask.Exception != null)
+			LoadingException(LoadingTask.Exception);
+    }
+
+    public void LoadingStart(Task task)
 	{
-		GetNode<Label>("%Label_ProgressTask").Text = msg;
+		LoadingTask = task;
+	}
+
+    public void LoadingUpdateProgress(string msg)
+	{
+		LabelProgress.CallDeferred("set", ["text", msg]);
 	}
 
 	public void LoadingComplete()
 	{
 		GD.Print("Loading Complete");
+	}
+
+	// ====================================================== //
+	// ================== Exception Events ================== //
+	// ====================================================== //
+
+	public void LoadingException(AggregateException e)
+	{
+		var eb = e.GetBaseException();
+
+		ContainerException.CallDeferred("show");
+		LabelException.CallDeferred("set", ["text", eb.Message + '\n' + eb.Source + '\n' + eb.StackTrace]);
+	}
+
+	private void OnButtonExceptionQuitPressed()
+	{
+        AppClose(true);
+
+        var frontDoor = SceneCreator<FrontDoor>.Create();
+        Scene.NodeApps.AddChild(frontDoor);
 	}
 }
