@@ -25,6 +25,7 @@ font_size = 24
 font_color = Color(1, 0.42, 0.42, 1)
 
 [node name="RomfsAccessorConfigApp" type="Control"]
+auto_translate_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,14 +40,14 @@ AppFlags = 10
 
 [node name="PathPicker" type="FileDialog" parent="."]
 disable_3d = true
-title = "Open a Directory"
+title = "ROMFS_CONFIG_FILE_DIALOG_TITLE"
 initial_position = 4
 size = Vector2i(640, 480)
-ok_button_text = "Select Current Folder"
+ok_button_text = "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
 dialog_autowrap = true
+cancel_button_text = "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
 file_mode = 2
 access = 2
-filters = PackedStringArray("romfs")
 use_native_dialog = true
 
 [node name="Content" type="PanelContainer" parent="."]
@@ -70,7 +71,7 @@ theme_override_constants/separation = 18
 [node name="Label_Header" type="Label" parent="Content/HBox/Option"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Romfs Config"
+text = "ROMFS_CONFIG_MAIN_HEADER"
 label_settings = SubResource("LabelSettings_e2o0d")
 horizontal_alignment = 1
 
@@ -81,7 +82,7 @@ theme_override_constants/separation = 18
 [node name="Label_Desc" type="Label" parent="Content/HBox/Option"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "Please provide paths to your original unmodified Super Mario Odyssey Romfs. You can add a path for each game version, or just the game version you'll be working with."
+text = "CONFIG_CONFIG_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -93,19 +94,19 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_k6kli")
 [node name="Button_Add" type="Button" parent="Content/HBox/Option"]
 layout_mode = 2
 size_flags_vertical = 8
-text = "Add Path"
+text = "ROMFS_CONFIG_ADD_PATH"
 
 [node name="Button_Save" type="Button" parent="Content/HBox/Option"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "Save & Continue"
+text = "ROMFS_CONFIG_SAVE_AND_QUIT"
 
 [node name="Button_CannotContinue" type="Button" parent="Content/HBox/Option"]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
-text = "At least 1 path is required"
+text = "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
 
 [node name="VBox_PathError" type="VBoxContainer" parent="Content/HBox/Option"]
 unique_name_in_owner = true
@@ -120,7 +121,7 @@ stretch_mode = 5
 [node name="Label_Warn" type="Label" parent="Content/HBox/Option/VBox_PathError"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "Hmm... Something doesn't seem right about that path! Try again and make sure you select the correct path."
+text = "ROMFS_CONFIG_INVALID_PATH_WARNING"
 label_settings = SubResource("LabelSettings_phx0g")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -135,7 +136,7 @@ theme_override_constants/separation = 18
 
 [node name="Label_Header" type="Label" parent="Content/HBox/Preview"]
 layout_mode = 2
-text = "Paths"
+text = "ROMFS_CONFIG_PATH_HEADER"
 label_settings = SubResource("LabelSettings_e2o0d")
 horizontal_alignment = 1
 

@@ -1,13 +1,6 @@
 using Godot;
 using System;
 
-using Nindot.LMS.Msbp;
-using Nindot.LMS.Msbt;
-using Nindot.LMS.Msbt.TagLib.Smo;
-using System.Linq;
-using MoonFlow.Fs.Rom;
-using Nindot.Al.SMO;
-
 namespace MoonFlow.LMS.Msbt;
 
 public partial class MsbtEditor : PanelContainer

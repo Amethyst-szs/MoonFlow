@@ -1,11 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=12 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
 [ext_resource type="Texture2D" uid="uid://q3nk4e6vew7r" path="res://iconTxt.png" id="3_2iugp"]
-[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_ctmb3"]
-[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="4_7nrof"]
+[ext_resource type="Shader" path="res://asset/shader/gradient/gradient_step.gdshader" id="3_etpfy"]
+[ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="4_lmulx"]
+[ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="5_a75k4"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="6_clkik"]
+[ext_resource type="Script" path="res://scene/front_door/ui/front_door_background_animator.gd" id="6_cmu6i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
+shader = ExtResource("3_etpfy")
+shader_parameter/first_color = Color(0.137255, 0.184314, 0.262745, 1)
+shader_parameter/second_color = Color(0.054902, 0.0745098, 0.105882, 1)
+shader_parameter/position = 0.5
+shader_parameter/color_angle = 1.571
+shader_parameter/stepIntensify = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_8xr1l"]
+font_size = 12
+font_color = Color(0.699653, 0.699653, 0.699653, 1)
+
+[sub_resource type="GDScript" id="GDScript_fdlxl"]
+script/source = "extends Label
+
+func _ready() -> void:
+	var n: String = ProjectSettings.get_setting(\"application/config/name\", \"MoonFlow\")
+	var v: String = ProjectSettings.get_setting(\"application/config/version\", \"No Version\")
+	
+	text += \"%s %s (%s)\\n\" % [n, v, DisplayServer.get_name()]
+	text += \"%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+"
 
 [node name="FrontDoor" type="Control"]
 layout_mode = 3
@@ -21,21 +46,23 @@ AppIcon = ExtResource("2_jf1ga")
 AppFlags = 14
 
 [node name="Content" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_kq5y5")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_ctmb3")
-theme_override_styles/panel = ExtResource("4_7nrof")
+theme = ExtResource("4_lmulx")
+theme_override_styles/panel = ExtResource("5_a75k4")
+script = ExtResource("6_cmu6i")
 
 [node name="Layout" type="HBoxContainer" parent="Content"]
 layout_mode = 2
 
 [node name="Quickbar" type="VBoxContainer" parent="Content/Layout"]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 20
 
 [node name="Texture_Logo" type="TextureRect" parent="Content/Layout/Quickbar"]
 custom_minimum_size = Vector2(256, 0)
@@ -49,19 +76,33 @@ layout_mode = 2
 
 [node name="Button_New" type="Button" parent="Content/Layout/Quickbar"]
 layout_mode = 2
-text = "New Project"
+mouse_default_cursor_shape = 2
+text = "NEW_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
 [node name="Button_Open" type="Button" parent="Content/Layout/Quickbar"]
 layout_mode = 2
-text = "Open Project"
+mouse_default_cursor_shape = 2
+text = "OPEN_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
-[node name="MenuButton" type="MenuButton" parent="Content/Layout/Quickbar"]
+[node name="Menu_Recent" type="MenuButton" parent="Content/Layout/Quickbar"]
 layout_mode = 2
-text = "Recent Project"
+focus_mode = 2
+mouse_default_cursor_shape = 2
+text = "RECENT_PROJECTS"
 icon = ExtResource("6_clkik")
 flat = false
 icon_alignment = 2
+
+[node name="Right" type="VBoxContainer" parent="Content/Layout"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Label_Debug" type="Label" parent="Content/Layout/Right"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8xr1l")
+horizontal_alignment = 2
+script = SubResource("GDScript_fdlxl")

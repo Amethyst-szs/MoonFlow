@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bjqkhcyimcs7y"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_3oxsf"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_e4j1m"]
+[ext_resource type="StyleBox" uid="uid://eiax8q0e66o" path="res://asset/theme/front_door/stylebox/front_door_button_focus.tres" id="8_eeit0"]
+[ext_resource type="StyleBox" uid="uid://bo2ov2pm2ovec" path="res://asset/theme/front_door/stylebox/front_door_button_hover.tres" id="9_iw07i"]
+[ext_resource type="StyleBox" uid="uid://bdw4rs5jxfclg" path="res://asset/theme/front_door/stylebox/front_door_button_hover_pressed.tres" id="10_wive1"]
+[ext_resource type="StyleBox" uid="uid://grixapu2vuvo" path="res://asset/theme/front_door/stylebox/front_door_button_normal.tres" id="11_lxe2k"]
+[ext_resource type="StyleBox" uid="uid://px5fuqpp8fob" path="res://asset/theme/front_door/stylebox/front_door_button_pressed.tres" id="12_ccc42"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_24gye"]
+color = Color(1, 0.737255, 0.258824, 0.713726)
+grow_begin = -12.0
+grow_end = -12.0
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_o0anw"]
+color = Color(1, 0.737255, 0.258824, 0.713726)
+grow_begin = -3.0
+grow_end = -3.0
+thickness = 2
+vertical = true
+
+[resource]
+Button/constants/icon_max_width = 28
+Button/fonts/font = ExtResource("1_3oxsf")
+Button/styles/focus = ExtResource("8_eeit0")
+Button/styles/hover = ExtResource("9_iw07i")
+Button/styles/hover_pressed = ExtResource("10_wive1")
+Button/styles/normal = ExtResource("11_lxe2k")
+Button/styles/pressed = ExtResource("12_ccc42")
+HSeparator/constants/separation = 8
+HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
+Label/fonts/font = ExtResource("1_e4j1m")
+MenuButton/fonts/font = ExtResource("1_3oxsf")
+MenuButton/styles/focus = ExtResource("8_eeit0")
+MenuButton/styles/hover = ExtResource("9_iw07i")
+MenuButton/styles/hover_pressed = ExtResource("10_wive1")
+MenuButton/styles/normal = ExtResource("11_lxe2k")
+MenuButton/styles/pressed = ExtResource("12_ccc42")
+VSeparator/constants/separation = 24
+VSeparator/styles/separator = SubResource("StyleBoxLine_o0anw")

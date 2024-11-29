@@ -21,21 +21,21 @@ alignment = 1
 [node name="Button_OrganizeUp" type="Button" parent="VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Move page up"
+tooltip_text = "MSBT_TOOLTIP_MOVE_UP_PAGE"
 icon = ExtResource("2_rajdl")
 icon_alignment = 1
 
 [node name="Button_Trash" type="Button" parent="VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Delete page"
+tooltip_text = "MSBT_TOOLTIP_TRASH_PAGE"
 icon = ExtResource("2_1ma0b")
 icon_alignment = 1
 
 [node name="Button_OrganizeDown" type="Button" parent="VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Move page down"
+tooltip_text = "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
 icon = ExtResource("4_o5ewx")
 icon_alignment = 1
 

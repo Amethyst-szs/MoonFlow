@@ -11,11 +11,22 @@ config_version=5
 [application]
 
 config/name="MoonFlow"
+config/version="0.1.0-alpha"
 run/main_scene="res://scene/main/main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=10000
+boot_splash/bg_color=Color(0.054902, 0.0745098, 0.105882, 1)
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
 config/icon="res://iconS.png"
 nindot/romfs_100_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey100/romfs/"
 nindot/romfs_130_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey130/romfs/"
+nindot/fullsize=true
+nindot/bg_color=Color(0.14, 0.14, 0.14, 1)
+nindot/show_image=true
+nindot/image=""
+nindot/version="0.1.0"
 
 [autoload]
 
@@ -66,3 +77,9 @@ msbt_delete_entry={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"command_or_control_autoremap":true,"alt_pressed":false,"shift_pressed":false,"pressed":false,"keycode":4194312,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translation_remaps={}
+locale/translations=PackedStringArray("res://lang/en.mo")
+locale/translations_pot_files=PackedStringArray("res://scene/settings/romfs/romfs_accessor_config_app.tscn", "res://scene/settings/romfs/path_display.tscn", "res://scene/front_door/front_door.tscn", "res://ninode/lms/msbt/file/msbt_editor.tscn", "res://ninode/lms/msbt/tag/tag_wheel.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn")

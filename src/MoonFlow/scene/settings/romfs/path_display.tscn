@@ -48,7 +48,7 @@ text_direction = 2
 
 [node name="Label_Unset" type="Label" parent="Panel_Path"]
 layout_mode = 2
-text = "No Path"
+text = "ROMFS_CONFIG_NO_PATH"
 label_settings = SubResource("LabelSettings_5g6us")
 horizontal_alignment = 1
 text_overrun_behavior = 3

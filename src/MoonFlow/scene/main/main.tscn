@@ -22,6 +22,7 @@ grow_vertical = 2
 script = ExtResource("1_jewxx")
 
 [node name="Header" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 

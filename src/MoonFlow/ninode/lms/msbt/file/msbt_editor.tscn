@@ -63,7 +63,6 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "abcdef"
 label_settings = SubResource("LabelSettings_3ojxu")
 vertical_alignment = 1
 text_overrun_behavior = 3
@@ -72,7 +71,6 @@ text_overrun_behavior = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "acbdef"
 label_settings = SubResource("LabelSettings_iuuba")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -135,7 +133,7 @@ theme_override_constants/separation = 12
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Entry Name"
+placeholder_text = "MSBT_ENTRY_NAME"
 max_length = 64
 clear_button_enabled = true
 
@@ -146,17 +144,13 @@ icon = ExtResource("6_sxopc")
 [node name="Texture_Warning" type="TextureRect" parent="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry"]
 modulate = Color(1, 0.266667, 0, 1)
 layout_mode = 2
-tooltip_text = "Entry name is invalid!
-- Name must be unique
-- Use only UTF8 characters
-- No spaces
-- Cannot be empty"
+tooltip_text = "MSBT_INVALID_ENTRY_NAME_WARNING"
 texture = ExtResource("7_5wcxg")
 stretch_mode = 5
 
 [node name="Line_Search" type="LineEdit" parent="Layout/Divider/EntryList/Controls/VBox"]
 layout_mode = 2
-placeholder_text = "Search Entries"
+placeholder_text = "MSBT_SEARCH_ENTRIES"
 max_length = 22
 right_icon = ExtResource("6_317no")
 

@@ -1,0 +1,168 @@
+# LANGUAGE translation for MoonFlow for the following files:
+# res://scene/settings/romfs/romfs_accessor_config_app.tscn
+# res://scene/settings/romfs/path_display.tscn
+# res://scene/front_door/front_door.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MoonFlow\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Amethyst <AmyImportant@pm.me>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
+msgstr "Select a RomFS Directory"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
+msgstr "Select Folder"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
+msgstr "Cancel"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_MAIN_HEADER"
+msgstr "Romfs Config"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "CONFIG_CONFIG_DESCRIPTION"
+msgstr ""
+"Please provide paths to your original unmodified Super Mario Odyssey Romfs. "
+"You can add a path for each game version, or just the game version you'll be "
+"working with."
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_ADD_PATH"
+msgstr "Add Path"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_SAVE_AND_QUIT"
+msgstr "Save & Continue"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
+msgstr "At least 1 path is required!"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_INVALID_PATH_WARNING"
+msgstr ""
+"Hmm... Something doesn't seem right about that path! Try again and make sure "
+"you select the correct path."
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_PATH_HEADER"
+msgstr "Paths"
+
+#: scene/settings/romfs/path_display.tscn
+msgid "ROMFS_CONFIG_NO_PATH"
+msgstr "No Path"
+
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT"
+msgstr "New Project"
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT"
+msgstr "Open Project"
+
+#: scene/front_door/front_door.tscn
+msgid "RECENT_PROJECTS"
+msgstr "Recent Projects"
+
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "MSBT_ENTRY_NAME"
+msgstr "Entry Name"
+
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "MSBT_INVALID_ENTRY_NAME_WARNING"
+msgstr ""
+"Entry name is invalid!\n"
+"- Name must be unique\n"
+"- Use only UTF8 characters\n"
+"- No spaces\n"
+"- Cannot be empty"
+
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "MSBT_SEARCH_ENTRIES"
+msgstr "Search Entries"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
+msgstr "Change the current font"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
+msgstr "Adjust font size"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
+msgstr "Adjust text alignment"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_SPEED"
+msgstr ""
+"Set speed text is printed in\n"
+"dialogue balloons"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_WAIT"
+msgstr ""
+"Pause text printing for an\n"
+"amount of frames"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
+msgstr "Apply animation on text characters"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_MORE"
+msgstr "Show more options"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
+msgstr "Play audio"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
+msgstr ""
+"Add a dynamic icon that changes based\n"
+"on kingdom or current controller"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_DEVICE_FONT"
+msgstr "Add device icon"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
+msgstr "Add picture icon"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
+msgstr "Set text color"
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
+msgstr "Move page up"
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_TRASH_PAGE"
+msgstr "Delete page"
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
+msgstr "Move page down"
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
+msgid "MSBT_TOOLTIP_ADD_PAGE"
+msgstr "Insert a new page"

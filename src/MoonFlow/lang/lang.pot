@@ -1,0 +1,150 @@
+# LANGUAGE translation for MoonFlow for the following files:
+# res://scene/settings/romfs/romfs_accessor_config_app.tscn
+# res://scene/settings/romfs/path_display.tscn
+# res://scene/front_door/front_door.tscn
+# res://ninode/lms/msbt/file/msbt_editor.tscn
+# res://ninode/lms/msbt/tag/tag_wheel.tscn
+# res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+# res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MoonFlow\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_MAIN_HEADER"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "CONFIG_CONFIG_DESCRIPTION"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_ADD_PATH"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_SAVE_AND_QUIT"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_INVALID_PATH_WARNING"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_PATH_HEADER"
+msgstr ""
+
+#: scene/settings/romfs/path_display.tscn
+msgid "ROMFS_CONFIG_NO_PATH"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "RECENT_PROJECTS"
+msgstr ""
+
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "MSBT_ENTRY_NAME"
+msgstr ""
+
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "MSBT_INVALID_ENTRY_NAME_WARNING"
+msgstr ""
+
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "MSBT_SEARCH_ENTRIES"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_SPEED"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_WAIT"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_MORE"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_DEVICE_FONT"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
+msgstr ""
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
+msgstr ""
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_TRASH_PAGE"
+msgstr ""
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
+msgstr ""
+
+#: ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
+msgid "MSBT_TOOLTIP_ADD_PAGE"
+msgstr ""

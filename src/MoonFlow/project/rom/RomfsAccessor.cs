@@ -4,7 +4,7 @@ using Godot;
 
 using Nindot.Al.SMO;
 
-namespace MoonFlow.Fs.Rom;
+namespace MoonFlow.Project;
 
 public static class RomfsAccessor
 {
