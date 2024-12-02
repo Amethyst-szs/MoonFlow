@@ -1,8 +1,6 @@
 using Godot;
-using Godot.Collections;
 using System;
 
-using MoonFlow.Project;
 using System.Threading.Tasks;
 
 namespace MoonFlow.Scene;
@@ -11,44 +9,50 @@ namespace MoonFlow.Scene;
 [ScenePath("res://scene/front_door/load/project_loading.tscn")]
 public partial class ProjectLoading : AppScene
 {
-	[Export] public string Msg_Starting { get; private set; } = "";
-	[Export] public string Msg_Temp { get; private set; } = "";
-
 	private Task LoadingTask = null;
 
 	private Label LabelProgress = null;
 	private ScrollContainer ContainerException = null;
 	private Label LabelException = null;
 
-    public override void _Ready()
-    {
-        LabelProgress = GetNode<Label>("%Label_ProgressTask");
+	public override void _Ready()
+	{
+		LabelProgress = GetNode<Label>("%Label_ProgressTask");
 		ContainerException = GetNode<ScrollContainer>("%Scroll_LoadException");
 		LabelException = GetNode<Label>("%Label_Exception");
 
-		LabelProgress.Text = Msg_Starting;
+		LoadingUpdateProgress("START");
 		ContainerException.Hide();
-    }
+	}
 
-    public override void _Process(double _)
-    {
+	public override void _Process(double _)
+	{
 		if (!ContainerException.Visible && LoadingTask.Exception != null)
 			LoadingException(LoadingTask.Exception);
-    }
+	}
 
-    public void LoadingStart(Task task)
+	public void LoadingStart(Task task)
 	{
 		LoadingTask = task;
 	}
 
-    public void LoadingUpdateProgress(string msg)
+	// Translation keys found in loading_messages.gd
+	public void LoadingUpdateProgress(string key)
 	{
-		LabelProgress.CallDeferred("set", ["text", msg]);
+		string m = Tr(key, "PROJECT_LOADING");
+		LabelProgress.CallDeferred("set", ["text", m]);
 	}
 
 	public void LoadingComplete()
 	{
-		GD.Print("Loading Complete");
+		LoadingUpdateProgress("END");
+
+		// Open home page application
+		var app = SceneCreator<Home>.Create();
+		Scene.NodeApps.CallDeferred("add_child", app);
+
+		// Close the loading screen application
+		AppClose(true);
 	}
 
 	// ====================================================== //
@@ -60,14 +64,14 @@ public partial class ProjectLoading : AppScene
 		var eb = e.GetBaseException();
 
 		ContainerException.CallDeferred("show");
-		LabelException.CallDeferred("set", ["text", eb.Message + '\n' + eb.Source + '\n' + eb.StackTrace]);
+		LabelException.CallDeferred("set", ["text", eb.Message + '\n' + eb.Source + "\n\n" + eb.StackTrace]);
 	}
 
 	private void OnButtonExceptionQuitPressed()
 	{
-        AppClose(true);
+		AppClose(true);
 
-        var frontDoor = SceneCreator<FrontDoor>.Create();
-        Scene.NodeApps.AddChild(frontDoor);
+		var frontDoor = SceneCreator<FrontDoor>.Create();
+		Scene.NodeApps.AddChild(frontDoor);
 	}
 }

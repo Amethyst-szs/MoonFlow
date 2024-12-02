@@ -26,9 +26,6 @@ public static class RomfsValidation
 
     private static string ModifyPath(string path)
     {
-        // Make sure the path ends with a slash
-        if (!path.EndsWith('/')) path += '/';
-
         // Check if the current path is valid
         if (!Directory.Exists(path)) return null;
 
@@ -45,6 +42,9 @@ public static class RomfsValidation
         {
             if (!dirList.Contains(path + dir)) return null;
         }
+
+        // Make sure the path ends with a slash
+        if (!path.EndsWith('/') && !path.EndsWith('\\')) path += '/';
 
         return path;
     }

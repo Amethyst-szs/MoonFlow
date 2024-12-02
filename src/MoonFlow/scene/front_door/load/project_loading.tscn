@@ -45,8 +45,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jo062")
-Msg_Starting = "STARTUP"
-Msg_Temp = "DEBUG"
 AppName = "ProjectLoading"
 AppTaskbarTitle = "Loading"
 AppIcon = ExtResource("2_1y5mh")
@@ -78,7 +76,7 @@ size_flags_vertical = 4
 
 [node name="Label_Load" type="Label" parent="Content/VBoxContainer"]
 layout_mode = 2
-text = "Loading..."
+text = "LOADING..."
 label_settings = SubResource("LabelSettings_qqp1u")
 horizontal_alignment = 1
 visible_characters_behavior = 1
@@ -104,7 +102,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Task"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
@@ -127,7 +124,7 @@ layout_mode = 2
 [node name="Button_FrontDoor" type="Button" parent="Content/VBoxContainer/Scroll_LoadException/VBox"]
 modulate = Color(1, 0.24, 0.24, 1)
 layout_mode = 2
-text = "Okay :("
+text = "LOADING_EXCEPTION_ACCEPT"
 
 [node name="Label_Exception" type="Label" parent="Content/VBoxContainer/Scroll_LoadException/VBox"]
 unique_name_in_owner = true

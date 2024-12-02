@@ -6,6 +6,8 @@
 # res://ninode/lms/msbt/tag/tag_wheel.tscn
 # res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
 # res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
+# res://scene/front_door/load/project_loading.tscn
+# res://scene/front_door/load/loading_messages.gd
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -147,4 +149,32 @@ msgstr ""
 
 #: ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
 msgid "MSBT_TOOLTIP_ADD_PAGE"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING..."
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_EXCEPTION_ACCEPT"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "START"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBP"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBT"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "END"
 msgstr ""

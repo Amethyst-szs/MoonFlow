@@ -76,24 +76,24 @@ public class UnitTestMsbtAllLang : IUnitTestGroup
         // Read in all three sarcs
         system = SarcFile.FromFilePath(path + "SystemMessage.szs");
         Test.ShouldNot(system, null);
-        Test.ShouldNot(system.GetFileCount(), 0);
+        Test.ShouldNot(system.Content.Count, 0);
 
         stage = SarcFile.FromFilePath(path + "StageMessage.szs");
         Test.ShouldNot(stage, null);
-        Test.ShouldNot(stage.GetFileCount(), 0);
+        Test.ShouldNot(stage.Content.Count, 0);
 
         layout = SarcFile.FromFilePath(path + "LayoutMessage.szs");
         Test.ShouldNot(layout, null);
-        Test.ShouldNot(layout.GetFileCount(), 0);
+        Test.ShouldNot(layout.Content.Count, 0);
     }
 
     public static void ScanSarcMsbt(SarcFile sarc)
     {
-        foreach (var x in sarc.GetFileList())
+        foreach (var x in sarc.Content.Keys)
         {
             Test.Should(x.Contains(".msbt"));
 
-            byte[] file = sarc.GetFile(x);
+            byte[] file = sarc.Content[x].ToArray();
             MsbtFile msbt = new(new MsbtElementFactoryProjectSmo(), file, "NoName");
             Test.Should(msbt.IsValid());
 

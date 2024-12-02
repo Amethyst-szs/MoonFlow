@@ -25,7 +25,7 @@ public class UnitTestEventRomFs : IUnitTestGroup
         foreach (var filePath in filePaths)
         {
             var res = SarcFile.FromFilePath(filePath);
-            foreach (var bymlName in res.GetFileList())
+            foreach (var bymlName in res.Content.Keys)
             {
                 TestGraph(res, bymlName);
             }
@@ -35,7 +35,7 @@ public class UnitTestEventRomFs : IUnitTestGroup
     public static void TestGraph(SarcFile res, string bymlName)
     {
         // Get bytes from sarc
-        var bytes = res.GetFile(bymlName);
+        var bytes = res.Content[bymlName].ToArray();
         Test.ShouldNot(bytes.Length == 0);
 
         // Create yaml string of bytes

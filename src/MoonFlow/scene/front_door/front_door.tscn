@@ -107,4 +107,5 @@ label_settings = SubResource("LabelSettings_8xr1l")
 horizontal_alignment = 2
 script = SubResource("GDScript_fdlxl")
 
+[connection signal="pressed" from="Content/Layout/Quickbar/Button_New" to="." method="OnNewProjectPressedForDebug"]
 [connection signal="pressed" from="Content/Layout/Quickbar/Button_Open" to="." method="OnOpenProjectPressedForDebug"]

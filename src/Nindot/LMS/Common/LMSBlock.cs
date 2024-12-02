@@ -59,7 +59,7 @@ public abstract class Block
             return true;
 
         // Write generic block header
-        stream.Write(Encoding.Unicode.GetBytes(TypeName));
+        stream.Write(Encoding.UTF8.GetBytes(TypeName));
 
         uint dataSize = CalcDataSize();
         stream.Write(dataSize);

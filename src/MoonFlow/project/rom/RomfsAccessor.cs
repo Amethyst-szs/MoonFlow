@@ -159,13 +159,13 @@ public static class RomfsAccessor
         config.Save(ConfigDirectory);
     }
 
-    public static void TrySetGameVersion(RomfsValidation.RomfsVersion version)
+    public static bool TrySetGameVersion(RomfsValidation.RomfsVersion version)
     {
-        if (!VersionDirectories.TryGetValue(version, out string path)) return;
+        if (!VersionDirectories.TryGetValue(version, out string path)) return false;
 
         // Ensure new directory is valid
         bool isValid = RomfsValidation.ValidateAndUpdatePath(ref path, out version);
-        if (!isValid) return;
+        if (!isValid) return false;
 
         // Update active information
         ActiveDirectory = path;
@@ -174,12 +174,14 @@ public static class RomfsAccessor
         // Update configuration file on disk
         var config = new ConfigFile();
         if (config.Load(ConfigDirectory) != Error.Ok)
-            return;
+            return false;
 
-        var verName = Enum.GetName<RomfsValidation.RomfsVersion>(version);
+        var verName = Enum.GetName(version);
         config.SetValue("target", "ver", verName);
 
         config.Save(ConfigDirectory);
+
+        return true;
     }
 
     public static void TryUnassignDirectory(RomfsValidation.RomfsVersion version)
@@ -196,3 +198,5 @@ public static class RomfsAccessor
         VersionDirectories.Remove(version);
     }
 }
+
+public class RomfsAccessException(string error) : Exception(error);

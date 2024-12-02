@@ -2,6 +2,7 @@ using Godot;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.Settings;
+using Nindot.Al.SMO;
 
 namespace MoonFlow.Scene;
 
@@ -22,8 +23,20 @@ public partial class FrontDoor : AppScene
 		Scene.NodeApps.AddChild(app);
 	}
 
+	private void OnNewProjectPressedForDebug()
+	{
+        var initInfo = new ProjectInitInfo
+        {
+            Path = "C:/Users/evils/AppData/Roaming/Godot/app_userdata/MoonFlow/debug/",
+            Version = RomfsValidation.RomfsVersion.v100,
+			DefaultLanguage = "USen",
+        };
+
+        var res = ProjectManager.TryCreateProject(initInfo);
+	}
+
 	private void OnOpenProjectPressedForDebug()
 	{
-		ProjectManager.TryOpenProject("C:/Users/evils/AppData/Roaming/Godot/app_userdata/MoonFlow/debug/");
+		var res = ProjectManager.TryOpenProject("C:/Users/evils/AppData/Roaming/Godot/app_userdata/MoonFlow/debug/");
 	}
 }

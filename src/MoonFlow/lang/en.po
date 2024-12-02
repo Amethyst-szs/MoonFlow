@@ -166,3 +166,31 @@ msgstr "Move page down"
 #: ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
 msgid "MSBT_TOOLTIP_ADD_PAGE"
 msgstr "Insert a new page"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING..."
+msgstr "Loading..."
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_EXCEPTION_ACCEPT"
+msgstr "Okay :("
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "START"
+msgstr "Getting Started"
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBP"
+msgstr "Loading Message Studio Project"
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBT"
+msgstr "Loading Text Archives"
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "END"
+msgstr "Success!"
