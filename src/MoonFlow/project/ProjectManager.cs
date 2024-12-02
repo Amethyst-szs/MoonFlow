@@ -1,10 +1,12 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
 using MoonFlow.Scene;
 using MoonFlow.Scene.Main;
+using Nindot.Al.SMO;
 
 namespace MoonFlow.Project;
 
@@ -30,9 +32,12 @@ public static class ProjectManager
         PROJECT_FILE_ALREADY_EXISTS,
     }
 
-    public static ProjectManagerResult TryOpenProject(string path)
+    public static ProjectManagerResult TryOpenProject(string path, out RomfsValidation.RomfsVersion version)
     {
-        if (!IsValidOpenOrCreate(path))
+        // Setup out variable
+        version = RomfsValidation.RomfsVersion.INVALID_VERSION;
+
+        if (!IsValidOpenOrCreate(ref path))
             return ProjectManagerResult.INVALID_PATH;
 
         if (!IsProjectConfigExist(ref path, out string projectFilePath))
@@ -47,6 +52,7 @@ public static class ProjectManager
         if (!Enum.IsDefined(config.Version))
             return ProjectManagerResult.INVALID_PROJECT_FILE;
 
+        version = config.Version;
         if (!RomfsAccessor.TrySetGameVersion(config.Version))
             return ProjectManagerResult.ROMFS_MISSING_PATH_FOR_PROJECT_VERSION;
 
@@ -74,7 +80,7 @@ public static class ProjectManager
     {
         // Ensure the provided directory is a valid place to create our project
         var path = initInfo.Path;
-        if (!IsValidOpenOrCreate(path))
+        if (!IsValidOpenOrCreate(ref path))
             return ProjectManagerResult.INVALID_PATH;
 
         // Make sure we aren't making a new project in a folder that already has a project
@@ -86,22 +92,32 @@ public static class ProjectManager
         if (!config.IsValid())
             return ProjectManagerResult.INVALID_PROJECT_FILE;
 
-        // Open newly created project file
-        return TryOpenProject(path);
+        return ProjectManagerResult.OK;
     }
 
     // ====================================================== //
     // ================== Common Utilities ================== //
     // ====================================================== //
 
-    private static bool IsValidOpenOrCreate(string path)
+    private static bool IsValidOpenOrCreate(ref string path)
     {
         // If there isn't a reference to MoonFlow's MainSceneRoot node at the top of the godot scene, throw exception
         if (SceneRoot == null)
             throw new NullReferenceException("ProjectManager cannot open project without MainSceneRoot loaded!");
 
+        // Replace all backslashes with forward slashes
+        path = path.Replace('\\', '/');
+
+        // Make sure the path ends with a slash
+        if (!path.EndsWith('/')) path += '/';
+
+        // If this directory contains a directory called romfs, enter that
+        if (Directory.GetDirectories(path).Any(s => s.EndsWith("romfs")))
+            path += "romfs/";
+
         // Ensure this path isn't a romfs directory in the RomfsAccessor
-        if (RomfsAccessor.VersionDirectories.ContainsValue(path))
+        string cmpPath = path;
+        if (RomfsAccessor.VersionDirectories.Values.Any(s => s.Equals(cmpPath)))
             return false;
 
         return true;

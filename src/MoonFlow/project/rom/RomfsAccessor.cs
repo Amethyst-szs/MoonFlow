@@ -96,15 +96,18 @@ public static class RomfsAccessor
         if (config.Load(ConfigDirectory) != Error.Ok) return;
 
         // Get list of version directory paths
-        foreach (var version in (int[])Enum.GetValues(typeof(RomfsValidation.RomfsVersion)))
+        foreach (var version in (RomfsValidation.RomfsVersion[])Enum.GetValues(typeof(RomfsValidation.RomfsVersion)))
         {
-            string key = Enum.GetName(typeof(RomfsValidation.RomfsVersion), version);
+            string key = Enum.GetName(version);
 
             Variant item = config.GetValue("path", key, "");
             var value = item.AsString();
 
-            if (value != null && value != string.Empty)
-                VersionDirectories.Add((RomfsValidation.RomfsVersion)version, value);
+            bool isOK = RomfsValidation.ValidateAndUpdatePath(ref value, out RomfsValidation.RomfsVersion validateVer);
+            if (!isOK || version != validateVer)
+                continue;
+            
+            VersionDirectories.Add(version, value);
         }
 
         // Get selected version directory

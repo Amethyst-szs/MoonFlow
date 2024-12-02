@@ -8,6 +8,7 @@
 # res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
 # res://scene/front_door/load/project_loading.tscn
 # res://scene/front_door/load/loading_messages.gd
+# res://scene/front_door/quickbar_error_label.gd
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -73,6 +74,30 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "RECENT_PROJECTS"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT_FOLDER_DIALOG_ACCEPT"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT_FOLDER_DIALOG_CANCEL"
 msgstr ""
 
 #: ninode/lms/msbt/file/msbt_editor.tscn
@@ -177,4 +202,29 @@ msgstr ""
 #: scene/front_door/load/loading_messages.gd
 msgctxt "PROJECT_LOADING"
 msgid "END"
+msgstr ""
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "INVALID_PATH"
+msgstr ""
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "NO_PROJECT_FILE"
+msgstr ""
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "INVALID_PROJECT_FILE"
+msgstr ""
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "ROMFS_MISSING_PATH_FOR_PROJECT_VERSION"
+msgstr ""
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "PROJECT_FILE_ALREADY_EXISTS"
 msgstr ""

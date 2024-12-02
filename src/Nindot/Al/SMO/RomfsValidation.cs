@@ -26,12 +26,18 @@ public static class RomfsValidation
 
     private static string ModifyPath(string path)
     {
+        // Replace all backslashes with forward slashes
+        path = path.Replace('\\', '/');
+
+        // Make sure the path ends with a slash
+        if (!path.EndsWith('/') && !path.EndsWith('\\')) path += '/';
+        
         // Check if the current path is valid
         if (!Directory.Exists(path)) return null;
 
         // If this directory contains a directory called romfs, enter that
         var dirList = Directory.GetDirectories(path);
-        if (dirList.Contains("romfs"))
+        if (dirList.Any(s => s.EndsWith("romfs")))
         {
             path += "romfs/";
             dirList = Directory.GetDirectories(path);
@@ -42,9 +48,6 @@ public static class RomfsValidation
         {
             if (!dirList.Contains(path + dir)) return null;
         }
-
-        // Make sure the path ends with a slash
-        if (!path.EndsWith('/') && !path.EndsWith('\\')) path += '/';
 
         return path;
     }

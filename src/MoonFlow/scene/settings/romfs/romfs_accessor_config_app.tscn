@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcb23wjw20ifi"]
+[gd_scene load_steps=10 format=3 uid="uid://bcb23wjw20ifi"]
 
 [ext_resource type="Script" path="res://scene/settings/romfs/RomfsAccessorConfigApp.cs" id="1_r13aa"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="2_6p26v"]
@@ -19,8 +19,6 @@ corner_detail = 1
 font = ExtResource("5_3fo2x")
 font_size = 24
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6kli"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_phx0g"]
 font_color = Color(1, 0.42, 0.42, 1)
 
@@ -40,10 +38,10 @@ AppFlags = 10
 
 [node name="PathPicker" type="FileDialog" parent="."]
 disable_3d = true
-title = "ROMFS_CONFIG_FILE_DIALOG_TITLE"
+title = "Open a Directory"
 initial_position = 4
 size = Vector2i(640, 480)
-ok_button_text = "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
+ok_button_text = "Select Current Folder"
 dialog_autowrap = true
 cancel_button_text = "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
 file_mode = 2
@@ -85,11 +83,6 @@ layout_mode = 2
 text = "CONFIG_CONFIG_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
-
-[node name="InvisSep" type="HSeparator" parent="Content/HBox/Option"]
-layout_mode = 2
-theme_override_constants/separation = 32
-theme_override_styles/separator = SubResource("StyleBoxEmpty_k6kli")
 
 [node name="Button_Add" type="Button" parent="Content/HBox/Option"]
 layout_mode = 2

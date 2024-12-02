@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=15 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -8,6 +8,8 @@
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="5_a75k4"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="6_clkik"]
 [ext_resource type="Script" path="res://scene/front_door/ui/front_door_background_animator.gd" id="6_cmu6i"]
+[ext_resource type="Script" path="res://scene/front_door/quickbar_error_label.gd" id="9_mpvuk"]
+[ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="10_sqwg3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
 shader = ExtResource("3_etpfy")
@@ -17,9 +19,13 @@ shader_parameter/position = 0.5
 shader_parameter/color_angle = 1.571
 shader_parameter/stepIntensify = 12
 
+[sub_resource type="LabelSettings" id="LabelSettings_bjmaa"]
+font_color = Color(1, 0.23, 0.23, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_8xr1l"]
-font_size = 12
-font_color = Color(0.699653, 0.699653, 0.699653, 1)
+line_spacing = 0.0
+font_size = 11
+font_color = Color(0.8, 0.8, 0.8, 0.607843)
 
 [sub_resource type="GDScript" id="GDScript_fdlxl"]
 script/source = "extends Label
@@ -28,8 +34,8 @@ func _ready() -> void:
 	var n: String = ProjectSettings.get_setting(\"application/config/name\", \"MoonFlow\")
 	var v: String = ProjectSettings.get_setting(\"application/config/version\", \"No Version\")
 	
-	text += \"%s %s (%s)\\n\" % [n, v, DisplayServer.get_name()]
-	text += \"%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+	text += \"%s (%s)\\n\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+	text += \"%s %s (%s)\" % [n, v, DisplayServer.get_name()]
 "
 
 [node name="FrontDoor" type="Control"]
@@ -59,6 +65,7 @@ script = ExtResource("6_cmu6i")
 
 [node name="Layout" type="HBoxContainer" parent="Content"]
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="Quickbar" type="VBoxContainer" parent="Content/Layout"]
 layout_mode = 2
@@ -81,12 +88,32 @@ text = "NEW_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
+[node name="Label_NewError" type="Label" parent="Content/Layout/Quickbar"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_bjmaa")
+horizontal_alignment = 1
+autowrap_mode = 3
+script = ExtResource("9_mpvuk")
+
 [node name="Button_Open" type="Button" parent="Content/Layout/Quickbar"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "OPEN_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
+
+[node name="Label_OpenError" type="Label" parent="Content/Layout/Quickbar"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_bjmaa")
+horizontal_alignment = 1
+autowrap_mode = 3
+script = ExtResource("9_mpvuk")
 
 [node name="Menu_Recent" type="MenuButton" parent="Content/Layout/Quickbar"]
 layout_mode = 2
@@ -97,15 +124,51 @@ icon = ExtResource("6_clkik")
 flat = false
 icon_alignment = 2
 
-[node name="Right" type="VBoxContainer" parent="Content/Layout"]
+[node name="Shortcuts" type="HBoxContainer" parent="Content/Layout/Quickbar"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_vertical = 10
 
-[node name="Label_Debug" type="Label" parent="Content/Layout/Right"]
+[node name="Button_RomfsConfig" type="Button" parent="Content/Layout/Quickbar/Shortcuts"]
 layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+icon = ExtResource("10_sqwg3")
+
+[node name="Label_Debug" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.99
+anchor_top = 0.99
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
 label_settings = SubResource("LabelSettings_8xr1l")
 horizontal_alignment = 2
+vertical_alignment = 2
 script = SubResource("GDScript_fdlxl")
 
-[connection signal="pressed" from="Content/Layout/Quickbar/Button_New" to="." method="OnNewProjectPressedForDebug"]
-[connection signal="pressed" from="Content/Layout/Quickbar/Button_Open" to="." method="OnOpenProjectPressedForDebug"]
+[node name="Dialog_NewProject" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "NEW_PROJECT_FOLDER_DIALOG_TITLE"
+size = Vector2i(352, 180)
+ok_button_text = "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
+cancel_button_text = "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="Dialog_OpenProject" type="FileDialog" parent="."]
+title = "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
+ok_button_text = "OPEN_PROJECT_FOLDER_DIALOG_ACCEPT"
+cancel_button_text = "OPEN_PROJECT_FOLDER_DIALOG_CANCEL"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[connection signal="pressed" from="Content/Layout/Quickbar/Button_New" to="Dialog_NewProject" method="popup"]
+[connection signal="pressed" from="Content/Layout/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
+[connection signal="pressed" from="Content/Layout/Quickbar/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
+[connection signal="dir_selected" from="Dialog_NewProject" to="." method="OnDialogNewProjectPathSelected"]
+[connection signal="dir_selected" from="Dialog_OpenProject" to="." method="OnDialogOpenProjectPathSelected"]

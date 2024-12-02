@@ -80,6 +80,30 @@ msgstr "Open Project"
 msgid "RECENT_PROJECTS"
 msgstr "Recent Projects"
 
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
+msgstr "Select New Project RomFS Directory"
+
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
+msgstr "Select Directory"
+
+#: scene/front_door/front_door.tscn
+msgid "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
+msgstr "Cancel"
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
+msgstr "Select Project RomFS Directory"
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT_FOLDER_DIALOG_ACCEPT"
+msgstr "Select Project"
+
+#: scene/front_door/front_door.tscn
+msgid "OPEN_PROJECT_FOLDER_DIALOG_CANCEL"
+msgstr "Cancel"
+
 #: ninode/lms/msbt/file/msbt_editor.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr "Entry Name"
@@ -194,3 +218,28 @@ msgstr "Loading Text Archives"
 msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr "Success!"
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "INVALID_PATH"
+msgstr "Invalid path for project!"
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "NO_PROJECT_FILE"
+msgstr "Check you picked the right folder, or create a new project!"
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "INVALID_PROJECT_FILE"
+msgstr "A project does exist here, but it seems invalid!"
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "ROMFS_MISSING_PATH_FOR_PROJECT_VERSION"
+msgstr "This project requires a romfs path for "
+
+#: scene/front_door/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "PROJECT_FILE_ALREADY_EXISTS"
+msgstr "This folder already contains a project!"
