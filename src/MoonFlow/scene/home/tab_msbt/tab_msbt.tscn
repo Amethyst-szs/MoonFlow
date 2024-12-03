@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgh2onvx6k4ft"]
+
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
+[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
+[ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbt.cs" id="2_ioahr"]
+[ext_resource type="Script" path="res://addons/ui_node_ext/double_click_button.gd" id="4_blnex"]
+
+[node name="Text" type="HSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3jppe")
+script = ExtResource("2_ioahr")
+metadata/_tab_index = 0
+
+[node name="Files" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+follow_focus = true
+
+[node name="VBox" type="VBoxContainer" parent="Files"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Check_System" type="CheckBox" parent="Files/VBox" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+text = "System Messages"
+script = ExtResource("1_8nwia")
+dropdown = NodePath("../System")
+
+[node name="System" type="MarginContainer" parent="Files/VBox"]
+layout_mode = 2
+
+[node name="SystemMessage_VBox" type="VBoxContainer" parent="Files/VBox/System"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Check_Stage" type="CheckBox" parent="Files/VBox" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+text = "Stage Messages"
+script = ExtResource("1_8nwia")
+dropdown = NodePath("../Stage")
+
+[node name="Stage" type="MarginContainer" parent="Files/VBox"]
+layout_mode = 2
+
+[node name="StageMessage_VBox" type="VBoxContainer" parent="Files/VBox/Stage"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Check_Layout" type="CheckBox" parent="Files/VBox" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+text = "Layout Messages"
+script = ExtResource("1_8nwia")
+dropdown = NodePath("../Layout")
+
+[node name="Layout" type="MarginContainer" parent="Files/VBox"]
+layout_mode = 2
+
+[node name="LayoutMessage_VBox" type="VBoxContainer" parent="Files/VBox/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DoubleClickButton" type="Button" parent="Files/VBox/Layout/LayoutMessage_VBox"]
+layout_mode = 2
+script = ExtResource("4_blnex")
+
+[node name="Info" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3

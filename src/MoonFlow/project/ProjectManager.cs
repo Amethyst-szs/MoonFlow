@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
+using Nindot.Al.SMO;
+using Nindot.LMS.Msbp;
+
 using MoonFlow.Scene;
 using MoonFlow.Scene.Main;
-using Nindot.Al.SMO;
 
 namespace MoonFlow.Project;
 
@@ -16,6 +18,15 @@ public static class ProjectManager
     private const string ProjectFileName = "Project.MoonFlow";
 
     public static MainSceneRoot SceneRoot { get; set; } = null;
+
+    // ====================================================== //
+    // =================== User Utilities =================== //
+    // ====================================================== //
+
+    public static ProjectState GetProject() { return Project; }
+    public static MsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
+    public static ProjectMsbtArchives GetMSBTArchives() { return Project.GetMsbtArchives(Project.Config.DefaultLanguage); }
+    public static ProjectMsbtArchives GetMSBTArchives(string lang) { return Project.GetMsbtArchives(lang); }
 
     // ====================================================== //
     // ============== Open Project by Directory ============= //

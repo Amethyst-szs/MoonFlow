@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+using MoonFlow.Scene.Home;
+
 using System.Threading.Tasks;
 
 namespace MoonFlow.Scene;
@@ -48,7 +50,7 @@ public partial class ProjectLoading : AppScene
 		LoadingUpdateProgress("END");
 
 		// Open home page application
-		var app = SceneCreator<Home>.Create();
+		var app = SceneCreator<HomeRoot>.Create();
 		Scene.NodeApps.CallDeferred("add_child", app);
 
 		// Close the loading screen application

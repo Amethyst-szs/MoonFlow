@@ -16,7 +16,18 @@ public partial class AppScene : Control
 	public string AppName { get; private set; } = "Application";
 
 	[Export]
-	public string AppTaskbarTitle { get; private set; } = "Application";
+	public string AppTaskbarTitle
+	{
+		get { return _appTaskbarTitle; }
+		protected set
+		{
+			_appTaskbarTitle = value;
+
+			if (TaskbarButton != null)
+				TaskbarButton.Text = _appTaskbarTitle;
+		}
+	}
+	private string _appTaskbarTitle = "Application";
 
 	[Export]
 	public Texture2D AppIcon { get; private set; } = GD.Load<Texture2D>("res://iconS.png");
@@ -28,6 +39,7 @@ public partial class AppScene : Control
 		IsFocusOnOpen = 1 << 1,
 		IsOpenInFront = 1 << 2,
 		IsExclusive = 1 << 3,
+		IsShowHeader = 1 << 4,
 	}
 
 	[Export(PropertyHint.Flags)]
@@ -184,4 +196,5 @@ public partial class AppScene : Control
 	public bool IsAppFocusOnOpen() { return (AppFlags & AppFlagEnum.IsFocusOnOpen) != 0; }
 	public bool IsAppOpenInFront() { return (AppFlags & AppFlagEnum.IsOpenInFront) != 0; }
 	public bool IsAppExclusive() { return (AppFlags & AppFlagEnum.IsExclusive) != 0; }
+	public bool IsAppShowHeader() { return (AppFlags & AppFlagEnum.IsShowHeader) != 0; }
 }

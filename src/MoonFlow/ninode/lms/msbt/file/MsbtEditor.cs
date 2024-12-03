@@ -28,14 +28,6 @@ public partial class MsbtEditor : PanelContainer
 	[Signal]
 	public delegate void EntryCountUpdatedEventHandler(int total, int matchSearch);
 
-	public MsbtEditor()
-	{
-		// TODO: DEBUG BULLSHITTERY REMOVE LATER
-		var proj = MsbpFileExt.FromGodotFilePath("res://example/msbt/ProjectData.msbp");
-		var file = MsbtFileExt.FromGodotFilePath("res://example/msbt/SphinxQuiz.msbt", new MsbtElementFactoryProjectSmo());
-		OpenFile(file, proj);
-	}
-
 	public override void _Ready()
 	{
 		// Get access to list and content
@@ -43,9 +35,6 @@ public partial class MsbtEditor : PanelContainer
 		EntryContent = GetNode<VBoxContainer>("%Content");
 		FileTitleName = GetNode<Label>("%FileTitle");
 		FileEntryName = GetNode<Label>("%FileEntry");
-
-		if (File != null && Project != null)
-			InitEditor();
 	}
 
 	private void InitEditor()
@@ -84,6 +73,8 @@ public partial class MsbtEditor : PanelContainer
 	{
 		Project = project;
 		File = file;
+
+		InitEditor();
 	}
 
 	public void SaveFile()

@@ -8,7 +8,7 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
 {
     // Initilzation properties
     public string Path { get; private set; } = path;
-    private ProjectConfig Config = config;
+    public ProjectConfig Config { get; private set; } = config;
     private ProjectLoading LoadingScreen = loadScreen;
 
     // Status
@@ -36,10 +36,21 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
 
         // Complete Initilization
         LoadingScreen.LoadingComplete();
-        Config = null;
         LoadingScreen = null;
         IsInitComplete = true;
     }
 
     public bool IsReady() { return IsInitComplete; }
+
+    // ====================================================== //
+    // ================== Getter Utilities ================== //
+    // ====================================================== //
+
+    public ProjectMsbtArchives GetMsbtArchives(string lang)
+    {
+        if (!MsgArchives.TryGetValue(lang, out ProjectMsbtArchives value))
+            return null;
+
+        return value;
+    }
 }

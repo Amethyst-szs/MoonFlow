@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=6 format=3 uid="uid://c5b01vfsh7pwp"]
 
-[ext_resource type="Script" path="res://scene/home/Home.cs" id="1_u8yi0"]
+[ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://cmqduf51tmamn" path="res://asset/nindot/lms/icon/DeviceFont_ButtonHome.png" id="2_67a4c"]
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="3_1qod8"]
+[ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="4_bfnf5"]
+[ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tab_msbt/tab_msbt.tscn" id="4_o0ymp"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -10,23 +13,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_u8yi0")
+script = ExtResource("1_tasle")
 AppName = "Home"
 AppTaskbarTitle = "Home"
 AppIcon = ExtResource("2_67a4c")
 AppFlags = 6
 
-[node name="Label" type="Label" parent="."]
+[node name="Content" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -63.5
-offset_top = -11.5
-offset_right = 63.5
-offset_bottom = 11.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hi home I'm dad"
+theme = ExtResource("3_1qod8")
+theme_override_styles/panel = ExtResource("4_bfnf5")
+
+[node name="Tab" type="TabContainer" parent="Content"]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Text" parent="Content/Tab" instance=ExtResource("4_o0ymp")]
+layout_mode = 2

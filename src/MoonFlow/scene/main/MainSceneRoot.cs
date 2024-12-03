@@ -9,13 +9,13 @@ namespace MoonFlow.Scene.Main;
 
 public partial class MainSceneRoot : VBoxContainer
 {
-    public HBoxContainer NodeHeader = null;
+    public PanelContainer NodeHeader = null;
     public Control NodeApps = null;
     public Taskbar NodeTaskbar = null;
 
     public override void _Ready()
     {
-        NodeHeader = GetNode<HBoxContainer>("%Header");
+        NodeHeader = GetNode<PanelContainer>("%Header");
         NodeApps = GetNode<Control>("%Apps");
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
 
@@ -66,18 +66,5 @@ public partial class MainSceneRoot : VBoxContainer
         return null;
     }
 
-    private void OnAppTreeChanged(Node _)
-    {
-        // Check if the front door is open to determine header visiblity
-        foreach (var app in NodeApps.GetChildren())
-        {
-            if (app.GetType() != typeof(FrontDoor))
-                continue;
-
-            NodeHeader.Hide();
-            return;
-        }
-
-        NodeHeader.Show();
-    }
+    private void OnAppTreeChanged(Node app) { NodeHeader.Visible = ((AppScene)app).IsAppShowHeader(); }
 }

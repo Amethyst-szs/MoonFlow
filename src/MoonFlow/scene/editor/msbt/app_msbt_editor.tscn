@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwicpcn2le56s"]
+
+[ext_resource type="Script" path="res://scene/editor/msbt/AppMsbtEditor.cs" id="1_myucy"]
+[ext_resource type="PackedScene" uid="uid://r0nay3itfijm" path="res://ninode/lms/msbt/file/msbt_editor.tscn" id="2_plv3d"]
+[ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="3_x2cqk"]
+
+[node name="AppMsbtEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_myucy")
+AppName = "MsbtEditor"
+AppTaskbarTitle = "Text Editor"
+AppFlags = 3
+
+[node name="Content" parent="." instance=ExtResource("2_plv3d")]
+layout_mode = 1
+theme_override_styles/panel = ExtResource("3_x2cqk")

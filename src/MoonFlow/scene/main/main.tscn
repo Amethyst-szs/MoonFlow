@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=7 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
-[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/main/header/moonflow_status_icon.tscn" id="2_65xpr"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="2_kt8b6"]
+[ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
+[ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
 [ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
 
@@ -11,15 +13,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 script = ExtResource("1_jewxx")
 
-[node name="Header" type="HBoxContainer" parent="."]
+[node name="Header" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("2_l0p7s")
+theme_override_styles/panel = ExtResource("3_gs3nu")
 
-[node name="StatusIcon" parent="Header" instance=ExtResource("2_65xpr")]
+[node name="Header" type="HBoxContainer" parent="Header"]
 layout_mode = 2
+theme = ExtResource("2_l0p7s")
+
+[node name="Button" type="Button" parent="Header/Header"]
+layout_mode = 2
+icon = ExtResource("2_kt8b6")
 
 [node name="Apps" type="Control" parent="."]
 unique_name_in_owner = true
