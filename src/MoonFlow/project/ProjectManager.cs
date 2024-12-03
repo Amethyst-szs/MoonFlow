@@ -25,8 +25,9 @@ public static class ProjectManager
 
     public static ProjectState GetProject() { return Project; }
     public static MsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
-    public static ProjectMsbtArchives GetMSBTArchives() { return Project.GetMsbtArchives(Project.Config.DefaultLanguage); }
-    public static ProjectMsbtArchives GetMSBTArchives(string lang) { return Project.GetMsbtArchives(lang); }
+    public static ProjectTextHolder GetMSBT() { return Project.MsgStudioText; }
+    public static ProjectMsbtArchives GetMSBTArchives() { return Project.MsgStudioText.DefaultLanguage; }
+    public static ProjectMsbtArchives GetMSBTArchives(string lang) { return Project.MsgStudioText[lang]; }
 
     // ====================================================== //
     // ============== Open Project by Directory ============= //

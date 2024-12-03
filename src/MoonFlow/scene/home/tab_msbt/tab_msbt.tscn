@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=4 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
 [ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbt.cs" id="2_ioahr"]
-[ext_resource type="Script" path="res://addons/ui_node_ext/double_click_button.gd" id="4_blnex"]
 
 [node name="Text" type="HSplitContainer"]
 anchors_preset = 15
@@ -62,10 +61,6 @@ layout_mode = 2
 [node name="LayoutMessage_VBox" type="VBoxContainer" parent="Files/VBox/Layout"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="DoubleClickButton" type="Button" parent="Files/VBox/Layout/LayoutMessage_VBox"]
-layout_mode = 2
-script = ExtResource("4_blnex")
 
 [node name="Info" type="VBoxContainer" parent="."]
 layout_mode = 2

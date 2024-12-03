@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
 using Nindot;
@@ -57,8 +57,22 @@ public class ProjectMsbtArchives
 
     public void WriteArchives()
     {
-        SystemMessage.WriteArchive(Path + "SystemMessage.szs");
-        StageMessage.WriteArchive(Path + "StageMessage.szs");
-        LayoutMessage.WriteArchive(Path + "LayoutMessage.szs");
+        SystemMessage.WriteArchive();
+        StageMessage.WriteArchive();
+        LayoutMessage.WriteArchive();
+    }
+
+    // ====================================================== //
+    // ====================== Utilities ===================== //
+    // ====================================================== //
+
+    public SarcFile GetArchiveByFileName(string name)
+    {
+        return name switch {
+            "SystemMessage.szs" => SystemMessage,
+            "StageMessage.szs" => StageMessage,
+            "LayoutMessage.szs" => LayoutMessage,
+            _ => throw new Exception("Unknown file name: " + name),
+        };
     }
 }

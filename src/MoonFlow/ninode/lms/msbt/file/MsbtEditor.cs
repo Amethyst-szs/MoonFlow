@@ -5,19 +5,23 @@ using System.Linq;
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib.Smo;
+using System.Collections.Generic;
+using Nindot.Al.Localize;
 
 namespace MoonFlow.LMS.Msbt;
 
 public partial class MsbtEditor : PanelContainer
 {
 	private MsbpFile Project = null;
-	private MsbtFile File = null;
+	private SarcMsbtFile File = null;
+	private Dictionary<string, SarcMsbtFile> FileList = null;
 
 	private VBoxContainer EntryList = null;
 	private VBoxContainer EntryContent = null;
 
 	private Label FileTitleName = null;
 	private Label FileEntryName = null;
+	private LangPicker LanguagePicker = null;
 
 	private Button EntryListSelection = null;
 	private MsbtEntryEditor EntryContentSelection = null;
@@ -33,8 +37,10 @@ public partial class MsbtEditor : PanelContainer
 		// Get access to list and content
 		EntryList = GetNode<VBoxContainer>("%List");
 		EntryContent = GetNode<VBoxContainer>("%Content");
+
 		FileTitleName = GetNode<Label>("%FileTitle");
 		FileEntryName = GetNode<Label>("%FileEntry");
+		LanguagePicker = GetNode<LangPicker>("%LanguagePicker");
 	}
 
 	private void InitEditor()
@@ -43,9 +49,27 @@ public partial class MsbtEditor : PanelContainer
 		if (File == null || Project == null)
 			throw new Exception("Cannot init MsbtEditor without File and Project");
 
-		// Clear out entry list and content in case the editor is being reinitilized
-		foreach (var child in EntryList.GetChildren()) child.QueueFree();
-		foreach (var child in EntryContent.GetChildren()) child.QueueFree();
+		// If there is already a selection in the entry list, copy down its name for later
+		string selectionName = null;
+		if (IsInstanceValid(EntryListSelection))
+			selectionName = EntryListSelection.Name;
+		
+		// If the EntryList already has children, empty lists
+		if (EntryList.GetChildCount() > 0)
+		{
+			// Clear out entry list and content in case the editor is being reinitilized
+			foreach (var child in EntryList.GetChildren())
+			{
+				EntryList.RemoveChild(child);
+				child.QueueFree();
+			}
+
+			foreach (var child in EntryContent.GetChildren())
+			{
+				EntryContent.RemoveChild(child);
+				child.QueueFree();
+			}
+		}
 
 		// Create entry list sorted alphabetically
 		var labelList = File.GetEntryLabels().ToArray();
@@ -56,9 +80,9 @@ public partial class MsbtEditor : PanelContainer
 		// Create entry content
 		for (int i = 0; i < File.GetEntryCount(); i++) { CreateEntryContentEditor(i); }
 
-		// Select first entry
-		var firstItem = (Button)EntryList.GetChild(0);
-		CallDeferred("OnEntrySelected", firstItem.Name, true);
+		// Select either the first entry or selectionName
+		selectionName ??= EntryList.GetChild(0).Name;
+		CallDeferred("OnEntrySelected", selectionName, true);
 
 		// Update entry count in other components
 		int entryCount = File.GetEntryCount();
@@ -69,10 +93,18 @@ public partial class MsbtEditor : PanelContainer
 	// ================ File Access Utilities =============== //
 	// ====================================================== //
 
-	public void OpenFile(MsbtFile file, MsbpFile project)
+	public void OpenFile(MsbpFile project, Dictionary<string, SarcMsbtFile> msbtList, string defaultLang)
 	{
+		// Grab the default SarcMsbtFile using lang
+		if (!msbtList.TryGetValue(defaultLang, out SarcMsbtFile defaultMsbt))
+			if (!msbtList.TryGetValue("USen", out defaultMsbt))
+				throw new Exception("TextFiles doesn't have default language or USen!");
+
 		Project = project;
-		File = file;
+		File = defaultMsbt;
+		FileList = msbtList;
+
+		LanguagePicker.SetSelection(defaultLang);
 
 		InitEditor();
 	}
@@ -125,5 +157,17 @@ public partial class MsbtEditor : PanelContainer
 		// Update file name and entry header
 		FileTitleName.Text = File.Name;
 		FileEntryName.Text = label;
+	}
+
+	private void OnLanguagePickerSelectedLang(int idx)
+	{
+		string lang = LanguageKeyTranslator.Table.Keys.ElementAt(idx);
+		var newTarget = FileList[lang];
+
+		if (newTarget == File)
+			return;
+
+		File = newTarget;
+		InitEditor();
 	}
 }

@@ -16,7 +16,7 @@ size_flags_vertical = 3
 script = ExtResource("1_myucy")
 AppName = "MsbtEditor"
 AppTaskbarTitle = "Text Editor"
-AppFlags = 3
+AppFlags = 19
 
 [node name="Content" parent="." instance=ExtResource("2_plv3d")]
 layout_mode = 1

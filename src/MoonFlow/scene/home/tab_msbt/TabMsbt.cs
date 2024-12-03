@@ -44,29 +44,25 @@ public partial class TabMsbt : HSplitContainer
 			button.FocusNeighborLeft = pathToBox;
 
 			// These signals are automatically disconnected on free by DoublePressButton gdscript code
-			button.Connect("pressed", Callable.From(new Action(() => OnPressed(file, key))));
-			button.Connect("double_pressed", Callable.From(new Action(() => OnDoublePressed(file, key))));
+			button.Connect("pressed", Callable.From(new Action(() => OnFilePressed(file, key))));
+			button.Connect("double_pressed", Callable.From(new Action(() => OnFileOpened(file.Name, key))));
 
 			box.AddChild(button);
 		}
 	}
 
-	private static void OnPressed(SarcFile archive, string key)
+	private static void OnFilePressed(SarcFile archive, string key)
 	{
 		GD.Print(key);
 	}
 
-	private static void OnDoublePressed(SarcFile archive, string key)
+	private static void OnFileOpened(string archiveName, string key)
 	{
 		var editor = SceneCreator<AppMsbtEditor>.Create();
 		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
 
 		var msbp = ProjectManager.GetMSBP();
-		var msbt = archive.GetFileMSBT(key, new MsbtElementFactoryProjectSmo());
-
-		if (msbp == null || msbt == null)
-			return;
-
-		editor.SetupEditor(msbp, msbt);
+		var defaultLang = ProjectManager.GetProject().Config.DefaultLanguage;
+		editor.SetupEditor(msbp, defaultLang, archiveName, key);
 	}
 }

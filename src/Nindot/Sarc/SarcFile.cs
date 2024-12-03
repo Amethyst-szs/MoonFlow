@@ -9,23 +9,26 @@ using Nindot.Byml;
 using Nindot.Al.EventFlow;
 using System.IO;
 using Nindot.LMS.Msbp;
+using System.Linq;
 
 namespace Nindot;
 
-public class SarcFile(SarcLibrary.Sarc file)
+public class SarcFile(SarcLibrary.Sarc file, string filePath)
 {
     // ====================================================== //
     // ============ Initilization and Parameters ============ //
     // ====================================================== //
 
     public SarcLibrary.Sarc Content { get; private set; } = file;
+    public string Name { get; private set; } = filePath.Split(['/', '\\']).Last();
+    public string FilePath { get; private set; } = filePath;
 
     public static SarcFile FromFilePath(string path)
     {
         byte[] data = File.ReadAllBytes(path);
-        return FromBytes(data);
+        return FromBytes(data, path);
     }
-    public static SarcFile FromBytes(byte[] fileCompressed)
+    public static SarcFile FromBytes(byte[] fileCompressed, string path)
     {
         byte[] file;
 
@@ -34,9 +37,10 @@ public class SarcFile(SarcLibrary.Sarc file)
         catch { throw new SarcFileException("Yaz0 decompress failed!"); }
 
         // Convert this decompressed file into a sarc object, and return a failure if empty
-        return new SarcFile(SarcLibrary.Sarc.FromBinary(file));
+        return new SarcFile(SarcLibrary.Sarc.FromBinary(file), path);
     }
 
+    public Exception WriteArchive() { return WriteArchive(FilePath); }
     public Exception WriteArchive(string path)
     {
         MemoryStream stream = new();
@@ -58,9 +62,9 @@ public class SarcFile(SarcLibrary.Sarc file)
     {
         return BymlFile.FromBytes([.. Content[name]]);
     }
-    public MsbtFile GetFileMSBT(string name, MsbtElementFactory factory)
+    public SarcMsbtFile GetFileMSBT(string name, MsbtElementFactory factory)
     {
-        return new MsbtFile(factory, [.. Content[name]], name);
+        return new SarcMsbtFile(factory, [.. Content[name]], name, this);
     }
     public MsbpFile GetFileMSBP(string name)
     {

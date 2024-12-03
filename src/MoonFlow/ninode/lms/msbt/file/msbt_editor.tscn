@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://r0nay3itfijm"]
+[gd_scene load_steps=22 format=3 uid="uid://r0nay3itfijm"]
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_celu7"]
 [ext_resource type="Script" path="res://ninode/lms/msbt/file/MsbtEditor.cs" id="1_hu01d"]
@@ -6,8 +6,9 @@
 [ext_resource type="StyleBox" uid="uid://6q8316epejjf" path="res://asset/theme/msbt/stylebox/msbt_panel_main.tres" id="2_aikmg"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_2flhd"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="5_m5aci"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/file/components/LangPicker.cs" id="5_qoe03"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/Search.svg" id="6_317no"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/file/components/EntryListControls.gd" id="6_dxkv3"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/file/components/entry_list_controls.gd" id="6_dxkv3"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="6_sxopc"]
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/Warning.svg" id="7_5wcxg"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/Trash.svg" id="8_ex2fj"]
@@ -55,6 +56,7 @@ layout_mode = 2
 [node name="Header" type="HBoxContainer" parent="Layout"]
 clip_contents = true
 layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="Start" type="VSeparator" parent="Layout/Header"]
 layout_mode = 2
@@ -78,6 +80,11 @@ text_overrun_behavior = 3
 
 [node name="End" type="VSeparator" parent="Layout/Header"]
 layout_mode = 2
+
+[node name="LanguagePicker" type="OptionButton" parent="Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("5_qoe03")
 
 [node name="HSeparator" type="HSeparator" parent="Layout"]
 layout_mode = 2
@@ -206,6 +213,7 @@ size_flags_horizontal = 3
 
 [connection signal="AddNewEntryValidity" from="." to="Layout/Divider/EntryList/Controls" method="_on_msbt_editor_add_new_entry_validity"]
 [connection signal="EntryCountUpdated" from="." to="Layout/Divider/EntryList/Controls" method="_on_msbt_editor_entry_count_updated"]
+[connection signal="item_selected" from="Layout/Header/LanguagePicker" to="." method="OnLanguagePickerSelectedLang"]
 [connection signal="text_changed" from="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry/Line_EntryName" to="." method="OnAddEntryNameChanged"]
 [connection signal="text_submitted" from="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry/Line_EntryName" to="." method="OnAddEntryNameSubmitted"]
 [connection signal="text_submitted" from="Layout/Divider/EntryList/Controls/VBox/HBox_AddEntry/Line_EntryName" to="Layout/Divider/EntryList/Controls" method="_on_line_new_entry_text_submitted"]

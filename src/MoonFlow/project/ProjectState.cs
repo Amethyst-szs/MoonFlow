@@ -15,8 +15,8 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
     private bool IsInitComplete = false;
 
     // Project Components
-    public ProjectMsbpHolder MsgStudioProject = null;
-    private Dictionary<string, ProjectMsbtArchives> MsgArchives = [];
+    public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
+    public ProjectTextHolder MsgStudioText { get; private set; } = null;
 
     public async void InitProject()
     {
@@ -31,8 +31,7 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
 
         // Preload archives for default language
         LoadingScreen.LoadingUpdateProgress("LOAD_MSBT");
-        string lang = Config.DefaultLanguage;
-        MsgArchives.Add(lang, new(Path, lang));
+        MsgStudioText = new(Path, Config.DefaultLanguage);
 
         // Complete Initilization
         LoadingScreen.LoadingComplete();
@@ -48,7 +47,7 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
 
     public ProjectMsbtArchives GetMsbtArchives(string lang)
     {
-        if (!MsgArchives.TryGetValue(lang, out ProjectMsbtArchives value))
+        if (!MsgStudioText.TryGetValue(lang, out ProjectMsbtArchives value))
             return null;
 
         return value;
