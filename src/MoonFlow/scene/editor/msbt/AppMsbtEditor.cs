@@ -23,7 +23,7 @@ public partial class AppMsbtEditor : AppScene
 		Editor = GetNode<MsbtEditor>("Content");
 	}
 
-	public void SetupEditor(MsbpFile msgProject, string lang, string archiveName, string key)
+	public void SetupEditor(SarcMsbpFile msgProject, string lang, string archiveName, string key)
 	{
 		if (Editor == null)
 			throw new NullReferenceException("Wait for Ready before calling SetupEditor!");

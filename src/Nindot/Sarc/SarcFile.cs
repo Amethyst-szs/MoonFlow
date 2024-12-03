@@ -66,9 +66,9 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
     {
         return new SarcMsbtFile(factory, [.. Content[name]], name, this);
     }
-    public MsbpFile GetFileMSBP(string name)
+    public SarcMsbpFile GetFileMSBP(string name)
     {
-        return new MsbpFile([.. Content[name]], name);
+        return new SarcMsbpFile([.. Content[name]], name, this);
     }
     public Graph GetFileAlEventFlow(string name, EventFlowFactoryBase nodeFactory)
     {

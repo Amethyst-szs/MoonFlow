@@ -14,9 +14,10 @@ namespace MoonFlow.LMS.Msbt;
 
 public partial class MsbtEditor : PanelContainer
 {
-	private MsbpFile Project = null;
+	private SarcMsbpFile Project = null;
 	private SarcMsbtFile File = null;
 	private Dictionary<string, SarcMsbtFile> FileList = null;
+	private string CurrentLanguage = "USen";
 
 	private VBoxContainer EntryList = null;
 	private VBoxContainer EntryContent = null;
@@ -34,7 +35,7 @@ public partial class MsbtEditor : PanelContainer
 	[Signal]
 	public delegate void EntryCountUpdatedEventHandler(int total, int matchSearch);
 
-    public override void _Ready()
+	public override void _Ready()
 	{
 		// Get access to list and content
 		EntryList = GetNode<VBoxContainer>("%List");
@@ -99,26 +100,35 @@ public partial class MsbtEditor : PanelContainer
 	// ================ File Access Utilities =============== //
 	// ====================================================== //
 
-	public void OpenFile(MsbpFile project, Dictionary<string, SarcMsbtFile> msbtList, string defaultLang)
+	public void OpenFile(SarcMsbpFile project, Dictionary<string, SarcMsbtFile> msbtList, string defaultLang)
 	{
 		// Grab the default SarcMsbtFile using lang
 		if (!msbtList.TryGetValue(defaultLang, out SarcMsbtFile defaultMsbt))
+		{
+			defaultLang = "USen";
 			if (!msbtList.TryGetValue("USen", out defaultMsbt))
 				throw new Exception("TextFiles doesn't have default language or USen!");
+		}
 
 		Project = project;
 		File = defaultMsbt;
 		FileList = msbtList;
 
-		LanguagePicker.SetSelection(defaultLang);
+		CurrentLanguage = defaultLang;
+		LanguagePicker.SetSelection(CurrentLanguage);
 
 		InitEditor();
 	}
 
 	public void SaveFile()
 	{
+		// Write all archives
 		foreach (var f in FileList.Values)
 			f.WriteArchive();
+
+		// Write metadata
+		var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+		metadataAccessor.WriteMetadata();
 	}
 
 	// ====================================================== //
@@ -168,8 +178,12 @@ public partial class MsbtEditor : PanelContainer
 
 	private void OnLanguagePickerSelectedLang(int idx)
 	{
-		string lang = LanguageKeyTranslator.Table.Keys.ElementAt(idx);
-		var newTarget = FileList[lang];
+		// Save file before switching languages
+		SaveFile();
+
+		// Update current language and reload editor
+		CurrentLanguage = LanguageKeyTranslator.Table.Keys.ElementAt(idx);
+		var newTarget = FileList[CurrentLanguage];
 
 		if (newTarget == File)
 			return;

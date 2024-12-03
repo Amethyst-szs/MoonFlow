@@ -1,3 +1,4 @@
+using System.IO;
 using Godot;
 using Nindot.Al.SMO;
 
@@ -47,7 +48,11 @@ public partial class ProjectConfig : ConfigFile
         SetValue("common", "lang", DefaultLanguage);
 
         // Save to disk
-        return Save(FilePath);
+        var err = Save(FilePath);
+        if (err != Error.Ok)
+            return err;
+        
+        return Error.Ok;
     }
 
     // ====================================================== //

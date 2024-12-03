@@ -13,7 +13,7 @@ namespace MoonFlow.LMS.Msbt;
 [GlobalClass]
 public partial class MsbtPageEditor : TextEdit
 {
-    public MsbpFile Project = null;
+    public SarcMsbpFile Project = null;
     public MsbtPage Page = null;
 
     public Timer ActivityTimer = new();
@@ -30,7 +30,7 @@ public partial class MsbtPageEditor : TextEdit
         AddChild(ActivityTimer);
     }
 
-    public MsbtPageEditor Init(MsbpFile project, MsbtPage page)
+    public MsbtPageEditor Init(SarcMsbpFile project, MsbtPage page)
     {
         Project = project;
         Page = page;

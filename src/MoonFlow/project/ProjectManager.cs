@@ -15,7 +15,7 @@ namespace MoonFlow.Project;
 public static class ProjectManager
 {
     private static ProjectState Project = null;
-    private const string ProjectFileName = "Project.MoonFlow";
+    private const string ProjectFileName = ".mfproj";
 
     public static MainSceneRoot SceneRoot { get; set; } = null;
 
@@ -24,10 +24,22 @@ public static class ProjectManager
     // ====================================================== //
 
     public static ProjectState GetProject() { return Project; }
-    public static MsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
-    public static ProjectTextHolder GetMSBT() { return Project.MsgStudioText; }
-    public static ProjectMsbtArchives GetMSBTArchives() { return Project.MsgStudioText.DefaultLanguage; }
-    public static ProjectMsbtArchives GetMSBTArchives(string lang) { return Project.MsgStudioText[lang]; }
+    public static SarcMsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
+    public static ProjectMessageStudioText GetMSBT() { return Project.MsgStudioText; }
+    public static ProjectLanguageHolder GetMSBTArchives() { return Project.MsgStudioText.DefaultLanguage; }
+    public static ProjectLanguageHolder GetMSBTArchives(string lang) { return Project.MsgStudioText[lang]; }
+    public static ProjectLanguageMetaHolder GetMSBTMetaHolder()
+    {
+        return GetMSBTMetaHolder(Project.Config.DefaultLanguage);
+    }
+    public static ProjectLanguageMetaHolder GetMSBTMetaHolder(string lang)
+    {
+        Project.MsgStudioText.TryGetValue(lang, out ProjectLanguageHolder langHolder);
+        if (langHolder == null)
+            throw new Exception("Invalid Language: " + lang);
+
+        return langHolder.Metadata;
+    }
 
     // ====================================================== //
     // ============== Open Project by Directory ============= //

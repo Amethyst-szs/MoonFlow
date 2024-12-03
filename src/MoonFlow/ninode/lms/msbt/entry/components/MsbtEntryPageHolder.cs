@@ -22,7 +22,7 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	[Signal]
 	public delegate void PageDeleteEventHandler(MsbtPageEditor page);
 
-	public MsbtEntryPageHolder Init(MsbpFile project, MsbtPage page)
+	public MsbtEntryPageHolder Init(SarcMsbpFile project, MsbtPage page)
 	{
 		// Force page holder to take up all available horizontal space
 		SizeFlagsHorizontal = SizeFlags.ExpandFill;

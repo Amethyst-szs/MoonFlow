@@ -16,7 +16,7 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
 
     // Project Components
     public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
-    public ProjectTextHolder MsgStudioText { get; private set; } = null;
+    public ProjectMessageStudioText MsgStudioText { get; private set; } = null;
 
     public async void InitProject()
     {
@@ -45,9 +45,9 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
     // ================== Getter Utilities ================== //
     // ====================================================== //
 
-    public ProjectMsbtArchives GetMsbtArchives(string lang)
+    public ProjectLanguageHolder GetMsbtArchives(string lang)
     {
-        if (!MsgStudioText.TryGetValue(lang, out ProjectMsbtArchives value))
+        if (!MsgStudioText.TryGetValue(lang, out ProjectLanguageHolder value))
             return null;
 
         return value;

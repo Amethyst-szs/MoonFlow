@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace MoonFlow.Project;
 
-public class ProjectTextHolder : Dictionary<string, ProjectMsbtArchives>
+public class ProjectMessageStudioText : Dictionary<string, ProjectLanguageHolder>
 {
     public string Path { get; private set; } = null;
-    public ProjectMsbtArchives DefaultLanguage { get; private set; } = null;
+    public ProjectLanguageHolder DefaultLanguage { get; private set; } = null;
 
-    public ProjectTextHolder(string projectPath, string defaultLang)
+    public ProjectMessageStudioText(string projectPath, string defaultLang)
     {
         // Create path to LocalizedData folder in project
         Path = projectPath + "LocalizedData/";
@@ -28,14 +28,14 @@ public class ProjectTextHolder : Dictionary<string, ProjectMsbtArchives>
         langs.Remove("Common");
 
         foreach (var lang in langs)
-            Add(lang, new ProjectMsbtArchives(projectPath, lang));
-        
+            Add(lang, new ProjectLanguageHolder(projectPath, lang));
+
         // Assign DefaultLanguage reference to item with key defaultLang
         if (!ContainsKey(defaultLang))
         {
             if (!ContainsKey("USen"))
                 throw new Exception("ProjectTextHolder doesn't have default language or USen!");
-            
+
             DefaultLanguage = this["USen"];
             return;
         }

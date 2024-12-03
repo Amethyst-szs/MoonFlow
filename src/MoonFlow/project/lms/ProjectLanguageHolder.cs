@@ -5,19 +5,21 @@ using Nindot;
 
 namespace MoonFlow.Project;
 
-public class ProjectMsbtArchives
+public class ProjectLanguageHolder
 {
-    public string Path = null;
+    public string Path { get; private set; } = null;
 
     public SarcFile SystemMessage = null;
     public SarcFile StageMessage = null;
     public SarcFile LayoutMessage = null;
 
+    public ProjectLanguageMetaHolder Metadata { get; private set; } = null;
+
     // ====================================================== //
     // ==================== Initilization =================== //
     // ====================================================== //
 
-    public ProjectMsbtArchives(string projectPath, string lang)
+    public ProjectLanguageHolder(string projectPath, string lang)
     {
         // Create path to this set of sarc files
         var localPath = "LocalizedData/" + lang + "/MessageData/";
@@ -30,6 +32,9 @@ public class ProjectMsbtArchives
         InitArchive(ref SystemMessage, Path + "SystemMessage.szs", localPath);
         InitArchive(ref StageMessage, Path + "StageMessage.szs", localPath);
         InitArchive(ref LayoutMessage, Path + "LayoutMessage.szs", localPath);
+
+        // Init metadata
+        Metadata = new(Path + ".mfmeta");
     }
 
     private static void InitArchive(ref SarcFile file, string filePath, string localPath)
@@ -39,11 +44,11 @@ public class ProjectMsbtArchives
         {
             if (!RomfsAccessor.TryGetRomfsDirectory(out string romfs))
                 throw new RomfsAccessException("Cannot clone msbt archive from romfs!");
-            
+
             var romfsFilePath = romfs + localPath + filePath.Split(['/', '\\']).Last();
             if (!File.Exists(romfsFilePath))
                 throw new RomfsAccessException("Romfs does not contain " + romfsFilePath);
-            
+
             File.Copy(romfsFilePath, filePath);
         }
 
@@ -68,7 +73,8 @@ public class ProjectMsbtArchives
 
     public SarcFile GetArchiveByFileName(string name)
     {
-        return name switch {
+        return name switch
+        {
             "SystemMessage.szs" => SystemMessage,
             "StageMessage.szs" => StageMessage,
             "LayoutMessage.szs" => LayoutMessage,

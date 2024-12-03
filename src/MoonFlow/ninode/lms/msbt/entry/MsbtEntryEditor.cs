@@ -4,17 +4,20 @@ using System;
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
 
+using MoonFlow.Project;
+
 namespace MoonFlow.LMS.Msbt;
 
-public partial class MsbtEntryEditor(MsbpFile project, MsbtEntry entry) : VBoxContainer
+public partial class MsbtEntryEditor(SarcMsbpFile proj, MsbtEntry entry, ProjectLanguageMetaHolder.Meta meta) : VBoxContainer
 {
-	private readonly MsbpFile Project = project;
+	private readonly SarcMsbpFile Project = proj;
 	private readonly MsbtEntry Entry = entry;
+	private readonly ProjectLanguageMetaHolder.Meta Metadata = meta;
 
 	public override void _Ready()
 	{
+		// Setup pages and page separators
 		BuildSeparator(-1);
-
 		for (int i = 0; i < Entry.Pages.Count; i++)
 		{
 			var page = Entry.Pages[i];
@@ -40,7 +43,7 @@ public partial class MsbtEntryEditor(MsbpFile project, MsbtEntry entry) : VBoxCo
 	public void OnDeletePage(MsbtPageEditor page)
 	{
 		Entry.Pages.Remove(page.Page);
-		
+
 		foreach (var child in GetChildren())
 			child.QueueFree();
 

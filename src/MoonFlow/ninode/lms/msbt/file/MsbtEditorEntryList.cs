@@ -1,5 +1,8 @@
+using System;
 using System.Linq;
 using Godot;
+
+using MoonFlow.Project;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -45,7 +48,17 @@ public partial class MsbtEditor : PanelContainer
 
     private MsbtEntryEditor CreateEntryContentEditor(int i)
     {
-        var editor = new MsbtEntryEditor(Project, File.GetEntry(i))
+        // Get access to the metadata accessor for the current language
+        var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+        if (metadataAccessor == null)
+            throw new Exception("Invalid metadata accessor!");
+
+        // Get access to the requested entry and metadata
+        var entry = File.GetEntry(i);
+        var metadata = metadataAccessor.GetMetadata(File, entry);
+
+        // Initilize editor
+        var editor = new MsbtEntryEditor(Project, entry, metadata)
         {
             Name = File.GetEntryLabel(i),
             Visible = false,
@@ -107,7 +120,7 @@ public partial class MsbtEditor : PanelContainer
     {
         if (!IsInstanceValid(EntryListSelection) || !IsInstanceValid(EntryContentSelection))
             return;
-        
+
         string entry = EntryListSelection.Name;
         string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
 
@@ -119,7 +132,7 @@ public partial class MsbtEditor : PanelContainer
 
         if (prevEntry != null && prevEntry != string.Empty)
             OnEntrySelected(prevEntry);
-        
+
         // Update entry count in other components
         int entryCount = File.GetEntryCount();
         EmitSignal(SignalName.AddNewEntryValidity, false);
