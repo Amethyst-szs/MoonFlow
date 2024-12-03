@@ -48,14 +48,21 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 		EmitSignal(SignalName.PageOrganize, PageEditor, offset);
 	}
 
+	public void HandleSyncToggled(bool isDisableSync)
+	{
+		PageEditor.Editable = isDisableSync;
+		SetupButtonActiveness(!isDisableSync);
+	}
+
 	// ====================================================== //
 	// ====================== Utilities ===================== //
 	// ====================================================== //
 
-	public void SetupButtonActiveness()
+	public void SetupButtonActiveness(bool isForceOff = false)
 	{
-		GetNode<Button>("%Button_OrganizeUp").Disabled = IsFirstPage();
-		GetNode<Button>("%Button_OrganizeDown").Disabled = IsLastPage();
+		GetNode<Button>("%Button_OrganizeUp").Disabled = IsFirstPage() || isForceOff;
+		GetNode<Button>("%Button_OrganizeDown").Disabled = IsLastPage() || isForceOff;
+		GetNode<Button>("%Button_Trash").Disabled = isForceOff;
 	}
 
 	public bool IsFirstPage()

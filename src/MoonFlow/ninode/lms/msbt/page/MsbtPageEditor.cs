@@ -76,6 +76,10 @@ public partial class MsbtPageEditor : TextEdit
 
     private void SpawnTagWheel(int line, int column, bool isMouseSpawner)
     {
+        // Only allow spawning the wheel if currently editable
+        if (!Editable)
+            return;
+        
         Editable = false;
 
         // Calculate start of mouse line position

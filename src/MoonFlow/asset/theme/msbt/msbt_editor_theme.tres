@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bbndf5ewp2sd1"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://bbndf5ewp2sd1"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_cjti2"]
 [ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="1_g4a3i"]
@@ -7,6 +7,8 @@
 [ext_resource type="StyleBox" uid="uid://b6uxtqriwct6l" path="res://asset/theme/common/stylebox/common_button_pressed_hover.tres" id="2_23nn6"]
 [ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/common/stylebox/common_button_pressed.tres" id="3_oj5aq"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="4_32u22"]
+[ext_resource type="Texture2D" uid="uid://b2p60eslmx4mn" path="res://asset/material/file/sync_off.svg" id="7_1ura4"]
+[ext_resource type="Texture2D" uid="uid://b2akcps2lmaw3" path="res://asset/material/file/sync.svg" id="8_cnxqg"]
 [ext_resource type="StyleBox" uid="uid://ct3r0pr6ukvk" path="res://asset/theme/msbt/stylebox/msbt_textedit_normal.tres" id="8_drpjo"]
 [ext_resource type="StyleBox" uid="uid://b5wl2cmcttc7h" path="res://asset/theme/msbt/stylebox/msbt_textedit_read_only.tres" id="9_cf6ur"]
 
@@ -31,6 +33,8 @@ Button/styles/hover = ExtResource("1_us5q1")
 Button/styles/hover_pressed = ExtResource("2_23nn6")
 Button/styles/normal = ExtResource("1_g4a3i")
 Button/styles/pressed = ExtResource("3_oj5aq")
+CheckBox/icons/checked = ExtResource("7_1ura4")
+CheckBox/icons/unchecked = ExtResource("8_cnxqg")
 HSeparator/constants/separation = 8
 HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
 Label/fonts/font = ExtResource("1_cjti2")

@@ -14,10 +14,11 @@ namespace MoonFlow.LMS.Msbt;
 
 public partial class MsbtEditor : PanelContainer
 {
-	private SarcMsbpFile Project = null;
-	private SarcMsbtFile File = null;
-	private Dictionary<string, SarcMsbtFile> FileList = null;
-	private string CurrentLanguage = "USen";
+	public SarcMsbpFile Project { get; private set; } = null;
+	public SarcMsbtFile File { get; private set; } = null;
+	public Dictionary<string, SarcMsbtFile> FileList { get; private set; } = null;
+	public string DefaultLanguage { get; private set; } = "USen";
+	public string CurrentLanguage { get; private set; } = "USen";
 
 	private VBoxContainer EntryList = null;
 	private VBoxContainer EntryContent = null;
@@ -114,6 +115,7 @@ public partial class MsbtEditor : PanelContainer
 		File = defaultMsbt;
 		FileList = msbtList;
 
+		DefaultLanguage = ProjectManager.GetProject().Config.DefaultLanguage;
 		CurrentLanguage = defaultLang;
 		LanguagePicker.SetSelection(CurrentLanguage);
 

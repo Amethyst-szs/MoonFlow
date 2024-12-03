@@ -8,14 +8,27 @@ using MoonFlow.Project;
 
 namespace MoonFlow.LMS.Msbt;
 
-public partial class MsbtEntryEditor(SarcMsbpFile proj, MsbtEntry entry, ProjectLanguageMetaHolder.Meta meta) : VBoxContainer
+public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, ProjectLanguageMetaHolder.Meta meta) : VBoxContainer
 {
-	private readonly SarcMsbpFile Project = proj;
+	private readonly MsbtEditor Parent = parent;
 	private readonly MsbtEntry Entry = entry;
-	private readonly ProjectLanguageMetaHolder.Meta Metadata = meta;
+	private ProjectLanguageMetaHolder.Meta Metadata = meta;
 
 	public override void _Ready()
 	{
+		// If the current language doesn't match the default language, create translation config
+		bool isDefaultLang = Parent.CurrentLanguage == Parent.DefaultLanguage;
+		if (!isDefaultLang)
+		{
+			var langConfig = SceneCreator<MsbtEntryTranslationConfig>.Create();
+			langConfig.SetupNode(Metadata);
+
+			langConfig.Connect(MsbtEntryTranslationConfig.SignalName.SyncToggled,
+				Callable.From(new Action<bool>(OnSyncToggled)));
+
+			AddChild(langConfig);
+		}
+
 		// Setup pages and page separators
 		BuildSeparator(-1);
 		for (int i = 0; i < Entry.Pages.Count; i++)
@@ -29,18 +42,23 @@ public partial class MsbtEntryEditor(SarcMsbpFile proj, MsbtEntry entry, Project
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageOrganize,
 				Callable.From(new Action<MsbtPageEditor, int>(OnOrganizePage)));
 
-			AddChild(holder.Init(Project, page));
+			AddChild(holder.Init(Parent.Project, page));
+
 			BuildSeparator(i);
 		}
 
-		UpdateOrganizationButtons();
+		// Complete setup
+		if (!isDefaultLang)
+			OnSyncToggled(Metadata.IsDisableSync);
+		else
+			UpdatePageOrderingButtons();
 	}
 
 	// ====================================================== //
 	// ==================== Signal Events =================== //
 	// ====================================================== //
 
-	public void OnDeletePage(MsbtPageEditor page)
+	private void OnDeletePage(MsbtPageEditor page)
 	{
 		Entry.Pages.Remove(page.Page);
 
@@ -50,7 +68,7 @@ public partial class MsbtEntryEditor(SarcMsbpFile proj, MsbtEntry entry, Project
 		GetTree().CreateTimer(0).Timeout += _Ready;
 	}
 
-	public void OnOrganizePage(MsbtPageEditor page, int offset)
+	private void OnOrganizePage(MsbtPageEditor page, int offset)
 	{
 		int index = Entry.Pages.IndexOf(page.Page);
 
@@ -63,7 +81,7 @@ public partial class MsbtEntryEditor(SarcMsbpFile proj, MsbtEntry entry, Project
 		GetTree().CreateTimer(0).Timeout += _Ready;
 	}
 
-	public void OnAddPage(int index)
+	private void OnAddPage(int index)
 	{
 		Entry.Pages.Insert(index + 1, []);
 
@@ -71,6 +89,24 @@ public partial class MsbtEntryEditor(SarcMsbpFile proj, MsbtEntry entry, Project
 			child.QueueFree();
 
 		GetTree().CreateTimer(0).Timeout += _Ready;
+	}
+
+	private void OnSyncToggled(bool isDisableSync)
+	{
+		Metadata.IsDisableSync = isDisableSync;
+
+		foreach (var child in GetChildren())
+		{
+			switch (child)
+			{
+				case MsbtEntryPageHolder:
+					((MsbtEntryPageHolder)child).HandleSyncToggled(isDisableSync);
+					continue;
+				case MsbtEntryPageSeparator:
+					((MsbtEntryPageSeparator)child).HandleSyncToggled(isDisableSync);
+					continue;
+			}
+		}
 	}
 
 	// ====================================================== //
@@ -87,7 +123,7 @@ public partial class MsbtEntryEditor(SarcMsbpFile proj, MsbtEntry entry, Project
 		AddChild(sep);
 	}
 
-	private void UpdateOrganizationButtons()
+	private void UpdatePageOrderingButtons()
 	{
 		foreach (var node in GetChildren())
 		{

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://brr5d6o7cfwd"]
+
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_sidgt"]
+[ext_resource type="StyleBox" uid="uid://dak24dp23r57" path="res://asset/theme/msbt/stylebox/msbt_panel_entry_config.tres" id="2_tlalt"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/entry/components/MsbtEntryTranslationConfig.cs" id="3_yy5ux"]
+[ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="3_yycty"]
+
+[node name="MsbtEntryTranslationConfig" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+theme = ExtResource("1_sidgt")
+theme_override_styles/panel = ExtResource("2_tlalt")
+script = ExtResource("3_yy5ux")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Check_Sync" type="CheckBox" parent="HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Sync With Default Language"
+
+[node name="Texture_Help" type="TextureRect" parent="HBox"]
+modulate = Color(1, 1, 1, 0.647059)
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+tooltip_text = "When syncing is enabled (default) the text in this language will
+match the text in the project's default language, if modified.
+
+When syncing is disabled, this text will not change with changes
+to the default language, allowing entry of a real translation."
+mouse_default_cursor_shape = 16
+texture = ExtResource("3_yycty")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="toggled" from="HBox/Check_Sync" to="." method="OnTranslationSyncToggled"]

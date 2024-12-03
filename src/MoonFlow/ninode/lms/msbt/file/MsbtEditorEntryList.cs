@@ -57,8 +57,8 @@ public partial class MsbtEditor : PanelContainer
         var entry = File.GetEntry(i);
         var metadata = metadataAccessor.GetMetadata(File, entry);
 
-        // Initilize editor
-        var editor = new MsbtEntryEditor(Project, entry, metadata)
+        // Initilize entry editor
+        var editor = new MsbtEntryEditor(this, entry, metadata)
         {
             Name = File.GetEntryLabel(i),
             Visible = false,

@@ -15,4 +15,9 @@ public partial class MsbtEntryPageSeparator : HBoxContainer
 	{
 		EmitSignal(SignalName.AddPage, PageIndex);
 	}
+
+	public void HandleSyncToggled(bool isDisableSync)
+	{
+		GetNode<Button>("%AddPage").Disabled = !isDisableSync;
+	}
 }

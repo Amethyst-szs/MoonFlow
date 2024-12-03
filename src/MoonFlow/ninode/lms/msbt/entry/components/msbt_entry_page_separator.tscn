@@ -17,6 +17,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AddPage" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MSBT_TOOLTIP_ADD_PAGE"
 icon = ExtResource("1_x3wp2")
