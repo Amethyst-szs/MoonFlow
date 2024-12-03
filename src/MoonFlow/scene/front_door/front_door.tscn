@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://asset/shader/gradient/gradient_step.gdshader" id="3_etpfy"]
 [ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="4_lmulx"]
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="5_a75k4"]
-[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="6_clkik"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="6_clkik"]
 [ext_resource type="Script" path="res://scene/front_door/ui/front_door_background_animator.gd" id="6_cmu6i"]
 [ext_resource type="Script" path="res://scene/front_door/quickbar_error_label.gd" id="9_mpvuk"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="10_sqwg3"]

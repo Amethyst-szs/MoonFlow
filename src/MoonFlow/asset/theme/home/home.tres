@@ -6,10 +6,10 @@
 [ext_resource type="StyleBox" uid="uid://b6uxtqriwct6l" path="res://asset/theme/common/stylebox/common_button_pressed_hover.tres" id="4_usreh"]
 [ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="5_jc6nw"]
 [ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/common/stylebox/common_button_pressed.tres" id="6_t6ubk"]
-[ext_resource type="Texture2D" uid="uid://bnmjrmui5gyis" path="res://asset/material/ArrowD.png" id="7_db7sr"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="7_nh43o"]
-[ext_resource type="Texture2D" uid="uid://c7jpxq1yvwki5" path="res://asset/material/ArrowR.png" id="8_jibg3"]
+[ext_resource type="Texture2D" uid="uid://gkt4uth2coun" path="res://asset/material/arrow/down.svg" id="7_pd7ky"]
 [ext_resource type="StyleBox" uid="uid://dwt2fn0qqwydm" path="res://asset/theme/home/stylebox/home_tab_button_disabled.tres" id="8_k3q6k"]
+[ext_resource type="Texture2D" uid="uid://bxdtn8valrbqg" path="res://asset/material/arrow/right.svg" id="8_ptrph"]
 [ext_resource type="StyleBox" uid="uid://b3lh17fgxyphl" path="res://asset/theme/home/stylebox/home_tab_button_hover.tres" id="8_y7mcs"]
 [ext_resource type="StyleBox" uid="uid://cwukv6tfhvuay" path="res://asset/theme/home/stylebox/home_checkbox_normal.tres" id="9_l12y3"]
 [ext_resource type="StyleBox" uid="uid://c4amh8stlhsbu" path="res://asset/theme/home/stylebox/home_checkbox_focus.tres" id="9_mckkk"]
@@ -61,10 +61,10 @@ CheckBox/constants/h_separation = 6
 CheckBox/constants/icon_max_width = 20
 CheckBox/font_sizes/font_size = 18
 CheckBox/fonts/font = ExtResource("1_l1jp4")
-CheckBox/icons/checked = ExtResource("7_db7sr")
-CheckBox/icons/checked_disabled = ExtResource("7_db7sr")
-CheckBox/icons/unchecked = ExtResource("8_jibg3")
-CheckBox/icons/unchecked_disabled = ExtResource("8_jibg3")
+CheckBox/icons/checked = ExtResource("7_pd7ky")
+CheckBox/icons/checked_disabled = ExtResource("7_pd7ky")
+CheckBox/icons/unchecked = ExtResource("8_ptrph")
+CheckBox/icons/unchecked_disabled = ExtResource("8_ptrph")
 CheckBox/styles/focus = ExtResource("9_mckkk")
 CheckBox/styles/hover = ExtResource("10_qp6k4")
 CheckBox/styles/hover_pressed = ExtResource("11_thos2")
@@ -75,7 +75,7 @@ HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
 HSplitContainer/constants/autohide = 0
 HSplitContainer/constants/separation = 24
 Label/fonts/font = ExtResource("1_l1jp4")
-MarginContainer/constants/margin_left = 18
+MarginContainer/constants/margin_left = 32
 MenuButton/fonts/font = ExtResource("1_l1jp4")
 MenuButton/styles/focus = ExtResource("2_8oev3")
 MenuButton/styles/hover = ExtResource("3_ff0pw")

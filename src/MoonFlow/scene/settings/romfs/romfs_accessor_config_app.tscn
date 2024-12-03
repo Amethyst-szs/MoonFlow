@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="2_6p26v"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_etysk"]
 [ext_resource type="FontFile" uid="uid://c5btw8xoivg1g" path="res://asset/font/FontNewRodin.ttf" id="5_3fo2x"]
-[ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/Warning.svg" id="6_li4wf"]
+[ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_li4wf"]
 [ext_resource type="PackedScene" uid="uid://cdgrcigpyveoj" path="res://scene/settings/romfs/path_display.tscn" id="7_x1uik"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blbrj"]

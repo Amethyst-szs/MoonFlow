@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=10 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
-[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="2_kt8b6"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="2_kt8b6"]
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
 [ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
+[ext_resource type="Script" path="res://scene/main/header/Header.cs" id="4_kq4x0"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_d5mjl"]
+action = &"ui_save"
+
+[sub_resource type="Shortcut" id="Shortcut_x3u1l"]
+events = [SubResource("InputEventAction_d5mjl")]
 
 [node name="Main" type="VBoxContainer"]
 anchors_preset = 15
@@ -21,13 +28,17 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
 theme_override_styles/panel = ExtResource("3_gs3nu")
+script = ExtResource("4_kq4x0")
 
 [node name="Header" type="HBoxContainer" parent="Header"]
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
 
-[node name="Button" type="Button" parent="Header/Header"]
+[node name="Button_Save" type="Button" parent="Header/Header"]
 layout_mode = 2
+tooltip_text = "Save"
+shortcut = SubResource("Shortcut_x3u1l")
+text = "Save"
 icon = ExtResource("2_kt8b6")
 
 [node name="Apps" type="Control" parent="."]
@@ -44,3 +55,5 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 script = ExtResource("4_kco4x")
+
+[connection signal="pressed" from="Header/Header/Button_Save" to="Header" method="emit_signal" binds= ["ButtonSave"]]

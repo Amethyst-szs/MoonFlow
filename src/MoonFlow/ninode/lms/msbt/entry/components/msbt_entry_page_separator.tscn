@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu1wg5m8oninc"]
 
 [ext_resource type="Script" path="res://ninode/lms/msbt/entry/components/MsbtEntryPageSeparator.cs" id="1_cnsax"]
-[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/Add.svg" id="1_x3wp2"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="1_x3wp2"]
 
 [node name="MsbtEntryPageSeparator" type="HBoxContainer"]
 anchors_preset = 10

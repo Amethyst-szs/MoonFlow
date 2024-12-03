@@ -89,7 +89,8 @@ public partial class MsbtEditor : PanelContainer
         if (!IsAddEntryNameValid(name))
             return;
 
-        File.AddEntry(name);
+        foreach (var file in FileList.Values)
+            file.AddEntry(name);
 
         CreateEntryListButton(name, true);
         CreateEntryContentEditor(File.GetEntryIndex(name));
@@ -110,7 +111,8 @@ public partial class MsbtEditor : PanelContainer
         string entry = EntryListSelection.Name;
         string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
 
-        File.RemoveEntry(entry);
+        foreach (var file in FileList.Values)
+            file.RemoveEntry(entry);
 
         EntryListSelection.QueueFree();
         EntryContentSelection.QueueFree();

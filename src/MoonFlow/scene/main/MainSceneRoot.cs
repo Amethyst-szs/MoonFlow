@@ -9,13 +9,13 @@ namespace MoonFlow.Scene.Main;
 
 public partial class MainSceneRoot : VBoxContainer
 {
-    public PanelContainer NodeHeader = null;
+    public Header NodeHeader = null;
     public Control NodeApps = null;
     public Taskbar NodeTaskbar = null;
 
     public override void _Ready()
     {
-        NodeHeader = GetNode<PanelContainer>("%Header");
+        NodeHeader = GetNode<Header>("%Header");
         NodeApps = GetNode<Control>("%Apps");
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
 

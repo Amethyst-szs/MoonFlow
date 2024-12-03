@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpbi4wkt4nu1l"
-path="res://.godot/imported/Add.svg-19d92877e393b83774f2d2e0ec97ec0b.ctex"
+uid="uid://gkt4uth2coun"
+path="res://.godot/imported/down.svg-5311daf171f2419a8610487b0c67dee6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/material/Add.svg"
-dest_files=["res://.godot/imported/Add.svg-19d92877e393b83774f2d2e0ec97ec0b.ctex"]
+source_file="res://asset/material/arrow/down.svg"
+dest_files=["res://.godot/imported/down.svg-5311daf171f2419a8610487b0c67dee6.ctex"]
 
 [params]
 

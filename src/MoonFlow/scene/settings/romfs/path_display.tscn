@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scene/settings/romfs/path_display.gd" id="1_gb6pm"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_1o7wq"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="4_4c36o"]
-[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/Trash.svg" id="4_22wqa"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="4_22wqa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_svss0"]
 font = ExtResource("2_1o7wq")

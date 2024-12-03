@@ -1,12 +1,14 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
-using Nindot.LMS.Msbt.TagLib.Smo;
-using System.Collections.Generic;
 using Nindot.Al.Localize;
+
+using MoonFlow.Project;
+using MoonFlow.Scene.Main;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -32,7 +34,7 @@ public partial class MsbtEditor : PanelContainer
 	[Signal]
 	public delegate void EntryCountUpdatedEventHandler(int total, int matchSearch);
 
-	public override void _Ready()
+    public override void _Ready()
 	{
 		// Get access to list and content
 		EntryList = GetNode<VBoxContainer>("%List");
@@ -41,6 +43,10 @@ public partial class MsbtEditor : PanelContainer
 		FileTitleName = GetNode<Label>("%FileTitle");
 		FileEntryName = GetNode<Label>("%FileEntry");
 		LanguagePicker = GetNode<LangPicker>("%LanguagePicker");
+
+		// Setup signals with header
+		var header = ProjectManager.SceneRoot.NodeHeader;
+		header.Connect(Header.SignalName.ButtonSave, Callable.From(SaveFile));
 	}
 
 	private void InitEditor()
@@ -53,7 +59,7 @@ public partial class MsbtEditor : PanelContainer
 		string selectionName = null;
 		if (IsInstanceValid(EntryListSelection))
 			selectionName = EntryListSelection.Name;
-		
+
 		// If the EntryList already has children, empty lists
 		if (EntryList.GetChildCount() > 0)
 		{
@@ -111,7 +117,8 @@ public partial class MsbtEditor : PanelContainer
 
 	public void SaveFile()
 	{
-		GD.Print("Save Button");
+		foreach (var f in FileList.Values)
+			f.WriteArchive();
 	}
 
 	// ====================================================== //
