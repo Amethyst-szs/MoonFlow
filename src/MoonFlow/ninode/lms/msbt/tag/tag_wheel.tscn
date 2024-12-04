@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://drb6gmpl7tvlm"]
+[gd_scene load_steps=17 format=3 uid="uid://drb6gmpl7tvlm"]
 
 [ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagWheel.cs" id="1_oonfm"]
 [ext_resource type="Script" path="res://ninode/lms/msbt/tag/component/TagWheelButton.cs" id="2_q0x4n"]
@@ -15,9 +15,25 @@
 [ext_resource type="Texture2D" uid="uid://cms0len4y733y" path="res://asset/nindot/lms/icon/Voice.png" id="10_ntb4m"]
 [ext_resource type="Texture2D" uid="uid://cpp2eu0ixnbui" path="res://asset/nindot/lms/icon/ProjectTag.png" id="11_t372d"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwkud"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.996078, 0.913725, 0.686275, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="Theme" id="Theme_6egn5"]
+Button/styles/focus = SubResource("StyleBoxFlat_qwkud")
+
 [node name="TagWheel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+theme = SubResource("Theme_6egn5")
 script = ExtResource("1_oonfm")
 
 [node name="System_Font" type="Button" parent="."]

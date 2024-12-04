@@ -32,14 +32,16 @@ public partial class TagWheelButton : Button
 
 	[Export]
 	public ButtonTypes Type = ButtonTypes.None;
-
 	[Export]
 	public Texture2D Texture = null;
 
 	[Signal]
 	public delegate void AddTagEventHandler(TagWheelTagResult tag);
 	[Signal]
-	public delegate void AddSubMenuEventHandler();
+	public delegate void AddSubmenuEventHandler(TagSubmenuBase menu);
+
+	private static readonly Color ColorDefault = Color.FromHtml("#1a1a1a");
+	private static readonly Color ColorFocus = Color.FromHtml("#7a3101");
 
 	public override void _Ready()
 	{
@@ -50,6 +52,7 @@ public partial class TagWheelButton : Button
 		MouseDefaultCursorShape = CursorShape.PointingHand;
 
 		Pressed += OnPressed;
+		MouseEntered += GrabFocus;
 	}
 
 	private void OnPressed()
@@ -78,7 +81,7 @@ public partial class TagWheelButton : Button
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementProjectTag(TagNameProjectIcon.ShineIconCurrentWorld))]);
 				return;
 			case ButtonTypes.Tag_PictureFont:
-				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementPictureFont(TagNamePictureFont.COMMON_MARIO))]);
+				OpenSubmenu<TagSubmenuPictureFont>();
 				return;
 			case ButtonTypes.Tag_DeviceFont:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementDeviceFont(TagNameDeviceFont.ButtonA))]);
@@ -90,11 +93,31 @@ public partial class TagWheelButton : Button
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementVoice())]);
 				return;
 			case ButtonTypes.ShowMore:
-				EmitSignal(SignalName.AddSubMenu, []);
+				// EmitSignal(SignalName.AddSubMenu, []);
 				return;
 			default:
 				return;
 		}
+	}
+
+	// ====================================================== //
+	// ================ Sub Menu Instantiation ============== //
+	// ====================================================== //
+
+	private void OpenSubmenu<T>()
+	{
+		if (!typeof(T).IsSubclassOf(typeof(TagSubmenuBase)))
+			throw new Exception(typeof(T).Name + " is invalid type!");
+
+		var menu = SceneCreator<T>.Create();
+		var scene = GetTree().CurrentScene;
+
+		var menuBase = menu as TagSubmenuBase;
+		scene.AddChild(menuBase);
+		
+		menuBase.InitSubmenu();
+
+		EmitSignal(SignalName.AddSubmenu, menuBase);
 	}
 
 	// ====================================================== //
@@ -103,15 +126,15 @@ public partial class TagWheelButton : Button
 
 	public override void _Draw()
 	{
-		bool isHover = IsHovered();
+		bool isActive = HasFocus();
+		var buttonColor = isActive ? ColorFocus : ColorDefault;
 
-		var buttonColor = new Color(0.1F, 0.1F, 0.1F, 1.0F);
-		if (isHover) buttonColor *= 2;
-
-		DrawSetTransform(Size / 2);
-		DrawCircle(Vector2.Zero, Size.X / (2 + (isHover ? 0 : 0.3F)), buttonColor);
+		DrawSetTransform(Size / 2, 0, Vector2.One * (1.0F - (isActive ? 0.1F : 0.25F)));
+		DrawCircle(Vector2.Zero, Size.X / 2F, buttonColor);
 
 		if (IsInstanceValid(Texture))
-			DrawTextureRect(Texture, new Rect2(-Size / (3 + (isHover ? 0 : 0.6F)), Size / (1.5F + (isHover ? 0 : 0.3F))), false);
+			DrawTextureRect(Texture, new Rect2(-Size / 3F, Size / 1.5F), false);
+
+		base._Draw();
 	}
 }

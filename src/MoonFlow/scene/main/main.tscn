@@ -31,70 +31,76 @@ action = &"ui_close_app"
 [sub_resource type="Shortcut" id="Shortcut_x3u1l"]
 events = [SubResource("InputEventAction_4qj2l")]
 
-[node name="Main" type="VBoxContainer"]
+[node name="Main" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
 script = ExtResource("1_jewxx")
 
-[node name="Header" type="PanelContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_vertical = 3
+
+[node name="Header" type="PanelContainer" parent="Content"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
 theme_override_styles/panel = ExtResource("3_gs3nu")
 script = ExtResource("4_kq4x0")
 
-[node name="Header" type="HBoxContainer" parent="Header"]
+[node name="Header" type="HBoxContainer" parent="Content/Header"]
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
 
-[node name="Button_Save" type="Button" parent="Header/Header"]
+[node name="Button_Save" type="Button" parent="Content/Header/Header"]
 layout_mode = 2
 tooltip_text = "Save"
 shortcut = SubResource("Shortcut_7xans")
 icon = ExtResource("5_ki663")
 
-[node name="Button_SaveAs" type="Button" parent="Header/Header"]
+[node name="Button_SaveAs" type="Button" parent="Content/Header/Header"]
 layout_mode = 2
 tooltip_text = "Save As"
 shortcut = SubResource("Shortcut_vk0sr")
 icon = ExtResource("6_4yn7d")
 
-[node name="Center" type="VSeparator" parent="Header/Header"]
+[node name="Center" type="VSeparator" parent="Content/Header/Header"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_hlewa")
 
-[node name="Button_Mini" type="Button" parent="Header/Header"]
+[node name="Button_Mini" type="Button" parent="Content/Header/Header"]
 layout_mode = 2
 tooltip_text = "Minimize App"
 icon = ExtResource("7_3uat5")
 
-[node name="Button_Close" type="Button" parent="Header/Header"]
+[node name="Button_Close" type="Button" parent="Content/Header/Header"]
 layout_mode = 2
 tooltip_text = "Close App"
 shortcut = SubResource("Shortcut_x3u1l")
 icon = ExtResource("8_nx1ih")
 
-[node name="Apps" type="Control" parent="."]
+[node name="Apps" type="Control" parent="Content"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TaskbarPanel" type="PanelContainer" parent="."]
+[node name="TaskbarPanel" type="PanelContainer" parent="Content"]
 layout_mode = 2
 theme = ExtResource("6_2jriu")
 
-[node name="Taskbar" type="Control" parent="TaskbarPanel"]
+[node name="Taskbar" type="Control" parent="Content/TaskbarPanel"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 script = ExtResource("4_kco4x")
 
-[connection signal="pressed" from="Header/Header/Button_Save" to="Header" method="emit_signal" binds= ["ButtonSave"]]
-[connection signal="pressed" from="Header/Header/Button_SaveAs" to="Header" method="emit_signal" binds= ["ButtonSaveAs"]]
-[connection signal="pressed" from="Header/Header/Button_Mini" to="." method="FocusFirstApp"]
-[connection signal="pressed" from="Header/Header/Button_Close" to="." method="CloseActiveApp"]
+[connection signal="pressed" from="Content/Header/Header/Button_Save" to="Content/Header" method="emit_signal" binds= ["ButtonSave"]]
+[connection signal="pressed" from="Content/Header/Header/Button_SaveAs" to="Content/Header" method="emit_signal" binds= ["ButtonSaveAs"]]
+[connection signal="pressed" from="Content/Header/Header/Button_Mini" to="." method="FocusFirstApp"]
+[connection signal="pressed" from="Content/Header/Header/Button_Close" to="." method="CloseActiveApp"]

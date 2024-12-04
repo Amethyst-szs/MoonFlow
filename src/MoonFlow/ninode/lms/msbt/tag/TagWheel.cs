@@ -6,25 +6,28 @@ using System.Linq;
 
 namespace MoonFlow.LMS.Msbt;
 
+[ScenePath("res://ninode/lms/msbt/tag/tag_wheel.tscn")]
 public partial class TagWheel : Control
 {
 	public Vector2I CaretPosition = Vector2I.Zero;
+	private float WheelSize = 0.0F;
 
-	private MsbtPageEditor Parent = null;
+	public MsbtPageEditor Parent = null;
 	private MouseLine MouseLine = new();
 	private readonly List<TagWheelButton> Buttons = [];
 
 	[Signal]
-	public delegate void FinishedAddTagEventHandler(TagWheelTagResult tag);
+	public delegate void FinishedAddTagEventHandler(TagWheel wheel, TagWheelTagResult tag);
+	[Signal]
+	public delegate void MigrateSubmenuEventHandler(TagWheel wheel, TagSubmenuBase menu);
 
 	public override void _Ready()
 	{
-		// Get access to parent
-		var parent = GetParent();
-		if (parent.GetType() != typeof(MsbtPageEditor))
-			throw new Exception("Invalid parent type");
+		// Ensure we have a pointer to the parent
+		if (Parent == null)
+			throw new NullReferenceException("No pointer to TagWheel's parent page!");
 
-		Parent = (MsbtPageEditor)parent;
+		Parent.TreeExiting += QueueFree;
 
 		// Ensure there are buttons in the wheel
 		if (GetChildCount() == 0) throw new Exception("Invalid node, use tag_wheel.tscn scene");
@@ -39,6 +42,8 @@ public partial class TagWheel : Control
 		// Setup wheel buttons
 		var buttonCount = Buttons.Count;
 		var buttonSize = Vector2.One * (100 - (buttonCount * 4.17F));
+		WheelSize = buttonSize.X * 2.5F;
+
 		for (int i = 0; i < buttonCount; i++)
 		{
 			// Set button size
@@ -55,7 +60,11 @@ public partial class TagWheel : Control
 			AssignNeighbors([.. Buttons], button);
 
 			// Connect to signals
-			button.AddTag += OnTagAddRequest;
+			button.Connect(TagWheelButton.SignalName.AddSubmenu,
+				Callable.From(new Action<TagSubmenuBase>(OnTagWheelAddSubmenu)));
+
+			button.Connect(TagWheelButton.SignalName.AddTag,
+				Callable.From(new Action<TagWheelTagResult>(OnTagAddRequest)));
 		}
 
 		// Ensure entire wheel is on screen
@@ -86,13 +95,29 @@ public partial class TagWheel : Control
 		QueueFree();
 	}
 
+	public override void _Draw()
+	{
+		DrawCircle(Vector2.Zero, WheelSize, Color.Color8(0, 0, 0, 120));
+	}
+
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.GetType() != typeof(InputEventMouseButton))
-			return;
+		bool isFreeWheel = false;
 
-		var m = (InputEventMouseButton)@event;
-		if (m.Pressed && m.ButtonIndex == MouseButton.Right)
+		switch (@event)
+		{
+			case InputEventMouseButton:
+				var m = (InputEventMouseButton)@event;
+				isFreeWheel |= m.Pressed && m.ButtonIndex == MouseButton.Right;
+				break;
+			case InputEventKey:
+				var k = (InputEventKey)@event;
+				isFreeWheel |= k.IsActionPressed("ui_add_tag", false, true);
+				isFreeWheel |= k.IsActionPressed("ui_cancel", false, true);
+				break;
+		}
+
+		if (isFreeWheel)
 		{
 			QueueFree();
 			GetViewport().SetInputAsHandled();
@@ -103,9 +128,18 @@ public partial class TagWheel : Control
 	// ==================== Signal Events =================== //
 	// ====================================================== //
 
-	void OnTagAddRequest(TagWheelTagResult request)
+	private void OnTagAddRequest(TagWheelTagResult request)
 	{
-		EmitSignal(SignalName.FinishedAddTag, [request]);
+		EmitSignal(SignalName.FinishedAddTag, [this, request]);
+		QueueFree();
+	}
+
+	private void OnTagWheelAddSubmenu(TagSubmenuBase menu)
+	{
+		// Position menu in location of wheel
+		menu.SetupPosition(GlobalPosition);
+		
+		EmitSignal(SignalName.MigrateSubmenu, [this, menu]);
 		QueueFree();
 	}
 

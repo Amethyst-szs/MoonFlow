@@ -7,6 +7,7 @@ using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.LMS.Msbt.TagLib.Smo;
 using System.Text;
+using MoonFlow.Project;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -17,8 +18,6 @@ public partial class MsbtPageEditor : TextEdit
     public MsbtPage Page = null;
 
     public Timer ActivityTimer = new();
-
-    private readonly static PackedScene TagWheel = GD.Load<PackedScene>("res://ninode/lms/msbt/tag/tag_wheel.tscn");
 
     public override void _Ready()
     {
@@ -72,44 +71,5 @@ public partial class MsbtPageEditor : TextEdit
                 Text += '\u2E3A';
         }
         EndComplexOperation();
-    }
-
-    private void SpawnTagWheel(int line, int column, bool isMouseSpawner)
-    {
-        // Only allow spawning the wheel if currently editable
-        if (!Editable)
-            return;
-        
-        Editable = false;
-
-        // Calculate start of mouse line position
-        var caretOrigin = GetRectAtLineColumn(line, column);
-        var caretPos = caretOrigin.GetCenter();
-        caretPos.X += caretOrigin.Size.X / 2;
-
-        var wheel = (TagWheel)TagWheel.Instantiate();
-        wheel.TreeExiting += CloseTagWheel;
-        wheel.FinishedAddTag += CloseTagWheel;
-        wheel.CaretPosition = caretPos;
-
-        // Assign wheel's local position
-        if (isMouseSpawner)
-            wheel.SetPosition((Vector2I)GetLocalMousePosition());
-        else
-            wheel.SetPosition(Size / 2);
-
-        // Add wheel as child of page editor
-        AddChild(wheel);
-    }
-
-    private void CloseTagWheel()
-    {
-        Editable = true;
-        GrabFocus();
-    }
-    private void CloseTagWheel(TagWheelTagResult result)
-    {
-        CloseTagWheel();
-        HandleTagInput(result.Tag, 0);
     }
 }

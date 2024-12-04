@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbwcbxape7kyt"]
+
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag/picture/TagSubmenuPictureFont.cs" id="1_2bwnk"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="2_bxd02"]
+[ext_resource type="Texture2D" uid="uid://f4cetswxh8kc" path="res://asset/material/status/select.svg" id="3_0c447"]
+[ext_resource type="StyleBox" uid="uid://cdh3fo4fwbcwo" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_submenu.tres" id="3_laewc"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_c1rnw"]
+[ext_resource type="Texture2D" uid="uid://mkmi88g3nqlk" path="res://asset/material/status/select_off.svg" id="4_mbej4"]
+[ext_resource type="Texture2D" uid="uid://bagxx0ehdxvjt" path="res://asset/nindot/lms/icon/PictureFont_4C.png" id="5_ydmfj"]
+
+[sub_resource type="Theme" id="Theme_s7wtt"]
+CheckButton/constants/icon_max_width = 16
+CheckButton/icons/checked = ExtResource("3_0c447")
+CheckButton/icons/unchecked = ExtResource("4_mbej4")
+
+[node name="SubmenuTagPictureFont" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_bxd02")
+script = ExtResource("1_2bwnk")
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_s7wtt")
+theme_override_styles/panel = ExtResource("3_laewc")
+
+[node name="VBox" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Scroll_Content" type="ScrollContainer" parent="Content/VBox"]
+custom_minimum_size = Vector2(312, 0)
+layout_mode = 2
+size_flags_vertical = 0
+follow_focus = true
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+script = ExtResource("4_c1rnw")
+follow_focus_margin = 40
+allow_vertical_scroll = false
+force_horizontal_scrolling = true
+
+[node name="Layout" type="VBoxContainer" parent="Content/VBox/Scroll_Content"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBox" type="HBoxContainer" parent="Content/VBox/Scroll_Content/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Button" type="Button" parent="Content/VBox/Scroll_Content/Layout/HBox"]
+layout_mode = 2
+mouse_filter = 1
+icon = ExtResource("5_ydmfj")

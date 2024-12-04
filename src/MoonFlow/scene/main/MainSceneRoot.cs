@@ -7,7 +7,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.Main;
 
-public partial class MainSceneRoot : VBoxContainer
+public partial class MainSceneRoot : Control
 {
     public Header NodeHeader = null;
     public Control NodeApps = null;
