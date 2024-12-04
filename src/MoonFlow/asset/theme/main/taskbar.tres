@@ -1,9 +1,11 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://2yk8byukiy02"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://2yk8byukiy02"]
 
 [ext_resource type="StyleBox" uid="uid://blp0uj3c82ngl" path="res://asset/theme/main/stylebox/taskbar_normal.tres" id="1_l6yyo"]
 [ext_resource type="StyleBox" uid="uid://bnkb2ow3rj55t" path="res://asset/theme/main/stylebox/taskbar_hover.tres" id="1_lyel1"]
 [ext_resource type="StyleBox" uid="uid://kedxnuje0t2c" path="res://asset/theme/main/stylebox/taskbar_hover_pressed.tres" id="2_aqn5l"]
 [ext_resource type="StyleBox" uid="uid://dulv8j46q2im0" path="res://asset/theme/main/stylebox/taskbar_pressed.tres" id="3_f5due"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="5_q8ep7"]
+[ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="6_opax5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hadqt"]
 draw_center = false
@@ -32,3 +34,5 @@ Button/styles/hover_pressed = ExtResource("2_aqn5l")
 Button/styles/normal = ExtResource("1_l6yyo")
 Button/styles/pressed = ExtResource("3_f5due")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_l1ejc")
+TooltipLabel/fonts/font = ExtResource("5_q8ep7")
+TooltipPanel/styles/panel = ExtResource("6_opax5")

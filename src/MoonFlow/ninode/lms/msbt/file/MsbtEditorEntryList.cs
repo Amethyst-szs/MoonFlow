@@ -11,6 +11,8 @@ public partial class MsbtEditor : PanelContainer
     [Signal]
     public delegate void AddNewEntryValidityEventHandler(bool isValid);
 
+    private static readonly Texture2D ModifiedTexture = GD.Load<Texture2D>("res://asset/material/file/modify.svg");
+
     private Button CreateEntryListButton(string label, bool isSort = false)
     {
         var button = new Button
@@ -18,7 +20,10 @@ public partial class MsbtEditor : PanelContainer
             Name = label,
             Text = label,
             ToggleMode = true,
-            TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis
+            TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis,
+
+            ExpandIcon = true,
+            IconAlignment = HorizontalAlignment.Right
         };
 
         button.ButtonDown += () => OnEntrySelected(label);
@@ -67,6 +72,11 @@ public partial class MsbtEditor : PanelContainer
         };
 
         EntryContent.AddChild(editor, true);
+
+        // Connect to signals
+        editor.Connect(MsbtEntryEditor.SignalName.EntryModified,
+            Callable.From(new Action<MsbtEntryEditor>(OnEntryModified)));
+
         return editor;
     }
 
@@ -137,5 +147,19 @@ public partial class MsbtEditor : PanelContainer
         int entryCount = File.GetEntryCount();
         EmitSignal(SignalName.AddNewEntryValidity, false);
         EmitSignal(SignalName.EntryCountUpdated, [entryCount, entryCount]);
+    }
+
+    private void OnEntryModified(MsbtEntryEditor entryEditor)
+    {
+        // Update entry button to have modified icon texture
+        var entry = entryEditor.Entry;
+        var entryButton = EntryList.GetNode<Button>(entry.Name);
+        
+        if (entryButton.Icon != ModifiedTexture)
+            entryButton.Icon = ModifiedTexture;
+        
+        // Append asterisk to file name
+        if (!FileTitleName.Text.EndsWith('*'))
+            FileTitleName.Text += '*';
     }
 }

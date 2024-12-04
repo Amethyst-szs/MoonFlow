@@ -34,5 +34,5 @@ layout_mode = 2
 tab_alignment = 1
 current_tab = 0
 
-[node name="Text" parent="Content/Tab" instance=ExtResource("4_o0ymp")]
+[node name="HOME_TAB_TEXT" parent="Content/Tab" instance=ExtResource("4_o0ymp")]
 layout_mode = 2

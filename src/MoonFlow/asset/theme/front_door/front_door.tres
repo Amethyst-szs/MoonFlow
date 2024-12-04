@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bjqkhcyimcs7y"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bjqkhcyimcs7y"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_3oxsf"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_e4j1m"]
 [ext_resource type="StyleBox" uid="uid://eiax8q0e66o" path="res://asset/theme/front_door/stylebox/front_door_button_focus.tres" id="8_eeit0"]
+[ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="8_san7l"]
 [ext_resource type="StyleBox" uid="uid://bo2ov2pm2ovec" path="res://asset/theme/front_door/stylebox/front_door_button_hover.tres" id="9_iw07i"]
 [ext_resource type="StyleBox" uid="uid://bdw4rs5jxfclg" path="res://asset/theme/front_door/stylebox/front_door_button_hover_pressed.tres" id="10_wive1"]
 [ext_resource type="StyleBox" uid="uid://grixapu2vuvo" path="res://asset/theme/front_door/stylebox/front_door_button_normal.tres" id="11_lxe2k"]
@@ -38,5 +39,7 @@ MenuButton/styles/hover = ExtResource("9_iw07i")
 MenuButton/styles/hover_pressed = ExtResource("10_wive1")
 MenuButton/styles/normal = ExtResource("11_lxe2k")
 MenuButton/styles/pressed = ExtResource("12_ccc42")
+TooltipLabel/fonts/font = ExtResource("1_e4j1m")
+TooltipPanel/styles/panel = ExtResource("8_san7l")
 VSeparator/constants/separation = 24
 VSeparator/styles/separator = SubResource("StyleBoxLine_o0anw")

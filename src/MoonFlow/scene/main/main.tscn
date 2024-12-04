@@ -1,18 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=18 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
-[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="2_kt8b6"]
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
 [ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
 [ext_resource type="Script" path="res://scene/main/header/Header.cs" id="4_kq4x0"]
+[ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="5_ki663"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
+[ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="6_4yn7d"]
+[ext_resource type="Texture2D" uid="uid://bejy23w4qwuhn" path="res://asset/material/window/minimize.svg" id="7_3uat5"]
+[ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
 
-[sub_resource type="InputEventAction" id="InputEventAction_d5mjl"]
+[sub_resource type="InputEventAction" id="InputEventAction_anm21"]
 action = &"ui_save"
 
+[sub_resource type="Shortcut" id="Shortcut_7xans"]
+events = [SubResource("InputEventAction_anm21")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_636uw"]
+action = &"ui_save_as"
+
+[sub_resource type="Shortcut" id="Shortcut_vk0sr"]
+events = [SubResource("InputEventAction_636uw")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlewa"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_4qj2l"]
+action = &"ui_close_app"
+
 [sub_resource type="Shortcut" id="Shortcut_x3u1l"]
-events = [SubResource("InputEventAction_d5mjl")]
+events = [SubResource("InputEventAction_4qj2l")]
 
 [node name="Main" type="VBoxContainer"]
 anchors_preset = 15
@@ -37,9 +54,30 @@ theme = ExtResource("2_l0p7s")
 [node name="Button_Save" type="Button" parent="Header/Header"]
 layout_mode = 2
 tooltip_text = "Save"
+shortcut = SubResource("Shortcut_7xans")
+icon = ExtResource("5_ki663")
+
+[node name="Button_SaveAs" type="Button" parent="Header/Header"]
+layout_mode = 2
+tooltip_text = "Save As"
+shortcut = SubResource("Shortcut_vk0sr")
+icon = ExtResource("6_4yn7d")
+
+[node name="Center" type="VSeparator" parent="Header/Header"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_hlewa")
+
+[node name="Button_Mini" type="Button" parent="Header/Header"]
+layout_mode = 2
+tooltip_text = "Minimize App"
+icon = ExtResource("7_3uat5")
+
+[node name="Button_Close" type="Button" parent="Header/Header"]
+layout_mode = 2
+tooltip_text = "Close App"
 shortcut = SubResource("Shortcut_x3u1l")
-text = "Save"
-icon = ExtResource("2_kt8b6")
+icon = ExtResource("8_nx1ih")
 
 [node name="Apps" type="Control" parent="."]
 unique_name_in_owner = true
@@ -57,3 +95,6 @@ layout_mode = 2
 script = ExtResource("4_kco4x")
 
 [connection signal="pressed" from="Header/Header/Button_Save" to="Header" method="emit_signal" binds= ["ButtonSave"]]
+[connection signal="pressed" from="Header/Header/Button_SaveAs" to="Header" method="emit_signal" binds= ["ButtonSaveAs"]]
+[connection signal="pressed" from="Header/Header/Button_Mini" to="." method="FocusFirstApp"]
+[connection signal="pressed" from="Header/Header/Button_Close" to="." method="CloseActiveApp"]

@@ -81,6 +81,10 @@ msgid "RECENT_PROJECTS"
 msgstr "Recent Projects"
 
 #: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+msgstr "Romfs Path Settings"
+
+#: scene/front_door/front_door.tscn
 msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 msgstr "Select New Project RomFS Directory"
 
@@ -243,3 +247,32 @@ msgstr "This project requires a romfs path for "
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "PROJECT_FILE_ALREADY_EXISTS"
 msgstr "This folder already contains a project!"
+
+#: ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
+msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC"
+msgstr "Sync With Default Language"
+
+#: ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
+msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
+msgstr ""
+"When syncing is enabled (default) the text in this language will\n"
+"match the text in the project's default language, if modified.\n"
+"\n"
+"When syncing is disabled, this text will not change with changes\n"
+"to the default language, allowing entry of a real translation."
+
+#: scene/home/home.tscn
+msgid "HOME_TAB_TEXT"
+msgstr "Text"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_SYSTEM"
+msgstr "System Text"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_STAGE"
+msgstr "Stage Text"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_LAYOUT"
+msgstr "Layout Text"

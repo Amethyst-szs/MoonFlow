@@ -95,6 +95,9 @@ public partial class MsbtEditor : PanelContainer
 		// Update entry count in other components
 		int entryCount = File.GetEntryCount();
 		EmitSignal(SignalName.EntryCountUpdated, [entryCount, entryCount]);
+
+		// Set file title
+		FileTitleName.Text = File.Name;
 	}
 
 	// ====================================================== //
@@ -124,13 +127,71 @@ public partial class MsbtEditor : PanelContainer
 
 	public void SaveFile()
 	{
-		// Write all archives
-		foreach (var f in FileList.Values)
-			f.WriteArchive();
+		// Get access to the default language's SarcMsbtFile
+		var fileDL = FileList[DefaultLanguage];
+
+		// Iterate through each language's version of this MSBT
+		// This is used to perform language syncing
+		bool isAnythingAnyLanguageModified = false;
+
+		foreach (var f in FileList)
+		{
+			var metaHolder = ProjectManager.GetMSBTMetaHolder(f.Key);
+			bool isAnythingModified = false;
+
+			foreach (var entryLabel in f.Value.GetEntryLabels())
+			{
+				// Get entry and meta for this language
+				var entry = f.Value.GetEntry(entryLabel);
+				var meta = metaHolder.GetMetadata(f.Value, entry);
+
+				// If language syncing is disabled for this entry, continue
+				if (meta.IsDisableSync)
+				{
+					isAnythingModified |= entry.IsModified;
+					entry.ResetModifiedFlag();
+					continue;
+				}
+
+				// If the default language entry was modified, replace this language's entry
+				var entryDL = fileDL.GetEntry(entryLabel);
+				if (entryDL.IsModified)
+				{
+					isAnythingModified = true;
+
+					var newEntry = entryDL.CloneDeep();
+					newEntry.ResetModifiedFlag();
+
+					f.Value.ReplaceEntry(entryLabel, newEntry);
+				}
+			}
+
+			// Write updated archive to disk
+			if (isAnythingModified)
+			{
+				isAnythingAnyLanguageModified = true;
+				f.Value.WriteArchive();
+			}
+		}
+
+		// Remove the modified icon from all entry buttons in editor
+		foreach (var button in EntryList.GetChildren())
+		{
+			if (button.GetType() != typeof(Button))
+				continue;
+
+			((Button)button).Icon = null;
+		}
+
+		// Remove appended modified icon in title
+		FileTitleName.Text = FileTitleName.Text.TrimSuffix("*");
 
 		// Write metadata
-		var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-		metadataAccessor.WriteMetadata();
+		if (isAnythingAnyLanguageModified)
+		{
+			var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+			metadataAccessor.WriteMetadata();
+		}
 	}
 
 	// ====================================================== //
@@ -173,8 +234,7 @@ public partial class MsbtEditor : PanelContainer
 		if (IsInstanceValid(content))
 			content.Show();
 
-		// Update file name and entry header
-		FileTitleName.Text = File.Name;
+		// Update entry header
 		FileEntryName.Text = label;
 	}
 

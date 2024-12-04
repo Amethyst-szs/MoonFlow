@@ -125,4 +125,13 @@ public partial class MsbtFile : FileBase
         Content.Remove(label);
         return true;
     }
+
+    public bool ReplaceEntry(string label, MsbtEntry newEntry)
+    {
+        if (!Content.ContainsKey(label))
+            return false;
+
+        Content[label] = newEntry;
+        return true;
+    }
 }

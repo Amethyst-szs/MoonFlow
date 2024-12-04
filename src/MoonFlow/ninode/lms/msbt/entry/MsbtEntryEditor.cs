@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
 
 using MoonFlow.Project;
@@ -11,8 +10,11 @@ namespace MoonFlow.LMS.Msbt;
 public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, ProjectLanguageMetaHolder.Meta meta) : VBoxContainer
 {
 	private readonly MsbtEditor Parent = parent;
-	private readonly MsbtEntry Entry = entry;
-	private ProjectLanguageMetaHolder.Meta Metadata = meta;
+	public readonly MsbtEntry Entry = entry;
+	public readonly ProjectLanguageMetaHolder.Meta Metadata = meta;
+
+	[Signal]
+	public delegate void EntryModifiedEventHandler(MsbtEntryEditor entry);
 
 	public override void _Ready()
 	{
@@ -39,8 +41,12 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageDelete,
 				Callable.From(new Action<MsbtPageEditor>(OnDeletePage)));
+
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageOrganize,
 				Callable.From(new Action<MsbtPageEditor, int>(OnOrganizePage)));
+
+			holder.Connect(MsbtEntryPageHolder.SignalName.PageModified,
+				Callable.From(new Action<MsbtPageEditor>(OnModifiedPage)));
 
 			AddChild(holder.Init(Parent.Project, page));
 
@@ -60,6 +66,8 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 	private void OnDeletePage(MsbtPageEditor page)
 	{
+		SetModified();
+
 		Entry.Pages.Remove(page.Page);
 
 		foreach (var child in GetChildren())
@@ -70,6 +78,8 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 	private void OnOrganizePage(MsbtPageEditor page, int offset)
 	{
+		SetModified();
+
 		int index = Entry.Pages.IndexOf(page.Page);
 
 		Entry.Pages.Remove(page.Page);
@@ -83,6 +93,8 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 	private void OnAddPage(int index)
 	{
+		SetModified();
+
 		Entry.Pages.Insert(index + 1, []);
 
 		foreach (var child in GetChildren())
@@ -91,8 +103,12 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 		GetTree().CreateTimer(0).Timeout += _Ready;
 	}
 
+	private void OnModifiedPage(MsbtPageEditor page) { SetModified(); }
+
 	private void OnSyncToggled(bool isDisableSync)
 	{
+		SetModified();
+
 		Metadata.IsDisableSync = isDisableSync;
 
 		foreach (var child in GetChildren())
@@ -132,5 +148,11 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 			((MsbtEntryPageHolder)node).SetupButtonActiveness();
 		}
+	}
+
+	private void SetModified()
+	{
+		Entry.SetModifiedFlag();
+		EmitSignal(SignalName.EntryModified, this);
 	}
 }

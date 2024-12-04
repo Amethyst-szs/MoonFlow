@@ -22,17 +22,13 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Sync With Default Language"
+text = "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC"
 
 [node name="Texture_Help" type="TextureRect" parent="HBox"]
 modulate = Color(1, 1, 1, 0.647059)
 custom_minimum_size = Vector2(26, 0)
 layout_mode = 2
-tooltip_text = "When syncing is enabled (default) the text in this language will
-match the text in the project's default language, if modified.
-
-When syncing is disabled, this text will not change with changes
-to the default language, allowing entry of a real translation."
+tooltip_text = "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
 mouse_default_cursor_shape = 16
 texture = ExtResource("3_yycty")
 expand_mode = 1

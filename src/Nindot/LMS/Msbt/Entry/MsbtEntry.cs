@@ -13,6 +13,8 @@ public partial class MsbtEntry
     public List<MsbtPage> Pages { get; private set; } = [];
     internal uint StyleIndex = 0xFFFFFFFF;
 
+    public bool IsModified { get; private set; } = false;
+
     internal MsbtEntry(MsbtElementFactory factory, string name, byte[] txtData, uint styleIndex = 0xFFFFFFFF)
     {
         Factory = factory;
@@ -32,4 +34,24 @@ public partial class MsbtEntry
         Name = name;
         Pages.Add(new MsbtPage(new MsbtTextElement(textContent)));
     }
+
+    public MsbtEntry CloneDeep()
+    {
+        var clone = new MsbtEntry(Factory, Name)
+        {
+            StyleIndex = StyleIndex,
+            IsModified = IsModified
+        };
+
+        clone.Pages.Clear();
+        
+        foreach (var page in Pages)
+            clone.Pages.Add(page.Clone());
+
+        return clone;
+    }
+
+    public void SetModifiedFlag() { IsModified = true; }
+
+    public void ResetModifiedFlag() { IsModified = false; }
 }

@@ -7,4 +7,7 @@ public partial class Header : PanelContainer
 {
 	[Signal]
 	public delegate void ButtonSaveEventHandler();
+
+	[Signal]
+	public delegate void ButtonSaveAsEventHandler();
 }

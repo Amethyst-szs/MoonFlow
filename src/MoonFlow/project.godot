@@ -77,9 +77,20 @@ msbt_delete_entry={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"command_or_control_autoremap":true,"alt_pressed":false,"shift_pressed":false,"pressed":false,"keycode":4194312,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+ui_close_app={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"command_or_control_autoremap":true,"alt_pressed":false,"shift_pressed":false,"pressed":false,"keycode":87,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+ui_save_as={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"command_or_control_autoremap":true,"alt_pressed":false,"shift_pressed":true,"pressed":false,"keycode":83,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
 locale/translation_remaps={}
 locale/translations=PackedStringArray("res://lang/en.mo")
-locale/translations_pot_files=PackedStringArray("res://scene/settings/romfs/romfs_accessor_config_app.tscn", "res://scene/settings/romfs/path_display.tscn", "res://scene/front_door/front_door.tscn", "res://ninode/lms/msbt/file/msbt_editor.tscn", "res://ninode/lms/msbt/tag/tag_wheel.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn", "res://scene/front_door/load/project_loading.tscn", "res://scene/front_door/load/loading_messages.gd", "res://scene/front_door/quickbar_error_label.gd")
+locale/translations_pot_files=PackedStringArray("res://scene/settings/romfs/romfs_accessor_config_app.tscn", "res://scene/settings/romfs/path_display.tscn", "res://scene/front_door/front_door.tscn", "res://ninode/lms/msbt/file/msbt_editor.tscn", "res://ninode/lms/msbt/tag/tag_wheel.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn", "res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn", "res://scene/front_door/load/project_loading.tscn", "res://scene/front_door/load/loading_messages.gd", "res://scene/front_door/quickbar_error_label.gd", "res://ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn", "res://scene/home/home.tscn", "res://scene/home/tab_msbt/tab_msbt.tscn")
+pseudolocalization/override=true

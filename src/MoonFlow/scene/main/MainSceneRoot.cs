@@ -23,10 +23,6 @@ public partial class MainSceneRoot : VBoxContainer
         ProjectManager.SceneRoot = this;
         TreeExiting += OnTreeExiting;
 
-        // Connect to updates in the NodeApps control
-        NodeApps.ChildEnteredTree += OnAppTreeChanged;
-        NodeApps.ChildExitingTree += OnAppTreeChanged;
-
         // Create starting scene
         var frontDoor = SceneCreator<FrontDoor>.Create();
         NodeApps.AddChild(frontDoor);
@@ -66,5 +62,23 @@ public partial class MainSceneRoot : VBoxContainer
         return null;
     }
 
-    private void OnAppTreeChanged(Node app) { NodeHeader.Visible = ((AppScene)app).IsAppShowHeader(); }
+    public void CloseActiveApp()
+    {
+        var app = GetActiveApp();
+        if (app == null || !app.IsAppAllowUserToClose())
+            return;
+        
+        app.AppClose(true);
+    }
+
+    public void FocusFirstApp()
+    {
+        var app = GetApps().First();
+        var activeApp = GetActiveApp();
+
+        if (app == activeApp || activeApp.IsAppExclusive())
+            return;
+        
+        app.AppFocus();
+    }
 }

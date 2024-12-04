@@ -21,6 +21,8 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	public delegate void PageOrganizeEventHandler(MsbtPageEditor page, int offset);
 	[Signal]
 	public delegate void PageDeleteEventHandler(MsbtPageEditor page);
+	[Signal]
+	public delegate void PageModifiedEventHandler(MsbtPageEditor page);
 
 	public MsbtEntryPageHolder Init(SarcMsbpFile project, MsbtPage page)
 	{
@@ -31,6 +33,10 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 		PageEditor.Init(project, page);
 		AddChild(PageEditor);
 		MoveChild(PageEditor, 0);
+
+		// Connect to page editor signals
+		PageEditor.Connect(TextEdit.SignalName.TextChanged, Callable.From(OnPageModified));
+
 		return this;
 	}
 
@@ -46,6 +52,11 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	public void OnPressOrganize(int offset)
 	{
 		EmitSignal(SignalName.PageOrganize, PageEditor, offset);
+	}
+
+	public void OnPageModified()
+	{
+		EmitSignal(SignalName.PageModified, PageEditor);
 	}
 
 	public void HandleSyncToggled(bool isDisableSync)

@@ -169,6 +169,9 @@ public partial class AppScene : Control
 				control.ProcessMode = ProcessModeEnum.Inherit;
 			}
 		}
+
+		// Update header visibility
+		Scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();
 	}
 
 	public virtual void AppClose(bool isEndExclusive = false)

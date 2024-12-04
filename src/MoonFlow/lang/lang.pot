@@ -9,6 +9,9 @@
 # res://scene/front_door/load/project_loading.tscn
 # res://scene/front_door/load/loading_messages.gd
 # res://scene/front_door/quickbar_error_label.gd
+# res://ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
+# res://scene/home/home.tscn
+# res://scene/home/tab_msbt/tab_msbt.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -74,6 +77,10 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "RECENT_PROJECTS"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
@@ -227,4 +234,28 @@ msgstr ""
 #: scene/front_door/quickbar_error_label.gd
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "PROJECT_FILE_ALREADY_EXISTS"
+msgstr ""
+
+#: ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
+msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC"
+msgstr ""
+
+#: ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
+msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "HOME_TAB_TEXT"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_SYSTEM"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_STAGE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr ""

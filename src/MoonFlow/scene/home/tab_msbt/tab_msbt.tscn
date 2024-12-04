@@ -25,7 +25,7 @@ size_flags_horizontal = 3
 
 [node name="Check_System" type="CheckBox" parent="Files/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
-text = "System Messages"
+text = "HOME_TAB_TEXT_SYSTEM"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../System")
 
@@ -38,7 +38,7 @@ layout_mode = 2
 
 [node name="Check_Stage" type="CheckBox" parent="Files/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
-text = "Stage Messages"
+text = "HOME_TAB_TEXT_STAGE"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../Stage")
 
@@ -51,7 +51,7 @@ layout_mode = 2
 
 [node name="Check_Layout" type="CheckBox" parent="Files/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
-text = "Layout Messages"
+text = "HOME_TAB_TEXT_LAYOUT"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../Layout")
 
