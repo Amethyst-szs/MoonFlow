@@ -24,6 +24,7 @@ public static class ProjectManager
     // ====================================================== //
 
     public static ProjectState GetProject() { return Project; }
+    public static RomfsValidation.RomfsVersion GetProjectVersion() { return Project.Config.Version; }
     public static SarcMsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
     public static ProjectMessageStudioText GetMSBT() { return Project.MsgStudioText; }
     public static ProjectLanguageHolder GetMSBTArchives() { return Project.MsgStudioText.DefaultLanguage; }

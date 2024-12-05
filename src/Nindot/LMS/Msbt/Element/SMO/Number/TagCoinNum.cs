@@ -11,5 +11,5 @@ public class MsbtTagElementNumberCoinNum : MsbtTagElementNumberScore
 
     public override string GetTagNameStr() { return "Coin Number"; }
 
-    public override string GetTextureName() { return "Number_Coin"; }
+    public override string GetTextureName(int _) { return "Number_Coin"; }
 };

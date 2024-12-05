@@ -73,11 +73,11 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemBase
         _color = 0xFFFF;
     }
 
-    public override string GetTextureName() { return "System_Color"; }
+    public override string GetTextureName(int _) { return "System_Color"; }
     public override Color GetModulateColor(MsbpFile project)
     {
         if (project == null) return Color.White;
-        
+
         GetColor(project, out BlockColor.Entry color, out string _);
         return Color.FromArgb(color.R, color.G, color.B);
     }

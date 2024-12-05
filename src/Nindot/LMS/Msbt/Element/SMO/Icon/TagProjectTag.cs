@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using CommunityToolkit.HighPerformance;
 using System.Text;
+using Nindot.Al.SMO;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
@@ -87,7 +88,7 @@ public class MsbtTagElementProjectTag : MsbtTagElement
     public string GetTagNameStrSuffix()
     {
         string str = GetTagNameStr();
-        
+
         return str switch
         {
             string s when s.StartsWith("PadStyle2P") => str.Replace("PadStyle2P", ""),
@@ -163,8 +164,10 @@ public class MsbtTagElementProjectTag : MsbtTagElement
         "PlayerR",
     ];
 
-    public override string GetTextureName() {
-        return Icon switch {
+    public override string GetTextureName(int _)
+    {
+        return Icon switch
+        {
             TagNameProjectIcon.ShineIconCurrentWorld => "ProjectTag",
             TagNameProjectIcon.CoinCollectIconCurrentWorld => "ProjectTag_CoinCollect",
             _ => GetTagNameStrSuffix(),

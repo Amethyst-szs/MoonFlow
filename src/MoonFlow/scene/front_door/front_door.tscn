@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=17 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://scene/front_door/ui/front_door_background_animator.gd" id="6_cmu6i"]
 [ext_resource type="Script" path="res://scene/front_door/quickbar_error_label.gd" id="9_mpvuk"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="10_sqwg3"]
+[ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="11_ajwfd"]
+[ext_resource type="PackedScene" uid="uid://cio2gvsywxhso" path="res://scene/front_door/load/project_loading.tscn" id="12_my55f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
 shader = ExtResource("3_etpfy")
@@ -63,32 +65,30 @@ theme = ExtResource("4_lmulx")
 theme_override_styles/panel = ExtResource("5_a75k4")
 script = ExtResource("6_cmu6i")
 
-[node name="Layout" type="HBoxContainer" parent="Content"]
+[node name="Quickbar" type="VBoxContainer" parent="Content"]
 layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Quickbar" type="VBoxContainer" parent="Content/Layout"]
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Texture_Logo" type="TextureRect" parent="Content/Layout/Quickbar"]
+[node name="Texture_Logo" type="TextureRect" parent="Content/Quickbar"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 texture = ExtResource("3_2iugp")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="HSeparator" type="HSeparator" parent="Content/Layout/Quickbar"]
+[node name="HSeparator" type="HSeparator" parent="Content/Quickbar"]
 layout_mode = 2
 
-[node name="Button_New" type="Button" parent="Content/Layout/Quickbar"]
+[node name="Button_New" type="Button" parent="Content/Quickbar"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "NEW_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
-[node name="Label_NewError" type="Label" parent="Content/Layout/Quickbar"]
+[node name="Label_NewError" type="Label" parent="Content/Quickbar"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(64, 0)
@@ -98,14 +98,14 @@ horizontal_alignment = 1
 autowrap_mode = 3
 script = ExtResource("9_mpvuk")
 
-[node name="Button_Open" type="Button" parent="Content/Layout/Quickbar"]
+[node name="Button_Open" type="Button" parent="Content/Quickbar"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "OPEN_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
-[node name="Label_OpenError" type="Label" parent="Content/Layout/Quickbar"]
+[node name="Label_OpenError" type="Label" parent="Content/Quickbar"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(64, 0)
@@ -115,7 +115,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 script = ExtResource("9_mpvuk")
 
-[node name="Menu_Recent" type="MenuButton" parent="Content/Layout/Quickbar"]
+[node name="Menu_Recent" type="MenuButton" parent="Content/Quickbar"]
 layout_mode = 2
 focus_mode = 2
 mouse_default_cursor_shape = 2
@@ -124,11 +124,12 @@ icon = ExtResource("6_clkik")
 flat = false
 icon_alignment = 2
 
-[node name="Shortcuts" type="HBoxContainer" parent="Content/Layout/Quickbar"]
+[node name="Shortcuts" type="HBoxContainer" parent="Content"]
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_constants/separation = 9
 
-[node name="Button_RomfsConfig" type="Button" parent="Content/Layout/Quickbar/Shortcuts"]
+[node name="Button_RomfsConfig" type="Button" parent="Content/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 icon = ExtResource("10_sqwg3")
@@ -155,6 +156,7 @@ title = "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 size = Vector2i(352, 180)
 ok_button_text = "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
 cancel_button_text = "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
+mode_overrides_title = false
 file_mode = 2
 access = 2
 use_native_dialog = true
@@ -167,8 +169,11 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
-[connection signal="pressed" from="Content/Layout/Quickbar/Button_New" to="Dialog_NewProject" method="popup"]
-[connection signal="pressed" from="Content/Layout/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
-[connection signal="pressed" from="Content/Layout/Quickbar/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwfd"), ExtResource("12_my55f")]]
+
+[connection signal="pressed" from="Content/Quickbar/Button_New" to="Dialog_NewProject" method="popup"]
+[connection signal="pressed" from="Content/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
+[connection signal="pressed" from="Content/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
 [connection signal="dir_selected" from="Dialog_NewProject" to="." method="OnDialogNewProjectPathSelected"]
 [connection signal="dir_selected" from="Dialog_OpenProject" to="." method="OnDialogOpenProjectPathSelected"]

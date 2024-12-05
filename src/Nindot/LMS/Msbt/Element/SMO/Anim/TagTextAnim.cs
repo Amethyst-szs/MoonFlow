@@ -35,7 +35,7 @@ public class MsbtTagElementTextAnim : MsbtTagElement
         return "Unknown";
     }
 
-    public override string GetTextureName()
+    public override string GetTextureName(int _)
     {
         return Anim switch
         {

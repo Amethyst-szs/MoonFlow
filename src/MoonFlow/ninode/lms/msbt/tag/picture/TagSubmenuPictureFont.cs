@@ -9,12 +9,16 @@ public partial class TagSubmenuPictureFont : TagSubmenuBase
 {
     public override void InitSubmenu()
     {
-        foreach (var type in Enum.GetValues<TagNamePictureFont>())
-        {
-            var button = new TagPictureFontButton(type);
-            GetNode<HBoxContainer>("%HBox").AddChild(button);
-        }
+        GetWindow().SizeChanged += OnWindowSizeChanged;
+    }
 
-        (GetNode<HBoxContainer>("%HBox").GetChild(0) as Control).GrabFocus();
+    private void OnTagSelected(TagWheelTagResult tag)
+    {
+        CloseMenu(tag.Tag);
+    }
+
+    private void OnWindowSizeChanged()
+    {
+        SetupPosition(Vector2.Zero);
     }
 }

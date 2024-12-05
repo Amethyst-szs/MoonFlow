@@ -44,7 +44,7 @@ public class MsbtTagElementEuiSpeed : MsbtTagElement
     public void SetPrintSpeedFast() { PrintSpeed = 2.0F; }
     public void SetPrintSpeedVeryFast() { PrintSpeed = 10.0F; }
 
-    public override string GetTextureName()
+    public override string GetTextureName(int _)
     {
         if (PrintSpeed == 1.0F) return "Eui_Speed_Mid";
         if (PrintSpeed < 1.0F) return "Eui_Speed_Low";

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=7 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://cmqduf51tmamn" path="res://asset/nindot/lms/icon/DeviceFont_ButtonHome.png" id="2_67a4c"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="3_1qod8"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="4_bfnf5"]
 [ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tab_msbt/tab_msbt.tscn" id="4_o0ymp"]
+[ext_resource type="PackedScene" uid="uid://bwicpcn2le56s" path="res://scene/editor/msbt/app_msbt_editor.tscn" id="6_bc8ek"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -36,3 +37,6 @@ current_tab = 0
 
 [node name="HOME_TAB_TEXT" parent="Content/Tab" instance=ExtResource("4_o0ymp")]
 layout_mode = 2
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("app_msbt_editor"), [ExtResource("6_bc8ek")]]

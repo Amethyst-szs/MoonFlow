@@ -39,5 +39,5 @@ public class MsbtTagElementEuiWait : MsbtTagElement
         return "Unknown";
     }
 
-    public override string GetTextureName() { return "Eui_Wait"; }
+    public override string GetTextureName(int _) { return "Eui_Wait"; }
 };

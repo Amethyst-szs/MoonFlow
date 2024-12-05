@@ -31,5 +31,5 @@ public class MsbtTagElementUnknown : MsbtTagElement
         return value.ToArray();
     }
 
-    public override string GetTextureName() { return null; }
+    public override string GetTextureName(int _) { return null; }
 };

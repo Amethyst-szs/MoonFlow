@@ -25,7 +25,8 @@ public class MsbtTagElementGrammar : MsbtTagElement
         return "Unknown";
     }
 
-    public override string GetTextureName() {
+    public override string GetTextureName(int _)
+    {
         return Grammar switch
         {
             TagNameGrammar.Cap => "Grammar_Cap",

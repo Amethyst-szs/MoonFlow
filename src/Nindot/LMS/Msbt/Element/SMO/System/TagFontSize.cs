@@ -36,5 +36,5 @@ public class MsbtTagElementSystemFontSize : MsbtTagElementSystemBase
 
     public override ushort CalcDataSize() { return sizeof(ushort); }
 
-    public override string GetTextureName() { return "System_FontSize"; }
+    public override string GetTextureName(int _) { return "System_FontSize"; }
 };

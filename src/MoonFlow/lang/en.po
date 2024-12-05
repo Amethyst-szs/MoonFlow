@@ -276,3 +276,279 @@ msgstr "Stage Text"
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr "Layout Text"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_CHARACTERS"
+msgstr "Characters"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconMario_0"
+msgstr "Mario"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconMarioCapOff_0"
+msgstr "Mario (Missing Cappy)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconLuigi_0"
+msgstr "Luigi"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCap_0"
+msgstr "Cappy (Mario Form)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCapManHero_0"
+msgstr "Cappy (Story Form)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconFrog_0"
+msgstr "Frog"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconPeach_0"
+msgstr "Peach"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconTiara_0"
+msgstr "Tiara"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconPauline_0"
+msgstr "Pauline"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconKoopa_0"
+msgstr "Bowser"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBoodalStacker_0"
+msgstr "Topper Broodal"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBoodalBombTail_0"
+msgstr "Harriet Broodal"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBoodalFireBlower_0"
+msgstr "Spewert Broodal"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBroodalCapThrower_0"
+msgstr "Rango Broodal"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_ICONS"
+msgstr "Icons"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCoin_0"
+msgstr "Coin"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconLifeMaxUpItem_0"
+msgstr "Max-Up Item"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconHomeShip_0"
+msgstr "Odyssey Ship"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconEarth_0"
+msgstr "Globe"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCheckpoint_0"
+msgstr "Checkpoint Flag"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconAmiibo_0"
+msgstr "Amiibo Icon"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconMoonRock_0"
+msgstr "Moon Rock Icon"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconAchivementNpc_0"
+msgstr "Toadette Achievement"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconHintNpc_0"
+msgstr "Hint Toad Icon"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconPoetter_0"
+msgstr "Talkatoo Icon"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconStar_0"
+msgstr "Star"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconStarDotted_0"
+msgstr "Star (Empty)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_SHINE"
+msgstr "Power Moon"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineCommon_0"
+msgstr "Power Moon (Default)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSand_0"
+msgstr "Power Moon (Sand Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineForest_0"
+msgstr "Power Moon (Wooded Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineLake_0"
+msgstr "Power Moon (Lake Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineCity_0"
+msgstr "Power Moon (Metro Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSea_0"
+msgstr "Power Moon (Seaside Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSnow_0"
+msgstr "Power Moon (Snow Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineLava_0"
+msgstr "Power Moon (Luncheon Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSky_0"
+msgstr "Power Moon (Bowser's Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineMoon_0"
+msgstr "Power Moon (Moon Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineRainbow_0"
+msgstr "Power Moon"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineNull_0"
+msgstr "Power Moon (Empty)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineTripleDot_0"
+msgstr "Power Moon Count Abbreviation"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_COIN_COLLECT"
+msgstr "Purple Coins"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
+msgstr "Purple Coin (Cap Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectWaterfall_0"
+msgstr "Purple Coin (Cascade Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSand_0"
+msgstr "Purple Coin (Sand Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectForest_0"
+msgstr "Purple Coin (Wooded Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectLake_0"
+msgstr "Purple Coin (Lake Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectClash_0"
+msgstr "Purple Coin (Lost Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectCity_0"
+msgstr "Purple Coin (Metro Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSea_0"
+msgstr "Purple Coin (Seaside Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSnow_0"
+msgstr "Purple Coin (Snow Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectLava_0"
+msgstr "Purple Coin (Luncheon Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSky_0"
+msgstr "Purple Coin (Bowser's Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectMoon_0"
+msgstr "Purple Coin (Moon Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectPeach_0"
+msgstr "Purple Coin (Mushroom Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_WEDDING_TREASURE"
+msgstr "Wedding Treasure"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureRing_0"
+msgstr "Binding Band"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureFlower_0"
+msgstr "Soirée Bouquet"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureDress_0"
+msgstr "Lochlady Dress"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureWater_0"
+msgstr "Sparkle Water"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureCake_0"
+msgstr "Frost-Frosted Cake"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureStew_0"
+msgstr "Stupendous Stew"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_SPECIAL"
+msgstr "Special"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphDot_0"
+msgstr "Dot Glyph"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphSlash_0"
+msgstr "Slash Glyph"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_1"
+msgstr "Colon Glyph"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_2"
+msgstr "Luigi's Balloon World Hint Arrow"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
+msgstr "Star (Small)"

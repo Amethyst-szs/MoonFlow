@@ -5,15 +5,19 @@ using Nindot.LMS.Msbt.TagLib;
 
 namespace MoonFlow.LMS.Msbt;
 
-public abstract partial class TagSubmenuBase : Control
+public abstract partial class TagSubmenuBase : PanelContainer
 {
+    [Export]
+    bool IsCenterWindow = false;
+
     [Signal]
     public delegate void AddTagEventHandler(Array<TagWheelTagResult> tag);
 
     public abstract void InitSubmenu();
-    public async void SetupPosition(Vector2 gPos)
+    public void SetupPosition(Vector2 gPos)
     {
-        await ToSignal(Engine.GetMainLoop(), "process_frame");
+        if (IsCenterWindow)
+            gPos = GetWindow().Size / 2;
 
         // Setup pivot and position
         PivotOffset = Size / 2F;
@@ -32,7 +36,7 @@ public abstract partial class TagSubmenuBase : Control
     // ==================== Menu Closing ==================== //
     // ====================================================== //
 
-    public override void _Process(double _)
+    public override void _Process(double delta)
     {
         // Recursively check if any child node has focus
         // If not, close the menu

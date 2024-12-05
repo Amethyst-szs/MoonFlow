@@ -86,14 +86,14 @@ public static class RomfsValidation
         filestream.Close();
     }
 
-    public enum RomfsVersion
+    public enum RomfsVersion : int
     {
-        v100,
-        v101,
-        v110,
-        v120,
-        v130,
         INVALID_VERSION = -1,
+        v100 = 100,
+        v101 = 101,
+        v110 = 110,
+        v120 = 120,
+        v130 = 130,
     };
 
     private static readonly Dictionary<string, RomfsVersion> HashTable = new() {

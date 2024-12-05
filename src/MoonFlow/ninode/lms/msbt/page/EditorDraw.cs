@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using MoonFlow.Project;
 
 using Nindot.LMS.Msbt.TagLib;
 
@@ -74,7 +75,7 @@ public partial class MsbtPageEditor : TextEdit
     public Texture2D GetTagTexture(MsbtTagElement tag)
     {
         // If this texture doesn't exist in the tag table, add it
-        string textureName = tag.GetTextureName();
+        string textureName = tag.GetTextureName((int)ProjectManager.GetProjectVersion());
         TryRegisterTagTexture(textureName);
 
         // Get the texture and return texture if successful

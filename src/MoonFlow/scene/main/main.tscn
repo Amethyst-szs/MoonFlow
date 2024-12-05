@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=24 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="6_4yn7d"]
 [ext_resource type="Texture2D" uid="uid://bejy23w4qwuhn" path="res://asset/material/window/minimize.svg" id="7_3uat5"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
+[ext_resource type="PackedScene" uid="uid://qcjh1t51akmr" path="res://scene/front_door/front_door.tscn" id="9_1ew1g"]
+[ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
+[ext_resource type="Script" path="res://scene/main/display_server_setup.gd" id="13_jlow7"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_anm21"]
 action = &"ui_save"
@@ -31,6 +34,34 @@ action = &"ui_close_app"
 [sub_resource type="Shortcut" id="Shortcut_x3u1l"]
 events = [SubResource("InputEventAction_4qj2l")]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8ej3"]
+bg_color = Color(0.054902, 0.0745098, 0.105882, 1)
+corner_detail = 1
+
+[sub_resource type="GDScript" id="GDScript_wf0d5"]
+script/source = "extends PanelContainer
+
+func _ready():
+	show()
+	
+	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, \"self_modulate\", Color.TRANSPARENT, 0.5)
+	
+	await tween.finished
+	queue_free()
+"
+
+[sub_resource type="GDScript" id="GDScript_vdahq"]
+script/source = "extends TextureRect
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pivot_offset = size / 2
+	
+	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, \"scale\", Vector2.ZERO, 0.5)
+"
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -41,9 +72,12 @@ grow_vertical = 2
 script = ExtResource("1_jewxx")
 
 [node name="Content" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 
 [node name="Header" type="PanelContainer" parent="Content"]
@@ -90,6 +124,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="FrontDoor" parent="Content/Apps" instance=ExtResource("9_1ew1g")]
+layout_mode = 1
+
 [node name="TaskbarPanel" type="PanelContainer" parent="Content"]
 layout_mode = 2
 theme = ExtResource("6_2jriu")
@@ -99,6 +136,28 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 script = ExtResource("4_kco4x")
+
+[node name="BootAnimation" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8ej3")
+script = SubResource("GDScript_wf0d5")
+
+[node name="Texture_Logo" type="TextureRect" parent="BootAnimation"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_kyve8")
+stretch_mode = 5
+script = SubResource("GDScript_vdahq")
+
+[node name="DisplayServerSetup" type="Node" parent="."]
+script = ExtResource("13_jlow7")
 
 [connection signal="pressed" from="Content/Header/Header/Button_Save" to="Content/Header" method="emit_signal" binds= ["ButtonSave"]]
 [connection signal="pressed" from="Content/Header/Header/Button_SaveAs" to="Content/Header" method="emit_signal" binds= ["ButtonSaveAs"]]

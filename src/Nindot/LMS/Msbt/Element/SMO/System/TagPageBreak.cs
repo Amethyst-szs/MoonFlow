@@ -10,5 +10,5 @@ public class MsbtTagElementSystemPageBreak : MsbtTagElementSystemBase
 
     public override bool IsPageBreak() { return true; }
 
-    public override string GetTextureName() { return null; }
+    public override string GetTextureName(int _) { return null; }
 };

@@ -19,13 +19,20 @@ public class UnitTestMsbpProjectSMO : IUnitTestGroup
         MsbpFile file = sarc.GetFileMSBP("ProjectData.msbp");
         Test.Should(file.IsValid());
 
-        // Test individiual blocks
+        // Test color results
         Test.Should(file.Color_IsFileContainData());
         Test.Should(file.Color_GetCount(), 8);
         Test.Should(file.Color_GetLabel(0), "Black");
         Test.Should(file.Color_Get(0), new BlockColor.Entry(0, 0, 0, 255));
         Test.Should(file.Color_GetLabel(1), "Yellow");
         Test.Should(file.Color_Get(1), new BlockColor.Entry(255, 255, 0, 255));
+
+        // Test tag results
+        var group = file.TagGroup_Get("PictFont");
+        foreach (var tag in file.Tag_GetList(group))
+        {
+            System.Console.WriteLine(tag.Name);
+        }
     }
 
     [RunTest, SmoRomfsTest]

@@ -22,10 +22,6 @@ public partial class MainSceneRoot : Control
         // Add self-reference to ProjectManager
         ProjectManager.SceneRoot = this;
         TreeExiting += OnTreeExiting;
-
-        // Create starting scene
-        var frontDoor = SceneCreator<FrontDoor>.Create();
-        NodeApps.AddChild(frontDoor);
     }
 
     private static void OnTreeExiting()
