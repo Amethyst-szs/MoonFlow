@@ -12,7 +12,7 @@ public partial class MouseLine : Line2D
 	{
 		Points = [OriginOffset, Vector2.Zero];
 		Width = 5.0F;
-		WidthCurve = GD.Load<Curve>("res://ninode/lms/msbt/tag/component/mouse_line_curve.tres");
+		WidthCurve = GD.Load<Curve>("res://ninode/lms/msbt/tag/wheel/mouse_line_curve.tres");
 		DefaultColor = new Color(1, 1, 1, 0.33F);
 		BeginCapMode = LineCapMode.Round;
 		EndCapMode = LineCapMode.Round;

@@ -16,7 +16,6 @@ disable_3d = true
 title = "UNSAVED_CHANGES_DIALOG_TITLE"
 initial_position = 2
 size = Vector2i(708, 125)
-visible = true
 unresizable = true
 theme = ExtResource("1_iymjq")
 ok_button_text = "UNSAVED_CHANGES_DIALOG_OK"

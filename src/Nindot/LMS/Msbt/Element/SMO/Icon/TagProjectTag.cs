@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using CommunityToolkit.HighPerformance;
 using System.Text;
 using Nindot.Al.SMO;
+using System.Collections.ObjectModel;
 
 namespace Nindot.LMS.Msbt.TagLib.Smo;
 
@@ -164,13 +165,25 @@ public class MsbtTagElementProjectTag : MsbtTagElement
         "PlayerR",
     ];
 
-    public override string GetTextureName(int _)
+    public override string GetTextureName(int tableIndex)
     {
-        return Icon switch
-        {
-            TagNameProjectIcon.ShineIconCurrentWorld => "ProjectTag",
-            TagNameProjectIcon.CoinCollectIconCurrentWorld => "ProjectTag_CoinCollect",
-            _ => GetTagNameStrSuffix(),
-        };
+        if (Icon == TagNameProjectIcon.ShineIconCurrentWorld)
+            return "ProjectTag";
+
+        if (Icon == TagNameProjectIcon.CoinCollectIconCurrentWorld)
+            return "ProjectTag_CoinCollect";
+
+        if (Icon >= TagNameProjectIcon.PadPairMenu)
+            tableIndex = Math.Clamp(tableIndex - 2, 0, 2);
+        
+        if (tableIndex < 0 || tableIndex >= _iconTable.Count)
+            return null;
+
+        return _iconTable[tableIndex];
+    }
+
+    public ReadOnlyCollection<string> GetIconTable()
+    {
+        return new ReadOnlyCollection<string>(_iconTable);
     }
 };

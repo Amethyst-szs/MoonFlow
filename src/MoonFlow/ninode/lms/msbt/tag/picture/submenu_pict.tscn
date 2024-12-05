@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bbwcbxape7kyt"]
+[gd_scene load_steps=76 format=3 uid="uid://bbwcbxape7kyt"]
 
 [ext_resource type="Script" path="res://ninode/lms/msbt/tag/picture/TagSubmenuPictureFont.cs" id="1_2bwnk"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="2_bxd02"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ctu6ag2vldxhh" path="res://asset/nindot/lms/icon/PictureFont_3A_OLD.png" id="5_kw43j"]
 [ext_resource type="Texture2D" uid="uid://dtm0bkx551w56" path="res://asset/nindot/lms/icon/PictureFont_39.png" id="5_ysvnl"]
 [ext_resource type="Texture2D" uid="uid://cts7fkl5niq11" path="res://asset/nindot/lms/icon/PictureFont_4E.png" id="6_1rshh"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/picture/TagPictureFontButton.cs" id="8_ebijr"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag/button/TagPictureFontButton.cs" id="8_ebijr"]
 [ext_resource type="Texture2D" uid="uid://csmwllrnqgr42" path="res://asset/nindot/lms/icon/PictureFont_4D.png" id="8_m5toe"]
 [ext_resource type="Texture2D" uid="uid://gpqokiaivaxq" path="res://asset/nindot/lms/icon/PictureFont_44.png" id="9_joscf"]
 [ext_resource type="Texture2D" uid="uid://bybwp5pwc7wwp" path="res://asset/nindot/lms/icon/PictureFont_38.png" id="9_k24t8"]
@@ -36,6 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://jclki1rwlli5" path="res://asset/nindot/lms/icon/PictureFont_35.png" id="30_7lrs0"]
 [ext_resource type="Texture2D" uid="uid://dcele1at5x5bm" path="res://asset/nindot/lms/icon/PictureFont_36.png" id="31_ih4oj"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="32_ajep0"]
+[ext_resource type="Texture2D" uid="uid://cpp2eu0ixnbui" path="res://asset/nindot/lms/icon/ProjectTag.png" id="33_2ev7k"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag/button/TagProjectTagButton.cs" id="33_5foj8"]
 [ext_resource type="Texture2D" uid="uid://cedb163wvka2j" path="res://asset/nindot/lms/icon/PictureFont_75.png" id="33_ywntl"]
 [ext_resource type="Texture2D" uid="uid://qsmvjsetmlcv" path="res://asset/nindot/lms/icon/PictureFont_72.png" id="34_hy3eh"]
 [ext_resource type="Texture2D" uid="uid://d14e51jfichy0" path="res://asset/nindot/lms/icon/PictureFont_77.png" id="35_gsrts"]
@@ -51,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://dak22ws2jjsv3" path="res://asset/nindot/lms/icon/PictureFont_50.png" id="45_2uxgu"]
 [ext_resource type="Texture2D" uid="uid://bd05rhjjyhfa7" path="res://asset/nindot/lms/icon/PictureFont_51.png" id="46_202xv"]
 [ext_resource type="Texture2D" uid="uid://dipakx7qgyc54" path="res://asset/nindot/lms/icon/PictureFont_52.png" id="47_uo68l"]
+[ext_resource type="Texture2D" uid="uid://cqmk7020y6wbo" path="res://asset/nindot/lms/icon/ProjectTag_CoinCollect.png" id="48_kkwak"]
 [ext_resource type="Texture2D" uid="uid://dqmlirlm3u85" path="res://asset/nindot/lms/icon/PictureFont_53.png" id="48_uw45n"]
 [ext_resource type="Texture2D" uid="uid://b2tmog2rx5li5" path="res://asset/nindot/lms/icon/PictureFont_54.png" id="49_0lwds"]
 [ext_resource type="Texture2D" uid="uid://dbi0dm5jayblj" path="res://asset/nindot/lms/icon/PictureFont_55.png" id="50_btfn1"]
@@ -69,6 +72,7 @@
 [ext_resource type="Texture2D" uid="uid://nkgjnkvukwgo" path="res://asset/nindot/lms/icon/PictureFont_2E.png" id="64_jhbiy"]
 [ext_resource type="Texture2D" uid="uid://ccevird7hdgtq" path="res://asset/nindot/lms/icon/PictureFont_2F.png" id="65_d3qkq"]
 [ext_resource type="Texture2D" uid="uid://7ai2w0ygn0xj" path="res://asset/nindot/lms/icon/PictureFont_3A.png" id="67_81642"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagMenuFocusNeighborBuilder.cs" id="73_u0nap"]
 
 [sub_resource type="Theme" id="Theme_imy0c"]
 Button/constants/icon_max_width = 41
@@ -87,13 +91,15 @@ script = ExtResource("1_2bwnk")
 IsCenterWindow = true
 
 [node name="Scroll" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(699, 420)
+custom_minimum_size = Vector2(705, 420)
 layout_mode = 2
 theme = SubResource("Theme_imy0c")
 follow_focus = true
 vertical_scroll_mode = 2
 script = ExtResource("4_c1rnw")
 speed = 3.0
+drag_with_mouse = false
+follow_focus_margin = 80
 force_vertical_scrolling = true
 
 [node name="VBox" type="VBoxContainer" parent="Scroll"]
@@ -117,10 +123,6 @@ theme_override_constants/separation = 0
 [node name="Char0" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconMario_0"
-focus_neighbor_left = NodePath("../Char10")
-focus_neighbor_right = NodePath("../Char1")
-focus_next = NodePath("../Char1")
-focus_previous = NodePath(".")
 mouse_filter = 1
 icon = ExtResource("4_xr32y")
 script = ExtResource("8_ebijr")
@@ -130,10 +132,6 @@ IsAutograbFocus = true
 [node name="Char1" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconMarioCapOff_0"
-focus_neighbor_left = NodePath("../Char0")
-focus_neighbor_right = NodePath("../Char3")
-focus_next = NodePath("../Char3")
-focus_previous = NodePath("../Char0")
 mouse_filter = 1
 icon = ExtResource("6_1rshh")
 script = ExtResource("8_ebijr")
@@ -142,10 +140,6 @@ IconCode = 78
 [node name="Char3" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconLuigi_0"
-focus_neighbor_left = NodePath("../Char1")
-focus_neighbor_right = NodePath("../Char2")
-focus_next = NodePath("../Char2")
-focus_previous = NodePath("../Char1")
 mouse_filter = 1
 icon = ExtResource("5_ysvnl")
 script = ExtResource("8_ebijr")
@@ -154,10 +148,6 @@ IconCode = 57
 [node name="Char2" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCap_0"
-focus_neighbor_left = NodePath("../Char3")
-focus_neighbor_right = NodePath("../Char11")
-focus_next = NodePath("../Char11")
-focus_previous = NodePath("../Char3")
 mouse_filter = 1
 icon = ExtResource("8_m5toe")
 script = ExtResource("8_ebijr")
@@ -166,10 +156,6 @@ IconCode = 77
 [node name="Char11" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCapManHero_0"
-focus_neighbor_left = NodePath("../Char2")
-focus_neighbor_right = NodePath("../Char13")
-focus_next = NodePath("../Char13")
-focus_previous = NodePath("../Char2")
 mouse_filter = 1
 icon = ExtResource("9_k24t8")
 script = ExtResource("8_ebijr")
@@ -178,10 +164,6 @@ IconCode = 56
 [node name="Char13" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconFrog_0"
-focus_neighbor_left = NodePath("../Char11")
-focus_neighbor_right = NodePath("../Char4")
-focus_next = NodePath("../Char4")
-focus_previous = NodePath("../Char11")
 mouse_filter = 1
 icon = ExtResource("10_wrb3e")
 script = ExtResource("8_ebijr")
@@ -190,10 +172,6 @@ IconCode = 75
 [node name="Char4" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconPeach_0"
-focus_neighbor_left = NodePath("../Char13")
-focus_neighbor_right = NodePath("../Char5")
-focus_next = NodePath("../Char5")
-focus_previous = NodePath("../Char13")
 mouse_filter = 1
 icon = ExtResource("9_joscf")
 script = ExtResource("8_ebijr")
@@ -202,10 +180,6 @@ IconCode = 68
 [node name="Char5" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconTiara_0"
-focus_neighbor_left = NodePath("../Char4")
-focus_neighbor_right = NodePath("../Char12")
-focus_next = NodePath("../Char12")
-focus_previous = NodePath("../Char4")
 mouse_filter = 1
 icon = ExtResource("11_lpu87")
 script = ExtResource("8_ebijr")
@@ -214,10 +188,6 @@ IconCode = 69
 [node name="Char12" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconPauline_0"
-focus_neighbor_left = NodePath("../Char5")
-focus_neighbor_right = NodePath("../Char6")
-focus_next = NodePath("../Char6")
-focus_previous = NodePath("../Char5")
 mouse_filter = 1
 icon = ExtResource("18_ygcni")
 script = ExtResource("8_ebijr")
@@ -226,10 +196,6 @@ IconCode = 79
 [node name="Char6" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconKoopa_0"
-focus_neighbor_left = NodePath("../Char12")
-focus_neighbor_right = NodePath("../Char7")
-focus_next = NodePath("../Char7")
-focus_previous = NodePath("../Char12")
 mouse_filter = 1
 icon = ExtResource("12_qehv8")
 script = ExtResource("8_ebijr")
@@ -238,10 +204,6 @@ IconCode = 67
 [node name="Char7" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalStacker_0"
-focus_neighbor_left = NodePath("../Char6")
-focus_neighbor_right = NodePath("../Char8")
-focus_next = NodePath("../Char8")
-focus_previous = NodePath("../Char6")
 mouse_filter = 1
 icon = ExtResource("13_fxe4x")
 script = ExtResource("8_ebijr")
@@ -250,10 +212,6 @@ IconCode = 72
 [node name="Char8" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalBombTail_0"
-focus_neighbor_left = NodePath("../Char7")
-focus_neighbor_right = NodePath("../Char9")
-focus_next = NodePath("../Char9")
-focus_previous = NodePath("../Char7")
 mouse_filter = 1
 icon = ExtResource("14_wi8lp")
 script = ExtResource("8_ebijr")
@@ -262,10 +220,6 @@ IconCode = 73
 [node name="Char9" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalFireBlower_0"
-focus_neighbor_left = NodePath("../Char8")
-focus_neighbor_right = NodePath("../Char10")
-focus_next = NodePath("../Char10")
-focus_previous = NodePath("../Char8")
 mouse_filter = 1
 icon = ExtResource("15_widru")
 script = ExtResource("8_ebijr")
@@ -274,10 +228,6 @@ IconCode = 71
 [node name="Char10" type="Button" parent="Scroll/VBox/Character"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBroodalCapThrower_0"
-focus_neighbor_left = NodePath("../Char9")
-focus_neighbor_right = NodePath("../Char0")
-focus_next = NodePath("../../Icon/Ico6")
-focus_previous = NodePath("../Char9")
 mouse_filter = 1
 icon = ExtResource("16_vr1ru")
 script = ExtResource("8_ebijr")
@@ -303,10 +253,6 @@ alignment = 1
 [node name="Ico6" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCoin_0"
-focus_neighbor_left = NodePath("../Ico11")
-focus_neighbor_right = NodePath("../Ico5")
-focus_next = NodePath("../Ico5")
-focus_previous = NodePath("../../Character/Char10")
 mouse_filter = 1
 icon = ExtResource("26_04evv")
 script = ExtResource("8_ebijr")
@@ -315,10 +261,6 @@ IconCode = 64
 [node name="Ico5" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconLifeMaxUpItem_0"
-focus_neighbor_left = NodePath("../Ico6")
-focus_neighbor_right = NodePath("../Ico9")
-focus_next = NodePath("../Ico9")
-focus_previous = NodePath("../Ico6")
 mouse_filter = 1
 icon = ExtResource("25_2jpqa")
 script = ExtResource("8_ebijr")
@@ -327,10 +269,6 @@ IconCode = 55
 [node name="Ico9" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconHomeShip_0"
-focus_neighbor_left = NodePath("../Ico5")
-focus_neighbor_right = NodePath("../Ico7")
-focus_next = NodePath("../Ico7")
-focus_previous = NodePath("../Ico5")
 mouse_filter = 1
 icon = ExtResource("29_4qif7")
 script = ExtResource("8_ebijr")
@@ -339,10 +277,6 @@ IconCode = 74
 [node name="Ico7" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconEarth_0"
-focus_neighbor_left = NodePath("../Ico9")
-focus_neighbor_right = NodePath("../Ico8")
-focus_next = NodePath("../Ico8")
-focus_previous = NodePath("../Ico9")
 mouse_filter = 1
 icon = ExtResource("27_h45bd")
 script = ExtResource("8_ebijr")
@@ -351,10 +285,6 @@ IconCode = 65
 [node name="Ico8" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCheckpoint_0"
-focus_neighbor_left = NodePath("../Ico7")
-focus_neighbor_right = NodePath("../Ico4")
-focus_next = NodePath("../Ico4")
-focus_previous = NodePath("../Ico7")
 mouse_filter = 1
 icon = ExtResource("28_32e6j")
 script = ExtResource("8_ebijr")
@@ -363,10 +293,6 @@ IconCode = 66
 [node name="Ico4" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconAmiibo_0"
-focus_neighbor_left = NodePath("../Ico8")
-focus_neighbor_right = NodePath("../Ico0")
-focus_next = NodePath("../Ico0")
-focus_previous = NodePath("../Ico8")
 mouse_filter = 1
 icon = ExtResource("24_735fq")
 script = ExtResource("8_ebijr")
@@ -375,10 +301,6 @@ IconCode = 52
 [node name="Ico0" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconMoonRock_0"
-focus_neighbor_left = NodePath("../Ico4")
-focus_neighbor_right = NodePath("../Ico1")
-focus_next = NodePath("../Ico1")
-focus_previous = NodePath("../Ico4")
 mouse_filter = 1
 icon = ExtResource("20_i0ju6")
 script = ExtResource("8_ebijr")
@@ -387,10 +309,6 @@ IconCode = 48
 [node name="Ico1" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconAchivementNpc_0"
-focus_neighbor_left = NodePath("../Ico0")
-focus_neighbor_right = NodePath("../Ico2")
-focus_next = NodePath("../Ico2")
-focus_previous = NodePath("../Ico0")
 mouse_filter = 1
 icon = ExtResource("21_t3ix0")
 script = ExtResource("8_ebijr")
@@ -399,10 +317,6 @@ IconCode = 49
 [node name="Ico2" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconHintNpc_0"
-focus_neighbor_left = NodePath("../Ico1")
-focus_neighbor_right = NodePath("../Ico3")
-focus_next = NodePath("../Ico3")
-focus_previous = NodePath("../Ico1")
 mouse_filter = 1
 icon = ExtResource("22_ajn4x")
 script = ExtResource("8_ebijr")
@@ -411,10 +325,6 @@ IconCode = 50
 [node name="Ico3" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconPoetter_0"
-focus_neighbor_left = NodePath("../Ico2")
-focus_neighbor_right = NodePath("../Ico10")
-focus_next = NodePath("../Ico10")
-focus_previous = NodePath("../Ico2")
 mouse_filter = 1
 icon = ExtResource("23_5re5o")
 script = ExtResource("8_ebijr")
@@ -423,10 +333,6 @@ IconCode = 51
 [node name="Ico10" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconStar_0"
-focus_neighbor_left = NodePath("../Ico3")
-focus_neighbor_right = NodePath("../Ico11")
-focus_next = NodePath("../Ico11")
-focus_previous = NodePath("../Ico3")
 mouse_filter = 1
 icon = ExtResource("30_7lrs0")
 script = ExtResource("8_ebijr")
@@ -435,10 +341,6 @@ IconCode = 53
 [node name="Ico11" type="Button" parent="Scroll/VBox/Icon"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconStarDotted_0"
-focus_neighbor_left = NodePath("../Ico10")
-focus_neighbor_right = NodePath("../Ico6")
-focus_next = NodePath("../../Shine/Shine0")
-focus_previous = NodePath("../Ico10")
 mouse_filter = 1
 icon = ExtResource("31_ih4oj")
 script = ExtResource("8_ebijr")
@@ -458,16 +360,19 @@ horizontal_alignment = 1
 [node name="Shine" type="HBoxContainer" parent="Scroll/VBox"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 2
+theme_override_constants/separation = 0
 alignment = 1
+
+[node name="ShineDynamic" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_ShineIconCurrentWorld"
+mouse_filter = 1
+icon = ExtResource("33_2ev7k")
+script = ExtResource("33_5foj8")
 
 [node name="Shine0" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineCommon_0"
-focus_neighbor_left = NodePath("../Shine12")
-focus_neighbor_right = NodePath("../Shine1")
-focus_next = NodePath("../Shine1")
-focus_previous = NodePath("../../Icon/Ico11")
 mouse_filter = 1
 icon = ExtResource("32_ajep0")
 script = ExtResource("8_ebijr")
@@ -476,10 +381,6 @@ IconCode = 112
 [node name="Shine1" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSand_0"
-focus_neighbor_left = NodePath("../Shine0")
-focus_neighbor_right = NodePath("../Shine2")
-focus_next = NodePath("../Shine2")
-focus_previous = NodePath("../Shine0")
 mouse_filter = 1
 icon = ExtResource("33_ywntl")
 script = ExtResource("8_ebijr")
@@ -488,10 +389,6 @@ IconCode = 117
 [node name="Shine2" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineForest_0"
-focus_neighbor_left = NodePath("../Shine1")
-focus_neighbor_right = NodePath("../Shine3")
-focus_next = NodePath("../Shine3")
-focus_previous = NodePath("../Shine1")
 mouse_filter = 1
 icon = ExtResource("34_hy3eh")
 script = ExtResource("8_ebijr")
@@ -500,10 +397,6 @@ IconCode = 114
 [node name="Shine3" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineLake_0"
-focus_neighbor_left = NodePath("../Shine2")
-focus_neighbor_right = NodePath("../Shine4")
-focus_next = NodePath("../Shine4")
-focus_previous = NodePath("../Shine2")
 mouse_filter = 1
 icon = ExtResource("35_gsrts")
 script = ExtResource("8_ebijr")
@@ -512,10 +405,6 @@ IconCode = 119
 [node name="Shine4" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineCity_0"
-focus_neighbor_left = NodePath("../Shine3")
-focus_neighbor_right = NodePath("../Shine5")
-focus_next = NodePath("../Shine5")
-focus_previous = NodePath("../Shine3")
 mouse_filter = 1
 icon = ExtResource("36_1ax18")
 script = ExtResource("8_ebijr")
@@ -524,10 +413,6 @@ IconCode = 113
 [node name="Shine5" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSea_0"
-focus_neighbor_left = NodePath("../Shine4")
-focus_neighbor_right = NodePath("../Shine6")
-focus_next = NodePath("../Shine6")
-focus_previous = NodePath("../Shine4")
 mouse_filter = 1
 icon = ExtResource("37_nkrjl")
 script = ExtResource("8_ebijr")
@@ -536,10 +421,6 @@ IconCode = 120
 [node name="Shine6" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSnow_0"
-focus_neighbor_left = NodePath("../Shine5")
-focus_neighbor_right = NodePath("../Shine7")
-focus_next = NodePath("../Shine7")
-focus_previous = NodePath("../Shine5")
 mouse_filter = 1
 icon = ExtResource("38_hblcb")
 script = ExtResource("8_ebijr")
@@ -548,10 +429,6 @@ IconCode = 116
 [node name="Shine7" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineLava_0"
-focus_neighbor_left = NodePath("../Shine6")
-focus_neighbor_right = NodePath("../Shine8")
-focus_next = NodePath("../Shine8")
-focus_previous = NodePath("../Shine6")
 mouse_filter = 1
 icon = ExtResource("39_3tiif")
 script = ExtResource("8_ebijr")
@@ -560,10 +437,6 @@ IconCode = 118
 [node name="Shine8" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSky_0"
-focus_neighbor_left = NodePath("../Shine7")
-focus_neighbor_right = NodePath("../Shine9")
-focus_next = NodePath("../Shine9")
-focus_previous = NodePath("../Shine7")
 mouse_filter = 1
 icon = ExtResource("40_5o6bi")
 script = ExtResource("8_ebijr")
@@ -572,10 +445,6 @@ IconCode = 115
 [node name="Shine9" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineMoon_0"
-focus_neighbor_left = NodePath("../Shine8")
-focus_neighbor_right = NodePath("../Shine10")
-focus_next = NodePath("../Shine10")
-focus_previous = NodePath("../Shine8")
 mouse_filter = 1
 icon = ExtResource("41_bux5u")
 script = ExtResource("8_ebijr")
@@ -584,10 +453,6 @@ IconCode = 121
 [node name="Shine10" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineRainbow_0"
-focus_neighbor_left = NodePath("../Shine9")
-focus_neighbor_right = NodePath("../Shine11")
-focus_next = NodePath("../Shine11")
-focus_previous = NodePath("../Shine9")
 mouse_filter = 1
 icon = ExtResource("42_plh7m")
 script = ExtResource("8_ebijr")
@@ -596,10 +461,6 @@ IconCode = 122
 [node name="Shine11" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineNull_0"
-focus_neighbor_left = NodePath("../Shine10")
-focus_neighbor_right = NodePath("../Shine12")
-focus_next = NodePath("../Shine12")
-focus_previous = NodePath("../Shine10")
 mouse_filter = 1
 icon = ExtResource("43_b7eje")
 script = ExtResource("8_ebijr")
@@ -608,10 +469,6 @@ IconCode = 123
 [node name="Shine12" type="Button" parent="Scroll/VBox/Shine"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineTripleDot_0"
-focus_neighbor_left = NodePath("../Shine11")
-focus_neighbor_right = NodePath("../Shine0")
-focus_next = NodePath("../../CC/CC0")
-focus_previous = NodePath("../Shine11")
 mouse_filter = 1
 icon = ExtResource("44_dgjw8")
 script = ExtResource("8_ebijr")
@@ -631,16 +488,20 @@ horizontal_alignment = 1
 [node name="CC" type="HBoxContainer" parent="Scroll/VBox"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 2
+theme_override_constants/separation = 0
 alignment = 1
+
+[node name="CCDynamic" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_CoinCollectIconCurrentWorld"
+mouse_filter = 1
+icon = ExtResource("48_kkwak")
+script = ExtResource("33_5foj8")
+IconCode = 1
 
 [node name="CC0" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
-focus_neighbor_left = NodePath("../CC12")
-focus_neighbor_right = NodePath("../CC1")
-focus_next = NodePath("../CC1")
-focus_previous = NodePath("../../Shine/Shine12")
 mouse_filter = 1
 icon = ExtResource("45_2uxgu")
 script = ExtResource("8_ebijr")
@@ -649,10 +510,6 @@ IconCode = 80
 [node name="CC1" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectWaterfall_0"
-focus_neighbor_left = NodePath("../CC0")
-focus_neighbor_right = NodePath("../CC2")
-focus_next = NodePath("../CC2")
-focus_previous = NodePath("../CC0")
 mouse_filter = 1
 icon = ExtResource("46_202xv")
 script = ExtResource("8_ebijr")
@@ -661,10 +518,6 @@ IconCode = 81
 [node name="CC2" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSand_0"
-focus_neighbor_left = NodePath("../CC1")
-focus_neighbor_right = NodePath("../CC4")
-focus_next = NodePath("../CC4")
-focus_previous = NodePath("../CC1")
 mouse_filter = 1
 icon = ExtResource("47_uo68l")
 script = ExtResource("8_ebijr")
@@ -673,10 +526,6 @@ IconCode = 82
 [node name="CC4" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectForest_0"
-focus_neighbor_left = NodePath("../CC2")
-focus_neighbor_right = NodePath("../CC3")
-focus_next = NodePath("../CC3")
-focus_previous = NodePath("../CC2")
 mouse_filter = 1
 icon = ExtResource("48_uw45n")
 script = ExtResource("8_ebijr")
@@ -685,10 +534,6 @@ IconCode = 83
 [node name="CC3" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectLake_0"
-focus_neighbor_left = NodePath("../CC4")
-focus_neighbor_right = NodePath("../CC5")
-focus_next = NodePath("../CC5")
-focus_previous = NodePath("../CC4")
 mouse_filter = 1
 icon = ExtResource("49_0lwds")
 script = ExtResource("8_ebijr")
@@ -697,10 +542,6 @@ IconCode = 84
 [node name="CC5" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectClash_0"
-focus_neighbor_left = NodePath("../CC3")
-focus_neighbor_right = NodePath("../CC6")
-focus_next = NodePath("../CC6")
-focus_previous = NodePath("../CC3")
 mouse_filter = 1
 icon = ExtResource("50_btfn1")
 script = ExtResource("8_ebijr")
@@ -709,10 +550,6 @@ IconCode = 85
 [node name="CC6" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectCity_0"
-focus_neighbor_left = NodePath("../CC5")
-focus_neighbor_right = NodePath("../CC7")
-focus_next = NodePath("../CC7")
-focus_previous = NodePath("../CC5")
 mouse_filter = 1
 icon = ExtResource("51_32cwk")
 script = ExtResource("8_ebijr")
@@ -721,10 +558,6 @@ IconCode = 86
 [node name="CC7" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSea_0"
-focus_neighbor_left = NodePath("../CC6")
-focus_neighbor_right = NodePath("../CC8")
-focus_next = NodePath("../CC8")
-focus_previous = NodePath("../CC6")
 mouse_filter = 1
 icon = ExtResource("52_ijsi0")
 script = ExtResource("8_ebijr")
@@ -733,10 +566,6 @@ IconCode = 87
 [node name="CC8" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSnow_0"
-focus_neighbor_left = NodePath("../CC7")
-focus_neighbor_right = NodePath("../CC9")
-focus_next = NodePath("../CC9")
-focus_previous = NodePath("../CC7")
 mouse_filter = 1
 icon = ExtResource("53_phvj7")
 script = ExtResource("8_ebijr")
@@ -745,10 +574,6 @@ IconCode = 88
 [node name="CC9" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectLava_0"
-focus_neighbor_left = NodePath("../CC8")
-focus_neighbor_right = NodePath("../CC10")
-focus_next = NodePath("../CC10")
-focus_previous = NodePath("../CC8")
 mouse_filter = 1
 icon = ExtResource("54_74ynm")
 script = ExtResource("8_ebijr")
@@ -757,10 +582,6 @@ IconCode = 89
 [node name="CC10" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSky_0"
-focus_neighbor_left = NodePath("../CC9")
-focus_neighbor_right = NodePath("../CC11")
-focus_next = NodePath("../CC11")
-focus_previous = NodePath("../CC9")
 mouse_filter = 1
 icon = ExtResource("55_wddas")
 script = ExtResource("8_ebijr")
@@ -769,10 +590,6 @@ IconCode = 90
 [node name="CC11" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectMoon_0"
-focus_neighbor_left = NodePath("../CC10")
-focus_neighbor_right = NodePath("../CC12")
-focus_next = NodePath("../CC12")
-focus_previous = NodePath("../CC10")
 mouse_filter = 1
 icon = ExtResource("56_8hk4x")
 script = ExtResource("8_ebijr")
@@ -781,10 +598,6 @@ IconCode = 91
 [node name="CC12" type="Button" parent="Scroll/VBox/CC"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectPeach_0"
-focus_neighbor_left = NodePath("../CC11")
-focus_neighbor_right = NodePath("../CC0")
-focus_next = NodePath("../../Treasure/Wed0")
-focus_previous = NodePath("../CC11")
 mouse_filter = 1
 icon = ExtResource("57_bcw7y")
 script = ExtResource("8_ebijr")
@@ -810,10 +623,6 @@ alignment = 1
 [node name="Wed0" type="Button" parent="Scroll/VBox/Treasure"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureRing_0"
-focus_neighbor_left = NodePath("../Wed5")
-focus_neighbor_right = NodePath("../Wed1")
-focus_next = NodePath("../Wed1")
-focus_previous = NodePath("../../CC/CC12")
 mouse_filter = 1
 icon = ExtResource("5_532jh")
 script = ExtResource("8_ebijr")
@@ -822,10 +631,6 @@ IconCode = 96
 [node name="Wed1" type="Button" parent="Scroll/VBox/Treasure"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureFlower_0"
-focus_neighbor_left = NodePath("../Wed0")
-focus_neighbor_right = NodePath("../Wed2")
-focus_next = NodePath("../Wed2")
-focus_previous = NodePath("../Wed0")
 mouse_filter = 1
 icon = ExtResource("59_6vhuf")
 script = ExtResource("8_ebijr")
@@ -834,10 +639,6 @@ IconCode = 97
 [node name="Wed2" type="Button" parent="Scroll/VBox/Treasure"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureDress_0"
-focus_neighbor_left = NodePath("../Wed1")
-focus_neighbor_right = NodePath("../Wed3")
-focus_next = NodePath("../Wed3")
-focus_previous = NodePath("../Wed1")
 mouse_filter = 1
 icon = ExtResource("60_we171")
 script = ExtResource("8_ebijr")
@@ -846,10 +647,6 @@ IconCode = 98
 [node name="Wed3" type="Button" parent="Scroll/VBox/Treasure"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureWater_0"
-focus_neighbor_left = NodePath("../Wed2")
-focus_neighbor_right = NodePath("../Wed4")
-focus_next = NodePath("../Wed4")
-focus_previous = NodePath("../Wed2")
 mouse_filter = 1
 icon = ExtResource("61_lfmcn")
 script = ExtResource("8_ebijr")
@@ -858,10 +655,6 @@ IconCode = 99
 [node name="Wed4" type="Button" parent="Scroll/VBox/Treasure"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureCake_0"
-focus_neighbor_left = NodePath("../Wed3")
-focus_neighbor_right = NodePath("../Wed5")
-focus_next = NodePath("../Wed5")
-focus_previous = NodePath("../Wed3")
 mouse_filter = 1
 icon = ExtResource("62_4347m")
 script = ExtResource("8_ebijr")
@@ -870,10 +663,6 @@ IconCode = 100
 [node name="Wed5" type="Button" parent="Scroll/VBox/Treasure"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureStew_0"
-focus_neighbor_left = NodePath("../Wed4")
-focus_neighbor_right = NodePath("../Wed0")
-focus_next = NodePath("../../Special/Sp0")
-focus_previous = NodePath("../Wed4")
 mouse_filter = 1
 icon = ExtResource("63_j0dw2")
 script = ExtResource("8_ebijr")
@@ -899,10 +688,6 @@ alignment = 1
 [node name="Sp0" type="Button" parent="Scroll/VBox/Special"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphDot_0"
-focus_neighbor_left = NodePath("../Sp4")
-focus_neighbor_right = NodePath("../Sp1")
-focus_next = NodePath("../Sp1")
-focus_previous = NodePath("../../Treasure/Wed5")
 mouse_filter = 1
 icon = ExtResource("64_jhbiy")
 script = ExtResource("8_ebijr")
@@ -910,10 +695,6 @@ script = ExtResource("8_ebijr")
 [node name="Sp1" type="Button" parent="Scroll/VBox/Special"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphSlash_0"
-focus_neighbor_left = NodePath("../Sp0")
-focus_neighbor_right = NodePath("../Sp2")
-focus_next = NodePath("../Sp2")
-focus_previous = NodePath("../Sp0")
 mouse_filter = 1
 icon = ExtResource("65_d3qkq")
 script = ExtResource("8_ebijr")
@@ -922,10 +703,6 @@ IconCode = 47
 [node name="Sp2" type="Button" parent="Scroll/VBox/Special"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_1"
-focus_neighbor_left = NodePath("../Sp1")
-focus_neighbor_right = NodePath("../Sp3")
-focus_next = NodePath("../Sp3")
-focus_previous = NodePath("../Sp1")
 mouse_filter = 1
 icon = ExtResource("5_kw43j")
 script = ExtResource("8_ebijr")
@@ -935,10 +712,6 @@ VersionRequirement = 1
 [node name="Sp3" type="Button" parent="Scroll/VBox/Special"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_2"
-focus_neighbor_left = NodePath("../Sp2")
-focus_neighbor_right = NodePath("../Sp4")
-focus_next = NodePath("../Sp4")
-focus_previous = NodePath("../Sp2")
 mouse_filter = 1
 icon = ExtResource("67_81642")
 script = ExtResource("8_ebijr")
@@ -948,9 +721,6 @@ VersionRequirement = 2
 [node name="Sp4" type="Button" parent="Scroll/VBox/Special"]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
-focus_neighbor_left = NodePath("../Sp3")
-focus_neighbor_right = NodePath("../Sp0")
-focus_previous = NodePath("../Sp3")
 mouse_filter = 1
 icon = ExtResource("5_7plfe")
 script = ExtResource("8_ebijr")
@@ -960,6 +730,10 @@ VersionRequirement = 2
 [node name="HSep_End" type="HSeparator" parent="Scroll/VBox"]
 layout_mode = 2
 mouse_filter = 1
+
+[node name="TagMenuFocusNeighborBuilder" type="Node" parent="." node_paths=PackedStringArray("Rows")]
+script = ExtResource("73_u0nap")
+Rows = [NodePath("../Scroll/VBox/Character"), NodePath("../Scroll/VBox/Icon"), NodePath("../Scroll/VBox/Shine"), NodePath("../Scroll/VBox/CC"), NodePath("../Scroll/VBox/Treasure"), NodePath("../Scroll/VBox/Special")]
 
 [connection signal="SelectedTag" from="Scroll/VBox/Character/Char0" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Character/Char1" to="." method="OnTagSelected"]
@@ -987,6 +761,7 @@ mouse_filter = 1
 [connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico3" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico10" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico11" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/ShineDynamic" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine0" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine1" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine2" to="." method="OnTagSelected"]
@@ -1000,6 +775,7 @@ mouse_filter = 1
 [connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine10" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine11" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine12" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CCDynamic" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/CC/CC0" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/CC/CC1" to="." method="OnTagSelected"]
 [connection signal="SelectedTag" from="Scroll/VBox/CC/CC2" to="." method="OnTagSelected"]

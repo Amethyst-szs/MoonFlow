@@ -1,7 +1,10 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using Nindot;
+using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Project;
 
@@ -12,6 +15,8 @@ public class ProjectLanguageHolder
     public SarcFile SystemMessage = null;
     public SarcFile StageMessage = null;
     public SarcFile LayoutMessage = null;
+
+    public ProjectIconResolver ProjectIconResolver { get; private set; } = null;
 
     public ProjectLanguageMetaHolder Metadata { get; private set; } = null;
 
@@ -32,6 +37,8 @@ public class ProjectLanguageHolder
         InitArchive(ref SystemMessage, Path + "SystemMessage.szs", localPath);
         InitArchive(ref StageMessage, Path + "StageMessage.szs", localPath);
         InitArchive(ref LayoutMessage, Path + "LayoutMessage.szs", localPath);
+
+        InitProjectIconResolver();
 
         // Init metadata
         Metadata = new(Path + ".mfmeta");
@@ -54,6 +61,20 @@ public class ProjectLanguageHolder
 
         // Read archive from path
         file = SarcFile.FromFilePath(filePath);
+    }
+
+    private void InitProjectIconResolver()
+    {
+        const string style = "PadStyle.msbt";
+        const string pair = "PadPair.msbt";
+
+        if (!SystemMessage.Content.TryGetValue(style, out ArraySegment<byte> byteStyle))
+            throw new SarcFileException("SystemMessage missing key " + style);
+        
+        if (!SystemMessage.Content.TryGetValue(pair, out ArraySegment<byte> bytePair))
+            throw new SarcFileException("SystemMessage missing key " + pair);
+        
+        ProjectIconResolver = ProjectIconResolver.FromPadStyleAndPadPair([.. byteStyle], [.. bytePair]);
     }
 
     // ====================================================== //

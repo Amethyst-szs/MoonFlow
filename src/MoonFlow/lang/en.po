@@ -394,6 +394,10 @@ msgid "PICTURE_FONT_HEADER_SHINE"
 msgstr "Power Moon"
 
 #: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PROJECT_TAG_TOOLTIP_ShineIconCurrentWorld"
+msgstr "Power Moon (Adaptive to Current Kingdom)"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineCommon_0"
 msgstr "Power Moon (Default)"
 
@@ -448,6 +452,10 @@ msgstr "Power Moon Count Abbreviation"
 #: ninode/lms/msbt/tag/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_HEADER_COIN_COLLECT"
 msgstr "Purple Coins"
+
+#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
+msgid "PROJECT_TAG_TOOLTIP_CoinCollectIconCurrentWorld"
+msgstr "Purple Coin (Adaptive to Current Kingdom)"
 
 #: ninode/lms/msbt/tag/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
@@ -568,3 +576,331 @@ msgstr "This file has unsaved changes, are you sure you'd like to close?"
 #: scene/common/dialog/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
 msgstr "Go back!!"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_PREVIEW"
+msgstr "Preview:"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_DUAL"
+msgstr "Joy-Con"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_HANDHELD"
+msgstr "Handheld"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_FULLKEY"
+msgstr "Pro Controller"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_LEFT"
+msgstr "Left Joy-Con"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_RIGHT"
+msgstr "Right Joy-Con"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_BUTTON"
+msgstr "Dynamic Controller Buttons"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonA"
+msgstr "A Button / Right Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonB"
+msgstr "B Button / Bottom Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonX"
+msgstr "X Button / Top Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonY"
+msgstr "Y Button / Left Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonL"
+msgstr "L Button / SL Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonR"
+msgstr "R Button / SR Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZL"
+msgstr "ZL Button / SL Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZR"
+msgstr "ZR Button / SR Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonPlus"
+msgstr "Plus Button (Left Joy-Con Minus)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonMinus"
+msgstr "Minus Button (Right Joy-Con Plus)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_DIRECTIONAL"
+msgstr "Dynamic Direction Input"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyLeft"
+msgstr "D-Pad Left"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyRight"
+msgstr "D-Pad Right"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyUp"
+msgstr "D-Pad Up"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyDown"
+msgstr "D-Pad Down"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickL"
+msgstr "Control Stick (Left)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickR"
+msgstr "Control Stick (Right)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickPushR"
+msgstr "Press Stick (Right)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickUD"
+msgstr "Control Stick Up & Down (Left Stick)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickLR"
+msgstr "Control Stick Left & Right (Right Stick)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_DEVICE"
+msgstr "Dynamic Input Device & Other Buttons"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyCon"
+msgstr "Current Controller with Name"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConIconOnly"
+msgstr "Current Controller"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConR"
+msgstr "Singular Current Controller"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonCapture"
+msgstr "Screenshot Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleReset"
+msgstr "Reset Camera"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_SPECIAL"
+msgstr "Dynamic Special Icons"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyle2PButtonY"
+msgstr "2-Player Y Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickL"
+msgstr "2-Player Control Stick (Left)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickR"
+msgstr "2-Player Control Stick (Right)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadPairMenu"
+msgstr "2-Player Menu Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadPairMap"
+msgstr "2-Player Map Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_BUTTON"
+msgstr "Buttons"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonA"
+msgstr "A Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonB"
+msgstr "B Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonX"
+msgstr "X Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonY"
+msgstr "Y Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonL"
+msgstr "L Bumper"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonR"
+msgstr "R Bumper"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonZL"
+msgstr "ZL Trigger"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonZR"
+msgstr "ZR Trigger"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonSL"
+msgstr "SL Bumper"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonSR"
+msgstr "SR Bumper"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonPlus"
+msgstr "Plus Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonMinus"
+msgstr "Minus Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_DPAD"
+msgstr "D-Pad"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupLeft"
+msgstr "Left (Separated D-Pad)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupRight"
+msgstr "Right (Separated D-Pad)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupUp"
+msgstr "Up (Separated D-Pad)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupBottom"
+msgstr "Down (Separated D-Pad)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonLR"
+msgstr "Left + Right (Separated D-Pad)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonLeft"
+msgstr "Left Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonRight"
+msgstr "Right Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonUp"
+msgstr "Up Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonDown"
+msgstr "Down Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_STICK"
+msgstr "Control Sticks"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_Stick"
+msgstr "Control Stick"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickPush"
+msgstr "Press Stick"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickUD"
+msgstr "Stick Up & Down"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickL"
+msgstr "Left Control Stick"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickPushL"
+msgstr "Press Left Stick"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickUDL"
+msgstr "Left Stick Up & Down"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickR"
+msgstr "Right Control Stick"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickPushR"
+msgstr "Right Press Stick"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickLRR"
+msgstr "Right Stick Left & Right"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_DEVICE"
+msgstr "System Buttons & Input Devices"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonPower"
+msgstr "Power Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonHome"
+msgstr "Home Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonCapture"
+msgstr "Screenshot Button"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ArrowRight"
+msgstr "Right-Pointing Arrow"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_Album"
+msgstr "Album"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_JoyConBoth"
+msgstr "Joy-Con Pair"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_JoyConRight"
+msgstr "Joy-Con (Right)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_JoyConSingle"
+msgstr "Joy-Con (Single)"
+
+#: ninode/lms/msbt/tag/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ProCon"
+msgstr "Pro Controller"

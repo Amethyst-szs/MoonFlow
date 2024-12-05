@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://drb6gmpl7tvlm"]
 
 [ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagWheel.cs" id="1_oonfm"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/component/TagWheelButton.cs" id="2_q0x4n"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag/wheel/TagWheelButton.cs" id="2_q0x4n"]
 [ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="3_o1tnp"]
 [ext_resource type="Texture2D" uid="uid://oqgt2610i76c" path="res://asset/nindot/lms/icon/System_Font.png" id="5_78y0d"]
 [ext_resource type="Texture2D" uid="uid://b0u2t701xuf8f" path="res://asset/nindot/lms/icon/TextAlign_Center.png" id="5_7800c"]
@@ -38,8 +38,8 @@ script = ExtResource("1_oonfm")
 
 [node name="System_Font" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
 mouse_default_cursor_shape = 2
 flat = true
@@ -50,8 +50,8 @@ Texture = ExtResource("5_78y0d")
 [node name="System_FontSize" type="Button" parent="."]
 layout_mode = 0
 offset_top = -1.0
-offset_right = 56.0
-offset_bottom = 55.0
+offset_right = 48.0
+offset_bottom = 47.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
 mouse_default_cursor_shape = 2
 flat = true
@@ -61,8 +61,8 @@ Texture = ExtResource("5_e036j")
 
 [node name="TextAlign" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
 mouse_default_cursor_shape = 2
 flat = true
@@ -72,8 +72,8 @@ Texture = ExtResource("5_7800c")
 
 [node name="Eui_Speed" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_EUI_SPEED"
 mouse_default_cursor_shape = 2
 flat = true
@@ -83,8 +83,8 @@ Texture = ExtResource("6_sivq6")
 
 [node name="Eui_Wait" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_EUI_WAIT"
 mouse_default_cursor_shape = 2
 flat = true
@@ -94,8 +94,8 @@ Texture = ExtResource("7_71bop")
 
 [node name="TextAnim" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
 mouse_default_cursor_shape = 2
 flat = true
@@ -105,8 +105,8 @@ Texture = ExtResource("8_j2qy4")
 
 [node name="More" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 36.0
+offset_bottom = 36.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_MORE"
 mouse_default_cursor_shape = 2
 flat = true
@@ -116,8 +116,8 @@ Texture = ExtResource("9_mnk0o")
 
 [node name="Voice" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
 mouse_default_cursor_shape = 2
 flat = true
@@ -127,8 +127,8 @@ Texture = ExtResource("10_ntb4m")
 
 [node name="ProjectTag" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
 mouse_default_cursor_shape = 2
 flat = true
@@ -138,8 +138,8 @@ Texture = ExtResource("11_t372d")
 
 [node name="DeviceFont" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 65.0
+offset_bottom = 66.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_DEVICE_FONT"
 mouse_default_cursor_shape = 2
 flat = true
@@ -149,8 +149,8 @@ Texture = ExtResource("10_jy1my")
 
 [node name="PictureFont" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 67.0
+offset_bottom = 67.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
 mouse_default_cursor_shape = 2
 flat = true
@@ -160,8 +160,8 @@ Texture = ExtResource("9_jdkcm")
 
 [node name="System_Color" type="Button" parent="."]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_right = 48.0
+offset_bottom = 48.0
 tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
 mouse_default_cursor_shape = 2
 flat = true

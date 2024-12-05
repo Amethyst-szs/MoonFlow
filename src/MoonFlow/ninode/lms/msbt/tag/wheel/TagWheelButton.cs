@@ -84,7 +84,7 @@ public partial class TagWheelButton : Button
 				OpenSubmenu<TagSubmenuPictureFont>();
 				return;
 			case ButtonTypes.Tag_DeviceFont:
-				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementDeviceFont(TagNameDeviceFont.ButtonA))]);
+				OpenSubmenu<TagSubmenuDeviceFont>();
 				return;
 			case ButtonTypes.Tag_TextAlign:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementTextAlign())]);

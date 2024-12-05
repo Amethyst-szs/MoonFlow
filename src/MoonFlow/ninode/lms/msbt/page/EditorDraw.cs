@@ -3,6 +3,7 @@ using Godot;
 using MoonFlow.Project;
 
 using Nindot.LMS.Msbt.TagLib;
+using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -11,6 +12,8 @@ public partial class MsbtPageEditor : TextEdit
     private const string TextureDirectory = "res://asset/nindot/lms/icon/";
     private Dictionary<string, Texture2D> TagTextureTable = [];
     private Texture2D UnknownTagTexture = null;
+
+    private ProjectIconResolver ProjectTagIconResolver = ProjectManager.GetMSBTArchives().ProjectIconResolver;
 
     public override void _Draw()
     {
@@ -74,8 +77,23 @@ public partial class MsbtPageEditor : TextEdit
 
     public Texture2D GetTagTexture(MsbtTagElement tag)
     {
+        // Get texture name from either the tag or icon resolver
+        string textureName;
+
+        if (tag is not MsbtTagElementProjectTag)
+            textureName = tag.GetTextureName((int)ProjectManager.GetProjectVersion());
+        else
+        {
+            textureName = tag.GetTextureName(0);
+            List<string> texList = ProjectTagIconResolver.ResolveTextureNames(textureName);
+
+            if (texList.Count == 0)
+                return null;
+
+            textureName = texList[0];
+        }
+
         // If this texture doesn't exist in the tag table, add it
-        string textureName = tag.GetTextureName((int)ProjectManager.GetProjectVersion());
         TryRegisterTagTexture(textureName);
 
         // Get the texture and return texture if successful

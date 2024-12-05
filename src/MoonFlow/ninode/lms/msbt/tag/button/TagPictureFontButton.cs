@@ -8,8 +8,8 @@ using Nindot.Al.SMO;
 
 namespace MoonFlow.LMS.Msbt;
 
-[GlobalClass, Tool, Icon("res://asset/nindot/lms/icon/Number_Score.png")]
-public partial class TagPictureFontButton : Button
+[GlobalClass, Tool, Icon("res://asset/nindot/lms/icon/PictureFont_40.png")]
+public partial class TagPictureFontButton : TagInsertButtonBase
 {
     private IconCodePictureFont _iconCode = IconCodePictureFont.GlyphDot;
 
@@ -34,19 +34,9 @@ public partial class TagPictureFontButton : Button
     [Export(PropertyHint.Enum, "Any Version:0,Before 1.2.0:1,After 1.2.0:2")]
     public int VersionRequirement;
 
-    [Export]
-    public bool IsAutograbFocus = false;
-
-    [Signal]
-    public delegate void SelectedTagEventHandler(TagWheelTagResult tag);
-
-    private const string TexturePath = "res://asset/nindot/lms/icon/";
-
     public override void _Ready()
     {
-        // Check if focus should be grabbed
-        if (IsAutograbFocus)
-            GrabFocus();
+        base._Ready();
 
         // Ensure this node is allowed to exist given the current project version
         var proj = ProjectManager.GetProject();
@@ -55,16 +45,27 @@ public partial class TagPictureFontButton : Button
 
         var ver = (int)proj.Config.Version;
         if (VersionRequirement == 1 && ver >= (int)RomfsValidation.RomfsVersion.v120)
-            QueueFree();
+            QueueDeleteButton();
 
         if (VersionRequirement == 2 && ver < (int)RomfsValidation.RomfsVersion.v120)
-            QueueFree();
+            QueueDeleteButton();
     }
 
     public override void _Pressed()
     {
         var tag = new MsbtTagElementPictureFont(IconCode);
         EmitSignal(SignalName.SelectedTag, [new TagWheelTagResult(tag)]);
+    }
+
+    private void QueueDeleteButton()
+    {
+        GetParent().Ready += DeleteButton;
+    }
+
+    private void DeleteButton()
+    {
+        GetParent().RemoveChild(this);
+        QueueFree();
     }
 
     // ====================================================== //
@@ -82,7 +83,7 @@ public partial class TagPictureFontButton : Button
         VersionRequirement = 0;
     }
 
-    private Texture2D GetIconTexture(IconCodePictureFont code)
+    private static Texture2D GetIconTexture(IconCodePictureFont code)
     {
         var tag = new MsbtTagElementPictureFont(code);
         return GD.Load<Texture2D>(TexturePath + tag.GetTextureName(100) + ".png");

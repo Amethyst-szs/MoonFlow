@@ -14,7 +14,7 @@ public partial class MsbtFile(MsbtElementFactory factory, byte[] data, string na
     // ============ Parameters and Initilization ============ //
     // ====================================================== //
     internal readonly MsbtElementFactory Factory = factory;
-    internal OrderedDictionary<string, MsbtEntry> Content = [];
+    protected OrderedDictionary<string, MsbtEntry> Content = [];
 
     private BlockHashTable BlockLabels = null;
     private BlockText BlockText = null;
