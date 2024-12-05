@@ -552,3 +552,19 @@ msgstr "Luigi's Balloon World Hint Arrow"
 #: ninode/lms/msbt/tag/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
 msgstr "Star (Small)"
+
+#: scene/common/dialog/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_TITLE"
+msgstr "Unsaved Changes!"
+
+#: scene/common/dialog/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_OK"
+msgstr "Yes I'm sure"
+
+#: scene/common/dialog/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_TEXT"
+msgstr "This file has unsaved changes, are you sure you'd like to close?"
+
+#: scene/common/dialog/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
+msgstr "Go back!!"

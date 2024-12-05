@@ -1,0 +1,52 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dd65oednyc051"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_ra4hm"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="2_i3eh8"]
+[ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="3_uvpqs"]
+[ext_resource type="StyleBox" uid="uid://bs7cbsqc1muw5" path="res://asset/theme/common/stylebox/common_button_hover.tres" id="4_4la0p"]
+[ext_resource type="StyleBox" uid="uid://b6uxtqriwct6l" path="res://asset/theme/common/stylebox/common_button_pressed_hover.tres" id="5_e0274"]
+[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="6_nwr7b"]
+[ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/common/stylebox/common_button_pressed.tres" id="7_l8yae"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25x5c"]
+bg_color = Color(0.0784314, 0.137255, 0.176471, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.99, 0.79992, 0.2772, 0.52549)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+expand_margin_left = 20.0
+expand_margin_top = 40.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tveer"]
+content_margin_left = 10.0
+content_margin_top = 12.0
+content_margin_right = 10.0
+content_margin_bottom = 12.0
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_detail = 6
+
+[resource]
+AcceptDialog/constants/title_height = 30
+AcceptDialog/fonts/title_font = ExtResource("1_ra4hm")
+AcceptDialog/styles/embedded_border = SubResource("StyleBoxFlat_25x5c")
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_tveer")
+Button/constants/icon_max_width = 28
+Button/fonts/font = ExtResource("2_i3eh8")
+Button/styles/focus = ExtResource("3_uvpqs")
+Button/styles/hover = ExtResource("4_4la0p")
+Button/styles/hover_pressed = ExtResource("5_e0274")
+Button/styles/normal = ExtResource("6_nwr7b")
+Button/styles/pressed = ExtResource("7_l8yae")
+Label/fonts/font = ExtResource("2_i3eh8")

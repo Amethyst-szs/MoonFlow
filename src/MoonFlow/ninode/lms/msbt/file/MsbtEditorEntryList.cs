@@ -11,6 +11,7 @@ public partial class MsbtEditor : PanelContainer
     [Signal]
     public delegate void AddNewEntryValidityEventHandler(bool isValid);
 
+    public bool IsModified { get; private set; } = false;
     private static readonly Texture2D ModifiedTexture = GD.Load<Texture2D>("res://asset/material/file/modify.svg");
 
     private Button CreateEntryListButton(string label, bool isSort = false)
@@ -151,6 +152,9 @@ public partial class MsbtEditor : PanelContainer
 
     private void OnEntryModified(MsbtEntryEditor entryEditor)
     {
+        // Set flag
+        IsModified = true;
+
         // Update entry button to have modified icon texture
         var entry = entryEditor.Entry;
         var entryButton = EntryList.GetNode<Button>(entry.Name);
@@ -162,4 +166,6 @@ public partial class MsbtEditor : PanelContainer
         if (!FileTitleName.Text.EndsWith('*'))
             FileTitleName.Text += '*';
     }
+
+    public void ForceResetModifiedFlag() { IsModified = false; }
 }

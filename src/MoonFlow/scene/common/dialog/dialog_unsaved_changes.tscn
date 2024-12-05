@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4j4g3xghg0a5"]
+
+[ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_iymjq"]
+
+[sub_resource type="GDScript" id="GDScript_2mt0k"]
+script/source = "@tool
+extends ConfirmationDialog
+
+func _ready():
+	get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+"
+
+[node name="Dialog_UnsavedChanges" type="ConfirmationDialog"]
+auto_translate_mode = 1
+disable_3d = true
+title = "UNSAVED_CHANGES_DIALOG_TITLE"
+initial_position = 2
+size = Vector2i(708, 125)
+visible = true
+unresizable = true
+theme = ExtResource("1_iymjq")
+ok_button_text = "UNSAVED_CHANGES_DIALOG_OK"
+dialog_text = "UNSAVED_CHANGES_DIALOG_TEXT"
+cancel_button_text = "UNSAVED_CHANGES_DIALOG_CANCEL"
+script = SubResource("GDScript_2mt0k")

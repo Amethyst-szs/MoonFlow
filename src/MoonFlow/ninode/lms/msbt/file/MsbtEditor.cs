@@ -192,6 +192,9 @@ public partial class MsbtEditor : PanelContainer
 			var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
 			metadataAccessor.WriteMetadata();
 		}
+
+		// Reset flag
+		IsModified = false;
 	}
 
 	// ====================================================== //

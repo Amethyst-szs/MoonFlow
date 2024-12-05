@@ -42,4 +42,22 @@ public partial class AppMsbtEditor : AppScene
 		Editor.OpenFile(msgProject, TextFiles, lang);
 		return;
 	}
+
+    public override void AppClose(bool isEndExclusive = false)
+    {
+		if (!Editor.IsModified)
+		{
+        	base.AppClose(isEndExclusive);
+			return;
+		}
+
+		var dialog = GetNode<ConfirmationDialog>("%Dialog_UnsavedChanges");
+		dialog.Popup();
+    }
+
+	private void AppCloseDespiteUnsavedChanged()
+	{
+		Editor.ForceResetModifiedFlag();
+		AppClose();
+	}
 }
