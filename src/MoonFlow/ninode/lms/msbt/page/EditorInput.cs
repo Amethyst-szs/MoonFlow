@@ -65,7 +65,11 @@ public partial class MsbtPageEditor : TextEdit
 
         if (input.IsActionPressed("ui_edit_tag", false, true))
         {
-            TryOpenTagEdit(GetCharIndex(0));
+            var line = GetCaretLine();
+            var col = GetCaretColumn();
+            var pos = (Vector2I)GetCaretDrawPos();
+            
+            TryOpenTagEdit(GetCharIndex(line, col), pos);
         }
     }
 
@@ -96,7 +100,7 @@ public partial class MsbtPageEditor : TextEdit
         
         var charIdx = GetCharIndex(lc.Y, lc.X) + (isAddOne ? 1 : 0);
 
-        if (TryOpenTagEdit(charIdx))
+        if (TryOpenTagEdit(charIdx, mousePos))
             GetViewport().SetInputAsHandled();
     }
 

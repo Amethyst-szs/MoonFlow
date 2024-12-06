@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8srn6dq7mpi5"]
+
+[ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://ninode/lms/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_ul8b2"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag_edit/system/Font.cs" id="2_2cdeh"]
+[ext_resource type="Texture2D" uid="uid://dvgtjkam0851i" path="res://asset/nindot/lms/icon/DeviceFont_JoyConBoth.png" id="3_7udcy"]
+[ext_resource type="FontFile" uid="uid://baym28jc275tl" path="res://asset/font/FontHead.ttf" id="4_k51av"]
+[ext_resource type="Texture2D" uid="uid://bfqpjuvhoagci" path="res://asset/nindot/lms/icon/Icon16Font.png" id="5_04rcb"]
+[ext_resource type="Texture2D" uid="uid://bagxx0ehdxvjt" path="res://asset/nindot/lms/icon/PictureFont_4C.png" id="6_qaa12"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="7_g1t4o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y0tbb"]
+font_color = Color(0.67, 0.67, 0.67, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6not"]
+
+[node name="Font" instance=ExtResource("1_ul8b2")]
+title = "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT"
+size = Vector2i(965, 540)
+script = ExtResource("2_2cdeh")
+
+[node name="Label_CurrentHead" type="Label" parent="Panel/Content" index="0"]
+layout_mode = 2
+text = "TAG_EDIT_SCENE_FONT_LABEL_CURRENT:"
+label_settings = SubResource("LabelSettings_y0tbb")
+horizontal_alignment = 1
+
+[node name="HSepMini" type="HSeparator" parent="Panel/Content" index="1"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_j6not")
+
+[node name="Label_Current" type="Label" parent="Panel/Content" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HSep" type="HSeparator" parent="Panel/Content" index="3"]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Grid" type="GridContainer" parent="Panel/Content" index="4"]
+layout_mode = 2
+columns = 2
+
+[node name="Button4_Msg" type="Button" parent="Panel/Content/Grid" index="0"]
+layout_mode = 2
+text = "TAG_EDIT_SCENE_FONT_OPTION_Message"
+icon_alignment = 2
+
+[node name="Button7_Title" type="Button" parent="Panel/Content/Grid" index="1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_g1t4o")
+text = "TAG_EDIT_SCENE_FONT_OPTION_Title"
+icon_alignment = 2
+
+[node name="Button1_Head" type="Button" parent="Panel/Content/Grid" index="2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_k51av")
+text = "TAG_EDIT_SCENE_FONT_OPTION_Head"
+icon_alignment = 2
+
+[node name="Button5_Number" type="Button" parent="Panel/Content/Grid" index="3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_k51av")
+text = "TAG_EDIT_SCENE_FONT_OPTION_Number"
+icon_alignment = 2
+
+[node name="Button6_Picture" type="Button" parent="Panel/Content/Grid" index="4"]
+layout_mode = 2
+text = "TAG_EDIT_SCENE_FONT_OPTION_Picture"
+icon = ExtResource("6_qaa12")
+icon_alignment = 2
+
+[node name="Button0_Device" type="Button" parent="Panel/Content/Grid" index="5"]
+layout_mode = 2
+text = "TAG_EDIT_SCENE_FONT_OPTION_Device"
+icon = ExtResource("3_7udcy")
+icon_alignment = 2
+
+[node name="Button2_Icon16" type="Button" parent="Panel/Content/Grid" index="6"]
+layout_mode = 2
+text = "TAG_EDIT_SCENE_FONT_OPTION_Icon16"
+icon = ExtResource("5_04rcb")
+icon_alignment = 2
+
+[node name="Button3_Icon80" type="Button" parent="Panel/Content/Grid" index="7"]
+layout_mode = 2
+text = "TAG_EDIT_SCENE_FONT_OPTION_Icon80"
+icon_alignment = 2
+
+[connection signal="pressed" from="Panel/Content/Grid/Button4_Msg" to="." method="SetFont" binds= [4]]
+[connection signal="pressed" from="Panel/Content/Grid/Button7_Title" to="." method="SetFont" binds= [7]]
+[connection signal="pressed" from="Panel/Content/Grid/Button1_Head" to="." method="SetFont" binds= [1]]
+[connection signal="pressed" from="Panel/Content/Grid/Button5_Number" to="." method="SetFont" binds= [5]]
+[connection signal="pressed" from="Panel/Content/Grid/Button6_Picture" to="." method="SetFont" binds= [6]]
+[connection signal="pressed" from="Panel/Content/Grid/Button0_Device" to="." method="SetFont" binds= [0]]
+[connection signal="pressed" from="Panel/Content/Grid/Button2_Icon16" to="." method="SetFont" binds= [2]]
+[connection signal="pressed" from="Panel/Content/Grid/Button3_Icon80" to="." method="SetFont" binds= [3]]

@@ -3,7 +3,6 @@
 # res://scene/settings/romfs/path_display.tscn
 # res://scene/front_door/front_door.tscn
 # res://ninode/lms/msbt/file/msbt_editor.tscn
-# res://ninode/lms/msbt/tag/tag_wheel.tscn
 # res://ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
 # res://ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
 # res://scene/front_door/load/project_loading.tscn
@@ -12,11 +11,14 @@
 # res://ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
 # res://scene/home/home.tscn
 # res://scene/home/tab_msbt/tab_msbt.tscn
-# res://ninode/lms/msbt/tag/picture/submenu_pict.tscn
 # res://scene/common/dialog/dialog_unsaved_changes.tscn
-# res://ninode/lms/msbt/tag/device/submenu_device.tscn
 # res://async/translation_strings.gd
 # res://async/async_display.tscn
+# res://ninode/lms/msbt/tag_edit/default/fallback.tscn
+# res://ninode/lms/msbt/wheel/tag_wheel.tscn
+# res://ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+# res://ninode/lms/msbt/wheel/device/submenu_device.tscn
+# res://ninode/lms/msbt/tag_edit/system/font.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -124,64 +126,16 @@ msgstr ""
 msgid "MSBT_SEARCH_ENTRIES"
 msgstr ""
 
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "HELP_DIALOG_TITLE"
 msgstr ""
 
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "HELP_DIALOG_CLOSE"
 msgstr ""
 
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_SPEED"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_WAIT"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_DEVICE_FONT"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_GRAMMAR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_RUBY"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_STRING"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_TIME_COMPONENT"
+#: ninode/lms/msbt/file/msbt_editor.tscn
+msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
 msgstr ""
 
 #: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
@@ -277,290 +231,6 @@ msgstr ""
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr ""
 
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_HEADER_CHARACTERS"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconMario_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconMarioCapOff_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconLuigi_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconCap_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconCapManHero_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconFrog_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconPeach_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconTiara_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconPauline_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconKoopa_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconBoodalStacker_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconBoodalBombTail_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconBoodalFireBlower_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconBroodalCapThrower_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_HEADER_ICONS"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconCoin_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconLifeMaxUpItem_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconHomeShip_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconEarth_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconCheckpoint_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconAmiibo_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconMoonRock_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconAchivementNpc_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconHintNpc_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconPoetter_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconStar_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconStarDotted_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_HEADER_SHINE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PROJECT_TAG_TOOLTIP_ShineIconCurrentWorld"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineCommon_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineSand_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineForest_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineLake_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineCity_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineSea_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineSnow_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineLava_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineSky_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineMoon_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineRainbow_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineNull_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_ShineTripleDot_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_HEADER_COIN_COLLECT"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PROJECT_TAG_TOOLTIP_CoinCollectIconCurrentWorld"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectWaterfall_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectSand_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectForest_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectLake_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectClash_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectCity_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectSea_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectSnow_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectLava_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectSky_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectMoon_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_CoinCollectPeach_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_HEADER_WEDDING_TREASURE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_TreasureRing_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_TreasureFlower_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_TreasureDress_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_TreasureWater_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_TreasureCake_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_TreasureStew_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_HEADER_SPECIAL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_GlyphDot_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_GlyphSlash_0"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_1"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_2"
-msgstr ""
-
-#: ninode/lms/msbt/tag/picture/submenu_pict.tscn
-msgid "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
-msgstr ""
-
 #: scene/common/dialog/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_TITLE"
 msgstr ""
@@ -575,334 +245,6 @@ msgstr ""
 
 #: scene/common/dialog/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_INPUT_DEVICE_PREVIEW"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_INPUT_DEVICE_DUAL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_INPUT_DEVICE_HANDHELD"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_INPUT_DEVICE_FULLKEY"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_INPUT_DEVICE_LEFT"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_INPUT_DEVICE_RIGHT"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_DYNAMIC_HEADER_BUTTON"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonA"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonB"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonX"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonY"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonPlus"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonMinus"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_DYNAMIC_HEADER_DIRECTIONAL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyLeft"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyRight"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyUp"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyDown"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleStickL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleStickR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleStickPushR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleStickUD"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleStickLR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_DYNAMIC_HEADER_DEVICE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyCon"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConIconOnly"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonCapture"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyleReset"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_DYNAMIC_HEADER_SPECIAL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyle2PButtonY"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadPairMenu"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "PROJECT_TAG_TOOLTIP_PadPairMap"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_STATIC_HEADER_BUTTON"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonA"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonB"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonX"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonY"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonZL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonZR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonSL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonSR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonPlus"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonMinus"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_STATIC_HEADER_DPAD"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonGroupLeft"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonGroupRight"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonGroupUp"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonGroupBottom"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonLR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonLeft"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonRight"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonUp"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonDown"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_STATIC_HEADER_STICK"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_Stick"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickPush"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickUD"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickPushL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickUDL"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickPushR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_StickLRR"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_STATIC_HEADER_DEVICE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonPower"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonHome"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ButtonCapture"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ArrowRight"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_Album"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_JoyConBoth"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_JoyConRight"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_JoyConSingle"
-msgstr ""
-
-#: ninode/lms/msbt/tag/device/submenu_device.tscn
-msgid "DEVICE_FONT_TOOLTIP_ProCon"
 msgstr ""
 
 #: async/translation_strings.gd
@@ -927,4 +269,724 @@ msgstr ""
 
 #: async/async_display.tscn
 msgid "ASYNC_DISPLAY_EXCEPTION"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/default/fallback.tscn
+msgid "TAG_EDIT_SCENE_HEADER_ERROR_FALLBACK"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/default/fallback.tscn
+msgid "TAG_EDIT_ERROR_FALLBACK_MESSAGE"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_SPEED"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_WAIT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_DEVICE_FONT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_GRAMMAR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_RUBY"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_STRING"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TIME_COMPONENT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_CHARACTERS"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconMario_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconMarioCapOff_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconLuigi_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCap_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCapManHero_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconFrog_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconPeach_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconTiara_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconPauline_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconKoopa_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBoodalStacker_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBoodalBombTail_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBoodalFireBlower_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconBroodalCapThrower_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_ICONS"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCoin_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconLifeMaxUpItem_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconHomeShip_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconEarth_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconCheckpoint_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconAmiibo_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconMoonRock_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconAchivementNpc_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconHintNpc_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconPoetter_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconStar_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconStarDotted_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_SHINE"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PROJECT_TAG_TOOLTIP_ShineIconCurrentWorld"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineCommon_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSand_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineForest_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineLake_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineCity_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSea_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSnow_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineLava_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineSky_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineMoon_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineRainbow_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineNull_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_ShineTripleDot_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_COIN_COLLECT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PROJECT_TAG_TOOLTIP_CoinCollectIconCurrentWorld"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectWaterfall_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSand_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectForest_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectLake_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectClash_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectCity_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSea_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSnow_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectLava_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectSky_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectMoon_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_CoinCollectPeach_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_WEDDING_TREASURE"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureRing_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureFlower_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureDress_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureWater_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureCake_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_TreasureStew_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_HEADER_SPECIAL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphDot_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphSlash_0"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_1"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_2"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+msgid "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_PREVIEW"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_DUAL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_HANDHELD"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_FULLKEY"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_LEFT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_INPUT_DEVICE_RIGHT"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_BUTTON"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonA"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonB"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonX"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonY"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonPlus"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonMinus"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_DIRECTIONAL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyLeft"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyRight"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyUp"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyDown"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickPushR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickUD"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleStickLR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_DEVICE"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyCon"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConIconOnly"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonCapture"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyleReset"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_DYNAMIC_HEADER_SPECIAL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyle2PButtonY"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadPairMenu"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "PROJECT_TAG_TOOLTIP_PadPairMap"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_BUTTON"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonA"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonB"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonX"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonY"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonZL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonZR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonSL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonSR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonPlus"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonMinus"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_DPAD"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupLeft"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupRight"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupUp"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonGroupBottom"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonLR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonLeft"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonRight"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonUp"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonDown"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_STICK"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_Stick"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickPush"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickUD"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickPushL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickUDL"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickPushR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_StickLRR"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_STATIC_HEADER_DEVICE"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonPower"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonHome"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ButtonCapture"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ArrowRight"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_Album"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_JoyConBoth"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_JoyConRight"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_JoyConSingle"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+msgid "DEVICE_FONT_TOOLTIP_ProCon"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_LABEL_CURRENT:"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Message"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Title"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Head"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Number"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Picture"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Device"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Icon16"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font.tscn
+msgid "TAG_EDIT_SCENE_FONT_OPTION_Icon80"
 msgstr ""

@@ -105,7 +105,7 @@ public abstract class MsbtTagElement : MsbtBaseElement
 
 public abstract class MsbtTagElementWithTextData : MsbtTagElement
 {
-    protected string Text = "";
+    public string Text = "";
 
     internal MsbtTagElementWithTextData(ref int pointer, byte[] buffer) : base(ref pointer, buffer) { }
     internal MsbtTagElementWithTextData(ushort group, ushort tag) : base(group, tag) { }

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://w8bixght3ptk"]
+
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag_edit/TagEditScene.cs" id="1_ccgc7"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_rvlf6"]
+[ext_resource type="StyleBox" uid="uid://cr0nb42e1nnc" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_edit.tres" id="3_ha76q"]
+
+[node name="TagEditSceneBase" type="Window"]
+disable_3d = true
+title = "TAG_EDIT_SCENE_HEADER_"
+position = Vector2i(0, 36)
+size = Vector2i(720, 540)
+transient = true
+exclusive = true
+unresizable = true
+always_on_top = true
+popup_window = true
+theme = ExtResource("1_rvlf6")
+script = ExtResource("1_ccgc7")
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("3_ha76q")
+
+[node name="Content" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[connection signal="close_requested" from="." to="." method="queue_free"]
+[connection signal="go_back_requested" from="." to="." method="queue_free"]

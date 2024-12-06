@@ -3,6 +3,7 @@ using System.Linq;
 
 using Godot;
 using Godot.Collections;
+using MoonFlow.Project;
 
 using Nindot.LMS.Msbt.TagLib;
 
@@ -89,7 +90,7 @@ public partial class MsbtPageEditor : TextEdit
     // =============== Tag Edit Functionality =============== //
     // ====================================================== //
 
-    private bool TryOpenTagEdit(int charIdx)
+    private bool TryOpenTagEdit(int charIdx, Vector2I spawnPosition)
     {
         // Get the element at the current character index
         var tag = TagEditGetTargetElement(charIdx - 1);
@@ -101,7 +102,25 @@ public partial class MsbtPageEditor : TextEdit
                 return false;
         }
 
-        GD.Print("Ctrl-Clicked on ", tag.GetTagNameStr());
+        // Create scene and add to root
+        var scene = TagEditFactory.Create(tag);
+        if (scene == null)
+            return false;
+        
+        var root = ProjectManager.SceneRoot;
+        if (!IsInstanceValid(root))
+            return false;
+        
+        root.AddChild(scene);
+
+        // Setup scene
+        scene.Position = (Vector2I)(GlobalPosition + spawnPosition);
+
+        Editable = false;
+        scene.TreeExiting += OnTagEditSceneClose;
+
+        scene.SetupScene(tag);
+
         return true;
     }
     
@@ -119,5 +138,10 @@ public partial class MsbtPageEditor : TextEdit
             return null;
 
         return element as MsbtTagElement;
+    }
+
+    private void OnTagEditSceneClose()
+    {
+        Editable = true;
     }
 }

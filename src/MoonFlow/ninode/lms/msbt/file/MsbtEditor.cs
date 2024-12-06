@@ -218,6 +218,7 @@ public partial class MsbtEditor : PanelContainer
 
 	private void OnEntryHovered(string label)
 	{
+
 		if (Input.IsMouseButtonPressed(MouseButton.Left))
 			OnEntrySelected(label);
 	}
