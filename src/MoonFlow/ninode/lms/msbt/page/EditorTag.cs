@@ -142,6 +142,7 @@ public partial class MsbtPageEditor : TextEdit
 
     private void OnTagEditSceneClose()
     {
+        QueueRedraw();
         Editable = true;
     }
 }

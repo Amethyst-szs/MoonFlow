@@ -999,6 +999,26 @@ msgstr "Icon16"
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Icon80"
 msgstr "Icon80"
 
+#: ninode/lms/msbt/tag_edit/system/font_size.tscn
+msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT_SIZE"
+msgstr "Set Font Size"
+
+#: ninode/lms/msbt/tag_edit/eui/wait.tscn
+msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgstr "Pause Text Printing"
+
+#: ninode/lms/msbt/tag_edit/se/voice.tscn
+msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
+msgstr "Play Sound Effect"
+
+#: ninode/lms/msbt/tag_edit/se/voice.tscn
+msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr "Sound Name"
+
+#: ninode/lms/msbt/tag_edit/se/voice.tscn
+msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr "Entry in Actor's SeDataBase"
+
 #~ msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
 #~ msgstr ""
 #~ "Add a dynamic icon that changes based\n"

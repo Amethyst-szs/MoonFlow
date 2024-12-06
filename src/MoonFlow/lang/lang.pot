@@ -19,6 +19,9 @@
 # res://ninode/lms/msbt/wheel/picture/submenu_pict.tscn
 # res://ninode/lms/msbt/wheel/device/submenu_device.tscn
 # res://ninode/lms/msbt/tag_edit/system/font.tscn
+# res://ninode/lms/msbt/tag_edit/system/font_size.tscn
+# res://ninode/lms/msbt/tag_edit/eui/wait.tscn
+# res://ninode/lms/msbt/tag_edit/se/voice.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -989,4 +992,24 @@ msgstr ""
 
 #: ninode/lms/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Icon80"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/font_size.tscn
+msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT_SIZE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/eui/wait.tscn
+msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/se/voice.tscn
+msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/se/voice.tscn
+msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/se/voice.tscn
+msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr ""

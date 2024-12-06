@@ -21,7 +21,4 @@ placeholder_text = "placeholder"
 max_length = 65530
 clear_button_enabled = true
 
-[node name="HSep" type="HSeparator" parent="Panel/Content/VBox_TextData" index="2"]
-layout_mode = 2
-
 [connection signal="text_changed" from="Panel/Content/VBox_TextData/Line_Text" to="." method="OnTextDataChanged"]

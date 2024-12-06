@@ -13,7 +13,10 @@ public static class TagEditFactory
     {
         { typeof(MsbtTagElementSystemFont), "system/font.tscn" },
         { typeof(MsbtTagElementSystemFontSize), "system/font_size.tscn" },
-        { typeof(MsbtTagElementVoice), "tag_edit_scene_with_text.tscn" },
+
+        { typeof(MsbtTagElementEuiWait), "eui/wait.tscn" },
+
+        { typeof(MsbtTagElementVoice), "se/voice.tscn" },
     };
 
     private static readonly string Default = "default/fallback.tscn";
