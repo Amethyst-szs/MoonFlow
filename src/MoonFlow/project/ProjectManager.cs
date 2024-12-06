@@ -81,18 +81,13 @@ public static class ProjectManager
         if (!RomfsAccessor.TrySetGameVersion(config.Version))
             return ProjectManagerResult.ROMFS_MISSING_PATH_FOR_PROJECT_VERSION;
 
-        // Close the FrontDoor application if open and open the project loading screen
-        var frontDoor = SceneRoot.GetApp<FrontDoor>();
-        frontDoor?.AppClose(true);
-
-        var loadScreen = SceneCreator<ProjectLoading>.Create();
-        SceneRoot.NodeApps.AddChild(loadScreen);
-
         // Initilize project
-        Project = new(path, config, loadScreen);
+        Project = new(path, config);
 
-        Task task = Task.Run(new Action(Project.InitProject));
-        loadScreen.LoadingStart(task);
+        Task task = new(() => Project.InitProject(SceneRoot));
+        Project.StartupTask = task;
+
+        task.Start();
 
         return ProjectManagerResult.OK;
     }

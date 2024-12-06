@@ -9,6 +9,8 @@ using Nindot.Al.Localize;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.Main;
+using MoonFlow.Async;
+using System.Threading.Tasks;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -125,7 +127,27 @@ public partial class MsbtEditor : PanelContainer
 		InitEditor();
 	}
 
-	public void SaveFile()
+	public async void SaveFile()
+	{
+		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbtArchives);
+
+		await run.Task;
+		await ToSignal(Engine.GetMainLoop(), "process_frame");
+
+		// Remove the modified icon from all entry buttons in editor
+		foreach (var button in EntryList.GetChildren())
+		{
+			if (button.GetType() != typeof(Button))
+				continue;
+
+			((Button)button).Icon = null;
+		}
+
+		// Remove appended modified icon in title
+		FileTitleName.Text = FileTitleName.Text.TrimSuffix("*");
+	}
+
+	public void TaskRunWriteFile(AsyncDisplay display)
 	{
 		// Get access to the default language's SarcMsbtFile
 		var fileDL = FileList[DefaultLanguage];
@@ -134,8 +156,9 @@ public partial class MsbtEditor : PanelContainer
 		// This is used to perform language syncing
 		bool isAnythingAnyLanguageModified = false;
 
-		foreach (var f in FileList)
+		for (int i = 0; i < FileList.Count; i++)
 		{
+			var f = FileList.ElementAt(i);
 			var metaHolder = ProjectManager.GetMSBTMetaHolder(f.Key);
 			bool isAnythingModified = false;
 
@@ -172,21 +195,13 @@ public partial class MsbtEditor : PanelContainer
 				isAnythingAnyLanguageModified = true;
 				f.Value.WriteArchive();
 			}
+
+			display.UpdateProgress(i, FileList.Count + 1);
 		}
-
-		// Remove the modified icon from all entry buttons in editor
-		foreach (var button in EntryList.GetChildren())
-		{
-			if (button.GetType() != typeof(Button))
-				continue;
-
-			((Button)button).Icon = null;
-		}
-
-		// Remove appended modified icon in title
-		FileTitleName.Text = FileTitleName.Text.TrimSuffix("*");
 
 		// Write metadata
+		display.UpdateProgress(FileList.Count, FileList.Count + 1);
+
 		if (isAnythingAnyLanguageModified)
 		{
 			var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);

@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bi124pyc35ecm"]
+
+[ext_resource type="StyleBox" uid="uid://crxa71ul6tp15" path="res://asset/theme/async/stylebox/async_panel.tres" id="1_rdwxw"]
+[ext_resource type="StyleBox" uid="uid://dhm57m5lwlgig" path="res://asset/theme/async/stylebox/async_progress_bar_fill.tres" id="2_3f1ji"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_uchr2"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_24gye"]
+color = Color(1, 0.737255, 0.258824, 0.713726)
+grow_begin = -12.0
+grow_end = -12.0
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqwbk"]
+
+[resource]
+HSeparator/constants/separation = 8
+HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
+PanelContainer/styles/panel = ExtResource("1_rdwxw")
+ProgressBar/font_sizes/font_size = 22
+ProgressBar/fonts/font = ExtResource("2_uchr2")
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_gqwbk")
+ProgressBar/styles/fill = ExtResource("2_3f1ji")

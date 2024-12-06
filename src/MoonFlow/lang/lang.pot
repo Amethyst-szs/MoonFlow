@@ -15,6 +15,8 @@
 # res://ninode/lms/msbt/tag/picture/submenu_pict.tscn
 # res://scene/common/dialog/dialog_unsaved_changes.tscn
 # res://ninode/lms/msbt/tag/device/submenu_device.tscn
+# res://async/translation_strings.gd
+# res://async/async_display.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -901,4 +903,28 @@ msgstr ""
 
 #: ninode/lms/msbt/tag/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ProCon"
+msgstr ""
+
+#: async/translation_strings.gd
+msgid "ASYNC_DISPLAY_SUCCESS"
+msgstr ""
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_FileRead"
+msgstr ""
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_FileWrite"
+msgstr ""
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_FTP"
+msgstr ""
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_SaveMsbtArchives"
+msgstr ""
+
+#: async/async_display.tscn
+msgid "ASYNC_DISPLAY_EXCEPTION"
 msgstr ""

@@ -12,12 +12,14 @@ public partial class MainSceneRoot : Control
     public Header NodeHeader = null;
     public Control NodeApps = null;
     public Taskbar NodeTaskbar = null;
+    public VBoxContainer NodeAsync = null;
 
     public override void _Ready()
     {
         NodeHeader = GetNode<Header>("%Header");
         NodeApps = GetNode<Control>("%Apps");
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
+        NodeAsync = GetNode<VBoxContainer>("%Async");
 
         // Add self-reference to ProjectManager
         ProjectManager.SceneRoot = this;
@@ -63,8 +65,13 @@ public partial class MainSceneRoot : Control
         var app = GetActiveApp();
         if (app == null || !app.IsAppAllowUserToClose())
             return;
-        
+
         app.AppClose(true);
+    }
+    public void ForceCloseAllApps()
+    {
+        foreach (var app in GetApps())
+            app.AppClose(true);
     }
 
     public void FocusFirstApp()
@@ -74,7 +81,7 @@ public partial class MainSceneRoot : Control
 
         if (app == activeApp || activeApp.IsAppExclusive())
             return;
-        
+
         app.AppFocus();
     }
 }

@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://iqyjx7fu40nl"]
+
+[ext_resource type="Script" path="res://async/AsyncDisplay.cs" id="1_7xgbo"]
+[ext_resource type="Theme" uid="uid://bi124pyc35ecm" path="res://asset/theme/async/async.tres" id="1_wl5ln"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_52u1o"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="3_l26iq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e6hq7"]
+blend_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8051"]
+font = ExtResource("3_52u1o")
+font_size = 18
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eyguj"]
+font = ExtResource("3_l26iq")
+font_size = 14
+font_color = Color(1, 1, 1, 0.619608)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m58i0"]
+font = ExtResource("3_52u1o")
+font_size = 14
+font_color = Color(1, 0.68, 0.68, 1)
+
+[node name="AsyncDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(180, 48)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_wl5ln")
+script = ExtResource("1_7xgbo")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+material = SubResource("CanvasItemMaterial_e6hq7")
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="Content" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Label_Title" type="Label" parent="Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_c8051")
+horizontal_alignment = 2
+
+[node name="Label_Progress" type="Label" parent="Margin/Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_eyguj")
+horizontal_alignment = 1
+
+[node name="Label_Exception" type="Label" parent="Margin/Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ASYNC_DISPLAY_EXCEPTION"
+label_settings = SubResource("LabelSettings_m58i0")
+horizontal_alignment = 1

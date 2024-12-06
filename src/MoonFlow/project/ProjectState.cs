@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Godot;
+
 using MoonFlow.Scene;
+using MoonFlow.Scene.Main;
 
 namespace MoonFlow.Project;
 
-public class ProjectState(string path, ProjectConfig config, ProjectLoading loadScreen)
+public class ProjectState(string path, ProjectConfig config)
 {
     // Initilzation properties
     public string Path { get; private set; } = path;
     public ProjectConfig Config { get; private set; } = config;
-    private ProjectLoading LoadingScreen = loadScreen;
+    public Task StartupTask = null;
 
     // Status
     private bool IsInitComplete = false;
@@ -18,24 +21,32 @@ public class ProjectState(string path, ProjectConfig config, ProjectLoading load
     public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
     public ProjectMessageStudioText MsgStudioText { get; private set; } = null;
 
-    public async void InitProject()
+    public async void InitProject(MainSceneRoot scene)
     {
+        // Close all applications if open and open the project loading screen
+        scene.CallDeferred("ForceCloseAllApps");
+
+        var loadScreen = SceneCreator<ProjectLoading>.Create();
+        loadScreen.LoadingStart(StartupTask);
+        scene.NodeApps.CallDeferred("add_child", loadScreen);
+
         // Wait 200 milliseconds to allow loading screen to appear
         // This isn't nessecary for the code to function, but allows the end-user time to process the scene
         // transation and improves the user experience a bit!
         await Task.Delay(200);
 
         // Setup MSBP holder
-        LoadingScreen.LoadingUpdateProgress("LOAD_MSBP");
+        loadScreen.LoadingUpdateProgress("LOAD_MSBP");
         MsgStudioProject = new(Path);
 
         // Preload archives for default language
-        LoadingScreen.LoadingUpdateProgress("LOAD_MSBT");
+        loadScreen.LoadingUpdateProgress("LOAD_MSBT");
         MsgStudioText = new(Path, Config.DefaultLanguage);
 
         // Complete Initilization
-        LoadingScreen.LoadingComplete();
-        LoadingScreen = null;
+        loadScreen.LoadingComplete();
+        StartupTask = null;
+        
         IsInitComplete = true;
     }
 

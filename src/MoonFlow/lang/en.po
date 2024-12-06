@@ -915,6 +915,30 @@ msgstr "Joy-Con (Single)"
 msgid "DEVICE_FONT_TOOLTIP_ProCon"
 msgstr "Pro Controller"
 
+#: async/translation_strings.gd
+msgid "ASYNC_DISPLAY_SUCCESS"
+msgstr "Success!"
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_FileRead"
+msgstr "Accessing Files..."
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_FileWrite"
+msgstr "Writing Files..."
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_FTP"
+msgstr "Transferring Files..."
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_SaveMsbtArchives"
+msgstr "Saving MSBT Archives"
+
+#: async/async_display.tscn
+msgid "ASYNC_DISPLAY_EXCEPTION"
+msgstr "Task Failed!"
+
 #~ msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
 #~ msgstr ""
 #~ "Add a dynamic icon that changes based\n"
