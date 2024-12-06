@@ -79,14 +79,14 @@ public abstract partial class TagSubmenuBase : PanelContainer
         CloseMenu();
     }
 
-    private static bool AnyChildHasFocus(Control node)
+    public static bool AnyChildHasFocus(Control node)
     {
         if (node.HasFocus())
             return true;
         
         foreach (var child in node.GetChildren())
         {
-            if (!child.GetType().IsSubclassOf(typeof(Control)))
+            if (child is not Control && !child.GetType().IsSubclassOf(typeof(Control)))
                 continue;
             
             if (AnyChildHasFocus(child as Control))

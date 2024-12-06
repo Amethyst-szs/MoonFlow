@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://drb6gmpl7tvlm"]
+[gd_scene load_steps=25 format=3 uid="uid://drb6gmpl7tvlm"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_fvc5i"]
 [ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagWheel.cs" id="1_oonfm"]
@@ -37,6 +37,14 @@ corner_radius_bottom_left = 1024
 Button/styles/focus = SubResource("StyleBoxFlat_qwkud")
 TooltipLabel/fonts/font = ExtResource("1_fvc5i")
 TooltipPanel/styles/panel = ExtResource("2_35aju")
+
+[sub_resource type="InputEventKey" id="InputEventKey_d31wk"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_3mtg5"]
+events = [SubResource("InputEventKey_d31wk")]
 
 [node name="TagWheel" type="Control"]
 layout_mode = 3
@@ -238,6 +246,8 @@ offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_3mtg5")
+shortcut_in_tooltip = false
 icon = ExtResource("20_w5whw")
 flat = true
 icon_alignment = 1

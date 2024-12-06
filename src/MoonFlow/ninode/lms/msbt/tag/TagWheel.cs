@@ -35,7 +35,7 @@ public partial class TagWheel : Control
 		firstButton.GrabFocus();
 
 		// Ensure entire wheel is on screen
-		ClampWithinMargin(Vector2.One * 125F);
+		ClampWithinMargin(Vector2.One * 160F);
 
 		// Setup extra/generic children
 		MouseLine.OriginOffset = CaretPosition - Position;
@@ -49,17 +49,11 @@ public partial class TagWheel : Control
 		tween.TweenProperty(this, "scale", Vector2.One, 0.12);
 	}
 
-	public override void _Process(double delta)
+	public override void _Process(double _)
 	{
 		// Check to see if any wheel button has focus
-		foreach (var child in GetChildren())
-		{
-			if (child.GetType() != typeof(TagWheelButton)) continue;
-			if (((TagWheelButton)child).HasFocus()) return;
-		}
-
-		// If not, close wheel
-		// QueueFree();
+		if (!TagSubmenuBase.AnyChildHasFocus(this))
+			QueueFree();
 	}
 
 	public override void _Draw()
@@ -124,11 +118,13 @@ public partial class TagWheel : Control
 			}
 		}
 
-		Pages[(selectedIdx + 1) % Pages.Count].Show();
+		var newPage = Pages[(selectedIdx + 1) % Pages.Count];
+		newPage.Show();
+		(newPage.GetChild(0) as Control).GrabFocus();
 
 		// Spin animation
 		MouseLine.Hide();
-		Rotation = 0F;
+		Rotation = (float)Math.PI * 1.5F;
 
 		var tween = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Cubic);
 		tween.TweenProperty(this, "rotation", Math.PI * 2, 0.25);
