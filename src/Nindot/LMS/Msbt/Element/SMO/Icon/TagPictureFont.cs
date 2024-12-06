@@ -52,7 +52,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
 
     public override string GetTagNameStr()
     {
-        return "PictureFont {0}" + ((ushort)IconCode).ToString("X2");
+        return "PictureFont " + ((ushort)IconCode).ToString("X2");
     }
 
     public override string GetTextureName(int romfsVersion)

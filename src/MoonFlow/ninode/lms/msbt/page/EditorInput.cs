@@ -10,20 +10,11 @@ public partial class MsbtPageEditor : TextEdit
 {
     public override void _GuiInput(InputEvent @event)
     {
-        // If this is a mouse input, run special case for opening tag wheel
         if (@event.GetType() == typeof(InputEventMouseButton))
         {
             var m = (InputEventMouseButton)@event;
-            if (m.Pressed && m.ButtonIndex == MouseButton.Right && Editable)
-            {
-                var caretPos = GetLineColumnAtPos((Vector2I)GetLocalMousePos());
-                SetCaretLine(caretPos.Y);
-                SetCaretColumn(caretPos.X);
-
-                SpawnTagWheel(caretPos.Y, caretPos.X, true);
-            }
-
-            return;
+            GuiInputTrySpawnTagWheel(m);
+            GuiInputTryOpenTagEdit(m);
         }
 
         // Only proceed if the event is an InputEventKey type
@@ -71,6 +62,73 @@ public partial class MsbtPageEditor : TextEdit
             GetViewport().SetInputAsHandled();
             return;
         }
+
+        if (input.IsActionPressed("ui_edit_tag", false, true))
+        {
+            TryOpenTagEdit(GetCharIndex(0));
+        }
+    }
+
+    private void GuiInputTrySpawnTagWheel(InputEventMouseButton m)
+    {
+        if (!m.Pressed || m.ButtonIndex != MouseButton.Right || !Editable)
+            return;
+
+        var caretPos = GetLineColumnAtPos((Vector2I)GetLocalMousePos());
+        SetCaretLine(caretPos.Y);
+        SetCaretColumn(caretPos.X);
+
+        SpawnTagWheel(caretPos.Y, caretPos.X, true);
+        GetViewport().SetInputAsHandled();
+    }
+
+    private void GuiInputTryOpenTagEdit(InputEventMouseButton m)
+    {
+        if (!m.Pressed || m.ButtonIndex != MouseButton.Left || !Editable || !m.IsCommandOrControlPressed())
+            return;
+
+        // Get character index from mouse click position
+        var mousePos = (Vector2I)GetLocalMousePos();
+        var lc = GetLineColumnAtPos(mousePos);
+
+        var rect = GetRectAtLineColumn(lc.Y, lc.X);
+        bool isAddOne = mousePos.X - rect.Position.X > rect.Size.X;
+        
+        var charIdx = GetCharIndex(lc.Y, lc.X) + (isAddOne ? 1 : 0);
+
+        if (TryOpenTagEdit(charIdx))
+            GetViewport().SetInputAsHandled();
+    }
+
+    private bool TryOpenTagEdit(int charIdx)
+    {
+        // Get the element at the current character index
+        var tag = TagEditGetTargetElement(charIdx - 1);
+        if (tag == null)
+        {
+            // If failed, try again with the previous index
+            tag = TagEditGetTargetElement(charIdx);
+            if (tag == null)
+                return false;
+        }
+
+        GD.Print("Ctrl-Clicked on ", tag.GetTagNameStr());
+        return true;
+    }
+    private MsbtTagElement TagEditGetTargetElement(int charIdx)
+    {
+        if (charIdx < 0)
+            return null;
+        
+        int elementIdx = Page.CalcElementIdxAtCharPos(charIdx);
+        if (elementIdx < 0 || elementIdx >= Page.Count)
+            return null;
+
+        MsbtBaseElement element = Page[elementIdx];
+        if (!element.IsTag())
+            return null;
+
+        return element as MsbtTagElement;
     }
 
     public override void _HandleUnicodeInput(int unicodeChar, int caretIndex)

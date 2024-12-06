@@ -110,6 +110,14 @@ public class MsbtPage : List<MsbtBaseElement>
     {
         // Get access to the element at this position
         int elementIdx = CalcElementIdxAtCharPos(ref position);
+
+        // If the element index is out of bounds, create a new tag and return
+        if (elementIdx >= Count)
+        {
+            Add(tag);
+            return;
+        }
+
         var curElement = this[elementIdx];
 
         // If the element index is beyond the final element and that element is a tag, just append tag to end of list
@@ -254,6 +262,12 @@ public class MsbtPage : List<MsbtBaseElement>
 
         throw new ArgumentOutOfRangeException(nameof(charPos));
     }
+    public int CalcElementIdxAtCharPos(int charPos)
+    {
+        int clone = charPos;
+        return CalcElementIdxAtCharPos(ref clone);
+    }
+    
     public int CalcCharPosForElement(MsbtBaseElement element)
     {
         if (Count == 1) return 0;
