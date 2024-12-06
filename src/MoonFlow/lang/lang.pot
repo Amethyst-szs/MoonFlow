@@ -123,15 +123,15 @@ msgid "MSBT_SEARCH_ENTRIES"
 msgstr ""
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
 msgstr ""
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
 msgstr ""
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
@@ -147,15 +147,7 @@ msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
 msgstr ""
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_MORE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
-msgstr ""
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
 msgstr ""
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
@@ -167,7 +159,27 @@ msgid "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
 msgstr ""
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_GRAMMAR"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_RUBY"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_STRING"
+msgstr ""
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TIME_COMPONENT"
 msgstr ""
 
 #: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn

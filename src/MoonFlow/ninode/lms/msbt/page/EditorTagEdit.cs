@@ -23,7 +23,6 @@ public partial class MsbtPageEditor : TextEdit
 
         // Create wheel and connect to various signals
         var wheel = SceneCreator<TagWheel>.Create();
-        wheel.Parent = this;
         wheel.CaretPosition = caretPos;
         wheel.TreeExiting += EndTagInsertMenu;
 

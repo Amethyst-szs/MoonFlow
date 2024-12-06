@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using MoonFlow.Project;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.LMS.Msbt.TagLib.Smo;
 using System;
@@ -20,14 +21,17 @@ public partial class TagWheelButton : Button
 		Tag_SystemFontSize,
 		Tag_EuiSpeed,
 		Tag_EuiWait,
+		Tag_Number,
 		Tag_TextAnim,
+		Tag_Voice,
+		Tag_String,
 		Tag_ProjectTag,
+		Tag_TimeComponent,
 		Tag_PictureFont,
 		Tag_DeviceFont,
 		Tag_TextAlign,
-		Tag_Voice,
-
-		ShowMore,
+		Tag_Grammar,
+		Tag_Ruby,
 	};
 
 	[Export]
@@ -74,11 +78,24 @@ public partial class TagWheelButton : Button
 			case ButtonTypes.Tag_EuiWait:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementEuiWait(20))]);
 				return;
+			case ButtonTypes.Tag_Number:
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementNumberScore("Score"))]);
+				return;
 			case ButtonTypes.Tag_TextAnim:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementTextAnim(TagNameTextAnim.Wave))]);
 				return;
+			case ButtonTypes.Tag_Voice:
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementVoice())]);
+				return;
+			case ButtonTypes.Tag_String:
+				var msbp = ProjectManager.GetMSBP();
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementString(msbp, "ReplaceString"))]);
+				return;
 			case ButtonTypes.Tag_ProjectTag:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementProjectTag(TagNameProjectIcon.ShineIconCurrentWorld))]);
+				return;
+			case ButtonTypes.Tag_TimeComponent:
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementTimeComponent(TagNameTime.Second))]);
 				return;
 			case ButtonTypes.Tag_PictureFont:
 				OpenSubmenu<TagSubmenuPictureFont>();
@@ -89,13 +106,11 @@ public partial class TagWheelButton : Button
 			case ButtonTypes.Tag_TextAlign:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementTextAlign())]);
 				return;
-			case ButtonTypes.Tag_Voice:
-				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementVoice())]);
+			case ButtonTypes.Tag_Grammar:
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementGrammar(TagNameGrammar.Cap))]);
 				return;
-			case ButtonTypes.ShowMore:
-				// EmitSignal(SignalName.AddSubMenu, []);
-				return;
-			default:
+			case ButtonTypes.Tag_Ruby:
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementSystemRuby())]);
 				return;
 		}
 	}

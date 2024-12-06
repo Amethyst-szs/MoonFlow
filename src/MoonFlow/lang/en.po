@@ -126,16 +126,16 @@ msgid "MSBT_SEARCH_ENTRIES"
 msgstr "Search Entries"
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
+msgstr "Set text color"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
 msgstr "Change the current font"
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
 msgstr "Adjust font size"
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
-msgstr "Adjust text alignment"
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_SPEED"
@@ -154,30 +154,40 @@ msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
 msgstr "Apply animation on text characters"
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_MORE"
-msgstr "Show more options"
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
 msgstr "Play audio"
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
-msgstr ""
-"Add a dynamic icon that changes based\n"
-"on kingdom or current controller"
-
-#: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_DEVICE_FONT"
-msgstr "Add device icon"
+msgstr "Add controller or button icon"
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
 msgstr "Add picture icon"
 
 #: ninode/lms/msbt/tag/tag_wheel.tscn
-msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
-msgstr "Set text color"
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
+msgstr "Adjust text alignment"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_GRAMMAR"
+msgstr "Grammar Cap & Decap"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_RUBY"
+msgstr "Japanese Furigana using Ruby Syntax"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER"
+msgstr "Number Formatting"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_STRING"
+msgstr "String Formatting"
+
+#: ninode/lms/msbt/tag/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_TIME_COMPONENT"
+msgstr "Time Formatting Component"
 
 #: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
@@ -904,3 +914,8 @@ msgstr "Joy-Con (Single)"
 #: ninode/lms/msbt/tag/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ProCon"
 msgstr "Pro Controller"
+
+#~ msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
+#~ msgstr ""
+#~ "Add a dynamic icon that changes based\n"
+#~ "on kingdom or current controller"

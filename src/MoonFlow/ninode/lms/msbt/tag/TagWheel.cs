@@ -10,11 +10,9 @@ namespace MoonFlow.LMS.Msbt;
 public partial class TagWheel : Control
 {
 	public Vector2I CaretPosition = Vector2I.Zero;
-	private float WheelSize = 0.0F;
 
-	public MsbtPageEditor Parent = null;
 	private MouseLine MouseLine = new();
-	private readonly List<TagWheelButton> Buttons = [];
+	private readonly List<Control> Pages = [];
 
 	[Signal]
 	public delegate void FinishedAddTagEventHandler(TagWheel wheel, TagWheelTagResult tag);
@@ -23,52 +21,21 @@ public partial class TagWheel : Control
 
 	public override void _Ready()
 	{
-		// Ensure we have a pointer to the parent
-		if (Parent == null)
-			throw new NullReferenceException("No pointer to TagWheel's parent page!");
-
-		Parent.TreeExiting += QueueFree;
-
 		// Ensure there are buttons in the wheel
 		if (GetChildCount() == 0) throw new Exception("Invalid node, use tag_wheel.tscn scene");
 
-		// Create button list
-		foreach (var child in GetChildren())
-			if (child.GetType() == typeof(TagWheelButton)) Buttons.Add((TagWheelButton)child);
+		SetupWheel(GetNode<Control>("%WheelP1"));
+		SetupWheel(GetNode<Control>("%WheelP2"));
 
-		// Set the focus node to the first wheel item
-		Buttons[0].GrabFocus();
+		// Show first wheel page
+		Control firstPage = Pages[0];
+		Control firstButton = firstPage.GetChild(0) as Control;
 
-		// Setup wheel buttons
-		var buttonCount = Buttons.Count;
-		var buttonSize = Vector2.One * (100 - (buttonCount * 4.17F));
-		WheelSize = buttonSize.X * 2.5F;
-
-		for (int i = 0; i < buttonCount; i++)
-		{
-			// Set button size
-			var button = Buttons[i];
-			button.Size = buttonSize;
-
-			// Move button position to position in wheel
-			var pos = Vector2.Up * (buttonSize * 1.8F); // Set initial position above based on size
-			pos = pos.Rotated((float)(Math.PI * 2 * (i / (float)buttonCount))); // Rotate position based on button index
-			pos += -button.Size / 2; // Adjust to center position
-			button.Position = pos;
-
-			// Assign neighboring connections
-			AssignNeighbors([.. Buttons], button);
-
-			// Connect to signals
-			button.Connect(TagWheelButton.SignalName.AddSubmenu,
-				Callable.From(new Action<TagSubmenuBase>(OnTagWheelAddSubmenu)));
-
-			button.Connect(TagWheelButton.SignalName.AddTag,
-				Callable.From(new Action<TagWheelTagResult>(OnTagAddRequest)));
-		}
+		firstPage.Show();
+		firstButton.GrabFocus();
 
 		// Ensure entire wheel is on screen
-		ClampWithinMargin(Vector2.One * (240 - (buttonCount * 9.5F)));
+		ClampWithinMargin(Vector2.One * 125F);
 
 		// Setup extra/generic children
 		MouseLine.OriginOffset = CaretPosition - Position;
@@ -92,12 +59,13 @@ public partial class TagWheel : Control
 		}
 
 		// If not, close wheel
-		QueueFree();
+		// QueueFree();
 	}
 
 	public override void _Draw()
 	{
-		DrawCircle(Vector2.Zero, WheelSize, Color.Color8(0, 0, 0, 120));
+		Vector2 size = (GetChild(0) as Control).Size;
+		DrawCircle(Vector2.Zero, size.X, Color.Color8(0, 0, 0, 120));
 	}
 
 	public override void _Input(InputEvent @event)
@@ -143,9 +111,76 @@ public partial class TagWheel : Control
 		QueueFree();
 	}
 
+	private async void OnCyclePagePressed()
+	{
+		int selectedIdx = 0;
+		foreach (var page in Pages)
+		{
+			if (page.Visible)
+			{
+				page.Hide();
+				selectedIdx = page.GetIndex();
+				break;
+			}
+		}
+
+		Pages[(selectedIdx + 1) % Pages.Count].Show();
+
+		// Spin animation
+		MouseLine.Hide();
+		Rotation = 0F;
+
+		var tween = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Cubic);
+		tween.TweenProperty(this, "rotation", Math.PI * 2, 0.25);
+		await ToSignal(tween, "finished");
+
+		MouseLine.Show();
+	}
+
 	// ====================================================== //
 	// ====================== Utilities ===================== //
 	// ====================================================== //
+
+	private void SetupWheel(Control root)
+	{
+		// Setup page
+		Pages.Add(root);
+		root.Hide();
+
+		// Create button list
+		List<TagWheelButton> buttons = [];
+		foreach (var child in root.GetChildren())
+			if (child.GetType() == typeof(TagWheelButton)) buttons.Add((TagWheelButton)child);
+
+		// Setup wheel buttons
+		var buttonCount = buttons.Count;
+		var buttonSize = Vector2.One * (110 - (buttonCount * 4.17F));
+		root.Size = buttonSize * 2.0F;
+
+		for (int i = 0; i < buttonCount; i++)
+		{
+			// Set button size
+			var button = buttons[i];
+			button.Size = buttonSize;
+
+			// Move button position to position in wheel
+			var baseDist = Vector2.One * 215;
+			var pos = Vector2.Up * (baseDist - (buttonSize * 1.5F)); // Set initial position above based on size
+			pos = pos.Rotated((float)(Math.PI * 2 * (i / (float)buttonCount))); // Rotate position based on button index
+			pos += -button.Size / 2; // Adjust to center position
+			button.Position = pos;
+
+			// Assign neighboring connections
+			AssignNeighbors([.. buttons], button);
+
+			// Connect to signals
+			button.Connect(TagWheelButton.SignalName.AddSubmenu,
+				Callable.From(new Action<TagSubmenuBase>(OnTagWheelAddSubmenu)));
+
+			button.Connect(TagWheelButton.SignalName.AddTag,
+				Callable.From(new Action<TagWheelTagResult>(OnTagAddRequest)));
+		}
+	}
 
 	private void ClampWithinMargin(Vector2 margin)
 	{
