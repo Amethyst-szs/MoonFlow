@@ -4,8 +4,8 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.LMS.Msbt;
 
-[ScenePath("res://ninode/lms/msbt/tag/picture/submenu_pict.tscn")]
-public partial class TagSubmenuPictureFont : TagSubmenuBase
+[ScenePath("res://ninode/lms/msbt/wheel/device/submenu_device.tscn")]
+public partial class TagSubmenuDeviceFont : TagSubmenuBase
 {
     public override void InitSubmenu()
     {

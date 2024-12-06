@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MoonFlow.LMS.Msbt;
 
-[ScenePath("res://ninode/lms/msbt/tag/tag_wheel.tscn")]
+[ScenePath("res://ninode/lms/msbt/wheel/tag_wheel.tscn")]
 public partial class TagWheel : Control
 {
 	public Vector2I CaretPosition = Vector2I.Zero;

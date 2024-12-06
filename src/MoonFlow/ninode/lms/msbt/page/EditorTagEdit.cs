@@ -4,10 +4,16 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
+using Nindot.LMS.Msbt.TagLib;
+
 namespace MoonFlow.LMS.Msbt;
 
 public partial class MsbtPageEditor : TextEdit
 {
+    // ====================================================== //
+    // =============== Tag Wheel Functionality ============== //
+    // ====================================================== //
+
     private void SpawnTagWheel(int line, int column, bool isMouseSpawner)
     {
         // Only allow spawning the wheel if currently editable
@@ -77,5 +83,41 @@ public partial class MsbtPageEditor : TextEdit
         menu.TreeExiting += EndTagInsertMenu;
         menu.Connect(TagSubmenuBase.SignalName.AddTag,
             Callable.From(new Action<Array<TagWheelTagResult>>(InsertTagList)));
+    }
+
+    // ====================================================== //
+    // =============== Tag Edit Functionality =============== //
+    // ====================================================== //
+
+    private bool TryOpenTagEdit(int charIdx)
+    {
+        // Get the element at the current character index
+        var tag = TagEditGetTargetElement(charIdx - 1);
+        if (tag == null)
+        {
+            // If failed, try again with the previous index
+            tag = TagEditGetTargetElement(charIdx);
+            if (tag == null)
+                return false;
+        }
+
+        GD.Print("Ctrl-Clicked on ", tag.GetTagNameStr());
+        return true;
+    }
+    
+    private MsbtTagElement TagEditGetTargetElement(int charIdx)
+    {
+        if (charIdx < 0)
+            return null;
+        
+        int elementIdx = Page.CalcElementIdxAtCharPos(charIdx);
+        if (elementIdx < 0 || elementIdx >= Page.Count)
+            return null;
+
+        MsbtBaseElement element = Page[elementIdx];
+        if (!element.IsTag())
+            return null;
+
+        return element as MsbtTagElement;
     }
 }

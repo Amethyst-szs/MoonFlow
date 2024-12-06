@@ -100,37 +100,6 @@ public partial class MsbtPageEditor : TextEdit
             GetViewport().SetInputAsHandled();
     }
 
-    private bool TryOpenTagEdit(int charIdx)
-    {
-        // Get the element at the current character index
-        var tag = TagEditGetTargetElement(charIdx - 1);
-        if (tag == null)
-        {
-            // If failed, try again with the previous index
-            tag = TagEditGetTargetElement(charIdx);
-            if (tag == null)
-                return false;
-        }
-
-        GD.Print("Ctrl-Clicked on ", tag.GetTagNameStr());
-        return true;
-    }
-    private MsbtTagElement TagEditGetTargetElement(int charIdx)
-    {
-        if (charIdx < 0)
-            return null;
-        
-        int elementIdx = Page.CalcElementIdxAtCharPos(charIdx);
-        if (elementIdx < 0 || elementIdx >= Page.Count)
-            return null;
-
-        MsbtBaseElement element = Page[elementIdx];
-        if (!element.IsTag())
-            return null;
-
-        return element as MsbtTagElement;
-    }
-
     public override void _HandleUnicodeInput(int unicodeChar, int caretIndex)
     {
         if (caretIndex == -1) caretIndex = 0;

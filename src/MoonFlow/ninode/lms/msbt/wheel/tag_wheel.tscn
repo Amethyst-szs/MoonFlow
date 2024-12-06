@@ -1,9 +1,9 @@
 [gd_scene load_steps=25 format=3 uid="uid://drb6gmpl7tvlm"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_fvc5i"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagWheel.cs" id="1_oonfm"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/TagWheel.cs" id="1_oonfm"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="2_35aju"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/wheel/TagWheelButton.cs" id="2_q0x4n"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/wheel/TagWheelButton.cs" id="2_q0x4n"]
 [ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="3_o1tnp"]
 [ext_resource type="Texture2D" uid="uid://oqgt2610i76c" path="res://asset/nindot/lms/icon/System_Font.png" id="5_78y0d"]
 [ext_resource type="Texture2D" uid="uid://b0u2t701xuf8f" path="res://asset/nindot/lms/icon/TextAlign_Center.png" id="5_7800c"]

@@ -2,12 +2,12 @@
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_l2lpu"]
 [ext_resource type="StyleBox" uid="uid://cdh3fo4fwbcwo" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_submenu.tres" id="2_u1qsr"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/device/TagSubmenuDeviceFont.cs" id="3_bbcu7"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/device/TagSubmenuDeviceFont.cs" id="3_bbcu7"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_x5bpm"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="5_yff7k"]
 [ext_resource type="Texture2D" uid="uid://bkbgf330uu3od" path="res://asset/nindot/lms/icon/DeviceFont_ButtonA.png" id="6_5v1sr"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/button/TagDeviceFontButton.cs" id="6_nwmc2"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/button/TagProjectTagButton.cs" id="6_yx5jy"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/button/TagDeviceFontButton.cs" id="6_nwmc2"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/button/TagProjectTagButton.cs" id="6_yx5jy"]
 [ext_resource type="Texture2D" uid="uid://ds053cbkrmvpx" path="res://asset/nindot/lms/icon/DeviceFont_ButtonB.png" id="8_1asfq"]
 [ext_resource type="Texture2D" uid="uid://yijh5jdxf3h7" path="res://asset/nindot/lms/icon/DeviceFont_JoyConSingle_FLIP.png" id="8_22ym1"]
 [ext_resource type="Texture2D" uid="uid://bptjidf852bpj" path="res://asset/nindot/lms/icon/DeviceFont_ButtonX.png" id="9_8y42p"]
@@ -48,7 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://d4b3pg4v8syks" path="res://asset/nindot/lms/icon/DeviceFont_JoyConRight.png" id="43_opley"]
 [ext_resource type="Texture2D" uid="uid://bc7owcpbwg8ug" path="res://asset/nindot/lms/icon/DeviceFont_JoyConSingle.png" id="44_3rdgl"]
 [ext_resource type="Texture2D" uid="uid://djr430c5i0aht" path="res://asset/nindot/lms/icon/DeviceFont_ProCon.png" id="45_jfb8m"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagMenuFocusNeighborBuilder.cs" id="48_7higa"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/TagMenuFocusNeighborBuilder.cs" id="48_7higa"]
 
 [sub_resource type="Theme" id="Theme_xu6gh"]
 Button/constants/icon_max_width = 41

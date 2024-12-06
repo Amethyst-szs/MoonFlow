@@ -1,6 +1,6 @@
 [gd_scene load_steps=76 format=3 uid="uid://bbwcbxape7kyt"]
 
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/picture/TagSubmenuPictureFont.cs" id="1_2bwnk"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/picture/TagSubmenuPictureFont.cs" id="1_2bwnk"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="2_bxd02"]
 [ext_resource type="StyleBox" uid="uid://cdh3fo4fwbcwo" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_submenu.tres" id="3_laewc"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_8sksy"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ctu6ag2vldxhh" path="res://asset/nindot/lms/icon/PictureFont_3A_OLD.png" id="5_kw43j"]
 [ext_resource type="Texture2D" uid="uid://dtm0bkx551w56" path="res://asset/nindot/lms/icon/PictureFont_39.png" id="5_ysvnl"]
 [ext_resource type="Texture2D" uid="uid://cts7fkl5niq11" path="res://asset/nindot/lms/icon/PictureFont_4E.png" id="6_1rshh"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/button/TagPictureFontButton.cs" id="8_ebijr"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/button/TagPictureFontButton.cs" id="8_ebijr"]
 [ext_resource type="Texture2D" uid="uid://csmwllrnqgr42" path="res://asset/nindot/lms/icon/PictureFont_4D.png" id="8_m5toe"]
 [ext_resource type="Texture2D" uid="uid://gpqokiaivaxq" path="res://asset/nindot/lms/icon/PictureFont_44.png" id="9_joscf"]
 [ext_resource type="Texture2D" uid="uid://bybwp5pwc7wwp" path="res://asset/nindot/lms/icon/PictureFont_38.png" id="9_k24t8"]
@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://dcele1at5x5bm" path="res://asset/nindot/lms/icon/PictureFont_36.png" id="31_ih4oj"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="32_ajep0"]
 [ext_resource type="Texture2D" uid="uid://cpp2eu0ixnbui" path="res://asset/nindot/lms/icon/ProjectTag.png" id="33_2ev7k"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/button/TagProjectTagButton.cs" id="33_5foj8"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/button/TagProjectTagButton.cs" id="33_5foj8"]
 [ext_resource type="Texture2D" uid="uid://cedb163wvka2j" path="res://asset/nindot/lms/icon/PictureFont_75.png" id="33_ywntl"]
 [ext_resource type="Texture2D" uid="uid://qsmvjsetmlcv" path="res://asset/nindot/lms/icon/PictureFont_72.png" id="34_hy3eh"]
 [ext_resource type="Texture2D" uid="uid://d14e51jfichy0" path="res://asset/nindot/lms/icon/PictureFont_77.png" id="35_gsrts"]
@@ -72,7 +72,7 @@
 [ext_resource type="Texture2D" uid="uid://nkgjnkvukwgo" path="res://asset/nindot/lms/icon/PictureFont_2E.png" id="64_jhbiy"]
 [ext_resource type="Texture2D" uid="uid://ccevird7hdgtq" path="res://asset/nindot/lms/icon/PictureFont_2F.png" id="65_d3qkq"]
 [ext_resource type="Texture2D" uid="uid://7ai2w0ygn0xj" path="res://asset/nindot/lms/icon/PictureFont_3A.png" id="67_81642"]
-[ext_resource type="Script" path="res://ninode/lms/msbt/tag/TagMenuFocusNeighborBuilder.cs" id="73_u0nap"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/wheel/TagMenuFocusNeighborBuilder.cs" id="73_u0nap"]
 
 [sub_resource type="Theme" id="Theme_imy0c"]
 Button/constants/icon_max_width = 41
