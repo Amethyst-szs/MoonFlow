@@ -16,7 +16,7 @@ func _exit_tree() -> void:
 func _on_pressed() -> void:
 	if timer:
 		timer.timeout.disconnect(_on_timer_timeout)
-		remove_child(timer)
+		timer.queue_free()
 		timer = null
 		
 		double_pressed.emit()
@@ -32,5 +32,5 @@ func _on_pressed() -> void:
 
 func _on_timer_timeout() -> void:
 	if timer:
-		remove_child(timer)
+		timer.queue_free()
 		timer = null

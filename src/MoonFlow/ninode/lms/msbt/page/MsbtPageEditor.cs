@@ -29,6 +29,12 @@ public partial class MsbtPageEditor : TextEdit
         AddChild(ActivityTimer);
     }
 
+    public override void _ExitTree()
+    {
+        if (IsInstanceValid(ActivityTimer))
+            ActivityTimer.QueueFree();
+    }
+
     public MsbtPageEditor Init(SarcMsbpFile project, MsbtPage page)
     {
         Project = project;

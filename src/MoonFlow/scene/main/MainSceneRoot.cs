@@ -49,7 +49,8 @@ public partial class MainSceneRoot : Control
 
             if (!app.TryCloseFromTreeQuit(out SignalAwaiter confirmationAwaiter))
             {
-                await confirmationAwaiter;
+                if (confirmationAwaiter != null)
+                    await confirmationAwaiter;
 
                 if (IsInstanceValid(app) && !app.IsQueuedForDeletion())
                     return;
