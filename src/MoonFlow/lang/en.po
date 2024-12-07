@@ -1019,6 +1019,64 @@ msgstr "Sound Name"
 msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr "Entry in Actor's SeDataBase"
 
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT"
+msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_RUBY"
+msgstr "Japanese Furigana"
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#| msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_HEADER"
+msgid "SYSTEM_RUBY_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr "Ruby String"
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#| msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgid "SYSTEM_RUBY_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr "振り仮名"
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+msgid "SYSTEM_RUBY_TAG_EDIT_CODE_INPUT"
+msgstr "Ruby Code"
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+msgid "SYSTEM_RUBY_TAG_EDIT_UNDOCUMENTED_WARNING"
+msgstr "This field isn't fully understood! More research needed"
+
+#: ninode/lms/msbt/tag_edit/system/color.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT"
+msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_COLOR"
+msgstr "Text Color"
+
+#: ninode/lms/msbt/tag_edit/system/color.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT_SIZE"
+msgid "TAG_EDIT_SCENE_SYSTEM_COLOR_RESET_SWATCH"
+msgstr "Reset to Default Color"
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED"
+msgstr "Text Printing Speed"
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_SLOW"
+msgstr "Slow"
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_NORMAL"
+msgstr "Normal"
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_FAST"
+msgstr "Fast"
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_VERY_FAST"
+msgstr "Very Fast"
+
 #~ msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
 #~ msgstr ""
 #~ "Add a dynamic icon that changes based\n"

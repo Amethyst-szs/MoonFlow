@@ -22,6 +22,9 @@
 # res://ninode/lms/msbt/tag_edit/system/font_size.tscn
 # res://ninode/lms/msbt/tag_edit/eui/wait.tscn
 # res://ninode/lms/msbt/tag_edit/se/voice.tscn
+# res://ninode/lms/msbt/tag_edit/system/ruby.tscn
+# res://ninode/lms/msbt/tag_edit/system/color.tscn
+# res://ninode/lms/msbt/tag_edit/eui/speed.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1012,4 +1015,52 @@ msgstr ""
 
 #: ninode/lms/msbt/tag_edit/se/voice.tscn
 msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_RUBY"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+msgid "SYSTEM_RUBY_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+msgid "SYSTEM_RUBY_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+msgid "SYSTEM_RUBY_TAG_EDIT_CODE_INPUT"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+msgid "SYSTEM_RUBY_TAG_EDIT_UNDOCUMENTED_WARNING"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/color.tscn
+msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_COLOR"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/system/color.tscn
+msgid "TAG_EDIT_SCENE_SYSTEM_COLOR_RESET_SWATCH"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_SLOW"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_NORMAL"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_FAST"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_VERY_FAST"
 msgstr ""

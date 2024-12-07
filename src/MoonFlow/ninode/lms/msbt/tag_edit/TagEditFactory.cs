@@ -17,6 +17,7 @@ public static class TagEditFactory
         { typeof(MsbtTagElementSystemColor), "system/color.tscn" },
 
         { typeof(MsbtTagElementEuiWait), "eui/wait.tscn" },
+        { typeof(MsbtTagElementEuiSpeed), "eui/speed.tscn" },
 
         { typeof(MsbtTagElementVoice), "se/voice.tscn" },
     };
