@@ -111,13 +111,12 @@ public partial class MsbtPageEditor : TextEdit
             return;
 
         string filePath = GetTextureFilePath(name);
-        if (!FileAccess.FileExists(filePath)) return;
 
         var tex = (Texture2D)GD.Load(filePath);
         TagTextureTable[name] = tex;
     }
 
-    private string GetTextureFilePath(string name)
+    private static string GetTextureFilePath(string name)
     {
         return TextureDirectory + name + ".png";
     }
