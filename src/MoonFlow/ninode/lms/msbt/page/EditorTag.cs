@@ -142,7 +142,9 @@ public partial class MsbtPageEditor : TextEdit
 
     private void OnTagEditSceneClose()
     {
+        SyntaxHighlighter.ClearHighlightingCache();
         QueueRedraw();
+        
         Editable = true;
     }
 }

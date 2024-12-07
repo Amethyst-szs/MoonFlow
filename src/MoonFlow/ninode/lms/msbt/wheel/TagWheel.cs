@@ -100,7 +100,7 @@ public partial class TagWheel : Control
 	{
 		// Position menu in location of wheel
 		menu.SetupPosition(GlobalPosition);
-		
+
 		EmitSignal(SignalName.MigrateSubmenu, [this, menu]);
 		QueueFree();
 	}

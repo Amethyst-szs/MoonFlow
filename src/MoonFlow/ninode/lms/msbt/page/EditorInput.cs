@@ -139,6 +139,8 @@ public partial class MsbtPageEditor : TextEdit
 
         AdjustViewportToCaret(caretIndex);
         ActivityTimer.Start();
+
+        SyntaxHighlighter.ClearHighlightingCache();
     }
 
     public void DeleteViaContextMenu() { if (HasSelection()) _Backspace(-1); }
@@ -229,6 +231,8 @@ public partial class MsbtPageEditor : TextEdit
 
         AdjustViewportToCaret(caretIndex);
         ActivityTimer.Start();
+
+        SyntaxHighlighter.ClearHighlightingCache();
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)

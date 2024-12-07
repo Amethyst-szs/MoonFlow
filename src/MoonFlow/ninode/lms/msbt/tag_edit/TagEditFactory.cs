@@ -11,8 +11,10 @@ public static class TagEditFactory
 {
     private static readonly Dictionary<Type, string> FactoryEntries = new()
     {
+        { typeof(MsbtTagElementSystemRuby), "system/ruby.tscn" },
         { typeof(MsbtTagElementSystemFont), "system/font.tscn" },
         { typeof(MsbtTagElementSystemFontSize), "system/font_size.tscn" },
+        { typeof(MsbtTagElementSystemColor), "system/color.tscn" },
 
         { typeof(MsbtTagElementEuiWait), "eui/wait.tscn" },
 

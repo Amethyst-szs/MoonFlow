@@ -40,7 +40,7 @@ public partial class MsbtPageEditor : TextEdit
                 var color = tag.GetModulateColor(Project);
                 if (color != System.Drawing.Color.White)
                 {
-                    var colorGodot = new Color(color.R, color.G, color.B);
+                    var colorGodot = Color.Color8(color.R, color.G, color.B, color.A);
                     DrawTextureRect(tex, glyphRect, false, colorGodot);
                 }
                 else

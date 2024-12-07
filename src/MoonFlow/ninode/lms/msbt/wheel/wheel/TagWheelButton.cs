@@ -129,7 +129,7 @@ public partial class TagWheelButton : Button
 
 		var menuBase = menu as TagSubmenuBase;
 		scene.AddChild(menuBase);
-		
+
 		menuBase.InitSubmenu();
 
 		EmitSignal(SignalName.AddSubmenu, menuBase);

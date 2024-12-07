@@ -14,10 +14,22 @@ public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
 
     private Dictionary TextColor = TextDefault;
 
+    private Dictionary<int, Dictionary> LineFinalColor = [];
+
     public override Dictionary _GetLineSyntaxHighlighting(int line)
     {
         // If rendering the first line, reset text color
         if (line == 0) TextColor = TextDefault;
+
+        // Get initial text color from last entry in LineFinalColor
+        for (int i = line - 1; i >= 0; i--)
+        {
+            if (!LineFinalColor.ContainsKey(i))
+                continue;
+            
+            TextColor = LineFinalColor[i];
+            break;
+        }
 
         // Setup result and local vars
         Dictionary<int, Dictionary> result = new(){
@@ -42,7 +54,7 @@ public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
             {
                 var colorTag = (MsbtTagElementSystemColor)e;
                 colorTag.GetColor(edit.Project, out BlockColor.Entry c, out string _);
-                TextColor = new(){{"color", new Color(c.R, c.G, c.B)}};
+                TextColor = new(){{"color", Color.Color8(c.R, c.G, c.B, c.A)}};
             }
 
             // Assign the current column's color
@@ -58,6 +70,14 @@ public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
             }
         }
 
+        LineFinalColor[line] = TextColor;
+
         return (Dictionary)result;
+    }
+
+    public override void _ClearHighlightingCache()
+    {
+        TextColor = TextDefault;
+        LineFinalColor.Clear();
     }
 }
