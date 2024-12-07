@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Godot;
+
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.LMS.Msbt.TagLib.Smo;

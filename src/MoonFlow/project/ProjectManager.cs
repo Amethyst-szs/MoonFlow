@@ -59,6 +59,8 @@ public static class ProjectManager
 
     public static ProjectManagerResult TryOpenProject(string path, out RomfsValidation.RomfsVersion version)
     {
+        GD.Print("Opening project at ", path);
+
         // Setup out variable
         version = RomfsValidation.RomfsVersion.INVALID_VERSION;
 
@@ -98,6 +100,10 @@ public static class ProjectManager
 
     public static ProjectManagerResult TryCreateProject(ProjectInitInfo initInfo)
     {
+        GD.Print("Creating project at ", initInfo.Path);
+        GD.Print(" - Version: ", Enum.GetName(initInfo.Version));
+        GD.Print(" - Default Lang: ", initInfo.DefaultLanguage);
+
         // Ensure the provided directory is a valid place to create our project
         var path = initInfo.Path;
         if (!IsValidOpenOrCreate(ref path))

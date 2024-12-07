@@ -1,10 +1,9 @@
 using System;
 using System.IO;
 using System.Linq;
+using Godot;
 
 using Nindot;
-using Nindot.LMS.Msbt;
-using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Project;
 
@@ -42,6 +41,8 @@ public class ProjectLanguageHolder
 
         // Init metadata
         Metadata = new(Path + ".mfmeta");
+
+        GD.Print(string.Format(" - {0} OK", lang));
     }
 
     private static void InitArchive(ref SarcFile file, string filePath, string localPath)

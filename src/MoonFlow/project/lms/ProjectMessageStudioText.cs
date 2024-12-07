@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Godot;
 
 namespace MoonFlow.Project;
 
@@ -12,6 +13,8 @@ public class ProjectMessageStudioText : Dictionary<string, ProjectLanguageHolder
 
     public ProjectMessageStudioText(string projectPath, string defaultLang)
     {
+        GD.Print("Reading MSBT Archives...");
+
         // Create path to LocalizedData folder in project
         Path = projectPath + "LocalizedData/";
         Directory.CreateDirectory(Path);

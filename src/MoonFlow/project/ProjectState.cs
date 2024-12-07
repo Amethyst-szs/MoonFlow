@@ -47,6 +47,7 @@ public class ProjectState(string path, ProjectConfig config)
         loadScreen.LoadingComplete();
         StartupTask = null;
         
+        GD.Print("Project initilization successful");
         IsInitComplete = true;
     }
 

@@ -109,6 +109,8 @@ public partial class AppScene : Control
 
 		// Initilize run virtual app init function
 		AppInit();
+
+		GD.Print(string.Format("Opened App: {0} ({1})", AppName, GetType().Name));
 	}
 
 	// ====================================================== //
@@ -181,6 +183,8 @@ public partial class AppScene : Control
 
 		TaskbarButton.QueueFree();
 		QueueFree();
+
+		GD.Print(string.Format("Free App: {0} ({1})", AppName, GetType().Name));
 
 		if (Visible)
 		{

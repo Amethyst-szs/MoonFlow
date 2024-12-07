@@ -129,10 +129,17 @@ public partial class MsbtEditor : PanelContainer
 
 	public async void SaveFile()
 	{
+		GD.Print("\n - Saving ", File.Name);
+
 		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbtArchives);
 
 		await run.Task;
 		await ToSignal(Engine.GetMainLoop(), "process_frame");
+
+		if (run.Task.Exception == null)
+			GD.Print("Saved ", File.Name);
+		else
+			GD.Print("Saving failed for ", File.Name);
 
 		// Remove the modified icon from all entry buttons in editor
 		foreach (var button in EntryList.GetChildren())

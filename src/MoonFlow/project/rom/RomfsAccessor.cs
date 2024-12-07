@@ -134,6 +134,8 @@ public static class RomfsAccessor
 
         ActiveDirectory = active;
         ActiveVersion = ver;
+
+        GD.Print("Initilized RomfsAccessor for ", Enum.GetName(ActiveVersion));
     }
 
     public static void TryAssignDirectory(ref string directory, out RomfsValidation.RomfsVersion version)
@@ -160,6 +162,8 @@ public static class RomfsAccessor
 
         config.SetValue("path", verName, directory);
         config.Save(ConfigDirectory);
+
+        GD.Print(string.Format("Assigned path for {0} to {1}", Enum.GetName(ActiveVersion), directory));
     }
 
     public static bool TrySetGameVersion(RomfsValidation.RomfsVersion version)
@@ -184,6 +188,7 @@ public static class RomfsAccessor
 
         config.Save(ConfigDirectory);
 
+        GD.Print("Set RomfsAccessor to version ", Enum.GetName(ActiveVersion));
         return true;
     }
 

@@ -1,4 +1,6 @@
 using System.IO;
+using Godot;
+
 using Nindot;
 using Nindot.LMS.Msbp;
 
@@ -31,5 +33,7 @@ public class ProjectMsbpHolder
         
         // Get msbp from archive
         Project = archive.GetFileMSBP(ProjectDataFileName);
+
+        GD.Print("Parsed Project MSBP");
     }
 }
