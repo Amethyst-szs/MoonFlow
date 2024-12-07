@@ -23,6 +23,7 @@ theme_override_styles/panel = ExtResource("3_ha76q")
 
 [node name="Content" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
+theme_override_constants/separation = 12
 
 [connection signal="close_requested" from="." to="." method="queue_free"]
 [connection signal="go_back_requested" from="." to="." method="queue_free"]

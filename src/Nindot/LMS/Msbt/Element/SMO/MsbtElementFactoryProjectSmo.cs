@@ -59,7 +59,7 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
                 text = new MsbtTextElement(buffer[pointer..]);
                 if (!text.IsEmpty())
                     curPage.Add(text);
-                
+
                 break;
             }
 
@@ -67,7 +67,7 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
             text = new MsbtTextElement(buffer[pointer..nextTagIdx]);
             if (text.IsEmpty())
                 break;
-            
+
             curPage.Add(text);
             pointer += text.Text.Length * sizeof(ushort);
         }
@@ -138,15 +138,15 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
         // Determine which class to create based on tag name
         return tag switch
         {
-            (ushort)TagNameNumber.Score => new MsbtTagElementNumberScore(ref pointer, buffer),
-            (ushort)TagNameNumber.CoinNum => new MsbtTagElementNumberCoinNum(ref pointer, buffer),
-            (ushort)TagNameNumber.Date => new MsbtTagElementNumberDate(ref pointer, buffer),
-            (ushort)TagNameNumber.RaceTime => new MsbtTagElementNumberRaceTime(ref pointer, buffer),
-            (ushort)TagNameNumber.DateDetail => new MsbtTagElementNumberDateDetail(ref pointer, buffer),
+            (ushort)TagNameNumber.Score => new MsbtTagElementNumberWithFigure(ref pointer, buffer),
+            (ushort)TagNameNumber.CoinNum => new MsbtTagElementNumberWithFigure(ref pointer, buffer),
+            (ushort)TagNameNumber.Date => new MsbtTagElementNumberTime(ref pointer, buffer),
+            (ushort)TagNameNumber.RaceTime => new MsbtTagElementNumberTime(ref pointer, buffer),
+            (ushort)TagNameNumber.DateDetail => new MsbtTagElementNumberTime(ref pointer, buffer),
 
             //// v1.2.0+
-            (ushort)TagNameNumber.DateEU => new MsbtTagElementNumberDate(ref pointer, buffer),
-            (ushort)TagNameNumber.DateDetailEU => new MsbtTagElementNumberDateDetail(ref pointer, buffer),
+            (ushort)TagNameNumber.DateEU => new MsbtTagElementNumberTime(ref pointer, buffer),
+            (ushort)TagNameNumber.DateDetailEU => new MsbtTagElementNumberTime(ref pointer, buffer),
             ////
 
             _ => new MsbtTagElementUnknown(ref pointer, buffer),

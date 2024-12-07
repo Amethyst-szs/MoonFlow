@@ -44,7 +44,7 @@ public enum TagNameNumber : ushort
     Score = 0,
     // The MSBP defines a tag called Fig02, and the game's code checks for "FigLeft", "Fig02",
     // "Fig03", and more. As far as I can tell though, this is completely unused? Will get
-    // reguistered as an MsbtTagElementUnknown for now.
+    // registered as an MsbtTagElementUnknown for now.
     Fig02 = 1,
     CoinNum = 2,
     Date = 3,

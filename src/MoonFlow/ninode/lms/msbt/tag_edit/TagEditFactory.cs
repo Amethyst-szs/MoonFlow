@@ -19,6 +19,9 @@ public static class TagEditFactory
         { typeof(MsbtTagElementEuiWait), "eui/wait.tscn" },
         { typeof(MsbtTagElementEuiSpeed), "eui/speed.tscn" },
 
+        { typeof(MsbtTagElementNumberWithFigure), "number/number_figure.tscn" },
+        { typeof(MsbtTagElementNumberTime), "number/number_time.tscn" },
+
         { typeof(MsbtTagElementVoice), "se/voice.tscn" },
     };
 
@@ -32,15 +35,15 @@ public static class TagEditFactory
         // Retrive local scene path from factory
         if (!FactoryEntries.TryGetValue(type, out string target))
             target = Default;
-        
+
         var pack = GD.Load<PackedScene>(LocalPath + target);
         if (pack == null)
             return null;
-        
+
         var scene = pack.Instantiate();
         if (scene.GetType() != typeof(TagEditScene) && !scene.GetType().IsSubclassOf(typeof(TagEditScene)))
             throw new Exception("TagEdit scene is not of type TagEditScene!");
-        
+
         return scene as TagEditScene;
     }
 }

@@ -25,6 +25,8 @@
 # res://ninode/lms/msbt/tag_edit/system/ruby.tscn
 # res://ninode/lms/msbt/tag_edit/system/color.tscn
 # res://ninode/lms/msbt/tag_edit/eui/speed.tscn
+# res://ninode/lms/msbt/tag_edit/number/number_figure.tscn
+# res://ninode/lms/msbt/tag_edit/number/number_time.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -335,6 +337,10 @@ msgstr ""
 
 #: ninode/lms/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER"
+msgstr ""
+
+#: ninode/lms/msbt/wheel/tag_wheel.tscn
+msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER_TIME"
 msgstr ""
 
 #: ninode/lms/msbt/wheel/tag_wheel.tscn
@@ -1063,4 +1069,68 @@ msgstr ""
 
 #: ninode/lms/msbt/tag_edit/eui/speed.tscn
 msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_VERY_FAST"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+msgid "TAG_EDIT_SCENE_HEADER_NUMBER_FIGURE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+msgid "NUMBER_FIGURE_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+msgid "NUMBER_FIGURE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_SCORE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_FIG02"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_COIN_NUM"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_JP_TOGGLE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "TAG_EDIT_SCENE_HEADER_NUMBER_TIME"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "NUMBER_TIME_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "NUMBER_TIME_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_TIME_HEADER_TYPE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_RACE_TIME"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_EU"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL_EU"
 msgstr ""

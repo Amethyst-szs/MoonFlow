@@ -99,6 +99,8 @@ public abstract class MsbtTagElement : MsbtBaseElement
     public override byte[] GetBytes() { return CreateMemoryStreamWithHeaderData().ToArray(); }
     public override void WriteBytes(MemoryStream stream) { stream.Write(GetBytes()); }
 
+    public void SetTagNameDangerous(ushort name) { TagName = name; }
+
     public abstract string GetTextureName(int parameter);
     public virtual Color GetModulateColor(MsbpFile project) { return Color.White; }
 }

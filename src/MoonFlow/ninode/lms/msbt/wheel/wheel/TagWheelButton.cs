@@ -32,6 +32,7 @@ public partial class TagWheelButton : Button
 		Tag_TextAlign,
 		Tag_Grammar,
 		Tag_Ruby,
+		Tag_Number_Time,
 	};
 
 	[Export]
@@ -79,7 +80,7 @@ public partial class TagWheelButton : Button
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementEuiWait(20))]);
 				return;
 			case ButtonTypes.Tag_Number:
-				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementNumberScore("Score"))]);
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementNumberWithFigure(TagNameNumber.Score, "Score"))]);
 				return;
 			case ButtonTypes.Tag_TextAnim:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementTextAnim(TagNameTextAnim.Wave))]);
@@ -111,6 +112,9 @@ public partial class TagWheelButton : Button
 				return;
 			case ButtonTypes.Tag_Ruby:
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementSystemRuby())]);
+				return;
+			case ButtonTypes.Tag_Number_Time:
+				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementNumberTime(TagNameNumber.Date, "Date"))]);
 				return;
 		}
 	}

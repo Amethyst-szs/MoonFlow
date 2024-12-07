@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://drb6gmpl7tvlm"]
+[gd_scene load_steps=26 format=3 uid="uid://drb6gmpl7tvlm"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_fvc5i"]
 [ext_resource type="Script" path="res://ninode/lms/msbt/wheel/TagWheel.cs" id="1_oonfm"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://chnbkbk7our30" path="res://asset/nindot/lms/icon/PictureFont_ForWheel.png" id="13_38vhr"]
 [ext_resource type="Texture2D" uid="uid://bausrsk251nis" path="res://asset/nindot/lms/icon/String.png" id="14_m2s4y"]
 [ext_resource type="Texture2D" uid="uid://c241dipgwmbrg" path="res://asset/nindot/lms/icon/TimeComponent.png" id="15_n45je"]
+[ext_resource type="Texture2D" uid="uid://nkh3f31crnv8" path="res://asset/nindot/lms/icon/Number_Time.png" id="18_1cwbs"]
 [ext_resource type="Texture2D" uid="uid://yqppuxa8m17p" path="res://asset/material/arrow/circle.svg" id="20_w5whw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwkud"]
@@ -208,6 +209,17 @@ flat = true
 script = ExtResource("2_q0x4n")
 Type = 6
 Texture = ExtResource("13_5k885")
+
+[node name="NumberTime" type="Button" parent="WheelP2"]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+tooltip_text = "MSBT_TAG_WHEEL_TOOLTIP_NUMBER_TIME"
+mouse_default_cursor_shape = 2
+flat = true
+script = ExtResource("2_q0x4n")
+Type = 17
+Texture = ExtResource("18_1cwbs")
 
 [node name="String" type="Button" parent="WheelP2"]
 layout_mode = 0
