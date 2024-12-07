@@ -195,6 +195,13 @@ public partial class AppScene : Control
 		}
 	}
 
+	public virtual bool TryCloseFromTreeQuit(out SignalAwaiter awaiter)
+	{
+		awaiter = null;
+		AppClose(true);
+		return true;
+	}
+
 	// ====================================================== //
 	// ================ App Options Utilities =============== //
 	// ====================================================== //

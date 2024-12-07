@@ -26,11 +26,42 @@ public partial class MainSceneRoot : Control
         TreeExiting += OnTreeExiting;
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationWMCloseRequest)
+            OnWindowCloseRequest();
+    }
+
     private static void OnTreeExiting()
     {
         // Remove node reference in project manager
         ProjectManager.SceneRoot = null;
     }
+
+    private async void OnWindowCloseRequest()
+    {
+        var awaiter = ToSignal(Engine.GetMainLoop(), "process_frame");
+
+        foreach (var app in GetApps())
+        {
+            app.AppFocus();
+            await awaiter;
+
+            if (!app.TryCloseFromTreeQuit(out SignalAwaiter confirmationAwaiter))
+            {
+                await confirmationAwaiter;
+
+                if (IsInstanceValid(app) && !app.IsQueuedForDeletion())
+                    return;
+            }
+        }
+
+        GetTree().Quit(0);
+    }
+
+    // ====================================================== //
+    // ==================== App Utilities =================== //
+    // ====================================================== //
 
     public IEnumerable<AppScene> GetApps()
     {

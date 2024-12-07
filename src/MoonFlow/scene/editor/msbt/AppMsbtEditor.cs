@@ -43,17 +43,33 @@ public partial class AppMsbtEditor : AppScene
 		return;
 	}
 
-    public override void AppClose(bool isEndExclusive = false)
-    {
+	public override void AppClose(bool isEndExclusive = false)
+	{
 		if (!Editor.IsModified)
 		{
-        	base.AppClose(isEndExclusive);
+			base.AppClose(isEndExclusive);
 			return;
 		}
 
 		var dialog = GetNode<ConfirmationDialog>("%Dialog_UnsavedChanges");
 		dialog.Popup();
-    }
+	}
+
+	public override bool TryCloseFromTreeQuit(out SignalAwaiter awaiter)
+	{
+		if (!Editor.IsModified)
+		{
+			awaiter = null;
+			AppClose();
+			return true;
+		}
+
+		var dialog = GetNode<ConfirmationDialog>("%Dialog_UnsavedChanges");
+		dialog.Popup();
+
+		awaiter = ToSignal(dialog, ConfirmationDialog.SignalName.TreeExited);
+		return false;
+	}
 
 	private void AppCloseDespiteUnsavedChanged()
 	{
