@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=18 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scene/front_door/quickbar_error_label.gd" id="9_mpvuk"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="10_sqwg3"]
 [ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="11_ajwfd"]
+[ext_resource type="PackedScene" uid="uid://dwpxrep18y4wy" path="res://scene/front_door/dot/playable.tscn" id="11_h3uc8"]
 [ext_resource type="PackedScene" uid="uid://cio2gvsywxhso" path="res://scene/front_door/load/project_loading.tscn" id="12_my55f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
@@ -134,6 +135,22 @@ layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 icon = ExtResource("10_sqwg3")
 
+[node name="DotPlayable" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+mouse_filter = 1
+
+[node name="DotPlayable" parent="DotPlayable" instance=ExtResource("11_h3uc8")]
+
 [node name="Label_Debug" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -154,8 +171,6 @@ script = SubResource("GDScript_fdlxl")
 auto_translate_mode = 1
 title = "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 size = Vector2i(352, 180)
-ok_button_text = "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
-cancel_button_text = "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
 mode_overrides_title = false
 file_mode = 2
 access = 2
@@ -163,8 +178,7 @@ use_native_dialog = true
 
 [node name="Dialog_OpenProject" type="FileDialog" parent="."]
 title = "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
-ok_button_text = "OPEN_PROJECT_FOLDER_DIALOG_ACCEPT"
-cancel_button_text = "OPEN_PROJECT_FOLDER_DIALOG_CANCEL"
+mode_overrides_title = false
 file_mode = 2
 access = 2
 use_native_dialog = true

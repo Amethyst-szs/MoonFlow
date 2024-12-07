@@ -53,7 +53,10 @@ public partial class MainSceneRoot : Control
                     await confirmationAwaiter;
 
                 if (IsInstanceValid(app) && !app.IsQueuedForDeletion())
+                {
+                    GD.Print("Tree could not quit because an application refused!");
                     return;
+                }
             }
         }
 

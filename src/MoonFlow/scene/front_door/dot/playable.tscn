@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwpxrep18y4wy"]
+
+[ext_resource type="Texture2D" uid="uid://c3n5k2t68absw" path="res://asset/animation_sheet/player_dot_sheet.png" id="1_l8s75"]
+[ext_resource type="Script" path="res://scene/front_door/dot/playable.gd" id="2_ed60h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onnyy"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6esh"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v68f0"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbtlm"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cupfp"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb7q8"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5erp1"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adffd"]
+atlas = ExtResource("1_l8s75")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qpjxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onnyy")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6esh")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v68f0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbtlm")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cupfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb7q8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5erp1")
+}],
+"loop": true,
+"name": &"run",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adffd")
+}],
+"loop": true,
+"name": &"skid",
+"speed": 1.0
+}]
+
+[node name="DotPlayable" type="AnimatedSprite2D"]
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_qpjxk")
+animation = &"idle"
+centered = false
+script = ExtResource("2_ed60h")
+appear_delay_sec = 20.0
