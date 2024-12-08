@@ -160,7 +160,7 @@ func _physics_process(_delta: float) -> void:
 	# Clamp player within the window bounds
 	var origin = get_parent().global_position.x
 	var origin_s = get_parent().scale.x
-	var halfWin = get_window().size.x / 2
+	var halfWin = float(get_window().size.x) / 2
 	global_position.x = clampf(global_position.x, -halfWin + origin, halfWin + origin - (sprite_size.x * origin_s))
 
 #endregion
@@ -201,9 +201,9 @@ func _process_accel() -> void:
 
 func _process_mouse_toy_accel() -> void:
 	var mouse := get_local_mouse_position()
-	var sign := signf(mouse.x)
+	var s := signf(mouse.x)
 	
-	input_dir = (mouse.distance_to(Vector2.ZERO) / mouse_toy_range) * -sign
+	input_dir = (mouse.distance_to(Vector2.ZERO) / mouse_toy_range) * -s
 	_process_accel()
 
 #endregion

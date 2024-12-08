@@ -28,6 +28,7 @@
 # res://ninode/lms/msbt/tag_edit/number/number_figure.tscn
 # res://ninode/lms/msbt/tag_edit/number/number_time.tscn
 # res://ninode/lms/msbt/tag_edit/anim/text.tscn
+# res://ninode/lms/msbt/tag_edit/string/string.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1129,15 +1130,11 @@ msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_TREMBLE"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-msgid "[tremble]TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SHAKE"
-msgstr ""
-
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
-msgid "TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
@@ -1150,4 +1147,20 @@ msgstr ""
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_BEAT"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+msgid "TAG_EDIT_SCENE_HEADER_STRING"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+msgid "STRING_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+msgid "STRING_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+msgid "TAG_EDIT_SCENE_STRING_WARNING"
 msgstr ""

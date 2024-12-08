@@ -1120,39 +1120,55 @@ msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL_EU"
 msgstr "Date and Time (EU)"
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
 msgid "TAG_EDIT_SCENE_HEADER_TEXT_ANIM"
 msgstr "Text Animation"
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_RACE_TIME"
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_TREMBLE"
 msgstr "Tremble"
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-#| msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
 msgstr "Preview"
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SHAKE"
 msgstr "Shake"
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_WAVE"
 msgstr "Wave"
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-#| msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_SCORE"
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SCREAM"
 msgstr "Scream"
 
 #: ninode/lms/msbt/tag_edit/anim/text.tscn
-#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_BEAT"
 msgstr "Beat"
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
+msgid "TAG_EDIT_SCENE_HEADER_STRING"
+msgstr "String Formatiing"
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+#| msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_HEADER"
+msgid "STRING_TAG_EDIT_TEXT_FIELD_HEADER"
+msgstr "Replacement Key"
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+#| msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgid "STRING_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+msgstr "Key"
+
+#: ninode/lms/msbt/tag_edit/string/string.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgid "TAG_EDIT_SCENE_STRING_WARNING"
+msgstr ""
+"WARNING:\n"
+"This tag isn't fully understood, and may cause issues when edited! Only "
+"touch this if you know what you're doing."
 
 #~ msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
 #~ msgstr "Select Directory"

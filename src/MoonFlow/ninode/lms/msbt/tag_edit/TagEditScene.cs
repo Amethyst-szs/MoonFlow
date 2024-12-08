@@ -1,6 +1,8 @@
 using Godot;
-using Nindot.LMS.Msbt.TagLib;
 using System;
+
+using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib;
 
 namespace MoonFlow.LMS.Msbt;
 
@@ -11,7 +13,10 @@ public partial class TagEditScene : Window
 	// ==================== Virtual Setup =================== //
 	// ====================================================== //
 
+	public virtual bool IsRequirePageReference() { return false; }
+
 	public virtual void SetupScene(MsbtTagElement tag) { }
+	public virtual void SetupScene(MsbtTagElement tag, MsbtPage page) { }
 
 	// ====================================================== //
 	// ==================== Window Setup ==================== //

@@ -17,7 +17,7 @@ public abstract partial class TagSubmenuBase : PanelContainer
     public void SetupPosition(Vector2 gPos)
     {
         if (IsCenterWindow)
-            gPos = GetWindow().Size / 2;
+            gPos = GetTree().CurrentScene.GetWindow().Size / 2;
 
         // Setup pivot and position
         PivotOffset = Size / 2F;
@@ -28,8 +28,8 @@ public abstract partial class TagSubmenuBase : PanelContainer
         Scale = Vector2.One * 0.7F;
 
         var tween = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quint).SetParallel();
-        tween.TweenProperty(this, "scale", Vector2.One, 0.22);
-        tween.TweenProperty(this, "modulate", Color.Color8(255, 255, 255), 0.22);
+        tween.TweenProperty(this, "scale", Vector2.One, 0.3);
+        tween.TweenProperty(this, "modulate", Color.Color8(255, 255, 255), 0.3);
     }
 
     // ====================================================== //

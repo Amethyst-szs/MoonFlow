@@ -24,6 +24,12 @@ public static class TagEditFactory
 
         { typeof(MsbtTagElementTextAnim), "anim/text.tscn" },
 
+        { typeof(MsbtTagElementString), "string/string.tscn" },
+
+        { typeof(MsbtTagElementProjectTag), "icon/project.tscn" },
+        { typeof(MsbtTagElementPictureFont), "icon/picture.tscn" },
+        { typeof(MsbtTagElementDeviceFont), "icon/device.tscn" },
+
         { typeof(MsbtTagElementVoice), "se/voice.tscn" },
     };
 

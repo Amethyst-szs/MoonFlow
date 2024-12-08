@@ -119,7 +119,10 @@ public partial class MsbtPageEditor : TextEdit
         Editable = false;
         scene.TreeExiting += OnTagEditSceneClose;
 
-        scene.SetupScene(tag);
+        if (scene.IsRequirePageReference())
+            scene.SetupScene(tag, Page);
+        else
+            scene.SetupScene(tag);
 
         return true;
     }

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cph186kpv0lfk"]
+
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag_edit/icon/Project.cs" id="1_2mo0y"]
+
+[node name="ProjectTag" type="Window"]
+visible = false
+script = ExtResource("1_2mo0y")
