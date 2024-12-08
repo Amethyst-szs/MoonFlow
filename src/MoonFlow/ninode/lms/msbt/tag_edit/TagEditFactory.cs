@@ -22,6 +22,8 @@ public static class TagEditFactory
         { typeof(MsbtTagElementNumberWithFigure), "number/number_figure.tscn" },
         { typeof(MsbtTagElementNumberTime), "number/number_time.tscn" },
 
+        { typeof(MsbtTagElementTextAnim), "anim/text.tscn" },
+
         { typeof(MsbtTagElementVoice), "se/voice.tscn" },
     };
 

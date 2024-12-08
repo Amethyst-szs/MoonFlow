@@ -27,6 +27,7 @@
 # res://ninode/lms/msbt/tag_edit/eui/speed.tscn
 # res://ninode/lms/msbt/tag_edit/number/number_figure.tscn
 # res://ninode/lms/msbt/tag_edit/number/number_time.tscn
+# res://ninode/lms/msbt/tag_edit/anim/text.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -103,23 +104,7 @@ msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
-msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
 msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "OPEN_PROJECT_FOLDER_DIALOG_ACCEPT"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "OPEN_PROJECT_FOLDER_DIALOG_CANCEL"
 msgstr ""
 
 #: ninode/lms/msbt/file/msbt_editor.tscn
@@ -1133,4 +1118,36 @@ msgstr ""
 
 #: ninode/lms/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL_EU"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "TAG_EDIT_SCENE_HEADER_TEXT_ANIM"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_TREMBLE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "[tremble]TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SHAKE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_WAVE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SCREAM"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_BEAT"
 msgstr ""

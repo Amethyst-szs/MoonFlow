@@ -89,24 +89,8 @@ msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 msgstr "Select New Project RomFS Directory"
 
 #: scene/front_door/front_door.tscn
-msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
-msgstr "Select Directory"
-
-#: scene/front_door/front_door.tscn
-msgid "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
-msgstr "Cancel"
-
-#: scene/front_door/front_door.tscn
 msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
 msgstr "Select Project RomFS Directory"
-
-#: scene/front_door/front_door.tscn
-msgid "OPEN_PROJECT_FOLDER_DIALOG_ACCEPT"
-msgstr "Select Project"
-
-#: scene/front_door/front_door.tscn
-msgid "OPEN_PROJECT_FOLDER_DIALOG_CANCEL"
-msgstr "Cancel"
 
 #: ninode/lms/msbt/file/msbt_editor.tscn
 msgid "MSBT_ENTRY_NAME"
@@ -1134,6 +1118,53 @@ msgstr "Date (EU)"
 #: ninode/lms/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL_EU"
 msgstr "Date and Time (EU)"
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
+msgid "TAG_EDIT_SCENE_HEADER_TEXT_ANIM"
+msgstr "Text Animation"
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_RACE_TIME"
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_TREMBLE"
+msgstr "Tremble"
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
+msgstr "Preview"
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SHAKE"
+msgstr "Shake"
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_WAVE"
+msgstr "Wave"
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#| msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_SCORE"
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SCREAM"
+msgstr "Scream"
+
+#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#| msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
+msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_BEAT"
+msgstr "Beat"
+
+#~ msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
+#~ msgstr "Select Directory"
+
+#~ msgid "NEW_PROJECT_FOLDER_DIALOG_CANCEL"
+#~ msgstr "Cancel"
+
+#~ msgid "OPEN_PROJECT_FOLDER_DIALOG_ACCEPT"
+#~ msgstr "Select Project"
+
+#~ msgid "OPEN_PROJECT_FOLDER_DIALOG_CANCEL"
+#~ msgstr "Cancel"
 
 #~ msgid "MSBT_TAG_WHEEL_TOOLTIP_PROJECT_TAG"
 #~ msgstr ""
