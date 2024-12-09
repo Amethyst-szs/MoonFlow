@@ -1,0 +1,129 @@
+[gd_scene load_steps=19 format=3 uid="uid://ck2mpawvgk0li"]
+
+[ext_resource type="Script" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
+[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="2_mottg"]
+[ext_resource type="Script" path="res://scene/editor/msbt/components/entry_list_controls.gd" id="3_tx1js"]
+[ext_resource type="Script" path="res://scene/editor/msbt/list/NewEntryInputLine.cs" id="4_furja"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_d8emi"]
+[ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_xpdvg"]
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="7_rbj4v"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_ykyf6"]
+[ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="9_7ww6o"]
+[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="10_68pqn"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_bpujh"]
+action = &"msbt_add_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_pq416"]
+events = [SubResource("InputEventAction_bpujh")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_sr0fp"]
+action = &"msbt_find_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_7w4d7"]
+events = [SubResource("InputEventAction_sr0fp")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ugheb"]
+action = &"msbt_delete_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_sbvrw"]
+events = [SubResource("InputEventAction_ugheb")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hdlgh"]
+device = -1
+keycode = 4194332
+
+[sub_resource type="Shortcut" id="Shortcut_ysvcm"]
+events = [SubResource("InputEventKey_hdlgh")]
+
+[node name="EntryListHolder" type="VBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_q1mta")
+
+[node name="HSep" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Controls" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_mottg")
+script = ExtResource("3_tx1js")
+
+[node name="VBox" type="VBoxContainer" parent="Controls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBox_AddEntry" type="HBoxContainer" parent="Controls/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Line_EntryName" type="LineEdit" parent="Controls/VBox/HBox_AddEntry"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "MSBT_ENTRY_NAME"
+max_length = 64
+clear_button_enabled = true
+script = ExtResource("4_furja")
+
+[node name="Button_Add" type="Button" parent="Controls/VBox/HBox_AddEntry"]
+layout_mode = 2
+icon = ExtResource("5_d8emi")
+
+[node name="Texture_Warning" type="TextureRect" parent="Controls/VBox/HBox_AddEntry"]
+modulate = Color(1, 0.266667, 0, 1)
+layout_mode = 2
+tooltip_text = "MSBT_INVALID_ENTRY_NAME_WARNING"
+texture = ExtResource("6_xpdvg")
+stretch_mode = 5
+
+[node name="Line_Search" type="LineEdit" parent="Controls/VBox"]
+layout_mode = 2
+placeholder_text = "MSBT_SEARCH_ENTRIES"
+max_length = 22
+right_icon = ExtResource("7_rbj4v")
+
+[node name="HBox" type="HBoxContainer" parent="Controls/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Add" type="Button" parent="Controls/VBox/HBox"]
+layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_pq416")
+icon = ExtResource("5_d8emi")
+
+[node name="Search" type="Button" parent="Controls/VBox/HBox"]
+layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_7w4d7")
+icon = ExtResource("7_rbj4v")
+
+[node name="Trash" type="Button" parent="Controls/VBox/HBox"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_sbvrw")
+icon = ExtResource("8_ykyf6")
+
+[node name="Help" type="Button" parent="Controls/VBox/HBox"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ysvcm")
+icon = ExtResource("9_7ww6o")
+
+[node name="Label_EntryCount" type="Label" parent="Controls/VBox/HBox"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = ExtResource("10_68pqn")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="text_changed" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameChanged"]
+[connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls" method="_on_line_new_entry_text_submitted"]
+[connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameSubmitted"]
+[connection signal="pressed" from="Controls/VBox/HBox_AddEntry/Button_Add" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnEntrySubmitButtonPressed"]
+[connection signal="text_changed" from="Controls/VBox/Line_Search" to="." method="UpdateSearch"]
+[connection signal="toggled" from="Controls/VBox/HBox/Add" to="Controls" method="_on_add_toggled"]
+[connection signal="toggled" from="Controls/VBox/HBox/Search" to="Controls" method="_on_search_toggled"]
+[connection signal="pressed" from="Controls/VBox/HBox/Trash" to="." method="RequestDeleteEntry"]
+[connection signal="pressed" from="Controls/VBox/HBox/Help" to="." method="emit_signal" binds= [&"OpenHelpPage"]]

@@ -1,8 +1,5 @@
 extends PanelContainer
 
-@onready var entry_button_list_scroll: SmoothScrollContainer = $"../Scroll"
-@onready var entry_button_list: VBoxContainer = $"../Scroll/List"
-
 @onready var line_search: LineEdit = $VBox/Line_Search
 
 @onready var hbox_add_entry: HBoxContainer = $VBox/HBox_AddEntry
@@ -13,36 +10,24 @@ extends PanelContainer
 @onready var button_add: Button = $VBox/HBox/Add
 @onready var button_search: Button = $VBox/HBox/Search
 @onready var button_trash: Button = $VBox/HBox/Trash
-@onready var label_entry_count: Label = $VBox/HBox/EntryCount
+@onready var label_entry_count: Label = $VBox/HBox/Label_EntryCount
 
 func _ready() -> void:
 	_hide_control_inputs()
-	_on_msbt_editor_add_new_entry_validity(false)
 
 #region Events
-
-func _on_msbt_editor_entry_count_updated(total: int, search_matching: int) -> void:
-	if total == search_matching:
-		label_entry_count.text = str(total) + " Entries"
-		return
-	
-	label_entry_count.text = "%d/%d Entries" % [search_matching, total]
-
-func _on_msbt_editor_add_new_entry_validity(isValid: bool) -> void:
-	texture_warning.visible = !isValid
-
-func _on_button_add_entry_pressed():
-	line_add_entry.grab_focus()
-	line_add_entry.text_submitted.emit(line_add_entry.text)
 
 func _on_line_new_entry_text_submitted(new_text: String) -> void:
 	await Engine.get_main_loop().process_frame
 	
-	var new_child: Control = entry_button_list.get_node(new_text)
+	var scroll: SmoothScrollContainer = get_parent().get_child(0) as SmoothScrollContainer
+	
+	var list = scroll.get_child(0)
+	var new_child: Control = list.get_node(new_text)
 	if !new_child:
 		return
 	
-	entry_button_list_scroll.scroll_y_to(-new_child.position.y)
+	scroll.scroll_y_to(-new_child.position.y)
 
 func _on_add_toggled(toggled_on: bool) -> void:
 	_hide_control_inputs(button_add, toggled_on)

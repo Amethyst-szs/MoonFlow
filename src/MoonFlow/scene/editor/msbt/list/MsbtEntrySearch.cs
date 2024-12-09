@@ -3,24 +3,33 @@ using System;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-public partial class MsbtEditor : PanelContainer
+public partial class MsbtEntryList : VBoxContainer
 {
 	private string EntrySearchString = "";
 
+	public void UpdateEntryCount()
+	{
+		OnSearchEntryListUpdated(EntrySearchString);
+	}
+
+	public void UpdateSearch(string searchStr)
+	{
+		EntrySearchString = searchStr;
+		OnSearchEntryListUpdated(EntrySearchString);
+	}
+
 	private void OnSearchEntryListUpdated(string match)
 	{
-		EntrySearchString = match;
-
 		// Update entry count in other components
-		int entryCount = File.GetEntryCount();
+		int entryCount = Parent.File.GetEntryCount();
 
 		// Update visiblity of selectors
 		if (match == string.Empty)
 		{
-			foreach (var child in EntryList.GetChildren())
+			foreach (var child in GetChildren())
 				((Control)child).Show();
 
-			EmitSignal(SignalName.EntryCountUpdated, [entryCount, entryCount]);
+			UpdateEntryCountLabel(entryCount, entryCount);
 			return;
 		}
 
@@ -28,7 +37,7 @@ public partial class MsbtEditor : PanelContainer
 		Node firstMatch = null;
 		bool isSearchForNewSelection = true;
 
-		foreach (var child in EntryList.GetChildren())
+		foreach (var child in GetChildren())
 		{
 			if (child.GetType() != typeof(Button)) continue;
 
@@ -41,7 +50,7 @@ public partial class MsbtEditor : PanelContainer
 
 			if (!isMatch && (EntryListSelection == child || isSearchForNewSelection))
 			{
-				if (EntryList.GetChildCount() == 0)
+				if (GetChildCount() == 0)
 				{
 					OnEntrySelected("", false);
 					continue;
@@ -56,6 +65,19 @@ public partial class MsbtEditor : PanelContainer
 			}
 		}
 
-		EmitSignal(SignalName.EntryCountUpdated, [entryCount, matching]);
+		UpdateEntryCountLabel(entryCount, matching);
+	}
+
+	private void UpdateEntryCountLabel(int total) { UpdateEntryCountLabel(total, total); }
+
+	private void UpdateEntryCountLabel(int total, int matching)
+	{
+		if (total == matching)
+		{
+			EntryCount.Text = total.ToString() + " Entries";
+			return;
+		}
+
+		EntryCount.Text = string.Format("{0}/{1} Entries", matching, total);
 	}
 }

@@ -137,11 +137,13 @@ func _ready() -> void:
 		if not c is ScrollBar:
 			content_node = c
 	
-	add_child(scrollbar_hide_timer)
+	add_child(scrollbar_hide_timer, false, Node.INTERNAL_MODE_BACK)
 	scrollbar_hide_timer.timeout.connect(_scrollbar_hide_timer_timeout)
 	if hide_scrollbar_over_time:
 		scrollbar_hide_timer.start(scrollbar_hide_time)
 	get_tree().node_added.connect(_on_node_added)
+	
+	child_entered_tree.connect(_on_child_entered_tree)
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -316,6 +318,10 @@ func _on_node_added(node) -> void:
 	if node is Control and Engine.is_editor_hint():
 		if is_ancestor_of(node):
 			node.mouse_filter = Control.MOUSE_FILTER_PASS
+
+func _on_child_entered_tree(child: Node) -> void:
+	if get_children().has(child) and child is Control:
+		content_node = child as Control
 
 func _scrollbar_hide_timer_timeout() -> void:
 	if !any_scroll_bar_dragged():

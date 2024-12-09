@@ -24,21 +24,19 @@ public partial class MsbtEditor : PanelContainer
 	public string DefaultLanguage { get; private set; } = "USen";
 	public string CurrentLanguage { get; private set; } = "USen";
 
-	private VBoxContainer EntryList = null;
-	private VBoxContainer EntryContent = null;
+	public bool IsModified { get; private set; } = false;
+
+	private MsbtEntryList EntryList = null;
+
+	public VBoxContainer EntryContent { get; private set; } = null;
+	public MsbtEntryEditor EntryContentSelection { get; private set; } = null;
 
 	private Label FileTitleName = null;
 	private Label FileEntryName = null;
 	private LangPicker LanguagePicker = null;
 
-	private Button EntryListSelection = null;
-	private MsbtEntryEditor EntryContentSelection = null;
-
 	[Signal]
-	public delegate void EntrySelectedEventHandler(string label);
-
-	[Signal]
-	public delegate void EntryCountUpdatedEventHandler(int total, int matchSearch);
+	public delegate void ContentModifiedEventHandler(string label);
 
 	#endregion
 
@@ -46,8 +44,16 @@ public partial class MsbtEditor : PanelContainer
 
 	public override void _Ready()
 	{
-		// Get access to list and content
-		EntryList = GetNode<VBoxContainer>("%List");
+		// Get entry list from holder
+		EntryList = GetNode<EntryListHolder>("%EntryListHolder").EntryList;
+		if (!IsInstanceValid(EntryList))
+			throw new NullReferenceException(nameof(EntryList));
+
+		// Connect to entry list signals
+		EntryList.Connect(MsbtEntryList.SignalName.EntrySelected,
+			Callable.From(new Action<string>(OnEntryListSelection)));
+
+		// Get pointers to additional children
 		EntryContent = GetNode<VBoxContainer>("%Content");
 
 		FileTitleName = GetNode<Label>("%FileTitle");
@@ -67,8 +73,9 @@ public partial class MsbtEditor : PanelContainer
 
 		// If there is already a selection in the entry list, copy down its name for later
 		string selectionName = null;
-		if (IsInstanceValid(EntryListSelection))
-			selectionName = EntryListSelection.Name;
+
+		if (IsInstanceValid(EntryList.EntryListSelection))
+			selectionName = EntryList.EntryListSelection.Name;
 
 		// If the EntryList already has children, empty lists
 		if (EntryList.GetChildCount() > 0)
@@ -91,51 +98,52 @@ public partial class MsbtEditor : PanelContainer
 		var labelList = File.GetEntryLabels().ToArray();
 		Array.Sort(labelList, string.Compare);
 
-		foreach (var label in labelList) { CreateEntryListButton(label); }
+		foreach (var label in labelList) { EntryList.CreateEntryListButton(label); }
 
 		// Create entry content
 		for (int i = 0; i < File.GetEntryCount(); i++) { CreateEntryContentEditor(i); }
 
 		// Select either the first entry or selectionName
-		selectionName ??= EntryList.GetChild(0).Name;
-		CallDeferred("OnEntrySelected", selectionName, true);
-
-		// Update entry count in other components
-		int entryCount = File.GetEntryCount();
-		EmitSignal(SignalName.EntryCountUpdated, [entryCount, entryCount]);
+		var firstItem = EntryList.GetChild(0);
+		if (IsInstanceValid(firstItem))
+			selectionName ??= firstItem.Name;
+		
+		EntryList.CallDeferred(MsbtEntryList.MethodName.OnEntrySelected, selectionName, true);
+		
+		EntryList.UpdateEntryCount();
 
 		// Set file title
 		FileTitleName.Text = File.Name;
 	}
 
 	public MsbtEntryEditor CreateEntryContentEditor(int i)
-    {
-        // Get access to the metadata accessor for the current language
-        var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-        if (metadataAccessor == null)
-            throw new Exception("Invalid metadata accessor!");
+	{
+		// Get access to the metadata accessor for the current language
+		var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+		if (metadataAccessor == null)
+			throw new Exception("Invalid metadata accessor!");
 
-        // Get access to the requested entry and metadata
-        var entry = File.GetEntry(i);
-        var metadata = metadataAccessor.GetMetadata(File, entry);
+		// Get access to the requested entry and metadata
+		var entry = File.GetEntry(i);
+		var metadata = metadataAccessor.GetMetadata(File, entry);
 
-        // Initilize entry editor
-        var editor = new MsbtEntryEditor(this, entry, metadata)
-        {
-            Name = File.GetEntryLabel(i),
-            Visible = false,
-            SizeFlagsHorizontal = SizeFlags.ExpandFill,
-            SizeFlagsVertical = SizeFlags.ExpandFill,
-        };
+		// Initilize entry editor
+		var editor = new MsbtEntryEditor(this, entry, metadata)
+		{
+			Name = File.GetEntryLabel(i),
+			Visible = false,
+			SizeFlagsHorizontal = SizeFlags.ExpandFill,
+			SizeFlagsVertical = SizeFlags.ExpandFill,
+		};
 
-        EntryContent.AddChild(editor, true);
+		EntryContent.AddChild(editor, true);
 
-        // Connect to signals
-        editor.Connect(MsbtEntryEditor.SignalName.EntryModified,
-            Callable.From(new Action<MsbtEntryEditor>(OnEntryModified)));
+		// Connect to signals
+		editor.Connect(MsbtEntryEditor.SignalName.EntryModified,
+			Callable.From(new Action<MsbtEntryEditor>(OnEntryModified)));
 
-        return editor;
-    }
+		return editor;
+	}
 
 	#endregion
 
@@ -266,37 +274,8 @@ public partial class MsbtEditor : PanelContainer
 
 	#region Signals
 
-	public void OnEntryHovered(string label)
+	private void OnEntryListSelection(string label)
 	{
-
-		if (Input.IsMouseButtonPressed(MouseButton.Left))
-			OnEntrySelected(label);
-	}
-
-	public void OnEntrySelected(string label, bool isGrabFocus = true)
-	{
-		// Close old selection
-		if (IsInstanceValid(EntryListSelection))
-			EntryListSelection.ButtonPressed = false;
-
-		if (IsInstanceValid(EntryContentSelection))
-			EntryContentSelection.Hide();
-
-		// Ensure string is not empty
-		if (label == string.Empty)
-			return;
-
-		// Open entry
-		var button = EntryList.GetNode<Button>(label);
-		EntryListSelection = button;
-
-		if (button == null)
-			return;
-
-		button.ButtonPressed = true;
-		if (isGrabFocus)
-			button.GrabFocus();
-
 		var content = EntryContent.GetNode<MsbtEntryEditor>(label);
 		EntryContentSelection = content;
 
@@ -306,6 +285,52 @@ public partial class MsbtEditor : PanelContainer
 		// Update entry header
 		FileEntryName.Text = label;
 	}
+
+    private void OnAddEntryNameSubmitted(string name)
+    {
+        foreach (var file in FileList.Values)
+            file.AddEntry(name);
+
+        EntryList.CreateEntryListButton(name, true);
+        CreateEntryContentEditor(File.GetEntryIndex(name));
+
+        EntryList.OnEntrySelected(name, true);
+        EntryList.UpdateEntryCount();
+    }
+
+    private void OnDeleteEntryTrash()
+    {
+        if (!IsInstanceValid(EntryList.EntryListSelection) || !IsInstanceValid(EntryContentSelection))
+            return;
+
+        string entry = EntryList.EntryListSelection.Name;
+        string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
+
+        foreach (var file in FileList.Values)
+            file.RemoveEntry(entry);
+
+        EntryList.EntryListSelection.QueueFree();
+        EntryContentSelection.QueueFree();
+
+        if (prevEntry != null && prevEntry != string.Empty)
+            EntryList.OnEntrySelected(prevEntry);
+
+		EntryList.UpdateEntryCount();
+    }
+
+	private void OnEntryModified(MsbtEntryEditor entryEditor)
+    {
+        // Set flag
+        IsModified = true;
+
+		// Append asterisk to file name
+        if (!FileTitleName.Text.EndsWith('*'))
+            FileTitleName.Text += '*';
+
+        // Alert other nodes of the content modification
+        var entryName = entryEditor.Entry.Name;
+        EmitSignal(SignalName.ContentModified, entryName);
+    }
 
 	private void OnLanguagePickerSelectedLang(int idx)
 	{
@@ -322,6 +347,17 @@ public partial class MsbtEditor : PanelContainer
 		File = newTarget;
 		InitEditor();
 	}
+
+	#endregion
+
+	// ====================================================== //
+	// ====================== Utilities ===================== //
+	// ====================================================== //
+
+	#region Utilities
+
+	public void ForceResetModifiedFlag() { IsModified = false; }
+	public void UpdateEntrySearch(string str) { EntryList.UpdateSearch(str); }
 
 	#endregion
 }
