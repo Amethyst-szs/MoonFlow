@@ -1,0 +1,802 @@
+[gd_scene load_steps=76 format=3 uid="uid://bbwcbxape7kyt"]
+
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/picture/TagSubmenuPictureFont.cs" id="1_2bwnk"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="2_bxd02"]
+[ext_resource type="StyleBox" uid="uid://cdh3fo4fwbcwo" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_submenu.tres" id="3_laewc"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_8sksy"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_c1rnw"]
+[ext_resource type="Texture2D" uid="uid://bagxx0ehdxvjt" path="res://asset/nindot/lms/icon/PictureFont_4C.png" id="4_xr32y"]
+[ext_resource type="Texture2D" uid="uid://le6wo17n7xnu" path="res://asset/nindot/lms/icon/PictureFont_3B.png" id="5_7plfe"]
+[ext_resource type="Texture2D" uid="uid://e2wyytp1aack" path="res://asset/nindot/lms/icon/PictureFont_60.png" id="5_532jh"]
+[ext_resource type="Texture2D" uid="uid://ctu6ag2vldxhh" path="res://asset/nindot/lms/icon/PictureFont_3A_OLD.png" id="5_kw43j"]
+[ext_resource type="Texture2D" uid="uid://dtm0bkx551w56" path="res://asset/nindot/lms/icon/PictureFont_39.png" id="5_ysvnl"]
+[ext_resource type="Texture2D" uid="uid://cts7fkl5niq11" path="res://asset/nindot/lms/icon/PictureFont_4E.png" id="6_1rshh"]
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/button/TagPictureFontButton.cs" id="8_ebijr"]
+[ext_resource type="Texture2D" uid="uid://csmwllrnqgr42" path="res://asset/nindot/lms/icon/PictureFont_4D.png" id="8_m5toe"]
+[ext_resource type="Texture2D" uid="uid://gpqokiaivaxq" path="res://asset/nindot/lms/icon/PictureFont_44.png" id="9_joscf"]
+[ext_resource type="Texture2D" uid="uid://bybwp5pwc7wwp" path="res://asset/nindot/lms/icon/PictureFont_38.png" id="9_k24t8"]
+[ext_resource type="Texture2D" uid="uid://c4qxhfsmrnt0x" path="res://asset/nindot/lms/icon/PictureFont_4B.png" id="10_wrb3e"]
+[ext_resource type="Texture2D" uid="uid://qm35bsk7v4un" path="res://asset/nindot/lms/icon/PictureFont_45.png" id="11_lpu87"]
+[ext_resource type="Texture2D" uid="uid://bg2o5u5dmfyx0" path="res://asset/nindot/lms/icon/PictureFont_43.png" id="12_qehv8"]
+[ext_resource type="Texture2D" uid="uid://dhixjot2nv2ve" path="res://asset/nindot/lms/icon/PictureFont_48.png" id="13_fxe4x"]
+[ext_resource type="Texture2D" uid="uid://bjb2kqceq48fq" path="res://asset/nindot/lms/icon/PictureFont_49.png" id="14_wi8lp"]
+[ext_resource type="Texture2D" uid="uid://g3ra75jbsraq" path="res://asset/nindot/lms/icon/PictureFont_47.png" id="15_widru"]
+[ext_resource type="Texture2D" uid="uid://biueg7nxh3jht" path="res://asset/nindot/lms/icon/PictureFont_46.png" id="16_vr1ru"]
+[ext_resource type="Texture2D" uid="uid://corhlxhr64e6" path="res://asset/nindot/lms/icon/PictureFont_4F.png" id="18_ygcni"]
+[ext_resource type="Texture2D" uid="uid://c46b3cvbfpybx" path="res://asset/nindot/lms/icon/PictureFont_30.png" id="20_i0ju6"]
+[ext_resource type="Texture2D" uid="uid://2g01fvaywdt" path="res://asset/nindot/lms/icon/PictureFont_31.png" id="21_t3ix0"]
+[ext_resource type="Texture2D" uid="uid://c6vsbddcrhi2r" path="res://asset/nindot/lms/icon/PictureFont_32.png" id="22_ajn4x"]
+[ext_resource type="Texture2D" uid="uid://cojfxwfv1f811" path="res://asset/nindot/lms/icon/PictureFont_33.png" id="23_5re5o"]
+[ext_resource type="Texture2D" uid="uid://ctdbw58hvlc6a" path="res://asset/nindot/lms/icon/PictureFont_34.png" id="24_735fq"]
+[ext_resource type="Texture2D" uid="uid://wtcf5go6a5lj" path="res://asset/nindot/lms/icon/PictureFont_37.png" id="25_2jpqa"]
+[ext_resource type="Texture2D" uid="uid://cqm8pbvs107hn" path="res://asset/nindot/lms/icon/PictureFont_40.png" id="26_04evv"]
+[ext_resource type="Texture2D" uid="uid://b7bvfas6fimcp" path="res://asset/nindot/lms/icon/PictureFont_41.png" id="27_h45bd"]
+[ext_resource type="Texture2D" uid="uid://d3rbkfrqefm2a" path="res://asset/nindot/lms/icon/PictureFont_42.png" id="28_32e6j"]
+[ext_resource type="Texture2D" uid="uid://y2to817674x2" path="res://asset/nindot/lms/icon/PictureFont_4A.png" id="29_4qif7"]
+[ext_resource type="Texture2D" uid="uid://jclki1rwlli5" path="res://asset/nindot/lms/icon/PictureFont_35.png" id="30_7lrs0"]
+[ext_resource type="Texture2D" uid="uid://dcele1at5x5bm" path="res://asset/nindot/lms/icon/PictureFont_36.png" id="31_ih4oj"]
+[ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="32_ajep0"]
+[ext_resource type="Texture2D" uid="uid://cpp2eu0ixnbui" path="res://asset/nindot/lms/icon/ProjectTag.png" id="33_2ev7k"]
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/button/TagProjectTagButton.cs" id="33_5foj8"]
+[ext_resource type="Texture2D" uid="uid://cedb163wvka2j" path="res://asset/nindot/lms/icon/PictureFont_75.png" id="33_ywntl"]
+[ext_resource type="Texture2D" uid="uid://qsmvjsetmlcv" path="res://asset/nindot/lms/icon/PictureFont_72.png" id="34_hy3eh"]
+[ext_resource type="Texture2D" uid="uid://d14e51jfichy0" path="res://asset/nindot/lms/icon/PictureFont_77.png" id="35_gsrts"]
+[ext_resource type="Texture2D" uid="uid://dddqmafw50701" path="res://asset/nindot/lms/icon/PictureFont_71.png" id="36_1ax18"]
+[ext_resource type="Texture2D" uid="uid://dt8pd43qjbyw6" path="res://asset/nindot/lms/icon/PictureFont_78.png" id="37_nkrjl"]
+[ext_resource type="Texture2D" uid="uid://oam6cv6pr0ax" path="res://asset/nindot/lms/icon/PictureFont_74.png" id="38_hblcb"]
+[ext_resource type="Texture2D" uid="uid://oqr21ay6yftp" path="res://asset/nindot/lms/icon/PictureFont_76.png" id="39_3tiif"]
+[ext_resource type="Texture2D" uid="uid://bb75cipsbn72b" path="res://asset/nindot/lms/icon/PictureFont_73.png" id="40_5o6bi"]
+[ext_resource type="Texture2D" uid="uid://b2sff0mn8jsqh" path="res://asset/nindot/lms/icon/PictureFont_79.png" id="41_bux5u"]
+[ext_resource type="Texture2D" uid="uid://b8f671q3vp6v5" path="res://asset/nindot/lms/icon/PictureFont_7A.png" id="42_plh7m"]
+[ext_resource type="Texture2D" uid="uid://ch0r84d2bcetl" path="res://asset/nindot/lms/icon/PictureFont_7B.png" id="43_b7eje"]
+[ext_resource type="Texture2D" uid="uid://dn1qpf5pk8tt5" path="res://asset/nindot/lms/icon/PictureFont_7C.png" id="44_dgjw8"]
+[ext_resource type="Texture2D" uid="uid://dak22ws2jjsv3" path="res://asset/nindot/lms/icon/PictureFont_50.png" id="45_2uxgu"]
+[ext_resource type="Texture2D" uid="uid://bd05rhjjyhfa7" path="res://asset/nindot/lms/icon/PictureFont_51.png" id="46_202xv"]
+[ext_resource type="Texture2D" uid="uid://dipakx7qgyc54" path="res://asset/nindot/lms/icon/PictureFont_52.png" id="47_uo68l"]
+[ext_resource type="Texture2D" uid="uid://cqmk7020y6wbo" path="res://asset/nindot/lms/icon/ProjectTag_CoinCollect.png" id="48_kkwak"]
+[ext_resource type="Texture2D" uid="uid://dqmlirlm3u85" path="res://asset/nindot/lms/icon/PictureFont_53.png" id="48_uw45n"]
+[ext_resource type="Texture2D" uid="uid://b2tmog2rx5li5" path="res://asset/nindot/lms/icon/PictureFont_54.png" id="49_0lwds"]
+[ext_resource type="Texture2D" uid="uid://dbi0dm5jayblj" path="res://asset/nindot/lms/icon/PictureFont_55.png" id="50_btfn1"]
+[ext_resource type="Texture2D" uid="uid://ckouh1xy1u5wt" path="res://asset/nindot/lms/icon/PictureFont_56.png" id="51_32cwk"]
+[ext_resource type="Texture2D" uid="uid://dgle8b604vedf" path="res://asset/nindot/lms/icon/PictureFont_57.png" id="52_ijsi0"]
+[ext_resource type="Texture2D" uid="uid://b21a78qoqy1qy" path="res://asset/nindot/lms/icon/PictureFont_58.png" id="53_phvj7"]
+[ext_resource type="Texture2D" uid="uid://ctnc68hd7yoai" path="res://asset/nindot/lms/icon/PictureFont_59.png" id="54_74ynm"]
+[ext_resource type="Texture2D" uid="uid://detr688phjeh4" path="res://asset/nindot/lms/icon/PictureFont_5A.png" id="55_wddas"]
+[ext_resource type="Texture2D" uid="uid://dh4oxf5jgfrxp" path="res://asset/nindot/lms/icon/PictureFont_5B.png" id="56_8hk4x"]
+[ext_resource type="Texture2D" uid="uid://yxuxppkc5gjt" path="res://asset/nindot/lms/icon/PictureFont_5C.png" id="57_bcw7y"]
+[ext_resource type="Texture2D" uid="uid://b3cglvjtq0p86" path="res://asset/nindot/lms/icon/PictureFont_61.png" id="59_6vhuf"]
+[ext_resource type="Texture2D" uid="uid://c347fnifrnjbt" path="res://asset/nindot/lms/icon/PictureFont_62.png" id="60_we171"]
+[ext_resource type="Texture2D" uid="uid://7y0f8nygbi2f" path="res://asset/nindot/lms/icon/PictureFont_63.png" id="61_lfmcn"]
+[ext_resource type="Texture2D" uid="uid://ypq31g0fwfp8" path="res://asset/nindot/lms/icon/PictureFont_64.png" id="62_4347m"]
+[ext_resource type="Texture2D" uid="uid://4r1mncma2e3s" path="res://asset/nindot/lms/icon/PictureFont_65.png" id="63_j0dw2"]
+[ext_resource type="Texture2D" uid="uid://nkgjnkvukwgo" path="res://asset/nindot/lms/icon/PictureFont_2E.png" id="64_jhbiy"]
+[ext_resource type="Texture2D" uid="uid://ccevird7hdgtq" path="res://asset/nindot/lms/icon/PictureFont_2F.png" id="65_d3qkq"]
+[ext_resource type="Texture2D" uid="uid://7ai2w0ygn0xj" path="res://asset/nindot/lms/icon/PictureFont_3A.png" id="67_81642"]
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/TagMenuFocusNeighborBuilder.cs" id="73_u0nap"]
+
+[sub_resource type="Theme" id="Theme_imy0c"]
+Button/constants/icon_max_width = 41
+
+[sub_resource type="LabelSettings" id="LabelSettings_32rks"]
+font = ExtResource("4_8sksy")
+font_size = 17
+font_color = Color(0.741176, 0.556863, 0.215686, 1)
+
+[node name="SubmenuTagPictureFont" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_bxd02")
+theme_override_styles/panel = ExtResource("3_laewc")
+script = ExtResource("1_2bwnk")
+IsCenterWindow = true
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(705, 420)
+layout_mode = 2
+theme = SubResource("Theme_imy0c")
+follow_focus = true
+vertical_scroll_mode = 2
+script = ExtResource("4_c1rnw")
+speed = 3.0
+drag_with_mouse = false
+follow_focus_margin = 80
+force_vertical_scrolling = true
+
+[node name="VBox" type="VBoxContainer" parent="Scroll"]
+layout_mode = 2
+
+[node name="HSep_Char" type="HSeparator" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Character" type="Label" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PICTURE_FONT_HEADER_CHARACTERS"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Character" type="HBoxContainer" parent="Scroll/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Char0" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconMario_0"
+mouse_filter = 1
+icon = ExtResource("4_xr32y")
+script = ExtResource("8_ebijr")
+IconCode = 76
+IsAutograbFocus = true
+
+[node name="Char1" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconMarioCapOff_0"
+mouse_filter = 1
+icon = ExtResource("6_1rshh")
+script = ExtResource("8_ebijr")
+IconCode = 78
+
+[node name="Char3" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconLuigi_0"
+mouse_filter = 1
+icon = ExtResource("5_ysvnl")
+script = ExtResource("8_ebijr")
+IconCode = 57
+
+[node name="Char2" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconCap_0"
+mouse_filter = 1
+icon = ExtResource("8_m5toe")
+script = ExtResource("8_ebijr")
+IconCode = 77
+
+[node name="Char11" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconCapManHero_0"
+mouse_filter = 1
+icon = ExtResource("9_k24t8")
+script = ExtResource("8_ebijr")
+IconCode = 56
+
+[node name="Char13" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconFrog_0"
+mouse_filter = 1
+icon = ExtResource("10_wrb3e")
+script = ExtResource("8_ebijr")
+IconCode = 75
+
+[node name="Char4" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconPeach_0"
+mouse_filter = 1
+icon = ExtResource("9_joscf")
+script = ExtResource("8_ebijr")
+IconCode = 68
+
+[node name="Char5" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconTiara_0"
+mouse_filter = 1
+icon = ExtResource("11_lpu87")
+script = ExtResource("8_ebijr")
+IconCode = 69
+
+[node name="Char12" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconPauline_0"
+mouse_filter = 1
+icon = ExtResource("18_ygcni")
+script = ExtResource("8_ebijr")
+IconCode = 79
+
+[node name="Char6" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconKoopa_0"
+mouse_filter = 1
+icon = ExtResource("12_qehv8")
+script = ExtResource("8_ebijr")
+IconCode = 67
+
+[node name="Char7" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalStacker_0"
+mouse_filter = 1
+icon = ExtResource("13_fxe4x")
+script = ExtResource("8_ebijr")
+IconCode = 72
+
+[node name="Char8" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalBombTail_0"
+mouse_filter = 1
+icon = ExtResource("14_wi8lp")
+script = ExtResource("8_ebijr")
+IconCode = 73
+
+[node name="Char9" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalFireBlower_0"
+mouse_filter = 1
+icon = ExtResource("15_widru")
+script = ExtResource("8_ebijr")
+IconCode = 71
+
+[node name="Char10" type="Button" parent="Scroll/VBox/Character"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconBroodalCapThrower_0"
+mouse_filter = 1
+icon = ExtResource("16_vr1ru")
+script = ExtResource("8_ebijr")
+IconCode = 70
+
+[node name="HSep_Icon" type="HSeparator" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Icon" type="Label" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PICTURE_FONT_HEADER_ICONS"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Icon" type="HBoxContainer" parent="Scroll/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Ico6" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconCoin_0"
+mouse_filter = 1
+icon = ExtResource("26_04evv")
+script = ExtResource("8_ebijr")
+IconCode = 64
+
+[node name="Ico5" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconLifeMaxUpItem_0"
+mouse_filter = 1
+icon = ExtResource("25_2jpqa")
+script = ExtResource("8_ebijr")
+IconCode = 55
+
+[node name="Ico9" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconHomeShip_0"
+mouse_filter = 1
+icon = ExtResource("29_4qif7")
+script = ExtResource("8_ebijr")
+IconCode = 74
+
+[node name="Ico7" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconEarth_0"
+mouse_filter = 1
+icon = ExtResource("27_h45bd")
+script = ExtResource("8_ebijr")
+IconCode = 65
+
+[node name="Ico8" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconCheckpoint_0"
+mouse_filter = 1
+icon = ExtResource("28_32e6j")
+script = ExtResource("8_ebijr")
+IconCode = 66
+
+[node name="Ico4" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconAmiibo_0"
+mouse_filter = 1
+icon = ExtResource("24_735fq")
+script = ExtResource("8_ebijr")
+IconCode = 52
+
+[node name="Ico0" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconMoonRock_0"
+mouse_filter = 1
+icon = ExtResource("20_i0ju6")
+script = ExtResource("8_ebijr")
+IconCode = 48
+
+[node name="Ico1" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconAchivementNpc_0"
+mouse_filter = 1
+icon = ExtResource("21_t3ix0")
+script = ExtResource("8_ebijr")
+IconCode = 49
+
+[node name="Ico2" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconHintNpc_0"
+mouse_filter = 1
+icon = ExtResource("22_ajn4x")
+script = ExtResource("8_ebijr")
+IconCode = 50
+
+[node name="Ico3" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconPoetter_0"
+mouse_filter = 1
+icon = ExtResource("23_5re5o")
+script = ExtResource("8_ebijr")
+IconCode = 51
+
+[node name="Ico10" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconStar_0"
+mouse_filter = 1
+icon = ExtResource("30_7lrs0")
+script = ExtResource("8_ebijr")
+IconCode = 53
+
+[node name="Ico11" type="Button" parent="Scroll/VBox/Icon"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconStarDotted_0"
+mouse_filter = 1
+icon = ExtResource("31_ih4oj")
+script = ExtResource("8_ebijr")
+IconCode = 54
+
+[node name="HSep_Shine" type="HSeparator" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Shine" type="Label" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PICTURE_FONT_HEADER_SHINE"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Shine" type="HBoxContainer" parent="Scroll/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ShineDynamic" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_ShineIconCurrentWorld"
+mouse_filter = 1
+icon = ExtResource("33_2ev7k")
+script = ExtResource("33_5foj8")
+
+[node name="Shine0" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineCommon_0"
+mouse_filter = 1
+icon = ExtResource("32_ajep0")
+script = ExtResource("8_ebijr")
+IconCode = 112
+
+[node name="Shine1" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSand_0"
+mouse_filter = 1
+icon = ExtResource("33_ywntl")
+script = ExtResource("8_ebijr")
+IconCode = 117
+
+[node name="Shine2" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineForest_0"
+mouse_filter = 1
+icon = ExtResource("34_hy3eh")
+script = ExtResource("8_ebijr")
+IconCode = 114
+
+[node name="Shine3" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineLake_0"
+mouse_filter = 1
+icon = ExtResource("35_gsrts")
+script = ExtResource("8_ebijr")
+IconCode = 119
+
+[node name="Shine4" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineCity_0"
+mouse_filter = 1
+icon = ExtResource("36_1ax18")
+script = ExtResource("8_ebijr")
+IconCode = 113
+
+[node name="Shine5" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSea_0"
+mouse_filter = 1
+icon = ExtResource("37_nkrjl")
+script = ExtResource("8_ebijr")
+IconCode = 120
+
+[node name="Shine6" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSnow_0"
+mouse_filter = 1
+icon = ExtResource("38_hblcb")
+script = ExtResource("8_ebijr")
+IconCode = 116
+
+[node name="Shine7" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineLava_0"
+mouse_filter = 1
+icon = ExtResource("39_3tiif")
+script = ExtResource("8_ebijr")
+IconCode = 118
+
+[node name="Shine8" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSky_0"
+mouse_filter = 1
+icon = ExtResource("40_5o6bi")
+script = ExtResource("8_ebijr")
+IconCode = 115
+
+[node name="Shine9" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineMoon_0"
+mouse_filter = 1
+icon = ExtResource("41_bux5u")
+script = ExtResource("8_ebijr")
+IconCode = 121
+
+[node name="Shine10" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineRainbow_0"
+mouse_filter = 1
+icon = ExtResource("42_plh7m")
+script = ExtResource("8_ebijr")
+IconCode = 122
+
+[node name="Shine11" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineNull_0"
+mouse_filter = 1
+icon = ExtResource("43_b7eje")
+script = ExtResource("8_ebijr")
+IconCode = 123
+
+[node name="Shine12" type="Button" parent="Scroll/VBox/Shine"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_ShineTripleDot_0"
+mouse_filter = 1
+icon = ExtResource("44_dgjw8")
+script = ExtResource("8_ebijr")
+IconCode = 124
+
+[node name="HSep_CC" type="HSeparator" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_CC" type="Label" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PICTURE_FONT_HEADER_COIN_COLLECT"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="CC" type="HBoxContainer" parent="Scroll/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="CCDynamic" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_CoinCollectIconCurrentWorld"
+mouse_filter = 1
+icon = ExtResource("48_kkwak")
+script = ExtResource("33_5foj8")
+IconCode = 1
+
+[node name="CC0" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
+mouse_filter = 1
+icon = ExtResource("45_2uxgu")
+script = ExtResource("8_ebijr")
+IconCode = 80
+
+[node name="CC1" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectWaterfall_0"
+mouse_filter = 1
+icon = ExtResource("46_202xv")
+script = ExtResource("8_ebijr")
+IconCode = 81
+
+[node name="CC2" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSand_0"
+mouse_filter = 1
+icon = ExtResource("47_uo68l")
+script = ExtResource("8_ebijr")
+IconCode = 82
+
+[node name="CC4" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectForest_0"
+mouse_filter = 1
+icon = ExtResource("48_uw45n")
+script = ExtResource("8_ebijr")
+IconCode = 83
+
+[node name="CC3" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectLake_0"
+mouse_filter = 1
+icon = ExtResource("49_0lwds")
+script = ExtResource("8_ebijr")
+IconCode = 84
+
+[node name="CC5" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectClash_0"
+mouse_filter = 1
+icon = ExtResource("50_btfn1")
+script = ExtResource("8_ebijr")
+IconCode = 85
+
+[node name="CC6" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectCity_0"
+mouse_filter = 1
+icon = ExtResource("51_32cwk")
+script = ExtResource("8_ebijr")
+IconCode = 86
+
+[node name="CC7" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSea_0"
+mouse_filter = 1
+icon = ExtResource("52_ijsi0")
+script = ExtResource("8_ebijr")
+IconCode = 87
+
+[node name="CC8" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSnow_0"
+mouse_filter = 1
+icon = ExtResource("53_phvj7")
+script = ExtResource("8_ebijr")
+IconCode = 88
+
+[node name="CC9" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectLava_0"
+mouse_filter = 1
+icon = ExtResource("54_74ynm")
+script = ExtResource("8_ebijr")
+IconCode = 89
+
+[node name="CC10" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSky_0"
+mouse_filter = 1
+icon = ExtResource("55_wddas")
+script = ExtResource("8_ebijr")
+IconCode = 90
+
+[node name="CC11" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectMoon_0"
+mouse_filter = 1
+icon = ExtResource("56_8hk4x")
+script = ExtResource("8_ebijr")
+IconCode = 91
+
+[node name="CC12" type="Button" parent="Scroll/VBox/CC"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectPeach_0"
+mouse_filter = 1
+icon = ExtResource("57_bcw7y")
+script = ExtResource("8_ebijr")
+IconCode = 92
+
+[node name="HSep_Treasure" type="HSeparator" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Treasure" type="Label" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PICTURE_FONT_HEADER_WEDDING_TREASURE"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Treasure" type="HBoxContainer" parent="Scroll/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Wed0" type="Button" parent="Scroll/VBox/Treasure"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureRing_0"
+mouse_filter = 1
+icon = ExtResource("5_532jh")
+script = ExtResource("8_ebijr")
+IconCode = 96
+
+[node name="Wed1" type="Button" parent="Scroll/VBox/Treasure"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureFlower_0"
+mouse_filter = 1
+icon = ExtResource("59_6vhuf")
+script = ExtResource("8_ebijr")
+IconCode = 97
+
+[node name="Wed2" type="Button" parent="Scroll/VBox/Treasure"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureDress_0"
+mouse_filter = 1
+icon = ExtResource("60_we171")
+script = ExtResource("8_ebijr")
+IconCode = 98
+
+[node name="Wed3" type="Button" parent="Scroll/VBox/Treasure"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureWater_0"
+mouse_filter = 1
+icon = ExtResource("61_lfmcn")
+script = ExtResource("8_ebijr")
+IconCode = 99
+
+[node name="Wed4" type="Button" parent="Scroll/VBox/Treasure"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureCake_0"
+mouse_filter = 1
+icon = ExtResource("62_4347m")
+script = ExtResource("8_ebijr")
+IconCode = 100
+
+[node name="Wed5" type="Button" parent="Scroll/VBox/Treasure"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureStew_0"
+mouse_filter = 1
+icon = ExtResource("63_j0dw2")
+script = ExtResource("8_ebijr")
+IconCode = 101
+
+[node name="HSep_Special" type="HSeparator" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Special" type="Label" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PICTURE_FONT_HEADER_SPECIAL"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Special" type="HBoxContainer" parent="Scroll/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Sp0" type="Button" parent="Scroll/VBox/Special"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphDot_0"
+mouse_filter = 1
+icon = ExtResource("64_jhbiy")
+script = ExtResource("8_ebijr")
+
+[node name="Sp1" type="Button" parent="Scroll/VBox/Special"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphSlash_0"
+mouse_filter = 1
+icon = ExtResource("65_d3qkq")
+script = ExtResource("8_ebijr")
+IconCode = 47
+
+[node name="Sp2" type="Button" parent="Scroll/VBox/Special"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_1"
+mouse_filter = 1
+icon = ExtResource("5_kw43j")
+script = ExtResource("8_ebijr")
+IconCode = 58
+VersionRequirement = 1
+
+[node name="Sp3" type="Button" parent="Scroll/VBox/Special"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_2"
+mouse_filter = 1
+icon = ExtResource("67_81642")
+script = ExtResource("8_ebijr")
+IconCode = 58
+VersionRequirement = 2
+
+[node name="Sp4" type="Button" parent="Scroll/VBox/Special"]
+layout_mode = 2
+tooltip_text = "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
+mouse_filter = 1
+icon = ExtResource("5_7plfe")
+script = ExtResource("8_ebijr")
+IconCode = 59
+VersionRequirement = 2
+
+[node name="HSep_End" type="HSeparator" parent="Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TagMenuFocusNeighborBuilder" type="Node" parent="." node_paths=PackedStringArray("Rows")]
+script = ExtResource("73_u0nap")
+Rows = [NodePath("../Scroll/VBox/Character"), NodePath("../Scroll/VBox/Icon"), NodePath("../Scroll/VBox/Shine"), NodePath("../Scroll/VBox/CC"), NodePath("../Scroll/VBox/Treasure"), NodePath("../Scroll/VBox/Special")]
+
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char11" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char13" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char12" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char8" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char9" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Character/Char10" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico9" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico8" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico10" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Icon/Ico11" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/ShineDynamic" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine8" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine9" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine10" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine11" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Shine/Shine12" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CCDynamic" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC8" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC9" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC10" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC11" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/CC/CC12" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Treasure/Wed0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Treasure/Wed1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Treasure/Wed2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Treasure/Wed3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Treasure/Wed4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Treasure/Wed5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Special/Sp0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Special/Sp1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Special/Sp2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Special/Sp3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/VBox/Special/Sp4" to="." method="OnTagSelected"]

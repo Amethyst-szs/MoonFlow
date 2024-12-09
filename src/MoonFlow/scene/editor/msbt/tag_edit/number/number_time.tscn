@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://43d6xsdwodn4"]
+
+[ext_resource type="PackedScene" uid="uid://v3lu028vdd4p" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_with_text.tscn" id="1_r56qw"]
+[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/number/NumberTime.cs" id="2_k2m1d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o7i4s"]
+font_size = 14
+font_color = Color(0.678944, 0.678944, 0.678944, 1)
+
+[node name="TagEditSceneWithText" instance=ExtResource("1_r56qw")]
+title = "TAG_EDIT_SCENE_HEADER_NUMBER_TIME"
+script = ExtResource("2_k2m1d")
+
+[node name="Label_TextHeader" parent="Panel/Content/VBox_TextData" index="0"]
+text = "NUMBER_TIME_TAG_EDIT_TEXT_FIELD_HEADER"
+
+[node name="Line_Text" parent="Panel/Content/VBox_TextData" index="1"]
+placeholder_text = "NUMBER_TIME_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Content" index="1"]
+layout_mode = 2
+
+[node name="Label_TimeType" type="Label" parent="Panel/Content" index="2"]
+layout_mode = 2
+text = "TAG_EDIT_SCENE_NUMBER_TIME_HEADER_TYPE"
+label_settings = SubResource("LabelSettings_o7i4s")
+
+[node name="Option_TagName" type="OptionButton" parent="Panel/Content" index="3"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 5
+popup/item_0/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
+popup/item_1/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL"
+popup/item_1/id = 1
+popup/item_2/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_RACE_TIME"
+popup/item_2/id = 2
+popup/item_3/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_EU"
+popup/item_3/id = 3
+popup/item_4/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL_EU"
+popup/item_4/id = 4

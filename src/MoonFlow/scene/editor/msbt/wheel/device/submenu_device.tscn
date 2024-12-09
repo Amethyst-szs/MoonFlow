@@ -1,0 +1,992 @@
+[gd_scene load_steps=57 format=3 uid="uid://by1uqtvhxvu4b"]
+
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_l2lpu"]
+[ext_resource type="StyleBox" uid="uid://cdh3fo4fwbcwo" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_submenu.tres" id="2_u1qsr"]
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/device/TagSubmenuDeviceFont.cs" id="3_bbcu7"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_x5bpm"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="5_yff7k"]
+[ext_resource type="Texture2D" uid="uid://bkbgf330uu3od" path="res://asset/nindot/lms/icon/DeviceFont_ButtonA.png" id="6_5v1sr"]
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/button/TagDeviceFontButton.cs" id="6_nwmc2"]
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/button/TagProjectTagButton.cs" id="6_yx5jy"]
+[ext_resource type="Texture2D" uid="uid://ds053cbkrmvpx" path="res://asset/nindot/lms/icon/DeviceFont_ButtonB.png" id="8_1asfq"]
+[ext_resource type="Texture2D" uid="uid://yijh5jdxf3h7" path="res://asset/nindot/lms/icon/DeviceFont_JoyConSingle_FLIP.png" id="8_22ym1"]
+[ext_resource type="Texture2D" uid="uid://bptjidf852bpj" path="res://asset/nindot/lms/icon/DeviceFont_ButtonX.png" id="9_8y42p"]
+[ext_resource type="Texture2D" uid="uid://c456sh6nfqgmb" path="res://asset/nindot/lms/icon/DeviceFont_ButtonY.png" id="10_qb7cn"]
+[ext_resource type="Texture2D" uid="uid://bqk84y2ve4edd" path="res://asset/nindot/lms/icon/DeviceFont_ButtonL.png" id="11_n61dc"]
+[ext_resource type="Texture2D" uid="uid://c8k3x5f30hofi" path="res://asset/nindot/lms/icon/DeviceFont_ButtonR.png" id="12_47l8p"]
+[ext_resource type="Texture2D" uid="uid://qeo5jji1fkj" path="res://asset/nindot/lms/icon/DeviceFont_ButtonZL.png" id="13_n5b4r"]
+[ext_resource type="Texture2D" uid="uid://bv87qohcso7i5" path="res://asset/nindot/lms/icon/DeviceFont_ButtonZR.png" id="14_5043j"]
+[ext_resource type="Texture2D" uid="uid://bvhk08j7yfvko" path="res://asset/nindot/lms/icon/DeviceFont_ButtonSL.png" id="15_bhg8x"]
+[ext_resource type="Texture2D" uid="uid://du54t6gq0k6x6" path="res://asset/nindot/lms/icon/DeviceFont_ButtonSR.png" id="16_uftty"]
+[ext_resource type="Texture2D" uid="uid://b6obqahrnoh5u" path="res://asset/nindot/lms/icon/DeviceFont_ButtonPlus.png" id="17_3q683"]
+[ext_resource type="Texture2D" uid="uid://blf8ey7a5bf36" path="res://asset/nindot/lms/icon/DeviceFont_ButtonMinus.png" id="18_sxdrs"]
+[ext_resource type="Texture2D" uid="uid://dj36clfbf3iny" path="res://asset/nindot/lms/icon/DeviceFont_ButtonGroupLeft.png" id="19_k5i75"]
+[ext_resource type="Texture2D" uid="uid://boqtgnwugrha2" path="res://asset/nindot/lms/icon/DeviceFont_ButtonGroupRight.png" id="20_gidpk"]
+[ext_resource type="Texture2D" uid="uid://caa0s3kts5kv4" path="res://asset/nindot/lms/icon/DeviceFont_ButtonGroupUp.png" id="21_y2ffv"]
+[ext_resource type="Texture2D" uid="uid://bcdhab1dumtos" path="res://asset/nindot/lms/icon/DeviceFont_ButtonGroupBottom.png" id="22_evf2x"]
+[ext_resource type="Texture2D" uid="uid://quvm8pvtbpkj" path="res://asset/nindot/lms/icon/DeviceFont_ButtonLR.png" id="23_ol7tb"]
+[ext_resource type="Texture2D" uid="uid://wy58uwsbsj4p" path="res://asset/nindot/lms/icon/DeviceFont_ButtonLeft.png" id="24_w3vif"]
+[ext_resource type="Texture2D" uid="uid://cqlfiskp3eqcw" path="res://asset/nindot/lms/icon/DeviceFont_ButtonRight.png" id="25_vx8qe"]
+[ext_resource type="Texture2D" uid="uid://bgoqf4mxhxvku" path="res://asset/nindot/lms/icon/DeviceFont_ButtonUp.png" id="26_lpkme"]
+[ext_resource type="Texture2D" uid="uid://dofx7wtanfy5i" path="res://asset/nindot/lms/icon/DeviceFont_ButtonDown.png" id="27_i1t0b"]
+[ext_resource type="Texture2D" uid="uid://1sxuovjb4eoj" path="res://asset/nindot/lms/icon/DeviceFont_Stick.png" id="28_4nhv5"]
+[ext_resource type="Texture2D" uid="uid://d05qfjpbkbdpy" path="res://asset/nindot/lms/icon/DeviceFont_StickPush.png" id="29_kou7u"]
+[ext_resource type="Texture2D" uid="uid://cae1ulwabuoj7" path="res://asset/nindot/lms/icon/DeviceFont_StickUD.png" id="30_xtuel"]
+[ext_resource type="Texture2D" uid="uid://cd0apcj361nb" path="res://asset/nindot/lms/icon/DeviceFont_StickL.png" id="31_m2oy2"]
+[ext_resource type="Texture2D" uid="uid://d1e1td11pbtgn" path="res://asset/nindot/lms/icon/DeviceFont_StickPushL.png" id="32_e47cp"]
+[ext_resource type="Texture2D" uid="uid://hbua0v4s8vjm" path="res://asset/nindot/lms/icon/DeviceFont_StickUDL.png" id="33_40rvl"]
+[ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="33_i1fyw"]
+[ext_resource type="Texture2D" uid="uid://i4acma0ih18b" path="res://asset/nindot/lms/icon/DeviceFont_StickR.png" id="34_nvbus"]
+[ext_resource type="Texture2D" uid="uid://cpkggyj2be7bh" path="res://asset/nindot/lms/icon/DeviceFont_StickPushR.png" id="35_6fu2e"]
+[ext_resource type="Texture2D" uid="uid://w2fmdt86lh6x" path="res://asset/nindot/lms/icon/DeviceFont_StickLRR.png" id="36_8t5ju"]
+[ext_resource type="Texture2D" uid="uid://c5qyhda8uqux1" path="res://asset/nindot/lms/icon/DeviceFont_ButtonPower.png" id="37_iurjv"]
+[ext_resource type="Texture2D" uid="uid://cmqduf51tmamn" path="res://asset/nindot/lms/icon/DeviceFont_ButtonHome.png" id="38_wcvle"]
+[ext_resource type="Texture2D" uid="uid://dxkoja5f2q0wx" path="res://asset/nindot/lms/icon/DeviceFont_ButtonCapture.png" id="39_q3520"]
+[ext_resource type="Texture2D" uid="uid://c6gwjf5hcj47b" path="res://asset/nindot/lms/icon/DeviceFont_ArrowRight.png" id="40_p1vk8"]
+[ext_resource type="Texture2D" uid="uid://dseo0q834pxjk" path="res://asset/nindot/lms/icon/DeviceFont_Album.png" id="41_rfyrf"]
+[ext_resource type="Texture2D" uid="uid://dvgtjkam0851i" path="res://asset/nindot/lms/icon/DeviceFont_JoyConBoth.png" id="42_wxh23"]
+[ext_resource type="Texture2D" uid="uid://d4b3pg4v8syks" path="res://asset/nindot/lms/icon/DeviceFont_JoyConRight.png" id="43_opley"]
+[ext_resource type="Texture2D" uid="uid://bc7owcpbwg8ug" path="res://asset/nindot/lms/icon/DeviceFont_JoyConSingle.png" id="44_3rdgl"]
+[ext_resource type="Texture2D" uid="uid://djr430c5i0aht" path="res://asset/nindot/lms/icon/DeviceFont_ProCon.png" id="45_jfb8m"]
+[ext_resource type="Script" path="res://scene/editor/msbt/wheel/TagMenuFocusNeighborBuilder.cs" id="48_7higa"]
+
+[sub_resource type="Theme" id="Theme_xu6gh"]
+Button/constants/icon_max_width = 41
+
+[sub_resource type="LabelSettings" id="LabelSettings_aijqg"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.721569)
+
+[sub_resource type="Theme" id="Theme_eif3n"]
+OptionButton/constants/icon_max_width = 24
+PopupMenu/constants/icon_max_width = 24
+
+[sub_resource type="GDScript" id="GDScript_isipo"]
+script/source = "extends OptionButton
+
+@export var update_root: NodePath
+
+func _on_item_selected(_index: int) -> void:
+	_scan_children_for_device_property(get_node(update_root))
+
+func _scan_children_for_device_property(node: Node) -> void:
+	if node.has_method(\"SetInputDevice\"):
+		node.call(\"SetInputDevice\", selected)
+	
+	for child in node.get_children():
+		_scan_children_for_device_property(child)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_32rks"]
+font = ExtResource("5_yff7k")
+font_size = 17
+font_color = Color(0.741176, 0.556863, 0.215686, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nq2a5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ifgad"]
+color = Color(0.96, 0.73824, 0.3264, 1)
+grow_begin = -2.0
+grow_end = -2.0
+thickness = 3
+
+[node name="SubmenuTagDeviceFont" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_l2lpu")
+theme_override_styles/panel = ExtResource("2_u1qsr")
+script = ExtResource("3_bbcu7")
+IsCenterWindow = true
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(640, 420)
+layout_mode = 2
+theme = SubResource("Theme_xu6gh")
+follow_focus = true
+vertical_scroll_mode = 2
+script = ExtResource("4_x5bpm")
+speed = 3.0
+drag_with_mouse = false
+follow_focus_margin = 80
+force_vertical_scrolling = true
+
+[node name="Layout" type="VBoxContainer" parent="Scroll"]
+layout_mode = 2
+
+[node name="Panel_Dynamic" type="PanelContainer" parent="Scroll/Layout"]
+self_modulate = Color(1, 0.333333, 0, 1)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("33_i1fyw")
+
+[node name="VBox" type="VBoxContainer" parent="Scroll/Layout/Panel_Dynamic"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="VBox_InputDevicePreview" type="VBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Label_Device" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+text = "PROJECT_TAG_INPUT_DEVICE_PREVIEW"
+label_settings = SubResource("LabelSettings_aijqg")
+horizontal_alignment = 1
+
+[node name="HBox_InputDevice" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview"]
+layout_mode = 2
+alignment = 1
+
+[node name="Option_Device" type="OptionButton" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview/HBox_InputDevice"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme = SubResource("Theme_eif3n")
+alignment = 1
+selected = 0
+item_count = 5
+popup/item_0/text = "PROJECT_TAG_INPUT_DEVICE_DUAL"
+popup/item_0/icon = ExtResource("42_wxh23")
+popup/item_1/text = "PROJECT_TAG_INPUT_DEVICE_HANDHELD"
+popup/item_1/icon = ExtResource("42_wxh23")
+popup/item_1/id = 1
+popup/item_2/text = "PROJECT_TAG_INPUT_DEVICE_FULLKEY"
+popup/item_2/icon = ExtResource("45_jfb8m")
+popup/item_2/id = 2
+popup/item_3/text = "PROJECT_TAG_INPUT_DEVICE_LEFT"
+popup/item_3/icon = ExtResource("44_3rdgl")
+popup/item_3/id = 3
+popup/item_4/text = "PROJECT_TAG_INPUT_DEVICE_RIGHT"
+popup/item_4/icon = ExtResource("8_22ym1")
+popup/item_4/id = 4
+script = SubResource("GDScript_isipo")
+update_root = NodePath("../../..")
+
+[node name="HSep_Button" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Button" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PROJECT_TAG_DYNAMIC_HEADER_BUTTON"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Button" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="StyleA" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonA"
+mouse_filter = 1
+icon = ExtResource("6_5v1sr")
+script = ExtResource("6_yx5jy")
+IconCode = 2
+IsAutograbFocus = true
+
+[node name="StyleB" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonB"
+mouse_filter = 1
+icon = ExtResource("8_1asfq")
+script = ExtResource("6_yx5jy")
+IconCode = 3
+
+[node name="StyleX" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonX"
+mouse_filter = 1
+icon = ExtResource("9_8y42p")
+script = ExtResource("6_yx5jy")
+IconCode = 4
+
+[node name="StyleY" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonY"
+mouse_filter = 1
+icon = ExtResource("10_qb7cn")
+script = ExtResource("6_yx5jy")
+IconCode = 5
+
+[node name="StyleL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonL"
+mouse_filter = 1
+icon = ExtResource("11_n61dc")
+script = ExtResource("6_yx5jy")
+IconCode = 6
+
+[node name="StyleR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonR"
+mouse_filter = 1
+icon = ExtResource("12_47l8p")
+script = ExtResource("6_yx5jy")
+IconCode = 7
+
+[node name="StyleZL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonZL"
+mouse_filter = 1
+icon = ExtResource("13_n5b4r")
+script = ExtResource("6_yx5jy")
+IconCode = 8
+
+[node name="StyleZR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonZR"
+mouse_filter = 1
+icon = ExtResource("14_5043j")
+script = ExtResource("6_yx5jy")
+IconCode = 9
+
+[node name="StylePlus" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonPlus"
+mouse_filter = 1
+icon = ExtResource("17_3q683")
+script = ExtResource("6_yx5jy")
+IconCode = 11
+
+[node name="StyleMinus" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonMinus"
+mouse_filter = 1
+icon = ExtResource("18_sxdrs")
+script = ExtResource("6_yx5jy")
+IconCode = 10
+
+[node name="HSep_Directional" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Directional" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PROJECT_TAG_DYNAMIC_HEADER_DIRECTIONAL"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Directional" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="StyleLeft" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyLeft"
+mouse_filter = 1
+icon = ExtResource("24_w3vif")
+script = ExtResource("6_yx5jy")
+IconCode = 14
+
+[node name="StyleRight" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyRight"
+mouse_filter = 1
+icon = ExtResource("25_vx8qe")
+script = ExtResource("6_yx5jy")
+IconCode = 15
+
+[node name="StyleUp" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyUp"
+mouse_filter = 1
+icon = ExtResource("26_lpkme")
+script = ExtResource("6_yx5jy")
+IconCode = 12
+
+[node name="StyleDown" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyDown"
+mouse_filter = 1
+icon = ExtResource("27_i1t0b")
+script = ExtResource("6_yx5jy")
+IconCode = 13
+
+[node name="VSep0" type="VSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
+
+[node name="StyleStickL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickL"
+mouse_filter = 1
+icon = ExtResource("31_m2oy2")
+script = ExtResource("6_yx5jy")
+IconCode = 16
+
+[node name="StyleStickR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickR"
+mouse_filter = 1
+icon = ExtResource("34_nvbus")
+script = ExtResource("6_yx5jy")
+IconCode = 17
+
+[node name="StyleStickRPush" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickPushR"
+mouse_filter = 1
+icon = ExtResource("35_6fu2e")
+script = ExtResource("6_yx5jy")
+IconCode = 18
+
+[node name="StyleStickUD" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickUD"
+mouse_filter = 1
+icon = ExtResource("30_xtuel")
+script = ExtResource("6_yx5jy")
+IconCode = 19
+
+[node name="StyleStickLR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickLR"
+mouse_filter = 1
+icon = ExtResource("36_8t5ju")
+script = ExtResource("6_yx5jy")
+IconCode = 20
+
+[node name="HSep_Device" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Device" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PROJECT_TAG_DYNAMIC_HEADER_DEVICE"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Device" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="StyleConText" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleJoyCon"
+mouse_filter = 1
+icon = ExtResource("42_wxh23")
+script = ExtResource("6_yx5jy")
+IconCode = 22
+
+[node name="StyleCon" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleJoyConIconOnly"
+mouse_filter = 1
+icon = ExtResource("42_wxh23")
+script = ExtResource("6_yx5jy")
+IconCode = 25
+
+[node name="StyleConR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleJoyConR"
+mouse_filter = 1
+icon = ExtResource("42_wxh23")
+script = ExtResource("6_yx5jy")
+IconCode = 23
+
+[node name="VSep1" type="VSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
+
+[node name="StyleCapture" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonCapture"
+mouse_filter = 1
+icon = ExtResource("39_q3520")
+script = ExtResource("6_yx5jy")
+IconCode = 21
+
+[node name="StyleReset" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleReset"
+mouse_filter = 1
+icon = ExtResource("12_47l8p")
+script = ExtResource("6_yx5jy")
+IconCode = 24
+
+[node name="HSep_Special" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_Special" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "PROJECT_TAG_DYNAMIC_HEADER_SPECIAL"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="Special" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Style2PY" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyle2PButtonY"
+mouse_filter = 1
+icon = ExtResource("19_k5i75")
+script = ExtResource("6_yx5jy")
+IconCode = 26
+
+[node name="Style2PStickL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyle2PStickL"
+mouse_filter = 1
+icon = ExtResource("28_4nhv5")
+script = ExtResource("6_yx5jy")
+IconCode = 27
+
+[node name="Style2PStickR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyle2PStickR"
+mouse_filter = 1
+icon = ExtResource("28_4nhv5")
+script = ExtResource("6_yx5jy")
+IconCode = 28
+
+[node name="PairMenu" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadPairMenu"
+mouse_filter = 1
+icon = ExtResource("18_sxdrs")
+script = ExtResource("6_yx5jy")
+IconCode = 29
+
+[node name="PairMap" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+custom_minimum_size = Vector2(41, 41)
+layout_mode = 2
+tooltip_text = "PROJECT_TAG_TOOLTIP_PadPairMap"
+mouse_filter = 1
+icon = ExtResource("18_sxdrs")
+script = ExtResource("6_yx5jy")
+IconCode = 30
+
+[node name="HSep_Mid" type="HSeparator" parent="Scroll/Layout"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_ifgad")
+
+[node name="Panel_Static" type="PanelContainer" parent="Scroll/Layout"]
+self_modulate = Color(0, 0.289833, 0.47, 1)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("33_i1fyw")
+
+[node name="VBox" type="VBoxContainer" parent="Scroll/Layout/Panel_Static"]
+layout_mode = 2
+
+[node name="Label_StaticButton" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "DEVICE_FONT_STATIC_HEADER_BUTTON"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="StaticButton" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Button0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonA"
+mouse_filter = 1
+icon = ExtResource("6_5v1sr")
+script = ExtResource("6_nwmc2")
+
+[node name="Button1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonB"
+mouse_filter = 1
+icon = ExtResource("8_1asfq")
+script = ExtResource("6_nwmc2")
+IconCode = 5
+
+[node name="Button2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonX"
+mouse_filter = 1
+icon = ExtResource("9_8y42p")
+script = ExtResource("6_nwmc2")
+IconCode = 6
+
+[node name="Button3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonY"
+mouse_filter = 1
+icon = ExtResource("10_qb7cn")
+script = ExtResource("6_nwmc2")
+IconCode = 7
+
+[node name="Button4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonL"
+mouse_filter = 1
+icon = ExtResource("11_n61dc")
+script = ExtResource("6_nwmc2")
+IconCode = 8
+
+[node name="Button5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonR"
+mouse_filter = 1
+icon = ExtResource("12_47l8p")
+script = ExtResource("6_nwmc2")
+IconCode = 9
+
+[node name="Button6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonZL"
+mouse_filter = 1
+icon = ExtResource("13_n5b4r")
+script = ExtResource("6_nwmc2")
+IconCode = 10
+
+[node name="Button7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonZR"
+mouse_filter = 1
+icon = ExtResource("14_5043j")
+script = ExtResource("6_nwmc2")
+IconCode = 11
+
+[node name="Button8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonSL"
+mouse_filter = 1
+icon = ExtResource("15_bhg8x")
+script = ExtResource("6_nwmc2")
+IconCode = 12
+
+[node name="Button9" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonSR"
+mouse_filter = 1
+icon = ExtResource("16_uftty")
+script = ExtResource("6_nwmc2")
+IconCode = 13
+
+[node name="Button10" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonPlus"
+mouse_filter = 1
+icon = ExtResource("17_3q683")
+script = ExtResource("6_nwmc2")
+IconCode = 18
+
+[node name="Button11" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonMinus"
+mouse_filter = 1
+icon = ExtResource("18_sxdrs")
+script = ExtResource("6_nwmc2")
+IconCode = 19
+
+[node name="HSep_StaticDPad" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_StaticDPad" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "DEVICE_FONT_STATIC_HEADER_DPAD"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="StaticDPad" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="DPad0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupLeft"
+mouse_filter = 1
+icon = ExtResource("19_k5i75")
+script = ExtResource("6_nwmc2")
+IconCode = 3
+
+[node name="DPad1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupRight"
+mouse_filter = 1
+icon = ExtResource("20_gidpk")
+script = ExtResource("6_nwmc2")
+IconCode = 0
+
+[node name="DPad2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupUp"
+mouse_filter = 1
+icon = ExtResource("21_y2ffv")
+script = ExtResource("6_nwmc2")
+IconCode = 2
+
+[node name="DPad3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupBottom"
+mouse_filter = 1
+icon = ExtResource("22_evf2x")
+script = ExtResource("6_nwmc2")
+IconCode = 1
+
+[node name="DPad4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonLR"
+mouse_filter = 1
+icon = ExtResource("23_ol7tb")
+script = ExtResource("6_nwmc2")
+IconCode = 36
+
+[node name="VSep" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
+
+[node name="DPad5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonLeft"
+mouse_filter = 1
+icon = ExtResource("24_w3vif")
+script = ExtResource("6_nwmc2")
+IconCode = 16
+
+[node name="DPad6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonRight"
+mouse_filter = 1
+icon = ExtResource("25_vx8qe")
+script = ExtResource("6_nwmc2")
+IconCode = 17
+
+[node name="DPad7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonUp"
+mouse_filter = 1
+icon = ExtResource("26_lpkme")
+script = ExtResource("6_nwmc2")
+IconCode = 14
+
+[node name="DPad8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonDown"
+mouse_filter = 1
+icon = ExtResource("27_i1t0b")
+script = ExtResource("6_nwmc2")
+IconCode = 15
+
+[node name="HSep_StaticStick" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_StaticStick" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "DEVICE_FONT_STATIC_HEADER_STICK"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="StaticStick" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Stick0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_Stick"
+mouse_filter = 1
+icon = ExtResource("28_4nhv5")
+script = ExtResource("6_nwmc2")
+IconCode = 23
+
+[node name="Stick1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickPush"
+mouse_filter = 1
+icon = ExtResource("29_kou7u")
+script = ExtResource("6_nwmc2")
+IconCode = 26
+
+[node name="Stick2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickUD"
+mouse_filter = 1
+icon = ExtResource("30_xtuel")
+script = ExtResource("6_nwmc2")
+IconCode = 33
+
+[node name="VSep0" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
+
+[node name="Stick3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickL"
+mouse_filter = 1
+icon = ExtResource("31_m2oy2")
+script = ExtResource("6_nwmc2")
+IconCode = 24
+
+[node name="Stick4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickPushL"
+mouse_filter = 1
+icon = ExtResource("32_e47cp")
+script = ExtResource("6_nwmc2")
+IconCode = 27
+
+[node name="Stick5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickUDL"
+mouse_filter = 1
+icon = ExtResource("33_40rvl")
+script = ExtResource("6_nwmc2")
+IconCode = 34
+
+[node name="VSep1" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
+
+[node name="Stick6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickR"
+mouse_filter = 1
+icon = ExtResource("34_nvbus")
+script = ExtResource("6_nwmc2")
+IconCode = 25
+
+[node name="Stick7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickPushR"
+mouse_filter = 1
+icon = ExtResource("35_6fu2e")
+script = ExtResource("6_nwmc2")
+IconCode = 28
+
+[node name="Stick8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_StickLRR"
+mouse_filter = 1
+icon = ExtResource("36_8t5ju")
+script = ExtResource("6_nwmc2")
+IconCode = 35
+
+[node name="HSep_StaticDevice" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label_StaticDevice" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "DEVICE_FONT_STATIC_HEADER_DEVICE"
+label_settings = SubResource("LabelSettings_32rks")
+horizontal_alignment = 1
+
+[node name="StaticDevice" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Stick0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonPower"
+mouse_filter = 1
+icon = ExtResource("37_iurjv")
+script = ExtResource("6_nwmc2")
+IconCode = 20
+
+[node name="Stick1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonHome"
+mouse_filter = 1
+icon = ExtResource("38_wcvle")
+script = ExtResource("6_nwmc2")
+IconCode = 21
+
+[node name="Stick2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonCapture"
+mouse_filter = 1
+icon = ExtResource("39_q3520")
+script = ExtResource("6_nwmc2")
+IconCode = 22
+
+[node name="Stick3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ArrowRight"
+mouse_filter = 1
+icon = ExtResource("40_p1vk8")
+script = ExtResource("6_nwmc2")
+IconCode = 41
+
+[node name="Stick4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_Album"
+mouse_filter = 1
+icon = ExtResource("41_rfyrf")
+script = ExtResource("6_nwmc2")
+IconCode = 42
+
+[node name="VSep2" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
+
+[node name="Stick5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_JoyConBoth"
+mouse_filter = 1
+icon = ExtResource("42_wxh23")
+script = ExtResource("6_nwmc2")
+IconCode = 37
+
+[node name="Stick6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_JoyConRight"
+mouse_filter = 1
+icon = ExtResource("43_opley")
+script = ExtResource("6_nwmc2")
+IconCode = 38
+
+[node name="Stick7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_JoyConSingle"
+mouse_filter = 1
+icon = ExtResource("44_3rdgl")
+script = ExtResource("6_nwmc2")
+IconCode = 39
+
+[node name="Stick8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+layout_mode = 2
+tooltip_text = "DEVICE_FONT_TOOLTIP_ProCon"
+mouse_filter = 1
+icon = ExtResource("45_jfb8m")
+script = ExtResource("6_nwmc2")
+IconCode = 40
+
+[node name="HSep_End" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TagMenuFocusNeighborBuilder" type="Node" parent="." node_paths=PackedStringArray("Rows")]
+script = ExtResource("48_7higa")
+Rows = [NodePath("../Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview/HBox_InputDevice"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Button"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Directional"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Device"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Special"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticButton"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticDPad"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticStick"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticDevice")]
+
+[connection signal="item_selected" from="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview/HBox_InputDevice/Option_Device" to="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview/HBox_InputDevice/Option_Device" method="_on_item_selected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleA" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleB" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleX" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleY" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleL" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleR" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleZL" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleZR" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StylePlus" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Button/StyleMinus" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleLeft" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleRight" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleUp" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleDown" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleStickL" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleStickR" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleStickRPush" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleStickUD" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Directional/StyleStickLR" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Device/StyleConText" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Device/StyleCon" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Device/StyleConR" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Device/StyleCapture" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Device/StyleReset" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Special/Style2PY" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Special/Style2PStickL" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Special/Style2PStickR" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Special/PairMenu" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Dynamic/VBox/Special/PairMap" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button8" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button9" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button10" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticButton/Button11" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDPad/DPad8" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticStick/Stick8" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick0" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick1" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick2" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick3" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick4" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick5" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick6" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick7" to="." method="OnTagSelected"]
+[connection signal="SelectedTag" from="Scroll/Layout/Panel_Static/VBox/StaticDevice/Stick8" to="." method="OnTagSelected"]
