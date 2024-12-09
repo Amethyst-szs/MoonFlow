@@ -12,7 +12,7 @@ using MoonFlow.Scene.Main;
 using MoonFlow.Async;
 using System.Threading.Tasks;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtEditor : PanelContainer
 {

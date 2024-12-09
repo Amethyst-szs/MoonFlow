@@ -5,7 +5,7 @@ using Nindot.LMS.Msbt.TagLib;
 
 using Godot;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public static class TagEditFactory
 {

@@ -6,7 +6,7 @@ using Godot.Collections;
 using System;
 using Nindot.Al.SMO;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass, Tool, Icon("res://asset/nindot/lms/icon/DeviceFont_ButtonA.png")]
 public partial class TagDeviceFontButton : TagInsertButtonBase

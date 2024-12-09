@@ -3,7 +3,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass]
 public partial class TagMenuFocusNeighborBuilder : Node
@@ -65,7 +65,8 @@ public partial class TagMenuFocusNeighborBuilder : Node
         }
     }
 
-    private static int ModN(int x, int m) {
-        return (x%m + m)%m;
+    private static int ModN(int x, int m)
+    {
+        return (x % m + m) % m;
     }
 }

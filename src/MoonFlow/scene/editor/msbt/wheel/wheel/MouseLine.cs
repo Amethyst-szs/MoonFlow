@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass]
 public partial class MouseLine : Line2D

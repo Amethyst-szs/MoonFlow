@@ -1,16 +1,14 @@
 using Godot;
 using System;
-
-using Nindot;
-using Nindot.LMS.Msbp;
-using Nindot.LMS.Msbt;
-
-using MoonFlow.LMS.Msbt;
-using MoonFlow.Project;
-using Nindot.LMS.Msbt.TagLib.Smo;
 using System.Collections.Generic;
 
-namespace MoonFlow.Scene;
+using Nindot.LMS.Msbp;
+using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib.Smo;
+
+using MoonFlow.Project;
+
+namespace MoonFlow.Scene.EditorMsbt;
 
 [ScenePath("res://scene/editor/msbt/msbt_editor.tscn")]
 public partial class MsbtAppHolder : AppScene

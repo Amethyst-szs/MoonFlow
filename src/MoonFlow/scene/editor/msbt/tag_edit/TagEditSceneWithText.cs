@@ -3,14 +3,14 @@ using System;
 
 using Nindot.LMS.Msbt.TagLib;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass]
 public partial class TagEditSceneWithText : TagEditScene
 {
 	private MsbtTagElementWithTextData Tag = null;
 
-    public override void SetupScene(MsbtTagElement tag)
+	public override void SetupScene(MsbtTagElement tag)
 	{
 		Tag = tag as MsbtTagElementWithTextData;
 

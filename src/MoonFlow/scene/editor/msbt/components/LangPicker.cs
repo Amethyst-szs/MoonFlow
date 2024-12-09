@@ -4,7 +4,7 @@ using System;
 using Nindot.Al.Localize;
 using System.Linq;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class LangPicker : OptionButton
 {

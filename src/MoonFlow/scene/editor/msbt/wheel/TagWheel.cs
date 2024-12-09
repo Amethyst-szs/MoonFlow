@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [ScenePath("res://scene/editor/msbt/wheel/tag_wheel.tscn")]
 public partial class TagWheel : Control

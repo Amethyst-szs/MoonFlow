@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtEditor : PanelContainer
 {

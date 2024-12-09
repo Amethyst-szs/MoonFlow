@@ -4,7 +4,7 @@ using Godot;
 
 using Nindot.LMS.Msbt.TagLib;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtPageEditor : TextEdit
 {
@@ -68,7 +68,7 @@ public partial class MsbtPageEditor : TextEdit
             var line = GetCaretLine();
             var col = GetCaretColumn();
             var pos = (Vector2I)GetCaretDrawPos();
-            
+
             TryOpenTagEdit(GetCharIndex(line, col), pos);
         }
     }
@@ -97,7 +97,7 @@ public partial class MsbtPageEditor : TextEdit
 
         var rect = GetRectAtLineColumn(lc.Y, lc.X);
         bool isAddOne = mousePos.X - rect.Position.X > rect.Size.X;
-        
+
         var charIdx = GetCharIndex(lc.Y, lc.X) + (isAddOne ? 1 : 0);
 
         if (TryOpenTagEdit(charIdx, mousePos))

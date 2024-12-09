@@ -1,7 +1,7 @@
 using Godot;
 using Nindot.LMS.Msbt.TagLib;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class TagWheelTagResult(MsbtTagElement tag) : RefCounted
 {

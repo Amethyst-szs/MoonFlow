@@ -6,7 +6,7 @@ using Godot.Collections;
 using System;
 using Nindot.Al.SMO;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass, Tool, Icon("res://asset/nindot/lms/icon/Number_Score.png")]
 public partial class TagInsertButtonBase : Button
@@ -30,7 +30,7 @@ public partial class TagInsertButtonBase : Button
     {
         if (GetType() == typeof(TagInsertButtonBase))
             return ["This node is a base class! Use inheriting child"];
-        
+
         return [];
     }
 }

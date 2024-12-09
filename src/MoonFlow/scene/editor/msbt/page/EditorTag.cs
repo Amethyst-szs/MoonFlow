@@ -7,7 +7,7 @@ using MoonFlow.Project;
 
 using Nindot.LMS.Msbt.TagLib;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtPageEditor : TextEdit
 {
@@ -106,11 +106,11 @@ public partial class MsbtPageEditor : TextEdit
         var scene = TagEditFactory.Create(tag);
         if (scene == null)
             return false;
-        
+
         var root = ProjectManager.SceneRoot;
         if (!IsInstanceValid(root))
             return false;
-        
+
         root.AddChild(scene);
 
         // Setup scene
@@ -126,12 +126,12 @@ public partial class MsbtPageEditor : TextEdit
 
         return true;
     }
-    
+
     private MsbtTagElement TagEditGetTargetElement(int charIdx)
     {
         if (charIdx < 0)
             return null;
-        
+
         int elementIdx = Page.CalcElementIdxAtCharPos(charIdx);
         if (elementIdx < 0 || elementIdx >= Page.Count)
             return null;
@@ -147,7 +147,7 @@ public partial class MsbtPageEditor : TextEdit
     {
         SyntaxHighlighter.ClearHighlightingCache();
         QueueRedraw();
-        
+
         Editable = true;
     }
 }

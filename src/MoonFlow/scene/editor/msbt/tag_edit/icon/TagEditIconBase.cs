@@ -7,7 +7,7 @@ using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class TagEditIconBase : TagEditScene
 {
@@ -28,9 +28,9 @@ public partial class TagEditIconBase : TagEditScene
 		menu.Connect(TagSubmenuBase.SignalName.TreeExited, Callable.From(OnMenuCancel));
 	}
 
-    public override bool IsRequirePageReference() { return true; }
+	public override bool IsRequirePageReference() { return true; }
 
-    private void OnTagSelected(Array<TagWheelTagResult> tag)
+	private void OnTagSelected(Array<TagWheelTagResult> tag)
 	{
 		if (tag.Count == 0)
 		{
@@ -46,7 +46,7 @@ public partial class TagEditIconBase : TagEditScene
 			QueueFree();
 			return;
 		}
-		
+
 		Page[replaceIndex] = result;
 		QueueFree();
 	}

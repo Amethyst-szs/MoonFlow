@@ -5,7 +5,7 @@ using MoonFlow.Project;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtPageEditor : TextEdit
 {

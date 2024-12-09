@@ -6,7 +6,7 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 using MoonFlow.Project;
 using Nindot.LMS;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class ColorTagScene : TagEditScene
 {

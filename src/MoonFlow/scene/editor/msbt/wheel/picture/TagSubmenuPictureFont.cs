@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [ScenePath("res://scene/editor/msbt/wheel/picture/submenu_pict.tscn")]
 public partial class TagSubmenuPictureFont : TagSubmenuBase

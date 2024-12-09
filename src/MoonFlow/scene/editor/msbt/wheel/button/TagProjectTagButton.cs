@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass, Tool, Icon("res://asset/nindot/lms/icon/ProjectTag.png")]
 public partial class TagProjectTagButton : TagInsertButtonBase
@@ -40,11 +40,11 @@ public partial class TagProjectTagButton : TagInsertButtonBase
     {
         if (Textures.Count <= 1)
             return;
-        
+
         TextureTimer -= delta;
         if (TextureTimer > 0.0F)
             return;
-        
+
         TextureTimer = 1.0F;
         TextureIndex = (TextureIndex + 1) % Textures.Count;
 

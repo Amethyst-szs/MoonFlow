@@ -4,7 +4,7 @@ using Godot;
 
 using MoonFlow.Project;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtEditor : PanelContainer
 {
@@ -158,10 +158,10 @@ public partial class MsbtEditor : PanelContainer
         // Update entry button to have modified icon texture
         var entry = entryEditor.Entry;
         var entryButton = EntryList.GetNode<Button>(entry.Name);
-        
+
         if (entryButton.Icon != ModifiedTexture)
             entryButton.Icon = ModifiedTexture;
-        
+
         // Append asterisk to file name
         if (!FileTitleName.Text.EndsWith('*'))
             FileTitleName.Text += '*';

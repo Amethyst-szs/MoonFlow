@@ -3,9 +3,10 @@ using System;
 
 using Nindot;
 using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Project;
-using Nindot.LMS.Msbt.TagLib.Smo;
+using MoonFlow.Scene.EditorMsbt;
 
 namespace MoonFlow.Scene.Home;
 

@@ -5,7 +5,7 @@ using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
 using System.Linq;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [ScenePath("res://scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn")]
 public partial class MsbtEntryPageHolder : HBoxContainer

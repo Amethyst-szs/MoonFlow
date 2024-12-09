@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 using Nindot.LMS.Msbt.TagLib;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public abstract partial class TagSubmenuBase : PanelContainer
 {

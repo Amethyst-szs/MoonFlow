@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using Nindot.LMS.Msbt;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtPageEditor : TextEdit
 {

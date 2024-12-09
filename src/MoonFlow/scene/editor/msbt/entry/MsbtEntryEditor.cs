@@ -5,7 +5,7 @@ using Nindot.LMS.Msbt;
 
 using MoonFlow.Project;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, ProjectLanguageMetaHolder.Meta meta) : VBoxContainer
 {

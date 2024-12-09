@@ -9,7 +9,7 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 using System.Text;
 using MoonFlow.Project;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass]
 public partial class MsbtPageEditor : TextEdit

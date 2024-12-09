@@ -4,13 +4,13 @@ using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass]
 public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
 {
-    private static readonly Dictionary TextDefault = new(){{"color", new Color(1, 1, 1)}};
-    private static readonly Dictionary Tag = new(){{"color", new Color(0, 0, 0, 0)}};
+    private static readonly Dictionary TextDefault = new() { { "color", new Color(1, 1, 1) } };
+    private static readonly Dictionary Tag = new() { { "color", new Color(0, 0, 0, 0) } };
 
     private Dictionary TextColor = TextDefault;
 
@@ -26,7 +26,7 @@ public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
         {
             if (!LineFinalColor.ContainsKey(i))
                 continue;
-            
+
             TextColor = LineFinalColor[i];
             break;
         }
@@ -54,7 +54,7 @@ public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
             {
                 var colorTag = (MsbtTagElementSystemColor)e;
                 colorTag.GetColor(edit.Project, out BlockColor.Entry c, out string _);
-                TextColor = new(){{"color", Color.Color8(c.R, c.G, c.B, c.A)}};
+                TextColor = new() { { "color", Color.Color8(c.R, c.G, c.B, c.A) } };
             }
 
             // Assign the current column's color

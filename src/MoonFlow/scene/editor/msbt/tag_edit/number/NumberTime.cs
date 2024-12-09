@@ -7,17 +7,17 @@ using Nindot.Al.SMO;
 
 using MoonFlow.Project;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class NumberTime : TagEditSceneWithText
 {
 	private MsbtTagElementNumberTime Tag = null;
 
-    public override void SetupScene(MsbtTagElement tag)
-    {
-        base.SetupScene(tag);
+	public override void SetupScene(MsbtTagElement tag)
+	{
+		base.SetupScene(tag);
 
-		Tag = tag as MsbtTagElementNumberTime;;
+		Tag = tag as MsbtTagElementNumberTime; ;
 
 		var option = GetNode<OptionButton>("%Option_TagName");
 		option.Selected = Tag.GetTagName() - (ushort)TagNameNumber.Date;
@@ -26,11 +26,11 @@ public partial class NumberTime : TagEditSceneWithText
 		var ver = ProjectManager.GetProjectVersion();
 		if (ver >= RomfsValidation.RomfsVersion.v120)
 			return;
-		
+
 		int removeIdx = (ushort)TagNameNumber.DateEU - (ushort)TagNameNumber.Date;
 		option.RemoveItem(removeIdx);
 		option.RemoveItem(removeIdx);
-    }
+	}
 
 	private void OnTagNameOptionSelected(int option)
 	{

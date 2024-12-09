@@ -4,15 +4,15 @@ using System;
 using Nindot.LMS.Msbt.TagLib.Smo;
 using Nindot.LMS.Msbt.TagLib;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class NumberFigure : TagEditSceneWithText
 {
 	private MsbtTagElementNumberWithFigure Tag = null;
 
-    public override void SetupScene(MsbtTagElement tag)
-    {
-        base.SetupScene(tag);
+	public override void SetupScene(MsbtTagElement tag)
+	{
+		base.SetupScene(tag);
 
 		Tag = tag as MsbtTagElementNumberWithFigure;
 
@@ -24,7 +24,7 @@ public partial class NumberFigure : TagEditSceneWithText
 
 		var option = GetNode<OptionButton>("%Option_TagName");
 		option.Selected = Tag.GetTagName();
-    }
+	}
 
 	private void OnFigureChanged(float value)
 	{

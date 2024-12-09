@@ -5,13 +5,13 @@ using Nindot.LMS.Msbt.TagLib;
 
 using MoonFlow.Project;
 
-namespace MoonFlow.LMS.Msbt;
+namespace MoonFlow.Scene.EditorMsbt;
 
 public static class TagEditIconCommon
 {
-    public static TagSubmenuBase InitSubmenu<T>(MsbtTagElement tag)
-    {
-        if (!typeof(T).IsSubclassOf(typeof(TagSubmenuBase)))
+	public static TagSubmenuBase InitSubmenu<T>(MsbtTagElement tag)
+	{
+		if (!typeof(T).IsSubclassOf(typeof(TagSubmenuBase)))
 			throw new Exception(typeof(T).Name + " is invalid type!");
 
 		var menu = SceneCreator<T>.Create();
@@ -21,6 +21,6 @@ public static class TagEditIconCommon
 		scene.AddChild(menuBase);
 
 		menuBase.InitSubmenu();
-        return menuBase;
-    }
+		return menuBase;
+	}
 }
