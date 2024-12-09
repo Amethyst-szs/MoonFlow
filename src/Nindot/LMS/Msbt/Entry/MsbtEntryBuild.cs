@@ -42,4 +42,22 @@ public partial class MsbtEntry
     {
         foreach (var page in Pages) page.Cleanup();
     }
+
+    public string GetRawText()
+    {
+        var result = "";
+
+        foreach (var page in Pages)
+        {
+            foreach (var element in page)
+            {
+                if (!element.IsText())
+                    continue;
+                
+                result += element.GetText();
+            }
+        }
+
+        return result;
+    }
 }

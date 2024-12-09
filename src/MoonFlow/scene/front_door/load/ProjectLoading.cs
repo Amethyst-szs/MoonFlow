@@ -44,6 +44,11 @@ public partial class ProjectLoading : AppScene
 		string m = Tr(key, "PROJECT_LOADING");
 		LabelProgress.CallDeferred("set", ["text", m]);
 	}
+	public void LoadingUpdateProgress(string key, string suffix)
+	{
+		string m = Tr(key, "PROJECT_LOADING");
+		LabelProgress.CallDeferred("set", ["text", m + " ( " + suffix + ")"]);
+	}
 
 	public void LoadingComplete()
 	{

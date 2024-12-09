@@ -2,6 +2,8 @@
 using Godot;
 using System;
 
+namespace MoonFlow.Addons.NindotExt;
+
 [Tool]
 public partial class nindot_extension : EditorPlugin
 {

@@ -176,6 +176,21 @@ msgstr ""
 
 #: scene/front_door/load/loading_messages.gd
 msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_SHINE_INFO"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr ""
 
@@ -226,6 +241,22 @@ msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/common/dialog/dialog_unsaved_changes.tscn
@@ -1205,11 +1236,11 @@ msgid "TAG_EDIT_SCENE_HEADER_TEXT_ALIGNMENT"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/align/text.tscn
-msgid "TAG_EDIT_SCENE_ALIGNMENT_LEFT"
+msgid "TAG_EDIT_SCENE_ALIGNMENT_CENTER"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/align/text.tscn
-msgid "TAG_EDIT_SCENE_ALIGNMENT_CENTER"
+msgid "TAG_EDIT_SCENE_ALIGNMENT_LEFT"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/grammar/caping.tscn
@@ -1217,9 +1248,9 @@ msgid "TAG_EDIT_SCENE_HEADER_GRAMMAR_CAP_DECAP"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/grammar/caping.tscn
-msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
+msgid "TAG_EDIT_SCENE_GRAMMAR_DECAP"
 msgstr ""
 
 #: ninode/lms/msbt/tag_edit/grammar/caping.tscn
-msgid "TAG_EDIT_SCENE_GRAMMAR_DECAP"
+msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr ""

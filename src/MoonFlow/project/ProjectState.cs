@@ -1,9 +1,10 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
 using MoonFlow.Scene;
 using MoonFlow.Scene.Main;
+
+using MoonFlow.Project.Database;
 
 namespace MoonFlow.Project;
 
@@ -20,6 +21,8 @@ public class ProjectState(string path, ProjectConfig config)
     // Project Components
     public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
     public ProjectMessageStudioText MsgStudioText { get; private set; } = null;
+
+    public ProjectDatabaseHolder Database { get; private set; } = null;
 
     public async void InitProject(MainSceneRoot scene)
     {
@@ -43,6 +46,9 @@ public class ProjectState(string path, ProjectConfig config)
         loadScreen.LoadingUpdateProgress("LOAD_MSBT");
         MsgStudioText = new(Path, Config.Data.DefaultLanguage);
 
+        // Initilize project database holder
+        Database = new(this, loadScreen);
+
         // Complete Initilization
         loadScreen.LoadingComplete();
         StartupTask = null;
@@ -56,6 +62,11 @@ public class ProjectState(string path, ProjectConfig config)
     // ====================================================== //
     // ================== Getter Utilities ================== //
     // ====================================================== //
+
+    public ProjectLanguageHolder GetMsbtArchives()
+    {
+        return GetMsbtArchives(Config.Data.DefaultLanguage);
+    }
 
     public ProjectLanguageHolder GetMsbtArchives(string lang)
     {

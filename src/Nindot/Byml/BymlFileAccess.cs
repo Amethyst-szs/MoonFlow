@@ -13,17 +13,32 @@ namespace Nindot.Byml;
 
 public class BymlFileAccess
 {
+    #region Parse
+
     public static bool ParseBytes(out BymlFile iter, byte[] data)
     {
-        // Create an imutable byml from bytes
-        RevrsReader reader = new(data);
-        ImmutableByml byml = new(ref reader);
+        var yamlStr = GetYamlString(data, out ushort verison);
 
-        // Convert this byml to yaml string
-        string yamlString = byml.ToYaml();
+        IDeserializer deserializer = GetDeserializer();
+        var yaml = deserializer.Deserialize<Dictionary<string, object>>(yamlStr);
 
-        // Convert yaml string to dictionary
-        IDeserializer deserializer = new DeserializerBuilder()
+        iter = new BymlFile(yaml, verison);
+        return true;
+    }
+
+    public static T ParseBytes<T>(byte[] data)
+    {
+        var yamlStr = GetYamlString(data, out ushort verison);
+
+        IDeserializer deserializer = GetDeserializer();
+        var yaml = deserializer.Deserialize<T>(yamlStr);
+
+        return yaml;
+    }
+
+    private static IDeserializer GetDeserializer()
+    {
+        return new DeserializerBuilder()
             .WithTagMapping("!s", typeof(string))
             .WithTagMapping("!b", typeof(bool))
             .WithTagMapping("!l", typeof(int))
@@ -32,12 +47,21 @@ public class BymlFileAccess
             .WithTagMapping("!ul", typeof(ulong))
             .WithTagMapping("!f", typeof(float))
             .WithTagMapping("!d", typeof(double))
+            .IgnoreUnmatchedProperties()
             .Build();
+    }
 
-        Dictionary<string, object> yaml = deserializer.Deserialize<Dictionary<string, object>>(yamlString);
-        iter = new BymlFile(yaml, byml.Header.Version);
+    private static string GetYamlString(byte[] data, out ushort version)
+    {
+        // Create an immutable byml from bytes
+        RevrsReader reader = new(data);
+        ImmutableByml byml = new(ref reader);
 
-        return true;
+        version = byml.Header.Version;
+
+        // Convert this byml to yaml string
+        string yamlString = byml.ToYaml();
+        return yamlString;
     }
 
     public static bool ParseFile(out BymlFile iter, string path)
@@ -48,6 +72,10 @@ public class BymlFileAccess
 
         return ParseBytes(out iter, File.ReadAllBytes(path));
     }
+
+    #endregion
+
+    #region Writing
 
     public static bool WriteFile(MemoryStream stream, BymlFile iter, ushort version = 3)
     {
@@ -96,4 +124,6 @@ public class BymlFileAccess
             emitter.Emit(new Scalar("⌂♯" + Table[type], null, value.ToString(), ScalarStyle.Any, true, false));
         }
     }
+
+    #endregion
 }

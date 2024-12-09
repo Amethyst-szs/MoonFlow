@@ -2,14 +2,17 @@ using Godot;
 using System;
 
 using Nindot;
-using Nindot.LMS.Msbt.TagLib.Smo;
+using Nindot.LMS.Msbt;
 
 using MoonFlow.Project;
+using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Scene.Home;
 
 public partial class TabMsbt : HSplitContainer
 {
+	private SarcMsbtFile SelectedFile = null;
+
 	private VBoxContainer SystemMessageButtons = null;
 	private VBoxContainer StageMessageButtons = null;
 	private VBoxContainer LayoutMessageButtons = null;
@@ -51,9 +54,9 @@ public partial class TabMsbt : HSplitContainer
 		}
 	}
 
-	private static void OnFilePressed(SarcFile archive, string key)
+	private void OnFilePressed(SarcFile archive, string key)
 	{
-		GD.Print(key);
+		SelectedFile = archive.GetFileMSBT(key, new MsbtElementFactoryProjectSmo());
 	}
 
 	private static void OnFileOpened(string archiveName, string key)

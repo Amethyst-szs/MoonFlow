@@ -12,6 +12,7 @@ public class MsbtElementFactory
         if (txt.IsEmpty())
             return [];
 
+        page.Add(txt);
         return [page];
     }
 
