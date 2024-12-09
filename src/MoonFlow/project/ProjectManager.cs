@@ -24,14 +24,14 @@ public static class ProjectManager
     // ====================================================== //
 
     public static ProjectState GetProject() { return Project; }
-    public static RomfsValidation.RomfsVersion GetProjectVersion() { return Project.Config.Version; }
+    public static RomfsValidation.RomfsVersion GetProjectVersion() { return Project.Config.Data.Version; }
     public static SarcMsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
     public static ProjectMessageStudioText GetMSBT() { return Project.MsgStudioText; }
     public static ProjectLanguageHolder GetMSBTArchives() { return Project.MsgStudioText.DefaultLanguage; }
     public static ProjectLanguageHolder GetMSBTArchives(string lang) { return Project.MsgStudioText[lang]; }
     public static ProjectLanguageMetaHolder GetMSBTMetaHolder()
     {
-        return GetMSBTMetaHolder(Project.Config.DefaultLanguage);
+        return GetMSBTMetaHolder(Project.Config.Data.DefaultLanguage);
     }
     public static ProjectLanguageMetaHolder GetMSBTMetaHolder(string lang)
     {
@@ -72,15 +72,13 @@ public static class ProjectManager
 
         // Read in config file
         var config = new ProjectConfig(projectFilePath);
-        if (!config.IsValid())
-            return ProjectManagerResult.INVALID_PROJECT_FILE;
 
         // Swap active RomfsAccessor to match this project (and error if no valid accessor exists)
-        if (!Enum.IsDefined(config.Version))
+        if (!Enum.IsDefined(config.Data.Version))
             return ProjectManagerResult.INVALID_PROJECT_FILE;
 
-        version = config.Version;
-        if (!RomfsAccessor.TrySetGameVersion(config.Version))
+        version = config.Data.Version;
+        if (!RomfsAccessor.TrySetGameVersion(version))
             return ProjectManagerResult.ROMFS_MISSING_PATH_FOR_PROJECT_VERSION;
 
         // Initilize project
@@ -115,9 +113,6 @@ public static class ProjectManager
 
         // Create project config from init info
         var config = new ProjectConfig(projectFilePath, initInfo);
-        if (!config.IsValid())
-            return ProjectManagerResult.INVALID_PROJECT_FILE;
-
         return ProjectManagerResult.OK;
     }
 

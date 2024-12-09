@@ -12,7 +12,7 @@ using CsYaz0;
 
 namespace MoonFlow.Project;
 
-public class ProjectLanguageMetaHolder
+public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path)
 {
     // ====================================================== //
     // ======== Metadata Definition and Lookup Table ======== //
@@ -36,37 +36,17 @@ public class ProjectLanguageMetaHolder
         public override int GetHashCode() { return base.GetHashCode(); }
     }
 
-    private readonly Dictionary<string, Meta> MetadataLookup = [];
-    private readonly string Path = null;
-
-    private static readonly JsonSerializerOptions JsonConfig = new()
-    {
-        IncludeFields = true,
-        IgnoreReadOnlyFields = true,
-    };
+    private Dictionary<string, Meta> MetadataLookup = [];
 
     // ====================================================== //
     // ==================== Initilization =================== //
     // ====================================================== //
 
-    public ProjectLanguageMetaHolder(string path)
+    protected override void Init(string json)
     {
-        // Copy file path into properties
-        Path = path;
-
-        // If no file exists at this path, return
-        if (!File.Exists(path))
-            return;
-
-        // Convert string into metadata lookup table
-        var data = File.ReadAllBytes(path);
-        data = Yaz0.Decompress(data);
-
-        var jsonStr = Encoding.UTF8.GetString(data);
-        MetadataLookup = JsonSerializer.Deserialize<Dictionary<string, Meta>>(jsonStr, JsonConfig);
+        MetadataLookup = JsonSerializer.Deserialize<Dictionary<string, Meta>>(json, JsonConfig);
     }
-
-    public void WriteMetadata()
+    protected override bool TryGetWriteData(out object data)
     {
         // Compress lookup table by removing all elements identical to default state
         var lookupC = MetadataLookup.ToDictionary(entry => entry.Key, entry => entry.Value);
@@ -76,15 +56,8 @@ public class ProjectLanguageMetaHolder
                 lookupC.Remove(item.Key);
         }
 
-        // Write lookup table to file
-        string dataStr = JsonSerializer.Serialize(lookupC, JsonConfig);
-        byte[] data = Encoding.UTF8.GetBytes(dataStr);
-
-        var dataCompressed = Yaz0.Compress(data);
-        File.WriteAllBytes(Path, dataCompressed.ToArray());
-
-        // Debug code, remove this later
-        File.WriteAllText(Path + "_d", dataStr);
+        data = lookupC;
+        return true;
     }
 
     // ====================================================== //

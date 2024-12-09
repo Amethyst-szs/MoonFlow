@@ -62,7 +62,7 @@ public partial class TabMsbt : HSplitContainer
 		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
 
 		var msbp = ProjectManager.GetMSBP();
-		var defaultLang = ProjectManager.GetProject().Config.DefaultLanguage;
+		var defaultLang = ProjectManager.GetProject().Config.Data.DefaultLanguage;
 		editor.SetupEditor(msbp, defaultLang, archiveName, key);
 	}
 }

@@ -120,7 +120,7 @@ public partial class MsbtEditor : PanelContainer
 		File = defaultMsbt;
 		FileList = msbtList;
 
-		DefaultLanguage = ProjectManager.GetProject().Config.DefaultLanguage;
+		DefaultLanguage = ProjectManager.GetProject().Config.Data.DefaultLanguage;
 		CurrentLanguage = defaultLang;
 		LanguagePicker.SetSelection(CurrentLanguage);
 
@@ -212,7 +212,7 @@ public partial class MsbtEditor : PanelContainer
 		if (isAnythingAnyLanguageModified)
 		{
 			var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-			metadataAccessor.WriteMetadata();
+			metadataAccessor.WriteFile();
 		}
 
 		// Reset flag

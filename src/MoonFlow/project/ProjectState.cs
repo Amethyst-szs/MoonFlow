@@ -41,7 +41,7 @@ public class ProjectState(string path, ProjectConfig config)
 
         // Preload archives for default language
         loadScreen.LoadingUpdateProgress("LOAD_MSBT");
-        MsgStudioText = new(Path, Config.DefaultLanguage);
+        MsgStudioText = new(Path, Config.Data.DefaultLanguage);
 
         // Complete Initilization
         loadScreen.LoadingComplete();
