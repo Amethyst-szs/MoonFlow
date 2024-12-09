@@ -1148,27 +1148,85 @@ msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_BEAT"
 msgstr "Beat"
 
 #: ninode/lms/msbt/tag_edit/string/string.tscn
-#| msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
 msgid "TAG_EDIT_SCENE_HEADER_STRING"
 msgstr "String Formatiing"
 
 #: ninode/lms/msbt/tag_edit/string/string.tscn
-#| msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_HEADER"
 msgid "STRING_TAG_EDIT_TEXT_FIELD_HEADER"
 msgstr "Replacement Key"
 
 #: ninode/lms/msbt/tag_edit/string/string.tscn
-#| msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgid "STRING_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr "Key"
 
 #: ninode/lms/msbt/tag_edit/string/string.tscn
-#| msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
 msgid "TAG_EDIT_SCENE_STRING_WARNING"
 msgstr ""
 "WARNING:\n"
 "This tag isn't fully understood, and may cause issues when edited! Only "
 "touch this if you know what you're doing."
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_HEADER_TIME_COMPONENT"
+msgstr "Time Component"
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_YEAR"
+msgstr "Year"
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_MONTH"
+msgstr "Month"
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_DAY"
+msgstr "Day"
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_HOUR"
+msgstr "Hour"
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_MINUTE"
+msgstr "Minute"
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_SECOND"
+msgstr "Second"
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_CENISECOND"
+msgstr "Centisecond"
+
+#: ninode/lms/msbt/tag_edit/align/text.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_TEXT_ANIM"
+msgid "TAG_EDIT_SCENE_HEADER_TEXT_ALIGNMENT"
+msgstr "Text Alignment"
+
+#: ninode/lms/msbt/tag_edit/align/text.tscn
+#| msgid "TAG_EDIT_SCENE_TIME_NAME_MINUTE"
+msgid "TAG_EDIT_SCENE_ALIGNMENT_LEFT"
+msgstr "Left"
+
+#: ninode/lms/msbt/tag_edit/align/text.tscn
+#| msgid "TAG_EDIT_SCENE_TIME_NAME_MINUTE"
+msgid "TAG_EDIT_SCENE_ALIGNMENT_CENTER"
+msgstr "Center"
+
+#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+#| msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
+msgid "TAG_EDIT_SCENE_HEADER_GRAMMAR_CAP_DECAP"
+msgstr "Grammar Cap/Decap"
+
+#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+#| msgid "TAG_EDIT_SCENE_TIME_NAME_DAY"
+msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
+msgstr "Cap"
+
+#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+#| msgid "TAG_EDIT_SCENE_TIME_NAME_DAY"
+msgid "TAG_EDIT_SCENE_GRAMMAR_DECAP"
+msgstr "Decap"
 
 #~ msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
 #~ msgstr "Select Directory"

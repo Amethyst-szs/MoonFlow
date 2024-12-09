@@ -24,13 +24,20 @@ public static class TagEditFactory
 
         { typeof(MsbtTagElementTextAnim), "anim/text.tscn" },
 
+        { typeof(MsbtTagElementVoice), "se/voice.tscn" },
+
         { typeof(MsbtTagElementString), "string/string.tscn" },
 
         { typeof(MsbtTagElementProjectTag), "icon/project.tscn" },
+
+        { typeof(MsbtTagElementTimeComponent), "time/component.tscn" },
+
         { typeof(MsbtTagElementPictureFont), "icon/picture.tscn" },
         { typeof(MsbtTagElementDeviceFont), "icon/device.tscn" },
 
-        { typeof(MsbtTagElementVoice), "se/voice.tscn" },
+        { typeof(MsbtTagElementTextAlign), "align/text.tscn" },
+
+        { typeof(MsbtTagElementGrammar), "grammar/caping.tscn" },
     };
 
     private static readonly string Default = "default/fallback.tscn";

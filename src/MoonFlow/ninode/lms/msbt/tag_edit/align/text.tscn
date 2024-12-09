@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhfi7w656nngd"]
+
+[ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://ninode/lms/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_iqgxf"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag_edit/align/TextAlignment.cs" id="2_et0yp"]
+[ext_resource type="Texture2D" uid="uid://dd4f8b4mrmiw8" path="res://asset/nindot/lms/icon/TextAlign_Left.png" id="3_f23tv"]
+[ext_resource type="Texture2D" uid="uid://b0u2t701xuf8f" path="res://asset/nindot/lms/icon/TextAlign_Center.png" id="4_sguo5"]
+
+[node name="TagEditSceneBase" instance=ExtResource("1_iqgxf")]
+title = "TAG_EDIT_SCENE_HEADER_TEXT_ALIGNMENT"
+script = ExtResource("2_et0yp")
+
+[node name="HBox" type="HBoxContainer" parent="Panel/Content" index="0"]
+layout_mode = 2
+
+[node name="Option_TagName" type="OptionButton" parent="Panel/Content/HBox" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "TAG_EDIT_SCENE_ALIGNMENT_CENTER"
+popup/item_0/icon = ExtResource("4_sguo5")
+popup/item_1/text = "TAG_EDIT_SCENE_ALIGNMENT_LEFT"
+popup/item_1/icon = ExtResource("3_f23tv")
+popup/item_1/id = 1
+
+[connection signal="item_selected" from="Panel/Content/HBox/Option_TagName" to="." method="SetTagName"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4e7p8jb5y1v8"]
+
+[ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://ninode/lms/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_isxex"]
+[ext_resource type="Script" path="res://ninode/lms/msbt/tag_edit/time/TimeComponent.cs" id="2_r8my5"]
+[ext_resource type="Texture2D" uid="uid://c241dipgwmbrg" path="res://asset/nindot/lms/icon/TimeComponent.png" id="3_7tbhw"]
+
+[node name="TagEditSceneBase" instance=ExtResource("1_isxex")]
+title = "TAG_EDIT_SCENE_HEADER_TIME_COMPONENT"
+script = ExtResource("2_r8my5")
+
+[node name="HBox" type="HBoxContainer" parent="Panel/Content" index="0"]
+layout_mode = 2
+
+[node name="Texture" type="TextureRect" parent="Panel/Content/HBox" index="0"]
+layout_mode = 2
+texture = ExtResource("3_7tbhw")
+
+[node name="Option_TagName" type="OptionButton" parent="Panel/Content/HBox" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 7
+popup/item_0/text = "TAG_EDIT_SCENE_TIME_NAME_YEAR"
+popup/item_1/text = "TAG_EDIT_SCENE_TIME_NAME_MONTH"
+popup/item_1/id = 1
+popup/item_2/text = "TAG_EDIT_SCENE_TIME_NAME_DAY"
+popup/item_2/id = 2
+popup/item_3/text = "TAG_EDIT_SCENE_TIME_NAME_HOUR"
+popup/item_3/id = 3
+popup/item_4/text = "TAG_EDIT_SCENE_TIME_NAME_MINUTE"
+popup/item_4/id = 4
+popup/item_5/text = "TAG_EDIT_SCENE_TIME_NAME_SECOND"
+popup/item_5/id = 5
+popup/item_6/text = "TAG_EDIT_SCENE_TIME_NAME_CENISECOND"
+popup/item_6/id = 6
+
+[connection signal="item_selected" from="Panel/Content/HBox/Option_TagName" to="." method="SetTagName"]

@@ -29,6 +29,9 @@
 # res://ninode/lms/msbt/tag_edit/number/number_time.tscn
 # res://ninode/lms/msbt/tag_edit/anim/text.tscn
 # res://ninode/lms/msbt/tag_edit/string/string.tscn
+# res://ninode/lms/msbt/tag_edit/time/component.tscn
+# res://ninode/lms/msbt/tag_edit/align/text.tscn
+# res://ninode/lms/msbt/tag_edit/grammar/caping.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1163,4 +1166,60 @@ msgstr ""
 
 #: ninode/lms/msbt/tag_edit/string/string.tscn
 msgid "TAG_EDIT_SCENE_STRING_WARNING"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_HEADER_TIME_COMPONENT"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_YEAR"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_MONTH"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_DAY"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_HOUR"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_MINUTE"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_SECOND"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/time/component.tscn
+msgid "TAG_EDIT_SCENE_TIME_NAME_CENISECOND"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/align/text.tscn
+msgid "TAG_EDIT_SCENE_HEADER_TEXT_ALIGNMENT"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/align/text.tscn
+msgid "TAG_EDIT_SCENE_ALIGNMENT_LEFT"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/align/text.tscn
+msgid "TAG_EDIT_SCENE_ALIGNMENT_CENTER"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+msgid "TAG_EDIT_SCENE_HEADER_GRAMMAR_CAP_DECAP"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
+msgstr ""
+
+#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+msgid "TAG_EDIT_SCENE_GRAMMAR_DECAP"
 msgstr ""
