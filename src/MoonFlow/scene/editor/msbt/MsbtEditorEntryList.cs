@@ -52,35 +52,6 @@ public partial class MsbtEditor : PanelContainer
         return button;
     }
 
-    private MsbtEntryEditor CreateEntryContentEditor(int i)
-    {
-        // Get access to the metadata accessor for the current language
-        var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-        if (metadataAccessor == null)
-            throw new Exception("Invalid metadata accessor!");
-
-        // Get access to the requested entry and metadata
-        var entry = File.GetEntry(i);
-        var metadata = metadataAccessor.GetMetadata(File, entry);
-
-        // Initilize entry editor
-        var editor = new MsbtEntryEditor(this, entry, metadata)
-        {
-            Name = File.GetEntryLabel(i),
-            Visible = false,
-            SizeFlagsHorizontal = SizeFlags.ExpandFill,
-            SizeFlagsVertical = SizeFlags.ExpandFill,
-        };
-
-        EntryContent.AddChild(editor, true);
-
-        // Connect to signals
-        editor.Connect(MsbtEntryEditor.SignalName.EntryModified,
-            Callable.From(new Action<MsbtEntryEditor>(OnEntryModified)));
-
-        return editor;
-    }
-
     // ====================================================== //
     // ==================== Signal Events =================== //
     // ====================================================== //

@@ -16,6 +16,8 @@ namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtEditor : PanelContainer
 {
+	#region Properties
+
 	public SarcMsbpFile Project { get; private set; } = null;
 	public SarcMsbtFile File { get; private set; } = null;
 	public Dictionary<string, SarcMsbtFile> FileList { get; private set; } = null;
@@ -37,6 +39,10 @@ public partial class MsbtEditor : PanelContainer
 
 	[Signal]
 	public delegate void EntryCountUpdatedEventHandler(int total, int matchSearch);
+
+	#endregion
+
+	#region Initilization
 
 	public override void _Ready()
 	{
@@ -102,9 +108,42 @@ public partial class MsbtEditor : PanelContainer
 		FileTitleName.Text = File.Name;
 	}
 
+	public MsbtEntryEditor CreateEntryContentEditor(int i)
+    {
+        // Get access to the metadata accessor for the current language
+        var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+        if (metadataAccessor == null)
+            throw new Exception("Invalid metadata accessor!");
+
+        // Get access to the requested entry and metadata
+        var entry = File.GetEntry(i);
+        var metadata = metadataAccessor.GetMetadata(File, entry);
+
+        // Initilize entry editor
+        var editor = new MsbtEntryEditor(this, entry, metadata)
+        {
+            Name = File.GetEntryLabel(i),
+            Visible = false,
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
+            SizeFlagsVertical = SizeFlags.ExpandFill,
+        };
+
+        EntryContent.AddChild(editor, true);
+
+        // Connect to signals
+        editor.Connect(MsbtEntryEditor.SignalName.EntryModified,
+            Callable.From(new Action<MsbtEntryEditor>(OnEntryModified)));
+
+        return editor;
+    }
+
+	#endregion
+
 	// ====================================================== //
 	// ================ File Access Utilities =============== //
 	// ====================================================== //
+
+	#region Read and Write
 
 	public void OpenFile(SarcMsbpFile project, Dictionary<string, SarcMsbtFile> msbtList, string defaultLang)
 	{
@@ -219,18 +258,22 @@ public partial class MsbtEditor : PanelContainer
 		IsModified = false;
 	}
 
+	#endregion
+
 	// ====================================================== //
 	// ==================== Signal Events =================== //
 	// ====================================================== //
 
-	private void OnEntryHovered(string label)
+	#region Signals
+
+	public void OnEntryHovered(string label)
 	{
 
 		if (Input.IsMouseButtonPressed(MouseButton.Left))
 			OnEntrySelected(label);
 	}
 
-	private void OnEntrySelected(string label, bool isGrabFocus = true)
+	public void OnEntrySelected(string label, bool isGrabFocus = true)
 	{
 		// Close old selection
 		if (IsInstanceValid(EntryListSelection))
@@ -279,4 +322,6 @@ public partial class MsbtEditor : PanelContainer
 		File = newTarget;
 		InitEditor();
 	}
+
+	#endregion
 }

@@ -18,7 +18,7 @@ public partial class MsbtAppHolder : AppScene
 
 	public override void _Ready()
 	{
-		Editor = GetNode<MsbtEditor>("Content");
+		Editor = GetNode<MsbtEditor>("MsbtEditor");
 	}
 
 	public void SetupEditor(SarcMsbpFile msgProject, string lang, string archiveName, string key)
@@ -28,11 +28,11 @@ public partial class MsbtAppHolder : AppScene
 
 		// Get access to all msbt files with this key in all languages
 		var txtHolder = ProjectManager.GetMSBT();
-		foreach (var txt in txtHolder)
+		foreach (var txtLang in txtHolder)
 		{
-			var archive = txt.Value.GetArchiveByFileName(archiveName);
+			var archive = txtLang.Value.GetArchiveByFileName(archiveName);
 			var msbt = archive.GetFileMSBT(key, new MsbtElementFactoryProjectSmo());
-			TextFiles.Add(txt.Key, msbt);
+			TextFiles.Add(txtLang.Key, msbt);
 		}
 
 		// Create msbt object and open file in editor
