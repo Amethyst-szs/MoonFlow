@@ -23,6 +23,7 @@ public class ProjectDatabaseHolder
 
     private SarcFile ArchiveWorldList = null;
     private SarcFile ArchiveShineInfo = null;
+    private SarcFile ArchiveItemList = null;
 
     public ProjectDatabaseHolder(ProjectState parent, ProjectLoading loadScreen)
     {
@@ -53,11 +54,23 @@ public class ProjectDatabaseHolder
             GD.Print(" - " + world.WorldName + " OK");
         }
 
-        // DEBUG CODE
-        // WriteWorldList();
-        // WriteShineInfoAllWorlds();
+        // Load Coin Collect and Shine type for each world
+        GD.Print("Accessing ItemList.szs");
+        loadScreen.LoadingUpdateProgress("LOAD_ITEM_LIST");
 
-        return;
+        ArchiveItemList = WorldItemType.GetItemListSarc(WorldItemType.GetItemListPath(parent.Path));
+        var itemList = WorldItemType.BuildList(ArchiveItemList);
+
+        foreach (var itemDb in itemList)
+        {
+            var world = WorldList.Find(s => s.WorldName == itemDb.WorldName);
+            if (world == null)
+                continue;
+            
+            world.WorldItemType = itemDb;
+        }
+
+        WriteWorldItemList();
     }
 
     #endregion
@@ -101,6 +114,13 @@ public class ProjectDatabaseHolder
             WriteShineInfo(world.WorldName, false);
         
         ArchiveShineInfo.WriteArchive(WorldInfo.GetShineInfoPath(Parent.Path));
+    }
+
+    public void WriteWorldItemList()
+    {
+        var list = WorldList.Select(s => s.WorldItemType);
+        WorldItemType.UpdateItemTypeArchive(ArchiveItemList, list);
+        ArchiveItemList.WriteArchive(WorldItemType.GetItemListPath(Parent.Path));
     }
 
     #endregion

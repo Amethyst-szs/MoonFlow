@@ -23,6 +23,8 @@ public class WorldInfo()
 
     [YamlIgnore]
     public WorldShineList ShineList;
+    [YamlIgnore]
+    public WorldItemType WorldItemType;
 
     public static string GetWorldListPath(string root) { return root + "SystemData/WorldList.szs"; } 
     public static string GetShineInfoPath(string root) { return root + "SystemData/ShineInfo.szs"; } 
