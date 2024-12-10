@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 namespace MoonFlow.Scene.Main;
 
@@ -11,8 +12,24 @@ public partial class Taskbar : Control
         UpdateDisplay();
     }
 
-    public void AddApplication(AppScene app)
+    public bool TryAddApplication(AppScene app)
     {
+        // Ensure app isn't already open
+        if (app.IsAppOnlyOneInstance())
+        {
+            var unique = app.AppUniqueIdentifier;
+            var list = GetChildren().Cast<TaskbarButton>();
+
+            var result = list.ToList().Find(s => s.App.AppUniqueIdentifier == unique);
+
+            if (IsInstanceValid(result))
+            {
+                result.App.AppFocus();
+                return false;
+            }
+        }
+
+        // Create new taskbar button
         var button = new TaskbarButton(app);
 
         // Setup button signal connections
@@ -42,6 +59,8 @@ public partial class Taskbar : Control
         // If no app is currently selected, select this new app
         if (scene.GetActiveApp() == null)
             app.AppFocus();
+
+        return true;
     }
 
     public bool TrySelectAppByIndex(int idx)

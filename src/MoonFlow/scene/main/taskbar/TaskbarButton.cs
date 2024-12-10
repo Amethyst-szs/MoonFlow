@@ -13,6 +13,7 @@ public partial class TaskbarButton : Button
 		app.TaskbarButton = this;
 
 		Text = app.AppTaskbarTitle;
+		Name = app.AppTaskbarTitle;
 		Icon = app.AppIcon;
 
 		ButtonMask |= MouseButtonMask.Middle;

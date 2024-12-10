@@ -41,6 +41,11 @@ public partial class MsbtAppHolder : AppScene
 		return;
 	}
 
+	public override string GetUniqueIdentifier(string input)
+	{
+		return "MSBT_" + input;
+	}
+
 	public override void AppClose(bool isEndExclusive = false)
 	{
 		if (!Editor.IsModified)

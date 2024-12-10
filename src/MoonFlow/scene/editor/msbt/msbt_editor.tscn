@@ -131,7 +131,7 @@ size_flags_vertical = 3
 script = ExtResource("1_dt1us")
 AppName = "MsbtEditor"
 AppTaskbarTitle = "Text Editor"
-AppFlags = 19
+AppFlags = 51
 
 [node name="MsbtEditor" type="PanelContainer" parent="."]
 unique_name_in_owner = true

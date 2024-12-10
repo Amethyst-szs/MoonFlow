@@ -29,6 +29,8 @@ public partial class AppScene : Control
 	}
 	private string _appTaskbarTitle = "Application";
 
+	public string AppUniqueIdentifier { get; private set; } = "";
+
 	[Export]
 	public Texture2D AppIcon { get; private set; } = GD.Load<Texture2D>("res://iconS.png");
 
@@ -40,6 +42,7 @@ public partial class AppScene : Control
 		IsOpenInFront = 1 << 2,
 		IsExclusive = 1 << 3,
 		IsShowHeader = 1 << 4,
+		IsOnlyAllowOneInstance = 1 << 5,
 	}
 
 	[Export(PropertyHint.Flags)]
@@ -95,7 +98,11 @@ public partial class AppScene : Control
 	private void InitAfterScene()
 	{
 		// Setup taskbar button
-		Scene.NodeTaskbar.AddApplication(this);
+		if (!Scene.NodeTaskbar.TryAddApplication(this))
+		{
+			QueueFree();
+			return;
+		}
 
 		// If this is the home scene, move self to the front of the taskbar
 		if (IsAppOpenInFront())
@@ -118,6 +125,9 @@ public partial class AppScene : Control
 	// ====================================================== //
 
 	protected virtual void AppInit() { }
+	
+	public virtual string GetUniqueIdentifier(string input) { throw new NotImplementedException(); }
+	public void SetUniqueIdentifier(string input) { AppUniqueIdentifier = GetUniqueIdentifier(input); }
 
 	public virtual void AppFocus()
 	{
@@ -211,4 +221,5 @@ public partial class AppScene : Control
 	public bool IsAppOpenInFront() { return (AppFlags & AppFlagEnum.IsOpenInFront) != 0; }
 	public bool IsAppExclusive() { return (AppFlags & AppFlagEnum.IsExclusive) != 0; }
 	public bool IsAppShowHeader() { return (AppFlags & AppFlagEnum.IsShowHeader) != 0; }
+	public bool IsAppOnlyOneInstance() { return (AppFlags & AppFlagEnum.IsOnlyAllowOneInstance) != 0; }
 }

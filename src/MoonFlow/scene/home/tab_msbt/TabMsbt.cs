@@ -63,6 +63,7 @@ public partial class TabMsbt : HSplitContainer
 	private static void OnFileOpened(string archiveName, string key)
 	{
 		var editor = SceneCreator<MsbtAppHolder>.Create();
+		editor.SetUniqueIdentifier(archiveName + key);
 		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
 
 		var msbp = ProjectManager.GetMSBP();
