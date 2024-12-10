@@ -28,6 +28,14 @@ public class WorldShineList(string name, List<ShineInfo> list) : List<ShineInfo>
             throw new Exception("ShineList dictionary invalid!");
         
         var list = dict.Values.ElementAt(0);
+
+        // Empty all "ScenarioName" properties to just the word "Shine"
+        // This has no effect on the game, reduces file size, and gets around
+        // a bug in VYaml that causes an app lockup on some strange
+        // unicode symbols
+        foreach (var item in list)
+            item.ScenarioName = "Shine";
+        
         return new WorldShineList(world, list);
     }
 

@@ -1,11 +1,12 @@
 using System;
 
+using YamlDotNet.Serialization;
+
 namespace MoonFlow.Project.Database;
 
 public class ShineInfo
 {
     public string StageName;
-    public string ObjectName;
     public string ScenarioName;
 
     public string ObjId;
