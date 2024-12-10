@@ -1,18 +1,23 @@
-using System.Collections.Generic;
-using System.Numerics;
-using Godot;
+using System;
 
 namespace MoonFlow.Project.Database;
 
 public class ShineInfo
 {
-    public string StageName = null;
-    public string ObjId = null;
-    public string UniqueId = null;
+    public string StageName;
+    public string ObjectName;
+    public string ScenarioName;
 
-    public string IsAchievement = null;
-    public string IsGrand = null;
-    public string IsMoonRock = null;
+    public string ObjId;
+    public int UniqueId;
+
+    public int HintIdx;
+    public int MainScenarioNo;
+    public int ProgressBitFlag; // Each bit corresponds to if the shine is collectable in that scenario
+
+    public bool IsAchievement;
+    public bool IsGrand;
+    public bool IsMoonRock;
 
     public System.Numerics.Vector3 Trans = System.Numerics.Vector3.Zero;
 }

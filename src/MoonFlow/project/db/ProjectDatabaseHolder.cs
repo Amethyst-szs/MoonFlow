@@ -15,18 +15,26 @@ namespace MoonFlow.Project.Database;
 
 public class ProjectDatabaseHolder
 {
+    #region Properties & Init
+
     private ProjectState Parent = null;
 
     public readonly List<WorldInfo> WorldList = null;
+
+    private SarcFile ArchiveWorldList = null;
+    private SarcFile ArchiveShineInfo = null;
 
     public ProjectDatabaseHolder(ProjectState parent, ProjectLoading loadScreen)
     {
         Parent = parent;
 
+        // Ensure SystemData folder in project
+        Directory.CreateDirectory(parent.Path + "SystemData/");
+
         // Retrieve WorldListFromDb.byml
         GD.Print("Loading WorldListFromDb.byml");
         loadScreen.LoadingUpdateProgress("LOAD_WORLD_LIST");
-        WorldList = GetWorldListDb(parent.Path + WorldInfo.WorldListPath);
+        WorldList = GetWorldListDb(WorldInfo.GetWorldListPath(parent.Path));
 
         // Fetch the display name of each world
         GD.Print("Loading world display names");
@@ -35,35 +43,85 @@ public class ProjectDatabaseHolder
 
         // Load shine lookup list for each world
         GD.Print("Accessing ShineInfo.szs");
-        var shineArc = GetShineInfoSarc(parent.Path + WorldInfo.ShineInfoPath);
+        ArchiveShineInfo = WorldShineList.GetShineInfoSarc(WorldInfo.GetShineInfoPath(parent.Path));
+
         foreach (var world in WorldList)
         {
             loadScreen.LoadingUpdateProgress("LOAD_SHINE_INFO", world.Display);
-            world.ShineList = GetShineInfoForWorld(shineArc, world.WorldName);
+            world.ShineList = WorldShineList.Build(ArchiveShineInfo, world.WorldName);
 
             GD.Print(" - " + world.WorldName + " OK");
         }
 
+        // DEBUG CODE
+        // WriteWorldList();
+        // WriteShineInfoAllWorlds();
+
         return;
     }
 
-    private static List<WorldInfo> GetWorldListDb(string arcPath)
-    {
-        SarcFile sarc = null;
+    #endregion
 
+    #region Database Writing
+
+    public bool WriteWorldList()
+    {
+        var fileName = WorldInfo.DatabaseBymlPath;
+
+        if (!ArchiveWorldList.Content.ContainsKey(fileName))
+            return false;
+
+        MemoryStream stream = new();
+        if (!BymlFileAccess.WriteFile(stream, WorldList))
+            throw new Exception("Byml writer exception");
+
+        ArchiveWorldList.Content[fileName] = stream.ToArray();
+        ArchiveWorldList.WriteArchive(WorldInfo.GetWorldListPath(Parent.Path));
+
+        return true;
+    }
+
+    public bool WriteShineInfo(string worldName, bool isWriteToDisk = true)
+    {
+        var info = WorldList.Find(s => s.WorldName == worldName);
+        if (info == null)
+            return false;
+
+        info.ShineList.UpdateShineInfoArchive(ArchiveShineInfo);
+
+        if (isWriteToDisk)
+            ArchiveShineInfo.WriteArchive(WorldInfo.GetShineInfoPath(Parent.Path));
+
+        return true;
+    }
+
+    public void WriteShineInfoAllWorlds()
+    {
+        foreach (var world in WorldList)
+            WriteShineInfo(world.WorldName, false);
+        
+        ArchiveShineInfo.WriteArchive(WorldInfo.GetShineInfoPath(Parent.Path));
+    }
+
+    #endregion
+
+    #region Utilities
+
+    private List<WorldInfo> GetWorldListDb(string arcPath)
+    {
         if (File.Exists(arcPath))
         {
-            sarc = SarcFile.FromFilePath(arcPath);
+            ArchiveWorldList = SarcFile.FromFilePath(arcPath);
         }
         else
         {
             if (!RomfsAccessor.TryGetRomfsDirectory(out string romDir))
                 throw new Exception("RomfsAccessor could not return directory");
 
-            sarc = SarcFile.FromFilePath(romDir + WorldInfo.WorldListPath);
+            ArchiveWorldList = SarcFile.FromFilePath(WorldInfo.GetWorldListPath(romDir));
         }
 
-        if (!sarc.Content.TryGetValue(WorldInfo.DatabaseBymlPath, out ArraySegment<byte> data))
+        if (!ArchiveWorldList.Content.TryGetValue(WorldInfo.DatabaseBymlPath, out ArraySegment<byte> data))
             throw new SarcFileException("Missing " + WorldInfo.DatabaseBymlPath);
 
         return BymlFileAccess.ParseBytes<List<WorldInfo>>([.. data]);
@@ -85,36 +143,5 @@ public class ProjectDatabaseHolder
         }
     }
 
-    private static SarcFile GetShineInfoSarc(string arcPath)
-    {
-        SarcFile sarc = null;
-
-        if (File.Exists(arcPath))
-        {
-            sarc = SarcFile.FromFilePath(arcPath);
-        }
-        else
-        {
-            if (!RomfsAccessor.TryGetRomfsDirectory(out string romDir))
-                throw new Exception("RomfsAccessor could not return directory");
-
-            sarc = SarcFile.FromFilePath(romDir + WorldInfo.ShineInfoPath);
-        }
-
-        return sarc;
-    }
-
-    private List<ShineInfo> GetShineInfoForWorld(SarcFile file, string world)
-    {
-        var filePath = "ShineList_" + world + "WorldHomeStage.byml";
-
-        if (!file.Content.TryGetValue(filePath, out ArraySegment<byte> data))
-            throw new SarcFileException("Missing " + filePath);
-
-        var dict = BymlFileAccess.ParseBytes<Dictionary<string, List<ShineInfo>>>([.. data]);
-        if (dict.Count != 1)
-            throw new Exception("ShineList dictionary invalid!");
-        
-        return dict.Values.ElementAt(0);
-    }
+    #endregion
 }

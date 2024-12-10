@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Numerics;
 
 using BymlLibrary;
 using Revrs;
@@ -79,12 +80,17 @@ public class BymlFileAccess
 
     public static bool WriteFile(MemoryStream stream, BymlFile iter, ushort version = 3)
     {
+        return WriteFile<Dictionary<string, object>>(stream, iter, version);
+    }
+
+    public static bool WriteFile<T>(MemoryStream stream, T input, ushort version = 3)
+    {
         // Convert dictionary to yaml string
         ISerializer serializer = new SerializerBuilder()
             .WithTypeConverter(new YamlTypeTagMapper())
             .Build();
 
-        string yaml = serializer.Serialize(iter, typeof(Dictionary<string, object>));
+        string yaml = serializer.Serialize(input, typeof(T));
 
         // Convert scalar anchor placeholders into tags
         yaml = yaml.Replace("&⌂♯", "");
@@ -109,6 +115,8 @@ public class BymlFileAccess
             { typeof(ulong), "!ul" },
             { typeof(float), "!f" },
             { typeof(double), "!d" },
+
+            { typeof(Vector3), "" },
         };
 
         public bool Accepts(Type type)
@@ -121,7 +129,27 @@ public class BymlFileAccess
         }
         public void WriteYaml(IEmitter emitter, object value, Type type, ObjectSerializer serializer)
         {
+            if (type == typeof(Vector3))
+            {
+                WriteYamlVec3(emitter, (Vector3)value, serializer);
+                return;
+            }
+
             emitter.Emit(new Scalar("⌂♯" + Table[type], null, value.ToString(), ScalarStyle.Any, true, false));
+        }
+
+        private void WriteYamlVec3(IEmitter emitter, Vector3 value, ObjectSerializer serializer)
+        {
+            emitter.Emit(new MappingStart());
+
+            emitter.Emit(new Scalar("X"));
+            emitter.Emit(new Scalar("⌂♯" + "!f", null, value.X.ToString(), ScalarStyle.Any, true, false));
+            emitter.Emit(new Scalar("Y"));
+            emitter.Emit(new Scalar("⌂♯" + "!f", null, value.Y.ToString(), ScalarStyle.Any, true, false));
+            emitter.Emit(new Scalar("Z"));
+            emitter.Emit(new Scalar("⌂♯" + "!f", null, value.Z.ToString(), ScalarStyle.Any, true, false));
+
+            emitter.Emit(new MappingEnd());
         }
     }
 
