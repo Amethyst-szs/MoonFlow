@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cei1tg8ys1x2u"]
+
+[ext_resource type="Script" path="res://scene/home/tab_world/TabWorld.cs" id="1_bbioy"]
+
+[node name="TabWorld" type="VBoxContainer"]
+alignment = 1
+script = ExtResource("1_bbioy")
+
+[connection signal="visibility_changed" from="." to="." method="OnVisiblityChanged"]

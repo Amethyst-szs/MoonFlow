@@ -92,48 +92,19 @@ msgstr "Select New Project RomFS Directory"
 msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
 msgstr "Select Project RomFS Directory"
 
-#: ninode/lms/msbt/file/msbt_editor.tscn
-msgid "MSBT_ENTRY_NAME"
-msgstr "Entry Name"
-
-#: ninode/lms/msbt/file/msbt_editor.tscn
-msgid "MSBT_INVALID_ENTRY_NAME_WARNING"
-msgstr ""
-"Entry name is invalid!\n"
-"- Name must be unique\n"
-"- Use only UTF8 characters\n"
-"- No spaces\n"
-"- Cannot be empty"
-
-#: ninode/lms/msbt/file/msbt_editor.tscn
-msgid "MSBT_SEARCH_ENTRIES"
-msgstr "Search Entries"
-
-#: ninode/lms/msbt/file/msbt_editor.tscn
-msgid "HELP_DIALOG_TITLE"
-msgstr "Help Information"
-
-#: ninode/lms/msbt/file/msbt_editor.tscn
-msgid "HELP_DIALOG_CLOSE"
-msgstr "Close"
-
-#: ninode/lms/msbt/file/msbt_editor.tscn
-msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
-msgstr "Help Dialog"
-
-#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
 msgstr "Move page up"
 
-#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_TRASH_PAGE"
 msgstr "Delete page"
 
-#: ninode/lms/msbt/entry/components/msbt_entry_page_holder.tscn
+#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
 msgstr "Move page down"
 
-#: ninode/lms/msbt/entry/components/msbt_entry_page_separator.tscn
+#: scene/editor/msbt/entry/components/msbt_entry_page_separator.tscn
 msgid "MSBT_TOOLTIP_ADD_PAGE"
 msgstr "Insert a new page"
 
@@ -177,6 +148,11 @@ msgstr "Loading Power Moons"
 
 #: scene/front_door/load/loading_messages.gd
 msgctxt "PROJECT_LOADING"
+msgid "LOAD_ITEM_LIST"
+msgstr "Loading World Items"
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr "Success!"
 
@@ -205,11 +181,11 @@ msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "PROJECT_FILE_ALREADY_EXISTS"
 msgstr "This folder already contains a project!"
 
-#: ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
+#: scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC"
 msgstr "Sync With Default Language"
 
-#: ninode/lms/msbt/entry/components/msbt_entry_translation_config.tscn
+#: scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
 msgstr ""
 "When syncing is enabled (default) the text in this language will\n"
@@ -221,6 +197,10 @@ msgstr ""
 #: scene/home/home.tscn
 msgid "HOME_TAB_TEXT"
 msgstr "Text"
+
+#: scene/home/home.tscn
+msgid "HOME_TAB_WORLD"
+msgstr "Kingdom"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_SYSTEM"
@@ -235,22 +215,18 @@ msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr "Layout Text"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_LAYOUT"
 msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
 msgstr "Open File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_LAYOUT"
 msgid "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
 msgstr "Duplicate File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_LAYOUT"
 msgid "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
 msgstr "New FIle"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_LAYOUT"
 msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
 msgstr "Delete File"
 
@@ -294,968 +270,997 @@ msgstr "Saving MSBT Archives"
 msgid "ASYNC_DISPLAY_EXCEPTION"
 msgstr "Task Failed!"
 
-#: ninode/lms/msbt/tag_edit/default/fallback.tscn
+#: scene/editor/msbt/tag_edit/default/fallback.tscn
 msgid "TAG_EDIT_SCENE_HEADER_ERROR_FALLBACK"
 msgstr "Error"
 
-#: ninode/lms/msbt/tag_edit/default/fallback.tscn
+#: scene/editor/msbt/tag_edit/default/fallback.tscn
 msgid "TAG_EDIT_ERROR_FALLBACK_MESSAGE"
 msgstr "Not sure what this tag is, sorry!"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_COLOR"
 msgstr "Set text color"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONT"
 msgstr "Change the current font"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_SYSTEM_FONTSIZE"
 msgstr "Adjust font size"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_SPEED"
 msgstr ""
 "Set speed text is printed in\n"
 "dialogue balloons"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_EUI_WAIT"
 msgstr ""
 "Pause text printing for an\n"
 "amount of frames"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXT_ANIM"
 msgstr "Apply animation on text characters"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_VOICE"
 msgstr "Play audio"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_DEVICE_FONT"
 msgstr "Add controller or button icon"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_PICTURE_FONT"
 msgstr "Add picture icon"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_TEXTALIGN"
 msgstr "Adjust text alignment"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_GRAMMAR"
 msgstr "Grammar Cap & Decap"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_RUBY"
 msgstr "Japanese Furigana using Ruby Syntax"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER"
 msgstr "Number Formatting"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_NUMBER_TIME"
 msgstr "Time Formatting"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_STRING"
 msgstr "String Formatting"
 
-#: ninode/lms/msbt/wheel/tag_wheel.tscn
+#: scene/editor/msbt/wheel/tag_wheel.tscn
 msgid "MSBT_TAG_WHEEL_TOOLTIP_TIME_COMPONENT"
 msgstr "Time Formatting Component"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_HEADER_CHARACTERS"
 msgstr "Characters"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconMario_0"
 msgstr "Mario"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconMarioCapOff_0"
 msgstr "Mario (Missing Cappy)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconLuigi_0"
 msgstr "Luigi"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconCap_0"
 msgstr "Cappy (Mario Form)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconCapManHero_0"
 msgstr "Cappy (Story Form)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconFrog_0"
 msgstr "Frog"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconPeach_0"
 msgstr "Peach"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconTiara_0"
 msgstr "Tiara"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconPauline_0"
 msgstr "Pauline"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconKoopa_0"
 msgstr "Bowser"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconBoodalStacker_0"
 msgstr "Topper Broodal"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconBoodalBombTail_0"
 msgstr "Harriet Broodal"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconBoodalFireBlower_0"
 msgstr "Spewert Broodal"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconBroodalCapThrower_0"
 msgstr "Rango Broodal"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_HEADER_ICONS"
 msgstr "Icons"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconCoin_0"
 msgstr "Coin"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconLifeMaxUpItem_0"
 msgstr "Max-Up Item"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconHomeShip_0"
 msgstr "Odyssey Ship"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconEarth_0"
 msgstr "Globe"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconCheckpoint_0"
 msgstr "Checkpoint Flag"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconAmiibo_0"
 msgstr "Amiibo Icon"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconMoonRock_0"
 msgstr "Moon Rock Icon"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconAchivementNpc_0"
 msgstr "Toadette Achievement"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconHintNpc_0"
 msgstr "Hint Toad Icon"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconPoetter_0"
 msgstr "Talkatoo Icon"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconStar_0"
 msgstr "Star"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconStarDotted_0"
 msgstr "Star (Empty)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_HEADER_SHINE"
 msgstr "Power Moon"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PROJECT_TAG_TOOLTIP_ShineIconCurrentWorld"
 msgstr "Power Moon (Adaptive to Current Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineCommon_0"
 msgstr "Power Moon (Default)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineSand_0"
 msgstr "Power Moon (Sand Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineForest_0"
 msgstr "Power Moon (Wooded Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineLake_0"
 msgstr "Power Moon (Lake Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineCity_0"
 msgstr "Power Moon (Metro Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineSea_0"
 msgstr "Power Moon (Seaside Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineSnow_0"
 msgstr "Power Moon (Snow Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineLava_0"
 msgstr "Power Moon (Luncheon Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineSky_0"
 msgstr "Power Moon (Bowser's Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineMoon_0"
 msgstr "Power Moon (Moon Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineRainbow_0"
 msgstr "Power Moon"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineNull_0"
 msgstr "Power Moon (Empty)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_ShineTripleDot_0"
 msgstr "Power Moon Count Abbreviation"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_HEADER_COIN_COLLECT"
 msgstr "Purple Coins"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PROJECT_TAG_TOOLTIP_CoinCollectIconCurrentWorld"
 msgstr "Purple Coin (Adaptive to Current Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
 msgstr "Purple Coin (Cap Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectWaterfall_0"
 msgstr "Purple Coin (Cascade Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectSand_0"
 msgstr "Purple Coin (Sand Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectForest_0"
 msgstr "Purple Coin (Wooded Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectLake_0"
 msgstr "Purple Coin (Lake Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectClash_0"
 msgstr "Purple Coin (Lost Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectCity_0"
 msgstr "Purple Coin (Metro Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectSea_0"
 msgstr "Purple Coin (Seaside Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectSnow_0"
 msgstr "Purple Coin (Snow Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectLava_0"
 msgstr "Purple Coin (Luncheon Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectSky_0"
 msgstr "Purple Coin (Bowser's Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectMoon_0"
 msgstr "Purple Coin (Moon Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_CoinCollectPeach_0"
 msgstr "Purple Coin (Mushroom Kingdom)"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_HEADER_WEDDING_TREASURE"
 msgstr "Wedding Treasure"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_TreasureRing_0"
 msgstr "Binding Band"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_TreasureFlower_0"
 msgstr "Soirée Bouquet"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_TreasureDress_0"
 msgstr "Lochlady Dress"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_TreasureWater_0"
 msgstr "Sparkle Water"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_TreasureCake_0"
 msgstr "Frost-Frosted Cake"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_TreasureStew_0"
 msgstr "Stupendous Stew"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_HEADER_SPECIAL"
 msgstr "Special"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_GlyphDot_0"
 msgstr "Dot Glyph"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_GlyphSlash_0"
 msgstr "Slash Glyph"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_1"
 msgstr "Colon Glyph"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_2"
 msgstr "Luigi's Balloon World Hint Arrow"
 
-#: ninode/lms/msbt/wheel/picture/submenu_pict.tscn
+#: scene/editor/msbt/wheel/picture/submenu_pict.tscn
 msgid "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
 msgstr "Star (Small)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_INPUT_DEVICE_PREVIEW"
 msgstr "Preview:"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_INPUT_DEVICE_DUAL"
 msgstr "Joy-Con"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_INPUT_DEVICE_HANDHELD"
 msgstr "Handheld"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_INPUT_DEVICE_FULLKEY"
 msgstr "Pro Controller"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_INPUT_DEVICE_LEFT"
 msgstr "Left Joy-Con"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_INPUT_DEVICE_RIGHT"
 msgstr "Right Joy-Con"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_DYNAMIC_HEADER_BUTTON"
 msgstr "Dynamic Controller Buttons"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonA"
 msgstr "A Button / Right Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonB"
 msgstr "B Button / Bottom Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonX"
 msgstr "X Button / Top Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonY"
 msgstr "Y Button / Left Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonL"
 msgstr "L Button / SL Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonR"
 msgstr "R Button / SR Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZL"
 msgstr "ZL Button / SL Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonZR"
 msgstr "ZR Button / SR Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonPlus"
 msgstr "Plus Button (Left Joy-Con Minus)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonMinus"
 msgstr "Minus Button (Right Joy-Con Plus)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_DYNAMIC_HEADER_DIRECTIONAL"
 msgstr "Dynamic Direction Input"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyLeft"
 msgstr "D-Pad Left"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyRight"
 msgstr "D-Pad Right"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyUp"
 msgstr "D-Pad Up"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleKeyDown"
 msgstr "D-Pad Down"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleStickL"
 msgstr "Control Stick (Left)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleStickR"
 msgstr "Control Stick (Right)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleStickPushR"
 msgstr "Press Stick (Right)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleStickUD"
 msgstr "Control Stick Up & Down (Left Stick)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleStickLR"
 msgstr "Control Stick Left & Right (Right Stick)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_DYNAMIC_HEADER_DEVICE"
 msgstr "Dynamic Input Device & Other Buttons"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyCon"
 msgstr "Current Controller with Name"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConIconOnly"
 msgstr "Current Controller"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleJoyConR"
 msgstr "Singular Current Controller"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleButtonCapture"
 msgstr "Screenshot Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyleReset"
 msgstr "Reset Camera"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_DYNAMIC_HEADER_SPECIAL"
 msgstr "Dynamic Special Icons"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyle2PButtonY"
 msgstr "2-Player Y Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickL"
 msgstr "2-Player Control Stick (Left)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadStyle2PStickR"
 msgstr "2-Player Control Stick (Right)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadPairMenu"
 msgstr "2-Player Menu Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "PROJECT_TAG_TOOLTIP_PadPairMap"
 msgstr "2-Player Map Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_STATIC_HEADER_BUTTON"
 msgstr "Buttons"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonA"
 msgstr "A Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonB"
 msgstr "B Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonX"
 msgstr "X Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonY"
 msgstr "Y Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonL"
 msgstr "L Bumper"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonR"
 msgstr "R Bumper"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonZL"
 msgstr "ZL Trigger"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonZR"
 msgstr "ZR Trigger"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonSL"
 msgstr "SL Bumper"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonSR"
 msgstr "SR Bumper"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonPlus"
 msgstr "Plus Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonMinus"
 msgstr "Minus Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_STATIC_HEADER_DPAD"
 msgstr "D-Pad"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonGroupLeft"
 msgstr "Left (Separated D-Pad)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonGroupRight"
 msgstr "Right (Separated D-Pad)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonGroupUp"
 msgstr "Up (Separated D-Pad)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonGroupBottom"
 msgstr "Down (Separated D-Pad)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonLR"
 msgstr "Left + Right (Separated D-Pad)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonLeft"
 msgstr "Left Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonRight"
 msgstr "Right Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonUp"
 msgstr "Up Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonDown"
 msgstr "Down Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_STATIC_HEADER_STICK"
 msgstr "Control Sticks"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_Stick"
 msgstr "Control Stick"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickPush"
 msgstr "Press Stick"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickUD"
 msgstr "Stick Up & Down"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickL"
 msgstr "Left Control Stick"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickPushL"
 msgstr "Press Left Stick"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickUDL"
 msgstr "Left Stick Up & Down"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickR"
 msgstr "Right Control Stick"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickPushR"
 msgstr "Right Press Stick"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_StickLRR"
 msgstr "Right Stick Left & Right"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_STATIC_HEADER_DEVICE"
 msgstr "System Buttons & Input Devices"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonPower"
 msgstr "Power Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonHome"
 msgstr "Home Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ButtonCapture"
 msgstr "Screenshot Button"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ArrowRight"
 msgstr "Right-Pointing Arrow"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_Album"
 msgstr "Album"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_JoyConBoth"
 msgstr "Joy-Con Pair"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_JoyConRight"
 msgstr "Joy-Con (Right)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_JoyConSingle"
 msgstr "Joy-Con (Single)"
 
-#: ninode/lms/msbt/wheel/device/submenu_device.tscn
+#: scene/editor/msbt/wheel/device/submenu_device.tscn
 msgid "DEVICE_FONT_TOOLTIP_ProCon"
 msgstr "Pro Controller"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT"
 msgstr "Set Text Font"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_LABEL_CURRENT:"
 msgstr "Current:"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Message"
 msgstr "Message"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Title"
 msgstr "Title"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Head"
 msgstr "Header"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Number"
 msgstr "Number"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Picture"
 msgstr "Picture"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Device"
 msgstr "Device"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Icon16"
 msgstr "Icon16"
 
-#: ninode/lms/msbt/tag_edit/system/font.tscn
+#: scene/editor/msbt/tag_edit/system/font.tscn
 msgid "TAG_EDIT_SCENE_FONT_OPTION_Icon80"
 msgstr "Icon80"
 
-#: ninode/lms/msbt/tag_edit/system/font_size.tscn
+#: scene/editor/msbt/tag_edit/system/font_size.tscn
 msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT_SIZE"
 msgstr "Set Font Size"
 
-#: ninode/lms/msbt/tag_edit/eui/wait.tscn
+#: scene/editor/msbt/tag_edit/eui/wait.tscn
 msgid "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
 msgstr "Pause Text Printing"
 
-#: ninode/lms/msbt/tag_edit/se/voice.tscn
+#: scene/editor/msbt/tag_edit/se/voice.tscn
 msgid "TAG_EDIT_SCENE_HEADER_SE_VOICE"
 msgstr "Play Sound Effect"
 
-#: ninode/lms/msbt/tag_edit/se/voice.tscn
+#: scene/editor/msbt/tag_edit/se/voice.tscn
 msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_HEADER"
 msgstr "Sound Name"
 
-#: ninode/lms/msbt/tag_edit/se/voice.tscn
+#: scene/editor/msbt/tag_edit/se/voice.tscn
 msgid "SE_VOICE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr "Entry in Actor's SeDataBase"
 
-#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#: scene/editor/msbt/tag_edit/system/ruby.tscn
 msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_RUBY"
 msgstr "Japanese Furigana"
 
-#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#: scene/editor/msbt/tag_edit/system/ruby.tscn
 msgid "SYSTEM_RUBY_TAG_EDIT_TEXT_FIELD_HEADER"
 msgstr "Ruby String"
 
-#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#: scene/editor/msbt/tag_edit/system/ruby.tscn
 msgid "SYSTEM_RUBY_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr "振り仮名"
 
-#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#: scene/editor/msbt/tag_edit/system/ruby.tscn
 msgid "SYSTEM_RUBY_TAG_EDIT_CODE_INPUT"
 msgstr "Ruby Code"
 
-#: ninode/lms/msbt/tag_edit/system/ruby.tscn
+#: scene/editor/msbt/tag_edit/system/ruby.tscn
 msgid "SYSTEM_RUBY_TAG_EDIT_UNDOCUMENTED_WARNING"
 msgstr "This field isn't fully understood! More research needed"
 
-#: ninode/lms/msbt/tag_edit/system/color.tscn
+#: scene/editor/msbt/tag_edit/system/color.tscn
 msgid "TAG_EDIT_SCENE_HEADER_SYSTEM_COLOR"
 msgstr "Text Color"
 
-#: ninode/lms/msbt/tag_edit/system/color.tscn
+#: scene/editor/msbt/tag_edit/system/color.tscn
 msgid "TAG_EDIT_SCENE_SYSTEM_COLOR_RESET_SWATCH"
 msgstr "Reset to Default Color"
 
-#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#: scene/editor/msbt/tag_edit/eui/speed.tscn
 msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED"
 msgstr "Text Printing Speed"
 
-#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#: scene/editor/msbt/tag_edit/eui/speed.tscn
 msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_SLOW"
 msgstr "Slow"
 
-#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#: scene/editor/msbt/tag_edit/eui/speed.tscn
 msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_NORMAL"
 msgstr "Normal"
 
-#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#: scene/editor/msbt/tag_edit/eui/speed.tscn
 msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_FAST"
 msgstr "Fast"
 
-#: ninode/lms/msbt/tag_edit/eui/speed.tscn
+#: scene/editor/msbt/tag_edit/eui/speed.tscn
 msgid "TAG_EDIT_SCENE_HEADER_EUI_SPEED_VERY_FAST"
 msgstr "Very Fast"
 
-#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+#: scene/editor/msbt/tag_edit/number/number_figure.tscn
 msgid "TAG_EDIT_SCENE_HEADER_NUMBER_FIGURE"
 msgstr "String Formatting (Number)"
 
-#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+#: scene/editor/msbt/tag_edit/number/number_figure.tscn
 msgid "NUMBER_FIGURE_TAG_EDIT_TEXT_FIELD_HEADER"
 msgstr "Replacement Key"
 
-#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+#: scene/editor/msbt/tag_edit/number/number_figure.tscn
 msgid "NUMBER_FIGURE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr "Score"
 
-#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+#: scene/editor/msbt/tag_edit/number/number_figure.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_SCORE"
 msgstr "Score Number"
 
-#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+#: scene/editor/msbt/tag_edit/number/number_figure.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_FIG02"
 msgstr "Fig 02 Number"
 
-#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+#: scene/editor/msbt/tag_edit/number/number_figure.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_COIN_NUM"
 msgstr "Coin Number"
 
-#: ninode/lms/msbt/tag_edit/number/number_figure.tscn
+#: scene/editor/msbt/tag_edit/number/number_figure.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_FIGURE_JP_TOGGLE"
 msgstr "Use JP Zenkaku (全角)"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_HEADER_NUMBER_TIME"
 msgstr "String Formatting (Time)"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "NUMBER_TIME_TAG_EDIT_TEXT_FIELD_HEADER"
 msgstr "Replacement Key"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "NUMBER_TIME_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr "Date"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_HEADER_TYPE"
 msgstr "Time Format:"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
 msgstr "Date"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL"
 msgstr "Date and Time"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_RACE_TIME"
 msgstr "Race Time"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_EU"
 msgstr "Date (EU)"
 
-#: ninode/lms/msbt/tag_edit/number/number_time.tscn
+#: scene/editor/msbt/tag_edit/number/number_time.tscn
 msgid "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL_EU"
 msgstr "Date and Time (EU)"
 
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#: scene/editor/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_HEADER_TEXT_ANIM"
 msgstr "Text Animation"
 
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#: scene/editor/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_TREMBLE"
 msgstr "Tremble"
 
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#: scene/editor/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_PREVIEW"
 msgstr "Preview"
 
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#: scene/editor/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SHAKE"
 msgstr "Shake"
 
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#: scene/editor/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_WAVE"
 msgstr "Wave"
 
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#: scene/editor/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SCREAM"
 msgstr "Scream"
 
-#: ninode/lms/msbt/tag_edit/anim/text.tscn
+#: scene/editor/msbt/tag_edit/anim/text.tscn
 msgid "TAG_EDIT_SCENE_TEXT_ANIM_TAG_BEAT"
 msgstr "Beat"
 
-#: ninode/lms/msbt/tag_edit/string/string.tscn
+#: scene/editor/msbt/tag_edit/string/string.tscn
 msgid "TAG_EDIT_SCENE_HEADER_STRING"
 msgstr "String Formatiing"
 
-#: ninode/lms/msbt/tag_edit/string/string.tscn
+#: scene/editor/msbt/tag_edit/string/string.tscn
 msgid "STRING_TAG_EDIT_TEXT_FIELD_HEADER"
 msgstr "Replacement Key"
 
-#: ninode/lms/msbt/tag_edit/string/string.tscn
+#: scene/editor/msbt/tag_edit/string/string.tscn
 msgid "STRING_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 msgstr "Key"
 
-#: ninode/lms/msbt/tag_edit/string/string.tscn
+#: scene/editor/msbt/tag_edit/string/string.tscn
 msgid "TAG_EDIT_SCENE_STRING_WARNING"
 msgstr ""
 "WARNING:\n"
 "This tag isn't fully understood, and may cause issues when edited! Only "
 "touch this if you know what you're doing."
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_HEADER_TIME_COMPONENT"
 msgstr "Time Component"
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_TIME_NAME_YEAR"
 msgstr "Year"
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_TIME_NAME_MONTH"
 msgstr "Month"
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_TIME_NAME_DAY"
 msgstr "Day"
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_TIME_NAME_HOUR"
 msgstr "Hour"
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_TIME_NAME_MINUTE"
 msgstr "Minute"
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_TIME_NAME_SECOND"
 msgstr "Second"
 
-#: ninode/lms/msbt/tag_edit/time/component.tscn
+#: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_TIME_NAME_CENISECOND"
 msgstr "Centisecond"
 
-#: ninode/lms/msbt/tag_edit/align/text.tscn
+#: scene/editor/msbt/tag_edit/align/text.tscn
 msgid "TAG_EDIT_SCENE_HEADER_TEXT_ALIGNMENT"
 msgstr "Text Alignment"
 
-#: ninode/lms/msbt/tag_edit/align/text.tscn
+#: scene/editor/msbt/tag_edit/align/text.tscn
 msgid "TAG_EDIT_SCENE_ALIGNMENT_CENTER"
 msgstr "Center"
 
-#: ninode/lms/msbt/tag_edit/align/text.tscn
+#: scene/editor/msbt/tag_edit/align/text.tscn
 msgid "TAG_EDIT_SCENE_ALIGNMENT_LEFT"
 msgstr "Left"
 
-#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+#: scene/editor/msbt/tag_edit/grammar/caping.tscn
 msgid "TAG_EDIT_SCENE_HEADER_GRAMMAR_CAP_DECAP"
 msgstr "Grammar Cap/Decap"
 
-#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+#: scene/editor/msbt/tag_edit/grammar/caping.tscn
 msgid "TAG_EDIT_SCENE_GRAMMAR_DECAP"
 msgstr "Decap"
 
-#: ninode/lms/msbt/tag_edit/grammar/caping.tscn
+#: scene/editor/msbt/tag_edit/grammar/caping.tscn
 msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr "Cap"
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "HELP_DIALOG_TITLE"
+msgstr "Help Information"
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "HELP_DIALOG_CLOSE"
+msgstr "Close"
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
+msgstr "Help Dialog"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_ENTRY_NAME"
+msgstr "Entry Name"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_INVALID_ENTRY_NAME_WARNING"
+msgstr ""
+"Entry name is invalid!\n"
+"- Name must be unique\n"
+"- Use only UTF8 characters\n"
+"- No spaces\n"
+"- Cannot be empty"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_SEARCH_ENTRIES"
+msgstr "Search Entries"
 
 #~ msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
 #~ msgstr "Select Directory"

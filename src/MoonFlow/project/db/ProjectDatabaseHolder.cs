@@ -69,8 +69,6 @@ public class ProjectDatabaseHolder
             
             world.WorldItemType = itemDb;
         }
-
-        WriteWorldItemList();
     }
 
     #endregion
