@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cio2gvsywxhso"]
 
 [ext_resource type="Script" path="res://scene/front_door/load/ProjectLoading.cs" id="1_jo062"]
-[ext_resource type="Texture2D" uid="uid://ch0r84d2bcetl" path="res://asset/nindot/lms/icon/PictureFont_7B.png" id="2_1y5mh"]
+[ext_resource type="Texture2D" uid="uid://cntrievg5fk50" path="res://asset/app/icon/front_door_loading.png" id="2_py8o7"]
 [ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="4_gajvy"]
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="5_ysjnh"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_mwncf"]
@@ -48,7 +48,7 @@ grow_vertical = 2
 script = ExtResource("1_jo062")
 AppName = "ProjectLoading"
 AppTaskbarTitle = "Loading"
-AppIcon = ExtResource("2_1y5mh")
+AppIcon = ExtResource("2_py8o7")
 AppFlags = 14
 
 [node name="Content" type="PanelContainer" parent="."]

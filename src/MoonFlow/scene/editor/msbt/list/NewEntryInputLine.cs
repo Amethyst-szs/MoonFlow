@@ -7,32 +7,32 @@ namespace MoonFlow.Scene.EditorMsbt;
 public partial class NewEntryInputLine : LineEdit
 {
     private EntryListHolder Holder = null;
-	private TextureRect InvalidWarning = null;
+    private TextureRect InvalidWarning = null;
 
     public override void _Ready()
     {
         Holder = GetNode<EntryListHolder>("../../../../");
-		InvalidWarning = GetNode<TextureRect>("../Texture_Warning");
+        InvalidWarning = GetNode<TextureRect>("../Texture_Warning");
     }
 
     private void OnAddEntryNameChanged(string name)
     {
         var isValid = IsAddEntryNameValid(name);
-		InvalidWarning.Visible = !isValid;
+        InvalidWarning.Visible = !isValid;
     }
 
-	private void OnAddEntryNameSubmitted(string name)
-	{
-		if (!IsAddEntryNameValid(name))
-			return;
-		
-		Holder.EmitSignal(EntryListHolder.SignalName.CreateEntry, name);
-	}
+    private void OnAddEntryNameSubmitted(string name)
+    {
+        if (!IsAddEntryNameValid(name))
+            return;
 
-	private void OnEntrySubmitButtonPressed()
-	{
-		OnAddEntryNameSubmitted(Text);
-	}
+        Holder.EmitSignal(EntryListHolder.SignalName.CreateEntry, name);
+    }
+
+    private void OnEntrySubmitButtonPressed()
+    {
+        OnAddEntryNameSubmitted(Text);
+    }
 
     private bool IsAddEntryNameValid(string name)
     {

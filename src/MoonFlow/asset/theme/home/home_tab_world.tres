@@ -1,0 +1,126 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://pv7wa46kuqjf"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_5h3a3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uc0q2"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.9, 0.9, 0.9, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.73, 0.73, 0.73, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 4
+expand_margin_left = 25.0
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwcb4"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 4
+expand_margin_left = 25.0
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtnor"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xocx"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 4
+expand_margin_left = 25.0
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45rf8"]
+draw_center = false
+border_width_bottom = 8
+border_color = Color(0.996078, 0.498039, 0.176471, 1)
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlj1l"]
+draw_center = false
+border_width_bottom = 8
+border_color = Color(0.996078, 0.498039, 0.176471, 1)
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jkvj"]
+draw_center = false
+border_width_bottom = 5
+border_color = Color(0.996078, 0.568627, 0.282353, 1)
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kglio"]
+draw_center = false
+border_width_bottom = 7
+border_color = Color(0.137255, 0.239216, 0.301961, 1)
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_886i5"]
+draw_center = false
+border_width_bottom = 7
+border_color = Color(0.1404, 0.27582, 0.36, 1)
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pc685"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 18
+Button/fonts/font = ExtResource("1_5h3a3")
+Button/styles/focus = SubResource("StyleBoxFlat_uc0q2")
+Button/styles/hover = SubResource("StyleBoxFlat_qwcb4")
+Button/styles/normal = SubResource("StyleBoxEmpty_rtnor")
+Button/styles/pressed = SubResource("StyleBoxFlat_7xocx")
+HBoxContainer/constants/separation = 60
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_45rf8")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_nlj1l")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_6jkvj")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_kglio")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_886i5")
+MarginContainer/constants/margin_bottom = 32
+MarginContainer/constants/margin_left = 16
+MarginContainer/constants/margin_right = 16
+VSeparator/constants/separation = 60
+VSeparator/styles/separator = SubResource("StyleBoxEmpty_pc685")

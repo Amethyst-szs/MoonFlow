@@ -171,6 +171,7 @@ script = SubResource("GDScript_fdlxl")
 auto_translate_mode = 1
 title = "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 size = Vector2i(352, 180)
+ok_button_text = "Select Current Folder"
 mode_overrides_title = false
 file_mode = 2
 access = 2
@@ -178,6 +179,7 @@ use_native_dialog = true
 
 [node name="Dialog_OpenProject" type="FileDialog" parent="."]
 title = "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
+ok_button_text = "Select Current Folder"
 mode_overrides_title = false
 file_mode = 2
 access = 2

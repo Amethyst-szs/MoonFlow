@@ -107,9 +107,9 @@ public partial class MsbtEditor : PanelContainer
 		var firstItem = EntryList.GetChild(0);
 		if (IsInstanceValid(firstItem))
 			selectionName ??= firstItem.Name;
-		
+
 		EntryList.CallDeferred(MsbtEntryList.MethodName.OnEntrySelected, selectionName, true);
-		
+
 		EntryList.UpdateEntryCount();
 
 		// Set file title
@@ -286,51 +286,51 @@ public partial class MsbtEditor : PanelContainer
 		FileEntryName.Text = label;
 	}
 
-    private void OnAddEntryNameSubmitted(string name)
-    {
-        foreach (var file in FileList.Values)
-            file.AddEntry(name);
+	private void OnAddEntryNameSubmitted(string name)
+	{
+		foreach (var file in FileList.Values)
+			file.AddEntry(name);
 
-        EntryList.CreateEntryListButton(name, true);
-        CreateEntryContentEditor(File.GetEntryIndex(name));
+		EntryList.CreateEntryListButton(name, true);
+		CreateEntryContentEditor(File.GetEntryIndex(name));
 
-        EntryList.OnEntrySelected(name, true);
-        EntryList.UpdateEntryCount();
-    }
+		EntryList.OnEntrySelected(name, true);
+		EntryList.UpdateEntryCount();
+	}
 
-    private void OnDeleteEntryTrash()
-    {
-        if (!IsInstanceValid(EntryList.EntryListSelection) || !IsInstanceValid(EntryContentSelection))
-            return;
+	private void OnDeleteEntryTrash()
+	{
+		if (!IsInstanceValid(EntryList.EntryListSelection) || !IsInstanceValid(EntryContentSelection))
+			return;
 
-        string entry = EntryList.EntryListSelection.Name;
-        string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
+		string entry = EntryList.EntryListSelection.Name;
+		string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
 
-        foreach (var file in FileList.Values)
-            file.RemoveEntry(entry);
+		foreach (var file in FileList.Values)
+			file.RemoveEntry(entry);
 
-        EntryList.EntryListSelection.QueueFree();
-        EntryContentSelection.QueueFree();
+		EntryList.EntryListSelection.QueueFree();
+		EntryContentSelection.QueueFree();
 
-        if (prevEntry != null && prevEntry != string.Empty)
-            EntryList.OnEntrySelected(prevEntry);
+		if (prevEntry != null && prevEntry != string.Empty)
+			EntryList.OnEntrySelected(prevEntry);
 
 		EntryList.UpdateEntryCount();
-    }
+	}
 
 	private void OnEntryModified(MsbtEntryEditor entryEditor)
-    {
-        // Set flag
-        IsModified = true;
+	{
+		// Set flag
+		IsModified = true;
 
 		// Append asterisk to file name
-        if (!FileTitleName.Text.EndsWith('*'))
-            FileTitleName.Text += '*';
+		if (!FileTitleName.Text.EndsWith('*'))
+			FileTitleName.Text += '*';
 
-        // Alert other nodes of the content modification
-        var entryName = entryEditor.Entry.Name;
-        EmitSignal(SignalName.ContentModified, entryName);
-    }
+		// Alert other nodes of the content modification
+		var entryName = entryEditor.Entry.Name;
+		EmitSignal(SignalName.ContentModified, entryName);
+	}
 
 	private void OnLanguagePickerSelectedLang(int idx)
 	{

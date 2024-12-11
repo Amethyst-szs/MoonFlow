@@ -21,7 +21,7 @@ public partial class MsbtEntryList(MsbtEditor parent) : VBoxContainer
     {
         if (!IsInstanceValid(Parent))
             throw new NullReferenceException(nameof(Parent));
-        
+
         // Get references
         EntryCount = GetNode<PanelContainer>("../../Controls").Get("label_entry_count").As<Label>();
 

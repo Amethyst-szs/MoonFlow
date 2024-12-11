@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MoonFlow.Scene;
 
-[Icon("res://asset/nindot/lms/icon/PictureFont_7B.png")]
+[Icon("res://asset/app/icon/front_door_loading.png")]
 [ScenePath("res://scene/front_door/load/project_loading.tscn")]
 public partial class ProjectLoading : AppScene
 {

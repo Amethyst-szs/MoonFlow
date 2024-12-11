@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
-[ext_resource type="Texture2D" uid="uid://cmqduf51tmamn" path="res://asset/nindot/lms/icon/DeviceFont_ButtonHome.png" id="2_67a4c"]
+[ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="3_1qod8"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="4_bfnf5"]
 [ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tab_msbt/tab_msbt.tscn" id="4_o0ymp"]
@@ -18,7 +18,7 @@ grow_vertical = 2
 script = ExtResource("1_tasle")
 AppName = "Home"
 AppTaskbarTitle = "Home"
-AppIcon = ExtResource("2_67a4c")
+AppIcon = ExtResource("2_k2opa")
 AppFlags = 6
 
 [node name="Content" type="PanelContainer" parent="."]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=115 format=3 uid="uid://bwicpcn2le56s"]
+[gd_scene load_steps=116 format=3 uid="uid://bwicpcn2le56s"]
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_celu7"]
 [ext_resource type="Script" path="res://scene/editor/msbt/MsbtAppHolder.cs" id="1_dt1us"]
 [ext_resource type="Script" path="res://scene/editor/msbt/MsbtEditor.cs" id="1_hu01d"]
+[ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="2_2nd54"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_3q5pt"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="3_52h4d"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_2flhd"]
@@ -131,6 +132,7 @@ size_flags_vertical = 3
 script = ExtResource("1_dt1us")
 AppName = "MsbtEditor"
 AppTaskbarTitle = "Text Editor"
+AppIcon = ExtResource("2_2nd54")
 AppFlags = 51
 
 [node name="MsbtEditor" type="PanelContainer" parent="."]

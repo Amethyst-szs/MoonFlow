@@ -30,7 +30,7 @@ public partial class StartupRunner : Node
         {
             if (!assembly.GetName().Name.Equals("MoonFlow"))
                 continue;
-            
+
             foreach (Type type in assembly.GetTypes())
             {
                 var methods = type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);

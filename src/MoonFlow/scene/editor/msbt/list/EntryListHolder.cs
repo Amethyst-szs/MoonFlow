@@ -10,13 +10,13 @@ public partial class EntryListHolder : VBoxContainer
 
 	private static readonly GDScript SmoothScroll
 		= GD.Load<GDScript>("res://addons/SmoothScroll/SmoothScrollContainer.gd");
-	
+
 	[Signal]
-    public delegate void CreateEntryEventHandler(string label);
+	public delegate void CreateEntryEventHandler(string label);
 	[Signal]
-    public delegate void DeleteEntryEventHandler();
+	public delegate void DeleteEntryEventHandler();
 	[Signal]
-    public delegate void OpenHelpPageEventHandler();
+	public delegate void OpenHelpPageEventHandler();
 
 	public override void _Ready()
 	{
@@ -63,7 +63,7 @@ public partial class EntryListHolder : VBoxContainer
 		var selection = EntryList.EntryListSelection;
 		if (!IsInstanceValid(selection))
 			return;
-		
+
 		EmitSignal(SignalName.DeleteEntry);
 	}
 }
