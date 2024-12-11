@@ -24,7 +24,18 @@ public partial class MsbtEditor : PanelContainer
 	public string DefaultLanguage { get; private set; } = "USen";
 	public string CurrentLanguage { get; private set; } = "USen";
 
-	public bool IsModified { get; private set; } = false;
+	private bool _isModified = false;
+	public bool IsModified
+	{
+		get { return _isModified; }
+		private set
+		{
+			_isModified = value;
+
+			if (!_isModified)
+				EmitSignal(SignalName.ContentNotModified);
+		}
+	}
 
 	private MsbtEntryList EntryList = null;
 
@@ -37,6 +48,8 @@ public partial class MsbtEditor : PanelContainer
 
 	[Signal]
 	public delegate void ContentModifiedEventHandler(string label);
+	[Signal]
+	public delegate void ContentNotModifiedEventHandler();
 
 	#endregion
 

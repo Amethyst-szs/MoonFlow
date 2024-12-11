@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://7jgd1gt2u83b"]
+
+[ext_resource type="Script" path="res://scene/editor/world/WorldEditorApp.cs" id="1_l606m"]
+[ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="2_55xy6"]
+[ext_resource type="Texture2D" uid="uid://c0beoybdkplbi" path="res://asset/app/icon/world.png" id="2_bf7ob"]
+
+[node name="WorldEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_l606m")
+AppName = "WorldEditor"
+AppTaskbarTitle = "Kingdom"
+AppIcon = ExtResource("2_bf7ob")
+AppFlags = 51
+UnsavedChangedScene = ExtResource("2_55xy6")

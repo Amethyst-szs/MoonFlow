@@ -46,37 +46,6 @@ public partial class MsbtAppHolder : AppScene
 		return "MSBT_" + input;
 	}
 
-	public override void AppClose(bool isEndExclusive = false)
-	{
-		if (!Editor.IsModified)
-		{
-			base.AppClose(isEndExclusive);
-			return;
-		}
-
-		var dialog = GetNode<ConfirmationDialog>("%Dialog_UnsavedChanges");
-		dialog.Popup();
-	}
-
-	public override bool TryCloseFromTreeQuit(out SignalAwaiter awaiter)
-	{
-		if (!Editor.IsModified)
-		{
-			awaiter = null;
-			AppClose();
-			return true;
-		}
-
-		var dialog = GetNode<ConfirmationDialog>("%Dialog_UnsavedChanges");
-		dialog.Popup();
-
-		awaiter = ToSignal(dialog, ConfirmationDialog.SignalName.TreeExited);
-		return false;
-	}
-
-	private void AppCloseDespiteUnsavedChanged()
-	{
-		Editor.ForceResetModifiedFlag();
-		AppClose();
-	}
+	private void OnSignalContentModified() { IsModified = true; }
+	private void OnSignalContentNotModified() { IsModified = false; }
 }

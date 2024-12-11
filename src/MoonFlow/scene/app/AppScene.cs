@@ -48,6 +48,11 @@ public partial class AppScene : Control
 	[Export(PropertyHint.Flags)]
 	public AppFlagEnum AppFlags = AppFlagEnum.IsAllowUserClose;
 
+	[Export]
+	private PackedScene UnsavedChangedScene = null;
+
+	protected bool IsModified = false;
+
 	// ====================================================== //
 	// ================== Stored References ================= //
 	// ====================================================== //
@@ -125,7 +130,7 @@ public partial class AppScene : Control
 	// ====================================================== //
 
 	protected virtual void AppInit() { }
-	
+
 	public virtual string GetUniqueIdentifier(string input) { throw new NotImplementedException(); }
 	public void SetUniqueIdentifier(string input) { AppUniqueIdentifier = GetUniqueIdentifier(input); }
 
@@ -186,10 +191,13 @@ public partial class AppScene : Control
 		Scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();
 	}
 
-	public virtual void AppClose(bool isEndExclusive = false)
+	public SignalAwaiter AppClose(bool isEndExclusive = false)
 	{
+		if (IsModified && UnsavedChangedScene != null)
+			return AppearUnsavedChangesDialog();
+		
 		if (IsAppExclusive() && !isEndExclusive)
-			return;
+			return null;
 
 		TaskbarButton.QueueFree();
 		QueueFree();
@@ -203,13 +211,38 @@ public partial class AppScene : Control
 			if (!isPreviousOK)
 				Scene.NodeTaskbar.TrySelectAppByIndex(appIndex + 1);
 		}
+
+		return null;
 	}
 
 	public virtual bool TryCloseFromTreeQuit(out SignalAwaiter awaiter)
 	{
-		awaiter = null;
-		AppClose(true);
-		return true;
+		awaiter = AppClose(true);
+
+		if (awaiter == null)
+			return true;
+		
+		return false;
+	}
+
+	// ====================================================== //
+	// ================== Dialog Utilities ================== //
+	// ====================================================== //
+
+	private SignalAwaiter AppearUnsavedChangesDialog()
+	{
+		var dialog = UnsavedChangedScene.Instantiate() as ConfirmationDialog;
+		AddChild(dialog);
+
+		dialog.Popup();
+
+		var sig = ConfirmationDialog.SignalName.Confirmed;
+		dialog.Connect(sig, Callable.From(() => {
+			IsModified = false;
+			AppClose(true);
+		}));
+		
+		return ToSignal(dialog, sig);
 	}
 
 	// ====================================================== //
