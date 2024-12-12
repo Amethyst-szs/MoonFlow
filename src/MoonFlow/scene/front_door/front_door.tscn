@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=24 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -9,10 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="6_clkik"]
 [ext_resource type="Script" path="res://scene/front_door/ui/front_door_background_animator.gd" id="6_cmu6i"]
 [ext_resource type="Script" path="res://scene/front_door/quickbar_error_label.gd" id="9_mpvuk"]
+[ext_resource type="Texture2D" uid="uid://c8c0n0e4fw7mk" path="res://asset/material/file/open_new.svg" id="10_rxr5w"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="10_sqwg3"]
 [ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="11_ajwfd"]
 [ext_resource type="PackedScene" uid="uid://dwpxrep18y4wy" path="res://scene/front_door/dot/playable.tscn" id="11_h3uc8"]
+[ext_resource type="Texture2D" uid="uid://dj4axx0d5mbe4" path="res://asset/material/file/recent.svg" id="11_t4cui"]
 [ext_resource type="PackedScene" uid="uid://cio2gvsywxhso" path="res://scene/front_door/load/project_loading.tscn" id="12_my55f"]
+[ext_resource type="Script" path="res://scene/front_door/menu_recent.gd" id="12_uh126"]
+[ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="14_mr0wr"]
+[ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="15_h6jnw"]
+[ext_resource type="Script" path="res://scene/front_door/button_update.gd" id="16_8ntwn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
 shader = ExtResource("3_etpfy")
@@ -103,7 +109,7 @@ script = ExtResource("9_mpvuk")
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "OPEN_PROJECT"
-icon = ExtResource("6_clkik")
+icon = ExtResource("10_rxr5w")
 icon_alignment = 2
 
 [node name="Label_OpenError" type="Label" parent="Content/Quickbar"]
@@ -118,22 +124,35 @@ script = ExtResource("9_mpvuk")
 
 [node name="Menu_Recent" type="MenuButton" parent="Content/Quickbar"]
 layout_mode = 2
-focus_mode = 2
 mouse_default_cursor_shape = 2
 text = "RECENT_PROJECTS"
-icon = ExtResource("6_clkik")
+icon = ExtResource("11_t4cui")
 flat = false
 icon_alignment = 2
+script = ExtResource("12_uh126")
 
 [node name="Shortcuts" type="HBoxContainer" parent="Content"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_constants/separation = 9
+theme_override_constants/separation = 12
 
 [node name="Button_RomfsConfig" type="Button" parent="Content/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 icon = ExtResource("10_sqwg3")
+
+[node name="Button_Credits" type="Button" parent="Content/Shortcuts"]
+layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
+icon = ExtResource("14_mr0wr")
+
+[node name="Button_Update" type="Button" parent="Content/Shortcuts"]
+layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
+icon = ExtResource("15_h6jnw")
+script = ExtResource("16_8ntwn")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Content/Shortcuts/Button_Update"]
 
 [node name="DotPlayable" type="Control" parent="."]
 layout_mode = 1
@@ -186,8 +205,10 @@ use_native_dialog = true
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwfd"), ExtResource("12_my55f")]]
 
+[connection signal="OpenProject" from="." to="Content/Quickbar/Menu_Recent" method="_on_front_door_open_project"]
 [connection signal="pressed" from="Content/Quickbar/Button_New" to="Dialog_NewProject" method="popup"]
 [connection signal="pressed" from="Content/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
+[connection signal="open_recent_project" from="Content/Quickbar/Menu_Recent" to="." method="OnDialogOpenProjectPathSelected"]
 [connection signal="pressed" from="Content/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
 [connection signal="dir_selected" from="Dialog_NewProject" to="." method="OnDialogNewProjectPathSelected"]
 [connection signal="dir_selected" from="Dialog_OpenProject" to="." method="OnDialogOpenProjectPathSelected"]

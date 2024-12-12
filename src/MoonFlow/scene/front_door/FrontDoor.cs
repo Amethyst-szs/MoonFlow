@@ -14,6 +14,9 @@ public partial class FrontDoor : AppScene
 	private Label NewProjectError = null;
 	private Label OpenProjectError = null;
 
+	[Signal]
+	public delegate void OpenProjectEventHandler(string path);
+
 	protected override void AppInit()
 	{
 		// Obtain references to nodes in scene
@@ -58,8 +61,12 @@ public partial class FrontDoor : AppScene
 	private void OnDialogOpenProjectPathSelected(string path)
 	{
 		var result = ProjectManager.TryOpenProject(path, out RomfsValidation.RomfsVersion version);
+
 		if (result == ProjectManager.ProjectManagerResult.OK)
+		{
+			EmitSignal(SignalName.OpenProject, path);
 			return;
+		}
 
 		OpenProjectError.Show();
 		OpenProjectError.Call("set_label", [Enum.GetName(result), Enum.GetName(version)]);

@@ -8,10 +8,16 @@
 
 config_version=5
 
+[addons]
+
+AutoExportVersion/version_store_location=0
+AutoExportVersion/version_file_path="res://version/data.gd"
+AutoExportVersion/version_config_file="res://version/config.gd"
+
 [application]
 
 config/name="MoonFlow"
-config/version="0.1.0-alpha"
+config/version="0.2.0"
 run/main_scene="res://scene/main/main.tscn"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
@@ -22,13 +28,6 @@ boot_splash/bg_color=Color(0.054902, 0.0745098, 0.105882, 1)
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
 config/icon="res://iconS.png"
-nindot/romfs_100_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey100/romfs/"
-nindot/romfs_130_path_for_debug="D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey130/romfs/"
-nindot/fullsize=true
-nindot/bg_color=Color(0.14, 0.14, 0.14, 1)
-nindot/show_image=true
-nindot/image=""
-nindot/version="0.1.0"
 
 [autoload]
 
@@ -40,7 +39,7 @@ project/assembly_name="MoonFlow"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/nindot_extension/plugin.cfg", "res://addons/ui_node_ext/plugin.cfg")
+enabled=PackedStringArray("res://addons/AutoExportVersion/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg", "res://addons/nindot_extension/plugin.cfg", "res://addons/ui_node_ext/plugin.cfg")
 
 [gui]
 
