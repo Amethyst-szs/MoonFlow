@@ -1,7 +1,14 @@
 class_name DropdownCheckbox
 extends CheckBox
 
-@export var dropdown: Control
+var _dropdown: Control = null
+
+@export var dropdown: Control:
+	get: 
+		return _dropdown
+	set(value):
+		_dropdown = value
+		_on_toggled(button_pressed)
 
 func _ready() -> void:
 	toggled.connect(_on_toggled)

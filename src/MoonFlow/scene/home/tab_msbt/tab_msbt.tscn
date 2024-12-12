@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=18 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_gi3dm"]
 [ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_puq1e"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_n1hpl"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
+color = Color(1, 1, 1, 0.317647)
+
+[sub_resource type="Theme" id="Theme_oq1xr"]
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = SubResource("StyleBoxLine_7get7")
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -75,6 +82,7 @@ dropdown = NodePath("../Stage")
 
 [node name="Stage" type="MarginContainer" parent="FileList/Content/VBox"]
 layout_mode = 2
+theme = SubResource("Theme_oq1xr")
 
 [node name="StageMessage_VBox" type="VBoxContainer" parent="FileList/Content/VBox/Stage"]
 unique_name_in_owner = true

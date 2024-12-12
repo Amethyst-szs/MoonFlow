@@ -144,6 +144,7 @@ public class ProjectDatabaseHolder
 
     private List<WorldInfo> GetWorldListDb(string arcPath)
     {
+        // Attempt to access archive
         if (File.Exists(arcPath))
         {
             ArchiveWorldList = SarcFile.FromFilePath(arcPath);
@@ -156,10 +157,22 @@ public class ProjectDatabaseHolder
             ArchiveWorldList = SarcFile.FromFilePath(WorldInfo.GetWorldListPath(romDir));
         }
 
+        // Get byml from archive and convert to list
         if (!ArchiveWorldList.Content.TryGetValue(WorldInfo.DatabaseBymlPath, out ArraySegment<byte> data))
             throw new SarcFileException("Missing " + WorldInfo.DatabaseBymlPath);
 
-        return BymlFileAccess.ParseBytes<List<WorldInfo>>([.. data]);
+        var list = BymlFileAccess.ParseBytes<List<WorldInfo>>([.. data]);
+
+        // Sort stages in world by their type
+        foreach (var world in list)
+            SortWorldStagesByType(world.StageList);
+
+        return list;
+    }
+
+    private static void SortWorldStagesByType(List<StageInfo> list)
+    {
+        list.Sort((a, b) => a.CompareTo(b));
     }
 
     private void SetupWorldDisplayNames()
