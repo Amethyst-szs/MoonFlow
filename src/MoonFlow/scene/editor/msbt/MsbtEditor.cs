@@ -33,7 +33,7 @@ public partial class MsbtEditor : PanelContainer
 			_isModified = value;
 
 			if (!_isModified)
-				EmitSignal(SignalName.ContentNotModified);
+				CallDeferred(MethodName.EmitSignal, SignalName.ContentNotModified);
 		}
 	}
 
@@ -189,6 +189,11 @@ public partial class MsbtEditor : PanelContainer
 
 	public async void SaveFile()
 	{
+		// Ensure app is focused
+		var parent = GetParent() as MsbtAppHolder;
+		if (!parent.AppIsFocused())
+			return;
+		
 		GD.Print("\n - Saving ", File.Name);
 
 		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbtArchives);

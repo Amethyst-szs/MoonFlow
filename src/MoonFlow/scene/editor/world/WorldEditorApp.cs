@@ -51,6 +51,9 @@ public partial class WorldEditorApp : AppScene
 	
 	public async void SaveFile()
 	{
+		if (!AppIsFocused())
+			return;
+		
 		GD.Print("\n - Saving ", World.WorldName);
 
 		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveWorldArchives);

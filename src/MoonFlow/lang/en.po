@@ -20,16 +20,14 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
-msgstr "Select a RomFS Directory"
+#: scene/front_door/front_door.tscn
+msgid "Open a Directory"
+msgstr "Open a Directory"
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
-msgstr "Select Folder"
-
-#: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
-msgstr "Cancel"
+#: scene/front_door/front_door.tscn
+msgid "Select Current Folder"
+msgstr "Select Current Folder"
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
 msgid "ROMFS_CONFIG_MAIN_HEADER"
@@ -91,14 +89,6 @@ msgstr "Contributions & Credits"
 #: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
 msgstr "Update Available!"
-
-#: scene/front_door/front_door.tscn
-msgid "Open a Directory"
-msgstr "Open a Directory"
-
-#: scene/front_door/front_door.tscn
-msgid "Select Current Folder"
-msgstr "Select Current Folder"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
@@ -206,6 +196,14 @@ msgstr ""
 "\n"
 "When syncing is disabled, this text will not change with changes\n"
 "to the default language, allowing entry of a real translation."
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_PROJECT_RELOAD"
+msgstr "Reload Project"
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
+msgstr "Close Project"
 
 #: scene/home/home.tscn
 msgid "HOME_TAB_TEXT"
@@ -1386,6 +1384,15 @@ msgstr "Post-Moon Rock Scenario"
 #: scene/front_door/contributor/scene/credit.tscn
 msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
 msgstr "Contributors & Credits"
+
+#~ msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
+#~ msgstr "Select a RomFS Directory"
+
+#~ msgid "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
+#~ msgstr "Select Folder"
+
+#~ msgid "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
+#~ msgstr "Cancel"
 
 #~ msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 #~ msgstr "Select New Project RomFS Directory"

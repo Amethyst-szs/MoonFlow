@@ -92,6 +92,18 @@ public static class ProjectManager
         return ProjectManagerResult.OK;
     }
 
+    public static void CloseProject()
+    {
+        if (Project == null || SceneRoot == null)
+            return;
+        
+        Project = null;
+
+        SceneRoot.ForceCloseAllApps();
+        var frontDoor = SceneCreator<FrontDoor>.Create();
+        SceneRoot.NodeApps.AddChild(frontDoor);
+    }
+
     // ====================================================== //
     // ===================== New Project ==================== //
     // ====================================================== //

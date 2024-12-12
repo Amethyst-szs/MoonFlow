@@ -271,6 +271,8 @@ public partial class AppScene : Control
 	// ================ App Options Utilities =============== //
 	// ====================================================== //
 
+	public bool AppIsFocused() { return ProcessMode == ProcessModeEnum.Inherit && Visible; }
+
 	public bool IsAppAllowUserToClose() { return (AppFlags & AppFlagEnum.IsAllowUserClose) != 0; }
 	public bool IsAppFocusOnOpen() { return (AppFlags & AppFlagEnum.IsFocusOnOpen) != 0; }
 	public bool IsAppOpenInFront() { return (AppFlags & AppFlagEnum.IsOpenInFront) != 0; }

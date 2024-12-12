@@ -50,15 +50,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
+#: scene/front_door/front_door.tscn
+msgid "Open a Directory"
 msgstr ""
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
-msgstr ""
-
-#: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
+#: scene/front_door/front_door.tscn
+msgid "Select Current Folder"
 msgstr ""
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
@@ -115,14 +113,6 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "Open a Directory"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "Select Current Folder"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
@@ -225,6 +215,14 @@ msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_PROJECT_RELOAD"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
 msgstr ""
 
 #: scene/home/home.tscn

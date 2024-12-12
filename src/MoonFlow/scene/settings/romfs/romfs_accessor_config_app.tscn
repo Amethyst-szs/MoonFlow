@@ -38,13 +38,11 @@ AppFlags = 10
 
 [node name="PathPicker" type="FileDialog" parent="."]
 disable_3d = true
-title = "ROMFS_CONFIG_FILE_DIALOG_TITLE"
+title = "Open a Directory"
 initial_position = 4
 size = Vector2i(640, 480)
 ok_button_text = "Select Current Folder"
 dialog_autowrap = true
-cancel_button_text = "ROMFS_CONFIG_FILE_DIALOG_CANCEL"
-mode_overrides_title = false
 file_mode = 2
 access = 2
 use_native_dialog = true

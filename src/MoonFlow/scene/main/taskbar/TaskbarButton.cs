@@ -79,6 +79,6 @@ public partial class TaskbarButton : Button
 	private void OnModifyStateChanged(bool isModified)
 	{
 		if (IsInstanceValid(UnsavedDot))
-			UnsavedDot.Visible = isModified;
+			UnsavedDot.SetDeferred(PropertyName.Visible, isModified);
 	}
 }
