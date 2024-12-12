@@ -49,7 +49,8 @@ public partial class TabMsbt : HSplitContainer
 
 			// These signals are automatically disconnected on free by DoublePressButton gdscript code
 			button.Connect("pressed", Callable.From(new Action(() => OnFilePressed(file, key))));
-			button.Connect("double_pressed", Callable.From(new Action(() => OnFileOpened(file.Name, key))));
+			button.Connect("double_pressed",
+				Callable.From(new Action(() => MsbtAppHolder.OpenAppByName(file.Name, key))));
 
 			box.AddChild(button);
 		}
@@ -58,16 +59,5 @@ public partial class TabMsbt : HSplitContainer
 	private void OnFilePressed(SarcFile archive, string key)
 	{
 		SelectedFile = archive.GetFileMSBT(key, new MsbtElementFactoryProjectSmo());
-	}
-
-	private static void OnFileOpened(string archiveName, string key)
-	{
-		var editor = SceneCreator<MsbtAppHolder>.Create();
-		editor.SetUniqueIdentifier(archiveName + key);
-		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
-
-		var msbp = ProjectManager.GetMSBP();
-		var defaultLang = ProjectManager.GetProject().Config.Data.DefaultLanguage;
-		editor.SetupEditor(msbp, defaultLang, archiveName, key);
 	}
 }

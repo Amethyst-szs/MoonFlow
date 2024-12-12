@@ -13,4 +13,5 @@ var list: Array[String] = [
 	tr("ASYNC_TASK_DISPLAY_FTP"),
 	
 	tr("ASYNC_TASK_DISPLAY_SaveMsbtArchives"),
+	tr("ASYNC_TASK_DISPLAY_SaveWorldArchives"),
 ]

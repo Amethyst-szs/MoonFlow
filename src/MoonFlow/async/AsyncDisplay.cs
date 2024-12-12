@@ -81,6 +81,7 @@ public partial class AsyncDisplay : Control
 
         // MSBT Editor types
         SaveMsbtArchives = 0xF46202FF,
+        SaveWorldArchives = 0xF46302FF,
     }
 
     private Label LabelTitleKey = null;

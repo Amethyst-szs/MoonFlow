@@ -85,12 +85,12 @@ msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr "Romfs Path Settings"
 
 #: scene/front_door/front_door.tscn
-msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
-msgstr "Select New Project RomFS Directory"
+msgid "Open a Directory"
+msgstr "Open a Directory"
 
 #: scene/front_door/front_door.tscn
-msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
-msgstr "Select Project RomFS Directory"
+msgid "Select Current Folder"
+msgstr "Select Current Folder"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
@@ -150,6 +150,11 @@ msgstr "Loading Power Moons"
 msgctxt "PROJECT_LOADING"
 msgid "LOAD_ITEM_LIST"
 msgstr "Loading World Items"
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_COIN_COLLECT_NUM"
+msgstr "Loading Purple Coin Info"
 
 #: scene/front_door/load/loading_messages.gd
 msgctxt "PROJECT_LOADING"
@@ -265,6 +270,10 @@ msgstr "Transferring Files..."
 #: async/translation_strings.gd
 msgid "ASYNC_TASK_DISPLAY_SaveMsbtArchives"
 msgstr "Saving MSBT Archives"
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_SaveWorldArchives"
+msgstr "Saving Kingdom Data"
 
 #: async/async_display.tscn
 msgid "ASYNC_DISPLAY_EXCEPTION"
@@ -1261,6 +1270,120 @@ msgstr ""
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_SEARCH_ENTRIES"
 msgstr "Search Entries"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
+msgstr "Kingdom Info:"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+msgstr "Scenario Info:"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
+msgstr "Home Stage Name"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_HOME_STAGE_NAME"
+msgstr "MyWorldHomeStage"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_DISPLAY_NAME"
+msgstr "Display Name"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
+msgstr "Open Relevant MSBTs"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
+msgstr "Power Moon Color"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_0"
+msgstr "Common"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_1"
+msgstr "Brown"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_2"
+msgstr "Blue"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_3"
+msgstr "Red"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_4"
+msgstr "Orange"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_5"
+msgstr "Green"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_6"
+msgstr "Cyan"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_7"
+msgstr "Pink"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_8"
+msgstr "Purple"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_9"
+msgstr "Light Goldenrod"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_STAR"
+msgstr "Power Star"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_CUSTOM"
+msgstr "Custom ID"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
+msgstr "Purple Coin Type"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_COIN_COLLECT_TYPE"
+msgstr "ID"
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
+msgstr "Purple Coin Total Count"
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+#| msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
+msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
+msgstr "Total Scenarios"
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+#| msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
+msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
+msgstr "World Peace Scenario"
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+#| msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
+msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
+msgstr "Post-game Scenario"
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+#| msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
+msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
+msgstr "Post-Moon Rock Scenario"
+
+#~ msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
+#~ msgstr "Select New Project RomFS Directory"
+
+#~ msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
+#~ msgstr "Select Project RomFS Directory"
 
 #~ msgid "NEW_PROJECT_FOLDER_DIALOG_ACCEPT"
 #~ msgstr "Select Directory"

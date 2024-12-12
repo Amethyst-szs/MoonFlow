@@ -33,6 +33,10 @@
 # res://scene/editor/msbt/tag_edit/grammar/caping.tscn
 # res://scene/editor/msbt/msbt_editor.tscn
 # res://scene/editor/msbt/list/entry_list_holder.tscn
+# res://scene/home/tab_world/tab_world.tscn
+# res://scene/editor/world/world_editor_app.tscn
+# res://scene/editor/world/page/vbox_basic_info.tscn
+# res://scene/editor/world/page/vbox_scenario_info.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -105,11 +109,11 @@ msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
-msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
+msgid "Open a Directory"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
-msgid "OPEN_PROJECT_FOLDER_DIALOG_TITLE"
+msgid "Select Current Folder"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
@@ -169,6 +173,11 @@ msgstr ""
 #: scene/front_door/load/loading_messages.gd
 msgctxt "PROJECT_LOADING"
 msgid "LOAD_ITEM_LIST"
+msgstr ""
+
+#: scene/front_door/load/loading_messages.gd
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_COIN_COLLECT_NUM"
 msgstr ""
 
 #: scene/front_door/load/loading_messages.gd
@@ -279,6 +288,10 @@ msgstr ""
 
 #: async/translation_strings.gd
 msgid "ASYNC_TASK_DISPLAY_SaveMsbtArchives"
+msgstr ""
+
+#: async/translation_strings.gd
+msgid "ASYNC_TASK_DISPLAY_SaveWorldArchives"
 msgstr ""
 
 #: async/async_display.tscn
@@ -1263,4 +1276,108 @@ msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_SEARCH_ENTRIES"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_HOME_STAGE_NAME"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_DISPLAY_NAME"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_0"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_1"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_2"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_3"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_4"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_5"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_6"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_7"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_8"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_9"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_STAR"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_CUSTOM"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_COIN_COLLECT_TYPE"
+msgstr ""
+
+#: scene/editor/world/page/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
+msgstr ""
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
+msgstr ""
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
+msgstr ""
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
+msgstr ""
+
+#: scene/editor/world/page/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
 msgstr ""

@@ -133,8 +133,8 @@ script = ExtResource("1_dt1us")
 AppName = "MsbtEditor"
 AppTaskbarTitle = "Text Editor"
 AppIcon = ExtResource("2_2nd54")
-AppFlags = 51
-UnsavedChangedScene = ExtResource("18_5a5n5")
+AppFlags = 115
+UnsavedChangesScene = ExtResource("18_5a5n5")
 
 [node name="MsbtEditor" type="PanelContainer" parent="."]
 unique_name_in_owner = true

@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://cei1tg8ys1x2u"]
+[gd_scene load_steps=6 format=3 uid="uid://cei1tg8ys1x2u"]
 
-[ext_resource type="Script" path="res://scene/home/tab_world/TabWorld.cs" id="1_bbioy"]
 [ext_resource type="Theme" uid="uid://pv7wa46kuqjf" path="res://asset/theme/home/home_tab_world.tres" id="1_but3c"]
 [ext_resource type="PackedScene" uid="uid://c53j1q8gs0b1g" path="res://scene/home/tab_world/button_tab_world.tscn" id="2_wiuva"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_sgcac"]
@@ -21,7 +20,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_but3c")
-script = ExtResource("1_bbioy")
 
 [node name="Margin_Select" type="MarginContainer" parent="."]
 layout_mode = 1

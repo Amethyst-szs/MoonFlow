@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dbung3qmbw5gp"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dbung3qmbw5gp"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_rr64a"]
 [ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_5axl7"]
@@ -8,6 +8,8 @@
 [ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/common/stylebox/common_button_pressed.tres" id="6_jgcfe"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="7_e8vvp"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="7_s72yq"]
+[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="8_pimjq"]
+[ext_resource type="StyleBox" uid="uid://cys3dv01cl5ea" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_edit_window_border.tres" id="10_qif8v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25x5c"]
 bg_color = Color(0.0784314, 0.137255, 0.176471, 1)
@@ -55,6 +57,7 @@ AcceptDialog/constants/title_height = 30
 AcceptDialog/fonts/title_font = ExtResource("7_e8vvp")
 AcceptDialog/styles/embedded_border = SubResource("StyleBoxFlat_25x5c")
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_tveer")
+Button/constants/h_separation = 8
 Button/constants/icon_max_width = 28
 Button/fonts/font = ExtResource("1_rr64a")
 Button/styles/focus = ExtResource("2_5axl7")
@@ -62,16 +65,34 @@ Button/styles/hover = ExtResource("3_4jtef")
 Button/styles/hover_pressed = ExtResource("4_45awj")
 Button/styles/normal = ExtResource("5_r0ksc")
 Button/styles/pressed = ExtResource("6_jgcfe")
+GridContainer/constants/h_separation = 8
+GridContainer/constants/v_separation = 6
 HSeparator/constants/separation = 8
 HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
 Label/fonts/font = ExtResource("1_rr64a")
+LineEdit/fonts/font = ExtResource("1_rr64a")
+LineEdit/styles/focus = ExtResource("2_5axl7")
+LineEdit/styles/normal = ExtResource("3_4jtef")
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 6
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 6
 MenuButton/fonts/font = ExtResource("1_rr64a")
 MenuButton/styles/focus = ExtResource("2_5axl7")
 MenuButton/styles/hover = ExtResource("3_4jtef")
 MenuButton/styles/hover_pressed = ExtResource("4_45awj")
 MenuButton/styles/normal = ExtResource("5_r0ksc")
 MenuButton/styles/pressed = ExtResource("6_jgcfe")
+PopupMenu/constants/icon_max_width = 24
+PopupMenu/fonts/font = ExtResource("1_rr64a")
+PopupMenu/styles/hover = ExtResource("3_4jtef")
+PopupMenu/styles/panel = ExtResource("8_pimjq")
+ScrollContainer/styles/panel = ExtResource("8_pimjq")
 TooltipLabel/fonts/font = ExtResource("1_rr64a")
 TooltipPanel/styles/panel = ExtResource("7_s72yq")
 VSeparator/constants/separation = 24
 VSeparator/styles/separator = SubResource("StyleBoxLine_o0anw")
+Window/colors/title_color = Color(0.93, 0.93, 0.93, 1)
+Window/fonts/title_font = ExtResource("1_rr64a")
+Window/styles/embedded_border = ExtResource("10_qif8v")
+Window/styles/embedded_unfocused_border = ExtResource("10_qif8v")

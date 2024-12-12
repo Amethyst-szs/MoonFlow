@@ -41,6 +41,17 @@ public partial class MsbtAppHolder : AppScene
 		return;
 	}
 
+	public static void OpenAppByName(string archiveName, string key)
+	{
+		var editor = SceneCreator<MsbtAppHolder>.Create();
+		editor.SetUniqueIdentifier(archiveName + key);
+		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
+
+		var msbp = ProjectManager.GetMSBP();
+		var defaultLang = ProjectManager.GetProject().Config.Data.DefaultLanguage;
+		editor.SetupEditor(msbp, defaultLang, archiveName, key);
+	}
+
 	public override string GetUniqueIdentifier(string input)
 	{
 		return "MSBT_" + input;

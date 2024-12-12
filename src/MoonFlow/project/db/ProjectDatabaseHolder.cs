@@ -66,8 +66,22 @@ public class ProjectDatabaseHolder
             var world = WorldList.Find(s => s.WorldName == itemDb.WorldName);
             if (world == null)
                 continue;
-            
+
             world.WorldItemType = itemDb;
+        }
+
+        // Load coin collect total count for each world
+        GD.Print("Accessing CollectCoinNum.byml");
+        loadScreen.LoadingUpdateProgress("LOAD_COIN_COLLECT_NUM");
+
+        var coinCollectCountInfo = GetCoinCollectCountInfo();
+        foreach (var info in coinCollectCountInfo)
+        {
+            var world = WorldList.Find(s => s.WorldName == info.WorldName);
+            if (world == null)
+                continue;
+
+            world.CoinCollectInfo = info;
         }
     }
 
@@ -75,42 +89,45 @@ public class ProjectDatabaseHolder
 
     #region Database Writing
 
-    public bool WriteWorldList()
+    public void WriteWorldList()
     {
-        var fileName = WorldInfo.DatabaseBymlPath;
+        WriteBymlToWorldListArchive(WorldInfo.DatabaseBymlPath, WorldList);
 
-        if (!ArchiveWorldList.Content.ContainsKey(fileName))
-            return false;
+        var coinCollectInfo = WorldList.Select((s) => s.CoinCollectInfo);
+        WriteBymlToWorldListArchive(CollectCoinCountInfo.BymlPath, coinCollectInfo);
 
-        MemoryStream stream = new();
-        if (!BymlFileAccess.WriteFile(stream, WorldList))
-            throw new Exception("Byml writer exception");
-
-        ArchiveWorldList.Content[fileName] = stream.ToArray();
         ArchiveWorldList.WriteArchive(WorldInfo.GetWorldListPath(Parent.Path));
-
-        return true;
     }
 
-    public bool WriteShineInfo(string worldName, bool isWriteToDisk = true)
+    private void WriteBymlToWorldListArchive<T>(string name, T data)
+    {
+        if (!ArchiveWorldList.Content.ContainsKey(name))
+            throw new Exception(name + "does not exist in WorldList.szs");
+
+        MemoryStream stream = new();
+        if (!BymlFileAccess.WriteFile(stream, data))
+            throw new Exception("Byml writer exception");
+
+        ArchiveWorldList.Content[name] = stream.ToArray();
+    }
+
+    public void WriteShineInfo(string worldName, bool isWriteToDisk = true)
     {
         var info = WorldList.Find(s => s.WorldName == worldName);
         if (info == null)
-            return false;
+            throw new Exception("Could not find ShineInfo for world " + worldName);
 
         info.ShineList.UpdateShineInfoArchive(ArchiveShineInfo);
 
         if (isWriteToDisk)
             ArchiveShineInfo.WriteArchive(WorldInfo.GetShineInfoPath(Parent.Path));
-
-        return true;
     }
 
     public void WriteShineInfoAllWorlds()
     {
         foreach (var world in WorldList)
             WriteShineInfo(world.WorldName, false);
-        
+
         ArchiveShineInfo.WriteArchive(WorldInfo.GetShineInfoPath(Parent.Path));
     }
 
@@ -159,6 +176,12 @@ public class ProjectDatabaseHolder
 
             world.Display = entry.GetRawText();
         }
+    }
+
+    private List<CollectCoinCountInfo> GetCoinCollectCountInfo()
+    {
+        byte[] bytes = [.. ArchiveWorldList.Content[CollectCoinCountInfo.BymlPath]];
+        return BymlFileAccess.ParseBytes<List<CollectCoinCountInfo>>(bytes);
     }
 
     #endregion

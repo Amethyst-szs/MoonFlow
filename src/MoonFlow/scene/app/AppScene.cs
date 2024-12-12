@@ -43,15 +43,28 @@ public partial class AppScene : Control
 		IsExclusive = 1 << 3,
 		IsShowHeader = 1 << 4,
 		IsOnlyAllowOneInstance = 1 << 5,
+		IsAllowUnsavedChanges = 1 << 6,
 	}
 
 	[Export(PropertyHint.Flags)]
 	public AppFlagEnum AppFlags = AppFlagEnum.IsAllowUserClose;
 
 	[Export]
-	private PackedScene UnsavedChangedScene = null;
+	private PackedScene UnsavedChangesScene = null;
 
-	protected bool IsModified = false;
+	[Signal]
+	public delegate void ModifyStateUpdateEventHandler(bool isModified);
+
+	private bool _isModified = false;
+	protected bool IsModified
+	{
+		get { return _isModified; }
+		set
+		{
+			_isModified = value;
+			EmitSignal(SignalName.ModifyStateUpdate, _isModified);
+		}
+	}
 
 	// ====================================================== //
 	// ================== Stored References ================= //
@@ -77,6 +90,10 @@ public partial class AppScene : Control
 
 	private void InitReferences()
 	{
+		// Warning check
+		if (IsAppAllowUnsavedChanges() && !IsInstanceValid(UnsavedChangesScene))
+			GD.PushError("No reference to unsaved changes dialog scene!");
+		
 		// Get access to the main
 		var treeRoot = GetTree().CurrentScene;
 
@@ -193,7 +210,7 @@ public partial class AppScene : Control
 
 	public SignalAwaiter AppClose(bool isEndExclusive = false)
 	{
-		if (IsModified && UnsavedChangedScene != null)
+		if (IsModified && IsAppAllowUnsavedChanges())
 			return AppearUnsavedChangesDialog();
 		
 		if (IsAppExclusive() && !isEndExclusive)
@@ -231,7 +248,7 @@ public partial class AppScene : Control
 
 	private SignalAwaiter AppearUnsavedChangesDialog()
 	{
-		var dialog = UnsavedChangedScene.Instantiate() as ConfirmationDialog;
+		var dialog = UnsavedChangesScene.Instantiate() as ConfirmationDialog;
 		AddChild(dialog);
 
 		dialog.Popup();
@@ -255,4 +272,5 @@ public partial class AppScene : Control
 	public bool IsAppExclusive() { return (AppFlags & AppFlagEnum.IsExclusive) != 0; }
 	public bool IsAppShowHeader() { return (AppFlags & AppFlagEnum.IsShowHeader) != 0; }
 	public bool IsAppOnlyOneInstance() { return (AppFlags & AppFlagEnum.IsOnlyAllowOneInstance) != 0; }
+	public bool IsAppAllowUnsavedChanges() { return (AppFlags & AppFlagEnum.IsAllowUnsavedChanges) != 0; }
 }

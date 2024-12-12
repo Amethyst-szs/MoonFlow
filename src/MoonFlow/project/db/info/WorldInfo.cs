@@ -25,9 +25,11 @@ public class WorldInfo()
     public WorldShineList ShineList;
     [YamlIgnore]
     public WorldItemType WorldItemType;
+    [YamlIgnore]
+    public CollectCoinCountInfo CoinCollectInfo;
 
-    public static string GetWorldListPath(string root) { return root + "SystemData/WorldList.szs"; } 
-    public static string GetShineInfoPath(string root) { return root + "SystemData/ShineInfo.szs"; } 
+    public static string GetWorldListPath(string root) { return root + "SystemData/WorldList.szs"; }
+    public static string GetShineInfoPath(string root) { return root + "SystemData/ShineInfo.szs"; }
 
     [YamlIgnore]
     public const string DatabaseBymlPath = "WorldListFromDb.byml";

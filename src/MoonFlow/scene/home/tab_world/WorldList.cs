@@ -3,7 +3,7 @@ using System;
 
 using MoonFlow.Project;
 using MoonFlow.Project.Database;
-using System.Threading.Tasks;
+using MoonFlow.Scene.EditorWorld;
 
 namespace MoonFlow.Scene.Home;
 
@@ -60,9 +60,13 @@ public partial class WorldList : HBoxContainer
 		AddChild(new VSeparator());
 	}
 
-	private void OnItemPressed(WorldInfo world)
+	private static void OnItemPressed(WorldInfo world)
 	{
+		var editor = SceneCreator<WorldEditorApp>.Create();
+		editor.SetUniqueIdentifier(world.WorldName);
+		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
 
+		editor.OpenWorld(world);
 	}
 
 	private static int ModN(int x, int m)

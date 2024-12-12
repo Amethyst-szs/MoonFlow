@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://7jgd1gt2u83b"]
+[gd_scene load_steps=11 format=3 uid="uid://7jgd1gt2u83b"]
 
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_h16wr"]
 [ext_resource type="Script" path="res://scene/editor/world/WorldEditorApp.cs" id="1_l606m"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="2_55xy6"]
 [ext_resource type="Texture2D" uid="uid://c0beoybdkplbi" path="res://asset/app/icon/world.png" id="2_bf7ob"]
+[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="5_vxfcb"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_n3qm4"]
+[ext_resource type="PackedScene" uid="uid://n5fe7jd6mwy4" path="res://scene/editor/world/page/vbox_basic_info.tscn" id="7_qwxvb"]
+[ext_resource type="PackedScene" uid="uid://clhy3h8j6kcm" path="res://scene/editor/world/page/vbox_scenario_info.tscn" id="8_1n3i7"]
 
-[node name="WorldEditor" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_a80xt"]
+font = ExtResource("6_n3qm4")
+font_size = 18
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_irpy7"]
+
+[node name="WorldEditor" type="Control" node_paths=PackedStringArray("InfoBoxList")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,9 +25,71 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_h16wr")
 script = ExtResource("1_l606m")
+InfoBoxList = [NodePath("Panel/Margin/Divider/Scroll_General/VBox/VBox_Basic"), NodePath("Panel/Margin/Divider/Scroll_General/VBox/VBox_Scenario")]
 AppName = "WorldEditor"
 AppTaskbarTitle = "Kingdom"
 AppIcon = ExtResource("2_bf7ob")
-AppFlags = 51
-UnsavedChangedScene = ExtResource("2_55xy6")
+AppFlags = 115
+UnsavedChangesScene = ExtResource("2_55xy6")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("5_vxfcb")
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Divider" type="HSplitContainer" parent="Panel/Margin"]
+layout_mode = 2
+
+[node name="Scroll_General" type="ScrollContainer" parent="Panel/Margin/Divider"]
+layout_mode = 2
+size_flags_horizontal = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin/Divider/Scroll_General"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Label_Basic" type="Label" parent="Panel/Margin/Divider/Scroll_General/VBox"]
+layout_mode = 2
+text = "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
+label_settings = SubResource("LabelSettings_a80xt")
+
+[node name="HSep_Basic" type="HSeparator" parent="Panel/Margin/Divider/Scroll_General/VBox"]
+layout_mode = 2
+
+[node name="VBox_Basic" parent="Panel/Margin/Divider/Scroll_General/VBox" instance=ExtResource("7_qwxvb")]
+layout_mode = 2
+
+[node name="HSep_Empty0" type="HSeparator" parent="Panel/Margin/Divider/Scroll_General/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_irpy7")
+
+[node name="Label_Scenario" type="Label" parent="Panel/Margin/Divider/Scroll_General/VBox"]
+layout_mode = 2
+text = "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+label_settings = SubResource("LabelSettings_a80xt")
+
+[node name="HSep_Scenario" type="HSeparator" parent="Panel/Margin/Divider/Scroll_General/VBox"]
+layout_mode = 2
+
+[node name="VBox_Scenario" parent="Panel/Margin/Divider/Scroll_General/VBox" instance=ExtResource("8_1n3i7")]
+layout_mode = 2
+
+[node name="Scroll_Lists" type="ScrollContainer" parent="Panel/Margin/Divider"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin/Divider/Scroll_Lists"]
+layout_mode = 2
