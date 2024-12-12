@@ -85,12 +85,10 @@ msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr "Romfs Path Settings"
 
 #: scene/front_door/front_door.tscn
-#| msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgid "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
 msgstr "Contributions & Credits"
 
 #: scene/front_door/front_door.tscn
-#| msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
 msgstr "Update Available!"
 
@@ -1384,6 +1382,10 @@ msgstr "Post-game Scenario"
 #: scene/editor/world/page/vbox_scenario_info.tscn
 msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
 msgstr "Post-Moon Rock Scenario"
+
+#: scene/front_door/contributor/scene/credit.tscn
+msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
+msgstr "Contributors & Credits"
 
 #~ msgid "NEW_PROJECT_FOLDER_DIALOG_TITLE"
 #~ msgstr "Select New Project RomFS Directory"

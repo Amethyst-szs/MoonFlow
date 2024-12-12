@@ -37,6 +37,7 @@
 # res://scene/editor/world/world_editor_app.tscn
 # res://scene/editor/world/page/vbox_basic_info.tscn
 # res://scene/editor/world/page/vbox_scenario_info.tscn
+# res://scene/front_door/contributor/scene/credit.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1388,4 +1389,8 @@ msgstr ""
 
 #: scene/editor/world/page/vbox_scenario_info.tscn
 msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
+msgstr ""
+
+#: scene/front_door/contributor/scene/credit.tscn
+msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
 msgstr ""

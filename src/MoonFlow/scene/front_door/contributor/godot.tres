@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ContributorList" load_steps=6 format=3 uid="uid://h4riwvv0wj4f"]
+
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_eqx3j"]
+[ext_resource type="Resource" uid="uid://bfuv7msa5dlny" path="res://scene/front_door/contributor/profile/amethyst_szs.tres" id="2_3s7a1"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_module.gd" id="3_8h2yx"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_list.gd" id="4_h3eqc"]
+
+[sub_resource type="Resource" id="Resource_bbsb2"]
+script = ExtResource("3_8h2yx")
+author = "Godot Foundation"
+name = "Godot Engine"
+url = "https://godotengine.org/"
+
+[resource]
+script = ExtResource("4_h3eqc")
+list_name = "Godot Project"
+list_color = Color(0.4, 0.67451, 0.870588, 1)
+list = Array[ExtResource("1_eqx3j")]([ExtResource("2_3s7a1"), SubResource("Resource_bbsb2")])

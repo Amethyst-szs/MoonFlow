@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ContributorInformation" load_steps=2 format=3 uid="uid://bfuv7msa5dlny"]
+
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_27eri"]
+
+[resource]
+script = ExtResource("1_27eri")
+name = "Amethyst-szs"
+url = "https://github.com/Amethyst-szs"

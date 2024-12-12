@@ -60,7 +60,7 @@ script = ExtResource("1_plewj")
 AppName = "FrontDoor"
 AppTaskbarTitle = "Welcome"
 AppIcon = ExtResource("2_jf1ga")
-AppFlags = 14
+AppFlags = 6
 
 [node name="Content" type="PanelContainer" parent="."]
 material = SubResource("ShaderMaterial_kq5y5")
@@ -143,7 +143,7 @@ layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 icon = ExtResource("10_sqwg3")
 
-[node name="Button_Credits" type="Button" parent="Content/Shortcuts"]
+[node name="Button_Contributors" type="Button" parent="Content/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
 icon = ExtResource("14_mr0wr")
@@ -213,6 +213,7 @@ resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwf
 [connection signal="pressed" from="Content/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
 [connection signal="open_recent_project" from="Content/Quickbar/Menu_Recent" to="." method="OnDialogOpenProjectPathSelected"]
 [connection signal="pressed" from="Content/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
+[connection signal="pressed" from="Content/Shortcuts/Button_Contributors" to="." method="OpenContributorPage"]
 [connection signal="request_completed" from="Content/Shortcuts/Button_Update/HTTPRequest" to="Content/Shortcuts/Button_Update" method="_on_request_completed"]
 [connection signal="dir_selected" from="Dialog_NewProject" to="." method="OnDialogNewProjectPathSelected"]
 [connection signal="dir_selected" from="Dialog_OpenProject" to="." method="OnDialogOpenProjectPathSelected"]

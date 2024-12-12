@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ContributorList" load_steps=7 format=3 uid="uid://d3bthfk36lc5q"]
+
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_jqn4u"]
+[ext_resource type="Resource" uid="uid://bfuv7msa5dlny" path="res://scene/front_door/contributor/profile/amethyst_szs.tres" id="2_ii4dx"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_module.gd" id="3_4ls3y"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_list.gd" id="3_o28cj"]
+
+[sub_resource type="Resource" id="Resource_d8yr2"]
+script = ExtResource("3_4ls3y")
+author = "Google"
+name = "Material Icons"
+url = "https://fonts.google.com/icons"
+
+[sub_resource type="Resource" id="Resource_md6bh"]
+script = ExtResource("1_jqn4u")
+name = "SVGRepo"
+url = "https://www.svgrepo.com/"
+
+[resource]
+script = ExtResource("3_o28cj")
+list_name = "Graphic Design"
+list_color = Color(0.84, 0.4116, 0.4116, 1)
+list = Array[ExtResource("1_jqn4u")]([ExtResource("2_ii4dx"), SubResource("Resource_d8yr2"), SubResource("Resource_md6bh")])

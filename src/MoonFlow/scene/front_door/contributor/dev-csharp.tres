@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ContributorList" load_steps=4 format=3 uid="uid://bn5ek8636ilir"]
+
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_gyvmh"]
+[ext_resource type="Resource" uid="uid://bfuv7msa5dlny" path="res://scene/front_door/contributor/profile/amethyst_szs.tres" id="2_i4a7y"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_list.gd" id="2_ie0tv"]
+
+[resource]
+script = ExtResource("2_ie0tv")
+list_name = "C# Development"
+list_color = Color(0.647059, 0.509804, 0.85098, 1)
+list = Array[ExtResource("1_gyvmh")]([ExtResource("2_i4a7y")])

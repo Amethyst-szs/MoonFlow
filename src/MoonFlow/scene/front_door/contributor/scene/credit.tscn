@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://lr6j7rntaabi"]
+
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_c3g6q"]
+[ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="2_8rnkx"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/scene/FrontDoorContributorApp.cs" id="2_vcxik"]
+[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="3_ply6e"]
+[ext_resource type="Theme" uid="uid://bhp7hktmlp3qn" path="res://asset/theme/front_door/contributor.tres" id="4_ftcg4"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_hwjog"]
+[ext_resource type="PackedScene" uid="uid://dnpmmi6rvuow1" path="res://scene/front_door/contributor/scene/category.tscn" id="6_b7d2p"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/scene/credit_content.gd" id="6_c2ek2"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="8_g7328"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hcimq"]
+font = ExtResource("8_g7328")
+font_size = 29
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tlbhh"]
+font = ExtResource("8_g7328")
+font_size = 22
+font_color = Color(0.97, 0.194, 0.258667, 1)
+
+[node name="AppScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c3g6q")
+script = ExtResource("2_vcxik")
+AppName = "Credit"
+AppTaskbarTitle = "Contributors"
+AppIcon = ExtResource("2_8rnkx")
+AppFlags = 3
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ftcg4")
+theme_override_styles/panel = ExtResource("3_ply6e")
+
+[node name="Margin" type="MarginContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Scroll" type="ScrollContainer" parent="Content/Margin"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+script = ExtResource("5_hwjog")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
+
+[node name="Content" type="VBoxContainer" parent="Content/Margin/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("6_c2ek2")
+
+[node name="Label_Title" type="Label" parent="Content/Margin/Scroll/Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+text = "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
+label_settings = SubResource("LabelSettings_hcimq")
+
+[node name="HSep" type="HSeparator" parent="Content/Margin/Scroll/Content"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CategoryInfo" parent="Content/Margin/Scroll/Content" instance=ExtResource("6_b7d2p")]
+layout_mode = 2
+
+[node name="Icon" parent="Content/Margin/Scroll/Content/CategoryInfo/HBox_Head" index="0"]
+custom_minimum_size = Vector2(0, 0)
+
+[node name="Label" parent="Content/Margin/Scroll/Content/CategoryInfo/HBox_Head" index="1"]
+auto_translate_mode = 2
+text = "Game Publisher"
+label_settings = SubResource("LabelSettings_tlbhh")
+
+[node name="Entries" parent="Content/Margin/Scroll/Content/CategoryInfo" index="1"]
+columns = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Content/Margin/Scroll/Content/CategoryInfo/Entries" index="0"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+bbcode_enabled = true
+text = "[center]Super Mario Odyssey
+[font_size=12][color=LIGHT_GRAY]© Nintendo 2017
+This project is not affilated with or approved by Nintendo. This project is fully open source and free, and does not encourage or distrubte any pirated content."
+fit_content = true
+
+[editable path="Content/Margin/Scroll/Content/CategoryInfo"]

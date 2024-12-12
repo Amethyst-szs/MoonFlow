@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bhp7hktmlp3qn"]
+
+[ext_resource type="StyleBox" uid="uid://del0i2efsmke" path="res://asset/theme/front_door/stylebox/contributor_rich_text_label_panel.tres" id="1_mb1xf"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_p758a"]
+
+[resource]
+HSeparator/constants/separation = 28
+RichTextLabel/constants/line_separation = 5
+RichTextLabel/font_sizes/normal_font_size = 18
+RichTextLabel/fonts/normal_font = ExtResource("1_p758a")
+RichTextLabel/styles/normal = ExtResource("1_mb1xf")

@@ -242,6 +242,11 @@ public partial class AppScene : Control
 		return false;
 	}
 
+	public void AppCloseForce()
+	{
+		AppClose(true);
+	}
+
 	// ====================================================== //
 	// ================== Dialog Utilities ================== //
 	// ====================================================== //

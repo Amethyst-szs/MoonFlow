@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ContributorResourceList" load_steps=9 format=3 uid="uid://c6ps64s4iqjk6"]
+
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_list.gd" id="1_f8t58"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/resource_list.gd" id="2_uef68"]
+[ext_resource type="Resource" uid="uid://bn5ek8636ilir" path="res://scene/front_door/contributor/dev-csharp.tres" id="2_yjt60"]
+[ext_resource type="Resource" uid="uid://bn1eqe3mahm8v" path="res://scene/front_door/contributor/dev-gdscript.tres" id="3_787hp"]
+[ext_resource type="Resource" uid="uid://h4riwvv0wj4f" path="res://scene/front_door/contributor/godot.tres" id="4_5kafb"]
+[ext_resource type="Resource" uid="uid://daifqujnq80l7" path="res://scene/front_door/contributor/module-csharp.tres" id="5_uvkcm"]
+[ext_resource type="Resource" uid="uid://bppx546ttcmj6" path="res://scene/front_door/contributor/module-godot.tres" id="6_gyuo3"]
+[ext_resource type="Resource" uid="uid://d3bthfk36lc5q" path="res://scene/front_door/contributor/asset.tres" id="7_mq8qt"]
+
+[resource]
+script = ExtResource("2_uef68")
+resource_list = Array[ExtResource("1_f8t58")]([ExtResource("2_yjt60"), ExtResource("5_uvkcm"), ExtResource("4_5kafb"), ExtResource("3_787hp"), ExtResource("6_gyuo3"), ExtResource("7_mq8qt")])

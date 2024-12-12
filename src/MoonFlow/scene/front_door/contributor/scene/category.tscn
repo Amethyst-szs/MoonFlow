@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnpmmi6rvuow1"]
+
+[ext_resource type="Script" path="res://scene/front_door/contributor/scene/category.gd" id="1_5pg3e"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_fywyx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2xtce"]
+font = ExtResource("1_fywyx")
+font_size = 22
+
+[node name="CategoryInfo" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.5
+offset_right = 123.5
+offset_bottom = 60.0
+grow_horizontal = 2
+script = ExtResource("1_5pg3e")
+
+[node name="HBox_Head" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Icon" type="TextureRect" parent="HBox_Head"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HBox_Head"]
+layout_mode = 2
+mouse_filter = 1
+text = "CATEGORY_HEADER"
+label_settings = SubResource("LabelSettings_2xtce")
+
+[node name="Entries" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+columns = 3
+
+[node name="HSep" type="HSeparator" parent="."]
+layout_mode = 2
+mouse_filter = 1

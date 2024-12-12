@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ContributorList" load_steps=6 format=3 uid="uid://bppx546ttcmj6"]
+
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_0o60r"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_module.gd" id="2_np0f6"]
+[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_list.gd" id="3_ryslk"]
+
+[sub_resource type="Resource" id="Resource_mpymb"]
+script = ExtResource("2_np0f6")
+author = "KoBeWi"
+name = "Godot-Auto-Export-Version"
+url = "https://github.com/KoBeWi/Godot-Auto-Export-Version"
+
+[sub_resource type="Resource" id="Resource_3bmkw"]
+script = ExtResource("2_np0f6")
+author = "SpyrexDE"
+name = "SmoothScroll"
+url = "https://github.com/SpyrexDE/SmoothScroll"
+
+[resource]
+script = ExtResource("3_ryslk")
+list_name = "Godot Addons"
+list_color = Color(0.4, 0.67451, 0.870588, 1)
+list = Array[ExtResource("1_0o60r")]([SubResource("Resource_mpymb"), SubResource("Resource_3bmkw")])

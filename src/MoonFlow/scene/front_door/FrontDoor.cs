@@ -36,6 +36,12 @@ public partial class FrontDoor : AppScene
 		Scene.NodeApps.AddChild(app);
 	}
 
+	private void OpenContributorPage()
+	{
+		var app = SceneCreator<FrontDoorContributorApp>.Create();
+		Scene.NodeApps.AddChild(app);
+	}
+
 	// ====================================================== //
 	// ==================== Signal Events =================== //
 	// ====================================================== //
