@@ -17,7 +17,6 @@ AutoExportVersion/version_config_file="res://version/config.gd"
 [application]
 
 config/name="MoonFlow"
-config/version="0.2.0"
 run/main_scene="res://scene/main/main.tscn"
 config/auto_accept_quit=false
 config/quit_on_go_back=false

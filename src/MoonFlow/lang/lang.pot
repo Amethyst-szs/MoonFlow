@@ -109,6 +109,14 @@ msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
 msgid "Open a Directory"
 msgstr ""
 

@@ -85,6 +85,16 @@ msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr "Romfs Path Settings"
 
 #: scene/front_door/front_door.tscn
+#| msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+msgid "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
+msgstr "Contributions & Credits"
+
+#: scene/front_door/front_door.tscn
+#| msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
+msgstr "Update Available!"
+
+#: scene/front_door/front_door.tscn
 msgid "Open a Directory"
 msgstr "Open a Directory"
 
@@ -1360,22 +1370,18 @@ msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
 msgstr "Purple Coin Total Count"
 
 #: scene/editor/world/page/vbox_scenario_info.tscn
-#| msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
 msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
 msgstr "Total Scenarios"
 
 #: scene/editor/world/page/vbox_scenario_info.tscn
-#| msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
 msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
 msgstr "World Peace Scenario"
 
 #: scene/editor/world/page/vbox_scenario_info.tscn
-#| msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
 msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
 msgstr "Post-game Scenario"
 
 #: scene/editor/world/page/vbox_scenario_info.tscn
-#| msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
 msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
 msgstr "Post-Moon Rock Scenario"
 

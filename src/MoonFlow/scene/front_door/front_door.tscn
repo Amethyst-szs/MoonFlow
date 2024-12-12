@@ -39,12 +39,14 @@ font_color = Color(0.8, 0.8, 0.8, 0.607843)
 [sub_resource type="GDScript" id="GDScript_fdlxl"]
 script/source = "extends Label
 
+var ver: String = preload(\"res://version/data.gd\").VERSION
+
 func _ready() -> void:
 	var n: String = ProjectSettings.get_setting(\"application/config/name\", \"MoonFlow\")
-	var v: String = ProjectSettings.get_setting(\"application/config/version\", \"No Version\")
 	
 	text += \"%s (%s)\\n\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
-	text += \"%s %s (%s)\" % [n, v, DisplayServer.get_name()]
+	text += \"%s (%s)\\n\" % [n, DisplayServer.get_name()]
+	text += ver
 "
 
 [node name="FrontDoor" type="Control"]
@@ -153,6 +155,7 @@ icon = ExtResource("15_h6jnw")
 script = ExtResource("16_8ntwn")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Content/Shortcuts/Button_Update"]
+use_threads = true
 
 [node name="DotPlayable" type="Control" parent="."]
 layout_mode = 1
@@ -210,5 +213,6 @@ resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwf
 [connection signal="pressed" from="Content/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
 [connection signal="open_recent_project" from="Content/Quickbar/Menu_Recent" to="." method="OnDialogOpenProjectPathSelected"]
 [connection signal="pressed" from="Content/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
+[connection signal="request_completed" from="Content/Shortcuts/Button_Update/HTTPRequest" to="Content/Shortcuts/Button_Update" method="_on_request_completed"]
 [connection signal="dir_selected" from="Dialog_NewProject" to="." method="OnDialogNewProjectPathSelected"]
 [connection signal="dir_selected" from="Dialog_OpenProject" to="." method="OnDialogOpenProjectPathSelected"]
