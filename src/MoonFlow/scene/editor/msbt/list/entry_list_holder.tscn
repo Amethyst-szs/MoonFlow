@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://ck2mpawvgk0li"]
+[gd_scene load_steps=20 format=3 uid="uid://ck2mpawvgk0li"]
 
+[ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_e4ni0"]
 [ext_resource type="Script" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="2_mottg"]
 [ext_resource type="Script" path="res://scene/editor/msbt/components/entry_list_controls.gd" id="3_tx1js"]
@@ -38,6 +39,7 @@ events = [SubResource("InputEventKey_hdlgh")]
 
 [node name="EntryListHolder" type="VBoxContainer"]
 size_flags_horizontal = 3
+theme = ExtResource("1_e4ni0")
 script = ExtResource("1_q1mta")
 
 [node name="HSep" type="HSeparator" parent="."]

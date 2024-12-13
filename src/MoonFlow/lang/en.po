@@ -1385,6 +1385,31 @@ msgstr "Post-Moon Rock Scenario"
 msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
 msgstr "Contributors & Credits"
 
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "SCENARIO_NAME"
+msgstr "Power Moons"
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "CHECKPOINT"
+msgstr "Checkpoints"
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "LOCATION_NAME_AREA"
+msgstr "Locations"
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "RACE"
+msgstr "Koopa Freerunning"
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "QUEST"
+msgstr "Quests"
+
 #~ msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
 #~ msgstr "Select a RomFS Directory"
 

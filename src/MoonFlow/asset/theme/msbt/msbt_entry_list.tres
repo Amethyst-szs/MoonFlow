@@ -1,0 +1,38 @@
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bvqf307r03sie"]
+
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_ygcmu"]
+[ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_3snf4"]
+[ext_resource type="StyleBox" uid="uid://bs7cbsqc1muw5" path="res://asset/theme/common/stylebox/common_button_hover.tres" id="3_iunpn"]
+[ext_resource type="StyleBox" uid="uid://b6uxtqriwct6l" path="res://asset/theme/common/stylebox/common_button_pressed_hover.tres" id="4_by00g"]
+[ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="5_6vhhe"]
+[ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/common/stylebox/common_button_pressed.tres" id="6_3lfci"]
+[ext_resource type="Texture2D" uid="uid://gkt4uth2coun" path="res://asset/material/arrow/down.svg" id="7_fdrtu"]
+[ext_resource type="Texture2D" uid="uid://bxdtn8valrbqg" path="res://asset/material/arrow/right.svg" id="8_7es7c"]
+[ext_resource type="StyleBox" uid="uid://c4amh8stlhsbu" path="res://asset/theme/home/stylebox/home_checkbox_focus.tres" id="9_fsvhp"]
+[ext_resource type="StyleBox" uid="uid://du1aj0r1pa6at" path="res://asset/theme/home/stylebox/home_checkbox_hover.tres" id="10_hyyau"]
+[ext_resource type="StyleBox" uid="uid://nm18tplkr134" path="res://asset/theme/home/stylebox/home_checkbox_pressed.tres" id="11_capq4"]
+[ext_resource type="StyleBox" uid="uid://cwukv6tfhvuay" path="res://asset/theme/home/stylebox/home_checkbox_normal.tres" id="12_s3nsp"]
+
+[resource]
+Button/constants/h_separation = 8
+Button/constants/icon_max_width = 28
+Button/fonts/font = ExtResource("1_ygcmu")
+Button/styles/focus = ExtResource("2_3snf4")
+Button/styles/hover = ExtResource("3_iunpn")
+Button/styles/hover_pressed = ExtResource("4_by00g")
+Button/styles/normal = ExtResource("5_6vhhe")
+Button/styles/pressed = ExtResource("6_3lfci")
+CheckBox/constants/h_separation = 6
+CheckBox/constants/icon_max_width = 20
+CheckBox/font_sizes/font_size = 18
+CheckBox/fonts/font = ExtResource("1_ygcmu")
+CheckBox/icons/checked = ExtResource("7_fdrtu")
+CheckBox/icons/checked_disabled = ExtResource("7_fdrtu")
+CheckBox/icons/unchecked = ExtResource("8_7es7c")
+CheckBox/icons/unchecked_disabled = ExtResource("8_7es7c")
+CheckBox/styles/focus = ExtResource("9_fsvhp")
+CheckBox/styles/hover = ExtResource("10_hyyau")
+CheckBox/styles/hover_pressed = ExtResource("11_capq4")
+CheckBox/styles/normal = ExtResource("12_s3nsp")
+CheckBox/styles/pressed = ExtResource("11_capq4")
+MarginContainer/constants/margin_left = 16

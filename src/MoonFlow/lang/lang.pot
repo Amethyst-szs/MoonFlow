@@ -38,6 +38,7 @@
 # res://scene/editor/world/page/vbox_basic_info.tscn
 # res://scene/editor/world/page/vbox_scenario_info.tscn
 # res://scene/front_door/contributor/scene/credit.tscn
+# res://scene/editor/msbt/list/container/stage_message_category_table.gd
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1391,4 +1392,29 @@ msgstr ""
 
 #: scene/front_door/contributor/scene/credit.tscn
 msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
+msgstr ""
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "SCENARIO_NAME"
+msgstr ""
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "CHECKPOINT"
+msgstr ""
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "LOCATION_NAME_AREA"
+msgstr ""
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "RACE"
+msgstr ""
+
+#: scene/editor/msbt/list/container/stage_message_category_table.gd
+msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
+msgid "QUEST"
 msgstr ""
