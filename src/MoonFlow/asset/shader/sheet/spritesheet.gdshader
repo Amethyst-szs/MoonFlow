@@ -7,7 +7,7 @@ uniform int sheet_height : hint_range(1, 50, 0.1) = 1;
 void vertex() {
 	UV.x /= float(sheet_width);
 	UV.y /= float(sheet_height);
-	
+
 	UV.x += float(sheet_position % sheet_width) / float(sheet_width);
 	UV.y += float(sheet_position / sheet_width) / float(sheet_height);
 }

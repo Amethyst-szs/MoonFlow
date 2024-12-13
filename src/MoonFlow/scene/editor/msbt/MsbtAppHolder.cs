@@ -41,7 +41,7 @@ public partial class MsbtAppHolder : AppScene
 		return;
 	}
 
-	public static void OpenAppByName(string archiveName, string key)
+	public static MsbtAppHolder OpenApp(string archiveName, string key)
 	{
 		var editor = SceneCreator<MsbtAppHolder>.Create();
 		editor.SetUniqueIdentifier(archiveName + key);
@@ -50,6 +50,15 @@ public partial class MsbtAppHolder : AppScene
 		var msbp = ProjectManager.GetMSBP();
 		var defaultLang = ProjectManager.GetProject().Config.Data.DefaultLanguage;
 		editor.SetupEditor(msbp, defaultLang, archiveName, key);
+
+		return editor;
+	}
+
+	public static MsbtAppHolder OpenAppWithSearch(string archiveName, string key, string search)
+	{
+		var editor = OpenApp(archiveName, key);
+		editor.Editor.UpdateEntrySearch(search);
+		return editor;
 	}
 
 	public override string GetUniqueIdentifier(string input)

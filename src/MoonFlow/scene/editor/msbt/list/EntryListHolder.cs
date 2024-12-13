@@ -6,7 +6,7 @@ namespace MoonFlow.Scene.EditorMsbt;
 public partial class EntryListHolder : VBoxContainer
 {
 	public MsbtEditor Editor { get; private set; } = null;
-	public MsbtEntryList EntryList { get; private set; } = null;
+	public EntryListBase EntryList { get; private set; } = null;
 
 	private static readonly GDScript SmoothScroll
 		= GD.Load<GDScript>("res://addons/SmoothScroll/SmoothScrollContainer.gd");
@@ -41,7 +41,7 @@ public partial class EntryListHolder : VBoxContainer
 		scroll.Set("force_vertical_scrolling", true);
 
 		// Create entry list
-		EntryList = new MsbtEntryList(Editor)
+		EntryList = new EntryListSimple(Editor)
 		{
 			SizeFlagsHorizontal = SizeFlags.ExpandFill,
 			SizeFlagsVertical = SizeFlags.ExpandFill,

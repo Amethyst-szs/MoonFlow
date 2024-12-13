@@ -25,7 +25,7 @@ public partial class VBoxBasicInfo : InfoBoxBase
 	[Export]
 	private SpinBox CountCoinCollect;
 
-    public override void OpenWorld(WorldInfo world)
+	public override void OpenWorld(WorldInfo world)
 	{
 		base.OpenWorld(world);
 
@@ -48,10 +48,15 @@ public partial class VBoxBasicInfo : InfoBoxBase
 		EmitSignal(SignalName.ModifiedWorldInfo);
 	}
 
-	private static void OnOpenMSBTPressed()
+	private void OnOpenMSBTPressed()
 	{
-		MsbtAppHolder.OpenAppByName("SystemMessage.szs", "StageMap.msbt");
-		MsbtAppHolder.OpenAppByName("SystemMessage.szs", "StageName.msbt");
+		var s = Info.WorldName;
+		
+		var editor = MsbtAppHolder.OpenAppWithSearch("SystemMessage.szs", "StageMap.msbt", s);
+		editor.Editor.SetSelection("WorldName_" + s);
+
+		editor = MsbtAppHolder.OpenAppWithSearch("SystemMessage.szs", "StageName.msbt", s);
+		editor.Editor.SetSelection("WorldName_" + s);
 	}
 
 	private void OnSetShineTypeID(int id)

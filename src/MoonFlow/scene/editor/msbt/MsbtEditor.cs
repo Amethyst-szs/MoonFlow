@@ -37,7 +37,7 @@ public partial class MsbtEditor : PanelContainer
 		}
 	}
 
-	private MsbtEntryList EntryList = null;
+	private EntryListBase EntryList = null;
 
 	public VBoxContainer EntryContent { get; private set; } = null;
 	public MsbtEntryEditor EntryContentSelection { get; private set; } = null;
@@ -63,7 +63,7 @@ public partial class MsbtEditor : PanelContainer
 			throw new NullReferenceException(nameof(EntryList));
 
 		// Connect to entry list signals
-		EntryList.Connect(MsbtEntryList.SignalName.EntrySelected,
+		EntryList.Connect(EntryListBase.SignalName.EntrySelected,
 			Callable.From(new Action<string>(OnEntryListSelection)));
 
 		// Get pointers to additional children
@@ -107,11 +107,8 @@ public partial class MsbtEditor : PanelContainer
 			}
 		}
 
-		// Create entry list sorted alphabetically
-		var labelList = File.GetEntryLabels().ToArray();
-		Array.Sort(labelList, string.Compare);
-
-		foreach (var label in labelList) { EntryList.CreateEntryListButton(label); }
+		// Create entry list
+		EntryList.CreateContent(File);
 
 		// Create entry content
 		for (int i = 0; i < File.GetEntryCount(); i++) { CreateEntryContentEditor(i); }
@@ -121,7 +118,7 @@ public partial class MsbtEditor : PanelContainer
 		if (IsInstanceValid(firstItem))
 			selectionName ??= firstItem.Name;
 
-		EntryList.CallDeferred(MsbtEntryList.MethodName.OnEntrySelected, selectionName, true);
+		EntryList.CallDeferred(EntryListBase.MethodName.OnEntrySelected, selectionName, true);
 
 		EntryList.UpdateEntryCount();
 
@@ -374,8 +371,11 @@ public partial class MsbtEditor : PanelContainer
 
 	#region Utilities
 
+	public bool IsStageMessage() { return File.Name == "StageMessage.szs"; }
+
 	public void ForceResetModifiedFlag() { IsModified = false; }
 	public void UpdateEntrySearch(string str) { EntryList.UpdateSearch(str); }
+	public void SetSelection(string str) { EntryList.SetSelection(str); }
 
 	#endregion
 }

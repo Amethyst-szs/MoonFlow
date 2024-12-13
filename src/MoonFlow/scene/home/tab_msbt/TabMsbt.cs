@@ -84,7 +84,7 @@ public partial class TabMsbt : HSplitContainer
 				prevCategory = stage.CategoryType;
 				worldBox.AddChild(new HSeparator());
 			}
-			
+
 			CreateButton(arc, key, worldBox);
 			result.Add(key);
 		}
@@ -106,7 +106,7 @@ public partial class TabMsbt : HSplitContainer
 	{
 		if (files.Count == 0)
 			return;
-		
+
 		// Create new container
 		var worldBoxMargin = new MarginContainer();
 		var worldBox = new VBoxContainer();
@@ -138,7 +138,7 @@ public partial class TabMsbt : HSplitContainer
 		// These signals are automatically disconnected on free by DoublePressButton gdscript code
 		button.Connect("pressed", Callable.From(new Action(() => OnFilePressed(file, key))));
 		button.Connect("double_pressed",
-			Callable.From(new Action(() => MsbtAppHolder.OpenAppByName(file.Name, key))));
+			Callable.From(new Action(() => MsbtAppHolder.OpenApp(file.Name, key))));
 
 		box.AddChild(button);
 	}
