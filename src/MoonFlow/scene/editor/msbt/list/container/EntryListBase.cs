@@ -29,6 +29,10 @@ public abstract partial class EntryListBase : VBoxContainer
         // Connect to signals from parent
         Editor.Connect(MsbtEditor.SignalName.ContentModified,
             Callable.From(new Action<string>(OnContentModified)));
+        
+        // Connect parent to our signals
+		Connect(EntryListBase.SignalName.EntrySelected,
+			Callable.From(new Action<string>(Editor.OnEntryListSelection)));
     }
 
     public abstract void CreateContent(SarcMsbtFile file);

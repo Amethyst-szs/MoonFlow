@@ -14,16 +14,10 @@ public partial class EntryListStageMessage : EntryListBase
         var labelList = file.GetEntryLabels().ToArray();
         Array.Sort(labelList, string.Compare);
 
-        // Create additional containers if this is a stage message
-        bool isStageMessage = Editor.IsStageMessage();
-        if (isStageMessage)
-            CreateStageMessageContainers();
+        CreateStageMessageContainers();
 
         foreach (var key in labelList)
-        {
-            var container = GetContainer(key, out string label);
-            CreateEntryListButton(key, label, container);
-        }
+            CreateEntryListButton(key);
     }
 
     public override Button CreateEntryListButton(string key, bool isSort = false)
@@ -43,7 +37,7 @@ public partial class EntryListStageMessage : EntryListBase
             TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis,
 
             ExpandIcon = true,
-            IconAlignment = HorizontalAlignment.Right
+            IconAlignment = HorizontalAlignment.Right,
         };
 
         button.Connect(Button.SignalName.Pressed, Callable.From(() => OnEntrySelected(key)));

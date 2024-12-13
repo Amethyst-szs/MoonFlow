@@ -69,10 +69,6 @@ public partial class MsbtEditor : PanelContainer
 		if (!IsInstanceValid(EntryList))
 			throw new NullReferenceException(nameof(EntryList));
 
-		// Connect to entry list signals
-		EntryList.Connect(EntryListBase.SignalName.EntrySelected,
-			Callable.From(new Action<string>(OnEntryListSelection)));
-
 		// Get pointers to additional children
 		EntryContent = GetNode<VBoxContainer>("%Content");
 
@@ -115,6 +111,11 @@ public partial class MsbtEditor : PanelContainer
 		}
 
 		// Create entry list
+		if (EntryList is EntryListSimple && IsStageMessage())
+			EntryListHolder.SetupList<EntryListStageMessage>();
+		else if (EntryList is EntryListStageMessage && !IsStageMessage())
+			EntryListHolder.SetupList<EntryListSimple>();
+		
 		EntryList.CreateContent(File);
 
 		// Create entry content
@@ -296,7 +297,7 @@ public partial class MsbtEditor : PanelContainer
 
 	#region Signals
 
-	private void OnEntryListSelection(string label)
+	public void OnEntryListSelection(string label)
 	{
 		var content = EntryContent.GetNode<MsbtEntryEditor>(label);
 		EntryContentSelection = content;
@@ -378,7 +379,7 @@ public partial class MsbtEditor : PanelContainer
 
 	#region Utilities
 
-	public bool IsStageMessage() { return File.Name == "StageMessage.szs"; }
+	public bool IsStageMessage() { return File.Sarc.Name == "StageMessage.szs"; }
 
 	public void ForceResetModifiedFlag() { IsModified = false; }
 	public void UpdateEntrySearch(string str) { EntryList.UpdateSearch(str); }
