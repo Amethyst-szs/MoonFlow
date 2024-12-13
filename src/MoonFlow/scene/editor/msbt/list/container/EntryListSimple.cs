@@ -6,7 +6,7 @@ using Nindot.LMS.Msbt;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-public partial class EntryListSimple(MsbtEditor parent) : EntryListBase(parent)
+public partial class EntryListSimple : EntryListBase
 {
     public override void CreateContent(SarcMsbtFile file)
     {

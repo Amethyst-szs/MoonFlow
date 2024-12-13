@@ -6,7 +6,7 @@ using Nindot.LMS.Msbt;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-public partial class EntryListStageMessage(MsbtEditor parent) : EntryListBase(parent)
+public partial class EntryListStageMessage : EntryListBase
 {
     public override void CreateContent(SarcMsbtFile file)
     {
@@ -15,7 +15,7 @@ public partial class EntryListStageMessage(MsbtEditor parent) : EntryListBase(pa
         Array.Sort(labelList, string.Compare);
 
         // Create additional containers if this is a stage message
-        bool isStageMessage = Parent.IsStageMessage();
+        bool isStageMessage = Editor.IsStageMessage();
         if (isStageMessage)
             CreateStageMessageContainers();
 

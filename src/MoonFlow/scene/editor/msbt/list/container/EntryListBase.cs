@@ -6,9 +6,9 @@ using Nindot.LMS.Msbt;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-public abstract partial class EntryListBase(MsbtEditor parent) : VBoxContainer
+public abstract partial class EntryListBase : VBoxContainer
 {
-    protected MsbtEditor Parent = parent;
+    public MsbtEditor Editor = null;
 
     public Button EntryListSelection { get; private set; } = null;
     public Label EntryCount { get; private set; } = null;
@@ -20,14 +20,14 @@ public abstract partial class EntryListBase(MsbtEditor parent) : VBoxContainer
 
     public override void _Ready()
     {
-        if (!IsInstanceValid(Parent))
-            throw new NullReferenceException(nameof(Parent));
+        if (!IsInstanceValid(Editor))
+            throw new NullReferenceException(nameof(Editor));
 
         // Get references
         EntryCount = GetNode<PanelContainer>("../../Controls").Get("label_entry_count").As<Label>();
 
         // Connect to signals from parent
-        Parent.Connect(MsbtEditor.SignalName.ContentModified,
+        Editor.Connect(MsbtEditor.SignalName.ContentModified,
             Callable.From(new Action<string>(OnContentModified)));
     }
 
@@ -53,8 +53,8 @@ public abstract partial class EntryListBase(MsbtEditor parent) : VBoxContainer
         if (IsInstanceValid(EntryListSelection))
             EntryListSelection.ButtonPressed = false;
 
-        if (IsInstanceValid(Parent.EntryContentSelection))
-            Parent.EntryContentSelection.Hide();
+        if (IsInstanceValid(Editor.EntryContentSelection))
+            Editor.EntryContentSelection.Hide();
 
         // Ensure string is not empty
         if (label == string.Empty)
@@ -81,79 +81,79 @@ public abstract partial class EntryListBase(MsbtEditor parent) : VBoxContainer
 
     private string EntrySearchString = "";
 
-	public void UpdateEntryCount()
-	{
-		OnSearchEntryListUpdated(EntrySearchString);
-	}
+    public void UpdateEntryCount()
+    {
+        OnSearchEntryListUpdated(EntrySearchString);
+    }
 
-	public void UpdateSearch(string searchStr)
-	{
-		EntrySearchString = searchStr;
-		OnSearchEntryListUpdated(EntrySearchString);
-	}
+    public void UpdateSearch(string searchStr)
+    {
+        EntrySearchString = searchStr;
+        OnSearchEntryListUpdated(EntrySearchString);
+    }
 
-	protected void OnSearchEntryListUpdated(string match)
-	{
-		// Update entry count in other components
-		int entryCount = Parent.File.GetEntryCount();
+    protected void OnSearchEntryListUpdated(string match)
+    {
+        // Update entry count in other components
+        int entryCount = Editor.File.GetEntryCount();
 
-		// Update visiblity of selectors
-		if (match == string.Empty)
-		{
-			foreach (var child in GetChildren())
-				((Control)child).Show();
+        // Update visiblity of selectors
+        if (match == string.Empty)
+        {
+            foreach (var child in GetChildren())
+                ((Control)child).Show();
 
-			UpdateEntryCountLabel(entryCount, entryCount);
-			return;
-		}
+            UpdateEntryCountLabel(entryCount, entryCount);
+            return;
+        }
 
-		int matching = 0;
-		Node firstMatch = null;
-		bool isSearchForNewSelection = true;
+        int matching = 0;
+        Node firstMatch = null;
+        bool isSearchForNewSelection = true;
 
-		foreach (var child in GetChildren())
-		{
-			if (child.GetType() != typeof(Button)) continue;
+        foreach (var child in GetChildren())
+        {
+            if (child.GetType() != typeof(Button)) continue;
 
-			var isMatch = child.Name.ToString().Contains(match, StringComparison.OrdinalIgnoreCase);
-			((Button)child).Visible = isMatch;
-			matching += isMatch ? 1 : 0;
+            var isMatch = child.Name.ToString().Contains(match, StringComparison.OrdinalIgnoreCase);
+            ((Button)child).Visible = isMatch;
+            matching += isMatch ? 1 : 0;
 
-			if (firstMatch == null && isMatch)
-				firstMatch = child;
+            if (firstMatch == null && isMatch)
+                firstMatch = child;
 
-			if (!isMatch && (EntryListSelection == child || isSearchForNewSelection))
-			{
-				if (GetChildCount() == 0)
-				{
-					OnEntrySelected("", false);
-					continue;
-				}
+            if (!isMatch && (EntryListSelection == child || isSearchForNewSelection))
+            {
+                if (GetChildCount() == 0)
+                {
+                    OnEntrySelected("", false);
+                    continue;
+                }
 
-				if (isSearchForNewSelection && firstMatch != null)
-				{
-					isSearchForNewSelection = false;
-					OnEntrySelected(firstMatch.Name, false);
-					continue;
-				}
-			}
-		}
+                if (isSearchForNewSelection && firstMatch != null)
+                {
+                    isSearchForNewSelection = false;
+                    OnEntrySelected(firstMatch.Name, false);
+                    continue;
+                }
+            }
+        }
 
-		UpdateEntryCountLabel(entryCount, matching);
-	}
+        UpdateEntryCountLabel(entryCount, matching);
+    }
 
-	protected void UpdateEntryCountLabel(int total) { UpdateEntryCountLabel(total, total); }
+    protected void UpdateEntryCountLabel(int total) { UpdateEntryCountLabel(total, total); }
 
-	protected void UpdateEntryCountLabel(int total, int matching)
-	{
-		if (total == matching)
-		{
-			EntryCount.Text = total.ToString() + " Entries";
-			return;
-		}
+    protected void UpdateEntryCountLabel(int total, int matching)
+    {
+        if (total == matching)
+        {
+            EntryCount.Text = total.ToString() + " Entries";
+            return;
+        }
 
-		EntryCount.Text = string.Format("{0}/{1} Entries", matching, total);
-	}
+        EntryCount.Text = string.Format("{0}/{1} Entries", matching, total);
+    }
 
     #endregion
 

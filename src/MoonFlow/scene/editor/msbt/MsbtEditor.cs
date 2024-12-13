@@ -37,7 +37,11 @@ public partial class MsbtEditor : PanelContainer
 		}
 	}
 
-	private EntryListBase EntryList = null;
+	private EntryListHolder EntryListHolder = null;
+	private EntryListBase EntryList
+	{
+		get { return EntryListHolder?.EntryList; }
+	}
 
 	public VBoxContainer EntryContent { get; private set; } = null;
 	public MsbtEntryEditor EntryContentSelection { get; private set; } = null;
@@ -57,8 +61,11 @@ public partial class MsbtEditor : PanelContainer
 
 	public override void _Ready()
 	{
+		// Setup entry list holder
+		EntryListHolder = GetNode<EntryListHolder>("%EntryListHolder");
+		EntryListHolder.SetupList<EntryListSimple>();
+
 		// Get entry list from holder
-		EntryList = GetNode<EntryListHolder>("%EntryListHolder").EntryList;
 		if (!IsInstanceValid(EntryList))
 			throw new NullReferenceException(nameof(EntryList));
 
@@ -190,7 +197,7 @@ public partial class MsbtEditor : PanelContainer
 		var parent = GetParent() as MsbtAppHolder;
 		if (!parent.AppIsFocused())
 			return;
-		
+
 		GD.Print("\n - Saving ", File.Name);
 
 		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbtArchives);

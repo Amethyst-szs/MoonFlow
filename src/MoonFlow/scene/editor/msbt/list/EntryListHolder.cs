@@ -18,10 +18,20 @@ public partial class EntryListHolder : VBoxContainer
 	[Signal]
 	public delegate void OpenHelpPageEventHandler();
 
-	public override void _Ready()
+	public void SetupList<TList>() where TList : EntryListBase, new()
 	{
 		// Get access to editor
 		Editor = GetNode<MsbtEditor>("%MsbtEditor");
+
+		// Destroy scrollbox children
+		foreach (var child in GetChildren())
+		{
+			if (child is not ScrollContainer)
+				continue;
+			
+			RemoveChild(child);
+			child.QueueFree();
+		}
 
 		// Create entry list scrollbox
 		var scroll = new ScrollContainer()
@@ -40,17 +50,18 @@ public partial class EntryListHolder : VBoxContainer
 		scroll.Set("allow_horizontal_scroll", false);
 		scroll.Set("force_vertical_scrolling", true);
 
-		// Create entry list
-		EntryList = new EntryListSimple(Editor)
-		{
-			SizeFlagsHorizontal = SizeFlags.ExpandFill,
-			SizeFlagsVertical = SizeFlags.ExpandFill,
-		};
+        // Create entry list
+        EntryList = new TList()
+        {
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
+            SizeFlagsVertical = SizeFlags.ExpandFill,
+            Editor = Editor
+        };
 
-		// Attach to tree
-		scroll.AddChild(EntryList);
+        // Attach to tree
 		AddChild(scroll);
 		MoveChild(scroll, 0);
+        scroll.AddChild(EntryList);
 	}
 
 	private void UpdateSearch(string str)
