@@ -192,6 +192,10 @@ public partial class MsbtEditor : PanelContainer
 		CurrentLanguage = defaultLang;
 		LanguagePicker.SetSelection(CurrentLanguage);
 
+		// If any language is missing entry keys, add them
+		foreach (var source in FileList.Values)
+			FixMissingEntryKeys(source);
+
 		InitEditor();
 	}
 
@@ -387,6 +391,20 @@ public partial class MsbtEditor : PanelContainer
 	public void ForceResetModifiedFlag() { IsModified = false; }
 	public void UpdateEntrySearch(string str) { EntryList.UpdateSearch(str); }
 	public void SetSelection(string str) { EntryList.SetSelection(str, false); }
+
+	private void FixMissingEntryKeys(SarcMsbtFile source)
+	{
+		foreach (var label in source.GetEntryLabels())
+		{
+			foreach (var target in FileList.Values)
+			{
+				if (target.IsContainKey(label))
+					continue;
+				
+				target.AddEntry(label, source.GetEntry(label).CloneDeep());
+			}
+		}
+	}
 
 	#endregion
 }
