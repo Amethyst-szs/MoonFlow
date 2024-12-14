@@ -10,3 +10,7 @@ var table: Dictionary = {
 	"Race": tr("RACE", context),
 	"Quest": tr("QUEST", context),
 }
+
+const ScenarioName_tex: Texture2D = preload("res://asset/nindot/lms/icon/PictureFont_7A.png")
+const Checkpoint_tex: Texture2D = preload("res://asset/nindot/lms/icon/PictureFont_42.png")
+const LocationNameArea_tex: Texture2D = preload("res://asset/nindot/lms/icon/PictureFont_ForWheel.png")

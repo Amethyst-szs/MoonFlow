@@ -115,18 +115,21 @@ public partial class MsbtEditor : PanelContainer
 			EntryListHolder.SetupList<EntryListStageMessage>();
 		else if (EntryList is EntryListStageMessage && !IsStageMessage())
 			EntryListHolder.SetupList<EntryListSimple>();
-		
-		EntryList.CreateContent(File);
+
+		EntryList.CreateContent(File, out string[] labels);
 
 		// Create entry content
 		for (int i = 0; i < File.GetEntryCount(); i++) { CreateEntryContentEditor(i); }
 
-		// Select either the first entry or selectionName
-		var firstItem = EntryList.GetChild(0);
-		if (IsInstanceValid(firstItem))
-			selectionName ??= firstItem.Name;
+		// Select either the first label or selectionName
+		if (labels.Length > 0)
+		{
+			var firstItem = EntryList.FindChild(labels[0], true, false);
+			if (IsInstanceValid(firstItem))
+				selectionName ??= firstItem.Name;
 
-		EntryList.CallDeferred(EntryListBase.MethodName.OnEntrySelected, selectionName, true);
+			EntryList.SetSelection(selectionName);
+		}
 
 		EntryList.UpdateEntryCount();
 

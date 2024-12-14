@@ -8,13 +8,13 @@ namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class EntryListSimple : EntryListBase
 {
-    public override void CreateContent(SarcMsbtFile file)
+    public override void CreateContent(SarcMsbtFile file, out string[] labels)
     {
         // Sort list of labels in alphabetical order
-        var labelList = file.GetEntryLabels().ToArray();
-        Array.Sort(labelList, string.Compare);
+        labels = file.GetEntryLabels().ToArray();
+        Array.Sort(labels, string.Compare);
 
-        foreach (var key in labelList)
+        foreach (var key in labels)
             CreateEntryListButton(key, key, this, false);
     }
 

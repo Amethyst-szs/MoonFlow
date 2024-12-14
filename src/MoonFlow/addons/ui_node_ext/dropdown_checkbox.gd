@@ -7,7 +7,11 @@ var _dropdown: Control = null
 	get: 
 		return _dropdown
 	set(value):
+		if _dropdown != null:
+			_dropdown.remove_meta("dropdown")
+		
 		_dropdown = value
+		value.set_meta("dropdown", self)
 		_on_toggled(button_pressed)
 
 func _ready() -> void:

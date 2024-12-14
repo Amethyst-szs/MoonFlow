@@ -10,23 +10,25 @@ namespace MoonFlow.Scene.EditorMsbt;
 public partial class EntryListStageMessage : EntryListBase
 {
     // Really ugly but works well, instantiates a GDScript file as a RefCounted and gets table as dict
-    private readonly static Dictionary<string, string> CategoryTable = GD.Load<GDScript>(
-        "res://scene/editor/msbt/list/container/stage_message_category_table.gd"
-    ).New().As<RefCounted>().Get("table").AsGodotDictionary<string, string>();
+    private readonly static RefCounted CategoryTableScript =
+        GD.Load<GDScript>("res://scene/editor/msbt/list/container/stage_message_category_table.gd")
+        .New().As<RefCounted>();
+    private readonly static Dictionary<string, string> CategoryTable =
+        CategoryTableScript.Get("table").AsGodotDictionary<string, string>();
 
-    private readonly static GDScript DropdownButton = GD.Load<GDScript>(
-        "res://addons/ui_node_ext/dropdown_checkbox.gd"
-    );
+    // Load DropdownButton node class
+    private readonly static GDScript DropdownButton =
+        GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
 
-    public override void CreateContent(SarcMsbtFile file)
+    public override void CreateContent(SarcMsbtFile file, out string[] labels)
     {
         // Sort list of labels in alphabetical order
-        var labelList = file.GetEntryLabels().ToArray();
-        System.Array.Sort(labelList, string.Compare);
+        labels = file.GetEntryLabels().ToArray();
+        System.Array.Sort(labels, string.Compare);
 
         CreateStageMessageContainers();
 
-        foreach (var key in labelList)
+        foreach (var key in labels)
             CreateEntryListButton(key);
     }
 
@@ -83,14 +85,21 @@ public partial class EntryListStageMessage : EntryListBase
         foreach (var cat in CategoryTable)
         {
             // Create margin and vbox
-            var margin = new MarginContainer();
+            var margin = new MarginContainer() { Name = cat.Key + "_Margin" };
             var box = new VBoxContainer { Name = cat.Key };
+
+            // Get category texture if it exists
+            var tex = CategoryTableScript.Get(cat.Key + "_tex").As<Texture2D>();
 
             // Create dropdown button
             var dropdown = DropdownButton.New().As<Button>();
             dropdown.Name = cat.Key + "_Dropdown";
             dropdown.Text = cat.Value;
             dropdown.Alignment = HorizontalAlignment.Center;
+
+            dropdown.Icon = tex;
+            dropdown.IconAlignment = HorizontalAlignment.Right;
+            dropdown.ExpandIcon = true;
 
             dropdown.Set("dropdown", margin);
 

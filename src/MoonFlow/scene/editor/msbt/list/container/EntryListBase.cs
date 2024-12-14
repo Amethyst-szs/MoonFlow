@@ -29,13 +29,13 @@ public abstract partial class EntryListBase : VBoxContainer
         // Connect to signals from parent
         Editor.Connect(MsbtEditor.SignalName.ContentModified,
             Callable.From(new Action<string>(OnContentModified)));
-        
+
         // Connect parent to our signals
-		Connect(EntryListBase.SignalName.EntrySelected,
-			Callable.From(new Action<string>(Editor.OnEntryListSelection)));
+        Connect(EntryListBase.SignalName.EntrySelected,
+            Callable.From(new Action<string>(Editor.OnEntryListSelection)));
     }
 
-    public abstract void CreateContent(SarcMsbtFile file);
+    public abstract void CreateContent(SarcMsbtFile file, out string[] labels);
     public abstract Button CreateEntryListButton(string key, bool isSort = false);
     public abstract Button CreateEntryListButton(string key, string label, Control container, bool isSort = false);
 
@@ -75,6 +75,24 @@ public abstract partial class EntryListBase : VBoxContainer
         if (isGrabFocus)
             button.GrabFocus();
 
+        // If this button is part of a DropdownButton container, search upward 
+        // in search of a margin container to enable visibility on
+        var scan = button.GetParent();
+        while (scan.GetType() != typeof(EntryListHolder) && scan != null)
+        {
+            if (scan.GetType() == typeof(MarginContainer))
+            {
+                (scan as MarginContainer).Show();
+
+                if (scan.HasMeta("dropdown"))
+                    scan.GetMeta("dropdown").As<Button>().ButtonPressed = true;
+
+                break;
+            }
+
+            scan = scan.GetParent();
+        }
+
         // Emit signal for main editor to handle editor content
         EmitSignal(SignalName.EntrySelected, label);
     }
@@ -98,52 +116,101 @@ public abstract partial class EntryListBase : VBoxContainer
 
     protected void OnSearchEntryListUpdated(string match)
     {
+        // Update string
+        EntrySearchString = match;
+
         // Update entry count in other components
         int entryCount = Editor.File.GetEntryCount();
 
-        // Update visiblity of selectors
+        // If search is cleared, show all
         if (match == string.Empty)
         {
-            foreach (var child in GetChildren())
-                ((Control)child).Show();
+            ShowAllEntries(this);
+            UpdateDropdownMenuContainers();
 
             UpdateEntryCountLabel(entryCount, entryCount);
             return;
         }
 
-        int matching = 0;
-        Node firstMatch = null;
-        bool isSearchForNewSelection = true;
+        // Set item visiblity
+        int matchCount = 0;
+        UpdateEntryVisiblity(this, ref matchCount);
+        UpdateDropdownMenuContainers();
 
-        foreach (var child in GetChildren())
+        UpdateEntryCountLabel(entryCount, matchCount);
+
+        // If the current selection is no longer visible, update selection to first visible option
+        if (!EntryListSelection.Visible)
+            UpdateSelectionToFirstVisibleItem(this);
+        else
+            SetSelection(EntryListSelection.Name, false);
+    }
+
+    private static void ShowAllEntries(Node node)
+    {
+        if (node.GetType() == typeof(Button))
         {
-            if (child.GetType() != typeof(Button)) continue;
-
-            var isMatch = child.Name.ToString().Contains(match, StringComparison.OrdinalIgnoreCase);
-            ((Button)child).Visible = isMatch;
-            matching += isMatch ? 1 : 0;
-
-            if (firstMatch == null && isMatch)
-                firstMatch = child;
-
-            if (!isMatch && (EntryListSelection == child || isSearchForNewSelection))
-            {
-                if (GetChildCount() == 0)
-                {
-                    OnEntrySelected("", false);
-                    continue;
-                }
-
-                if (isSearchForNewSelection && firstMatch != null)
-                {
-                    isSearchForNewSelection = false;
-                    OnEntrySelected(firstMatch.Name, false);
-                    continue;
-                }
-            }
+            (node as Button).Show();
+            return;
         }
 
-        UpdateEntryCountLabel(entryCount, matching);
+        if (node.GetChildCount() == 0)
+            return;
+
+        foreach (var child in node.GetChildren())
+            ShowAllEntries(child);
+    }
+
+    private void UpdateEntryVisiblity(Node node, ref int matchCount)
+    {
+        var name = node.Name.ToString();
+
+        if (node.GetType() == typeof(Button) && !name.EndsWith("_Dropdown"))
+        {
+            var isMatch = name.Contains(EntrySearchString, StringComparison.OrdinalIgnoreCase);
+            (node as Button).Visible = isMatch;
+            matchCount += isMatch ? 1 : 0;
+        }
+
+        if (node.GetChildCount() == 0)
+            return;
+
+        foreach (var child in node.GetChildren())
+            UpdateEntryVisiblity(child, ref matchCount);
+    }
+
+    private void UpdateSelectionToFirstVisibleItem(Node node)
+    {
+        if (node.GetType() == typeof(Button) && (node as Button).Visible)
+        {
+            SetSelection(node.Name, false);
+            return;
+        }
+
+        if (node.GetChildCount() == 0)
+            return;
+
+        foreach (var child in node.GetChildren())
+            UpdateSelectionToFirstVisibleItem(child);
+    }
+
+    private void UpdateDropdownMenuContainers()
+    {
+        foreach (var child in GetChildren())
+        {
+            if (child.GetType() != typeof(MarginContainer))
+                continue;
+
+            var margin = child as MarginContainer;
+            margin.Hide();
+
+            if (!margin.HasMeta("dropdown"))
+                continue;
+            
+            var dropdown = margin.GetMeta("dropdown").As<Button>();
+            dropdown.ButtonPressed = false;
+            dropdown.Visible = IsDropdownMenuVisibleChildren(margin);
+        }
     }
 
     protected void UpdateEntryCountLabel(int total) { UpdateEntryCountLabel(total, total); }
@@ -159,6 +226,20 @@ public abstract partial class EntryListBase : VBoxContainer
         EntryCount.Text = string.Format("{0}/{1} Entries", matching, total);
     }
 
+    private static bool IsDropdownMenuEmpty(MarginContainer root)
+    {
+        return root.GetChildCount() == 1 && root.GetChild(0).GetChildCount() == 0;
+    }
+
+    private static bool IsDropdownMenuVisibleChildren(MarginContainer root)
+    {
+        if (IsDropdownMenuEmpty(root))
+            return false;
+
+        var list = root.GetChild(0).GetChildren();
+        return list.Any((s) => (s as Control).Visible);
+    }
+
     #endregion
 
     #region Utility
@@ -171,10 +252,10 @@ public abstract partial class EntryListBase : VBoxContainer
             entryButton.Icon = ModifiedTexture;
     }
 
-    public async void SetSelection(string str)
+    public async void SetSelection(string str, bool isGrabFocus = true)
     {
         await ToSignal(Engine.GetMainLoop(), "process_frame");
-        OnEntrySelected(str);
+        OnEntrySelected(str, isGrabFocus);
     }
 
     #endregion
