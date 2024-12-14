@@ -36,8 +36,8 @@ public abstract partial class EntryListBase : VBoxContainer
     }
 
     public abstract void CreateContent(SarcMsbtFile file, out string[] labels);
-    public abstract Button CreateEntryListButton(string key, bool isSort = false);
-    public abstract Button CreateEntryListButton(string key, string label, Control container, bool isSort = false);
+    public abstract void CreateEntryListButton(string key, bool isSort = false);
+    public abstract void CreateEntryListButton(string key, string label, Control container, bool isSort = false);
 
     // ====================================================== //
     // ==================== Signal Events =================== //

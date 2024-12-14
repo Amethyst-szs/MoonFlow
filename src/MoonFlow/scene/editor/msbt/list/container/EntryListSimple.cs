@@ -11,19 +11,19 @@ public partial class EntryListSimple : EntryListBase
     public override void CreateContent(SarcMsbtFile file, out string[] labels)
     {
         // Sort list of labels in alphabetical order
-        labels = file.GetEntryLabels().ToArray();
+        labels = [.. file.GetEntryLabels()];
         Array.Sort(labels, string.Compare);
 
         foreach (var key in labels)
             CreateEntryListButton(key, key, this, false);
     }
 
-    public override Button CreateEntryListButton(string key, bool isSort = false)
+    public override void CreateEntryListButton(string key, bool isSort = false)
     {
-        return CreateEntryListButton(key, key, this, isSort);
+        CreateEntryListButton(key, key, this, isSort);
     }
 
-    public override Button CreateEntryListButton(string key, string label, Control container, bool isSort = false)
+    public override void CreateEntryListButton(string key, string label, Control container, bool isSort = false)
     {
         // Instantiate button
         var button = new Button
@@ -45,7 +45,7 @@ public partial class EntryListSimple : EntryListBase
         container.AddChild(button);
 
         if (!isSort)
-            return button;
+            return;
 
         int moveIndex = 0;
         for (int i = 0; i < GetChildCount(); i++)
@@ -61,6 +61,5 @@ public partial class EntryListSimple : EntryListBase
         }
 
         MoveChild(button, moveIndex);
-        return button;
     }
 }

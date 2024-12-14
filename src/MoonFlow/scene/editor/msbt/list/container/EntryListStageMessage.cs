@@ -22,8 +22,18 @@ public partial class EntryListStageMessage : EntryListBase
 
     public override void CreateContent(SarcMsbtFile file, out string[] labels)
     {
+        // If the node already contains content, remove and free all
+        if (GetChildCount() > 0)
+        {
+            foreach (var child in GetChildren())
+            {
+                RemoveChild(child);
+                child.QueueFree();
+            }
+        }
+
         // Sort list of labels in alphabetical order
-        labels = file.GetEntryLabels().ToArray();
+        labels = [.. file.GetEntryLabels()];
         System.Array.Sort(labels, string.Compare);
 
         CreateStageMessageContainers();
@@ -32,14 +42,22 @@ public partial class EntryListStageMessage : EntryListBase
             CreateEntryListButton(key);
     }
 
-    public override Button CreateEntryListButton(string key, bool isSort = false)
+    public override void CreateEntryListButton(string key, bool isSort = false)
     {
         var container = GetContainer(key, out string label);
-        return CreateEntryListButton(key, label, container, isSort);
+        CreateEntryListButton(key, label, container, isSort);
     }
 
-    public override Button CreateEntryListButton(string key, string label, Control container, bool isSort = false)
+    public override void CreateEntryListButton(string key, string label, Control container, bool isSort = false)
     {
+        // If sorting is required, reload entire EntryList
+        if (isSort)
+        {
+            CreateContent(Editor.File, out _);
+            SetSelection(key, false);
+            return;
+        }
+
         // Instantiate button
         var button = new Button
         {
@@ -58,25 +76,7 @@ public partial class EntryListStageMessage : EntryListBase
 
         // Add child to container
         container.AddChild(button);
-
-        if (!isSort)
-            return button;
-
-        int moveIndex = 0;
-        for (int i = 0; i < GetChildCount(); i++)
-        {
-            int result = string.Compare(key, GetChild(i).Name);
-            if (result > 0)
-            {
-                moveIndex += 1;
-                continue;
-            }
-
-            break;
-        }
-
-        MoveChild(button, moveIndex);
-        return button;
+        return;
     }
 
     public void CreateStageMessageContainers()
