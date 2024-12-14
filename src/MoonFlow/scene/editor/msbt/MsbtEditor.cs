@@ -128,7 +128,7 @@ public partial class MsbtEditor : PanelContainer
 			if (IsInstanceValid(firstItem))
 				selectionName ??= firstItem.Name;
 
-			EntryList.SetSelection(selectionName);
+			EntryList.SetSelection(selectionName, false);
 		}
 
 		EntryList.UpdateEntryCount();
@@ -386,7 +386,7 @@ public partial class MsbtEditor : PanelContainer
 
 	public void ForceResetModifiedFlag() { IsModified = false; }
 	public void UpdateEntrySearch(string str) { EntryList.UpdateSearch(str); }
-	public void SetSelection(string str) { EntryList.SetSelection(str); }
+	public void SetSelection(string str) { EntryList.SetSelection(str, false); }
 
 	#endregion
 }

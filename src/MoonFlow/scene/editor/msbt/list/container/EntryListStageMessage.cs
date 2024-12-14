@@ -34,7 +34,20 @@ public partial class EntryListStageMessage : EntryListBase
 
         // Sort list of labels in alphabetical order
         labels = [.. file.GetEntryLabels()];
-        System.Array.Sort(labels, string.Compare);
+        System.Array.Sort(labels, (a, b) =>
+        {
+            int aPrefixIdx = a.IndexOf('_');
+            int bPrefixIdx = b.IndexOf('_');
+
+            if (aPrefixIdx != -1 && bPrefixIdx != -1 && a[..aPrefixIdx] == b[..bPrefixIdx])
+            {
+                int dif = GetObjId(a) - GetObjId(b);
+                if (dif != 0)
+                    return dif;
+            }
+            
+            return string.Compare(a, b);
+        });
 
         CreateStageMessageContainers();
 
@@ -120,14 +133,21 @@ public partial class EntryListStageMessage : EntryListBase
 
     private Control GetContainer(string key, out string label)
     {
+        label = key;
+
         int idx = System.Array.FindIndex([.. CategoryTable.Keys], key.StartsWith);
         if (idx != -1)
-        {
-            label = key[(key.Find("_") + 1)..];
             return FindChild(CategoryTable.Keys.ElementAt(idx), true, false) as Control;
-        }
 
-        label = key;
         return this;
+    }
+
+    private static int GetObjId(string input)
+    {
+        if (!char.IsDigit(input.Last()))
+            return -1;
+        
+        // Black magic code from Stack Overflow :D
+        return int.Parse(new string(input.Reverse().TakeWhile(char.IsDigit).Reverse().ToArray()));
     }
 }
