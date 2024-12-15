@@ -10,6 +10,7 @@ public partial class ActionbarDebug : PopupMenu
 	private enum MenuIds : int
 	{
 		OPEN_MSTXT_VIEWER = 0,
+		OPEN_MSBP_TGG_VIEWER = 1,
 	}
 
 	public override void _Ready()
@@ -38,8 +39,12 @@ public partial class ActionbarDebug : PopupMenu
 		switch (id)
 		{
 			case MenuIds.OPEN_MSTXT_VIEWER:
-				var app = SceneCreator<MstxtViewerApp>.Create();
-				ProjectManager.SceneRoot.NodeApps.AddChild(app);
+				var mstxt = SceneCreator<MstxtViewerApp>.Create();
+				ProjectManager.SceneRoot.NodeApps.AddChild(mstxt);
+				break;
+			case MenuIds.OPEN_MSBP_TGG_VIEWER:
+				var msbpTgg = SceneCreator<MsbpTggViewerApp>.Create();
+				ProjectManager.SceneRoot.NodeApps.AddChild(msbpTgg);
 				break;
 			default:
 				GD.PushWarning("Unknown MenuId! " + id);
