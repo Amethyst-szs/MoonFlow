@@ -44,9 +44,9 @@ var ver: String = preload(\"res://version/data.gd\").VERSION
 func _ready() -> void:
 	var n: String = ProjectSettings.get_setting(\"application/config/name\", \"MoonFlow\")
 	
-	text += \"%s (%s)\\n\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+	text += \"%s\\n\" % ver
 	text += \"%s (%s)\\n\" % [n, DisplayServer.get_name()]
-	text += ver
+	text += \"%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
 "
 
 [node name="FrontDoor" type="Control"]

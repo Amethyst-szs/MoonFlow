@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=10 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tab_msbt/tab_msbt.tscn" id="4_o0ymp"]
 [ext_resource type="Script" path="res://scene/home/actionbar/ActionbarProject.cs" id="5_pebn0"]
 [ext_resource type="PackedScene" uid="uid://bwicpcn2le56s" path="res://scene/editor/msbt/msbt_editor.tscn" id="6_bc8ek"]
+[ext_resource type="Script" path="res://scene/home/actionbar/ActionbarDebug.cs" id="6_lug21"]
 [ext_resource type="PackedScene" uid="uid://cei1tg8ys1x2u" path="res://scene/home/tab_world/tab_world.tscn" id="6_ps61c"]
 
 [node name="Home" type="Control"]
@@ -44,6 +45,13 @@ item_0/text = "HOME_ACTIONBAR_PROJECT_RELOAD"
 item_1/text = "HOME_ACTIONBAR_PROJECT_CLOSE"
 item_1/id = 1
 script = ExtResource("5_pebn0")
+
+[node name="Debug" type="PopupMenu" parent="Content/VBox/Actionbar"]
+auto_translate_mode = 1
+size = Vector2i(335, 100)
+item_count = 1
+item_0/text = "HOME_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+script = ExtResource("6_lug21")
 
 [node name="Tab" type="TabContainer" parent="Content/VBox"]
 layout_mode = 2

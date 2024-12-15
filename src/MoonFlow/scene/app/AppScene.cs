@@ -62,7 +62,7 @@ public partial class AppScene : Control
 		set
 		{
 			_isModified = value;
-			EmitSignal(SignalName.ModifyStateUpdate, _isModified);
+			CallDeferred(MethodName.EmitSignal, SignalName.ModifyStateUpdate, _isModified);
 		}
 	}
 

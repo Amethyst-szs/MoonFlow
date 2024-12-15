@@ -140,7 +140,7 @@ public abstract partial class EntryListBase : VBoxContainer
         UpdateEntryCountLabel(entryCount, matchCount);
 
         // If the current selection is no longer visible, update selection to first visible option
-        if (!EntryListSelection.Visible)
+        if (EntryListSelection == null || !EntryListSelection.Visible)
             UpdateSelectionToFirstVisibleItem(this);
         else
             SetSelection(EntryListSelection.Name, false);
@@ -253,6 +253,15 @@ public abstract partial class EntryListBase : VBoxContainer
 
         if (entryButton.Icon != ModifiedTexture)
             entryButton.Icon = ModifiedTexture;
+    }
+
+    public static void ClearAllModifiedIcons(Node node)
+    {
+        if (node.GetType() == typeof(Button) && !node.Name.ToString().EndsWith("_Dropdown"))
+            (node as Button).Icon = null;
+        
+        foreach (var child in node.GetChildren())
+            ClearAllModifiedIcons(child);
     }
 
     public async void SetSelection(string str, bool isGrabFocus = true)

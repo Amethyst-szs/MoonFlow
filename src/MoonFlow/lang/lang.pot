@@ -229,6 +229,10 @@ msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
 msgstr ""
 
 #: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_APP"
+msgstr ""
+
+#: scene/home/home.tscn
 msgid "HOME_TAB_TEXT"
 msgstr ""
 
@@ -1353,6 +1357,30 @@ msgstr ""
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_STAGE"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_LINE_EDIT_ADD_NEW_STAGE"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE"
 msgstr ""
 
 #: scene/editor/world/page/vbox_basic_info.tscn

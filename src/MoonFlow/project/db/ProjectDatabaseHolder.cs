@@ -209,7 +209,7 @@ public class ProjectDatabaseHolder
         return list;
     }
 
-    private static void SortWorldStagesByType(List<StageInfo> list)
+    public static void SortWorldStagesByType(List<StageInfo> list)
     {
         list.Sort((a, b) => a.CompareTo(b));
     }

@@ -206,6 +206,10 @@ msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
 msgstr "Close Project"
 
 #: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_APP"
+msgstr "Open Debug App"
+
+#: scene/home/home.tscn
 msgid "HOME_TAB_TEXT"
 msgstr "Text"
 
@@ -254,22 +258,18 @@ msgid "HOME_TAB_TEXT_DETAILS_USAGE"
 msgstr "File Usage:"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_OPEN_FILE"
 msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr "Open File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr "Are you sure?"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
 msgstr "Yes I'm sure."
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
 msgstr ""
 "Deleting MSBT files cannot be undone. Removing files required by the game "
@@ -277,7 +277,6 @@ msgstr ""
 "delete this?"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Wait, no, go back!"
 
@@ -1351,6 +1350,30 @@ msgstr "Kingdom Info:"
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
 msgstr "Scenario Info:"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_STAGE"
+msgstr "Stages"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
+msgstr "Name already claimed by:"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_LINE_EDIT_ADD_NEW_STAGE"
+msgstr "Add Stage Name to Kingdom"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
+msgstr "Select stage type"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
+msgstr "Submit"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE"
+msgstr "Moons"
 
 #: scene/editor/world/page/vbox_basic_info.tscn
 msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"

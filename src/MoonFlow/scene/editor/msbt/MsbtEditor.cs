@@ -219,13 +219,7 @@ public partial class MsbtEditor : PanelContainer
 			GD.Print("Saving failed for ", File.Name);
 
 		// Remove the modified icon from all entry buttons in editor
-		foreach (var button in EntryList.GetChildren())
-		{
-			if (button.GetType() != typeof(Button))
-				continue;
-
-			((Button)button).Icon = null;
-		}
+		EntryListBase.ClearAllModifiedIcons(EntryList);
 
 		// Remove appended modified icon in title
 		FileTitleName.Text = FileTitleName.Text.TrimSuffix("*");

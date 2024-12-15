@@ -3,33 +3,13 @@
 [ext_resource type="Script" path="res://scene/home/tab_msbt/popup_msbt_create.gd" id="1_aifqx"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_ey5mn"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="2_45iim"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_nu1k6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1pvya"]
 font_size = 14
 font_color = Color(1, 1, 1, 0.807843)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rndet"]
-
-[sub_resource type="GDScript" id="GDScript_h2ejk"]
-script/source = "extends LineEdit
-
-signal text_validated(word: String)
-
-func _on_text_changed(new_text: String) -> void:
-	var allowed_characters = \"[A-Za-z0-9]\"
-	var old_caret_position = caret_column
-	var word = \"\"
-	
-	var regex = RegEx.new()
-	regex.compile(allowed_characters)
-	for valid_character in regex.search_all(new_text):
-		word += valid_character.get_string()
-	set_text(word)
-	
-	caret_column = old_caret_position
-	
-	text_validated.emit(word)
-"
 
 [node name="Popup_DuplicateMsbt" type="Popup"]
 auto_translate_mode = 1
@@ -91,7 +71,7 @@ layout_mode = 2
 max_length = 48
 context_menu_enabled = false
 clear_button_enabled = true
-script = SubResource("GDScript_h2ejk")
+script = ExtResource("4_nu1k6")
 
 [node name="Button_Submit" type="Button" parent="Content/VBox"]
 layout_mode = 2
@@ -99,7 +79,6 @@ size_flags_vertical = 10
 text = "HOME_TAB_POPUP_SUBMIT"
 
 [connection signal="item_selected" from="Content/VBox/Option_Archive" to="." method="_on_archive_selected"]
-[connection signal="text_changed" from="Content/VBox/Line_FileName" to="Content/VBox/Line_FileName" method="_on_text_changed"]
 [connection signal="text_submitted" from="Content/VBox/Line_FileName" to="." method="_on_submit" unbinds=1]
 [connection signal="text_validated" from="Content/VBox/Line_FileName" to="." method="_on_file_name_updated"]
 [connection signal="pressed" from="Content/VBox/Button_Submit" to="." method="_on_submit"]

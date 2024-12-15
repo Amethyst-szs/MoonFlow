@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnvwsx8eyi8sb"]
+
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="1_qmc67"]
+[ext_resource type="Script" path="res://scene/editor/world/stage/EditStageInfo.cs" id="1_s33pu"]
+[ext_resource type="Script" path="res://scene/editor/world/stage/OptionStageType.cs" id="1_xpqoc"]
+
+[node name="EditStageInfo" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_s33pu")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label_Name" type="Label" parent="HBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text_overrun_behavior = 3
+
+[node name="Option_Type" type="OptionButton" parent="HBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
+script = ExtResource("1_xpqoc")
+
+[node name="Button_Trash" type="Button" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+icon = ExtResource("1_qmc67")
+
+[connection signal="item_selected" from="HBox/VBoxContainer/Option_Type" to="." method="OnTypeChanged"]
+[connection signal="pressed" from="HBox/Button_Trash" to="." method="OnDeleteRequest"]
