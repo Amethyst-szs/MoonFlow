@@ -9,7 +9,7 @@ namespace Nindot.LMS.Msbp;
 
 public class BlockProject(byte[] data, string listingName, int offset, MsbpFile parent) : Block(data, listingName, offset, parent)
 {
-    private List<string> Content = [];
+    public List<string> Content = [];
 
     protected override void InitBlock(byte[] data)
     {

@@ -236,15 +236,10 @@ public partial class MsbtEditor : PanelContainer
 		// Get access to the default language's SarcMsbtFile
 		var fileDL = FileList[DefaultLanguage];
 
-		// Iterate through each language's version of this MSBT
-		// This is used to perform language syncing
-		bool isAnythingAnyLanguageModified = false;
-
 		for (int i = 0; i < FileList.Count; i++)
 		{
 			var f = FileList.ElementAt(i);
 			var metaHolder = ProjectManager.GetMSBTMetaHolder(f.Key);
-			bool isAnythingModified = false;
 
 			foreach (var entryLabel in f.Value.GetEntryLabels())
 			{
@@ -255,7 +250,6 @@ public partial class MsbtEditor : PanelContainer
 				// If language syncing is disabled for this entry, continue
 				if (meta.IsDisableSync)
 				{
-					isAnythingModified |= entry.IsModified;
 					entry.ResetModifiedFlag();
 					continue;
 				}
@@ -264,8 +258,6 @@ public partial class MsbtEditor : PanelContainer
 				var entryDL = fileDL.GetEntry(entryLabel);
 				if (entryDL.IsModified)
 				{
-					isAnythingModified = true;
-
 					var newEntry = entryDL.CloneDeep();
 					newEntry.ResetModifiedFlag();
 
@@ -274,26 +266,18 @@ public partial class MsbtEditor : PanelContainer
 			}
 
 			// Write updated archive to disk
-			if (isAnythingModified)
-			{
-				isAnythingAnyLanguageModified = true;
-				f.Value.WriteArchive();
-			}
-
+			f.Value.WriteArchive();
 			display.UpdateProgress(i, FileList.Count + 1);
 		}
 
 		// Write metadata
 		display.UpdateProgress(FileList.Count, FileList.Count + 1);
 
-		if (isAnythingAnyLanguageModified)
-		{
-			var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-			metadataAccessor.WriteFile();
-		}
+		var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+		metadataAccessor.WriteFile();
 
 		// Reset flag
-		IsModified = false;
+		ForceResetModifiedFlag();
 	}
 
 	#endregion
@@ -322,10 +306,12 @@ public partial class MsbtEditor : PanelContainer
 			file.AddEntry(name);
 
 		EntryList.CreateEntryListButton(name, true);
-		CreateEntryContentEditor(File.GetEntryIndex(name));
+		var editor = CreateEntryContentEditor(File.GetEntryIndex(name));
 
 		EntryList.OnEntrySelected(name, true);
 		EntryList.UpdateEntryCount();
+
+		editor.SetModified();
 	}
 
 	private void OnDeleteEntryTrash()
@@ -346,6 +332,8 @@ public partial class MsbtEditor : PanelContainer
 			EntryList.OnEntrySelected(prevEntry);
 
 		EntryList.UpdateEntryCount();
+
+		SetModified();
 	}
 
 	private void OnEntryModified(MsbtEntryEditor entryEditor)
@@ -387,6 +375,17 @@ public partial class MsbtEditor : PanelContainer
 	#region Utilities
 
 	public bool IsStageMessage() { return File.Sarc.Name == "StageMessage.szs"; }
+
+	public void SetModified()
+	{
+		IsModified = true;
+
+		// Append asterisk to file name
+		if (!FileTitleName.Text.EndsWith('*'))
+			FileTitleName.Text += '*';
+		
+		EmitSignal(SignalName.ContentModified, "");
+	}
 
 	public void ForceResetModifiedFlag() { IsModified = false; }
 	public void UpdateEntrySearch(string str) { EntryList.UpdateSearch(str); }

@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://cskp7so180vjn"]
+
+[ext_resource type="Script" path="res://scene/home/tab_msbt/popup_msbt_create.gd" id="1_aifqx"]
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_ey5mn"]
+[ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="2_45iim"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1pvya"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.807843)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rndet"]
+
+[sub_resource type="GDScript" id="GDScript_h2ejk"]
+script/source = "extends LineEdit
+
+signal text_validated(word: String)
+
+func _on_text_changed(new_text: String) -> void:
+	var allowed_characters = \"[A-Za-z0-9]\"
+	var old_caret_position = caret_column
+	var word = \"\"
+	
+	var regex = RegEx.new()
+	regex.compile(allowed_characters)
+	for valid_character in regex.search_all(new_text):
+		word += valid_character.get_string()
+	set_text(word)
+	
+	caret_column = old_caret_position
+	
+	text_validated.emit(word)
+"
+
+[node name="Popup_DuplicateMsbt" type="Popup"]
+auto_translate_mode = 1
+disable_3d = true
+transparent_bg = true
+initial_position = 1
+size = Vector2i(480, 350)
+visible = true
+transparent = true
+script = ExtResource("1_aifqx")
+
+[node name="Content" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(480, 280)
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_ey5mn")
+theme_override_styles/panel = ExtResource("2_45iim")
+
+[node name="VBox" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label_Header" type="Label" parent="Content/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HSep" type="HSeparator" parent="Content/VBox"]
+layout_mode = 2
+
+[node name="Label_Archive" type="Label" parent="Content/VBox"]
+layout_mode = 2
+text = "HOME_TAB_POPUP_SELECT_ARCHIVE"
+label_settings = SubResource("LabelSettings_1pvya")
+
+[node name="Option_Archive" type="OptionButton" parent="Content/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "HOME_TAB_TEXT_SYSTEM"
+popup/item_1/text = "HOME_TAB_TEXT_STAGE"
+popup/item_1/id = 1
+popup/item_2/text = "HOME_TAB_TEXT_LAYOUT"
+popup/item_2/id = 2
+
+[node name="HSep_Invis" type="HSeparator" parent="Content/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rndet")
+
+[node name="Label_FileName" type="Label" parent="Content/VBox"]
+layout_mode = 2
+text = "HOME_TAB_POPUP_FILE_NAME_HEADER"
+label_settings = SubResource("LabelSettings_1pvya")
+
+[node name="Line_FileName" type="LineEdit" parent="Content/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 48
+context_menu_enabled = false
+clear_button_enabled = true
+script = SubResource("GDScript_h2ejk")
+
+[node name="Button_Submit" type="Button" parent="Content/VBox"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "HOME_TAB_POPUP_SUBMIT"
+
+[connection signal="item_selected" from="Content/VBox/Option_Archive" to="." method="_on_archive_selected"]
+[connection signal="text_changed" from="Content/VBox/Line_FileName" to="Content/VBox/Line_FileName" method="_on_text_changed"]
+[connection signal="text_submitted" from="Content/VBox/Line_FileName" to="." method="_on_submit" unbinds=1]
+[connection signal="text_validated" from="Content/VBox/Line_FileName" to="." method="_on_file_name_updated"]
+[connection signal="pressed" from="Content/VBox/Button_Submit" to="." method="_on_submit"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=24 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_gi3dm"]
 [ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_puq1e"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_n1hpl"]
+[ext_resource type="PackedScene" uid="uid://cskp7so180vjn" path="res://scene/home/tab_msbt/popup_msbt_create.tscn" id="9_0g6c8"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="9_pqb3l"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="10_m4jr4"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
 color = Color(1, 1, 1, 0.317647)
@@ -36,6 +39,16 @@ action = &"ui_graph_delete"
 
 [sub_resource type="Shortcut" id="Shortcut_stxmf"]
 events = [SubResource("InputEventAction_0tmku")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7bmst"]
+font = ExtResource("9_pqb3l")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ddx3"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.87451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5v4w"]
 
 [node name="Text" type="HSplitContainer"]
 anchors_preset = 15
@@ -113,11 +126,13 @@ alignment = 1
 [node name="Button_Open" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
 icon = ExtResource("5_2s2c7")
 
 [node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_c6cgf")
 icon = ExtResource("6_puq1e")
 
@@ -128,15 +143,155 @@ layout_mode = 2
 [node name="Button_New" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("5_gi3dm")
 
 [node name="Button_Delete" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_stxmf")
 icon = ExtResource("8_n1hpl")
 
-[node name="Info" type="VBoxContainer" parent="."]
+[node name="Info" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBox" type="VBoxContainer" parent="Info"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_InfoName" type="Label" parent="Info/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_7bmst")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HSep_Header" type="HSeparator" parent="Info/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="VBox_Stats" type="VBoxContainer" parent="Info/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FileSize" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+
+[node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_TEXT_DETAILS_FILE_SIZE"
+label_settings = SubResource("LabelSettings_7ddx3")
+
+[node name="Label_Size" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+
+[node name="HSep1" type="HSeparator" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("10_m4jr4")
+
+[node name="EntryCount" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+
+[node name="Label_EntryCountHeader" type="Label" parent="Info/VBox/VBox_Stats/EntryCount"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
+label_settings = SubResource("LabelSettings_7ddx3")
+
+[node name="Label_EntryCount" type="Label" parent="Info/VBox/VBox_Stats/EntryCount"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+
+[node name="HSep2" type="HSeparator" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("10_m4jr4")
+
+[node name="Usage" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+
+[node name="Label_UsageHeader" type="Label" parent="Info/VBox/VBox_Stats/Usage"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_TEXT_DETAILS_USAGE"
+label_settings = SubResource("LabelSettings_7ddx3")
+
+[node name="Label_Usage" type="Label" parent="Info/VBox/VBox_Stats/Usage"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+
+[node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_p5v4w")
+
+[node name="Footer" type="PanelContainer" parent="Info/VBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_nlvsm")
+
+[node name="Button_Open" type="Button" parent="Info/VBox/Footer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "HOME_TAB_TEXT_OPEN_FILE"
+flat = true
+
+[node name="Popup_DuplicateMsbt" parent="." instance=ExtResource("9_0g6c8")]
+visible = false
+
+[node name="Popup_NewMsbt" parent="." instance=ExtResource("9_0g6c8")]
+visible = false
+title_selection = 1
+
+[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
+title = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+initial_position = 1
+size = Vector2i(902, 100)
+ok_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
+dialog_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
+dialog_autowrap = true
+cancel_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
+
+[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="."]
+title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
+initial_position = 2
+size = Vector2i(520, 100)
+ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
+dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
+dialog_autowrap = true
+
+[node name="Dialog_CreateError_WorldList" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+title = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
+initial_position = 1
+size = Vector2i(520, 100)
+ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
+dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
+dialog_autowrap = true
+
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Open" to="." method="OnFooterOpenFilePressed"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="." method="OnDuplicateFileRequested"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_New" to="." method="OnNewFileRequested"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
+[connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
+[connection signal="submitted" from="Popup_DuplicateMsbt" to="." method="OnDuplicateFile"]
+[connection signal="submitted" from="Popup_NewMsbt" to="." method="OnNewFile"]
+[connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteFile"]

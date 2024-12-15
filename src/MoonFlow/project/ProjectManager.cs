@@ -9,6 +9,7 @@ using Nindot.LMS.Msbp;
 
 using MoonFlow.Scene;
 using MoonFlow.Scene.Main;
+using MoonFlow.Project.Database;
 
 namespace MoonFlow.Project;
 
@@ -25,7 +26,10 @@ public static class ProjectManager
 
     public static ProjectState GetProject() { return Project; }
     public static RomfsValidation.RomfsVersion GetProjectVersion() { return Project.Config.Data.Version; }
+
+    public static ProjectMsbpHolder GetMSBPHolder() { return Project.MsgStudioProject; }
     public static SarcMsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
+
     public static ProjectMessageStudioText GetMSBT() { return Project.MsgStudioText; }
     public static ProjectLanguageHolder GetMSBTArchives() { return Project.MsgStudioText.DefaultLanguage; }
     public static ProjectLanguageHolder GetMSBTArchives(string lang) { return Project.MsgStudioText[lang]; }
@@ -41,6 +45,8 @@ public static class ProjectManager
 
         return langHolder.Metadata;
     }
+
+    public static ProjectDatabaseHolder GetDB() { return Project.Database; }
 
     // ====================================================== //
     // ============== Open Project by Directory ============= //

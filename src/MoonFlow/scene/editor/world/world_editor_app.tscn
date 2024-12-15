@@ -48,6 +48,7 @@ layout_mode = 2
 
 [node name="Divider" type="HSplitContainer" parent="Panel/Margin"]
 layout_mode = 2
+split_offset = -175
 
 [node name="Scroll_General" type="ScrollContainer" parent="Panel/Margin/Divider"]
 layout_mode = 2

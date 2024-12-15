@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=26 format=3 uid="uid://ddexy01pp37b1"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://ddexy01pp37b1"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_l1jp4"]
+[ext_resource type="StyleBox" uid="uid://diowequepd8ed" path="res://asset/theme/common/stylebox/common_accept_dialog_panel.tres" id="1_rf4hs"]
 [ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_8oev3"]
 [ext_resource type="StyleBox" uid="uid://bs7cbsqc1muw5" path="res://asset/theme/common/stylebox/common_button_hover.tres" id="3_ff0pw"]
 [ext_resource type="StyleBox" uid="uid://b6uxtqriwct6l" path="res://asset/theme/common/stylebox/common_button_pressed_hover.tres" id="4_usreh"]
@@ -38,6 +39,7 @@ thickness = 2
 vertical = true
 
 [resource]
+AcceptDialog/styles/panel = ExtResource("1_rf4hs")
 Button/constants/icon_max_width = 28
 Button/fonts/font = ExtResource("1_l1jp4")
 Button/styles/focus = ExtResource("2_8oev3")
@@ -63,6 +65,9 @@ HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
 HSplitContainer/constants/autohide = 0
 HSplitContainer/constants/separation = 24
 Label/fonts/font = ExtResource("1_l1jp4")
+LineEdit/fonts/font = ExtResource("1_l1jp4")
+LineEdit/styles/focus = ExtResource("2_8oev3")
+LineEdit/styles/normal = ExtResource("3_ff0pw")
 MarginContainer/constants/margin_left = 32
 MenuButton/fonts/font = ExtResource("1_l1jp4")
 MenuButton/styles/focus = ExtResource("2_8oev3")

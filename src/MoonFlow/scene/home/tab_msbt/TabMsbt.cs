@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Nindot;
 using Nindot.LMS.Msbt;
@@ -9,7 +10,9 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 using MoonFlow.Project;
 using MoonFlow.Scene.EditorMsbt;
 using MoonFlow.Project.Database;
-using System.Linq;
+using MoonFlow.Project.Templates;
+
+using ByteSizeLib;
 
 namespace MoonFlow.Scene.Home;
 
@@ -24,12 +27,20 @@ public partial class TabMsbt : HSplitContainer
 	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
 	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
 
+	#region Init
+
 	public override void _Ready()
 	{
 		SystemMessageButtons = GetNode<VBoxContainer>("%SystemMessage_VBox");
 		LayoutMessageButtons = GetNode<VBoxContainer>("%LayoutMessage_VBox");
 
 		StageMessageVBox = GetNode<VBoxContainer>("%StageMessage_VBox");
+
+		foreach (var child in StageMessageVBox.GetChildren())
+		{
+			StageMessageVBox.RemoveChild(child);
+			child.QueueFree();
+		}
 
 		// Setup vbox buttons for system and layout
 		var archives = ProjectManager.GetMSBTArchives();
@@ -52,11 +63,20 @@ public partial class TabMsbt : HSplitContainer
 
 	private void SetupGenericVBox(VBoxContainer box, SarcFile file)
 	{
+		foreach (var child in box.GetChildren())
+		{
+			box.RemoveChild(child);
+			child.QueueFree();
+		}
+
 		string[] keys = [.. file.Content.Keys];
 		Array.Sort(keys);
 
 		foreach (var key in keys)
 			CreateButton(file, key, box);
+		
+		if (file.Name == "SystemMessage.szs")
+			OnFilePressed(file, keys[0], box.GetChild(0) as Button);
 	}
 
 	private List<string> SetupWorldVBox(WorldInfo world, SarcFile arc)
@@ -129,6 +149,8 @@ public partial class TabMsbt : HSplitContainer
 	private void CreateButton(SarcFile file, string key, VBoxContainer box)
 	{
 		var button = DoublePressButton.New().As<Button>();
+		button.ToggleMode = true;
+		button.Name = key;
 		button.Text = key;
 		button.Alignment = HorizontalAlignment.Left;
 
@@ -136,15 +158,245 @@ public partial class TabMsbt : HSplitContainer
 			button.FocusNeighborLeft = box.GetPath();
 
 		// These signals are automatically disconnected on free by DoublePressButton gdscript code
-		button.Connect("pressed", Callable.From(new Action(() => OnFilePressed(file, key))));
+		button.Connect("pressed", Callable.From(new Action(() => OnFilePressed(file, key, button))));
 		button.Connect("double_pressed",
 			Callable.From(new Action(() => MsbtAppHolder.OpenApp(file.Name, key))));
 
 		box.AddChild(button);
 	}
 
-	private void OnFilePressed(SarcFile archive, string key)
+	#endregion
+
+	#region Signals
+
+	private void OnFilePressed(SarcFile archive, string key, Button button)
 	{
+		// Remove old selection
+		DeselectAllButtons(SystemMessageButtons); 
+		DeselectAllButtons(LayoutMessageButtons);
+		DeselectAllButtons(StageMessageVBox);
+
+		// Set current selection
+		if (!key.EndsWith(".msbt"))
+			key += ".msbt";
+		
+		var length = archive.Content[key].Count;
 		SelectedFile = archive.GetFileMSBT(key, new MsbtElementFactoryProjectSmo());
+
+		button.SetPressedNoSignal(true);
+		button.GrabFocus();
+
+		// Update info box
+		GetNode<Label>("%Label_InfoName").Text = key;
+		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(length).ToString();
+		GetNode<Label>("%Label_EntryCount").Text = SelectedFile.GetEntryCount().ToString();
+
+		var usage = archive.Name;
+		if (archive.Name == "StageMessage.szs")
+		{
+			var world = ProjectManager.GetDB().GetWorldInfoByStageName(key);
+			if (world == null)
+				GD.PushWarning("Stage does not exist in WorldList!");
+			else
+				usage = world.WorldName;
+		}
+
+		GetNode<Label>("%Label_Usage").Text = usage;
 	}
+
+	private void OnFooterOpenFilePressed()
+	{
+		if (SelectedFile == null) return;
+		MsbtAppHolder.OpenApp(SelectedFile.Sarc.Name, SelectedFile.Name);
+	}
+
+	private void OnDuplicateFileRequested()
+	{
+		if (SelectedFile == null) return;
+		var popup = GetNode<Popup>("Popup_DuplicateMsbt");
+
+		popup.Popup();
+		popup.Call("init_data", SelectedFile.Sarc.Name, SelectedFile.Name);
+	}
+
+	private void OnNewFileRequested()
+	{
+		var popup = GetNode<Popup>("Popup_NewMsbt");
+		popup.Popup();
+
+		popup.Call("init_data", SelectedFile.Sarc.Name, SelectedFile.Name);
+	}
+
+	private void OnDuplicateFile(string arcName, string newName)
+	{
+		if (newName == string.Empty)
+			return;
+		
+		if (!TryGetWorld(arcName, newName, out WorldInfo world))
+			return;
+		
+		var target = GetFileName(newName);
+		var arcHolder = ProjectManager.GetMSBT();
+
+		var sourceArc = SelectedFile.Sarc;
+		if (!IsFileNameValid(target, sourceArc))
+			return;
+
+		// Duplicate file in all languages
+		foreach (var lang in arcHolder)
+		{
+			var targetArc = lang.Value.GetArchiveByFileName(arcName);
+			if (targetArc == null)
+				throw new NullReferenceException("Could not resolve source and/or target archive!");
+
+			if (!targetArc.Content.TryGetValue(SelectedFile.Name, out ArraySegment<byte> data))
+			{
+				GD.PushWarning("Skipping duplication for " + lang.Key + " due to lack of source file");
+				continue;
+			}
+
+			targetArc.Content.Add(target, data.ToArray());
+			targetArc.WriteArchive();
+		}
+
+		PublishMsbtToProject(arcName, newName, world);
+
+		// Reload file list
+		_Ready();
+
+		var buttonName = target.Replace('.', '_');
+		OnFilePressed(sourceArc, newName, FindChild(buttonName, true, false) as Button);
+	}
+
+	private void OnNewFile(string arcName, string newName)
+	{
+		if (newName == string.Empty)
+			return;
+		
+		if (!TryGetWorld(arcName, newName, out WorldInfo world))
+			return;
+		
+		var target = GetFileName(newName);
+		var arcHolder = ProjectManager.GetMSBT();
+
+		var sourceArc = SelectedFile.Sarc;
+		if (!IsFileNameValid(target, sourceArc))
+			return;
+
+		// Create file in all languages
+		foreach (var lang in arcHolder)
+		{
+			var targetArc = lang.Value.GetArchiveByFileName(arcName);
+			if (targetArc == null)
+				throw new NullReferenceException("Could not resolve source and/or target archive!");
+			
+			targetArc.Content.Add(target, LmsTemplates.EmptyMsbt);
+			targetArc.WriteArchive();
+		}
+
+		PublishMsbtToProject(arcName, newName, world);
+
+		// Reload file list
+		_Ready();
+
+		var buttonName = target.Replace('.', '_');
+		OnFilePressed(sourceArc, newName, FindChild(buttonName, true, false) as Button);
+	}
+
+	private void OnDeleteFile()
+	{
+		var arcName = SelectedFile.Sarc.Name;
+		var fileName = SelectedFile.Name;
+
+		// Remove from all archives
+		var arcHolder = ProjectManager.GetMSBT();
+		foreach (var lang in arcHolder)
+		{
+			var targetArc = lang.Value.GetArchiveByFileName(arcName);
+			if (targetArc == null)
+				throw new NullReferenceException("Could not resolve source and/or target archive!");
+			
+			targetArc.Content.Remove(fileName);
+			targetArc.WriteArchive();
+		}
+
+		// Remove from MSBP
+		ProjectManager.GetMSBPHolder().UnpublishFile(arcName, fileName);
+
+		// Reload file list
+		_Ready();
+	}
+
+	#endregion
+
+	#region File Utility
+
+	private static string GetFileName(string name)
+	{
+		if (name.EndsWith(".msbt"))
+			return name;
+
+		return name + ".msbt";
+	}
+
+	private bool IsFileNameValid(string name, SarcFile sourceArc)
+	{
+		if (sourceArc == null || sourceArc.Content.ContainsKey(name))
+		{
+			GetNode<AcceptDialog>("Dialog_CreateError_DuplicateName").Popup();
+			return false;
+		}
+
+		return true;
+	}
+
+	private bool TryGetWorld(string arc, string targetName, out WorldInfo world)
+	{
+		if (arc != "StageMessage.szs")
+		{
+			world = null;
+			return true;
+		}
+
+		var db = ProjectManager.GetDB();
+		world = db.GetWorldInfoByStageName(targetName);
+
+		if (world != null)
+			return true;
+
+		GetNode<AcceptDialog>("Dialog_CreateError_WorldList").Popup();
+		return false;
+	}
+
+	private void PublishMsbtToProject(string arcName, string newName, WorldInfo world)
+	{
+		// Publish entry to ProjectData
+		var msbp = ProjectManager.GetMSBPHolder();
+
+		if (world == null)
+			msbp.PublishFile(arcName, newName);
+		else
+			msbp.PublishFile(arcName, newName, world);
+	}
+
+	#endregion
+
+	#region Utility
+
+	private void DeselectAllButtons(Node node)
+	{
+		if (node is not Control)
+			return;
+		
+		if (node.GetType() == typeof(Button))
+			(node as Button).SetPressedNoSignal(false);
+		
+		if (node.GetChildCount() == 0)
+			return;
+		
+		foreach (var child in node.GetChildren())
+			DeselectAllButtons(child);
+	}
+
+	#endregion
 }

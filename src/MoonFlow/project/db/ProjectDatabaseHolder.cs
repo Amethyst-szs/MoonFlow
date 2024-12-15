@@ -85,6 +85,28 @@ public class ProjectDatabaseHolder
         }
     }
 
+    private void SetupWorldDisplayNames()
+    {
+        var sarc = Parent.GetMsbtArchives().SystemMessage;
+
+        // Use base factory for faster speed
+        var msbt = sarc.GetFileMSBT("StageName.msbt", new MsbtElementFactory());
+
+        foreach (var world in WorldList)
+        {
+            var key = "WorldName_" + world.WorldName;
+            var entry = msbt.GetEntry(key);
+
+            world.Display = entry.GetRawText();
+        }
+    }
+
+    private List<CollectCoinCountInfo> GetCoinCollectCountInfo()
+    {
+        byte[] bytes = [.. ArchiveWorldList.Content[CollectCoinCountInfo.BymlPath]];
+        return BymlFileAccess.ParseBytes<List<CollectCoinCountInfo>>(bytes);
+    }
+
     #endregion
 
     #region Database Writing
@@ -142,6 +164,23 @@ public class ProjectDatabaseHolder
 
     #region Utilities
 
+    public WorldInfo GetWorldInfoByStageName(string name)
+    {
+        // Remove file extension
+        int dotIdx = name.Find('.');
+        if (dotIdx != -1)
+            name = name[..dotIdx];
+        
+        // Lookup stage name
+        foreach (var world in WorldList)
+        {
+            if (world.StageList.Any((s) => s.name == name))
+                return world;
+        }
+
+        return null;
+    }
+
     private List<WorldInfo> GetWorldListDb(string arcPath)
     {
         // Attempt to access archive
@@ -173,28 +212,6 @@ public class ProjectDatabaseHolder
     private static void SortWorldStagesByType(List<StageInfo> list)
     {
         list.Sort((a, b) => a.CompareTo(b));
-    }
-
-    private void SetupWorldDisplayNames()
-    {
-        var sarc = Parent.GetMsbtArchives().SystemMessage;
-
-        // Use base factory for faster speed
-        var msbt = sarc.GetFileMSBT("StageName.msbt", new MsbtElementFactory());
-
-        foreach (var world in WorldList)
-        {
-            var key = "WorldName_" + world.WorldName;
-            var entry = msbt.GetEntry(key);
-
-            world.Display = entry.GetRawText();
-        }
-    }
-
-    private List<CollectCoinCountInfo> GetCoinCollectCountInfo()
-    {
-        byte[] bytes = [.. ArchiveWorldList.Content[CollectCoinCountInfo.BymlPath]];
-        return BymlFileAccess.ParseBytes<List<CollectCoinCountInfo>>(bytes);
     }
 
     #endregion

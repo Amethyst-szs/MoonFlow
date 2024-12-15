@@ -39,6 +39,8 @@
 # res://scene/editor/world/page/vbox_scenario_info.tscn
 # res://scene/front_door/contributor/scene/credit.tscn
 # res://scene/editor/msbt/list/container/stage_message_category_table.gd
+# res://scene/home/tab_msbt/popup_msbt_create.tscn
+# res://scene/home/tab_msbt/popup_msbt_create.gd
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -235,14 +237,17 @@ msgid "HOME_TAB_WORLD"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_SYSTEM"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_STAGE"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr ""
 
@@ -260,6 +265,62 @@ msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DETAILS_FILE_SIZE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DETAILS_USAGE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_OPEN_FILE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 msgstr ""
 
 #: scene/common/dialog/dialog_unsaved_changes.tscn
@@ -1417,4 +1478,24 @@ msgstr ""
 #: scene/editor/msbt/list/container/stage_message_category_table.gd
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "QUEST"
+msgstr ""
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_POPUP_SELECT_ARCHIVE"
+msgstr ""
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_POPUP_FILE_NAME_HEADER"
+msgstr ""
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_POPUP_SUBMIT"
+msgstr ""
+
+#: scene/home/tab_msbt/popup_msbt_create.gd
+msgid "HOME_MSBT_POPUP_TITLE_DUPLICATE"
+msgstr ""
+
+#: scene/home/tab_msbt/popup_msbt_create.gd
+msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr ""

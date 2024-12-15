@@ -134,7 +134,14 @@ public partial class AppScene : Control
 		}
 
 		if (IsAppExclusive() || IsAppFocusOnOpen())
+		{
 			AppFocus();
+		}
+		else
+		{
+			ProcessMode = ProcessModeEnum.Disabled;
+			Hide();
+		}
 
 		// Initilize run virtual app init function
 		AppInit();

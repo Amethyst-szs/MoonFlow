@@ -8,4 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Nindot\Nindot.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ByteSize" Version="2.1.2" />
+  </ItemGroup>
 </Project>

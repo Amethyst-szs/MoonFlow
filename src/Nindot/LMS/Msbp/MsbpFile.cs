@@ -25,7 +25,7 @@ public partial class MsbpFile(byte[] data, string name) : FileBase(data, name)
     private BlockStyles Styles = null; // SYL3
     private BlockHashTable StyleLabels = null; // SLB1
 
-    private BlockProject Project = null; // CTI1
+    public BlockProject Project = null; // CTI1
 
     // Initalize every kind of MSBP block using their 4 byte names
 

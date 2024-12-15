@@ -246,6 +246,9 @@ public abstract partial class EntryListBase : VBoxContainer
 
     public void OnContentModified(string label)
     {
+        if (label == string.Empty)
+            return;
+        
         var entryButton = FindChild(label, true, false) as Button;
 
         if (entryButton.Icon != ModifiedTexture)

@@ -4,6 +4,9 @@ using Godot;
 using Nindot;
 using Nindot.LMS.Msbp;
 
+using MoonFlow.Project.Database;
+using System;
+
 namespace MoonFlow.Project;
 
 public class ProjectMsbpHolder
@@ -36,4 +39,53 @@ public class ProjectMsbpHolder
 
         GD.Print("Parsed Project MSBP");
     }
+
+    #region Utilities
+
+    public void PublishFile(string arc, string msbt)
+    {
+        if (arc == "StageMessage.szs")
+            throw new Exception("Any request for publishing a StageMessage msbt must include WorldInfo");
+
+        if (arc.EndsWith(".szs"))
+            arc = arc[..arc.Find(".szs")];
+        
+        if (msbt.EndsWith(".msbt"))
+            msbt = msbt[..msbt.Find(".msbt")];
+        
+        var entry = string.Format("{0}/{1}.mstxt", arc, msbt);
+        Project.Project_AddElement(entry);
+
+        Project.WriteArchive();
+    }
+
+    public void PublishFile(string arc, string msbt, WorldInfo world)
+    {
+        if (arc != "StageMessage.szs")
+            throw new Exception("Do not pass WorldInfo if archive is not StageMessage");
+        
+        PublishFile("StageMessage/" + world.WorldName, msbt);
+    }
+
+    public void UnpublishFile(string arc, string msbt)
+    {
+        if (arc.EndsWith(".szs"))
+            arc = arc[..arc.Find(".szs")];
+        
+        if (msbt.EndsWith(".msbt"))
+            msbt = msbt[..msbt.Find(".msbt")];
+
+        var proj = Project.Project;
+        var idx = proj.Content.FindIndex(s => s.StartsWith(arc) && s.EndsWith(msbt + ".mstxt"));
+        
+        if (idx == -1)
+        {
+            GD.PushWarning(string.Format("Could not find {0}/{1} in MSBP", arc, msbt));
+            return;
+        }
+        
+        proj.Content.RemoveAt(idx);
+    }
+
+    #endregion
 }

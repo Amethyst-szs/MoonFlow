@@ -91,23 +91,27 @@ alignment = 1
 
 [node name="Add" type="Button" parent="Controls/VBox/HBox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 toggle_mode = true
 shortcut = SubResource("Shortcut_pq416")
 icon = ExtResource("5_d8emi")
 
 [node name="Search" type="Button" parent="Controls/VBox/HBox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 toggle_mode = true
 shortcut = SubResource("Shortcut_7w4d7")
 icon = ExtResource("7_rbj4v")
 
 [node name="Trash" type="Button" parent="Controls/VBox/HBox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_sbvrw")
 icon = ExtResource("8_ykyf6")
 
 [node name="Help" type="Button" parent="Controls/VBox/HBox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_ysvcm")
 icon = ExtResource("9_7ww6o")
 

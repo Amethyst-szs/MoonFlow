@@ -26,11 +26,20 @@ public partial class MsbtAppHolder : AppScene
 		if (Editor == null)
 			throw new NullReferenceException("Wait for Ready before calling SetupEditor!");
 
+		// Get msbt for default language as fallback
+		var fallbackArc = ProjectManager.GetMSBTArchives().GetArchiveByFileName(archiveName);
+		if (!fallbackArc.Content.TryGetValue(key, out ArraySegment<byte> fallback))
+			throw new Exception("Default language's archive missing " + key);
+
 		// Get access to all msbt files with this key in all languages
 		var txtHolder = ProjectManager.GetMSBT();
 		foreach (var txtLang in txtHolder)
 		{
 			var archive = txtLang.Value.GetArchiveByFileName(archiveName);
+			
+			if (!archive.Content.ContainsKey(key))
+				archive.Content.Add(key, fallback.ToArray());
+			
 			var msbt = archive.GetFileMSBT(key, new MsbtElementFactoryProjectSmo());
 			TextFiles.Add(txtLang.Key, msbt);
 		}

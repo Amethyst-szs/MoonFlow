@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2tdru5hgbfl3"]
+
+[ext_resource type="Script" path="res://scene/dev/DevDebug.cs" id="1_xphd6"]
+[ext_resource type="Script" path="res://scene/dev/displays/MsbpListMstxt.cs" id="2_hla1c"]
+
+[node name="DevDebug" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xphd6")
+AppName = "DevDebug"
+AppTaskbarTitle = "Debug Tools"
+AppFlags = 4
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Layout" type="HSplitContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Scroll_Tools" type="ScrollContainer" parent="Margin/Layout"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="Margin/Layout/Scroll_Tools"]
+layout_mode = 2
+
+[node name="Button_Mstxt" type="Button" parent="Margin/Layout/Scroll_Tools/List"]
+layout_mode = 2
+toggle_mode = true
+text = "Msbp Mstxt DB"
+
+[node name="Scroll_Display" type="ScrollContainer" parent="Margin/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Content" type="VBoxContainer" parent="Margin/Layout/Scroll_Display"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MsbpMstxt" type="VBoxContainer" parent="Margin/Layout/Scroll_Display/Content"]
+layout_mode = 2
+script = ExtResource("2_hla1c")
+
+[connection signal="toggled" from="Margin/Layout/Scroll_Tools/List/Button_Mstxt" to="Margin/Layout/Scroll_Display/Content/MsbpMstxt" method="set_visible"]

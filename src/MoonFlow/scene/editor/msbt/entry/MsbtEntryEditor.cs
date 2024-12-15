@@ -150,7 +150,7 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 		}
 	}
 
-	private void SetModified()
+	public void SetModified()
 	{
 		Entry.SetModifiedFlag();
 		EmitSignal(SignalName.EntryModified, this);

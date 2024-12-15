@@ -213,15 +213,15 @@ msgstr "Text"
 msgid "HOME_TAB_WORLD"
 msgstr "Kingdom"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_SYSTEM"
 msgstr "System Text"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_STAGE"
 msgstr "Stage Text"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr "Layout Text"
 
@@ -240,6 +240,73 @@ msgstr "New FIle"
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
 msgstr "Delete File"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DETAILS_FILE_SIZE"
+msgstr "File Size:"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
+msgstr "Total Strings:"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DETAILS_USAGE"
+msgstr "File Usage:"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+#| msgid "HOME_TAB_OPEN_FILE"
+msgid "HOME_TAB_TEXT_OPEN_FILE"
+msgstr "Open File"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr "Are you sure?"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
+msgstr "Yes I'm sure."
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+"Deleting MSBT files cannot be undone. Removing files required by the game "
+"can cause crashes and other glitches. Are you absolutely sure you want to "
+"delete this?"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+#| msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr "Wait, no, go back!"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
+msgstr "File already exists!"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
+msgstr "Ok"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
+msgstr "A file using this name already exists, try a different name."
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
+msgstr "Invalid stage name!"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
+msgstr "Ok"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
+msgstr ""
+"This name doesn't seem to connect to a real stage! Make sure to check for "
+"any typos, and make sure to add your stage to the WorldList before creating "
+"the text file."
 
 #: scene/common/dialog/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_TITLE"
@@ -1409,6 +1476,26 @@ msgstr "Koopa Freerunning"
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "QUEST"
 msgstr "Quests"
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_POPUP_SELECT_ARCHIVE"
+msgstr "Archive:"
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_POPUP_FILE_NAME_HEADER"
+msgstr "File Name:"
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_POPUP_SUBMIT"
+msgstr "Submit"
+
+#: scene/home/tab_msbt/popup_msbt_create.gd
+msgid "HOME_MSBT_POPUP_TITLE_DUPLICATE"
+msgstr "Duplicate File"
+
+#: scene/home/tab_msbt/popup_msbt_create.gd
+msgid "HOME_MSBT_POPUP_TITLE_NEW"
+msgstr "Create New File"
 
 #~ msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
 #~ msgstr "Select a RomFS Directory"
