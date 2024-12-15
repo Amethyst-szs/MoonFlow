@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://bq36cmut6xpvo"]
+
+[ext_resource type="Script" path="res://scene/editor/event/graph/EventFlowGraph.cs" id="1_f51rj"]
+[ext_resource type="Shader" path="res://asset/shader/graph/graph_background.gdshader" id="2_ippbl"]
+[ext_resource type="Script" path="res://scene/editor/event/graph/GraphCanvas.cs" id="2_kf6hh"]
+[ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="3_0cufh"]
+[ext_resource type="Script" path="res://scene/editor/event/graph/component/mouse_selection.gd" id="3_4ulcm"]
+[ext_resource type="Script" path="res://scene/editor/event/graph/component/graph_background_rect.gd" id="3_y83os"]
+[ext_resource type="Script" path="res://scene/editor/event/graph/component/scroll_navigation.gd" id="4_md3t7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
+shader = ExtResource("2_ippbl")
+shader_parameter/graph_position = Vector2(0, 0)
+shader_parameter/dot_size = Vector2(35, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3jgl"]
+
+[node name="EventFlowGraphHolder" type="Control" node_paths=PackedStringArray("Graph")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_f51rj")
+Graph = NodePath("Graph")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Rect" type="ColorRect" parent="Background" node_paths=PackedStringArray("graph")]
+material = SubResource("ShaderMaterial_1sx65")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+script = ExtResource("3_y83os")
+graph = NodePath("../../Graph")
+
+[node name="Graph" type="CanvasLayer" parent="."]
+layer = -2
+script = ExtResource("2_kf6hh")
+
+[node name="Nodes" type="Node2D" parent="Graph"]
+
+[node name="DEBUG" type="Sprite2D" parent="Graph"]
+position = Vector2(519, 301)
+texture = ExtResource("3_0cufh")
+
+[node name="Graph_ScrollNavigation" type="Node" parent="Graph"]
+script = ExtResource("4_md3t7")
+
+[node name="Area_MouseSelection" type="Area2D" parent="Graph" node_paths=PackedStringArray("shape")]
+collision_mask = 2
+script = ExtResource("3_4ulcm")
+shape = NodePath("Area_Shape")
+
+[node name="Area_Shape" type="CollisionShape2D" parent="Graph/Area_MouseSelection"]
+shape = SubResource("RectangleShape2D_v3jgl")
+debug_color = Color(0, 0.595, 0.7, 0.513726)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 141.0
+offset_bottom = 31.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "HEADER BUTTON"

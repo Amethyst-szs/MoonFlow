@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://myiyk7kteiqb"]
+
+[ext_resource type="PackedScene" uid="uid://bq36cmut6xpvo" path="res://scene/editor/event/graph/event_flow_graph.tscn" id="1_chybk"]
+[ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
+[ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="2_7ecjt"]
+
+[node name="EventFlowApp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_rd7f7")
+AppName = "EventFlowGraphApp"
+AppTaskbarTitle = "FLOW GRAPH"
+AppFlags = 83
+UnsavedChangesScene = ExtResource("2_7ecjt")
+
+[node name="EventFlowGraphHolder" parent="." instance=ExtResource("1_chybk")]
+layout_mode = 1

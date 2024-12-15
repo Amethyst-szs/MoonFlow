@@ -1,9 +1,11 @@
 using System;
 using Godot;
 
+using Nindot.Al.SMO;
+
 using MoonFlow.Project;
 using MoonFlow.Scene.Settings;
-using Nindot.Al.SMO;
+using MoonFlow.Scene.EditorEvent;
 
 namespace MoonFlow.Scene;
 
@@ -28,6 +30,10 @@ public partial class FrontDoor : AppScene
 		// Check if user needs to provide a RomFS path
 		if (!RomfsAccessor.IsValid())
 			ForceOpenRomfsAccessorApp();
+		
+		// DEBUG SHIT
+		var DEBUG = SceneCreator<EventFlowApp>.Create();
+        Scene.NodeApps.AddChild(DEBUG);
 	}
 
 	private void ForceOpenRomfsAccessorApp()
