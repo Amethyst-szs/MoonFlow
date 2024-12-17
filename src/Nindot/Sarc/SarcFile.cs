@@ -70,9 +70,12 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
     {
         return new SarcMsbpFile([.. Content[name]], name, this);
     }
-    public Graph GetFileAlEventFlow(string name, EventFlowFactoryBase nodeFactory)
+    public SarcEventFlowGraph GetFileEventFlow(string name, EventFlowFactoryBase nodeFactory)
     {
-        return Graph.FromBytes([.. Content[name]], nodeFactory);
+        if (!BymlFileAccess.ParseBytes(out BymlFile file, [.. Content[name]]))
+            return null;
+
+        return new SarcEventFlowGraph(file, name, nodeFactory, this);
     }
 
     // ====================================================== //

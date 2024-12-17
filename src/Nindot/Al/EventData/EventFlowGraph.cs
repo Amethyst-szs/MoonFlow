@@ -7,9 +7,11 @@ namespace Nindot.Al.EventFlow;
 
 public partial class Graph
 {
-    protected Dictionary<string, Node> EntryPoints = [];
-    protected Dictionary<int, Node> Nodes = [];
-    protected List<ItemEntry> ItemList = [];
+    public Dictionary<string, Node> EntryPoints { get; private set; } = [];
+    public Dictionary<int, Node> Nodes { get; private set; } = [];
+    public List<ItemEntry> ItemList { get; private set; } = [];
+
+    public string Name { get; private set; } = null;
 
     private readonly ushort _bymlVersion = 2;
     private readonly bool _isValid = false;
@@ -28,7 +30,7 @@ public partial class Graph
     }
     public bool IsNodeOrphanSolo(Node node)
     {
-        int id = node.GetId();
+        int id = node.Id;
 
         foreach (var cmp in Nodes.Values)
         {
@@ -57,10 +59,6 @@ public partial class Graph
     {
         return Nodes[id];
     }
-    public List<Node> GetNodeList()
-    {
-        return [.. Nodes.Values];
-    }
     public int GetNextUnusedNodeId()
     {
         int maxValue = Nodes.Keys.Max();
@@ -75,15 +73,6 @@ public partial class Graph
         int index = EntryPoints.Values.ToList().IndexOf(node);
         return EntryPoints.Keys.ElementAt(index);
     }
-    public List<Node> GetEntryPointNodes()
-    {
-        return [.. EntryPoints.Values];
-    }
-
-    public ReadOnlyCollection<ItemEntry> GetItemList()
-    {
-        return new ReadOnlyCollection<ItemEntry>(ItemList);
-    }
 
     // ====================================================== //
     // ================== Editing Utilities ================= //
@@ -97,7 +86,7 @@ public partial class Graph
 
         // Ensure this Id isn't already in the dictionary
         // If so, reassign the Id before adding
-        int id = node.GetId();
+        int id = node.Id;
         if (Nodes.ContainsKey(id))
             id = node.ReassignId(this);
 
@@ -109,7 +98,7 @@ public partial class Graph
             return;
 
         // Remove all connections to this node from other nodes in graph
-        int id = node.GetId();
+        int id = node.Id;
         foreach (var cmp in Nodes.Values)
         {
             int cmpCount = cmp.GetNextIds().Length;

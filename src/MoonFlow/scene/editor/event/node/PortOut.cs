@@ -20,7 +20,7 @@ public partial class PortOut : TextureRect
 	public EventFlowNode Connection
 	{
 		get { return _connection; }
-		private set
+		set
 		{
 			// If the connection is changing, disconnect from the old connection's signals
 			if (value != Connection && Connection != null)
@@ -50,6 +50,11 @@ public partial class PortOut : TextureRect
 	[Export]
 	private Area2D GrabCollider;
 
+	// ~~~~~~~~~~~ Port Information ~~~~~~~~~~ //
+
+	[Export, ExportGroup("Port")]
+	public int Index { get; private set; } = int.MinValue;
+
 	// ~~~~~~~~~~~~ Grabber State ~~~~~~~~~~~~ //
 
 	private bool _isDrag = false;
@@ -67,7 +72,6 @@ public partial class PortOut : TextureRect
 			{
 				EmitSignal(SignalName.PortGrabbed);
 				GrabCollider.ProcessMode = ProcessModeEnum.Inherit;
-				DraggerLineCurve ??= new();
 			}
 			else
 			{
@@ -79,7 +83,7 @@ public partial class PortOut : TextureRect
 
 	// ~~~~~~~~~~ Dragger Rendering ~~~~~~~~~~ //
 
-	private Curve2D DraggerLineCurve = null;
+	private Curve2D DraggerLineCurve = new();
 	private Vector2 DraggerLineTarget = Vector2.Zero;
 
 	// ~~~~~~~~~~ Signal Definitions ~~~~~~~~~ //
@@ -113,6 +117,10 @@ public partial class PortOut : TextureRect
 
 		// Connect to signals from parent
 		Parent.Connect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+
+		// Setup port index
+		Index = GetIndex();
+		Name = Index.ToString();
 	}
 
 	#endregion
@@ -184,6 +192,14 @@ public partial class PortOut : TextureRect
 			UnhandledInputMoseButton(@event as InputEventMouseButton);
 			return;
 		}
+
+		if (@event.GetType() == typeof(InputEventMouseMotion))
+		{
+			if (IsDrag)
+				GetViewport().SetInputAsHandled();
+			
+			return;
+		}
 	}
 
 	private void UnhandledInputMoseButton(InputEventMouseButton m)
@@ -211,10 +227,10 @@ public partial class PortOut : TextureRect
 		}
 
 		// If releasing the mouse, reset dragger state and set connection
-		IsDrag = false;
-
 		if (ConnectionHover != null)
 			Connection = ConnectionHover.Parent;
+		
+		IsDrag = false;
 	}
 
 	private void OnMouseColliderFoundInPort(Area2D area)
@@ -227,10 +243,10 @@ public partial class PortOut : TextureRect
 
 	private void OnMouseColliderLostInPort(Area2D area)
 	{
-		if (!IsPortInValid(area, out PortIn port))
+		if (!IsPortInValid(area, out _))
 			return;
 
-		ConnectionHover = port;
+		ConnectionHover = null;
 	}
 
 	private bool IsPortInValid(Area2D area, out PortIn port)

@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Nindot.Byml;
 
 namespace Nindot.Al.EventFlow;
 
 public partial class Graph
 {
-    public Graph(BymlFile byml, EventFlowFactoryBase nodeFactory)
+    public Graph(BymlFile byml, string name, EventFlowFactoryBase nodeFactory)
     {
-        // Set byml version
+        Name = name;
         _bymlVersion = byml.Version;
 
         // Get access to the two keys on the top of the byml
@@ -105,13 +106,14 @@ public partial class Graph
         if (!BymlFileAccess.ParseFile(out BymlFile file, path))
             return null;
 
-        return new Graph(file, nodeFactory);
+        var name = path.Split(['/', '\\']).Last();
+        return new Graph(file, name, nodeFactory);
     }
-    public static Graph FromBytes(byte[] bytes, EventFlowFactoryBase nodeFactory)
+    public static Graph FromBytes(byte[] bytes, string name, EventFlowFactoryBase nodeFactory)
     {
         if (!BymlFileAccess.ParseBytes(out BymlFile file, bytes))
             return null;
 
-        return new Graph(file, nodeFactory);
+        return new Graph(file, name, nodeFactory);
     }
 }

@@ -20,7 +20,7 @@ shader_parameter/dot_size = Vector2(45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3jgl"]
 
-[node name="EventFlowApp" type="Control" node_paths=PackedStringArray("Graph", "Background")]
+[node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,8 +29,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rd7f7")
-Graph = NodePath("Graph")
-Background = NodePath("Background")
+GraphCanvas = NodePath("Graph")
+BackgroundCanvas = NodePath("Background")
+GraphNodeHolder = NodePath("Graph/Nodes")
 AppName = "EventFlowGraphApp"
 AppTaskbarTitle = "FLOW GRAPH"
 AppFlags = 83
@@ -81,7 +82,7 @@ position = Vector2(243, 361)
 position = Vector2(462, 222)
 
 [node name="Node4" parent="Graph/Nodes" instance=ExtResource("8_7f530")]
-position = Vector2(825, 262)
+position = Vector2(797, 264)
 
 [node name="Header" type="MarginContainer" parent="."]
 layout_mode = 0

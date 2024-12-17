@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+
+using Nindot.Al.EventFlow;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -13,10 +16,24 @@ public partial class EventFlowNode : Node2D
 
 	public GraphCanvas Parent { get; private set; } = null;
 
+	// ~~~~~~~~~~~~ Content & Type ~~~~~~~~~~~ //
+
+	public Nindot.Al.EventFlow.Node Content { get; private set; } = null;
+
+	public enum NodeTypes {
+		NODE,
+		ENTRY_POINT,
+	}
+
+	public NodeTypes NodeType;
+
 	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
 	[Export, ExportGroup("Internal References")]
 	public PortIn PortIn { get; private set; }
+	[Export]
+	public VBoxContainer PortOutList { get; private set; }
+
 	[Export]
 	private Panel SelectionPanel;
 
@@ -39,7 +56,7 @@ public partial class EventFlowNode : Node2D
 		}
 	}
 
-	private Vector2 RawPosition;
+	public Vector2 RawPosition;
 	private const float PositionSnapSize = 16.0F;
 
 	// ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
@@ -54,7 +71,7 @@ public partial class EventFlowNode : Node2D
     public override void _Ready()
     {
 		// Search upward for parent graph
-		Node nextParent = this;
+		Godot.Node nextParent = this;
 		while (Parent == null)
 		{
 			nextParent = nextParent.GetParent();
@@ -81,6 +98,45 @@ public partial class EventFlowNode : Node2D
 		// Hide selection panel
 		SelectionPanel.Hide();
     }
+
+	public void InitContent(Nindot.Al.EventFlow.Node content)
+	{
+		Content = content;
+		NodeType = NodeTypes.NODE;
+
+		Name = content.Id.ToString();
+
+		for (var i = 0; i < content.GetNextIdCount(); i++)
+		{
+			var outPort = SceneCreator<PortOut>.Create();
+			PortOutList.AddChild(outPort);
+		}
+	}
+
+	public void InitContent(string entryName, EventFlowNode target)
+	{
+		NodeType = NodeTypes.ENTRY_POINT;
+		Name = entryName;
+
+		// Setup ports
+		PortIn.QueueFree();
+
+		var o = SceneCreator<PortOut>.Create();
+		PortOutList.AddChild(o);
+
+		o.Connection = target;
+	}
+
+	public void SetupConnections(List<EventFlowNode> list)
+	{
+		for (int i = 0; i < list.Count; i++)
+		{
+			if (list[i] == null)
+				continue;
+			
+			(PortOutList.GetChild(i) as PortOut).Connection = list[i];
+		}
+	}
 
     #endregion
 

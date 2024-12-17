@@ -16,14 +16,14 @@ public abstract class Node
         ANY_VALUE,
     }
 
-    protected string Name = null;
-    protected string TypeBase = null;
+    public string Name { get; protected set; } = null;
+    public string TypeBase { get; protected set; } = null;
 
-    protected int Id = int.MinValue;
-    protected int NextId = int.MinValue;
+    public int Id { get; protected set; } = int.MinValue;
+    protected int NextId { get; private set; } = int.MinValue;
 
-    protected NodeParams Params = null;
-    public NodeCaseEventList CaseEventList = null;
+    public NodeParams Params { get; protected set; } = null;
+    public NodeCaseEventList CaseEventList { get; protected set; } = null;
 
     public Node(Dictionary<object, object> dict)
     {

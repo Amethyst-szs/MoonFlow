@@ -1,17 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://0cdy5iuxlvqd"]
+[gd_scene load_steps=7 format=3 uid="uid://0cdy5iuxlvqd"]
 
 [ext_resource type="Theme" uid="uid://rub3asjuwm5w" path="res://asset/theme/event/node/event_node.tres" id="1_dkxm3"]
 [ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNode.cs" id="1_f1ryd"]
 [ext_resource type="PackedScene" uid="uid://bhc8hqjw7nqek" path="res://scene/editor/event/node/port_in.tscn" id="3_xs8rq"]
-[ext_resource type="PackedScene" uid="uid://c61gmyptk1563" path="res://scene/editor/event/node/port_out.tscn" id="4_23pij"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/area_drag_collider.gd" id="5_ey2sh"]
 [ext_resource type="StyleBox" uid="uid://dor0dac83hoqe" path="res://asset/theme/event/node/stylebox/event_node_selection_panel.tres" id="5_vyepf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwg26"]
 
-[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "SelectionPanel")]
+[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "SelectionPanel")]
 script = ExtResource("1_f1ryd")
 PortIn = NodePath("Content/Ports/PortHolder_In/Port_In")
+PortOutList = NodePath("Content/Ports/PortHolder_Out/PortList_Out")
 SelectionPanel = NodePath("Content/Panel_Selection")
 
 [node name="Content" type="PanelContainer" parent="."]
@@ -47,9 +47,6 @@ offset_top = -12.0
 offset_right = 24.0
 offset_bottom = 12.0
 theme_override_constants/separation = 12
-
-[node name="Port_Out" parent="Content/Ports/PortHolder_Out/PortList_Out" instance=ExtResource("4_23pij")]
-layout_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="Content"]
 layout_mode = 2

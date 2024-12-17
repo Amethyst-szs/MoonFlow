@@ -16,6 +16,8 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_drag:
 		parent.offset += event.screen_relative / (parent.scale * 2.25)
+		get_viewport().set_input_as_handled()
+		return
 	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:

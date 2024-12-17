@@ -44,7 +44,7 @@ public class UnitTestEventRomFs : IUnitTestGroup
         string bytesYaml = bytesByml.ToYaml();
 
         // Create and write graph
-        var graph = Graph.FromBytes(bytes, new ProjectSmoEventFlowFactory());
+        var graph = Graph.FromBytes(bytes, "n/a", new ProjectSmoEventFlowFactory());
         Test.Should(graph.IsValid());
         Test.Should(graph.WriteBytes(out byte[] result));
 
