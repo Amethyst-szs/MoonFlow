@@ -1,17 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://bq36cmut6xpvo"]
+[gd_scene load_steps=14 format=3 uid="uid://bq36cmut6xpvo"]
 
 [ext_resource type="Script" path="res://scene/editor/event/graph/EventFlowGraph.cs" id="1_f51rj"]
 [ext_resource type="Shader" path="res://asset/shader/graph/graph_background.gdshader" id="2_ippbl"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/GraphCanvas.cs" id="2_kf6hh"]
-[ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="3_0cufh"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/mouse_selection.gd" id="3_4ulcm"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/graph_background_rect.gd" id="3_y83os"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/scroll_navigation.gd" id="4_md3t7"]
+[ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node.tscn" id="5_j8lu4"]
+[ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/graph_ui_header.tres" id="8_s0mk5"]
+[ext_resource type="Texture2D" uid="uid://cy0acrnosdjdw" path="res://asset/material/graph/zoom_out.svg" id="9_wfhc1"]
+[ext_resource type="Texture2D" uid="uid://w3rxhvslqs13" path="res://asset/material/graph/zoom_reset.svg" id="10_6jx6a"]
+[ext_resource type="Texture2D" uid="uid://kgy23al2n62k" path="res://asset/material/graph/zoom_in.svg" id="11_rlhpb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
 shader = ExtResource("2_ippbl")
 shader_parameter/graph_position = Vector2(0, 0)
-shader_parameter/dot_size = Vector2(35, 35)
+shader_parameter/dot_size = Vector2(45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3jgl"]
 
@@ -22,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("1_f51rj")
 Graph = NodePath("Graph")
 
@@ -36,6 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 script = ExtResource("3_y83os")
 graph = NodePath("../../Graph")
@@ -44,17 +49,13 @@ graph = NodePath("../../Graph")
 layer = -2
 script = ExtResource("2_kf6hh")
 
-[node name="Nodes" type="Node2D" parent="Graph"]
-
-[node name="DEBUG" type="Sprite2D" parent="Graph"]
-position = Vector2(519, 301)
-texture = ExtResource("3_0cufh")
-
 [node name="Graph_ScrollNavigation" type="Node" parent="Graph"]
 script = ExtResource("4_md3t7")
 
 [node name="Area_MouseSelection" type="Area2D" parent="Graph" node_paths=PackedStringArray("shape")]
+z_index = 2
 collision_mask = 2
+monitoring = false
 script = ExtResource("3_4ulcm")
 shape = NodePath("Area_Shape")
 
@@ -62,10 +63,39 @@ shape = NodePath("Area_Shape")
 shape = SubResource("RectangleShape2D_v3jgl")
 debug_color = Color(0, 0.595, 0.7, 0.513726)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 141.0
-offset_bottom = 31.0
+[node name="Nodes" type="Node2D" parent="Graph"]
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Node" parent="Graph/Nodes" instance=ExtResource("5_j8lu4")]
+position = Vector2(70, 223)
+
+[node name="Node2" parent="Graph/Nodes" instance=ExtResource("5_j8lu4")]
+position = Vector2(243, 361)
+
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("8_s0mk5")
+
+[node name="UI" type="HBoxContainer" parent="Header"]
 layout_mode = 2
-text = "HEADER BUTTON"
+
+[node name="HBox_ZoomControl" type="HBoxContainer" parent="Header/UI"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Button_ZoomOut" type="Button" parent="Header/UI/HBox_ZoomControl"]
+layout_mode = 2
+icon = ExtResource("9_wfhc1")
+
+[node name="Button_ZoomReset" type="Button" parent="Header/UI/HBox_ZoomControl"]
+layout_mode = 2
+icon = ExtResource("10_6jx6a")
+
+[node name="Button_ZoomIn" type="Button" parent="Header/UI/HBox_ZoomControl"]
+layout_mode = 2
+icon = ExtResource("11_rlhpb")
+
+[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
+[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
+[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]

@@ -1,7 +1,6 @@
 shader_type canvas_item;
 
 uniform vec2 graph_position;
-
 uniform vec2 dot_size;
 
 vec2 rotate(vec2 uv, vec2 pivot, float angle)
@@ -14,7 +13,7 @@ vec2 rotate(vec2 uv, vec2 pivot, float angle)
 }
 
 void fragment() {
-	vec2 pos = vec2(FRAGCOORD.xy) + graph_position;
+	vec2 pos = vec2(FRAGCOORD.xy) + (graph_position * 0.9f);
 	pos = rotate(pos, vec2(0), radians(45));
 
 	vec2 tile = mod(pos, dot_size);

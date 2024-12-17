@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bajosqw3blmjp"]
+
+[ext_resource type="StyleBox" uid="uid://dms4run2dqecx" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_normal.tres" id="1_8rb24"]
+
+[resource]
+Button/constants/icon_max_width = 26
+Button/styles/normal = ExtResource("1_8rb24")
+MarginContainer/constants/margin_left = 12
+MarginContainer/constants/margin_top = 12

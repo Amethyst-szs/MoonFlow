@@ -6,6 +6,8 @@ extends Node
 
 var is_drag: bool = false
 
+var zoom_pivot: Vector2 = Vector2.ZERO
+
 @onready var parent: CanvasLayer = null
 
 func _ready() -> void:
@@ -38,29 +40,50 @@ func _handle_drag_toggle(is_pressed: bool) -> void:
 	get_viewport().set_input_as_handled()
 
 func _handle_wheel_up() -> void:
-	_handle_wheel(1)
+	zoom_pivot = get_viewport().get_mouse_position()
+	
+	var factor := zoom_factor
+	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
+	_handle_zoom(new_scale)
 
 func _handle_wheel_down() -> void:
-	_handle_wheel(-1)
-
-func _handle_wheel(direction: float) -> void:
-	# Calculate target scale
-	var factor := direction * zoom_factor
-	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
+	zoom_pivot = get_viewport().get_mouse_position()
 	
+	var factor := -zoom_factor
+	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
+	_handle_zoom(new_scale)
+
+func _on_button_zoom_out_pressed():
+	zoom_pivot = get_window().size / 2
+	
+	var factor := -zoom_factor * 2.5
+	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
+	_handle_zoom(new_scale)
+
+func _on_button_zoom_in_pressed():
+	zoom_pivot = get_window().size / 2
+	
+	var factor := zoom_factor * 2.5
+	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
+	_handle_zoom(new_scale)
+
+func _on_button_zoom_reset_pressed():
+	zoom_pivot = get_window().size / 2
+	_handle_zoom(Vector2.ONE)
+
+func _handle_zoom(new_scale: Vector2) -> void:
 	# Return if new scale if out of bounds
 	if new_scale.x < zoom_min || new_scale.x > zoom_max:
 		return
 	
 	# Difference between current pivot and target
-	var pivot := get_viewport().get_mouse_position()
-	var dif := parent.offset - pivot
+	var dif := parent.offset - zoom_pivot
 	
 	# Calculate relative scale
 	var rel_scale := new_scale.x / parent.scale.x
 	
 	# Final offset after the scale transformation
-	var final_offset := pivot + dif * rel_scale
+	var final_offset := zoom_pivot + dif * rel_scale
 	
 	# Update transformation
 	parent.scale = new_scale

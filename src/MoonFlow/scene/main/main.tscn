@@ -125,7 +125,7 @@ icon = ExtResource("8_nx1ih")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="FrontDoor" parent="Content/Apps" instance=ExtResource("9_1ew1g")]
 layout_mode = 1

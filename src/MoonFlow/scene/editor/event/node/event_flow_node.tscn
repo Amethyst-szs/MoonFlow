@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://0cdy5iuxlvqd"]
+
+[ext_resource type="Theme" uid="uid://rub3asjuwm5w" path="res://asset/theme/event/node/event_node.tres" id="1_dkxm3"]
+[ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNode.cs" id="1_f1ryd"]
+[ext_resource type="PackedScene" uid="uid://bhc8hqjw7nqek" path="res://scene/editor/event/node/port_in.tscn" id="3_xs8rq"]
+[ext_resource type="PackedScene" uid="uid://c61gmyptk1563" path="res://scene/editor/event/node/port_out.tscn" id="4_23pij"]
+[ext_resource type="Script" path="res://scene/editor/event/node/component/area_drag_collider.gd" id="5_ey2sh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwg26"]
+
+[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn")]
+script = ExtResource("1_f1ryd")
+PortIn = NodePath("Content/Ports/PortHolder_In/Port_In")
+
+[node name="Content" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+theme = ExtResource("1_dkxm3")
+
+[node name="Ports" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="PortHolder_In" type="Control" parent="Content/Ports"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Port_In" parent="Content/Ports/PortHolder_In" instance=ExtResource("3_xs8rq")]
+layout_mode = 2
+offset_left = -24.0
+offset_top = -12.0
+offset_bottom = 12.0
+
+[node name="PortHolder_Out" type="Control" parent="Content/Ports"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="PortList_Out" type="VBoxContainer" parent="Content/Ports/PortHolder_Out"]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 24.0
+offset_bottom = 12.0
+theme_override_constants/separation = 12
+
+[node name="Port_Out" parent="Content/Ports/PortHolder_Out/PortList_Out" instance=ExtResource("4_23pij")]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label_Header" type="Label" parent="Content/VBox"]
+layout_mode = 2
+text = "EVENT_FLOW_NODE_HEADER"
+
+[node name="Area_DragCollider" type="Area2D" parent="." node_paths=PackedStringArray("content")]
+z_index = 1
+collision_layer = 2
+monitorable = false
+script = ExtResource("5_ey2sh")
+content = NodePath("../Content")
+
+[node name="Shape" type="CollisionShape2D" parent="Area_DragCollider"]
+shape = SubResource("RectangleShape2D_mwg26")
+debug_color = Color(0.221667, 0, 0.7, 0.419608)
+
+[connection signal="resized" from="Content" to="Area_DragCollider" method="_on_content_size_changed"]
+[connection signal="area_entered" from="Area_DragCollider" to="Area_DragCollider" method="_on_selector_entered"]
+[connection signal="area_exited" from="Area_DragCollider" to="Area_DragCollider" method="_on_selector_exited"]
+[connection signal="mouse_entered" from="Area_DragCollider" to="Area_DragCollider" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area_DragCollider" to="Area_DragCollider" method="_on_mouse_exited"]

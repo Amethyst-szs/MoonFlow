@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhc8hqjw7nqek"]
+
+[ext_resource type="Texture2D" uid="uid://j5kqgxssjrov" path="res://asset/material/graph/port.svg" id="1_mdne1"]
+[ext_resource type="Script" path="res://scene/editor/event/node/PortIn.cs" id="2_ee6lx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fejlo"]
+size = Vector2(12, 12)
+
+[node name="Port_In" type="TextureRect"]
+custom_minimum_size = Vector2(24, 24)
+texture = ExtResource("1_mdne1")
+expand_mode = 3
+script = ExtResource("2_ee6lx")
+
+[node name="Area_MouseCollider" type="Area2D" parent="."]
+z_index = 3
+position = Vector2(12, 12)
+collision_layer = 4
+collision_mask = 8
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Area_MouseCollider"]
+shape = SubResource("RectangleShape2D_fejlo")
+debug_color = Color(1, 0.47, 0.47, 0.623529)
