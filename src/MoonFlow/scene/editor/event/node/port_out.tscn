@@ -25,7 +25,7 @@ DraggerLine = NodePath("Line_Dragger")
 GrabCollider = NodePath("Area_MouseColliderScan")
 
 [node name="Line_Connection" type="Line2D" parent="."]
-z_index = 1
+z_index = 2
 position = Vector2(12, 12)
 width = 5.0
 default_color = Color(1, 1, 1, 0.85098)

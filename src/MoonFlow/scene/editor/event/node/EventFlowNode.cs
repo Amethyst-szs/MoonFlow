@@ -15,7 +15,7 @@ public partial class EventFlowNode : Node2D
 
 	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
-	[Export]
+	[Export, ExportGroup("Internal References")]
 	public PortIn PortIn { get; private set; }
 	[Export]
 	private Panel SelectionPanel;
@@ -24,7 +24,7 @@ public partial class EventFlowNode : Node2D
 
 	private bool _isSelected = false;
 
-	[Export]
+	[Export, ExportGroup("State")]
 	public bool IsSelected
 	{
 		get { return _isSelected; }

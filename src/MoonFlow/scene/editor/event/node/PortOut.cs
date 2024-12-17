@@ -41,9 +41,20 @@ public partial class PortOut : TextureRect
 		}
 	}
 
+	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
+
+	[Export, ExportGroup("Internal References")]
+	private Line2D ConnectionLine;
+	[Export]
+	private Line2D DraggerLine;
+	[Export]
+	private Area2D GrabCollider;
+
 	// ~~~~~~~~~~~~ Grabber State ~~~~~~~~~~~~ //
 
 	private bool _isDrag = false;
+
+	[Export, ExportGroup("State")]
 	public bool IsDrag
 	{
 		get { return _isDrag; }
@@ -65,15 +76,6 @@ public partial class PortOut : TextureRect
 			}
 		}
 	}
-
-	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
-
-	[Export]
-	private Line2D ConnectionLine;
-	[Export]
-	private Line2D DraggerLine;
-	[Export]
-	private Area2D GrabCollider;
 
 	// ~~~~~~~~~~ Dragger Rendering ~~~~~~~~~~ //
 
