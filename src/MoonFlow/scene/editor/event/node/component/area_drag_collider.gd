@@ -4,7 +4,12 @@ extends Area2D
 @onready var shape: RectangleShape2D = $Shape.shape as RectangleShape2D
 
 var is_hover: bool = false
-var is_select: bool = false
+
+signal node_selected
+signal node_multiselected
+signal node_deselected
+
+signal node_dragged(dist: Vector2)
 
 func _ready() -> void:
 	_on_content_size_changed()
@@ -17,14 +22,39 @@ func _on_content_size_changed() -> void:
 	shape.size = content.size
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is not InputEventMouseButton or !is_hover:
+	if event is InputEventMouseMotion:
+		_unhandled_input_mouse_motion(event)
 		return
 	
-	var m = event as InputEventMouseButton
-	if m.button_index == MOUSE_BUTTON_LEFT && m.pressed:
-		is_select = true
+	if !is_hover:
+		return
+	
+	if event is InputEventMouseButton:
+		_unhandled_input_mouse_button(event)
+		return
 
-func _on_selector_entered(_area: Area2D) -> void: is_select = true
-func _on_selector_exited(_area: Area2D) -> void: is_select = false
+func _unhandled_input_mouse_button(event: InputEventMouseButton) -> void:
+	if event.button_index == MOUSE_BUTTON_LEFT:
+		get_viewport().set_input_as_handled()
+	else:
+		return
+	
+	if event.shift_pressed:
+		node_multiselected.emit()
+	else:
+		node_selected.emit()
+
+func _unhandled_input_mouse_motion(event: InputEventMouseMotion) -> void:
+	if Input.get_mouse_button_mask() != MOUSE_BUTTON_MASK_LEFT:
+		return
+	
+	node_dragged.emit(event.relative)
+	get_viewport().set_input_as_handled()
+
+func _on_selector_exited(area: Area2D) -> void:
+	if area.monitorable:
+		node_deselected.emit()
+
+func _on_selector_entered(_area: Area2D) -> void: node_multiselected.emit()
 func _on_mouse_entered(): is_hover = true
 func _on_mouse_exited(): is_hover = false

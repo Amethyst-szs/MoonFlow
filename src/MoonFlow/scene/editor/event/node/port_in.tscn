@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scene/editor/event/node/PortIn.cs" id="2_ee6lx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fejlo"]
-size = Vector2(12, 12)
+size = Vector2(22, 22)
 
 [node name="Port_In" type="TextureRect"]
 custom_minimum_size = Vector2(24, 24)

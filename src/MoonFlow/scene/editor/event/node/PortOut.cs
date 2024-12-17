@@ -8,19 +8,55 @@ namespace MoonFlow.Scene.EditorEvent;
 [Icon("res://asset/material/graph/port.svg")]
 public partial class PortOut : TextureRect
 {
-	private bool _isGrabbed = false;
-	public bool IsGrabbed
+	#region Properties
+
+	// ~~~~~~~~~~~ Node References ~~~~~~~~~~~ //
+
+	public EventFlowNode Parent { get; private set; } = null;
+
+	private PortIn ConnectionHover = null;
+
+	private EventFlowNode _connection = null;
+	public EventFlowNode Connection
 	{
-		get { return _isGrabbed; }
+		get { return _connection; }
 		private set
 		{
-			_isGrabbed = value;
-			ConnectionLine.Visible = value || Connection != null;
+			// If the connection is changing, disconnect from the old connection's signals
+			if (value != Connection && Connection != null)
+				Connection.Disconnect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+
+			bool isNotNull = value != null;
+
+			_connection = value;
+			ConnectionHover = null;
+			ConnectionLine.Visible = isNotNull;
+
+			// If a connection is being set, update dragger rendering and signals
+			if (isNotNull)
+			{
+				Connection.Connect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+				CalcConnectionLine();
+			}
+		}
+	}
+
+	// ~~~~~~~~~~~~ Grabber State ~~~~~~~~~~~~ //
+
+	private bool _isDrag = false;
+	public bool IsDrag
+	{
+		get { return _isDrag; }
+		private set
+		{
+			_isDrag = value;
+			DraggerLine.Visible = value;
 
 			if (value)
 			{
 				EmitSignal(SignalName.PortGrabbed);
 				GrabCollider.ProcessMode = ProcessModeEnum.Inherit;
+				DraggerLineCurve ??= new();
 			}
 			else
 			{
@@ -30,50 +66,36 @@ public partial class PortOut : TextureRect
 		}
 	}
 
-	public EventFlowNode Parent { get; private set; } = null;
-
-	private EventFlowNode _connection = null;
-	public EventFlowNode Connection
-	{
-		get { return _connection; }
-		private set
-		{
-			bool isNotNull = value != null;
-
-			_connection = value;
-			ConnectionHover = null;
-			ConnectionLine.Visible = isNotNull;
-
-			if (isNotNull)
-			{
-				var inPos = Connection.PortIn.GlobalPosition;
-				var inSize = Connection.PortIn.Size;
-				ConnectionLineTarget = inPos - ConnectionLine.GlobalPosition + (inSize / 2);
-				
-				CalcLineRender(false);
-			}
-		}
-	}
-
-	private PortIn ConnectionHover = null;
+	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
 	[Export]
 	private Line2D ConnectionLine;
-	private Curve2D ConnectionLineCurve = new();
-	private Vector2 ConnectionLineTarget = Vector2.Zero;
-
+	[Export]
+	private Line2D DraggerLine;
 	[Export]
 	private Area2D GrabCollider;
+
+	// ~~~~~~~~~~ Dragger Rendering ~~~~~~~~~~ //
+
+	private Curve2D DraggerLineCurve = null;
+	private Vector2 DraggerLineTarget = Vector2.Zero;
+
+	// ~~~~~~~~~~ Signal Definitions ~~~~~~~~~ //
 
 	[Signal]
 	public delegate void PortGrabbedEventHandler();
 	[Signal]
 	public delegate void PortReleasedEventHandler();
 
+	#endregion
+
+	#region Initilization
+
 	public override void _Ready()
 	{
 		// Hide line rendering
 		ConnectionLine.Hide();
+		DraggerLine.Hide();
 
 		// Search upward for parent flow node
 		Node nextParent = this;
@@ -86,36 +108,72 @@ public partial class PortOut : TextureRect
 			if (nextParent.GetType() == typeof(EventFlowNode))
 				Parent = nextParent as EventFlowNode;
 		}
+
+		// Connect to signals from parent
+		Parent.Connect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
 	}
+
+	#endregion
+
+	#region Process & Render
 
 	public override void _Process(double delta)
 	{
-		if (IsGrabbed)
-			CalcLineRender();
+		if (!IsDrag)
+			return;
+
+		CalcLineRender();
+
+		// Update collider
+		GrabCollider.GlobalPosition = GetGlobalMousePosition();
 	}
 
 	private void CalcLineRender(bool isUpdateToMouse = true)
 	{
 		// Reset curve
-		ConnectionLineCurve.ClearPoints();
+		DraggerLineCurve.ClearPoints();
 
 		// Setup curve points
 		if (isUpdateToMouse)
-			ConnectionLineTarget = ConnectionLineTarget.Lerp(ConnectionLine.GetLocalMousePosition(), 0.1F);
+			DraggerLineTarget = DraggerLineTarget.Lerp(DraggerLine.GetLocalMousePosition(), 0.1F);
 
-		Vector2 mouse = ConnectionLineTarget;
+		Vector2 mouse = DraggerLineTarget;
 		Vector2 midpoint = mouse / 2;
 
 		// Create curve points and apply to line renderer
-		ConnectionLineCurve.AddPoint(Vector2.Zero);
-		ConnectionLineCurve.AddPoint(midpoint, new Vector2(-midpoint.X / 2, -midpoint.Y), new Vector2(midpoint.X / 2, midpoint.Y));
-		ConnectionLineCurve.AddPoint(mouse);
+		DraggerLineCurve.AddPoint(Vector2.Zero);
+		DraggerLineCurve.AddPoint(midpoint, new Vector2(-midpoint.X / 2, -midpoint.Y), new Vector2(midpoint.X / 2, midpoint.Y));
+		DraggerLineCurve.AddPoint(mouse);
 
-		ConnectionLine.Points = ConnectionLineCurve.GetBakedPoints();
+		DraggerLine.Points = DraggerLineCurve.GetBakedPoints();
 
-		// Update collider
-		GrabCollider.GlobalPosition = GetGlobalMousePosition();
+		// Update shader direction sign
+		float sign = MathF.Sign(DraggerLineTarget.Y) * MathF.Sign(DraggerLineTarget.X);
+		SetDraggerLineShaderDirection(sign);
 	}
+
+	private void CalcConnectionLine()
+	{
+		if (!IsInstanceValid(Connection))
+			return;
+		
+		var inPos = Connection.PortIn.GlobalPosition;
+		var inSize = Connection.PortIn.Size;
+		DraggerLineTarget = inPos - ConnectionLine.GlobalPosition + (inSize / 2);
+		CalcLineRender(false);
+
+		ConnectionLine.Points = DraggerLine.Points;
+	}
+
+	private void SetDraggerLineShaderDirection(float sign)
+	{
+		var shader = DraggerLine.Material as ShaderMaterial;
+		shader.SetShaderParameter("direction", sign);
+	}
+
+	#endregion
+
+	#region Input
 
 	public override void _GuiInput(InputEvent @event)
 	{
@@ -138,22 +196,21 @@ public partial class PortOut : TextureRect
 
 		if (m.ButtonIndex != MouseButton.Left)
 			return;
+		
+		// Capture all left mouse inputs regardless of press or release
+		GetViewport().SetInputAsHandled();
 
 		// If clicking on the port, enable the grabbing
 		if (m.Pressed)
 		{
-			IsGrabbed = true;
-			ConnectionLine.Show();
-			ConnectionLineTarget = Vector2.Zero;
-			GetViewport().SetInputAsHandled();
+			IsDrag = true;
+			DraggerLineTarget = Vector2.Zero;
 			return;
 		}
 
-		// If releasing the mouse, reset port
-		IsGrabbed = false;
-		GetViewport().SetInputAsHandled();
+		// If releasing the mouse, reset dragger state and set connection
+		IsDrag = false;
 
-		// If there is an in-port hovered, set connection to the new port
 		if (ConnectionHover != null)
 			Connection = ConnectionHover.Parent;
 	}
@@ -187,4 +244,6 @@ public partial class PortOut : TextureRect
 		port = portRaw as PortIn;
 		return port.Parent != Parent;
 	}
+
+	#endregion
 }

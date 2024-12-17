@@ -1,31 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://c61gmyptk1563"]
+[gd_scene load_steps=6 format=3 uid="uid://c61gmyptk1563"]
 
 [ext_resource type="Texture2D" uid="uid://j5kqgxssjrov" path="res://asset/material/graph/port.svg" id="1_xp2pk"]
 [ext_resource type="Script" path="res://scene/editor/event/node/PortOut.cs" id="2_jlr03"]
+[ext_resource type="Shader" path="res://asset/shader/graph/graph_port_dragger_line.gdshader" id="3_0qtkg"]
 
-[sub_resource type="Curve" id="Curve_jrhwg"]
-_data = [Vector2(0, 0.496044), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_by1ul"]
+shader = ExtResource("3_0qtkg")
+shader_parameter/dash_size = 0.025
+shader_parameter/speed = -0.05
+shader_parameter/direction = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um605"]
 size = Vector2(11, 11)
 
-[node name="Port_Out" type="TextureRect" node_paths=PackedStringArray("ConnectionLine", "GrabCollider")]
+[node name="Port_Out" type="TextureRect" node_paths=PackedStringArray("ConnectionLine", "DraggerLine", "GrabCollider")]
 custom_minimum_size = Vector2(24, 24)
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 texture = ExtResource("1_xp2pk")
 expand_mode = 3
 script = ExtResource("2_jlr03")
-ConnectionLine = NodePath("Line2D")
+ConnectionLine = NodePath("Line_Connection")
+DraggerLine = NodePath("Line_Dragger")
 GrabCollider = NodePath("Area_MouseColliderScan")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line_Connection" type="Line2D" parent="."]
 z_index = 1
 position = Vector2(12, 12)
 width = 5.0
-width_curve = SubResource("Curve_jrhwg")
-default_color = Color(1, 1, 1, 0.768627)
+default_color = Color(1, 1, 1, 0.85098)
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 2
+antialiased = true
+
+[node name="Line_Dragger" type="Line2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_by1ul")
+position = Vector2(12, 12)
+width = 5.0
+default_color = Color(1, 1, 1, 0.643137)
 joint_mode = 2
 begin_cap_mode = 1
 end_cap_mode = 2

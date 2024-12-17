@@ -71,6 +71,12 @@ position = Vector2(70, 223)
 [node name="Node2" parent="Graph/Nodes" instance=ExtResource("5_j8lu4")]
 position = Vector2(243, 361)
 
+[node name="Node3" parent="Graph/Nodes" instance=ExtResource("5_j8lu4")]
+position = Vector2(462, 222)
+
+[node name="Node4" parent="Graph/Nodes" instance=ExtResource("5_j8lu4")]
+position = Vector2(825, 262)
+
 [node name="Header" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
@@ -96,6 +102,10 @@ icon = ExtResource("10_6jx6a")
 layout_mode = 2
 icon = ExtResource("11_rlhpb")
 
+[connection signal="selection_ended" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [false]]
+[connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="DeselectAllNodes"]
+[connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]
+[connection signal="selection_started_with_shift" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
