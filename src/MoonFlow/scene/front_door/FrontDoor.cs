@@ -30,10 +30,6 @@ public partial class FrontDoor : AppScene
 		// Check if user needs to provide a RomFS path
 		if (!RomfsAccessor.IsValid())
 			ForceOpenRomfsAccessorApp();
-		
-		// DEBUG SHIT
-		var DEBUG = SceneCreator<EventFlowApp>.Create();
-        Scene.NodeApps.AddChild(DEBUG);
 	}
 
 	private void ForceOpenRomfsAccessorApp()

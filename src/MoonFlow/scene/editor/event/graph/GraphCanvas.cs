@@ -16,6 +16,9 @@ public partial class GraphCanvas : CanvasLayer
     [Signal]
 	public delegate void DragSelectionEventHandler(Vector2 dist);
 
+    [Signal]
+	public delegate void ToggleDebugDataViewEventHandler(bool isActive);
+
     private void DeselectAllNodes() { EmitSignal(SignalName.DeselectAll); }
     private void SelectAllNodes() { EmitSignal(SignalName.SelectAll); }
     public void DragSelectedNodes(Vector2 dist) {
@@ -26,10 +29,8 @@ public partial class GraphCanvas : CanvasLayer
         EmitSignal(SignalName.DragSelection, dist);
     }
 
-    private void SetMouseDragSelectionState(bool isActive)
-    {
-        IsMouseDragSelectionActive = isActive;
-    }
+    private void SetMouseDragSelectionState(bool isActive) { IsMouseDragSelectionActive = isActive; }
+    private void SetDebugDataViewState(bool isActive) { EmitSignal(SignalName.ToggleDebugDataView, isActive); }
 
     #endregion
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 
 using Nindot.Al.EventFlow;
+using System.Linq;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -19,8 +20,10 @@ public partial class EventFlowNode : Node2D
 	// ~~~~~~~~~~~~ Content & Type ~~~~~~~~~~~ //
 
 	public Nindot.Al.EventFlow.Node Content { get; private set; } = null;
+	public NodeMetadata Metadata { get; private set; } = null;
 
-	public enum NodeTypes {
+	public enum NodeTypes
+	{
 		NODE,
 		ENTRY_POINT,
 	}
@@ -37,6 +40,9 @@ public partial class EventFlowNode : Node2D
 	[Export]
 	private Panel SelectionPanel;
 
+	[Export]
+	private Label DebugDataDisplay;
+
 	// ~~~~~~~~~~~~~~ Selection ~~~~~~~~~~~~~~ //
 
 	private bool _isSelected = false;
@@ -49,7 +55,7 @@ public partial class EventFlowNode : Node2D
 		{
 			if (value == _isSelected)
 				return;
-			
+
 			_isSelected = value;
 			SelectionPanel.Visible = value;
 			GD.Print(Name + " ", value ? "Selected" : "Deselected");
@@ -64,12 +70,12 @@ public partial class EventFlowNode : Node2D
 	[Signal]
 	public delegate void NodeMovedEventHandler();
 
-    #endregion
+	#endregion
 
-    #region Initilization
+	#region Initilization
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		// Search upward for parent graph
 		Godot.Node nextParent = this;
 		while (Parent == null)
@@ -97,7 +103,22 @@ public partial class EventFlowNode : Node2D
 
 		// Hide selection panel
 		SelectionPanel.Hide();
-    }
+
+		// Setup debug panel
+		DebugDataDisplay.Hide();
+		
+		if (OS.IsDebugBuild())
+			Parent.Connect(GraphCanvas.SignalName.ToggleDebugDataView, Callable.From(new Action<bool>(SetDebugVisiblity)));
+		else
+		{
+			var root = DebugDataDisplay as Godot.Node;
+			while (root.GetType() != typeof(Control))
+				root = root.GetParent();
+
+			root.QueueFree();
+			DebugDataDisplay = null;
+		}
+	}
 
 	public void InitContent(Nindot.Al.EventFlow.Node content)
 	{
@@ -111,6 +132,8 @@ public partial class EventFlowNode : Node2D
 			var outPort = SceneCreator<PortOut>.Create();
 			PortOutList.AddChild(outPort);
 		}
+
+		DrawDebugLabel();
 	}
 
 	public void InitContent(string entryName, EventFlowNode target)
@@ -125,6 +148,35 @@ public partial class EventFlowNode : Node2D
 		PortOutList.AddChild(o);
 
 		o.Connection = target;
+
+		DrawDebugLabel();
+	}
+
+	public void InitContentMetadata(GraphMetadata holder, NodeMetadata data)
+	{
+		if (data == null)
+		{
+			Metadata = new();
+
+			switch (NodeType)
+			{
+				case NodeTypes.NODE:
+					holder.Nodes.Add(Content.Id, Metadata);
+					return;
+				case NodeTypes.ENTRY_POINT:
+					holder.EntryPoints.Add(Name, Metadata);
+					EmitSignal(SignalName.NodeMoved);
+					return;
+			}
+		}
+
+		Metadata = data;
+
+		RawPosition = Metadata.Position;
+		Position = Metadata.Position;
+		EmitSignal(SignalName.NodeMoved);
+
+		DrawDebugLabel();
 	}
 
 	public void SetupConnections(List<EventFlowNode> list)
@@ -133,23 +185,23 @@ public partial class EventFlowNode : Node2D
 		{
 			if (list[i] == null)
 				continue;
-			
+
 			(PortOutList.GetChild(i) as PortOut).Connection = list[i];
 		}
 	}
 
-    #endregion
+	#endregion
 
-    #region Selection
+	#region Selection
 
 	private void OnNodeSelected() { OnNodeSelected(true); }
-    private void OnNodeSelected(bool isMultiselect)
+	private void OnNodeSelected(bool isMultiselect)
 	{
 		if (IsSelected) return;
-		
+
 		if (!isMultiselect)
 			Parent.EmitSignal(GraphCanvas.SignalName.DeselectAll);
-		
+
 		IsSelected = true;
 	}
 
@@ -170,14 +222,64 @@ public partial class EventFlowNode : Node2D
 
 		Vector2 oldPos = Position;
 		RawPosition += dist;
-		
+
 		Vector2 snapPos;
 		snapPos.X = MathF.Floor(RawPosition.X / PositionSnapSize) * PositionSnapSize;
 		snapPos.Y = MathF.Floor(RawPosition.Y / PositionSnapSize) * PositionSnapSize;
 		Position = snapPos;
 
-		if (Position != oldPos)
+		Metadata.Position = snapPos;
+
+		if (snapPos != oldPos)
 			EmitSignal(SignalName.NodeMoved);
+		
+		DrawDebugLabel();
+	}
+
+	#endregion
+
+	#region Signals
+
+	private void SetDebugVisiblity(bool isActive)
+	{
+		if (IsInstanceValid(DebugDataDisplay))
+			DebugDataDisplay.Visible = isActive;
+	}
+
+	#endregion
+
+	#region Utility
+
+	public bool IsNode() { return NodeType == NodeTypes.NODE; }
+	public bool IsEntryPoint() { return NodeType == NodeTypes.ENTRY_POINT; }
+
+	private void DrawDebugLabel()
+	{
+		if (DebugDataDisplay == null)
+			return;
+		
+		string txt = "";
+
+		txt += AppendDebugLabel(nameof(NodeType), Enum.GetName(NodeType));
+		txt += AppendDebugLabel(nameof(Position), Position);
+
+		if (Content != null)
+		{
+			txt += AppendDebugLabel(nameof(Content.Id), Content.Id);
+
+			txt += "Next: ";
+			foreach (var id in Content.GetNextIds()) txt += id.ToString() + ", ";
+			txt += '\n';
+
+			txt += AppendDebugLabel(nameof(Content.TypeBase), Content.TypeBase);
+			txt += AppendDebugLabel(nameof(Content.Name), Content.Name);
+		}
+
+		DebugDataDisplay.Text = txt;
+	}
+	private static string AppendDebugLabel(string property, object value)
+	{
+		return property + ": " + value.ToString() + "\n";
 	}
 
 	#endregion

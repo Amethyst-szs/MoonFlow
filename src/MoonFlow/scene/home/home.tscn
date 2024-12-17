@@ -49,10 +49,12 @@ script = ExtResource("5_pebn0")
 [node name="Debug" type="PopupMenu" parent="Content/VBox/Actionbar"]
 auto_translate_mode = 1
 size = Vector2i(335, 100)
-item_count = 2
+item_count = 3
 item_0/text = "HOME_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
 item_1/text = "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
 item_1/id = 1
+item_2/text = "HOME_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+item_2/id = 2
 script = ExtResource("6_lug21")
 
 [node name="Tab" type="TabContainer" parent="Content/VBox"]

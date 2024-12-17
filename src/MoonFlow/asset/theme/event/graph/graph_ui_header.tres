@@ -1,9 +1,17 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bajosqw3blmjp"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bajosqw3blmjp"]
 
+[ext_resource type="StyleBox" uid="uid://cmd8hoxpk31yy" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_focus.tres" id="1_0sh3g"]
 [ext_resource type="StyleBox" uid="uid://dms4run2dqecx" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_normal.tres" id="1_8rb24"]
+[ext_resource type="StyleBox" uid="uid://dgw12qliwg2ba" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_hover.tres" id="1_p4fct"]
+[ext_resource type="StyleBox" uid="uid://dh7ol0v7li3xb" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_hover_pressed.tres" id="3_ts5kt"]
+[ext_resource type="StyleBox" uid="uid://cmucfjtida8ce" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_pressed.tres" id="5_6n160"]
 
 [resource]
 Button/constants/icon_max_width = 26
+Button/styles/focus = ExtResource("1_0sh3g")
+Button/styles/hover = ExtResource("1_p4fct")
+Button/styles/hover_pressed = ExtResource("3_ts5kt")
 Button/styles/normal = ExtResource("1_8rb24")
+Button/styles/pressed = ExtResource("5_6n160")
 MarginContainer/constants/margin_left = 12
 MarginContainer/constants/margin_top = 12

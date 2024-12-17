@@ -1,10 +1,14 @@
 using Godot;
 using System;
+using System.Linq;
 
 using Nindot;
 using Nindot.Al.EventFlow;
 using Nindot.Al.EventFlow.Smo;
-using System.Linq;
+
+using MoonFlow.Async;
+using MoonFlow.Scene.Main;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -16,6 +20,8 @@ public partial class EventFlowApp : AppScene
     // ~~~~~~~~~~~ Event Flow Graph ~~~~~~~~~~ //
 
     public SarcEventFlowGraph Graph { get; private set; } = null;
+    public GraphMetaHolder MetadataHolder { get; private set; } = null;
+    public GraphMetadata Metadata { get { return MetadataHolder.Data; } }
 
     // ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
@@ -30,15 +36,18 @@ public partial class EventFlowApp : AppScene
 
     #region Initilization
 
-    public override void _Ready()
+    protected override void AppInit()
     {
+        // Connect to signal events
         VisibilityChanged += OnVisiblityChanged;
+
+        Scene.NodeHeader.Connect(Header.SignalName.ButtonSave, Callable.From(SaveFile));
 
         // DEBUG SHIT
         OpenFile(SarcFile.FromFilePath("D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey100/romfs/EventData/Common.szs"), "SimpleMessage.byml");
     }
 
-    private void InitEditor()
+    private async void InitEditor()
     {
         // Destroy current contents of editor, if any exist
         foreach (var child in GraphNodeHolder.GetChildren())
@@ -47,19 +56,31 @@ public partial class EventFlowApp : AppScene
             child.QueueFree();
         }
 
-        // Initilize every node in the EventFlowGraph
+        await InitNodeList();
+        InitEntryPointNodes();
+    }
+
+    private async Task InitNodeList()
+    {
+        // Initilize nodes from the Graph data container
         foreach (var node in Graph.Nodes.Values)
         {
             if (node.Id == int.MinValue)
                 throw new EventFlowException("Node initilized without an Id!");
 
-            var edit = SceneCreator<EventFlowNode>.Create();
-            GraphNodeHolder.AddChild(edit);
-            edit.InitContent(node);
+            // Create node
+            var nodeEdit = SceneCreator<EventFlowNode>.Create();
+            GraphNodeHolder.AddChild(nodeEdit);
 
-            edit.Position = new Vector2(node.Id * 100, node.Id * 30);
-            edit.RawPosition = new Vector2(node.Id * 100, node.Id * 30);
+            // Setup metadata access (Node position, comments, and other additional info)
+            Metadata.Nodes.TryGetValue(node.Id, out NodeMetadata data);
+            nodeEdit.InitContentMetadata(Metadata, data);
+
+            // Init main content from event flow graph byml
+            nodeEdit.InitContent(node);
         }
+
+        await ToSignal(Engine.GetMainLoop(), "process_frame");
 
         // Setup node port connections
         foreach (var n in GraphNodeHolder.GetChildren())
@@ -69,16 +90,21 @@ public partial class EventFlowApp : AppScene
             var idList = nodeEdit.Content.GetNextIds();
             if (idList.Length == 0)
                 continue;
-            
-            var list = idList.Select(s => {
+
+            var list = idList.Select(s =>
+            {
                 if (s == int.MinValue) return null;
                 return GraphNodeHolder.GetChild(s) as EventFlowNode;
             });
-            
+
             nodeEdit.SetupConnections(list.ToList());
         }
 
-        // Create entry points to the graph
+        await ToSignal(Engine.GetMainLoop(), "process_frame");
+    }
+
+    private void InitEntryPointNodes()
+    {
         foreach (var entry in Graph.EntryPoints)
         {
             var editNode = GraphNodeHolder.GetNode<EventFlowNode>(entry.Value.Id.ToString());
@@ -88,16 +114,56 @@ public partial class EventFlowApp : AppScene
                 return;
             }
 
+            // Create node
             var entryEdit = SceneCreator<EventFlowNode>.Create();
             GraphNodeHolder.AddChild(entryEdit);
+
+            // Init main content from event flow graph byml
             entryEdit.InitContent(entry.Key, editNode);
+
+            // Setup metadata access (Node position, comments, and other additional info)
+            Metadata.EntryPoints.TryGetValue(entry.Key, out NodeMetadata data);
+            entryEdit.InitContentMetadata(Metadata, data);
         }
     }
+
+    #endregion
+
+    #region Read & Write
 
     public void OpenFile(SarcFile sarc, string name)
     {
         Graph = sarc.GetFileEventFlow(name, new ProjectSmoEventFlowFactory());
+        MetadataHolder = GraphMetaHolder.Create(Graph);
         InitEditor();
+    }
+
+    public async void SaveFile()
+    {
+        GD.Print("\n - Saving ", Graph.Name);
+        var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbtArchives);
+
+        await run.Task;
+        await ToSignal(Engine.GetMainLoop(), "process_frame");
+
+        if (run.Task.Exception == null)
+            GD.Print("Saved ", Graph.Name);
+        else
+            GD.Print("Saving failed for ", Graph.Name);
+    }
+
+    public void TaskRunWriteFile(AsyncDisplay display)
+    {
+        // Write graph event data
+        display.UpdateProgress(0, 2);
+        Graph.WriteArchive();
+
+        // Write metadata holder
+        display.UpdateProgress(1, 2);
+        MetadataHolder.WriteFile();
+
+        // Reset flag
+        IsModified = false;
     }
 
     #endregion
@@ -109,6 +175,8 @@ public partial class EventFlowApp : AppScene
         GraphCanvas.Visible = Visible;
         BackgroundCanvas.Visible = Visible;
     }
+
+    private void OnFileModified() { IsModified = true; }
 
     #endregion
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=16 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -7,11 +7,11 @@
 [ext_resource type="Script" path="res://scene/editor/event/graph/GraphCanvas.cs" id="5_5dp1p"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/scroll_navigation.gd" id="6_va4yh"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/mouse_selection.gd" id="7_mr57c"]
-[ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node.tscn" id="8_7f530"]
 [ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/graph_ui_header.tres" id="9_1hwnx"]
 [ext_resource type="Texture2D" uid="uid://cy0acrnosdjdw" path="res://asset/material/graph/zoom_out.svg" id="10_k8svk"]
 [ext_resource type="Texture2D" uid="uid://w3rxhvslqs13" path="res://asset/material/graph/zoom_reset.svg" id="11_uvpj5"]
 [ext_resource type="Texture2D" uid="uid://kgy23al2n62k" path="res://asset/material/graph/zoom_in.svg" id="12_570rd"]
+[ext_resource type="Texture2D" uid="uid://dti6ok2kka208" path="res://asset/material/debug/debug.svg" id="12_scho0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
 shader = ExtResource("3_budwu")
@@ -19,6 +19,14 @@ shader_parameter/graph_position = Vector2(0, 0)
 shader_parameter/dot_size = Vector2(45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3jgl"]
+
+[sub_resource type="GDScript" id="GDScript_mtjrf"]
+script/source = "extends HBoxContainer
+
+func _ready():
+	if !OS.is_debug_build():
+		queue_free()
+"
 
 [node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder")]
 layout_mode = 3
@@ -72,26 +80,15 @@ debug_color = Color(0, 0.595, 0.7, 0.513726)
 
 [node name="Nodes" type="Node2D" parent="Graph"]
 
-[node name="Node" parent="Graph/Nodes" instance=ExtResource("8_7f530")]
-position = Vector2(70, 223)
-
-[node name="Node2" parent="Graph/Nodes" instance=ExtResource("8_7f530")]
-position = Vector2(243, 361)
-
-[node name="Node3" parent="Graph/Nodes" instance=ExtResource("8_7f530")]
-position = Vector2(462, 222)
-
-[node name="Node4" parent="Graph/Nodes" instance=ExtResource("8_7f530")]
-position = Vector2(797, 264)
-
 [node name="Header" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 130.0
 offset_bottom = 46.0
 theme = ExtResource("9_1hwnx")
 
-[node name="UI" type="HBoxContainer" parent="Header"]
+[node name="UI" type="VBoxContainer" parent="Header"]
 layout_mode = 2
+theme_override_constants/separation = 9
 
 [node name="HBox_ZoomControl" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
@@ -109,6 +106,16 @@ icon = ExtResource("11_uvpj5")
 layout_mode = 2
 icon = ExtResource("12_570rd")
 
+[node name="HBox_DebugControl" type="HBoxContainer" parent="Header/UI"]
+layout_mode = 2
+script = SubResource("GDScript_mtjrf")
+
+[node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_DebugControl"]
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("12_scho0")
+
+[connection signal="DragSelection" from="Graph" to="." method="OnFileModified" unbinds=1]
 [connection signal="selection_ended" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [false]]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="DeselectAllNodes"]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]
@@ -116,3 +123,4 @@ icon = ExtResource("12_570rd")
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
+[connection signal="toggled" from="Header/UI/HBox_DebugControl/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]
