@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c61gmyptk1563"]
 
 [ext_resource type="Texture2D" uid="uid://j5kqgxssjrov" path="res://asset/material/graph/port.svg" id="1_xp2pk"]
-[ext_resource type="Script" path="res://scene/editor/event/node/PortOut.cs" id="2_jlr03"]
+[ext_resource type="Script" path="res://scene/editor/event/node/port/PortOut.cs" id="2_jlr03"]
 [ext_resource type="Shader" path="res://asset/shader/graph/graph_port_dragger_line.gdshader" id="3_0qtkg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_by1ul"]

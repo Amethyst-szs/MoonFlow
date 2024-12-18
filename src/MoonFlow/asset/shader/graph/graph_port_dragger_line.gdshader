@@ -7,7 +7,7 @@ uniform float direction = 1.f;
 void fragment() {
 	float time = TIME * (speed * direction);
 	float target = (SCREEN_UV.x * direction) + SCREEN_UV.y + time;
-	
+
 	float pos = mod(target, dash_size * 2.f);
 	COLOR.a -= step(dash_size, pos);
 }

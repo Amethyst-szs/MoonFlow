@@ -5,7 +5,7 @@ namespace MoonFlow.Scene.EditorEvent;
 
 public static class EventNodeParamFactory
 {
-    public static void CreateParamEditor(EventFlowNode parent, string param, Type paramType)
+    public static void CreateParamEditor(EventFlowNodeCommon parent, string param, Type paramType)
     {
         EventNodeParamEditorBase editor = Build(paramType);
         if (editor == null)

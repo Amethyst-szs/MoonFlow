@@ -4,7 +4,7 @@ using System;
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
-[ScenePath("res://scene/editor/event/node/port_out.tscn")]
+[ScenePath("res://scene/editor/event/node/port/port_out.tscn")]
 [Icon("res://asset/material/graph/port.svg")]
 public partial class PortOut : TextureRect
 {
@@ -12,19 +12,19 @@ public partial class PortOut : TextureRect
 
 	// ~~~~~~~~~~~ Node References ~~~~~~~~~~~ //
 
-	public EventFlowNode Parent { get; private set; } = null;
+	public EventFlowNodeBase Parent { get; private set; } = null;
 
 	private PortIn ConnectionHover = null;
 
-	private EventFlowNode _connection = null;
-	public EventFlowNode Connection
+	private EventFlowNodeCommon _connection = null;
+	public EventFlowNodeCommon Connection
 	{
 		get { return _connection; }
 		set
 		{
 			// If the connection is changing, disconnect from the old connection's signals
 			if (value != Connection && Connection != null)
-				Connection.Disconnect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+				Connection.Disconnect(EventFlowNodeBase.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
 
 			bool isNotNull = value != null;
 
@@ -35,7 +35,7 @@ public partial class PortOut : TextureRect
 			// If a connection is being set, update dragger rendering and signals
 			if (isNotNull)
 			{
-				Connection.Connect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+				Connection.Connect(EventFlowNodeBase.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
 				CalcConnectionLine();
 			}
 
@@ -95,7 +95,7 @@ public partial class PortOut : TextureRect
 	[Signal]
 	public delegate void PortReleasedEventHandler();
 	[Signal]
-	public delegate void PortConnectedEventHandler(PortOut port, EventFlowNode connection);
+	public delegate void PortConnectedEventHandler(PortOut port, EventFlowNodeCommon connection);
 
 	#endregion
 
@@ -115,12 +115,12 @@ public partial class PortOut : TextureRect
 			if (!IsInstanceValid(nextParent))
 				throw new NullReferenceException("Port is not a child of an EventFlowNode!");
 
-			if (nextParent.GetType() == typeof(EventFlowNode))
-				Parent = nextParent as EventFlowNode;
+			if (nextParent.GetType().IsSubclassOf(typeof(EventFlowNodeBase)))
+				Parent = nextParent as EventFlowNodeBase;
 		}
 
 		// Connect to signals from parent
-		Parent.Connect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+		Parent.Connect(EventFlowNodeBase.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
 
 		// Setup port index
 		Index = GetIndex();

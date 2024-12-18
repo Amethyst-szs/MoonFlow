@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn6k75166p7ua"]
+
+[ext_resource type="Script" path="res://scene/editor/event/node/common/EventFlowNodeCommon.cs" id="1_7s7lh"]
+[ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_e82a6"]
+[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="5_ccntp"]
+[ext_resource type="Script" path="res://scene/editor/event/node/component/dropdown_vbox_with_dispose.gd" id="6_dn78i"]
+
+[node name="EventFlowNodeCommon" node_paths=PackedStringArray("ParamHolder", "ParamAddDropdownHolder") instance=ExtResource("1_e82a6")]
+script = ExtResource("1_7s7lh")
+ParamHolder = NodePath("Content/Display/Params")
+ParamAddDropdownHolder = NodePath("Content/Display/ParamAdditionalOptions")
+
+[node name="Params" type="VBoxContainer" parent="Content/Display" index="2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HSep" type="HSeparator" parent="Content/Display/Params" index="0"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Dropdown_Additional" type="CheckBox" parent="Content/Display" index="3" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+text = "Additional Properties"
+script = ExtResource("5_ccntp")
+dropdown = NodePath("../ParamAdditionalOptions")
+
+[node name="ParamAdditionalOptions" type="VBoxContainer" parent="Content/Display" index="4" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+script = ExtResource("6_dn78i")
+dropdown = NodePath("../Dropdown_Additional")

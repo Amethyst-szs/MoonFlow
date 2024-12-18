@@ -4,11 +4,11 @@ using System;
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
-[ScenePath("res://scene/editor/event/node/port_in.tscn")]
+[ScenePath("res://scene/editor/event/node/port/port_in.tscn")]
 [Icon("res://asset/material/graph/port.svg")]
 public partial class PortIn : TextureRect
 {
-	public EventFlowNode Parent { get; private set; } = null;
+	public EventFlowNodeCommon Parent { get; private set; } = null;
 
 	public override void _Ready()
 	{
@@ -18,10 +18,13 @@ public partial class PortIn : TextureRect
 		{
 			nextParent = nextParent.GetParent();
 			if (!IsInstanceValid(nextParent))
-				throw new NullReferenceException("Port is not a child of an EventFlowNode!");
+				return;
 			
-			if (nextParent.GetType() == typeof(EventFlowNode))
-				Parent = nextParent as EventFlowNode;
+			var t1 = nextParent.GetType();
+			var t2 = typeof(EventFlowNodeCommon);
+			
+			if (t1 == t2 || t1.IsSubclassOf(t2))
+				Parent = nextParent as EventFlowNodeCommon;
 		}
 	}
 }

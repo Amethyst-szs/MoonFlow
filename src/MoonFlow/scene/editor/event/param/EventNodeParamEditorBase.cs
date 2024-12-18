@@ -6,13 +6,13 @@ namespace MoonFlow.Scene.EditorEvent;
 
 public abstract partial class EventNodeParamEditorBase : HBoxContainer
 {
-    protected EventFlowNode Node = null;
+    protected EventFlowNodeCommon Node = null;
     protected string Param = null;
 
     protected Button ButtonAddProperty { get; private set; }
     private Texture2D ButtonAddTexture = GD.Load<Texture2D>("res://asset/material/file/add.svg");
 
-    public void InitEditor(EventFlowNode node, string param)
+    public void InitEditor(EventFlowNodeCommon node, string param)
     {
         Node = node;
         Param = param;

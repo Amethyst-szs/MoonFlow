@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var dropdown: CheckBox = $"../Dropdown_Additional"
+@export var dropdown: CheckBox
 
 func _ready() -> void:
 	tree_exiting.connect(_on_leave)

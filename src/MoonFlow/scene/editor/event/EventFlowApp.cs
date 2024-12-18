@@ -69,7 +69,7 @@ public partial class EventFlowApp : AppScene
                 throw new EventFlowException("Node initilized without an Id!");
 
             // Create node
-            var nodeEdit = SceneCreator<EventFlowNode>.Create();
+            var nodeEdit = SceneCreator<EventFlowNodeCommon>.Create();
             GraphNodeHolder.AddChild(nodeEdit);
 
             // Setup metadata access (Node position, comments, and other additional info)
@@ -85,7 +85,7 @@ public partial class EventFlowApp : AppScene
         // Setup node port connections
         foreach (var n in GraphNodeHolder.GetChildren())
         {
-            var nodeEdit = n as EventFlowNode;
+            var nodeEdit = n as EventFlowNodeCommon;
 
             var idList = nodeEdit.Content.GetNextIds();
             if (idList.Length == 0)
@@ -94,7 +94,7 @@ public partial class EventFlowApp : AppScene
             var list = idList.Select(s =>
             {
                 if (s == int.MinValue) return null;
-                return GraphNodeHolder.GetChild(s) as EventFlowNode;
+                return GraphNodeHolder.GetChild(s) as EventFlowNodeCommon;
             });
 
             nodeEdit.SetupConnections(list.ToList());
@@ -107,19 +107,19 @@ public partial class EventFlowApp : AppScene
     {
         foreach (var entry in Graph.EntryPoints)
         {
-            var editNode = GraphNodeHolder.GetNode<EventFlowNode>(entry.Value.Id.ToString());
-            if (!IsInstanceValid(editNode))
+            var target = GraphNodeHolder.GetNode<EventFlowNodeCommon>(entry.Value.Id.ToString());
+            if (!IsInstanceValid(target))
             {
                 GD.PushError("Failed to initilize " + entry.Key + " entry point");
                 return;
             }
 
             // Create node
-            var entryEdit = SceneCreator<EventFlowNode>.Create();
+            var entryEdit = SceneCreator<EventFlowEntryPoint>.Create();
             GraphNodeHolder.AddChild(entryEdit);
 
             // Init main content from event flow graph byml
-            entryEdit.InitContent(entry.Key, Graph, editNode);
+            entryEdit.InitContent(entry.Key, Graph, target);
 
             // Setup metadata access (Node position, comments, and other additional info)
             Metadata.EntryPoints.TryGetValue(entry.Key, out NodeMetadata data);
@@ -141,7 +141,7 @@ public partial class EventFlowApp : AppScene
     public async void SaveFile()
     {
         GD.Print("\n - Saving ", Graph.Name);
-        var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbtArchives);
+        var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveEventFlowGraph);
 
         await run.Task;
         await ToSignal(Engine.GetMainLoop(), "process_frame");
@@ -163,6 +163,7 @@ public partial class EventFlowApp : AppScene
         MetadataHolder.WriteFile();
 
         // Reset flag
+        display.UpdateProgress(2, 2);
         IsModified = false;
     }
 

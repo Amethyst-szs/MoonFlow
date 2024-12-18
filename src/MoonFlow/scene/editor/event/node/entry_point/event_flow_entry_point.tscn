@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdcam0c6j5qr2"]
+
+[ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_em0m4"]
+[ext_resource type="Script" path="res://scene/editor/event/node/entry_point/EventFlowEntryPoint.cs" id="2_0b7pp"]
+
+[node name="EventFlowEntryPoint" instance=ExtResource("1_em0m4")]
+script = ExtResource("2_0b7pp")

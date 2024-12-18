@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://0cdy5iuxlvqd"]
+[gd_scene load_steps=9 format=3 uid="uid://0cdy5iuxlvqd"]
 
 [ext_resource type="Theme" uid="uid://rub3asjuwm5w" path="res://asset/theme/event/node/event_node.tres" id="1_dkxm3"]
-[ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNode.cs" id="1_f1ryd"]
-[ext_resource type="PackedScene" uid="uid://bhc8hqjw7nqek" path="res://scene/editor/event/node/port_in.tscn" id="3_xs8rq"]
-[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="4_5paav"]
+[ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNodeBase.cs" id="1_f1ryd"]
+[ext_resource type="PackedScene" uid="uid://bhc8hqjw7nqek" path="res://scene/editor/event/node/port/port_in.tscn" id="3_xs8rq"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/port_list_out.gd" id="4_x5hdg"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/area_drag_collider.gd" id="5_ey2sh"]
 [ext_resource type="StyleBox" uid="uid://dor0dac83hoqe" path="res://asset/theme/event/node/stylebox/event_node_selection_panel.tres" id="5_vyepf"]
-[ext_resource type="Script" path="res://scene/editor/event/node/component/dropdown_vbox_with_dispose.gd" id="6_3tg3c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h5ieb"]
 font_size = 11
@@ -18,12 +16,10 @@ content_margin_left = 4.0
 content_margin_right = 4.0
 bg_color = Color(0, 0, 0, 0.309804)
 
-[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "ParamHolder", "ParamAddDropdownHolder", "SelectionPanel", "DebugDataDisplay")]
+[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "SelectionPanel", "DebugDataDisplay")]
 script = ExtResource("1_f1ryd")
 PortIn = NodePath("Content/Ports/PortHolder_In/Port_In")
 PortOutList = NodePath("Content/Ports/PortHolder_Out/PortList_Out")
-ParamHolder = NodePath("Content/Display/Params")
-ParamAddDropdownHolder = NodePath("Content/Display/ParamAdditionalOptions")
 SelectionPanel = NodePath("Content/Panel_Selection")
 DebugDataDisplay = NodePath("Content/Debug/VBox_DebugDisplay/Label_Debug")
 
@@ -74,24 +70,6 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 label_settings = SubResource("LabelSettings_h5ieb")
-
-[node name="Params" type="VBoxContainer" parent="Content/Display"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="HSep" type="HSeparator" parent="Content/Display/Params"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Dropdown_Additional" type="CheckBox" parent="Content/Display" node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-text = "Additional Properties"
-script = ExtResource("4_5paav")
-dropdown = NodePath("../ParamAdditionalOptions")
-
-[node name="ParamAdditionalOptions" type="VBoxContainer" parent="Content/Display"]
-layout_mode = 2
-script = ExtResource("6_3tg3c")
 
 [node name="Panel_Selection" type="Panel" parent="Content"]
 visible = false
