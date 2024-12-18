@@ -1,9 +1,9 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Nindot.Al.EventFlow;
-using System.Linq;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -130,11 +130,21 @@ public partial class EventFlowNode : Node2D
 
 	public void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
 	{
+		// Setup state
 		Graph = graph;
 		Content = content;
 		NodeType = NodeTypes.NODE;
-
 		Name = content.Id.ToString();
+
+		// Setup name and type headers
+		var labelType = GetNode<Label>("%Label_Type");
+		labelType.Text = Tr(Content.TypeBase, "EVENT_GRAPH_NODE_TYPE");
+		labelType.TooltipText = Content.TypeBase;
+
+		var labelName = GetNode<Label>("%Label_Name");
+		labelName.Text = Content.Name;
+
+		// Initilize properties and connections
 		InitParamEditor();
 
 		for (var i = 0; i < content.GetNextIdCount(); i++)
@@ -149,6 +159,13 @@ public partial class EventFlowNode : Node2D
 		NodeType = NodeTypes.ENTRY_POINT;
 		Name = entryName;
 		ParamHolder.QueueFree();
+
+		// Setup name and type headers
+		var labelType = GetNode<Label>("%Label_Type");
+		labelType.Text = Tr("EntryPoint", "EVENT_GRAPH_NODE_TYPE");
+
+		var labelName = GetNode<Label>("%Label_Name");
+		labelName.Text = entryName;
 
 		// Setup ports
 		PortIn.QueueFree();

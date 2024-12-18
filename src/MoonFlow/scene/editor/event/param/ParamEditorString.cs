@@ -1,5 +1,7 @@
 using Godot;
 
+using CSExtensions;
+
 namespace MoonFlow.Scene.EditorEvent;
 
 [ScenePath("res://scene/editor/event/param/param_editor_string.tscn")]
@@ -12,8 +14,7 @@ public partial class ParamEditorString : EventNodeParamEditorBase
 
 	public override void Init()
 	{
-		EditHeader.Text = Param;
-		Edit.PlaceholderText = Param;
+		EditHeader.Text = Param.SplitCamelCase();
 		
 		if (!Node.Content.TryGetParam(Param, out string value))
 		{

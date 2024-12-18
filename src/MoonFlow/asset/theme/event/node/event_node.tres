@@ -15,4 +15,5 @@ CheckBox/icons/checked = ExtResource("1_3iwku")
 CheckBox/icons/unchecked = ExtResource("2_ikl6m")
 HSeparator/constants/separation = 8
 HSeparator/styles/separator = SubResource("StyleBoxLine_7m5e8")
+Label/fonts/font = ExtResource("1_1sytw")
 PanelContainer/styles/panel = ExtResource("1_38tbj")

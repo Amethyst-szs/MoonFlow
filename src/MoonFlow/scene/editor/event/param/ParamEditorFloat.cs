@@ -1,5 +1,7 @@
 using Godot;
 
+using CSExtensions;
+
 namespace MoonFlow.Scene.EditorEvent;
 
 [ScenePath("res://scene/editor/event/param/param_editor_float.tscn")]
@@ -10,7 +12,7 @@ public partial class ParamEditorFloat : EventNodeParamEditorBase
 
 	public override void Init()
 	{
-		Spin.Prefix = Param;
+		Spin.Prefix = Param.SplitCamelCase();
 		
 		if (!Node.Content.TryGetParam(Param, out float value))
 		{

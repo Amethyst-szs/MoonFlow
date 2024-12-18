@@ -46,7 +46,7 @@ public class NodeMessageBalloon : Node
     }
     public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
     {
-        if (Name.Contains("MapUnit"))
+        if (!Name.Contains("MapUnit"))
         {
             paramInfo = new Dictionary<string, Type>() {
                 { "Text", typeof(NodeMessageResolverData) },

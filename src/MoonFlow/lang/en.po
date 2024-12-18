@@ -114,51 +114,6 @@ msgstr "Loading..."
 msgid "LOADING_EXCEPTION_ACCEPT"
 msgstr "Okay :("
 
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "START"
-msgstr "Getting Started"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBP"
-msgstr "Loading Message Studio Project"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBT"
-msgstr "Loading Text Archives"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST"
-msgstr "Loading Kingdom Info"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
-msgstr "Loading Kingdom Names"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_SHINE_INFO"
-msgstr "Loading Power Moons"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_ITEM_LIST"
-msgstr "Loading World Items"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_COIN_COLLECT_NUM"
-msgstr "Loading Purple Coin Info"
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "END"
-msgstr "Success!"
-
 #: scene/front_door/quickbar_error_label.gd
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "INVALID_PATH"
@@ -206,8 +161,16 @@ msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
 msgstr "Close Project"
 
 #: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_APP"
-msgstr "Open Debug App"
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+msgstr "Open MSBP MSTXT viewer"
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+msgstr "Open MSBP TGG viewer"
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+msgstr "Open Event Flow Graph Prototype"
 
 #: scene/home/home.tscn
 msgid "HOME_TAB_TEXT"
@@ -322,30 +285,6 @@ msgstr "This file has unsaved changes, are you sure you'd like to close?"
 #: scene/common/dialog/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
 msgstr "Go back!!"
-
-#: async/translation_strings.gd
-msgid "ASYNC_DISPLAY_SUCCESS"
-msgstr "Success!"
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_FileRead"
-msgstr "Accessing Files..."
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_FileWrite"
-msgstr "Writing Files..."
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_FTP"
-msgstr "Transferring Files..."
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_SaveMsbtArchives"
-msgstr "Saving MSBT Archives"
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_SaveWorldArchives"
-msgstr "Saving Kingdom Data"
 
 #: async/async_display.tscn
 msgid "ASYNC_DISPLAY_EXCEPTION"
@@ -1519,6 +1458,613 @@ msgstr "Duplicate File"
 #: scene/home/tab_msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr "Create New File"
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "Success"
+msgstr "Success!"
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileRead"
+msgstr "Reading File..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileWrite"
+msgstr "Writing File..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FTP"
+msgstr "Transferring Files..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbtArchives"
+msgstr "Saving MSBT Archives..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveWorldArchives"
+msgstr "Saving World Info..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveEventFlowGraph"
+msgstr "Saving Event Graph..."
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "START"
+msgstr "Getting Started"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBP"
+msgstr "Loading Message Studio Project"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBT"
+msgstr "Loading Text Archives"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST"
+msgstr "Loading Kingdom Info"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
+msgstr "Loading Kingdom Names"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_SHINE_INFO"
+msgstr "Loading Power Moons"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_ITEM_LIST"
+msgstr "Loading World Items"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_COIN_COLLECT_NUM"
+msgstr "Loading Purple Coin Info"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "END"
+msgstr "Success!"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActionLoop"
+msgstr "Play Action (Loop)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActionOneTime"
+msgstr "Play Action"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActorBaseMovementEnd"
+msgstr "End Actor Movement"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActorBaseMovementStart"
+msgstr "Start Actor Movement"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActorKill"
+msgstr "Kill Actor"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "AnimCameraStart"
+msgstr "Start Camera Animation"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CameraEnd"
+msgstr "End Camera"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CameraStart"
+msgstr "Start Camera"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckSwitch"
+msgstr "Check Stage Switch"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckWaitSwitch"
+msgstr "Wait for Stage Switch"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoAction"
+msgstr "Play Action (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoCamera"
+msgstr "Play Camera Demo"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoPlayerAction"
+msgstr "Play Player Action (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoPlayerHide"
+msgstr "Hide Player (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoPlayerShow"
+msgstr "Show Player (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "Event"
+msgstr "Event"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "EventQuery"
+msgstr "Query"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "Fork"
+msgstr "Split"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "HitReaction"
+msgstr "Hit Reaction"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "Join"
+msgstr "Join"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "JumpEntry"
+msgstr "Change Entry Point"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "QueryJudge"
+msgstr "Query Actor Judge"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SwitchOff"
+msgstr "Disable Stage Switch"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SwitchOn"
+msgstr "Enable Stage Switch"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "TurnToPlayer"
+msgstr "Turn Towards Player"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "TurnToPlayerActionOneTime"
+msgstr "Turn Towards Player (One-Time Action)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "TurnToPreDir"
+msgstr "Turn Toward Direction"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "AmiiboTouchLayout"
+msgstr "Amiibo Touch Layout"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "AppearMapAmiiboHint"
+msgstr "Show Amiibo Hint Map"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "BgmCtrl"
+msgstr "BGM Control"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "BindKeepDemoStart"
+msgstr "Start Demo Bind"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapMessage"
+msgstr "Cappy Message"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkSetDemoStartPose"
+msgstr "Set Cappy Start Pose (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkAppear"
+msgstr "Appear Cappy (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkFocus"
+msgstr "Focus Cappy (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkPlayerTurn"
+msgstr "Turn Player to Point (Cappy Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkReturn"
+msgstr "Return Cappy to Head (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkSetDemoEndPose"
+msgstr "Set Cappy End Pose (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ChangeStage"
+msgstr "Change Stage"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ChangeWorldDemoMessage"
+msgstr "Change World Message"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckClear3CollectBgm"
+msgstr "Is Moon Kingdom BGM Unlocked?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCompleteCollectBgm"
+msgstr "Are All BGMs Unlocked?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostume"
+msgstr "Is Player using Correct Costume?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostumeInvisible"
+msgstr "Is Player using Invisible Cap?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostumeMissMatchPart"
+msgstr "Is Player using Miss-Matched Costume Parts?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostumePair"
+msgstr "Is Player using Costume Pattern?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCount"
+msgstr "Check Value against Target"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckFirstTalkCollectBgm"
+msgstr "Is First Conversation with BGM NPC?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckFlag"
+msgstr "Is Save Flag set?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckGetLinkShine"
+msgstr "Is Shine Collected?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckLifeUpItem"
+msgstr "Has Life-Up?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckLink"
+msgstr "Has Linked Shine?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckMoonLockOpened"
+msgstr "Is Moon Rock Opened?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckOpenDoorSnow"
+msgstr "Check Snow Kingdom Door Progress"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckPlayingCollectBgm"
+msgstr "Check Playing BGM"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckPlayerOnGround"
+msgstr "Is Player Grounded?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckYukimaruRaceResult"
+msgstr "Check Bound Bowl Results"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CloseTalkMessage"
+msgstr "Close Dialogue"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CloseTalkMessageNoSe"
+msgstr "Close Dialogue (Silent)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CoinPayment"
+msgstr "Coin Payment"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CutSceneDemoStart"
+msgstr "Start Demo (Cutscene)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoEnd"
+msgstr "End Demo"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoForceStartOnGround"
+msgstr "Force Start Demo (On Ground)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoForceStart"
+msgstr "Force Start Demo"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoResetPlayerDynamics"
+msgstr "Reset Inverse Kinematics (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoStart"
+msgstr "Start Demo"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DirectGetLinkShine"
+msgstr "Collect Shine"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "EnableHint"
+msgstr "Enable Shine Hint"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "FirstTalkEndCollectBgmNpc"
+msgstr "Set Flag for BGM NPC's First Conversation"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ForcePutOnDemoCap"
+msgstr "Put on Cappy (Demo)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetAmiiboCostume"
+msgstr "Get Amiibo Costume"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetAmiiboNotSearchHintNum"
+msgstr "GetAmiiboNotSearchHintNum"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetCollectBgmBonus01"
+msgstr "Unlock BGM 1"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetCollectBgmBonus02"
+msgstr "Unlock BGM 2"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetSearchAmiibo"
+msgstr "Search Amiibo"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "IsCostumeAmiibo"
+msgstr "Is Amiibo Costume?"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "IsEnableSearchAmiibo"
+msgstr "Check if Amiibo can Search"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "IsTalkAmiiboHelp"
+msgstr "Check if Talking to Amiibo Help"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "KakkuTurn"
+msgstr "Rotate Glydon"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "MessageBalloon"
+msgstr "Mini Message Balloon"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "MessageTalk"
+msgstr "Dialouge"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "MessageTalkSpecialPurpose"
+msgstr "Dialouge (Special Purpose)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "NextTalkMessage"
+msgstr "Next Dialouge Message"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "NormalDemoTryStart"
+msgstr "Try Start Demo (Normal)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "NpcMoveToLink"
+msgstr "Move NPC to Link"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "OpenBgmList"
+msgstr "Open BGM Menu"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PlayerAction"
+msgstr "Play Action (Player)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PlayerTurn"
+msgstr "Turn Player"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PopItem"
+msgstr "Spawn Item"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PopLinkShine"
+msgstr "Spawn Shine"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ReplacePlayer"
+msgstr "Replace Player with Demo Player"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SceneWipeClose"
+msgstr "Wipe Scene"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SelectChoice"
+msgstr "Dialogue Choice"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SelectYesNo"
+msgstr "Dialogue Choice (Y/N)"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SessionWaitMusician"
+msgstr "Check Metro Musician Count"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SetDemoInfoDemoName"
+msgstr "Set Demo Name"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "UnlockHint"
+msgstr "Unlock Shine Hint"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "VrGyroReset"
+msgstr "Reset VR Gyroscope"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WaitWipeOpenEnd"
+msgstr "Wait for Fade"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WaitSimple"
+msgstr "Pause"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WipeFadeBlackClose"
+msgstr "Fade Out"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WipeFadeBlackOpen"
+msgstr "Fade In"
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "EntryPoint"
+msgstr "Entry Point"
+
+#~ msgid "ASYNC_DISPLAY_SUCCESS"
+#~ msgstr "Success!"
+
+#~ msgid "ASYNC_TASK_DISPLAY_FileRead"
+#~ msgstr "Accessing Files..."
+
+#~ msgid "ASYNC_TASK_DISPLAY_FileWrite"
+#~ msgstr "Writing Files..."
+
+#~ msgid "ASYNC_TASK_DISPLAY_FTP"
+#~ msgstr "Transferring Files..."
 
 #~ msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
 #~ msgstr "Select a RomFS Directory"

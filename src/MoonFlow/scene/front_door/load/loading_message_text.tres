@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://m4rfki030hsn"]
+
+[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_n88jp"]
+
+[resource]
+script = ExtResource("1_n88jp")
+context = "PROJECT_LOADING"
+keys = Array[String](["START", "LOAD_MSBP", "LOAD_MSBT", "LOAD_WORLD_LIST", "LOAD_WORLD_LIST_DISPLAY_NAMES", "LOAD_SHINE_INFO", "LOAD_ITEM_LIST", "LOAD_COIN_COLLECT_NUM", "END"])

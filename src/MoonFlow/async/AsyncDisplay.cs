@@ -37,7 +37,7 @@ public partial class AsyncDisplay : Control
 
     public async void OnTaskSuccessful()
     {
-        LabelProgress.SetDeferred(Label.PropertyName.Text, "ASYNC_DISPLAY_SUCCESS");
+        LabelProgress.SetDeferred(Label.PropertyName.Text, "Success");
 
         await Task.Delay(1800);
 
@@ -108,9 +108,7 @@ public partial class AsyncDisplay : Control
 
     public void Setup(Type type)
     {
-        var key = "ASYNC_TASK_DISPLAY_" + Enum.GetName(type);
-        LabelTitleKey.Text = Tr(key);
-
+        LabelTitleKey.Text = Tr(Enum.GetName(type), "ASYNC_TASK_DISPLAY");
         SelfModulate = new Color((uint)type);
     }
 }

@@ -1,12 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://0cdy5iuxlvqd"]
+[gd_scene load_steps=11 format=3 uid="uid://0cdy5iuxlvqd"]
 
 [ext_resource type="Theme" uid="uid://rub3asjuwm5w" path="res://asset/theme/event/node/event_node.tres" id="1_dkxm3"]
 [ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNode.cs" id="1_f1ryd"]
 [ext_resource type="PackedScene" uid="uid://bhc8hqjw7nqek" path="res://scene/editor/event/node/port_in.tscn" id="3_xs8rq"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="4_5paav"]
+[ext_resource type="Script" path="res://scene/editor/event/node/component/port_list_out.gd" id="4_x5hdg"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/area_drag_collider.gd" id="5_ey2sh"]
 [ext_resource type="StyleBox" uid="uid://dor0dac83hoqe" path="res://asset/theme/event/node/stylebox/event_node_selection_panel.tres" id="5_vyepf"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/dropdown_vbox_with_dispose.gd" id="6_3tg3c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h5ieb"]
+font_size = 11
+font_color = Color(1, 1, 1, 0.705882)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs1ce"]
 content_margin_left = 4.0
@@ -53,14 +58,22 @@ layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
 theme_override_constants/separation = 12
+script = ExtResource("4_x5hdg")
 
 [node name="Display" type="VBoxContainer" parent="Content"]
 layout_mode = 2
+size_flags_vertical = 0
 alignment = 1
 
-[node name="Label_Header" type="Label" parent="Content/Display"]
+[node name="Label_Name" type="Label" parent="Content/Display"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "EVENT_FLOW_NODE_HEADER"
+
+[node name="Label_Type" type="Label" parent="Content/Display"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+label_settings = SubResource("LabelSettings_h5ieb")
 
 [node name="Params" type="VBoxContainer" parent="Content/Display"]
 layout_mode = 2

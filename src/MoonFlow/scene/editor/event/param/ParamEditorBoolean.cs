@@ -1,6 +1,9 @@
 using Godot;
-using MoonFlow.Scene.EditorEvent;
 using System;
+
+using MoonFlow.Scene.EditorEvent;
+
+using CSExtensions;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -12,7 +15,7 @@ public partial class ParamEditorBoolean : EventNodeParamEditorBase
 
 	public override void Init()
 	{
-		Check.Text = Param;
+		Check.Text = Param.SplitCamelCase();
 		
 		if (!Node.Content.TryGetParam(Param, out bool value))
 		{

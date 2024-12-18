@@ -5,13 +5,11 @@
 # res://scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 # res://scene/editor/msbt/entry/components/msbt_entry_page_separator.tscn
 # res://scene/front_door/load/project_loading.tscn
-# res://scene/front_door/load/loading_messages.gd
 # res://scene/front_door/quickbar_error_label.gd
 # res://scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 # res://scene/home/home.tscn
 # res://scene/home/tab_msbt/tab_msbt.tscn
 # res://scene/common/dialog/dialog_unsaved_changes.tscn
-# res://async/translation_strings.gd
 # res://async/async_display.tscn
 # res://scene/editor/msbt/tag_edit/default/fallback.tscn
 # res://scene/editor/msbt/wheel/tag_wheel.tscn
@@ -41,6 +39,9 @@
 # res://scene/editor/msbt/list/container/stage_message_category_table.gd
 # res://scene/home/tab_msbt/popup_msbt_create.tscn
 # res://scene/home/tab_msbt/popup_msbt_create.gd
+# res://async/async_text.tres
+# res://scene/front_door/load/loading_message_text.tres
+# res://scene/editor/event/node/node_type_name_text.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -142,51 +143,6 @@ msgstr ""
 msgid "LOADING_EXCEPTION_ACCEPT"
 msgstr ""
 
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "START"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBP"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBT"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_SHINE_INFO"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_ITEM_LIST"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_COIN_COLLECT_NUM"
-msgstr ""
-
-#: scene/front_door/load/loading_messages.gd
-msgctxt "PROJECT_LOADING"
-msgid "END"
-msgstr ""
-
 #: scene/front_door/quickbar_error_label.gd
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "INVALID_PATH"
@@ -229,7 +185,15 @@ msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
 msgstr ""
 
 #: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_APP"
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
 msgstr ""
 
 #: scene/home/home.tscn
@@ -341,30 +305,6 @@ msgstr ""
 
 #: scene/common/dialog/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
-msgstr ""
-
-#: async/translation_strings.gd
-msgid "ASYNC_DISPLAY_SUCCESS"
-msgstr ""
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_FileRead"
-msgstr ""
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_FileWrite"
-msgstr ""
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_FTP"
-msgstr ""
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_SaveMsbtArchives"
-msgstr ""
-
-#: async/translation_strings.gd
-msgid "ASYNC_TASK_DISPLAY_SaveWorldArchives"
 msgstr ""
 
 #: async/async_display.tscn
@@ -1526,4 +1466,599 @@ msgstr ""
 
 #: scene/home/tab_msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "Success"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileRead"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileWrite"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FTP"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbtArchives"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveWorldArchives"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveEventFlowGraph"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "START"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBP"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBT"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_SHINE_INFO"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_ITEM_LIST"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_COIN_COLLECT_NUM"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "END"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActionLoop"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActionOneTime"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActorBaseMovementEnd"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActorBaseMovementStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ActorKill"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "AnimCameraStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CameraEnd"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CameraStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckSwitch"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckWaitSwitch"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoAction"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoCamera"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoPlayerAction"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoPlayerHide"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoPlayerShow"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "Event"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "EventQuery"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "Fork"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "HitReaction"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "Join"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "JumpEntry"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "QueryJudge"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SwitchOff"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SwitchOn"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "TurnToPlayer"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "TurnToPlayerActionOneTime"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "TurnToPreDir"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "AmiiboTouchLayout"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "AppearMapAmiiboHint"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "BgmCtrl"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "BindKeepDemoStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapMessage"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkSetDemoStartPose"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkAppear"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkFocus"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkPlayerTurn"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkReturn"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CapManHeroTalkSetDemoEndPose"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ChangeStage"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ChangeWorldDemoMessage"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckClear3CollectBgm"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCompleteCollectBgm"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostume"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostumeInvisible"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostumeMissMatchPart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCostumePair"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckCount"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckFirstTalkCollectBgm"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckFlag"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckGetLinkShine"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckLifeUpItem"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckLink"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckMoonLockOpened"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckOpenDoorSnow"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckPlayingCollectBgm"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckPlayerOnGround"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CheckYukimaruRaceResult"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CloseTalkMessage"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CloseTalkMessageNoSe"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CoinPayment"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "CutSceneDemoStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoEnd"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoForceStartOnGround"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoForceStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoResetPlayerDynamics"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DemoStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "DirectGetLinkShine"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "EnableHint"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "FirstTalkEndCollectBgmNpc"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ForcePutOnDemoCap"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetAmiiboCostume"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetAmiiboNotSearchHintNum"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetCollectBgmBonus01"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetCollectBgmBonus02"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "GetSearchAmiibo"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "IsCostumeAmiibo"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "IsEnableSearchAmiibo"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "IsTalkAmiiboHelp"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "KakkuTurn"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "MessageBalloon"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "MessageTalk"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "MessageTalkSpecialPurpose"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "NextTalkMessage"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "NormalDemoTryStart"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "NpcMoveToLink"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "OpenBgmList"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PlayerAction"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PlayerTurn"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PopItem"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "PopLinkShine"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "ReplacePlayer"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SceneWipeClose"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SelectChoice"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SelectYesNo"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SessionWaitMusician"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "SetDemoInfoDemoName"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "UnlockHint"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "VrGyroReset"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WaitWipeOpenEnd"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WaitSimple"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WipeFadeBlackClose"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "WipeFadeBlackOpen"
+msgstr ""
+
+#: scene/editor/event/node/node_type_name_text.tres
+msgctxt "EVENT_GRAPH_NODE_TYPE"
+msgid "EntryPoint"
 msgstr ""
