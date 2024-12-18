@@ -1,6 +1,18 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://rub3asjuwm5w"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://rub3asjuwm5w"]
 
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_1sytw"]
+[ext_resource type="Texture2D" uid="uid://gkt4uth2coun" path="res://asset/material/arrow/down.svg" id="1_3iwku"]
 [ext_resource type="StyleBox" uid="uid://di8662l5fde5o" path="res://asset/theme/event/node/stylebox/event_node_content_panel.tres" id="1_38tbj"]
+[ext_resource type="Texture2D" uid="uid://bxdtn8valrbqg" path="res://asset/material/arrow/right.svg" id="2_ikl6m"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7m5e8"]
+color = Color(0.36, 0.36, 0.36, 0.792157)
 
 [resource]
+CheckBox/constants/icon_max_width = 24
+CheckBox/fonts/font = ExtResource("1_1sytw")
+CheckBox/icons/checked = ExtResource("1_3iwku")
+CheckBox/icons/unchecked = ExtResource("2_ikl6m")
+HSeparator/constants/separation = 8
+HSeparator/styles/separator = SubResource("StyleBoxLine_7m5e8")
 PanelContainer/styles/panel = ExtResource("1_38tbj")

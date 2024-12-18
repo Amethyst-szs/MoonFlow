@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://drhi47ys0w5hv"]
+
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_al1j5"]
+[ext_resource type="Script" path="res://scene/editor/event/param/ParamEditorBoolean.cs" id="2_iv2vl"]
+
+[sub_resource type="GDScript" id="GDScript_ad0cs"]
+script/source = "extends CheckBox
+
+func _pressed() -> void:
+	get_viewport().set_input_as_handled()
+"
+
+[node name="ParamEditor_Boolean" type="HBoxContainer" node_paths=PackedStringArray("Check")]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("1_al1j5")
+script = ExtResource("2_iv2vl")
+Check = NodePath("Check")
+
+[node name="Check" type="CheckBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+action_mode = 0
+script = SubResource("GDScript_ad0cs")
+
+[connection signal="toggled" from="Check" to="." method="SetValue"]

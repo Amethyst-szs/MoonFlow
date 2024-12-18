@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://kxj2pc4o5t84"]
+
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_d5kb8"]
+[ext_resource type="Script" path="res://scene/editor/event/param/ParamEditorString.cs" id="2_054ax"]
+[ext_resource type="StyleBox" uid="uid://c3xw4qjimmcnm" path="res://asset/theme/event/param/stylebox/event_node_param_string_panel.tres" id="3_s68mk"]
+
+[node name="ParamEditor_String" type="HBoxContainer" node_paths=PackedStringArray("EditHeader", "Edit")]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("1_d5kb8")
+script = ExtResource("2_054ax")
+EditHeader = NodePath("Panel/VBox/Label_EditHeader")
+Edit = NodePath("Panel/VBox/Line_Edit")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("3_s68mk")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Label_EditHeader" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="Line_Edit" type="LineEdit" parent="Panel/VBox"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+max_length = 128
+context_menu_enabled = false
+clear_button_enabled = true
+
+[connection signal="text_changed" from="Panel/VBox/Line_Edit" to="." method="SetValue"]

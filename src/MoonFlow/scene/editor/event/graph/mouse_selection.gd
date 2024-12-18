@@ -41,6 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			visible = event.pressed
+			get_viewport().gui_release_focus()
 			get_viewport().set_input_as_handled()
 
 func _process(_delta: float) -> void:

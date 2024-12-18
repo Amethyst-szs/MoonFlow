@@ -38,6 +38,8 @@ public partial class PortOut : TextureRect
 				Connection.Connect(EventFlowNode.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
 				CalcConnectionLine();
 			}
+
+			EmitSignal(SignalName.PortConnected, this, value);
 		}
 	}
 
@@ -92,6 +94,8 @@ public partial class PortOut : TextureRect
 	public delegate void PortGrabbedEventHandler();
 	[Signal]
 	public delegate void PortReleasedEventHandler();
+	[Signal]
+	public delegate void PortConnectedEventHandler(PortOut port, EventFlowNode connection);
 
 	#endregion
 

@@ -1,22 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://0cdy5iuxlvqd"]
+[gd_scene load_steps=9 format=3 uid="uid://0cdy5iuxlvqd"]
 
 [ext_resource type="Theme" uid="uid://rub3asjuwm5w" path="res://asset/theme/event/node/event_node.tres" id="1_dkxm3"]
 [ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNode.cs" id="1_f1ryd"]
 [ext_resource type="PackedScene" uid="uid://bhc8hqjw7nqek" path="res://scene/editor/event/node/port_in.tscn" id="3_xs8rq"]
+[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="4_5paav"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/area_drag_collider.gd" id="5_ey2sh"]
 [ext_resource type="StyleBox" uid="uid://dor0dac83hoqe" path="res://asset/theme/event/node/stylebox/event_node_selection_panel.tres" id="5_vyepf"]
+[ext_resource type="Script" path="res://scene/editor/event/node/component/dropdown_vbox_with_dispose.gd" id="6_3tg3c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs1ce"]
 content_margin_left = 4.0
 content_margin_right = 4.0
 bg_color = Color(0, 0, 0, 0.309804)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwg26"]
-
-[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "SelectionPanel", "DebugDataDisplay")]
+[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "ParamHolder", "ParamAddDropdownHolder", "SelectionPanel", "DebugDataDisplay")]
 script = ExtResource("1_f1ryd")
 PortIn = NodePath("Content/Ports/PortHolder_In/Port_In")
 PortOutList = NodePath("Content/Ports/PortHolder_Out/PortList_Out")
+ParamHolder = NodePath("Content/Display/Params")
+ParamAddDropdownHolder = NodePath("Content/Display/ParamAdditionalOptions")
 SelectionPanel = NodePath("Content/Panel_Selection")
 DebugDataDisplay = NodePath("Content/Debug/VBox_DebugDisplay/Label_Debug")
 
@@ -32,37 +34,54 @@ layout_mode = 2
 
 [node name="PortHolder_In" type="Control" parent="Content/Ports"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 0
 mouse_filter = 2
 
 [node name="Port_In" parent="Content/Ports/PortHolder_In" instance=ExtResource("3_xs8rq")]
 layout_mode = 2
 offset_left = -24.0
-offset_top = -12.0
-offset_bottom = 12.0
+offset_bottom = 24.0
 
 [node name="PortHolder_Out" type="Control" parent="Content/Ports"]
 layout_mode = 2
 size_flags_horizontal = 10
-size_flags_vertical = 4
+size_flags_vertical = 0
 mouse_filter = 2
 
 [node name="PortList_Out" type="VBoxContainer" parent="Content/Ports/PortHolder_Out"]
 layout_mode = 0
-offset_top = -12.0
 offset_right = 24.0
-offset_bottom = 12.0
+offset_bottom = 24.0
 theme_override_constants/separation = 12
 
-[node name="Content" type="VBoxContainer" parent="Content"]
+[node name="Display" type="VBoxContainer" parent="Content"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label_Header" type="Label" parent="Content/Content"]
+[node name="Label_Header" type="Label" parent="Content/Display"]
 layout_mode = 2
 text = "EVENT_FLOW_NODE_HEADER"
 
+[node name="Params" type="VBoxContainer" parent="Content/Display"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HSep" type="HSeparator" parent="Content/Display/Params"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Dropdown_Additional" type="CheckBox" parent="Content/Display" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+text = "Additional Properties"
+script = ExtResource("4_5paav")
+dropdown = NodePath("../ParamAdditionalOptions")
+
+[node name="ParamAdditionalOptions" type="VBoxContainer" parent="Content/Display"]
+layout_mode = 2
+script = ExtResource("6_3tg3c")
+
 [node name="Panel_Selection" type="Panel" parent="Content"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("5_vyepf")
@@ -92,9 +111,9 @@ script = ExtResource("5_ey2sh")
 content = NodePath("../Content")
 
 [node name="Shape" type="CollisionShape2D" parent="Area_DragCollider"]
-shape = SubResource("RectangleShape2D_mwg26")
 debug_color = Color(0.221667, 0, 0.7, 0.419608)
 
+[connection signal="resized" from="Content" to="." method="OnNodeResized"]
 [connection signal="resized" from="Content" to="Area_DragCollider" method="_on_content_size_changed"]
 [connection signal="area_entered" from="Area_DragCollider" to="Area_DragCollider" method="_on_selector_entered"]
 [connection signal="area_exited" from="Area_DragCollider" to="Area_DragCollider" method="_on_selector_exited"]

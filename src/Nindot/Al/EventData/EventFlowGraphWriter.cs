@@ -58,10 +58,14 @@ public partial class Graph
 
         foreach (var enter in EntryPoints)
         {
+            int id = -1;
+            if (enter.Value != null)
+                id = enter.Value.Id;
+            
             list.Add(new Dictionary<string, object>
             {
                 ["Name"] = enter.Key,
-                ["NodeId"] = enter.Value.GetId()
+                ["NodeId"] = id
             });
         }
 

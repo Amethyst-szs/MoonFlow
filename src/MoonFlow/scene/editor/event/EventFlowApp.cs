@@ -44,7 +44,7 @@ public partial class EventFlowApp : AppScene
         Scene.NodeHeader.Connect(Header.SignalName.ButtonSave, Callable.From(SaveFile));
 
         // DEBUG SHIT
-        OpenFile(SarcFile.FromFilePath("D:/NCA-NSP-XCI_TO_LayeredFS_v1.6/1.6/Super-Mario-Oddyesy/Odyssey100/romfs/EventData/Common.szs"), "SimpleMessage.byml");
+        OpenFile(SarcFile.FromFilePath("C:/Users/evils/AppData/Roaming/Godot/app_userdata/MoonFlow/debug/romfs/EventData/Common.szs"), "SimpleMessage.byml");
     }
 
     private async void InitEditor()
@@ -77,7 +77,7 @@ public partial class EventFlowApp : AppScene
             nodeEdit.InitContentMetadata(Metadata, data);
 
             // Init main content from event flow graph byml
-            nodeEdit.InitContent(node);
+            nodeEdit.InitContent(node, Graph);
         }
 
         await ToSignal(Engine.GetMainLoop(), "process_frame");
@@ -119,7 +119,7 @@ public partial class EventFlowApp : AppScene
             GraphNodeHolder.AddChild(entryEdit);
 
             // Init main content from event flow graph byml
-            entryEdit.InitContent(entry.Key, editNode);
+            entryEdit.InitContent(entry.Key, Graph, editNode);
 
             // Setup metadata access (Node position, comments, and other additional info)
             Metadata.EntryPoints.TryGetValue(entry.Key, out NodeMetadata data);

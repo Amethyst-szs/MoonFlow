@@ -13,12 +13,13 @@ var zoom_pivot: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	parent = get_parent() as CanvasLayer
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_drag:
 		parent.offset += event.screen_relative / (parent.scale * 2.25)
 		get_viewport().set_input_as_handled()
 		return
-	
+
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
 			_handle_drag_toggle(event.pressed)
@@ -29,7 +30,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			_handle_wheel_down()
-	
 
 func _handle_drag_toggle(is_pressed: bool) -> void:
 	is_drag = is_pressed

@@ -17,8 +17,11 @@ public partial class EventFlowNode : Node2D
 
 	public GraphCanvas Parent { get; private set; } = null;
 
+	public EventFlowNode[] Connections = [];
+
 	// ~~~~~~~~~~~~ Content & Type ~~~~~~~~~~~ //
 
+	public Graph Graph { get; private set; } = null;
 	public Nindot.Al.EventFlow.Node Content { get; private set; } = null;
 	public NodeMetadata Metadata { get; private set; } = null;
 
@@ -36,6 +39,11 @@ public partial class EventFlowNode : Node2D
 	public PortIn PortIn { get; private set; }
 	[Export]
 	public VBoxContainer PortOutList { get; private set; }
+
+	[Export]
+	public VBoxContainer ParamHolder { get; private set; }
+	[Export]
+	public VBoxContainer ParamAddDropdownHolder { get; private set; }
 
 	[Export]
 	private Panel SelectionPanel;
@@ -106,7 +114,7 @@ public partial class EventFlowNode : Node2D
 
 		// Setup debug panel
 		DebugDataDisplay.Hide();
-		
+
 		if (OS.IsDebugBuild())
 			Parent.Connect(GraphCanvas.SignalName.ToggleDebugDataView, Callable.From(new Action<bool>(SetDebugVisiblity)));
 		else
@@ -120,33 +128,33 @@ public partial class EventFlowNode : Node2D
 		}
 	}
 
-	public void InitContent(Nindot.Al.EventFlow.Node content)
+	public void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
 	{
+		Graph = graph;
 		Content = content;
 		NodeType = NodeTypes.NODE;
 
 		Name = content.Id.ToString();
+		InitParamEditor();
 
 		for (var i = 0; i < content.GetNextIdCount(); i++)
-		{
-			var outPort = SceneCreator<PortOut>.Create();
-			PortOutList.AddChild(outPort);
-		}
+			CreatePortOut();
 
 		DrawDebugLabel();
 	}
 
-	public void InitContent(string entryName, EventFlowNode target)
+	public void InitContent(string entryName, Graph graph, EventFlowNode target)
 	{
+		Graph = graph;
 		NodeType = NodeTypes.ENTRY_POINT;
 		Name = entryName;
+		ParamHolder.QueueFree();
 
 		// Setup ports
 		PortIn.QueueFree();
 
-		var o = SceneCreator<PortOut>.Create();
-		PortOutList.AddChild(o);
-
+		var o = CreatePortOut();
+		Connections = new EventFlowNode[1];
 		o.Connection = target;
 
 		DrawDebugLabel();
@@ -181,16 +189,50 @@ public partial class EventFlowNode : Node2D
 
 	public void SetupConnections(List<EventFlowNode> list)
 	{
+		Connections = new EventFlowNode[list.Count];
+
 		for (int i = 0; i < list.Count; i++)
 		{
 			if (list[i] == null)
 				continue;
 
-			(PortOutList.GetChild(i) as PortOut).Connection = list[i];
+			var port = PortOutList.GetChild(i) as PortOut;
+			port.Connection = list[i];
 		}
 	}
 
+	private PortOut CreatePortOut()
+	{
+		var outPort = SceneCreator<PortOut>.Create();
+		PortOutList.AddChild(outPort);
+
+		outPort.Connect(PortOut.SignalName.PortConnected, Callable.From(
+			new Action<PortOut, EventFlowNode>(OnConnectionChanged)
+		));
+
+		return outPort;
+	}
+
 	#endregion
+
+	protected virtual void InitParamEditor()
+	{
+		var type = Content.GetSupportedParams(out Dictionary<string, Type> pList);
+		if (type == Nindot.Al.EventFlow.Node.NodeOptionType.NO_OPTIONS)
+		{
+			ParamAddDropdownHolder.QueueFree();
+			ParamHolder.QueueFree();
+			return;
+		}
+
+		// Create all param editors
+		foreach (var p in pList)
+			EventNodeParamFactory.CreateParamEditor(this, p.Key, p.Value);
+		
+		// If there are no additional properties to add, remove dropdown
+		if (ParamAddDropdownHolder.GetChildCount() == 0)
+			ParamAddDropdownHolder.QueueFree();
+	}
 
 	#region Selection
 
@@ -232,13 +274,44 @@ public partial class EventFlowNode : Node2D
 
 		if (snapPos != oldPos)
 			EmitSignal(SignalName.NodeMoved);
-		
+
 		DrawDebugLabel();
+	}
+
+	private async void OnNodeResized()
+	{
+		await ToSignal(Engine.GetMainLoop(), "process_frame");
+		EmitSignal(SignalName.NodeMoved);
 	}
 
 	#endregion
 
 	#region Signals
+
+	private void OnConnectionChanged(PortOut port, EventFlowNode connection)
+	{
+		Connections[port.Index] = connection;
+
+		// Update data in graph data content
+		if (IsEntryPoint())
+		{
+			Graph.EntryPoints[Name] = connection?.Content;
+			DrawDebugLabel();
+			return;
+		}
+
+		if (connection == null)
+		{
+			Content.RemoveNextNode(port.Index);
+			DrawDebugLabel();
+			return;
+		}
+
+		if (!Content.TrySetNextNode(connection.Content, port.Index))
+			throw new Exception("Failed to connect " + Content.Id + " to " + connection.Content.Id);
+
+		DrawDebugLabel();
+	}
 
 	private void SetDebugVisiblity(bool isActive)
 	{
@@ -257,14 +330,23 @@ public partial class EventFlowNode : Node2D
 	{
 		if (DebugDataDisplay == null)
 			return;
-		
+
 		string txt = "";
 
 		txt += AppendDebugLabel(nameof(NodeType), Enum.GetName(NodeType));
 		txt += AppendDebugLabel(nameof(Position), Position);
 
+		if (IsEntryPoint())
+		{
+			txt += AppendDebugLabel(nameof(Name), Name);
+
+			if (Graph.EntryPoints.TryGetValue(Name, out Nindot.Al.EventFlow.Node target) && target != null)
+				txt += AppendDebugLabel("Target", target.Id);
+		}
+
 		if (Content != null)
 		{
+			txt += AppendDebugLabel(nameof(Type), Content.GetType().Name);
 			txt += AppendDebugLabel(nameof(Content.Id), Content.Id);
 
 			txt += "Next: ";

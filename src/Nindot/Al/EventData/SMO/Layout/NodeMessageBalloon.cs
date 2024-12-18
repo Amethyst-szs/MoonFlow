@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Nindot.Al.EventFlow.Smo;
 
@@ -45,9 +46,20 @@ public class NodeMessageBalloon : Node
     }
     public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
     {
-        paramInfo = new Dictionary<string, Type>() {
-            { "Text", typeof(NodeMessageResolverData) }, // For non-MapUnit
-            { "ParameterName", typeof(string) }, // For MapUnit
+        if (Name.Contains("MapUnit"))
+        {
+            paramInfo = new Dictionary<string, Type>() {
+                { "Text", typeof(NodeMessageResolverData) },
+            };
+        }
+        else
+        {
+            paramInfo = new Dictionary<string, Type>() {
+                { "ParameterName", typeof(string) },
+            };
+        }
+
+        paramInfo = paramInfo.Concat(new Dictionary<string, Type>() {
             { "EmotionType", typeof(string) },
             { "IsEnableTalkHacking", typeof(bool) },
             { "IsDisableTalkInWater", typeof(bool) },
@@ -55,7 +67,8 @@ public class NodeMessageBalloon : Node
             { "IsShowOnlyFaceToCameraFront", typeof(bool) },
             { "IsHideIfExistTutorial", typeof(bool) },
             { "IsInvalidUiCollisionCheck", typeof(bool) },
-        };
+        }).ToDictionary();
+
         return NodeOptionType.PRESET_LIST;
     }
 }

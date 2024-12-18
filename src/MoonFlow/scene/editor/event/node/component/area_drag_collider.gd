@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var content: PanelContainer = null
-@onready var shape: RectangleShape2D = $Shape.shape as RectangleShape2D
+@onready var shape: RectangleShape2D = null
 
 var is_hover: bool = false
 
@@ -12,6 +12,9 @@ signal node_deselected
 signal node_dragged(dist: Vector2)
 
 func _ready() -> void:
+	$Shape.shape = RectangleShape2D.new()
+	shape = $Shape.shape
+	
 	_on_content_size_changed()
 
 func _on_content_size_changed() -> void:

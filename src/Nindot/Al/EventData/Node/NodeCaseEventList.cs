@@ -123,7 +123,10 @@ public class NodeCaseEventList
         public void SetNextId(Node node)
         {
             if (node == null)
+            {
                 NextId = int.MinValue;
+                return;
+            }
 
             NextId = node.GetId();
         }

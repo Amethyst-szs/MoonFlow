@@ -251,6 +251,18 @@ public abstract class Node
     {
         return Params.ContainsKey(param);
     }
+    public bool TryGetParamType(string param, out Type value)
+    {
+        NodeOptionType paramInfoType = GetSupportedParams(out Dictionary<string, Type> paramInfo);
+        if (paramInfoType == NodeOptionType.PRESET_LIST)
+        {
+            value = paramInfo[param];
+            return true;
+        }
+
+        value = null;
+        return false;
+    }
     public bool TryGetParam<T>(string param, out T value)
     {
         // Setup default value for out

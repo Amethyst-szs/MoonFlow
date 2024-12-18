@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Nindot.Al.EventFlow.Smo;
 
@@ -22,22 +23,34 @@ public class NodeMessageTalk : Node
             "MessageTalkSystem",
             "MessageTalkInvalidIconA",
             "MessageTalkPeachNextHint",
-        ]; 
+        ];
 
         return NodeOptionType.PRESET_LIST;
     }
     public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
     {
-        paramInfo = new Dictionary<string, Type>() {
-            { "Text", typeof(NodeMessageResolverData) }, // For non-MapUnit
-            { "ParameterName", typeof(string) }, // For MapUnit
-            { "DemoActionName", typeof(string) },
+        if (Name.Contains("MapUnit"))
+        {
+            paramInfo = new Dictionary<string, Type>() {
+                { "Text", typeof(NodeMessageResolverData) },
+            };
+        }
+        else
+        {
+            paramInfo = new Dictionary<string, Type>() {
+                { "ParameterName", typeof(string) },
+            };
+        }
+
+        paramInfo = paramInfo.Concat(new Dictionary<string, Type>() {
             { "StartActionName", typeof(string) },
-            { "StartActionFrameRate", typeof(float) },
             { "LoopActionName", typeof(string) },
+            { "DemoActionName", typeof(string) },
+            { "StartActionFrameRate", typeof(float) },
             { "LoopActionFrameRate", typeof(float) },
             { "IconAppearDelayStep", typeof(int) },
-        };
+        }).ToDictionary();
+
         return NodeOptionType.PRESET_LIST;
     }
 }
