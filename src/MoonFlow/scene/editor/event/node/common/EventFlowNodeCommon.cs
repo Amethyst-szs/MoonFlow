@@ -28,8 +28,6 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 	[Export]
 	public VBoxContainer ParamAddDropdownHolder { get; private set; }
 
-	public override bool IsNode() { return true; }
-
 	#endregion
 
 	#region Initilization
@@ -110,9 +108,16 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	#region Signals
 
-	protected override void OnConnectionChanged(PortOut port, EventFlowNodeCommon connection)
+	protected override void OnConnectionChanged(PortOut port, PortIn connection)
 	{
-		Connections[port.Index] = connection;
+		// Clear self from current connection's incoming list
+		Connections[port.Index]?.PortIn.RemoveIncoming(port);
+		
+		// Set connection
+		Connections[port.Index] = connection?.Parent;
+
+		// Add self to the new connection incoming list
+		Connections[port.Index]?.PortIn.AddIncoming(port);
 
 		if (connection == null)
 		{
@@ -121,8 +126,8 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 			return;
 		}
 
-		if (!Content.TrySetNextNode(connection.Content, port.Index))
-			throw new Exception("Failed to connect " + Content.Id + " to " + connection.Content.Id);
+		if (!Content.TrySetNextNode(connection.Parent.Content, port.Index))
+			throw new Exception("Failed to connect " + Content.Id + " to " + connection.Parent.Content.Id);
 
 		DrawDebugLabel();
 	}

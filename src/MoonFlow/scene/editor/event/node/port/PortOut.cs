@@ -39,7 +39,7 @@ public partial class PortOut : TextureRect
 				CalcConnectionLine();
 			}
 
-			EmitSignal(SignalName.PortConnected, this, value);
+			EmitSignal(SignalName.PortConnected, this, value?.PortIn);
 		}
 	}
 
@@ -88,6 +88,17 @@ public partial class PortOut : TextureRect
 	private Curve2D DraggerLineCurve = new();
 	private Vector2 DraggerLineTarget = Vector2.Zero;
 
+	private Color _portColor = Colors.White;
+	public Color PortColor
+	{
+		get { return _portColor; }
+		set
+		{
+			_portColor = value;
+			Modulate = value;
+		}
+	}
+
 	// ~~~~~~~~~~ Signal Definitions ~~~~~~~~~ //
 
 	[Signal]
@@ -95,7 +106,7 @@ public partial class PortOut : TextureRect
 	[Signal]
 	public delegate void PortReleasedEventHandler();
 	[Signal]
-	public delegate void PortConnectedEventHandler(PortOut port, EventFlowNodeCommon connection);
+	public delegate void PortConnectedEventHandler(PortOut port, PortIn connection);
 
 	#endregion
 
@@ -170,7 +181,7 @@ public partial class PortOut : TextureRect
 	{
 		if (!IsInstanceValid(Connection))
 			return;
-		
+
 		var inPos = Connection.PortIn.GlobalPosition;
 		var inSize = Connection.PortIn.Size;
 		DraggerLineTarget = inPos - ConnectionLine.GlobalPosition + (inSize / 2);
@@ -201,7 +212,7 @@ public partial class PortOut : TextureRect
 		{
 			if (IsDrag)
 				GetViewport().SetInputAsHandled();
-			
+
 			return;
 		}
 	}
@@ -218,7 +229,7 @@ public partial class PortOut : TextureRect
 
 		if (m.ButtonIndex != MouseButton.Left)
 			return;
-		
+
 		// Capture all left mouse inputs regardless of press or release
 		GetViewport().SetInputAsHandled();
 
@@ -233,7 +244,7 @@ public partial class PortOut : TextureRect
 		// If releasing the mouse, reset dragger state and set connection
 		if (ConnectionHover != null)
 			Connection = ConnectionHover.Parent;
-		
+
 		IsDrag = false;
 	}
 

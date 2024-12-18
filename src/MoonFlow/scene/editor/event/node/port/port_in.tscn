@@ -7,6 +7,7 @@
 size = Vector2(22, 22)
 
 [node name="Port_In" type="TextureRect"]
+z_index = 5
 custom_minimum_size = Vector2(24, 24)
 texture = ExtResource("1_mdne1")
 expand_mode = 3

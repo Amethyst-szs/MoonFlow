@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scene/editor/event/graph/GraphCanvas.cs" id="5_5dp1p"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/scroll_navigation.gd" id="6_va4yh"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/mouse_selection.gd" id="7_mr57c"]
-[ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/graph_ui_header.tres" id="9_1hwnx"]
+[ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/event_graph_ui_header.tres" id="9_1hwnx"]
 [ext_resource type="Texture2D" uid="uid://cy0acrnosdjdw" path="res://asset/material/graph/zoom_out.svg" id="10_k8svk"]
 [ext_resource type="Texture2D" uid="uid://w3rxhvslqs13" path="res://asset/material/graph/zoom_reset.svg" id="11_uvpj5"]
 [ext_resource type="Texture2D" uid="uid://kgy23al2n62k" path="res://asset/material/graph/zoom_in.svg" id="12_570rd"]

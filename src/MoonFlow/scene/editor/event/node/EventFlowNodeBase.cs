@@ -18,12 +18,18 @@ public partial class EventFlowNodeBase : Node2D
 	// ~~~~~~~~~~~~~~~~~ Data ~~~~~~~~~~~~~~~~ //
 
 	public Graph Graph { get; protected set; } = null;
+	public EventFlowApp Application { get; protected set; } = null;
 	public NodeMetadata Metadata { get; protected set; } = null;
+
+	// ~~~~~~~~~~~~ Editor Config ~~~~~~~~~~~~ //
+
+	[Export, ExportGroup("Configuration")]
+	private Color DefaultPortOutColor = Colors.White;
 
 	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
 	[Export, ExportGroup("Internal References")]
-	public PortIn PortIn { get; private set; }
+	public PortIn PortIn { get; protected set; }
 	[Export]
 	public VBoxContainer PortOutList { get; private set; }
 
@@ -60,9 +66,6 @@ public partial class EventFlowNodeBase : Node2D
 	[Signal]
 	public delegate void NodeMovedEventHandler();
 
-	public virtual bool IsNode() { return false; }
-	public virtual bool IsEntryPoint() { return false; }
-
 	#endregion
 
 	#region Initilization
@@ -74,9 +77,9 @@ public partial class EventFlowNodeBase : Node2D
 		if (GetType() == typeof(EventFlowNodeBase))
 			throw new Exception("Base class should not be constructed!");
 		
-		// Search upward for parent graph
+		// Search upward for parent graph and application
 		Godot.Node nextParent = this;
-		while (Parent == null)
+		while (Parent == null || Application == null)
 		{
 			nextParent = nextParent.GetParent();
 			if (!IsInstanceValid(nextParent))
@@ -84,6 +87,9 @@ public partial class EventFlowNodeBase : Node2D
 
 			if (nextParent.GetType() == typeof(GraphCanvas))
 				Parent = nextParent as GraphCanvas;
+			
+			if (nextParent.GetType() == typeof(EventFlowApp))
+				Application = nextParent as EventFlowApp;
 		}
 
 		// Connect to signals from graph
@@ -147,8 +153,10 @@ public partial class EventFlowNodeBase : Node2D
 		PortOutList.AddChild(outPort);
 
 		outPort.Connect(PortOut.SignalName.PortConnected, Callable.From(
-			new Action<PortOut, EventFlowNodeCommon>(OnConnectionChanged)
+			new Action<PortOut, PortIn>(OnConnectionChanged)
 		));
+
+		outPort.PortColor = DefaultPortOutColor;
 
 		return outPort;
 	}
@@ -209,7 +217,7 @@ public partial class EventFlowNodeBase : Node2D
 
 	#region Signals
 
-	protected virtual void OnConnectionChanged(PortOut port, EventFlowNodeCommon connection) {}
+	protected virtual void OnConnectionChanged(PortOut port, PortIn connection) {}
 	protected void SetDebugVisiblity(bool isActive)
 	{
 		if (IsInstanceValid(DebugDataDisplay))

@@ -13,7 +13,8 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 {
 	public EventFlowNodeCommon Connection;
 
-    public override bool IsEntryPoint() { return true; }
+	[Export, ExportGroup("Internal References")]
+	private LineEdit NameEdit;
 
 	#region Initilization
 
@@ -31,11 +32,11 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		var labelType = GetNode<Label>("%Label_Type");
 		labelType.Text = Tr("EntryPoint", "EVENT_GRAPH_NODE_TYPE");
 
-		var labelName = GetNode<Label>("%Label_Name");
-		labelName.Text = entryName;
+		NameEdit.Text = entryName;
 
 		// Setup ports
 		PortIn.QueueFree();
+		PortIn = null;
 
 		var o = CreatePortOut();
 		Connection = target;
@@ -58,12 +59,38 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 
 	#region Signals
 
-	protected override void OnConnectionChanged(PortOut port, EventFlowNodeCommon connection)
+	protected override void OnConnectionChanged(PortOut port, PortIn connection)
 	{
-		Connection = connection;
+		// Clear self from current connection's incoming list
+		Connection?.PortIn.RemoveIncoming(port);
+		
+		// Set connection
+		Connection = connection?.Parent;
 
-        Graph.EntryPoints[Name] = connection?.Content;
+		// Add self to the new connection incoming list
+		Connection?.PortIn.AddIncoming(port);
+
+        Graph.EntryPoints[Name] = connection?.Parent.Content;
         DrawDebugLabel();
+	}
+
+	private void OnEntryPointNameChanged(string txt)
+	{
+		if (Graph.EntryPoints.ContainsKey(txt))
+		{
+			var caret = NameEdit.CaretColumn;
+			NameEdit.Text = Name;
+			NameEdit.CaretColumn = caret;
+			return;
+		}
+
+		Graph.EntryPoints.Remove(Name);
+		Graph.EntryPoints.Add(txt, Connection?.Content);
+
+		Metadata = Application.Metadata.RenameEntryPoint(Name, txt);
+
+		Name = txt;
+		DrawDebugLabel();
 	}
 
     #endregion

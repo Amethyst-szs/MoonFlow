@@ -1,3 +1,6 @@
+using System;
+using System.Text.Json.Serialization;
+
 using Godot;
 
 namespace MoonFlow.Scene.EditorEvent;

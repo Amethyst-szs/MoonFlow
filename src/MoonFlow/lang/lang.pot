@@ -42,6 +42,7 @@
 # res://async/async_text.tres
 # res://scene/front_door/load/loading_message_text.tres
 # res://scene/editor/event/node/node_type_name_text.tres
+# res://scene/editor/event/node/entry_point/event_flow_entry_point.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2061,4 +2062,8 @@ msgstr ""
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "EntryPoint"
+msgstr ""
+
+#: scene/editor/event/node/entry_point/event_flow_entry_point.tscn
+msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
 msgstr ""

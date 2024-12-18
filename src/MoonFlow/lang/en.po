@@ -2054,6 +2054,10 @@ msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "EntryPoint"
 msgstr "Entry Point"
 
+#: scene/editor/event/node/entry_point/event_flow_entry_point.tscn
+msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
+msgstr "Entry Point Name"
+
 #~ msgid "ASYNC_DISPLAY_SUCCESS"
 #~ msgstr "Success!"
 

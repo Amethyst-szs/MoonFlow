@@ -1,7 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdcam0c6j5qr2"]
+[gd_scene load_steps=7 format=3 uid="uid://cdcam0c6j5qr2"]
 
 [ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_em0m4"]
 [ext_resource type="Script" path="res://scene/editor/event/node/entry_point/EventFlowEntryPoint.cs" id="2_0b7pp"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_7mblp"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_c4ybk"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_245uo"]
 
-[node name="EventFlowEntryPoint" instance=ExtResource("1_em0m4")]
+[sub_resource type="LabelSettings" id="LabelSettings_xu247"]
+font = ExtResource("3_7mblp")
+font_size = 18
+
+[node name="EventFlowEntryPoint" node_paths=PackedStringArray("NameEdit") instance=ExtResource("1_em0m4")]
 script = ExtResource("2_0b7pp")
+NameEdit = NodePath("Content/Display/Line_Name")
+DefaultPortOutColor = Color(0.14902, 1, 0.658824, 1)
+
+[node name="Content" parent="." index="0"]
+self_modulate = Color(0.15, 1, 0.66, 1)
+
+[node name="Label_Name" parent="Content/Display" index="0"]
+visible = false
+
+[node name="Label_Type" parent="Content/Display" index="1"]
+label_settings = SubResource("LabelSettings_xu247")
+
+[node name="Line_Name" type="LineEdit" parent="Content/Display" index="2"]
+custom_minimum_size = Vector2(224, 0)
+layout_mode = 2
+theme = ExtResource("3_c4ybk")
+placeholder_text = "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
+alignment = 1
+max_length = 32
+context_menu_enabled = false
+script = ExtResource("4_245uo")
+regex_string = "[A-Za-z0-9_]"
+is_return_if_empty = true
+
+[connection signal="text_validated" from="Content/Display/Line_Name" to="." method="OnEntryPointNameChanged"]

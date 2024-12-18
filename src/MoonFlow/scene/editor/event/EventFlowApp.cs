@@ -107,13 +107,12 @@ public partial class EventFlowApp : AppScene
     {
         foreach (var entry in Graph.EntryPoints)
         {
-            var target = GraphNodeHolder.GetNode<EventFlowNodeCommon>(entry.Value.Id.ToString());
-            if (!IsInstanceValid(target))
-            {
-                GD.PushError("Failed to initilize " + entry.Key + " entry point");
-                return;
-            }
+            var id = entry.Value?.Id.ToString();
+            EventFlowNodeCommon target = null;
 
+            if (GraphNodeHolder.HasNode(id))
+                target = GraphNodeHolder.GetNode<EventFlowNodeCommon>(id);
+            
             // Create node
             var entryEdit = SceneCreator<EventFlowEntryPoint>.Create();
             GraphNodeHolder.AddChild(entryEdit);

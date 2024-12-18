@@ -14,6 +14,7 @@ shader_parameter/direction = 1.0
 size = Vector2(11, 11)
 
 [node name="Port_Out" type="TextureRect" node_paths=PackedStringArray("ConnectionLine", "DraggerLine", "GrabCollider")]
+z_index = 2
 custom_minimum_size = Vector2(24, 24)
 mouse_filter = 0
 mouse_default_cursor_shape = 2

@@ -2,16 +2,16 @@
 
 [resource]
 bg_color = Color(0.343, 0.56315, 0.7, 0.0470588)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 border_color = Color(0.99, 0.79992, 0.2772, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 14.0
-expand_margin_top = 8.0
-expand_margin_right = 14.0
-expand_margin_bottom = 8.0
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+expand_margin_left = 15.0
+expand_margin_top = 9.0
+expand_margin_right = 15.0
+expand_margin_bottom = 9.0

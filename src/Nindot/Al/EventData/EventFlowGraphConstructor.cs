@@ -65,6 +65,8 @@ public partial class Graph
             // Get a copy of the name and node reference
             if (dict.ContainsKey("Name"))
                 name = (string)dict["Name"];
+            else
+                throw new EventFlowException("EntryList element does not contain name!");
 
             if (dict.ContainsKey("NodeId"))
             {
@@ -72,10 +74,6 @@ public partial class Graph
                 if (Nodes.TryGetValue(nodeID, out Node value))
                     node = value;
             }
-
-            // Assuming both placeholders got set to non-null values, push to EntryPoints list
-            if (name == null || node == null)
-                return false;
 
             EntryPoints.Add(name, node);
         }
