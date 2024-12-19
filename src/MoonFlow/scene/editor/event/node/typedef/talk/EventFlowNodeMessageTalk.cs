@@ -97,7 +97,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))
 			return false;
 		
-		return msg.MessageArchive == string.Empty || msg.MessageFile == string.Empty || msg.LabelName == string.Empty;
+		return msg.MessageArchive != string.Empty && msg.MessageFile != string.Empty && msg.LabelName != string.Empty;
 	}
 
 	#endregion

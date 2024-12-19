@@ -1493,6 +1493,11 @@ msgstr ""
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectLabelCache"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveMsbtArchives"
 msgstr ""
 
@@ -1544,6 +1549,11 @@ msgstr ""
 #: scene/front_door/load/loading_message_text.tres
 msgctxt "PROJECT_LOADING"
 msgid "LOAD_COIN_COLLECT_NUM"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_LABEL_CACHE"
 msgstr ""
 
 #: scene/front_door/load/loading_message_text.tres

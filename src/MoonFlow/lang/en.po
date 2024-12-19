@@ -1481,6 +1481,11 @@ msgstr "Transferring Files..."
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectLabelCache"
+msgstr "Updating Label Cache..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveMsbtArchives"
 msgstr "Saving MSBT Archives..."
 
@@ -1533,6 +1538,11 @@ msgstr "Loading World Items"
 msgctxt "PROJECT_LOADING"
 msgid "LOAD_COIN_COLLECT_NUM"
 msgstr "Loading Purple Coin Info"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_LABEL_CACHE"
+msgstr "Loading Label Cache"
 
 #: scene/front_door/load/loading_message_text.tres
 msgctxt "PROJECT_LOADING"

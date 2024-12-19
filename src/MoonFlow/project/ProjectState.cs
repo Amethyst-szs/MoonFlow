@@ -5,6 +5,7 @@ using MoonFlow.Scene;
 using MoonFlow.Scene.Main;
 
 using MoonFlow.Project.Database;
+using MoonFlow.Project.Cache;
 
 namespace MoonFlow.Project;
 
@@ -21,6 +22,7 @@ public class ProjectState(string path, ProjectConfig config)
     // Project Components
     public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
     public ProjectMessageStudioText MsgStudioText { get; private set; } = null;
+    public ProjectLabelCache MsgLabelCache { get; private set; } = null;
 
     public ProjectDatabaseHolder Database { get; private set; } = null;
 
@@ -48,6 +50,11 @@ public class ProjectState(string path, ProjectConfig config)
 
         // Initilize project database holder
         Database = new(this, loadScreen);
+
+        // Create label cache
+        loadScreen.LoadingUpdateProgress("LOAD_LABEL_CACHE");
+        MsgLabelCache = new();
+        MsgLabelCache.UpdateCacheSynchronous();
 
         // Complete Initilization
         loadScreen.LoadingComplete();

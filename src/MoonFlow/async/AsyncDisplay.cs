@@ -79,6 +79,8 @@ public partial class AsyncDisplay : Control
         FileWrite = 0xF46201FF,
         FTP = 0XF1B204FF,
 
+        UpdateProjectLabelCache = 0x3A648EFF,
+
         SaveMsbtArchives = 0xF46202FF,
         SaveWorldArchives = 0xF46302FF,
         SaveEventFlowGraph = 0xF46303FF,

@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_j5b2e")
 context = "ASYNC_TASK_DISPLAY"
-keys = Array[String](["Success", "FileRead", "FileWrite", "FTP", "SaveMsbtArchives", "SaveWorldArchives", "SaveEventFlowGraph"])
+keys = Array[String](["Success", "FileRead", "FileWrite", "FTP", "UpdateProjectLabelCache", "SaveMsbtArchives", "SaveWorldArchives", "SaveEventFlowGraph"])
