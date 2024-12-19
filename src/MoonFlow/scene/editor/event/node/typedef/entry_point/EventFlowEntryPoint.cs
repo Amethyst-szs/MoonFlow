@@ -8,7 +8,7 @@ using Nindot.Al.EventFlow;
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
-[ScenePath("res://scene/editor/event/node/entry_point/event_flow_entry_point.tscn")]
+[ScenePath("res://scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn")]
 public partial class EventFlowEntryPoint : EventFlowNodeBase
 {
 	public EventFlowNodeCommon Connection;

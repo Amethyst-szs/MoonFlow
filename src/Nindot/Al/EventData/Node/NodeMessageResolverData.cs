@@ -4,9 +4,9 @@ namespace Nindot.Al.EventFlow;
 
 public class NodeMessageResolverData
 {
-    public string MessageArchive;
-    public string MessageFile;
-    public string LabelName;
+    public string MessageArchive = "";
+    public string MessageFile = "";
+    public string LabelName = "";
 
     public NodeMessageResolverData(Dictionary<object, object> dict)
     {
@@ -20,6 +20,7 @@ public class NodeMessageResolverData
         MessageFile = file;
         LabelName = label;
     }
+    public NodeMessageResolverData() {}
 
     public Dictionary<string, string> WriteBuild()
     {

@@ -16,7 +16,7 @@ public abstract class Node
         ANY_VALUE,
     }
 
-    public string Name { get; protected set; } = null;
+    public string Name = null;
     public string TypeBase { get; protected set; } = null;
 
     public int Id { get; protected set; } = int.MinValue;

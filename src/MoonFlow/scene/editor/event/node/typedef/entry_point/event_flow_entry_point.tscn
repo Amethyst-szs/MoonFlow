@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdcam0c6j5qr2"]
 
 [ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_em0m4"]
-[ext_resource type="Script" path="res://scene/editor/event/node/entry_point/EventFlowEntryPoint.cs" id="2_0b7pp"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/entry_point/EventFlowEntryPoint.cs" id="2_0b7pp"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_7mblp"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_c4ybk"]
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_245uo"]

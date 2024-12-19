@@ -187,7 +187,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
-	private void OnSetName(int index)
+	public void OnSetName(int index)
 	{
 		Content.SetName(index);
 
@@ -195,17 +195,21 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		labelName.Text = Content.Name;
 
 		InitParamEditor();
+		OnNodeNameModified();
 	}
 
-	private void OnSetName(string name)
+	public void OnSetName(string name)
 	{
-		Content.SetName(name);
+		Content.Name = name;
 
 		var labelName = GetNode<Label>("%Label_Name");
 		labelName.Text = Content.Name;
 
 		InitParamEditor();
+		OnNodeNameModified();
 	}
+
+	protected virtual void OnNodeNameModified() {}
 
 	#endregion
 

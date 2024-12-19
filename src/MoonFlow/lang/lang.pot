@@ -42,7 +42,9 @@
 # res://async/async_text.tres
 # res://scene/front_door/load/loading_message_text.tres
 # res://scene/editor/event/node/node_type_name_text.tres
-# res://scene/editor/event/node/entry_point/event_flow_entry_point.tscn
+# res://scene/editor/event/node/typedef/fork/fork.tscn
+# res://scene/editor/event/node/typedef/talk/talk.tscn
+# res://scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2064,6 +2066,30 @@ msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "EntryPoint"
 msgstr ""
 
-#: scene/editor/event/node/entry_point/event_flow_entry_point.tscn
+#: scene/editor/event/node/typedef/fork/fork.tscn
+msgid "EVENT_FLOW_NODE_FORK_BUTTON_REMOVE_PORT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/node/typedef/fork/fork.tscn
+msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/node/typedef/talk/talk.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
+msgstr ""
+
+#: scene/editor/event/node/typedef/talk/talk.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/node/typedef/talk/talk.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"
+msgstr ""
+
+#: scene/editor/event/node/typedef/talk/talk.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
+msgstr ""
+
+#: scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
 msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
 msgstr ""

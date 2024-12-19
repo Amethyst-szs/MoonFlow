@@ -14,10 +14,15 @@ var _dropdown: Control = null
 		value.set_meta("dropdown", self)
 		_on_toggled(button_pressed)
 
+@export var invert_result: bool = false
+
 func _ready() -> void:
 	toggled.connect(_on_toggled)
 	_on_toggled(button_pressed)
 
 func _on_toggled(state: bool) -> void:
+	if invert_result:
+		state = !state
+	
 	if dropdown:
 		dropdown.visible = state

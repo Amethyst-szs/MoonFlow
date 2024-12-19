@@ -14,7 +14,7 @@ public static class EventFlowNodeFactory
         { typeof(NodeJumpEntry), "" },
 
         { typeof(NodeMessageBalloon), "" },
-        { typeof(NodeMessageTalk), "" },
+        { typeof(NodeMessageTalk), "talk/talk.tscn" },
         { typeof(NodeSelectChoice), "" },
         { typeof(NodeSelectYesNo), "" },
     };

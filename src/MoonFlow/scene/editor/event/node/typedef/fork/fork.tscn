@@ -12,8 +12,8 @@ DefaultPortOutColor = Color(0.690196, 0.768627, 0.870588, 1)
 PortColorList = []
 
 [node name="Content" parent="." index="0"]
-offset_right = 227.0
-offset_bottom = 141.0
+offset_right = 100.0
+offset_bottom = 102.0
 
 [node name="HBox_Count" type="HBoxContainer" parent="Content/Display" index="2"]
 layout_mode = 2
@@ -29,6 +29,16 @@ icon = ExtResource("4_e40j5")
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
 icon = ExtResource("5_rufyy")
+
+[node name="Params" parent="Content/Display" index="3"]
+visible = false
+
+[node name="Dropdown_Additional" parent="Content/Display" index="4"]
+visible = false
+text = ""
+
+[node name="ParamAdditionalOptions" parent="Content/Display" index="5"]
+visible = false
 
 [connection signal="pressed" from="Content/Display/HBox_Count/Button_Sub" to="." method="OnButtonPressedRemovePort"]
 [connection signal="pressed" from="Content/Display/HBox_Count/Button_Add" to="." method="OnButtonPressedAddPort"]
