@@ -10,7 +10,7 @@ public class NodeFork : Node
     // ====== Initilization and Standard Virtual Config ===== //
     // ====================================================== //
 
-    private List<int> NextIdList = [];
+    public List<int> NextIdList = [];
 
     public NodeFork(Dictionary<object, object> dict) : base(dict)
     {

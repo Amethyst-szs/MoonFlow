@@ -35,7 +35,10 @@ public partial class PortOut : TextureRect
 			// If a connection is being set, update dragger rendering and signals
 			if (isNotNull)
 			{
-				Connection.Connect(EventFlowNodeBase.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+				var call = Callable.From(CalcConnectionLine);
+				if (!Connection.IsConnected(EventFlowNodeBase.SignalName.NodeMoved, call))
+					Connection.Connect(EventFlowNodeBase.SignalName.NodeMoved, call);
+				
 				CalcConnectionLine();
 			}
 

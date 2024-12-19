@@ -30,7 +30,7 @@ public partial class EventFlowApp : AppScene
     [Export]
     private CanvasLayer BackgroundCanvas = null;
     [Export]
-    private Node2D GraphNodeHolder = null;
+    public Node2D GraphNodeHolder { get; private set; } = null;
 
     #endregion
 

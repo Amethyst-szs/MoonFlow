@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://byyiu2khxy0tv"]
+
+[ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/typedef/common/event_flow_node_common.tscn" id="1_xyc7e"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/fork/EventFlowNodeFork.cs" id="2_t0ky5"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_dx1m3"]
+[ext_resource type="Texture2D" uid="uid://cb3g1mcgfvkwa" path="res://asset/material/file/backspace.svg" id="4_e40j5"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_rufyy"]
+
+[node name="EventFlowNodeFork" instance=ExtResource("1_xyc7e")]
+script = ExtResource("2_t0ky5")
+DefaultPortOutColor = Color(0.690196, 0.768627, 0.870588, 1)
+PortColorList = []
+
+[node name="Content" parent="." index="0"]
+offset_right = 227.0
+offset_bottom = 141.0
+
+[node name="HBox_Count" type="HBoxContainer" parent="Content/Display" index="2"]
+layout_mode = 2
+theme = ExtResource("3_dx1m3")
+alignment = 1
+
+[node name="Button_Sub" type="Button" parent="Content/Display/HBox_Count" index="0"]
+layout_mode = 2
+tooltip_text = "EVENT_FLOW_NODE_FORK_BUTTON_REMOVE_PORT_TOOLTIP"
+icon = ExtResource("4_e40j5")
+
+[node name="Button_Add" type="Button" parent="Content/Display/HBox_Count" index="1"]
+layout_mode = 2
+tooltip_text = "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
+icon = ExtResource("5_rufyy")
+
+[connection signal="pressed" from="Content/Display/HBox_Count/Button_Sub" to="." method="OnButtonPressedRemovePort"]
+[connection signal="pressed" from="Content/Display/HBox_Count/Button_Add" to="." method="OnButtonPressedAddPort"]
