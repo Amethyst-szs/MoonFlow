@@ -13,7 +13,8 @@ public partial class ActionbarDebug : PopupMenu
 	{
 		OPEN_MSTXT_VIEWER = 0,
 		OPEN_MSBP_TGG_VIEWER = 1,
-		OPEN_EVENT_FLOW_GRAPH_PROTOTYPE = 2,
+		OPEN_MSBT_ENTRY_LOOKUP_POPUP = 2,
+		OPEN_EVENT_FLOW_GRAPH_PROTOTYPE = 3,
 	}
 
 	public override void _Ready()
@@ -37,6 +38,11 @@ public partial class ActionbarDebug : PopupMenu
 			case MenuIds.OPEN_MSBP_TGG_VIEWER:
 				var msbpTgg = SceneCreator<MsbpTggViewerApp>.Create();
 				ProjectManager.SceneRoot.NodeApps.AddChild(msbpTgg);
+				break;
+			case MenuIds.OPEN_MSBT_ENTRY_LOOKUP_POPUP:
+				var popup = SceneCreator<PopupMsbtSelectEntry>.Create();
+				GetTree().CurrentScene.AddChild(popup);
+				popup.Popup();
 				break;
 			case MenuIds.OPEN_EVENT_FLOW_GRAPH_PROTOTYPE:
 				var eventFlowGraph = SceneCreator<EventFlowApp>.Create();

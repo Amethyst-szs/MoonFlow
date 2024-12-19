@@ -1,6 +1,11 @@
-using Godot;
-using Nindot.Al.EventFlow;
 using System;
+using Godot;
+
+using MoonFlow.Project;
+
+using Nindot;
+using Nindot.Al.EventFlow;
+using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -31,7 +36,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 			msg = (NodeMessageResolverData)Content.Params["Text"];
 		}
 
-		SetLabelTextSource(msg);
+		SetLabelDisplayTextSource(msg);
 	}
 
 	#region Signals
@@ -44,7 +49,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 			ButtonIsMapUnit.ButtonPressed = value;
 
 		ButtonIsMapUnit.Disabled = !IsSupportMapUnit();
-		SetLabelTextSource();
+		SetLabelDisplayTextSource();
 	}
 
 	private void OnMapUnitToggled(bool state)
@@ -62,29 +67,61 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 		else if (con && !state)
 			OnSetName(Content.Name[..Content.Name.Find("MapUnit")]);
 		
-		SetLabelTextSource();
+		SetLabelDisplayTextSource();
+	}
+
+	private void OnSelectNewTextSource()
+	{
+		var popup = SceneCreator<PopupMsbtSelectEntry>.Create();
+		GetTree().CurrentScene.AddChild(popup);
+		popup.Popup();
+
+		popup.Connect(PopupMsbtSelectEntry.SignalName.ItemSelected, Callable.From(
+			new Action<string, string, string>(OnNewTextSourceSelectedFromPopup)
+		));
+	}
+
+	private void OnNewTextSourceSelectedFromPopup(string arc, string file, string label)
+	{
+		// Setup text resolver
+		if (arc.EndsWith(".szs"))
+			arc = arc[..arc.Find(".szs")];
+
+		if (file.EndsWith(".msbt"))
+			file = file[..file.Find(".msbt")];
+
+		Content.TrySetParam("Text", new NodeMessageResolverData(arc, file, label));
+		SetLabelDisplayTextSource();
 	}
 
 	#endregion
 
 	#region Utilities
 
-	private void SetLabelTextSource()
+	private void SetLabelDisplayTextSource()
 	{
 		Content.TryGetParam("Text", out NodeMessageResolverData msg);
-		SetLabelTextSource(msg);
+		SetLabelDisplayTextSource(msg);
 	}
-	private void SetLabelTextSource(NodeMessageResolverData msg)
+	private void SetLabelDisplayTextSource(NodeMessageResolverData msg)
 	{
-		if (IsContainMessageResolver())
+		if (!IsContainMessageResolver())
 		{
-			LabelTextSource.Modulate = Colors.LightSkyBlue;
-			LabelTextSource.Text = string.Format("{0}/{1}/{2}", msg.MessageArchive, msg.MessageFile, msg.LabelName);
+			LabelTextSource.Modulate = Colors.Crimson;
+			LabelTextSource.Text = Tr("EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER");
 			return;
 		}
 
-		LabelTextSource.Modulate = Colors.Crimson;
-		LabelTextSource.Text = Tr("EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER");
+		LabelTextSource.Modulate = Colors.LightSkyBlue;
+		LabelTextSource.Text = msg.LabelName;
+
+		// Setup preview box
+		var holder = ProjectManager.GetMSBTArchives();
+		SarcFile arc = holder.GetArchiveByFileName(msg.MessageArchive);
+		var msbt = arc.GetFileMSBT(msg.MessageFile + ".msbt", new MsbtElementFactoryProjectSmo());
+
+		var txt = msbt.GetEntry(msg.LabelName);
+		TextMessagePreview.Text = txt.GetRawText(true);
 	}
 
 	private bool IsSupportMapUnit()

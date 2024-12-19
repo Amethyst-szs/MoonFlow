@@ -100,6 +100,11 @@ public class ProjectLanguageHolder
             "SystemMessage.szs" => SystemMessage,
             "StageMessage.szs" => StageMessage,
             "LayoutMessage.szs" => LayoutMessage,
+
+            "SystemMessage" => SystemMessage,
+            "StageMessage" => StageMessage,
+            "LayoutMessage" => LayoutMessage,
+            
             _ => throw new Exception("Unknown file name: " + name),
         };
     }

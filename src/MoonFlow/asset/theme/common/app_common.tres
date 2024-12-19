@@ -8,9 +8,9 @@
 [ext_resource type="StyleBox" uid="uid://cvebrit7cdpop" path="res://asset/theme/common/stylebox/common_button_pressed.tres" id="6_jgcfe"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="7_e8vvp"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="7_s72yq"]
-[ext_resource type="Texture2D" path="res://asset/engine/checkbox_checked.png" id="8_dtegj"]
+[ext_resource type="Texture2D" uid="uid://06wpd4sxywyp" path="res://asset/engine/checkbox_checked.png" id="8_dtegj"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="8_pimjq"]
-[ext_resource type="Texture2D" path="res://asset/engine/checkbox_unchecked.png" id="9_rp3a4"]
+[ext_resource type="Texture2D" uid="uid://cp1hd83xldpq1" path="res://asset/engine/checkbox_unchecked.png" id="9_rp3a4"]
 [ext_resource type="StyleBox" uid="uid://cys3dv01cl5ea" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_edit_window_border.tres" id="10_qif8v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25x5c"]
@@ -93,6 +93,7 @@ PopupMenu/constants/icon_max_width = 24
 PopupMenu/fonts/font = ExtResource("1_rr64a")
 PopupMenu/styles/hover = ExtResource("3_4jtef")
 PopupMenu/styles/panel = ExtResource("8_pimjq")
+RichTextLabel/fonts/normal_font = ExtResource("1_rr64a")
 ScrollContainer/styles/panel = ExtResource("8_pimjq")
 TooltipLabel/fonts/font = ExtResource("1_rr64a")
 TooltipPanel/styles/panel = ExtResource("7_s72yq")

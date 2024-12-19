@@ -71,8 +71,10 @@ custom_minimum_size = Vector2(300, 128)
 layout_mode = 2
 placeholder_text = "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
 editable = false
+wrap_mode = 1
 
 [node name="HSep" parent="Content/Display/Params" index="0"]
 theme_override_constants/separation = 32
 
 [connection signal="toggled" from="Content/Display/TalkText/Check_IsMapUnit" to="." method="OnMapUnitToggled"]
+[connection signal="pressed" from="Content/Display/TalkText/MessageResolverConfig/Button_SelectSource" to="." method="OnSelectNewTextSource"]

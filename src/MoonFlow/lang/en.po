@@ -169,6 +169,10 @@ msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
 msgstr "Open MSBP TGG viewer"
 
 #: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+msgstr "Open MSBT Label Lookup"
+
+#: scene/home/home.tscn
 msgid "HOME_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
 msgstr "Open Event Flow Graph Prototype"
 
@@ -2091,6 +2095,24 @@ msgstr "Preview:"
 #: scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
 msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
 msgstr "Entry Point Name"
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
+msgstr "Search"
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
+msgstr ""
+"Search for a label, and optionally include part of the MSBT file name "
+"separated by a space."
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
+msgstr "No results!"
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
+msgstr "Too many results!"
 
 #~ msgid "ASYNC_DISPLAY_SUCCESS"
 #~ msgstr "Success!"

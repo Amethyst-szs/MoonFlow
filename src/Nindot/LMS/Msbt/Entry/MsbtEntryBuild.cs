@@ -43,7 +43,7 @@ public partial class MsbtEntry
         foreach (var page in Pages) page.Cleanup();
     }
 
-    public string GetRawText()
+    public string GetRawText(bool isSplitPages  = false)
     {
         var result = "";
 
@@ -56,6 +56,9 @@ public partial class MsbtEntry
                 
                 result += element.GetText();
             }
+
+            if (isSplitPages)
+                result += "\n\n";
         }
 
         return result;

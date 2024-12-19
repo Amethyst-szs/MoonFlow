@@ -45,6 +45,7 @@
 # res://scene/editor/event/node/typedef/fork/fork.tscn
 # res://scene/editor/event/node/typedef/talk/talk.tscn
 # res://scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
+# res://scene/common/popup/popup_msbt_select_entry.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -193,6 +194,10 @@ msgstr ""
 
 #: scene/home/home.tscn
 msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
 msgstr ""
 
 #: scene/home/home.tscn
@@ -2102,4 +2107,20 @@ msgstr ""
 
 #: scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
 msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
+msgstr ""
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
+msgstr ""
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
+msgstr ""
+
+#: scene/common/popup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr ""

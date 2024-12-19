@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dd65oednyc051"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dd65oednyc051"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_ra4hm"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="2_i3eh8"]
@@ -37,6 +37,22 @@ border_width_bottom = 2
 border_blend = true
 corner_detail = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gukr6"]
+bg_color = Color(0.0784314, 0.137255, 0.176471, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.99, 0.79992, 0.2772, 0.52549)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+expand_margin_left = 20.0
+expand_margin_top = 40.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
 [resource]
 AcceptDialog/constants/title_height = 30
 AcceptDialog/fonts/title_font = ExtResource("1_ra4hm")
@@ -50,3 +66,4 @@ Button/styles/hover_pressed = ExtResource("5_e0274")
 Button/styles/normal = ExtResource("6_nwr7b")
 Button/styles/pressed = ExtResource("7_l8yae")
 Label/fonts/font = ExtResource("2_i3eh8")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_gukr6")

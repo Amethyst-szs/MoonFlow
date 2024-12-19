@@ -44,7 +44,6 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		// Setup name and type headers
 		var labelType = GetNode<Label>("%Label_Type");
 		labelType.Text = Tr(Content.TypeBase, "EVENT_GRAPH_NODE_TYPE");
-		labelType.TooltipText = Content.TypeBase;
 
 		var labelName = GetNode<Label>("%Label_Name");
 		labelName.Text = Content.Name;

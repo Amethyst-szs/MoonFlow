@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://h84sss0s2x5b"]
+
+[ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_xmmk2"]
+[ext_resource type="Script" path="res://scene/common/popup/PopupMsbtSelectEntry.cs" id="2_a2ipd"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="2_ac1cj"]
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="2_osma2"]
+[ext_resource type="StyleBox" uid="uid://diowequepd8ed" path="res://asset/theme/common/stylebox/common_accept_dialog_panel.tres" id="3_pqj6m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3drgo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mffdp"]
+font_color = Color(1, 0.43, 0.43, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r06ms"]
+
+[node name="PopupMsbtSelectEntry" type="Window" node_paths=PackedStringArray("LineSearch", "ResultList", "LabelInvalidRequest", "LabelNoResults", "LabelTooManyResults")]
+initial_position = 1
+size = Vector2i(620, 512)
+transient = true
+exclusive = true
+min_size = Vector2i(256, 312)
+theme = ExtResource("1_xmmk2")
+script = ExtResource("2_a2ipd")
+LineSearch = NodePath("Content/VBox/Line_Search")
+ResultList = NodePath("Content/VBox/Scroll_Results/VBox_Results")
+LabelInvalidRequest = NodePath("Content/VBox/Label_InvalidRequest")
+LabelNoResults = NodePath("Content/VBox/Label_NoResults")
+LabelTooManyResults = NodePath("Content/VBox/Label_TooManyResults")
+
+[node name="Content" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_pqj6m")
+
+[node name="VBox" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme = ExtResource("2_ac1cj")
+theme_override_constants/separation = 12
+
+[node name="Line_Search" type="LineEdit" parent="Content/VBox"]
+layout_mode = 2
+placeholder_text = "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
+right_icon = ExtResource("2_osma2")
+
+[node name="Label_InvalidRequest" type="Label" parent="Content/VBox"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
+label_settings = SubResource("LabelSettings_3drgo")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_NoResults" type="Label" parent="Content/VBox"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
+label_settings = SubResource("LabelSettings_mffdp")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_TooManyResults" type="Label" parent="Content/VBox"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
+label_settings = SubResource("LabelSettings_mffdp")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Scroll_Results" type="ScrollContainer" parent="Content/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r06ms")
+horizontal_scroll_mode = 0
+
+[node name="VBox_Results" type="VBoxContainer" parent="Content/VBox/Scroll_Results"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="close_requested" from="." to="." method="queue_free"]
+[connection signal="text_changed" from="Content/VBox/Line_Search" to="." method="OnLineSearchModified"]
