@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,10 @@ public partial class EventFlowNodeBase : Node2D
 
 	// ~~~~~~~~~~~~ Editor Config ~~~~~~~~~~~~ //
 
-	[Export, ExportGroup("Configuration")]
-	private Color DefaultPortOutColor = Colors.White;
+	[Export, ExportGroup("Port Colors")]
+	protected Color DefaultPortOutColor = Colors.White;
+	[Export]
+	protected Array<Color> PortColorList = [];
 
 	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
@@ -33,6 +36,8 @@ public partial class EventFlowNodeBase : Node2D
 	[Export]
 	public VBoxContainer PortOutList { get; private set; }
 
+	[Export]
+	protected PanelContainer RootPanel { get; private set; }
 	[Export]
 	protected Panel SelectionPanel { get; private set; }
 
@@ -131,23 +136,27 @@ public partial class EventFlowNodeBase : Node2D
 
 	public virtual bool InitContentMetadata(GraphMetadata holder, NodeMetadata data)
 	{
-		if (data == null)
-		{
-			Metadata = new();
-			return false;
-		}
+		bool isNull = data == null;
+		if (isNull)
+			data = new();
 
 		Metadata = data;
 
 		RawPosition = Metadata.Position;
 		Position = Metadata.Position;
 		EmitSignal(SignalName.NodeMoved);
-		DrawDebugLabel();
 
-		return true;
+		if (Metadata.IsOverrideColor)
+		{
+			RootPanel.SelfModulate = Metadata.OverrideColor;
+			DefaultPortOutColor = Metadata.OverrideColor;
+		}
+
+		DrawDebugLabel();
+		return !isNull;
 	}
 
-	protected PortOut CreatePortOut()
+	protected virtual PortOut CreatePortOut()
 	{
 		var outPort = SceneCreator<PortOut>.Create();
 		PortOutList.AddChild(outPort);
@@ -155,9 +164,8 @@ public partial class EventFlowNodeBase : Node2D
 		outPort.Connect(PortOut.SignalName.PortConnected, Callable.From(
 			new Action<PortOut, PortIn>(OnConnectionChanged)
 		));
-
+		
 		outPort.PortColor = DefaultPortOutColor;
-
 		return outPort;
 	}
 

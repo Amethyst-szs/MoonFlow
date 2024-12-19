@@ -13,10 +13,6 @@ font_size = 18
 [node name="EventFlowEntryPoint" node_paths=PackedStringArray("NameEdit") instance=ExtResource("1_em0m4")]
 script = ExtResource("2_0b7pp")
 NameEdit = NodePath("Content/Display/Line_Name")
-DefaultPortOutColor = Color(0.14902, 1, 0.658824, 1)
-
-[node name="Content" parent="." index="0"]
-self_modulate = Color(0.15, 1, 0.66, 1)
 
 [node name="Label_Name" parent="Content/Display" index="0"]
 visible = false

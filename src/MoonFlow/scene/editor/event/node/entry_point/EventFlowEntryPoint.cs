@@ -34,6 +34,11 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 
 		NameEdit.Text = entryName;
 
+		// Setup default colors
+		var color = MetaDefaultColorLookupTable.Lookup(MetaCategoryTable.Categories.ENTRY_POINT);
+		RootPanel.SelfModulate = color;
+		DefaultPortOutColor = color;
+
 		// Setup ports
 		PortIn.QueueFree();
 		PortIn = null;
@@ -45,15 +50,26 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
-    public override void SetupConnections(List<EventFlowNodeCommon> list)
-    {
-        throw new NotImplementedException("Not compatible with EventFlowEntryPoint");
-    }
+	public override void SetupConnections(List<EventFlowNodeCommon> list)
+	{
+		throw new NotImplementedException("Not compatible with EventFlowEntryPoint");
+	}
 
-    protected override void InitParamEditor()
-    {
-        throw new NotImplementedException("Not compatible with EventFlowEntryPoint");
-    }
+	protected override void InitParamEditor()
+	{
+		throw new NotImplementedException("Not compatible with EventFlowEntryPoint");
+	}
+
+	public override bool InitContentMetadata(GraphMetadata holder, NodeMetadata data)
+	{
+		if (!base.InitContentMetadata(holder, data))
+		{
+			holder.EntryPoints.Add(Name, Metadata);
+			return false;
+		}
+
+		return true;
+	}
 
 	#endregion
 
@@ -63,15 +79,15 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 	{
 		// Clear self from current connection's incoming list
 		Connection?.PortIn.RemoveIncoming(port);
-		
+
 		// Set connection
 		Connection = connection?.Parent;
 
 		// Add self to the new connection incoming list
 		Connection?.PortIn.AddIncoming(port);
 
-        Graph.EntryPoints[Name] = connection?.Parent.Content;
-        DrawDebugLabel();
+		Graph.EntryPoints[Name] = connection?.Parent.Content;
+		DrawDebugLabel();
 	}
 
 	private void OnEntryPointNameChanged(string txt)
@@ -93,13 +109,13 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
-    #endregion
+	#endregion
 
-    #region Debug
+	#region Debug
 
-    protected override void DrawDebugLabel()
-    {
-        if (DebugDataDisplay == null)
+	protected override void DrawDebugLabel()
+	{
+		if (DebugDataDisplay == null)
 			return;
 
 		string txt = "";
@@ -107,13 +123,13 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		txt += AppendDebugLabel(nameof(Type), GetType().Name);
 		txt += AppendDebugLabel(nameof(Position), Position);
 
-        txt += AppendDebugLabel(nameof(Name), Name);
+		txt += AppendDebugLabel(nameof(Name), Name);
 
-        if (Graph.EntryPoints.TryGetValue(Name, out Nindot.Al.EventFlow.Node target) && target != null)
-            txt += AppendDebugLabel("Target", target.Id);
+		if (Graph.EntryPoints.TryGetValue(Name, out Nindot.Al.EventFlow.Node target) && target != null)
+			txt += AppendDebugLabel("Target", target.Id);
 
 		DebugDataDisplay.Text = txt;
-    }
+	}
 
-    #endregion
+	#endregion
 }

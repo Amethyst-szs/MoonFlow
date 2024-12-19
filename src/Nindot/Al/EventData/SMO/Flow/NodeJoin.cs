@@ -10,7 +10,7 @@ public class NodeJoin : Node
     // ====== Initilization and Standard Virtual Config ===== //
     // ====================================================== //
 
-    private List<int> PreIdList = [];
+    public List<int> PreIdList = [];
 
     public NodeJoin(Dictionary<object, object> dict) : base(dict)
     {

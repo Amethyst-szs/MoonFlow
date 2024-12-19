@@ -8,7 +8,7 @@ using Nindot.Al.EventFlow;
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
-[ScenePath("res://scene/editor/event/node/common/event_flow_node_common.tscn")]
+[ScenePath("res://scene/editor/event/node/typedef/common/event_flow_node_common.tscn")]
 public partial class EventFlowNodeCommon : EventFlowNodeBase
 {
 	#region Properties
@@ -45,6 +45,11 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 		var labelName = GetNode<Label>("%Label_Name");
 		labelName.Text = Content.Name;
+
+		// Setup default colors
+		var category = MetaCategoryTable.Lookup(Content.GetFactoryType());
+		var color = MetaDefaultColorLookupTable.Lookup(category);
+		RootPanel.SelfModulate = color;
 
 		// Initilize properties and connections
 		InitParamEditor();
@@ -104,11 +109,21 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		return true;
 	}
 
-	#endregion
+    protected override PortOut CreatePortOut()
+    {
+        var port = base.CreatePortOut();
 
-	#region Signals
+		if (Content.GetMaxOutgoingEdges() == 2 && Content.IsForceOutgoingEdgeCount())
+			port.PortColor = PortColorList[port.Index];
+		
+		return port;
+    }
 
-	protected override void OnConnectionChanged(PortOut port, PortIn connection)
+    #endregion
+
+    #region Signals
+
+    protected override void OnConnectionChanged(PortOut port, PortIn connection)
 	{
 		// Clear self from current connection's incoming list
 		Connections[port.Index]?.PortIn.RemoveIncoming(port);

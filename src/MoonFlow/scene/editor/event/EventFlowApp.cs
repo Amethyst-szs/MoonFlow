@@ -62,6 +62,9 @@ public partial class EventFlowApp : AppScene
 
     private async Task InitNodeList()
     {
+        // Get factory function
+        var factory = typeof(EventFlowNodeFactory).GetMethod("Create");
+
         // Initilize nodes from the Graph data container
         foreach (var node in Graph.Nodes.Values)
         {
@@ -69,15 +72,16 @@ public partial class EventFlowApp : AppScene
                 throw new EventFlowException("Node initilized without an Id!");
 
             // Create node
-            var nodeEdit = SceneCreator<EventFlowNodeCommon>.Create();
+            var factoryMethod = factory.MakeGenericMethod(node.GetType());
+            var nodeEdit = factoryMethod.Invoke(null, null) as EventFlowNodeCommon;
             GraphNodeHolder.AddChild(nodeEdit);
+
+            // Init main content from event flow graph byml
+            nodeEdit.InitContent(node, Graph);
 
             // Setup metadata access (Node position, comments, and other additional info)
             Metadata.Nodes.TryGetValue(node.Id, out NodeMetadata data);
             nodeEdit.InitContentMetadata(Metadata, data);
-
-            // Init main content from event flow graph byml
-            nodeEdit.InitContent(node, Graph);
         }
 
         await ToSignal(Engine.GetMainLoop(), "process_frame");
@@ -112,7 +116,7 @@ public partial class EventFlowApp : AppScene
 
             if (GraphNodeHolder.HasNode(id))
                 target = GraphNodeHolder.GetNode<EventFlowNodeCommon>(id);
-            
+
             // Create node
             var entryEdit = SceneCreator<EventFlowEntryPoint>.Create();
             GraphNodeHolder.AddChild(entryEdit);

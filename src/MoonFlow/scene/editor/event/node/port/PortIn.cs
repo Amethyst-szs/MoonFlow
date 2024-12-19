@@ -12,10 +12,13 @@ public partial class PortIn : TextureRect
 {
 	public EventFlowNodeCommon Parent { get; private set; } = null;
 
-	private readonly List<PortOut> IncomingList = [];
+	public readonly List<PortOut> IncomingList = [];
 
 	private static readonly Color DefaultColor = Colors.LightSlateGray;
 	private static readonly Shader Shader = GD.Load<Shader>("res://asset/shader/graph/graph_port_in.gdshader");
+
+	[Signal]
+    public delegate void IncomingListModifiedEventHandler();
 
 	public override void _Ready()
 	{
@@ -47,6 +50,8 @@ public partial class PortIn : TextureRect
 			return;
 		
 		IncomingList.Add(n);
+		EmitSignal(SignalName.IncomingListModified);
+
 		UpdateDisplay();
 	}
 
@@ -56,6 +61,8 @@ public partial class PortIn : TextureRect
 			return;
 		
 		IncomingList.Remove(n);
+		EmitSignal(SignalName.IncomingListModified);
+		
 		UpdateDisplay();
 	}
 

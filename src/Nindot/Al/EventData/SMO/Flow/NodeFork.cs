@@ -35,7 +35,7 @@ public class NodeFork : Node
 
     public override bool IsAllowOutgoingEdges() { return true; }
     public override bool IsUseMultipleOutgoingEdges() { return true; }
-    public override int GetMaxOutgoingEdges() { return 2; }
+    public override bool IsForceOutgoingEdgeCount() { return false; }
 
     public override NodeOptionType GetNodeNameOptions(out string[] options)
     {
