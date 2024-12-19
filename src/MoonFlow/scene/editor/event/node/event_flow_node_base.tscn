@@ -62,7 +62,10 @@ layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="Label_Name" type="Label" parent="Content/Display"]
+[node name="HBox_Name" type="HBoxContainer" parent="Content/Display"]
+layout_mode = 2
+
+[node name="Label_Name" type="Label" parent="Content/Display/HBox_Name"]
 unique_name_in_owner = true
 layout_mode = 2
 

@@ -14,7 +14,10 @@ font_size = 18
 script = ExtResource("2_0b7pp")
 NameEdit = NodePath("Content/Display/Line_Name")
 
-[node name="Label_Name" parent="Content/Display" index="0"]
+[node name="HBox_Name" parent="Content/Display" index="0"]
+visible = false
+
+[node name="Label_Name" parent="Content/Display/HBox_Name" index="0"]
 visible = false
 
 [node name="Label_Type" parent="Content/Display" index="1"]

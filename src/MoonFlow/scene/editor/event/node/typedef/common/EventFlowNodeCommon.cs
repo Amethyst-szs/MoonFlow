@@ -28,6 +28,9 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 	[Export]
 	public VBoxContainer ParamAddDropdownHolder { get; private set; }
 
+	[Export]
+	public MenuButton NameOptionButton { get; private set; }
+
 	#endregion
 
 	#region Initilization
@@ -81,21 +84,58 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	protected override void InitParamEditor()
 	{
+		// Setup node name selection
+		var nameType = Content.GetNodeNameOptions(out string[] options);
+		switch (nameType)
+		{
+			case Nindot.Al.EventFlow.Node.NodeOptionType.NO_OPTIONS:
+				NameOptionButton.QueueFree();
+				break;
+			case Nindot.Al.EventFlow.Node.NodeOptionType.PRESET_LIST:
+				SetupNameOptions(options);
+				break;
+			case Nindot.Al.EventFlow.Node.NodeOptionType.ANY_VALUE:
+				NameOptionButton.QueueFree();
+				break;
+		}
+
+		// Reset current param editors
+		ParamHolder.Show();
+		ParamAddDropdownHolder.Show();
+
+		foreach (var child in ParamHolder.GetChildren()) child.QueueFree();
+		foreach (var child in ParamAddDropdownHolder.GetChildren()) child.QueueFree();
+
+		// Lookup param list for content
 		var type = Content.GetSupportedParams(out Dictionary<string, Type> pList);
 		if (type == Nindot.Al.EventFlow.Node.NodeOptionType.NO_OPTIONS)
 		{
-			ParamAddDropdownHolder.QueueFree();
-			ParamHolder.QueueFree();
+			ParamAddDropdownHolder.Hide();
+			ParamHolder.Hide();
 			return;
 		}
 
 		// Create all param editors
 		foreach (var p in pList)
 			EventNodeParamFactory.CreateParamEditor(this, p.Key, p.Value);
-		
+
 		// If there are no additional properties to add, remove dropdown
 		if (ParamAddDropdownHolder.GetChildCount() == 0)
-			ParamAddDropdownHolder.QueueFree();
+			ParamAddDropdownHolder.Hide();
+	}
+
+	private void SetupNameOptions(string[] opt)
+	{
+		var popup = NameOptionButton.GetPopup();
+
+		popup.Clear();
+		foreach (var item in opt)
+			popup.AddItem(item);
+
+		var call = Callable.From(new Action<int>(OnSetName));
+
+		if (!popup.IsConnected(PopupMenu.SignalName.IdPressed, call))
+			popup.Connect(PopupMenu.SignalName.IdPressed, call);
 	}
 
 	public override bool InitContentMetadata(GraphMetadata holder, NodeMetadata data)
@@ -109,25 +149,25 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		return true;
 	}
 
-    protected override PortOut CreatePortOut()
-    {
-        var port = base.CreatePortOut();
+	protected override PortOut CreatePortOut()
+	{
+		var port = base.CreatePortOut();
 
 		if (Content.GetMaxOutgoingEdges() == 2 && Content.IsForceOutgoingEdgeCount())
 			port.PortColor = PortColorList[port.Index];
-		
+
 		return port;
-    }
+	}
 
-    #endregion
+	#endregion
 
-    #region Signals
+	#region Signals
 
-    protected override void OnConnectionChanged(PortOut port, PortIn connection)
+	protected override void OnConnectionChanged(PortOut port, PortIn connection)
 	{
 		// Clear self from current connection's incoming list
 		Connections[port.Index]?.PortIn.RemoveIncoming(port);
-		
+
 		// Set connection
 		Connections[port.Index] = connection?.Parent;
 
@@ -147,13 +187,33 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
+	private void OnSetName(int index)
+	{
+		Content.SetName(index);
+
+		var labelName = GetNode<Label>("%Label_Name");
+		labelName.Text = Content.Name;
+
+		InitParamEditor();
+	}
+
+	private void OnSetName(string name)
+	{
+		Content.SetName(name);
+
+		var labelName = GetNode<Label>("%Label_Name");
+		labelName.Text = Content.Name;
+
+		InitParamEditor();
+	}
+
 	#endregion
 
 	#region Debug
 
-    protected override void DrawDebugLabel()
-    {
-        if (DebugDataDisplay == null)
+	protected override void DrawDebugLabel()
+	{
+		if (DebugDataDisplay == null)
 			return;
 
 		string txt = "";
@@ -175,7 +235,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		}
 
 		DebugDataDisplay.Text = txt;
-    }
+	}
 
-    #endregion
+	#endregion
 }
