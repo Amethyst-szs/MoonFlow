@@ -2,12 +2,12 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.EditorEvent;
 
 public partial class NodeHolder : Node2D
 {
-	public List<EventFlowNodeCommon> Nodes = [];
 	public List<EventFlowEntryPoint> EntryPoints = [];
 
 	public override void _Ready()
@@ -22,14 +22,23 @@ public partial class NodeHolder : Node2D
 	public void ArrangeAllNodes()
 	{
 		foreach (var entry in EntryPoints)
-			ArrangeFromNode(entry);
+			ArrangeFromEntryPoint(entry);
+		
+		GD.Print("Finished automatic node arrangement");
 	}
 
-	private void ArrangeFromNode(EventFlowEntryPoint start)
+    private static void ArrangeFromEntryPoint(EventFlowEntryPoint start)
 	{
-		ArrangeFromNode(start.Connection);
+		var c = start.Connection;
+		if (!IsInstanceValid(c))
+			return;
+		
+		var posOffset = start.RootPanel.Size.X + 32.0F;
+		start.SetPosition(c.Position - new Vector2(posOffset, 0));
+
+		ArrangeFromNode(c);
 	}
-	private void ArrangeFromNode(EventFlowNodeCommon node)
+	private static void ArrangeFromNode(EventFlowNodeCommon node)
 	{
 		while (IsInstanceValid(node))
 		{
@@ -52,6 +61,13 @@ public partial class NodeHolder : Node2D
 			{
 				var connection = node.Connections[0];
 
+				// If this node is already sorted, skip it unless it's further left than the current node
+				if (connection.HasMeta("Sort"))
+				{
+					node = (EventFlowNodeCommon)connection;
+					continue;
+				}
+
 				var posOffset = node.RootPanel.Size.X + 32.0F;
 				connection.SetPosition(new Vector2(node.Position.X + posOffset, node.Position.Y));
 
@@ -61,7 +77,6 @@ public partial class NodeHolder : Node2D
 
 			// Otherwise, recursively call function for each connection
 			var vOffset = 0.0F;
-
 			foreach (var con in node.Connections)
 			{
 				var hOffset = node.RootPanel.Size.X + 32.0F;
@@ -87,8 +102,6 @@ public partial class NodeHolder : Node2D
 
 		if (node is EventFlowEntryPoint)
 			EntryPoints.Add(node as EventFlowEntryPoint);
-		else
-			Nodes.Add(node as EventFlowNodeCommon);
 	}
 
 	private void OnChildExitingTree(Node node)
@@ -98,8 +111,6 @@ public partial class NodeHolder : Node2D
 
 		if (node is EventFlowEntryPoint)
 			EntryPoints.Remove(node as EventFlowEntryPoint);
-		else
-			Nodes.Remove(node as EventFlowNodeCommon);
 	}
 
 	private static bool IsNodeValid(Node node)

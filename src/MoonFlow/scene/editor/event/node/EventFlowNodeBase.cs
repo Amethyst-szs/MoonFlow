@@ -59,7 +59,6 @@ public partial class EventFlowNodeBase : Node2D
 
 			_isSelected = value;
 			SelectionPanel.Visible = value;
-			GD.Print(Name + " ", value ? "Selected" : "Deselected");
 		}
 	}
 
@@ -176,6 +175,7 @@ public partial class EventFlowNodeBase : Node2D
 
 	#region Selection
 
+	public void SetSelected() { OnNodeSelected(false); }
 	private void OnNodeSelected() { OnNodeSelected(true); }
 	private void OnNodeSelected(bool isMultiselect)
 	{
@@ -221,6 +221,10 @@ public partial class EventFlowNodeBase : Node2D
 		DrawDebugLabel();
 	}
 
+	public void OffsetPosition(Vector2 offset) { OnNodeDragged(offset); }
+	public void OffsetPositionX(float offset) { OnNodeDragged(new Vector2(offset, 0)); }
+	public void OffsetPositionY(float offset) { OnNodeDragged(new Vector2(0, offset)); }
+	
 	public new void SetPosition(Vector2 pos)
 	{
 		Vector2 oldPos = Position;
