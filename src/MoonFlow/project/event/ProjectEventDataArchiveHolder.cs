@@ -62,6 +62,8 @@ public class ProjectEventDataArchiveHolder
 
             UpdateLoading(loadScreen, ++taskProgress, taskTotal);
         }
+
+        GD.Print("Loaded all event archives");
     }
 
     private static void UpdateLoading(ProjectLoading loadScreen, float progress, float total)
