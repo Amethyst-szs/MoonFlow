@@ -41,12 +41,12 @@ public partial class ProjectLoading : AppScene
 	// Translation keys found in loading_messages.gd
 	public void LoadingUpdateProgress(string key)
 	{
-		string m = Tr(key, "PROJECT_LOADING");
+		string m = TranslationServer.Translate(key, "PROJECT_LOADING");
 		LabelProgress.CallDeferred("set", ["text", m]);
 	}
 	public void LoadingUpdateProgress(string key, string suffix)
 	{
-		string m = Tr(key, "PROJECT_LOADING");
+		string m = TranslationServer.Translate(key, "PROJECT_LOADING");
 		LabelProgress.CallDeferred("set", ["text", m + " ( " + suffix + " )"]);
 	}
 

@@ -174,8 +174,10 @@ public class ProjectLabelCache()
                 continue;
             }
 
-            var labels = file.GetEntryLabels();
-            dict[data.Key] = labels;
+            var labels = file.GetEntryLabels().ToList();
+            labels.Sort(string.Compare);
+
+            dict[data.Key] = new ReadOnlyCollection<string>(labels);
 
             IncrementTaskProgress(display);
         }

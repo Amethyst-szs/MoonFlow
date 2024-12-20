@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=11 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bwicpcn2le56s" path="res://scene/editor/msbt/msbt_editor.tscn" id="6_bc8ek"]
 [ext_resource type="Script" path="res://scene/home/actionbar/ActionbarDebug.cs" id="6_lug21"]
 [ext_resource type="PackedScene" uid="uid://cei1tg8ys1x2u" path="res://scene/home/tab_world/tab_world.tscn" id="6_ps61c"]
+[ext_resource type="PackedScene" uid="uid://djaf0d3bxuxkh" path="res://scene/home/tab_event/tab_event.tscn" id="9_l2bha"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -68,10 +69,15 @@ current_tab = 0
 [node name="HOME_TAB_TEXT" parent="Content/VBox/Tab" instance=ExtResource("4_o0ymp")]
 layout_mode = 2
 
-[node name="HOME_TAB_WORLD" parent="Content/VBox/Tab" instance=ExtResource("6_ps61c")]
+[node name="HOME_TAB_EVENT" parent="Content/VBox/Tab" instance=ExtResource("9_l2bha")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="HOME_TAB_WORLD" parent="Content/VBox/Tab" instance=ExtResource("6_ps61c")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("app_msbt_editor"), [ExtResource("6_bc8ek")]]

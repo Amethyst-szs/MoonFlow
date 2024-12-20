@@ -51,9 +51,15 @@ public abstract class ProjectConfigFileBase
         var dataCompressed = Yaz0.Compress(bytes);
         File.WriteAllBytes(Path, dataCompressed.ToArray());
 
-        if (OS.IsDebugBuild())
-            File.WriteAllText(Path + "_d", dataStr);
+        // Get project config and check if this is a debug project and a debug build
+        if (!OS.IsDebugBuild())
+            return true;
 
+        var isDebugProj = ProjectManager.GetProject()?.Config?.Data?.IsDebugProject;
+        if (isDebugProj == null || isDebugProj == false)
+            return true;
+
+        File.WriteAllText(Path + "_d", dataStr);
         return true;
     }
 

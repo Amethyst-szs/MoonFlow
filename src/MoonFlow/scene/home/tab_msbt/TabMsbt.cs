@@ -14,6 +14,8 @@ using MoonFlow.Project.Templates;
 
 using ByteSizeLib;
 
+using CSExtensions;
+
 namespace MoonFlow.Scene.Home;
 
 public partial class TabMsbt : HSplitContainer
@@ -172,9 +174,9 @@ public partial class TabMsbt : HSplitContainer
 	private void OnFilePressed(SarcFile archive, string key, Button button)
 	{
 		// Remove old selection
-		DeselectAllButtons(SystemMessageButtons); 
-		DeselectAllButtons(LayoutMessageButtons);
-		DeselectAllButtons(StageMessageVBox);
+		SystemMessageButtons.DeselectAllButtons(); 
+		LayoutMessageButtons.DeselectAllButtons();
+		StageMessageVBox.DeselectAllButtons();
 
 		// Set current selection
 		if (!key.EndsWith(".msbt"))
@@ -377,25 +379,6 @@ public partial class TabMsbt : HSplitContainer
 			msbp.PublishFile(arcName, newName);
 		else
 			msbp.PublishFile(arcName, newName, world);
-	}
-
-	#endregion
-
-	#region Utility
-
-	private void DeselectAllButtons(Node node)
-	{
-		if (node is not Control)
-			return;
-		
-		if (node.GetType() == typeof(Button))
-			(node as Button).SetPressedNoSignal(false);
-		
-		if (node.GetChildCount() == 0)
-			return;
-		
-		foreach (var child in node.GetChildren())
-			DeselectAllButtons(child);
 	}
 
 	#endregion

@@ -24,6 +24,8 @@ public class ProjectState(string path, ProjectConfig config)
     public ProjectMessageStudioText MsgStudioText { get; private set; } = null;
     public ProjectLabelCache MsgLabelCache { get; private set; } = null;
 
+    public ProjectEventDataArchiveHolder EventArcHolder { get; private set; } = null;
+
     public ProjectDatabaseHolder Database { get; private set; } = null;
 
     public async void InitProject(MainSceneRoot scene)
@@ -55,6 +57,9 @@ public class ProjectState(string path, ProjectConfig config)
         loadScreen.LoadingUpdateProgress("LOAD_LABEL_CACHE");
         MsgLabelCache = new();
         MsgLabelCache.UpdateCacheSynchronous();
+
+        // Prepare event data archive cache
+        EventArcHolder = new(Path, loadScreen);
 
         // Complete Initilization
         loadScreen.LoadingComplete();

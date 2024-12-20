@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://djaf0d3bxuxkh"]
+
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
+[ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
+[ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_kcoe0"]
+[ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="5_eo8lt"]
+[ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_tkrku"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="7_hy22n"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_j3ltd"]
+
+[sub_resource type="Theme" id="Theme_fwkao"]
+Button/constants/icon_max_width = 24
+
+[sub_resource type="InputEventAction" id="InputEventAction_sn5hf"]
+action = &"ui_graph_duplicate"
+
+[sub_resource type="Shortcut" id="Shortcut_c6cgf"]
+events = [SubResource("InputEventAction_sn5hf")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_bkhkj"]
+action = &"msbt_add_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_2mm84"]
+events = [SubResource("InputEventAction_bkhkj")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_0tmku"]
+action = &"ui_graph_delete"
+
+[sub_resource type="Shortcut" id="Shortcut_stxmf"]
+events = [SubResource("InputEventAction_0tmku")]
+
+[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8utrk")
+script = ExtResource("2_m1qug")
+ArchiveHolder = NodePath("FileList/Content/VBox_ArchiveHolder")
+metadata/_tab_index = 0
+
+[node name="FileList" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Content" type="ScrollContainer" parent="FileList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="VBox_ArchiveHolder" type="VBoxContainer" parent="FileList/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Footer" type="PanelContainer" parent="FileList"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_kcoe0")
+
+[node name="HBox" type="HBoxContainer" parent="FileList/Footer"]
+layout_mode = 2
+theme = SubResource("Theme_fwkao")
+alignment = 1
+
+[node name="Button_Open" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_eo8lt")
+
+[node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_c6cgf")
+icon = ExtResource("6_tkrku")
+
+[node name="VSep" type="VSeparator" parent="FileList/Footer/HBox"]
+self_modulate = Color(1, 1, 1, 0.439216)
+layout_mode = 2
+
+[node name="Button_New" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_2mm84")
+icon = ExtResource("7_hy22n")
+
+[node name="Button_Delete" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_stxmf")
+icon = ExtResource("8_j3ltd")
+
+[node name="Info" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBox" type="VBoxContainer" parent="Info"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Footer" type="PanelContainer" parent="Info/VBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_kcoe0")
+
+[node name="Button_Open" type="Button" parent="Info/VBox/Footer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "HOME_TAB_EVENT_OPEN_FILE"
+flat = true
+
+[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
+title = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+initial_position = 1
+size = Vector2i(902, 100)
+ok_button_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
+dialog_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
+dialog_autowrap = true
+cancel_button_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
+
+[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="."]
+title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
+initial_position = 2
+size = Vector2i(520, 100)
+ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
+dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
+dialog_autowrap = true
+
+[connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
+[connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteFile"]

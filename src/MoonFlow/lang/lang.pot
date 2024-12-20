@@ -46,6 +46,7 @@
 # res://scene/editor/event/node/typedef/talk/talk.tscn
 # res://scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
 # res://scene/common/popup/popup_msbt_select_entry.tscn
+# res://scene/home/tab_event/tab_event.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -209,6 +210,10 @@ msgid "HOME_TAB_TEXT"
 msgstr ""
 
 #: scene/home/home.tscn
+msgid "HOME_TAB_EVENT"
+msgstr ""
+
+#: scene/home/home.tscn
 msgid "HOME_TAB_WORLD"
 msgstr ""
 
@@ -228,18 +233,22 @@ msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
 msgstr ""
 
@@ -260,6 +269,7 @@ msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr ""
 
@@ -276,14 +286,17 @@ msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 msgstr ""
 
@@ -1563,6 +1576,11 @@ msgstr ""
 
 #: scene/front_door/load/loading_message_text.tres
 msgctxt "PROJECT_LOADING"
+msgid "LOAD_EVENT_DATA"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr ""
 
@@ -2123,4 +2141,20 @@ msgstr ""
 
 #: scene/common/popup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_OPEN_FILE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""

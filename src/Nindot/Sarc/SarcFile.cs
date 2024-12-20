@@ -10,6 +10,7 @@ using Nindot.Al.EventFlow;
 using System.IO;
 using Nindot.LMS.Msbp;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Nindot;
 
@@ -20,8 +21,32 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
     // ====================================================== //
 
     public SarcLibrary.Sarc Content { get; private set; } = file;
-    public string Name { get; private set; } = filePath.Split(['/', '\\']).Last();
-    public string FilePath { get; private set; } = filePath;
+
+    private string _filePath = filePath;
+    public string FilePath
+    {
+        get { return _filePath; }
+        set
+        {
+            _filePath = value;
+            _name = value.Split('/', '\\').Last();
+        }
+    }
+
+    private string _name = filePath.Split(['/', '\\']).Last();
+    public string Name
+    {
+        get { return _name; }
+        set
+        {
+            _filePath = _filePath[.._filePath.IndexOf(_name)] + value;
+            _name = value;
+        }
+    }
+
+    // Allow storing additional temporary data with the sarc file
+    // This is not stored within the archive, and not written to disk
+    public List<string> UserFlags = [];
 
     public static SarcFile FromFilePath(string path)
     {

@@ -42,9 +42,6 @@ public partial class EventFlowApp : AppScene
         VisibilityChanged += OnVisiblityChanged;
 
         Scene.NodeHeader.Connect(Header.SignalName.ButtonSave, Callable.From(SaveFile));
-
-        // DEBUG SHIT
-        OpenFile(SarcFile.FromFilePath("C:/Users/evils/AppData/Roaming/Godot/app_userdata/MoonFlow/debug/romfs/EventData/Common.szs"), "SimpleMessage.byml");
     }
 
     private async void InitEditor()
@@ -60,11 +57,11 @@ public partial class EventFlowApp : AppScene
         InitEntryPointNodes();
 
         // If this is the first opening of this file, auto-arrange all nodes
-        // if (Metadata.IsFirstOpen)
-        // {
+        if (Metadata.IsFirstOpen)
+        {
             Metadata.IsFirstOpen = false;
             GraphNodeHolder.ArrangeAllNodes();
-        // }
+        }
     }
 
     private async Task InitNodeList()

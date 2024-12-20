@@ -181,6 +181,10 @@ msgid "HOME_TAB_TEXT"
 msgstr "Text"
 
 #: scene/home/home.tscn
+msgid "HOME_TAB_EVENT"
+msgstr "Events"
+
+#: scene/home/home.tscn
 msgid "HOME_TAB_WORLD"
 msgstr "Kingdom"
 
@@ -196,19 +200,19 @@ msgstr "Stage Text"
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr "Layout Text"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
 msgstr "Open File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
 msgstr "Duplicate File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
 msgstr "New FIle"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
 msgstr "Delete File"
 
@@ -228,7 +232,7 @@ msgstr "File Usage:"
 msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr "Open File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr "Are you sure?"
 
@@ -247,15 +251,15 @@ msgstr ""
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Wait, no, go back!"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 msgstr "File already exists!"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
 msgstr "Ok"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 msgstr "A file using this name already exists, try a different name."
 
@@ -1550,6 +1554,11 @@ msgstr "Loading Label Cache"
 
 #: scene/front_door/load/loading_message_text.tres
 msgctxt "PROJECT_LOADING"
+msgid "LOAD_EVENT_DATA"
+msgstr "Loading Event Data"
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr "Success!"
 
@@ -2113,6 +2122,23 @@ msgstr "No results!"
 #: scene/common/popup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_OPEN_FILE"
+msgstr "Open Graph"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
+msgstr "I'm sure."
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+"Deleting EventData files required by the game can cause issues, are you sure?"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr "Go back!"
 
 #~ msgid "ASYNC_DISPLAY_SUCCESS"
 #~ msgstr "Success!"
