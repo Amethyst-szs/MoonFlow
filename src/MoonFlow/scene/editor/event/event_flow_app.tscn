@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=18 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -7,10 +7,12 @@
 [ext_resource type="Script" path="res://scene/editor/event/graph/GraphCanvas.cs" id="5_5dp1p"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/scroll_navigation.gd" id="6_va4yh"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/mouse_selection.gd" id="7_mr57c"]
+[ext_resource type="Script" path="res://scene/editor/event/graph/NodeHolder.cs" id="8_je2jj"]
 [ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/event_graph_ui_header.tres" id="9_1hwnx"]
 [ext_resource type="Texture2D" uid="uid://cy0acrnosdjdw" path="res://asset/material/graph/zoom_out.svg" id="10_k8svk"]
 [ext_resource type="Texture2D" uid="uid://w3rxhvslqs13" path="res://asset/material/graph/zoom_reset.svg" id="11_uvpj5"]
 [ext_resource type="Texture2D" uid="uid://kgy23al2n62k" path="res://asset/material/graph/zoom_in.svg" id="12_570rd"]
+[ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/sort_selection.svg" id="12_bb2ug"]
 [ext_resource type="Texture2D" uid="uid://dti6ok2kka208" path="res://asset/material/debug/debug.svg" id="12_scho0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
@@ -39,7 +41,7 @@ mouse_filter = 2
 script = ExtResource("1_rd7f7")
 GraphCanvas = NodePath("Graph")
 BackgroundCanvas = NodePath("Background")
-GraphNodeHolder = NodePath("Graph/Nodes")
+GraphNodeHolder = NodePath("Graph/NodeHolder")
 AppName = "EventFlowGraphApp"
 AppTaskbarTitle = "FLOW GRAPH"
 AppFlags = 83
@@ -78,7 +80,8 @@ shape = NodePath("Area_Shape")
 shape = SubResource("RectangleShape2D_v3jgl")
 debug_color = Color(0, 0.595, 0.7, 0.513726)
 
-[node name="Nodes" type="Node2D" parent="Graph"]
+[node name="NodeHolder" type="Node2D" parent="Graph"]
+script = ExtResource("8_je2jj")
 
 [node name="Header" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -106,6 +109,13 @@ icon = ExtResource("11_uvpj5")
 layout_mode = 2
 icon = ExtResource("12_570rd")
 
+[node name="HBox_Tools" type="HBoxContainer" parent="Header/UI"]
+layout_mode = 2
+
+[node name="Button_ArrangeSelection" type="Button" parent="Header/UI/HBox_Tools"]
+layout_mode = 2
+icon = ExtResource("12_bb2ug")
+
 [node name="HBox_DebugControl" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
 script = SubResource("GDScript_mtjrf")
@@ -115,7 +125,7 @@ layout_mode = 2
 toggle_mode = true
 icon = ExtResource("12_scho0")
 
-[connection signal="DragSelection" from="Graph" to="." method="OnFileModified" unbinds=1]
+[connection signal="ContentModified" from="Graph" to="." method="OnFileModified"]
 [connection signal="selection_ended" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [false]]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="DeselectAllNodes"]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]

@@ -30,7 +30,7 @@ public partial class EventFlowApp : AppScene
     [Export]
     private CanvasLayer BackgroundCanvas = null;
     [Export]
-    public Node2D GraphNodeHolder { get; private set; } = null;
+    public NodeHolder GraphNodeHolder { get; private set; } = null;
 
     #endregion
 
@@ -58,6 +58,13 @@ public partial class EventFlowApp : AppScene
 
         await InitNodeList();
         InitEntryPointNodes();
+
+        // If this is the first opening of this file, auto-arrange all nodes
+        // if (Metadata.IsFirstOpen)
+        // {
+            Metadata.IsFirstOpen = false;
+            GraphNodeHolder.ArrangeAllNodes();
+        // }
     }
 
     private async Task InitNodeList()

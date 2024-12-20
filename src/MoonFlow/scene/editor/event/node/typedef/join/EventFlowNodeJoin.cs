@@ -25,6 +25,7 @@ public partial class EventFlowNodeJoin : EventFlowNodeCommon
     private void OnIncomingModified()
 	{
 		List<int> IdList = [];
+
 		foreach (var con in PortIn.IncomingList)
 		{
 			if (con.Parent is EventFlowEntryPoint)
@@ -34,6 +35,7 @@ public partial class EventFlowNodeJoin : EventFlowNodeCommon
 		}
 
 		NodeJoin.PreIdList = IdList;
+		SetNodeModified();
 		
 		DrawDebugLabel();
 	}

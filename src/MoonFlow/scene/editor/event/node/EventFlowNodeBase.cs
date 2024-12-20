@@ -37,7 +37,7 @@ public partial class EventFlowNodeBase : Node2D
 	public VBoxContainer PortOutList { get; private set; }
 
 	[Export]
-	protected PanelContainer RootPanel { get; private set; }
+	public PanelContainer RootPanel { get; private set; }
 	[Export]
 	protected Panel SelectionPanel { get; private set; }
 
@@ -70,6 +70,8 @@ public partial class EventFlowNodeBase : Node2D
 
 	[Signal]
 	public delegate void NodeMovedEventHandler();
+	[Signal]
+	public delegate void NodeModifiedEventHandler();
 
 	#endregion
 
@@ -98,6 +100,7 @@ public partial class EventFlowNodeBase : Node2D
 		}
 
 		// Connect to signals from graph
+		Connect(SignalName.NodeModified, Callable.From(Parent.OnNodeModified));
 		Parent.Connect(GraphCanvas.SignalName.DeselectAll, Callable.From(OnNodeDeselected));
 		Parent.Connect(GraphCanvas.SignalName.SelectAll, Callable.From(OnNodeSelected));
 		Parent.Connect(GraphCanvas.SignalName.DragSelection, Callable.From(new Action<Vector2>(OnNodeDragged)));
@@ -210,7 +213,31 @@ public partial class EventFlowNodeBase : Node2D
 		Metadata.Position = snapPos;
 
 		if (snapPos != oldPos)
+		{
 			EmitSignal(SignalName.NodeMoved);
+			SetNodeModified();
+		}
+
+		DrawDebugLabel();
+	}
+
+	public new void SetPosition(Vector2 pos)
+	{
+		Vector2 oldPos = Position;
+		RawPosition = pos;
+
+		Vector2 snapPos;
+		snapPos.X = MathF.Floor(RawPosition.X / PositionSnapSize) * PositionSnapSize;
+		snapPos.Y = MathF.Floor(RawPosition.Y / PositionSnapSize) * PositionSnapSize;
+		Position = snapPos;
+
+		Metadata.Position = snapPos;
+
+		if (snapPos != oldPos)
+		{
+			EmitSignal(SignalName.NodeMoved);
+			SetNodeModified();
+		}
 
 		DrawDebugLabel();
 	}
@@ -235,6 +262,8 @@ public partial class EventFlowNodeBase : Node2D
 	#endregion
 
 	#region Utility
+
+	protected void SetNodeModified() { EmitSignal(SignalName.NodeModified); }
 
 	protected virtual void DrawDebugLabel() {}
 	protected static string AppendDebugLabel(string property, object value)

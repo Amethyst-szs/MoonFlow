@@ -5,7 +5,7 @@ namespace MoonFlow.Scene.EditorEvent;
 
 public partial class GraphCanvas : CanvasLayer
 {
-    #region Selection
+    #region Signals
 
     private bool IsMouseDragSelectionActive = false;
 
@@ -15,7 +15,8 @@ public partial class GraphCanvas : CanvasLayer
 	public delegate void SelectAllEventHandler();
     [Signal]
 	public delegate void DragSelectionEventHandler(Vector2 dist);
-
+    [Signal]
+	public delegate void ContentModifiedEventHandler();
     [Signal]
 	public delegate void ToggleDebugDataViewEventHandler(bool isActive);
 
@@ -30,6 +31,9 @@ public partial class GraphCanvas : CanvasLayer
     }
 
     private void SetMouseDragSelectionState(bool isActive) { IsMouseDragSelectionActive = isActive; }
+
+    public void OnNodeModified() { EmitSignal(SignalName.ContentModified); }
+    
     private void SetDebugDataViewState(bool isActive) { EmitSignal(SignalName.ToggleDebugDataView, isActive); }
 
     #endregion

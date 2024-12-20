@@ -44,6 +44,7 @@ public partial class EventFlowNodeFork : EventFlowNodeCommon
 		});
 			
 		SetupConnections(list.ToList());
+		SetNodeModified();
 
 		DrawDebugLabel();
 	}
@@ -64,6 +65,7 @@ public partial class EventFlowNodeFork : EventFlowNodeCommon
 		});
 			
 		SetupConnections(list.ToList());
+		SetNodeModified();
 
 		DrawDebugLabel();
 	}

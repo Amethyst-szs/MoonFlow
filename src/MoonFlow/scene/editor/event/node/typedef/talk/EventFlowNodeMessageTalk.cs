@@ -50,6 +50,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 
 		ButtonIsMapUnit.Disabled = !IsSupportMapUnit();
 		SetLabelDisplayTextSource();
+		SetNodeModified();
 	}
 
 	private void OnMapUnitToggled(bool state)
@@ -68,6 +69,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 			OnSetName(Content.Name[..Content.Name.Find("MapUnit")]);
 		
 		SetLabelDisplayTextSource();
+		SetNodeModified();
 	}
 
 	private void OnSelectNewTextSource()
@@ -92,6 +94,8 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 
 		Content.TrySetParam("Text", new NodeMessageResolverData(arc, file, label));
 		SetLabelDisplayTextSource();
+
+		SetNodeModified();
 	}
 
 	#endregion

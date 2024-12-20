@@ -77,6 +77,8 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 
 	protected override void OnConnectionChanged(PortOut port, PortIn connection)
 	{
+		SetNodeModified();
+
 		// Clear self from current connection's incoming list
 		Connection?.PortIn.RemoveIncoming(port);
 
@@ -92,6 +94,8 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 
 	private void OnEntryPointNameChanged(string txt)
 	{
+		SetNodeModified();
+		
 		if (Graph.EntryPoints.ContainsKey(txt))
 		{
 			var caret = NameEdit.CaretColumn;

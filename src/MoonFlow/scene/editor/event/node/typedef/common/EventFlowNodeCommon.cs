@@ -164,6 +164,8 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	protected override void OnConnectionChanged(PortOut port, PortIn connection)
 	{
+		SetNodeModified();
+
 		// Clear self from current connection's incoming list
 		Connections[port.Index]?.PortIn.RemoveIncoming(port);
 
