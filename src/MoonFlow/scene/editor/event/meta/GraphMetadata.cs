@@ -5,7 +5,11 @@ namespace MoonFlow.Scene.EditorEvent;
 
 public class GraphMetadata
 {
+    public string ArchiveName = "";
+    public string FileName = "";
+    
     public bool IsFirstOpen = true;
+
     public Dictionary<int, NodeMetadata> Nodes = [];
     public Dictionary<string, NodeMetadata> EntryPoints = [];
 

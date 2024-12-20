@@ -10,11 +10,14 @@ using System.IO;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-public class GraphMetaHolder(string path) : ProjectConfigFileBase(path)
+public class GraphMetaHolder : ProjectConfigFileBase
 {
     public GraphMetadata Data { get; private set; } = new();
-
     private const string PathBase = "EventData/.graph/";
+    private const string EmbedGraphPath = "res://project/event/embed/";
+
+    private GraphMetaHolder(string path) : base(path) { }
+    public GraphMetaHolder(byte[] data) : base(data) { }
 
     public static GraphMetaHolder Create(SarcEventFlowGraph graph)
     {
@@ -22,6 +25,24 @@ public class GraphMetaHolder(string path) : ProjectConfigFileBase(path)
         Directory.CreateDirectory(path);
 
         var fileName = CalcNameHash(graph.Sarc.Name, graph.Name);
+
+        // If file already exists, continue with standard constructor
+        if (File.Exists(path + fileName))
+            return new GraphMetaHolder(path + fileName);
+
+        // Otherwise, lookup file in the embeded mfgraph directory
+        if (Godot.FileAccess.FileExists(EmbedGraphPath + fileName))
+        {
+            var data = Godot.FileAccess.GetFileAsBytes(EmbedGraphPath + fileName);
+            var holder = new GraphMetaHolder(data)
+            {
+                Path = path + fileName,
+            };
+
+            return holder;
+        }
+
+        // If all else fails, return a default meta holder
         return new GraphMetaHolder(path + fileName);
     }
 

@@ -7,12 +7,13 @@ using System.Text.Json.Serialization;
 using Godot;
 
 using CsYaz0;
+using System.Linq;
 
 namespace MoonFlow.Project;
 
 public abstract class ProjectConfigFileBase
 {
-    protected readonly string Path = null;
+    protected string Path = null;
     protected readonly JsonSerializerOptions JsonConfig = new()
     {
         IncludeFields = true,
@@ -38,6 +39,16 @@ public abstract class ProjectConfigFileBase
         Init(jsonStr);
     }
 
+    public ProjectConfigFileBase(byte[] data)
+    {
+        JsonConfig.Converters.Add(new GodotColorJsonConverter());
+        
+        data = Yaz0.Decompress(data);
+
+        var jsonStr = Encoding.UTF8.GetString(data);
+        Init(jsonStr);
+    }
+
     protected abstract void Init(string json);
 
     public bool WriteFile()
@@ -54,6 +65,8 @@ public abstract class ProjectConfigFileBase
         // Get project config and check if this is a debug project and a debug build
         if (!OS.IsDebugBuild())
             return true;
+        
+        GD.Print(Path.Split(['/', '\\']).Last() + " saved");
 
         var isDebugProj = ProjectManager.GetProject()?.Config?.Data?.IsDebugProject;
         if (isDebugProj == null || isDebugProj == false)

@@ -142,6 +142,10 @@ public partial class EventFlowApp : AppScene
     {
         Graph = sarc.GetFileEventFlow(name, new ProjectSmoEventFlowFactory());
         MetadataHolder = GraphMetaHolder.Create(Graph);
+
+        Metadata.ArchiveName = sarc.Name;
+        Metadata.FileName = name;
+
         InitEditor();
     }
 
