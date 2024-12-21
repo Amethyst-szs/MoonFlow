@@ -23,6 +23,7 @@ theme_override_styles/separator = ExtResource("4_ec1t2")
 
 [node name="Check_IsMapUnit" type="CheckBox" parent="Content/Display/TalkText" index="1" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 script = ExtResource("4_hvfgh")
 dropdown = NodePath("../MessageResolverConfig")

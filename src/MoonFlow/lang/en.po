@@ -1960,7 +1960,7 @@ msgstr "Rotate Glydon"
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "MessageBalloon"
-msgstr "Spawn Text Balloon"
+msgstr "Spawn Dialogue/Text Balloon"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
@@ -2087,6 +2087,14 @@ msgstr "Add Outgoing Port"
 
 #: scene/editor/event/node/typedef/talk/talk.tscn
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
+msgstr ""
+"Instead of referencing a specific text entry, supply a prefix\n"
+"in the ParameterName property. This will be looked up in the\n"
+"current stage's MSBT file, followed by the object ID"
+
+#: scene/editor/event/node/typedef/talk/talk.tscn
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 msgstr "Stage Map"
 
@@ -2126,20 +2134,47 @@ msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Go back!"
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
-msgstr "Open Large Dialogue"
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
+msgstr ""
+"Pause the event flow at this point, waiting for the player\n"
+"to approach the actor and start a conversation with A. This is\n"
+"usually followed by starting a demo and a MessageTalk node to\n"
+"display text to the screen."
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
-msgstr "Branching"
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
+msgstr "Talk Interaction"
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON_TOOLTIP"
+msgstr ""
+"Display a bubble above the actor showing an icon. This does\n"
+"not pause the rest of the event flow, and cannot reference\n"
+"a specific MSBT entry."
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
+msgstr "Icon Only"
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL_TOOLTIP"
+msgstr ""
+"Retrieve text from SystemMessage/Tutorial.msbt, with the\n"
+"entry determined by the ShowMessage property on the actor."
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
 msgstr "Tutorial"
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
-msgstr "Open Small Balloon"
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE_TOOLTIP"
+msgstr ""
+"Create two outgoing ports on this node, allowing a split/branch\n"
+"in the graph's flow."
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
+msgstr "Branching"
 
 #: scene/editor/event/node/event_flow_entry_point.tscn
 msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
@@ -2148,6 +2183,12 @@ msgstr "Entry Point Name"
 #: scene/editor/event/node/component/message_resolver_config.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
 msgstr "No Text Source Selected!"
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE_TOOLTIP"
+msgstr ""
+"Select a new MSBT entry to reference for this\n"
+"dialogue node"
 
 #: scene/editor/event/node/component/message_resolver_config.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"

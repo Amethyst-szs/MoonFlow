@@ -125,6 +125,9 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	private void SetupNameOptions(string[] opt)
 	{
+		if (!IsInstanceValid(NameOptionButton))
+			return;
+		
 		var popup = NameOptionButton.GetPopup();
 
 		popup.Clear();

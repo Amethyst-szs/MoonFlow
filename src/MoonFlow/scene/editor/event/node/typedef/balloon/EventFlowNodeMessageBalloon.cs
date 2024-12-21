@@ -312,6 +312,7 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		labelName.Text = Content.Name;
 		
 		SetLabelDisplayTextSource();
+		InitParamEditor();
 		DrawDebugLabel();
 	}
 

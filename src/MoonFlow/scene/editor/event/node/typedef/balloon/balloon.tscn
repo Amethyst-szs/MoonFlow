@@ -28,12 +28,16 @@ theme_override_styles/separator = ExtResource("4_met63")
 [node name="Check_IsTalkBalloon" type="CheckBox" parent="Content/Display/BalloonText" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
+mouse_default_cursor_shape = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
 text_overrun_behavior = 1
 
 [node name="Check_IsIconBalloon" type="CheckBox" parent="Content/Display/BalloonText" index="2"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON_TOOLTIP"
+mouse_default_cursor_shape = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
 text_overrun_behavior = 1
 
@@ -44,12 +48,16 @@ columns = 2
 [node name="Check_IsMapUnit" type="CheckBox" parent="Content/Display/BalloonText/Grid_Options" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
+mouse_default_cursor_shape = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 text_overrun_behavior = 1
 
 [node name="Check_IsTutorial" type="CheckBox" parent="Content/Display/BalloonText/Grid_Options" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL_TOOLTIP"
+mouse_default_cursor_shape = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
 text_overrun_behavior = 1
 
@@ -58,6 +66,8 @@ custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE_TOOLTIP"
+mouse_default_cursor_shape = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
 
 [node name="MessageResolverConfig" parent="Content/Display/BalloonText" index="5" instance=ExtResource("4_nokhd")]

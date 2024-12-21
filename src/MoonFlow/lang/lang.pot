@@ -2111,6 +2111,11 @@ msgstr ""
 
 #: scene/editor/event/node/typedef/talk/talk.tscn
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/node/typedef/talk/talk.tscn
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 msgstr ""
 
@@ -2147,11 +2152,23 @@ msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
 msgstr ""
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL_TOOLTIP"
 msgstr ""
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
@@ -2159,7 +2176,11 @@ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
 msgstr ""
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
 msgstr ""
 
 #: scene/editor/event/node/event_flow_entry_point.tscn
@@ -2168,6 +2189,10 @@ msgstr ""
 
 #: scene/editor/event/node/component/message_resolver_config.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE_TOOLTIP"
 msgstr ""
 
 #: scene/editor/event/node/component/message_resolver_config.tscn
