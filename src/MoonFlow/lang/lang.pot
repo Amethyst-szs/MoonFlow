@@ -44,9 +44,11 @@
 # res://scene/editor/event/node/node_type_name_text.tres
 # res://scene/editor/event/node/typedef/fork/fork.tscn
 # res://scene/editor/event/node/typedef/talk/talk.tscn
-# res://scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
 # res://scene/common/popup/popup_msbt_select_entry.tscn
 # res://scene/home/tab_event/tab_event.tscn
+# res://scene/editor/event/node/typedef/balloon/balloon.tscn
+# res://scene/editor/event/node/event_flow_entry_point.tscn
+# res://scene/editor/event/node/component/message_resolver_config.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2108,23 +2110,8 @@ msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
 msgstr ""
 
 #: scene/editor/event/node/typedef/talk/talk.tscn
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
-msgstr ""
-
-#: scene/editor/event/node/typedef/talk/talk.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
-msgstr ""
-
-#: scene/editor/event/node/typedef/talk/talk.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"
-msgstr ""
-
-#: scene/editor/event/node/typedef/talk/talk.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
-msgstr ""
-
-#: scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
-msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
 msgstr ""
 
 #: scene/common/popup/popup_msbt_select_entry.tscn
@@ -2157,4 +2144,36 @@ msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
+msgstr ""
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
+msgstr ""
+
+#: scene/editor/event/node/event_flow_entry_point.tscn
+msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"
+msgstr ""
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
 msgstr ""

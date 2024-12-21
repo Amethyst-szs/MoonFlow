@@ -1960,7 +1960,7 @@ msgstr "Rotate Glydon"
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "MessageBalloon"
-msgstr "Mini Message Balloon"
+msgstr "Spawn Text Balloon"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
@@ -2086,24 +2086,9 @@ msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
 msgstr "Add Outgoing Port"
 
 #: scene/editor/event/node/typedef/talk/talk.tscn
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
-msgstr "Stage Message"
-
-#: scene/editor/event/node/typedef/talk/talk.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
-msgstr "No Text Source Selected!"
-
-#: scene/editor/event/node/typedef/talk/talk.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"
-msgstr "Change Text Source"
-
-#: scene/editor/event/node/typedef/talk/talk.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
-msgstr "Preview:"
-
-#: scene/editor/event/node/typedef/entry_point/event_flow_entry_point.tscn
-msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
-msgstr "Entry Point Name"
+msgstr "Stage Map"
 
 #: scene/common/popup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
@@ -2139,6 +2124,38 @@ msgstr ""
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Go back!"
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
+msgstr "Open Large Dialogue"
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
+msgstr "Branching"
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
+msgstr "Tutorial"
+
+#: scene/editor/event/node/typedef/balloon/balloon.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
+msgstr "Open Small Balloon"
+
+#: scene/editor/event/node/event_flow_entry_point.tscn
+msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
+msgstr "Entry Point Name"
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
+msgstr "No Text Source Selected!"
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"
+msgstr "Change Text Source"
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
+msgstr "Preview:"
 
 #~ msgid "ASYNC_DISPLAY_SUCCESS"
 #~ msgstr "Success!"

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjlli76vhlpfg"]
+
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="1_ec2eu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jci63"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1fgse"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_xbl6x"]
+font_size = 11
+font_color = Color(1, 1, 1, 0.827451)
+
+[node name="MessageResolverConfig" type="VBoxContainer"]
+
+[node name="HSep0" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jci63")
+
+[node name="Label_TargetSource" type="Label" parent="."]
+layout_mode = 2
+text = "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
+label_settings = SubResource("LabelSettings_1fgse")
+
+[node name="Button_SelectSource" type="Button" parent="."]
+layout_mode = 2
+text = "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"
+icon = ExtResource("1_ec2eu")
+alignment = 0
+
+[node name="HSep1" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jci63")
+
+[node name="Label_Preview" type="Label" parent="."]
+layout_mode = 2
+text = "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
+label_settings = SubResource("LabelSettings_xbl6x")
+
+[node name="Text_Preview" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 2
+placeholder_text = "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
+editable = false
+wrap_mode = 1

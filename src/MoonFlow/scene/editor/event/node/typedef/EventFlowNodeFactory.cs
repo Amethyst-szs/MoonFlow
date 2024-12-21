@@ -13,7 +13,7 @@ public static class EventFlowNodeFactory
         { typeof(NodeJoin), "join/join.tscn" },
         { typeof(NodeJumpEntry), "" },
 
-        { typeof(NodeMessageBalloon), "" },
+        { typeof(NodeMessageBalloon), "balloon/balloon.tscn" },
         { typeof(NodeMessageTalk), "talk/talk.tscn" },
         { typeof(NodeSelectChoice), "" },
         { typeof(NodeSelectYesNo), "" },

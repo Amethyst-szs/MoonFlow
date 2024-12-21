@@ -23,7 +23,7 @@ public abstract class Node
     protected int NextId { get; private set; } = int.MinValue;
 
     public NodeParams Params { get; protected set; } = null;
-    public NodeCaseEventList CaseEventList { get; protected set; } = null;
+    public NodeCaseEventList CaseEventList = null;
 
     public Node(Dictionary<object, object> dict)
     {
