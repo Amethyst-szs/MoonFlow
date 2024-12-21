@@ -22,9 +22,9 @@ public class NodeJumpEntry : Node
     public NodeJumpEntry(Graph graph, string factoryType) : base(graph, factoryType) { }
     public NodeJumpEntry(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
 
-    public override bool IsAllowOutgoingEdges() { return true; }
+    public override bool IsAllowOutgoingEdges() { return false; }
     public override bool IsUseMultipleOutgoingEdges() { return false; }
-    public override int GetMaxOutgoingEdges() { return 1; }
+    public override int GetMaxOutgoingEdges() { return 0; }
 
     public override NodeOptionType GetNodeNameOptions(out string[] options)
     {

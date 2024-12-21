@@ -122,6 +122,9 @@ public abstract class Node
     public int GetId() { return Id; }
     public virtual int[] GetNextIds()
     {
+        if (!IsAllowOutgoingEdges())
+            return [];
+        
         if (!IsUseMultipleOutgoingEdges() || CaseEventList == null)
             return [NextId];
 
@@ -129,6 +132,9 @@ public abstract class Node
     }
     public virtual int GetNextIdCount()
     {
+        if (!IsAllowOutgoingEdges())
+            return 0;
+        
         if (!IsUseMultipleOutgoingEdges() || CaseEventList == null)
             return 1;
 
@@ -178,8 +184,12 @@ public abstract class Node
         // You cannot set THE next node when multiple edges exist or if edges are disabled
         if (IsUseMultipleOutgoingEdges() || !IsAllowOutgoingEdges())
             return false;
-
-        NextId = next.Id;
+        
+        if (next == null)
+            NextId = int.MinValue;
+        else
+            NextId = next.Id;
+        
         return true;
     }
     public virtual bool TrySetNextNode(Node next, int edgeIndex)

@@ -80,7 +80,7 @@ public class NodeCaseEventList
 
     private void SetCaseListSize(int size)
     {
-        int idx = CaseList.Count - 1;
+        int idx = CaseList.Count;
         while (CaseList.Count < size)
         {
             CaseList.Add(new NodeCaseEvent(idx));

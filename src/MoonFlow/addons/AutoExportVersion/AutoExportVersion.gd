@@ -113,6 +113,8 @@ func _enter_tree() -> void:
 	_sync_project_settings()
 	ProjectSettings.settings_changed.connect(_sync_project_settings)
 	
+	_update_version_in_editor()
+	
 	if STORE_LOCATION == VersionStoreLocation.SCRIPT and not FileAccess.file_exists(SCRIPT_PATH):
 		store_version_as_script(get_version(PackedStringArray(), true, "", 0))
 
@@ -144,6 +146,20 @@ func _tool_menu_print_version() -> void:
 	
 	print(_CURRENT_VERSION.format({ "version": version }))
 	OS.alert(_CURRENT_VERSION.format({ "version": version }))
+	store_version(version, STORE_LOCATION)
+
+func _update_version_in_editor() -> void:
+	if !Engine.is_editor_hint():
+		return
+	
+	var version: String = get_version(PackedStringArray(), true, "", 0)
+	
+	if version.is_empty():
+		printerr(_EMPTY_VERSION_ERROR.format({ "script_path": get_script().get_path() }))
+		OS.alert(_EMPTY_VERSION_ERROR.format({ "script_path": get_script().get_path() }))
+		return
+	
+	print(_CURRENT_VERSION.format({ "version": version }))
 	store_version(version, STORE_LOCATION)
 
 func get_version(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> String:

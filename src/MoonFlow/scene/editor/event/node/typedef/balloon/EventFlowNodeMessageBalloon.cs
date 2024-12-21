@@ -11,6 +11,13 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Scene.EditorEvent;
 
+// ##################################################################### //
+// ######### Warning! Ye headin into le land of spaghetti! Our ######### //
+// ####### boats been shipwrecked on this baron island for years, ###### //
+// ####### and even we couldn't clean up this mess! Proceed with ####### //
+// ######################### caution, traveler. ######################## //
+// ##################################################################### //
+
 public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 {
 	[Export, ExportGroup("Internal References")]
@@ -95,8 +102,6 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 	{
 		base.InitContent(content, graph);
 
-		content.CaseEventList ??= new NodeCaseEventList();
-
 		// Remove name option button, this node's name should only be configured through flag picker
 		NameOptionButton.QueueFree();
 
@@ -121,7 +126,6 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 			if (!Content.TryGetParam("Text", out NodeMessageResolverData _))
 				Content.TrySetParamMessageData("Text", new NodeMessageResolverData());
 
-		UpdateButtonStates();
 		OnToggleMultiDivide((Flags & NameFlags.MULTI_DIVIDE) != 0);
 	}
 
@@ -158,10 +162,15 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 
 	private void OnToggleMultiDivide(bool state)
 	{
+		var oldFlags = Flags;
 		if (state) Flags |= NameFlags.MULTI_DIVIDE;
 		else Flags &= ~NameFlags.MULTI_DIVIDE;
 		UpdateButtonStates();
-		SetNodeModified();
+
+		if (oldFlags != Flags)
+		{
+			SetNodeModified();
+		}
 
 		var portFirst = PortOutList.GetChildren().First() as PortOut;
 
@@ -199,7 +208,11 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		newList[0] = Connections[0];
 		Connections = newList;
 
+		if (Connections.Length == 1)
+			Content.TrySetNextNode((Connections[0] as EventFlowNodeCommon)?.Content);
+
 		portFirst.PortColor = DefaultPortOutColor;
+		DrawDebugLabel();
 	}
 
 	private void OnSelectNewTextSource()
@@ -276,10 +289,30 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 
 		MessageResolverConfig.Visible = IsSupportMessageResolver();
 
+		if ((Flags & NameFlags.MULTI_DIVIDE) != 0)
+		{
+			Content.CaseEventList ??= new();
+			for (int i = 0; i < Connections.Length; i++)
+				Content.TrySetNextNode((Connections[i] as EventFlowNodeCommon)?.Content, i);
+		}
+		else
+		{
+			Content.CaseEventList = null;
+			if (Connections.Length != 0)
+			{
+				var con = (Connections[0] as EventFlowNodeCommon)?.Content;
+				if (con != null)
+					Content.TrySetNextNode(con);
+				else
+					Content.RemoveNextNode();
+			}
+		}
+
 		var labelName = GetNode<Label>("%Label_Name");
 		labelName.Text = Content.Name;
 		
 		SetLabelDisplayTextSource();
+		DrawDebugLabel();
 	}
 
 	private bool IsSupportMessageResolver()
