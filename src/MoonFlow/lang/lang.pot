@@ -115,6 +115,10 @@ msgid "RECENT_PROJECTS"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr ""
 

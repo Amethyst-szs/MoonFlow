@@ -131,6 +131,8 @@ text = "RECENT_PROJECTS"
 icon = ExtResource("11_t4cui")
 flat = false
 icon_alignment = 2
+item_count = 1
+popup/item_0/text = "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
 script = ExtResource("12_uh126")
 
 [node name="Shortcuts" type="HBoxContainer" parent="Content"]

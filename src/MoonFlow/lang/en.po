@@ -79,6 +79,10 @@ msgid "RECENT_PROJECTS"
 msgstr "Recent Projects"
 
 #: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
+msgstr "Clear History"
+
+#: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr "Romfs Path Settings"
 

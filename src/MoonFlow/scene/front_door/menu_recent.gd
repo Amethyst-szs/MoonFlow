@@ -31,7 +31,8 @@ func _ready() -> void:
 	_init_button_options()
 
 func _init_button_options() -> void:
-	get_popup().clear()
+	var popup := get_popup()
+	popup.clear()
 	
 	# Initilize button options
 	for item in history:
@@ -39,18 +40,32 @@ func _init_button_options() -> void:
 		if trim != item:
 			trim = "..." + trim
 		
-		get_popup().add_item(trim)
+		popup.add_item(trim)
+	
+	popup.add_separator()
+	popup.add_item(tr("FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"), 10000)
 
 func _on_item_selected(idx: int) -> void:
+	var id := get_popup().get_item_id(idx)
+	if id == 10000:
+		_clear_recent_history()
+		return
+	
 	var sel: String = history[idx]
 	
 	history.remove_at(idx)
-	history.insert(0, sel)
-	_init_button_options()
 	
 	open_recent_project.emit(sel)
+	_init_button_options()
 
 func _on_front_door_open_project(target: String) -> void:
+	target = target.replace('\\', '/')
+	target = target.trim_suffix('/')
+	target = target.trim_suffix("romfs")
+	
+	if !target.ends_with('/'):
+		target += '/'
+	
 	if history.has(target):
 		return
 	
@@ -69,3 +84,14 @@ func _on_front_door_open_project(target: String) -> void:
 	
 	file.store_string(outstr)
 	file.close()
+
+func _clear_recent_history() -> void:
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	if file == null:
+		push_error(FileAccess.get_open_error())
+		return
+	
+	file.store_string("")
+	file.close()
+	
+	hide()
