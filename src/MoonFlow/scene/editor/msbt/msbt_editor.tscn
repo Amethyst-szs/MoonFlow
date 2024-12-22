@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_3q5pt"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="3_52h4d"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_2flhd"]
-[ext_resource type="Script" path="res://scene/editor/msbt/components/LangPicker.cs" id="5_qoe03"]
+[ext_resource type="Script" path="res://scene/common/option/LangPicker.cs" id="5_qoe03"]
 [ext_resource type="PackedScene" uid="uid://ck2mpawvgk0li" path="res://scene/editor/msbt/list/entry_list_holder.tscn" id="7_j5n3o"]
 [ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="15_2piwy"]
 [ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="16_qwkck"]

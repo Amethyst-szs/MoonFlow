@@ -138,7 +138,7 @@ public static class ProjectManager
     // ================== Common Utilities ================== //
     // ====================================================== //
 
-    private static bool IsValidOpenOrCreate(ref string path)
+    public static bool IsValidOpenOrCreate(ref string path)
     {
         // If there isn't a reference to MoonFlow's MainSceneRoot node at the top of the godot scene, throw exception
         if (SceneRoot == null)
@@ -162,7 +162,7 @@ public static class ProjectManager
         return true;
     }
 
-    private static bool IsProjectConfigExist(ref string path, out string projectFilePath)
+    public static bool IsProjectConfigExist(ref string path, out string projectFilePath, bool isCreateDir = true)
     {
         // If the selected directory contains a romfs folder, navigate into this folder
         if (Directory.Exists(path + "romfs/"))
@@ -173,7 +173,10 @@ public static class ProjectManager
 
         // Ensure directory for LocalizedData/Common
         projectFilePath += "LocalizedData/Common/";
-        Directory.CreateDirectory(projectFilePath);
+
+        if (isCreateDir)
+            Directory.CreateDirectory(projectFilePath);
+        
         projectFilePath += ProjectFileName;
 
         // Check if this path contains a project config file

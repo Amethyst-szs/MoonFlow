@@ -188,9 +188,13 @@ public partial class MsbtEditor : PanelContainer
 		File = defaultMsbt;
 		FileList = msbtList;
 
-		DefaultLanguage = ProjectManager.GetProject().Config.Data.DefaultLanguage;
+		var projConfig = ProjectManager.GetProject().Config.Data;
+
+		DefaultLanguage = projConfig.DefaultLanguage;
 		CurrentLanguage = defaultLang;
+		
 		LanguagePicker.SetSelection(CurrentLanguage);
+		LanguagePicker.SetGameVersion(projConfig.Version);
 
 		// If any language is missing entry keys, add them
 		foreach (var source in FileList.Values)

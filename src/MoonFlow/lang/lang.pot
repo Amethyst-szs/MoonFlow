@@ -119,6 +119,58 @@ msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_NEW_PROJECT_MENU_HEADER"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_NEW_PROJECT_DIRECTORY_HEADER"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_NEW_PROJECT_INVALID_DIRECTORY"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_NEW_PROJECT_SELECT_DIRECTORY"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_NEW_PROJECT_VERSION_SELECT_HEADER"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_PROJECT_VERSION_INVALID_VERSION"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_PROJECT_VERSION_V100"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_PROJECT_VERSION_V101"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_PROJECT_VERSION_V110"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_PROJECT_VERSION_V120"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_PROJECT_VERSION_V130"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_NEW_PROJECT_DEFAULT_LANGUAGE_HEADER"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr ""
 

@@ -26,6 +26,17 @@ public static class RomfsAccessor
         return ActiveVersion != RomfsValidation.RomfsVersion.INVALID_VERSION;
     }
 
+    public static bool IsHaveVersion(RomfsValidation.RomfsVersion ver)
+    {
+        if (!VersionDirectories.TryGetValue(ver, out string path))
+            return false;
+
+        if (path == string.Empty)
+            return false;
+
+        return true;
+    }
+
     public static bool TryGetRomfsDirectory(out string directory)
     {
         directory = null;
@@ -106,7 +117,7 @@ public static class RomfsAccessor
             bool isOK = RomfsValidation.ValidateAndUpdatePath(ref value, out RomfsValidation.RomfsVersion validateVer);
             if (!isOK || version != validateVer)
                 continue;
-            
+
             VersionDirectories.Add(version, value);
         }
 
