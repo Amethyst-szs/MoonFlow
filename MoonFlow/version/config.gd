@@ -7,7 +7,4 @@ func get_version(features: PackedStringArray, is_debug: bool, path: String, flag
 		get_git_commit_hash()
 	]
 	
-	if is_debug:
-		version += " DEBUG"
-	
 	return version

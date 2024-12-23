@@ -49,7 +49,7 @@ func store_version_as_script(version: String) -> void:
 	if err:
 		push_error("Failed to save version as script. Error: %s" % error_string(err))
 	
-	if FileAccess.file_exists("res://../../MoonFlow.sln"):
+	if FileAccess.file_exists("res://../MoonFlow.sln"):
 		var simple_out := FileAccess.open("res://../../version", FileAccess.WRITE)
 		simple_out.store_string(version)
 		simple_out.close()

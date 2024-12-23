@@ -5,7 +5,7 @@ const url_end: String = "https://github.com"
 
 const user: String = "Amethyst-szs"
 const repo: String = "MoonFlow"
-const branch: String = "main"
+const branch: String = "stable"
 
 var check_path: String = "%s/%s/%s/%s/version" % [url_raw, user, repo, branch]
 var release_path: String = "%s/%s/%s/releases/latest" % [url_end, user, repo]
