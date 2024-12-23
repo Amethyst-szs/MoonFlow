@@ -221,6 +221,7 @@ horizontal_alignment = 1
 
 [node name="Option_Version" type="OptionButton" parent="Content/Quickbar_Content/NewProject/Scroll/VBox_Options"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 alignment = 1
 selected = 0
@@ -250,6 +251,7 @@ horizontal_alignment = 1
 
 [node name="Option_DefaultLang" type="OptionButton" parent="Content/Quickbar_Content/NewProject/Scroll/VBox_Options"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 alignment = 1
 script = ExtResource("16_qq0jv")
@@ -261,6 +263,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_xdqeg")
 
 [node name="Button_Create" type="Button" parent="Content/Quickbar_Content/NewProject/Scroll/VBox_Options"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 text = "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 icon = ExtResource("6_clkik")

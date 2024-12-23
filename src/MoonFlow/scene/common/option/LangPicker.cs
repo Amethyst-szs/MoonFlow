@@ -4,6 +4,7 @@ using System.Linq;
 
 using Nindot.Al.Localize;
 using Nindot.Al.SMO;
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene;
 
@@ -18,11 +19,18 @@ public partial class LangPicker : OptionButton
 
 		foreach (var item in LanguageKeyTranslator.Table)
 			AddItem(item.Value);
+		
+		var lang = ProjectManager.GetProject()?.Config?.Data?.DefaultLanguage;
+		if (lang != null)
+			SetSelection(lang);
 	}
 
 	public void SetSelection(string langCode)
 	{
 		int idx = LanguageKeyTranslator.Table.Keys.ToList().FindIndex(s => s == langCode);
+		if (idx == -1)
+			return;
+		
 		Selected = idx;
 
 		var lang = LanguageKeyTranslator.Table.Keys.ElementAt(idx);
