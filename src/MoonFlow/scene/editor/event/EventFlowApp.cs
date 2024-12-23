@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Nindot;
 using Nindot.Al.EventFlow;
@@ -8,7 +9,7 @@ using Nindot.Al.EventFlow.Smo;
 
 using MoonFlow.Async;
 using MoonFlow.Scene.Main;
-using System.Threading.Tasks;
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -35,6 +36,16 @@ public partial class EventFlowApp : AppScene
     #endregion
 
     #region Initilization
+
+    public static EventFlowApp OpenApp(SarcFile arc, string key)
+	{
+		var editor = SceneCreator<EventFlowApp>.Create();
+		editor.SetUniqueIdentifier(arc.Name + key);
+		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
+
+        editor.OpenFile(arc, key);
+		return editor;
+	}
 
     protected override void AppInit()
     {
@@ -146,11 +157,17 @@ public partial class EventFlowApp : AppScene
         Metadata.ArchiveName = sarc.Name;
         Metadata.FileName = name;
 
+        var taskbar = name.TrimSuffix(".byml");
+        AppTaskbarTitle = string.Format("{0} ({1})", taskbar, sarc.Name);
+
         InitEditor();
     }
 
     public async void SaveFile()
     {
+        if (!AppIsFocused())
+            return;
+        
         GD.Print("\n - Saving ", Graph.Name);
         var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveEventFlowGraph);
 
@@ -181,6 +198,11 @@ public partial class EventFlowApp : AppScene
     #endregion
 
     #region Signals
+
+    public override string GetUniqueIdentifier(string input)
+	{
+		return "EVENTFLOW_" + input;
+	}
 
     private void OnVisiblityChanged()
     {

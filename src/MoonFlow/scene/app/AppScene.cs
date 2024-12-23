@@ -24,7 +24,10 @@ public partial class AppScene : Control
 			_appTaskbarTitle = value;
 
 			if (TaskbarButton != null)
+			{
 				TaskbarButton.Text = _appTaskbarTitle;
+				TaskbarButton.TooltipText = _appTaskbarTitle;
+			}
 		}
 	}
 	private string _appTaskbarTitle = "Application";

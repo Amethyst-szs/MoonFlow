@@ -43,8 +43,8 @@ GraphCanvas = NodePath("Graph")
 BackgroundCanvas = NodePath("Background")
 GraphNodeHolder = NodePath("Graph/NodeHolder")
 AppName = "EventFlowGraphApp"
-AppTaskbarTitle = "FLOW GRAPH"
-AppFlags = 83
+AppTaskbarTitle = "EventFlow"
+AppFlags = 115
 UnsavedChangesScene = ExtResource("2_7ecjt")
 
 [node name="Background" type="CanvasLayer" parent="."]

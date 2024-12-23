@@ -128,10 +128,7 @@ public partial class TabEvent : HSplitContainer
 	}
 	private static void OnEventFileOpened(SarcFile archive, string key)
 	{
-		var graph = SceneCreator<EventFlowApp>.Create();
-		ProjectManager.SceneRoot.NodeApps.AddChild(graph);
-
-		graph.OpenFile(archive, key);
+		EventFlowApp.OpenApp(archive, key);
 	}
 
 	#endregion
