@@ -1,30 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=22 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
 [ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
 [ext_resource type="Script" path="res://scene/main/header/Header.cs" id="4_kq4x0"]
-[ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="5_ki663"]
+[ext_resource type="Script" path="res://scene/main/header/ActionbarFile.cs" id="5_2c21b"]
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="5_7wt0y"]
+[ext_resource type="Script" path="res://scene/main/header/ActionbarProject.cs" id="5_8pvlw"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
-[ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="6_4yn7d"]
+[ext_resource type="Script" path="res://scene/main/header/ActionbarDebug.cs" id="6_jwfa5"]
 [ext_resource type="Texture2D" uid="uid://bejy23w4qwuhn" path="res://asset/material/window/minimize.svg" id="7_3uat5"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
 [ext_resource type="PackedScene" uid="uid://qcjh1t51akmr" path="res://scene/front_door/front_door.tscn" id="9_1ew1g"]
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
 [ext_resource type="Script" path="res://scene/main/display_server_setup.gd" id="13_jlow7"]
-
-[sub_resource type="InputEventAction" id="InputEventAction_anm21"]
-action = &"ui_save"
-
-[sub_resource type="Shortcut" id="Shortcut_7xans"]
-events = [SubResource("InputEventAction_anm21")]
-
-[sub_resource type="InputEventAction" id="InputEventAction_636uw"]
-action = &"ui_save_as"
-
-[sub_resource type="Shortcut" id="Shortcut_vk0sr"]
-events = [SubResource("InputEventAction_636uw")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlewa"]
 
@@ -89,35 +79,55 @@ theme = ExtResource("2_l0p7s")
 theme_override_styles/panel = ExtResource("3_gs3nu")
 script = ExtResource("4_kq4x0")
 
-[node name="Header" type="HBoxContainer" parent="Content/Header"]
+[node name="Content" type="HBoxContainer" parent="Content/Header"]
 layout_mode = 2
-theme = ExtResource("2_l0p7s")
 
-[node name="Button_Save" type="Button" parent="Content/Header/Header"]
+[node name="Actionbar" type="MenuBar" parent="Content/Header/Content"]
 layout_mode = 2
-tooltip_text = "Save"
-shortcut = SubResource("Shortcut_7xans")
-icon = ExtResource("5_ki663")
+theme = ExtResource("5_7wt0y")
 
-[node name="Button_SaveAs" type="Button" parent="Content/Header/Header"]
-layout_mode = 2
-tooltip_text = "Save As"
-shortcut = SubResource("Shortcut_vk0sr")
-icon = ExtResource("6_4yn7d")
+[node name="File" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
+auto_translate_mode = 1
+size = Vector2i(250, 100)
+item_count = 1
+item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
+script = ExtResource("5_2c21b")
 
-[node name="Center" type="VSeparator" parent="Content/Header/Header"]
+[node name="Project" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
+auto_translate_mode = 1
+size = Vector2i(309, 100)
+item_count = 2
+item_0/text = "MAIN_ACTIONBAR_PROJECT_RELOAD"
+item_1/text = "MAIN_ACTIONBAR_PROJECT_CLOSE"
+item_1/id = 1
+script = ExtResource("5_8pvlw")
+
+[node name="Debug" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
+auto_translate_mode = 1
+size = Vector2i(590, 100)
+item_count = 4
+item_0/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+item_1/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+item_1/id = 1
+item_2/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+item_2/id = 2
+item_3/text = "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+item_3/id = 3
+script = ExtResource("6_jwfa5")
+
+[node name="Center" type="VSeparator" parent="Content/Header/Content"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_hlewa")
 
-[node name="Button_Mini" type="Button" parent="Content/Header/Header"]
+[node name="Button_Mini" type="Button" parent="Content/Header/Content"]
 layout_mode = 2
-tooltip_text = "Minimize App"
+tooltip_text = "MAIN_HEADER_MINIMIZE_CURRENT_APP"
 icon = ExtResource("7_3uat5")
 
-[node name="Button_Close" type="Button" parent="Content/Header/Header"]
+[node name="Button_Close" type="Button" parent="Content/Header/Content"]
 layout_mode = 2
-tooltip_text = "Close App"
+tooltip_text = "MAIN_HEADER_CLOSE_CURRENT_APP"
 shortcut = SubResource("Shortcut_x3u1l")
 icon = ExtResource("8_nx1ih")
 
@@ -175,7 +185,5 @@ script = SubResource("GDScript_vdahq")
 [node name="DisplayServerSetup" type="Node" parent="."]
 script = ExtResource("13_jlow7")
 
-[connection signal="pressed" from="Content/Header/Header/Button_Save" to="Content/Header" method="emit_signal" binds= ["ButtonSave"]]
-[connection signal="pressed" from="Content/Header/Header/Button_SaveAs" to="Content/Header" method="emit_signal" binds= ["ButtonSaveAs"]]
-[connection signal="pressed" from="Content/Header/Header/Button_Mini" to="." method="FocusFirstApp"]
-[connection signal="pressed" from="Content/Header/Header/Button_Close" to="." method="CloseActiveApp"]
+[connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="FocusFirstApp"]
+[connection signal="pressed" from="Content/Header/Content/Button_Close" to="." method="CloseActiveApp"]

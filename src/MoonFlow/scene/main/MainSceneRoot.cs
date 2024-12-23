@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using MoonFlow.Project;
+using MoonFlow.Scene.Home;
 
 namespace MoonFlow.Scene.Main;
 
@@ -107,6 +108,24 @@ public partial class MainSceneRoot : Control
     {
         foreach (var app in GetApps())
             app.AppClose(true);
+    }
+    public bool TryCloseAllApps()
+    {
+        foreach (var app in GetApps())
+        {
+            if (app is HomeRoot)
+                continue;
+            
+            var res = app.AppClose(true);
+            if (res != null)
+            {
+                app.AppFocus();
+                return false;
+            }
+        }
+
+        ForceCloseAllApps();
+        return true;
     }
 
     public void FocusFirstApp()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://asset/shader/sheet/spritesheet.gdshader" id="1_qsda3"]
 [ext_resource type="Texture2D" uid="uid://cdnimgp2jhh8l" path="res://asset/animation_sheet/icon_sheet.png" id="2_evnld"]
-[ext_resource type="Script" path="res://scene/main/header/MoonFlowStatusIcon.cs" id="3_7m3i8"]
+[ext_resource type="Script" path="res://scene/front_door/load/MoonFlowStatusIcon.cs" id="3_7m3i8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8jhrf"]
 shader = ExtResource("1_qsda3")
@@ -12,6 +12,7 @@ shader_parameter/sheet_height = 8
 
 [node name="StatusIcon" type="TextureRect"]
 material = SubResource("ShaderMaterial_8jhrf")
+offset_right = 648.0
 size_flags_horizontal = 10
 texture = ExtResource("2_evnld")
 expand_mode = 2

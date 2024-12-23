@@ -129,12 +129,10 @@ msgid "FRONT_DOOR_PROJECT_VERSION_V130"
 msgstr "Version 1.3.0"
 
 #: scene/front_door/front_door.tscn
-#| msgid "FRONT_DOOR_NEW_PROJECT_MENU_HEADER"
 msgid "FRONT_DOOR_NEW_PROJECT_DEFAULT_LANGUAGE_HEADER"
 msgstr "Default Language:"
 
 #: scene/front_door/front_door.tscn
-#| msgid "FRONT_DOOR_NEW_PROJECT_DIRECTORY_HEADER"
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 msgstr "Create Project"
 
@@ -211,30 +209,6 @@ msgstr ""
 "\n"
 "When syncing is disabled, this text will not change with changes\n"
 "to the default language, allowing entry of a real translation."
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_PROJECT_RELOAD"
-msgstr "Reload Project"
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
-msgstr "Close Project"
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
-msgstr "Open MSBP MSTXT viewer"
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-msgstr "Open MSBP TGG viewer"
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-msgstr "Open MSBT Label Lookup"
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
-msgstr "Open Event Flow Graph Prototype"
 
 #: scene/home/home.tscn
 msgid "HOME_TAB_TEXT"
@@ -2257,6 +2231,42 @@ msgstr "Change Text Source"
 #: scene/editor/event/node/component/message_resolver_config.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
 msgstr "Preview:"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE"
+msgstr "Save"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
+msgstr "Reload Project"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
+msgstr "Close Project"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+msgstr "Open MSBP MSTXT viewer"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+msgstr "Open MSBP TGG viewer"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+msgstr "Open MSBT Label Lookup"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+msgstr "Open Event Flow Graph Prototype"
+
+#: scene/main/main.tscn
+msgid "MAIN_HEADER_MINIMIZE_CURRENT_APP"
+msgstr "Hide App"
+
+#: scene/main/main.tscn
+msgid "MAIN_HEADER_CLOSE_CURRENT_APP"
+msgstr "Close App"
 
 #~ msgid "ASYNC_DISPLAY_SUCCESS"
 #~ msgstr "Success!"

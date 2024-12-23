@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=9 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="3_1qod8"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="4_bfnf5"]
 [ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tab_msbt/tab_msbt.tscn" id="4_o0ymp"]
-[ext_resource type="Script" path="res://scene/home/actionbar/ActionbarProject.cs" id="5_pebn0"]
 [ext_resource type="PackedScene" uid="uid://bwicpcn2le56s" path="res://scene/editor/msbt/msbt_editor.tscn" id="6_bc8ek"]
-[ext_resource type="Script" path="res://scene/home/actionbar/ActionbarDebug.cs" id="6_lug21"]
 [ext_resource type="PackedScene" uid="uid://cei1tg8ys1x2u" path="res://scene/home/tab_world/tab_world.tscn" id="6_ps61c"]
 [ext_resource type="PackedScene" uid="uid://djaf0d3bxuxkh" path="res://scene/home/tab_event/tab_event.tscn" id="9_l2bha"]
 
@@ -22,7 +20,7 @@ script = ExtResource("1_tasle")
 AppName = "Home"
 AppTaskbarTitle = "Home"
 AppIcon = ExtResource("2_k2opa")
-AppFlags = 6
+AppFlags = 22
 
 [node name="Content" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -36,29 +34,6 @@ theme_override_styles/panel = ExtResource("4_bfnf5")
 
 [node name="VBox" type="VBoxContainer" parent="Content"]
 layout_mode = 2
-
-[node name="Actionbar" type="MenuBar" parent="Content/VBox"]
-layout_mode = 2
-
-[node name="Project" type="PopupMenu" parent="Content/VBox/Actionbar"]
-item_count = 2
-item_0/text = "HOME_ACTIONBAR_PROJECT_RELOAD"
-item_1/text = "HOME_ACTIONBAR_PROJECT_CLOSE"
-item_1/id = 1
-script = ExtResource("5_pebn0")
-
-[node name="Debug" type="PopupMenu" parent="Content/VBox/Actionbar"]
-auto_translate_mode = 1
-size = Vector2i(335, 100)
-item_count = 4
-item_0/text = "HOME_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
-item_1/text = "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-item_1/id = 1
-item_2/text = "HOME_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-item_2/id = 2
-item_3/text = "HOME_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
-item_3/id = 3
-script = ExtResource("6_lug21")
 
 [node name="Tab" type="TabContainer" parent="Content/VBox"]
 layout_mode = 2

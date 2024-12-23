@@ -41,7 +41,7 @@ public partial class AppScene : Control
 		IsFocusOnOpen = 1 << 1,
 		IsOpenInFront = 1 << 2,
 		IsExclusive = 1 << 3,
-		IsShowHeader = 1 << 4,
+		IsShowActionbar = 1 << 4,
 		IsOnlyAllowOneInstance = 1 << 5,
 		IsAllowUnsavedChanges = 1 << 6,
 	}
@@ -211,11 +211,12 @@ public partial class AppScene : Control
 			}
 		}
 
-		// Update header visibility
+		// Update header
 		Scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();
+		Scene.NodeHeader.EmitSignal(Header.SignalName.AppFocused);
 	}
 
-	public SignalAwaiter AppClose(bool isEndExclusive = false)
+	public virtual SignalAwaiter AppClose(bool isEndExclusive = false)
 	{
 		if (IsModified && IsAppAllowUnsavedChanges())
 			return AppearUnsavedChangesDialog();
@@ -284,7 +285,7 @@ public partial class AppScene : Control
 	public bool IsAppFocusOnOpen() { return (AppFlags & AppFlagEnum.IsFocusOnOpen) != 0; }
 	public bool IsAppOpenInFront() { return (AppFlags & AppFlagEnum.IsOpenInFront) != 0; }
 	public bool IsAppExclusive() { return (AppFlags & AppFlagEnum.IsExclusive) != 0; }
-	public bool IsAppShowHeader() { return (AppFlags & AppFlagEnum.IsShowHeader) != 0; }
+	public bool IsAppShowHeader() { return (AppFlags & AppFlagEnum.IsShowActionbar) != 0; }
 	public bool IsAppOnlyOneInstance() { return (AppFlags & AppFlagEnum.IsOnlyAllowOneInstance) != 0; }
 	public bool IsAppAllowUnsavedChanges() { return (AppFlags & AppFlagEnum.IsAllowUnsavedChanges) != 0; }
 }

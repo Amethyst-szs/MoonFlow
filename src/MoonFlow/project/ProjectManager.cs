@@ -24,6 +24,7 @@ public static class ProjectManager
     // =================== User Utilities =================== //
     // ====================================================== //
 
+    public static bool IsProjectExist() { return Project != null; }
     public static ProjectState GetProject() { return Project; }
     public static RomfsValidation.RomfsVersion GetProjectVersion() { return Project.Config.Data.Version; }
 

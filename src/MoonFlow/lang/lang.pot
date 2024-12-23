@@ -49,6 +49,7 @@
 # res://scene/editor/event/node/typedef/balloon/balloon.tscn
 # res://scene/editor/event/node/event_flow_entry_point.tscn
 # res://scene/editor/event/node/component/message_resolver_config.tscn
+# res://scene/main/main.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -237,30 +238,6 @@ msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
-msgstr ""
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_PROJECT_RELOAD"
-msgstr ""
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_PROJECT_CLOSE"
-msgstr ""
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
-msgstr ""
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-msgstr ""
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-msgstr ""
-
-#: scene/home/home.tscn
-msgid "HOME_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
 msgstr ""
 
 #: scene/home/home.tscn
@@ -2257,4 +2234,40 @@ msgstr ""
 
 #: scene/editor/event/node/component/message_resolver_config.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_HEADER_MINIMIZE_CURRENT_APP"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_HEADER_CLOSE_CURRENT_APP"
 msgstr ""
