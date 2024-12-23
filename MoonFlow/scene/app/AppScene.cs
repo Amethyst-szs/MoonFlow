@@ -2,15 +2,14 @@ using Godot;
 using System;
 
 using MoonFlow.Scene.Main;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene;
 
 [GlobalClass, Icon("res://iconS.png")]
 public partial class AppScene : Control
 {
-	// ====================================================== //
-	// ======================= Exports ====================== //
-	// ====================================================== //
+	#region Properties
 
 	[Export]
 	public string AppName { get; private set; } = "Application";
@@ -69,9 +68,9 @@ public partial class AppScene : Control
 		}
 	}
 
-	// ====================================================== //
-	// ================== Stored References ================= //
-	// ====================================================== //
+	#endregion
+
+	#region Node References
 
 	public MainSceneRoot Scene { get; protected set; } = null;
 
@@ -82,9 +81,9 @@ public partial class AppScene : Control
 		set { _taskbarButton ??= value; }
 	}
 
-	// ====================================================== //
-	// ================== App Initilization ================= //
-	// ====================================================== //
+	#endregion
+
+	#region Initilization
 
 	public AppScene()
 	{
@@ -96,7 +95,7 @@ public partial class AppScene : Control
 		// Warning check
 		if (IsAppAllowUnsavedChanges() && !IsInstanceValid(UnsavedChangesScene))
 			GD.PushError("No reference to unsaved changes dialog scene!");
-		
+
 		// Get access to the main
 		var treeRoot = GetTree().CurrentScene;
 
@@ -146,17 +145,17 @@ public partial class AppScene : Control
 			Hide();
 		}
 
-		// Initilize run virtual app init function
+		// Run optional virtual app init function
 		AppInit();
 
 		GD.Print(string.Format("Opened App: {0} ({1})", AppName, GetType().Name));
 	}
 
-	// ====================================================== //
-	// ==================== App Virtuals ==================== //
-	// ====================================================== //
-
 	protected virtual void AppInit() { }
+
+	#endregion
+
+	#region App Controls
 
 	public virtual string GetUniqueIdentifier(string input) { throw new NotImplementedException(); }
 	public void SetUniqueIdentifier(string input) { AppUniqueIdentifier = GetUniqueIdentifier(input); }
@@ -223,7 +222,7 @@ public partial class AppScene : Control
 	{
 		if (IsModified && IsAppAllowUnsavedChanges())
 			return AppearUnsavedChangesDialog();
-		
+
 		if (IsAppExclusive() && !isEndExclusive)
 			return null;
 
@@ -249,7 +248,7 @@ public partial class AppScene : Control
 
 		if (awaiter == null)
 			return true;
-		
+
 		return false;
 	}
 
@@ -258,9 +257,18 @@ public partial class AppScene : Control
 		AppClose(true);
 	}
 
-	// ====================================================== //
-	// ================== Dialog Utilities ================== //
-	// ====================================================== //
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+
+	public async virtual Task SaveFile(bool isRequireFocus)
+	{
+		throw new NotImplementedException();
+	}
+
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+
+	#endregion
+
+	#region Utilities
 
 	private SignalAwaiter AppearUnsavedChangesDialog()
 	{
@@ -270,17 +278,14 @@ public partial class AppScene : Control
 		dialog.Popup();
 
 		var sig = ConfirmationDialog.SignalName.Confirmed;
-		dialog.Connect(sig, Callable.From(() => {
+		dialog.Connect(sig, Callable.From(() =>
+		{
 			IsModified = false;
 			AppClose(true);
 		}));
-		
+
 		return ToSignal(dialog, sig);
 	}
-
-	// ====================================================== //
-	// ================ App Options Utilities =============== //
-	// ====================================================== //
 
 	public bool AppIsFocused() { return ProcessMode == ProcessModeEnum.Inherit && Visible; }
 
@@ -291,4 +296,6 @@ public partial class AppScene : Control
 	public bool IsAppShowHeader() { return (AppFlags & AppFlagEnum.IsShowActionbar) != 0; }
 	public bool IsAppOnlyOneInstance() { return (AppFlags & AppFlagEnum.IsOnlyAllowOneInstance) != 0; }
 	public bool IsAppAllowUnsavedChanges() { return (AppFlags & AppFlagEnum.IsAllowUnsavedChanges) != 0; }
+
+	#endregion
 }

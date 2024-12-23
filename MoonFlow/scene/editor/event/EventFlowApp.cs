@@ -53,7 +53,7 @@ public partial class EventFlowApp : AppScene
         // Connect to signal events
         VisibilityChanged += OnVisiblityChanged;
 
-        Scene.NodeHeader.Connect(Header.SignalName.ButtonSave, Callable.From(SaveFile));
+        Scene.NodeHeader.Connect(Header.SignalName.ButtonSave, Callable.From(new Action<bool>(SaveFileInternal)));
     }
 
     private async void InitEditor()
@@ -164,9 +164,10 @@ public partial class EventFlowApp : AppScene
         InitEditor();
     }
 
-    public async void SaveFile()
+    private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
+    public override async Task SaveFile(bool isRequireFocus)
     {
-        if (!AppIsFocused())
+        if (!AppIsFocused() && isRequireFocus)
             return;
         
         GD.Print("\n - Saving ", Graph.Name);

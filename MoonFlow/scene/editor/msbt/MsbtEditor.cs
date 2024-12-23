@@ -78,7 +78,7 @@ public partial class MsbtEditor : PanelContainer
 
 		// Setup signals with header
 		var header = ProjectManager.SceneRoot.NodeHeader;
-		header.Connect(Header.SignalName.ButtonSave, Callable.From(SaveFile));
+		header.Connect(Header.SignalName.ButtonSave, Callable.From(new Action<bool>(SaveFileInternal)));
 	}
 
 	private void InitEditor()
@@ -203,11 +203,12 @@ public partial class MsbtEditor : PanelContainer
 		InitEditor();
 	}
 
-	public async void SaveFile()
+	private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
+	public async Task SaveFile(bool isRequireFocus)
 	{
 		// Ensure app is focused
 		var parent = GetParent() as MsbtAppHolder;
-		if (!parent.AppIsFocused())
+		if (!parent.AppIsFocused() && isRequireFocus)
 			return;
 
 		GD.Print("\n - Saving ", File.Name);
@@ -351,7 +352,7 @@ public partial class MsbtEditor : PanelContainer
 	private void OnLanguagePickerSelectedLang(int idx)
 	{
 		// Save file before switching languages
-		SaveFile();
+		SaveFile(false);
 
 		// Update current language and reload editor
 		CurrentLanguage = LanguageKeyTranslator.Table.Keys.ElementAt(idx);

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
@@ -70,7 +71,12 @@ public partial class MsbtAppHolder : AppScene
 		return editor;
 	}
 
-	public override string GetUniqueIdentifier(string input)
+    public override async Task SaveFile(bool isRequireFocus)
+    {
+        await Editor.SaveFile(isRequireFocus);
+    }
+
+    public override string GetUniqueIdentifier(string input)
 	{
 		return "MSBT_" + input;
 	}

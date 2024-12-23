@@ -2241,6 +2241,18 @@ msgid "MAIN_ACTIONBAR_FILE_SAVE"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE_AS"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE_ALL"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_FILE_CLOSE"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
 msgstr ""
 

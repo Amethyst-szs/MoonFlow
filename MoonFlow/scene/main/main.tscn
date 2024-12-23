@@ -86,12 +86,22 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("5_7wt0y")
 
-[node name="File" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
+[node name="File" type="PopupMenu" parent="Content/Header/Content/Actionbar" node_paths=PackedStringArray("CloseCurrentAppButton")]
 auto_translate_mode = 1
 size = Vector2i(250, 100)
-item_count = 1
+item_count = 5
 item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
+item_1/text = "MAIN_ACTIONBAR_FILE_SAVE_AS"
+item_1/id = 1
+item_2/text = "MAIN_ACTIONBAR_FILE_SAVE_ALL"
+item_2/id = 2
+item_3/id = 1000
+item_3/disabled = true
+item_3/separator = true
+item_4/text = "MAIN_ACTIONBAR_FILE_CLOSE"
+item_4/id = 3
 script = ExtResource("5_2c21b")
+CloseCurrentAppButton = NodePath("../../Button_Close")
 
 [node name="Project" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1

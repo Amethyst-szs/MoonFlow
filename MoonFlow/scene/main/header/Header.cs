@@ -9,7 +9,7 @@ public partial class Header : PanelContainer
 	public delegate void AppFocusedEventHandler();
 
 	[Signal]
-	public delegate void ButtonSaveEventHandler();
+	public delegate void ButtonSaveEventHandler(bool isRequireFocus);
 	[Signal]
 	public delegate void ButtonSaveAsEventHandler();
 }

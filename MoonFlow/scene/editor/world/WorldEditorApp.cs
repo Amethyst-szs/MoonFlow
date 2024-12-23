@@ -7,6 +7,7 @@ using MoonFlow.Project;
 using MoonFlow.Scene.Main;
 using MoonFlow.Async;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.EditorWorld;
 
@@ -57,7 +58,7 @@ public partial class WorldEditorApp : AppScene
 
 		// Setup signals with header
 		var header = ProjectManager.SceneRoot.NodeHeader;
-		header.Connect(Header.SignalName.ButtonSave, Callable.From(SaveFile));
+		header.Connect(Header.SignalName.ButtonSave, Callable.From(new Action<bool>(SaveFileInternal)));
 	}
 
 	private void SetupStageList()
@@ -94,9 +95,10 @@ public partial class WorldEditorApp : AppScene
 
 	#region Saving
 
-	public async void SaveFile()
+	private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
+	public override async Task SaveFile(bool isRequireFocus)
 	{
-		if (!AppIsFocused())
+		if (!AppIsFocused() && isRequireFocus)
 			return;
 
 		GD.Print("\n - Saving ", World.WorldName);
