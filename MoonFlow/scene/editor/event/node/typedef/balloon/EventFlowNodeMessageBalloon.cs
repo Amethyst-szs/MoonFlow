@@ -4,19 +4,13 @@ using System.Linq;
 using Godot;
 
 using MoonFlow.Project;
+using MoonFlow.Scene.EditorWorld;
 
 using Nindot;
 using Nindot.Al.EventFlow;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Scene.EditorEvent;
-
-// ##################################################################### //
-// ######### Warning! Ye headin into le land of spaghetti! Our ######### //
-// ####### boats been shipwrecked on this baron island for years, ###### //
-// ####### and even we couldn't clean up this mess! Proceed with ####### //
-// ######################### caution, traveler. ######################## //
-// ##################################################################### //
 
 public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 {
@@ -29,152 +23,80 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 	private VBoxContainer MessageResolverConfig;
 
 	[Export]
-	private CheckBox IsTalkBalloon;
+	private OptionBalloonType OptionBalloon;
 	[Export]
-	private CheckBox IsIconBalloon;
-	[Export]
-	private CheckBox IsMapUnit;
+	private OptionSourceType OptionSource;
 	[Export]
 	private CheckBox IsMultiDivide;
-	[Export]
-	private CheckBox IsTutorial;
-
-	[Flags]
-	public enum NameFlags
-	{
-		NONE = 0,
-		TALK_BALLOON = 1 << 0, // Mutually exclusive (aside from MULTI_DIVIDE)
-		ICON_BALLOON = 1 << 1, // Mutually exclusive (aside from MULTI_DIVIDE)
-		MULTI_DIVIDE = 1 << 2, // Always toggle-able regardless of other bits
-		MAP_UNIT = 1 << 3, // Cannot be set if TUTORIAL is set
-		TUTORIAL = 1 << 4, // Cannot be set if MAP_UNIT is set
-	}
-
-	private NameFlags _flags = NameFlags.NONE;
-	public NameFlags Flags
-	{
-		get { return _flags; }
-		set
-		{
-			if ((value & NameFlags.TALK_BALLOON) != 0)
-			{
-				_flags = NameFlags.TALK_BALLOON | (value & NameFlags.MULTI_DIVIDE);
-				Content.Name = "MessageTalkBalloon";
-
-				if ((_flags & NameFlags.MULTI_DIVIDE) != 0)
-					Content.Name += "MultiDevide";
-				
-				return;
-			}
-
-			if ((value & NameFlags.ICON_BALLOON) != 0)
-			{
-				_flags = NameFlags.ICON_BALLOON | (value & NameFlags.MULTI_DIVIDE);
-				Content.Name = "IconBalloon";
-
-				if ((_flags & NameFlags.MULTI_DIVIDE) != 0)
-					Content.Name += "MultiDevide";
-
-				return;
-			}
-
-			if ((value & NameFlags.MAP_UNIT) != 0)
-				value &= ~NameFlags.TUTORIAL;
-			
-			if ((value & NameFlags.TUTORIAL) != 0)
-				value &= ~NameFlags.MAP_UNIT;
-
-			_flags = value;
-
-			if (Content != null)
-			{
-				var n = "MessageBalloon";
-				if ((value & NameFlags.MULTI_DIVIDE) != 0) n += "MultiDevide";
-				if ((value & NameFlags.MAP_UNIT) != 0) n += "MapUnit";
-				if ((value & NameFlags.TUTORIAL) != 0) n += "Tutorial";
-
-				Content.Name = n;
-			}
-		}
-	}
 
 	public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
 	{
 		base.InitContent(content, graph);
 
-		// Remove name option button, this node's name should only be configured through flag picker
+		// Remove name option button
 		NameOptionButton.QueueFree();
 
-		// Convert node name to flags
-		var name = Content.Name;
+		// Setup buttons
+		OptionBalloon.SetupSelection(content.Name);
+		OptionSource.SetupSelection(content.Name);
+		IsMultiDivide.SetPressedNoSignal(content.Name.Contains("MultiDevide"));
 
-		Flags = NameFlags.NONE;
-		if (name.Contains("TalkBalloon")) Flags |= NameFlags.TALK_BALLOON;
-		if (name == "IconBalloon") Flags |= NameFlags.ICON_BALLOON;
-
-		if (Flags == NameFlags.NONE)
-		{
-			if (name.Contains("MapUnit")) Flags |= NameFlags.MAP_UNIT;
-			if (name.Contains("MultiDevide")) Flags |= NameFlags.MULTI_DIVIDE;
-			if (name.Contains("Tutorial")) Flags |= NameFlags.TUTORIAL;
-		}
-
-		if (name != Content.Name)
-			throw new Exception(string.Format("Name mismatch! {0} - {1}", name, Content.Name));
-
-		if (IsSupportMessageResolver())
-			if (!Content.TryGetParam("Text", out NodeMessageResolverData _))
-				Content.TrySetParamMessageData("Text", new NodeMessageResolverData());
-
-		OnToggleMultiDivide((Flags & NameFlags.MULTI_DIVIDE) != 0);
+		// Setup source selection
+		SetLabelDisplayTextSource();
 	}
 
 	#region Signals
 
-	private void OnToggleTalkBalloon(bool state)
+	private void OnBalloonTypeOrSourceModified()
 	{
-		if (state) Flags |= NameFlags.TALK_BALLOON;
-		else Flags &= ~NameFlags.TALK_BALLOON;
-		UpdateButtonStates();
-		SetNodeModified();
-	}
-	private void OnToggleMapUnit(bool state)
-	{
-		if (state) Flags |= NameFlags.MAP_UNIT;
-		else Flags &= ~NameFlags.MAP_UNIT;
-		UpdateButtonStates();
-		SetNodeModified();
-	}
-	private void OnToggleTutorial(bool state)
-	{
-		if (state) Flags |= NameFlags.TUTORIAL;
-		else Flags &= ~NameFlags.TUTORIAL;
-		UpdateButtonStates();
-		SetNodeModified();
-	}
-	private void OnToggleIconBalloon(bool state)
-	{
-		if (state) Flags |= NameFlags.ICON_BALLOON;
-		else Flags &= ~NameFlags.ICON_BALLOON;
-		UpdateButtonStates();
-		SetNodeModified();
+		var type = (OptionBalloonType.Options)OptionBalloon.Selected;
+		var src = (OptionSourceType.Options)OptionSource.Selected;
+
+		// If using the IconBalloon type, reset source to default
+		if (type == OptionBalloonType.Options.IconBalloon)
+		{
+			src = OptionSourceType.Options.Path;
+			OptionSource.Selected = (int)src;
+			OptionSource.Disabled = true;
+		}
+		else
+		{
+			OptionSource.Disabled = false;
+		}
+		
+		UpdateNodeName(type, src);
 	}
 
 	private void OnToggleMultiDivide(bool state)
 	{
-		var oldFlags = Flags;
-		if (state) Flags |= NameFlags.MULTI_DIVIDE;
-		else Flags &= ~NameFlags.MULTI_DIVIDE;
-		UpdateButtonStates();
+		SetNodeModified();
 
-		if (oldFlags != Flags)
+		// Update node name
+		OnBalloonTypeOrSourceModified();
+
+		// Update content connection list
+		if (Content.Name.EndsWith("MultiDevide"))
 		{
-			SetNodeModified();
+			Content.CaseEventList ??= new();
+			for (int i = 0; i < Connections.Length; i++)
+				Content.TrySetNextNode((Connections[i] as EventFlowNodeCommon)?.Content, i);
+		}
+		else
+		{
+			Content.CaseEventList = null;
+			if (Connections.Length != 0)
+			{
+				var con = (Connections[0] as EventFlowNodeCommon)?.Content;
+				if (con != null)
+					Content.TrySetNextNode(con);
+				else
+					Content.RemoveNextNode();
+			}
 		}
 
+		// Update outgoing port nodes
 		var portFirst = PortOutList.GetChildren().First() as PortOut;
 
-		// Update outgoing connections
 		if (state)
 		{
 			if (Connections.Length == 2)
@@ -245,13 +167,47 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 
 	#region Utilities
 
+	private void UpdateNodeName(OptionBalloonType.Options type, OptionSourceType.Options source)
+	{
+		string name = "Message";
+		
+		switch (type)
+		{
+			case OptionBalloonType.Options.MiniBalloon:
+				name += "Balloon";
+				break;
+			case OptionBalloonType.Options.TalkBalloon:
+				name += "TalkBalloon";
+				break;
+			case OptionBalloonType.Options.IconBalloon:
+				name = "IconBalloon";
+				break;
+		}
+
+		switch (source)
+		{
+			case OptionSourceType.Options.MapUnit:
+				name += "MapUnit";
+				break;
+			case OptionSourceType.Options.Tutorial:
+				name += "Tutorial";
+				break;
+		}
+
+		if (IsMultiDivide.ButtonPressed) name += "MultiDevide";
+
+		OnSetName(name);
+
+		SetLabelDisplayTextSource();
+		SetNodeModified();
+	}
+
 	private void SetLabelDisplayTextSource()
 	{
+		MessageResolverConfig.Visible = IsSupportMessageResolver();
+
 		Content.TryGetParam("Text", out NodeMessageResolverData msg);
-		SetLabelDisplayTextSource(msg);
-	}
-	private void SetLabelDisplayTextSource(NodeMessageResolverData msg)
-	{
+
 		if (!IsContainMessageResolver())
 		{
 			LabelTextSource.Modulate = Colors.Crimson;
@@ -271,58 +227,14 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		TextMessagePreview.Text = txt.GetRawText(true);
 	}
 
-	private void UpdateButtonStates()
-	{
-		IsTalkBalloon.SetPressedNoSignal((Flags & NameFlags.TALK_BALLOON) != 0);
-		IsIconBalloon.SetPressedNoSignal((Flags & NameFlags.ICON_BALLOON) != 0);
-		IsMapUnit.SetPressedNoSignal((Flags & NameFlags.MAP_UNIT) != 0);
-		IsMultiDivide.SetPressedNoSignal((Flags & NameFlags.MULTI_DIVIDE) != 0);
-		IsTutorial.SetPressedNoSignal((Flags & NameFlags.TUTORIAL) != 0);
-
-		bool isDisable = (Flags & NameFlags.TALK_BALLOON) != 0 || (Flags & NameFlags.ICON_BALLOON) != 0;
-
-		IsMapUnit.Disabled = isDisable || (Flags & NameFlags.TUTORIAL) != 0;
-		IsTutorial.Disabled = isDisable || (Flags & NameFlags.MAP_UNIT) != 0;
-
-		IsTalkBalloon.Disabled = (Flags & NameFlags.ICON_BALLOON) != 0;
-		IsIconBalloon.Disabled = (Flags & NameFlags.TALK_BALLOON) != 0;
-
-		MessageResolverConfig.Visible = IsSupportMessageResolver();
-
-		if ((Flags & NameFlags.MULTI_DIVIDE) != 0)
-		{
-			Content.CaseEventList ??= new();
-			for (int i = 0; i < Connections.Length; i++)
-				Content.TrySetNextNode((Connections[i] as EventFlowNodeCommon)?.Content, i);
-		}
-		else
-		{
-			Content.CaseEventList = null;
-			if (Connections.Length != 0)
-			{
-				var con = (Connections[0] as EventFlowNodeCommon)?.Content;
-				if (con != null)
-					Content.TrySetNextNode(con);
-				else
-					Content.RemoveNextNode();
-			}
-		}
-
-		var labelName = GetNode<Label>("%Label_Name");
-		labelName.Text = Content.Name;
-		
-		SetLabelDisplayTextSource();
-		InitParamEditor();
-		DrawDebugLabel();
-	}
-
 	private bool IsSupportMessageResolver()
 	{
-		return ((Flags & NameFlags.TALK_BALLOON) == 0) &&
-			((Flags & NameFlags.ICON_BALLOON) == 0) &&
-			((Flags & NameFlags.MAP_UNIT) == 0) &&
-			((Flags & NameFlags.TUTORIAL) == 0);
+		var type = (OptionBalloonType.Options)OptionBalloon.Selected;
+		var src = (OptionSourceType.Options)OptionSource.Selected;
+
+		return type == OptionBalloonType.Options.MiniBalloon && src == OptionSourceType.Options.Path;
 	}
+
 	private bool IsContainMessageResolver()
 	{
 		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))

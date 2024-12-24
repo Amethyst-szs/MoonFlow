@@ -37,6 +37,9 @@ public partial class ActionbarFile : ActionbarItemBase
 		var scene = GetScene();
 		foreach (var app in scene.GetApps())
 		{
+			if (!IsInstanceValid(app))
+				continue;
+			
 			if (!app.IsAppAllowUnsavedChanges())
 				continue;
 			

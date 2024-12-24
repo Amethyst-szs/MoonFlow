@@ -1,85 +1,79 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr5q2j26coqld"]
+[gd_scene load_steps=9 format=3 uid="uid://dr5q2j26coqld"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_rdu8i"]
 [ext_resource type="Script" path="res://scene/editor/event/node/typedef/balloon/EventFlowNodeMessageBalloon.cs" id="2_tsyva"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_ut8lw"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="4_met63"]
 [ext_resource type="PackedScene" uid="uid://cjlli76vhlpfg" path="res://scene/editor/event/node/component/message_resolver_config.tscn" id="4_nokhd"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/balloon/OptionBalloonType.cs" id="5_rvgo4"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/balloon/OptionSourceType.cs" id="6_lkh3i"]
 
-[node name="EventFlowNodeMessageBalloon" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "MessageResolverConfig", "IsTalkBalloon", "IsIconBalloon", "IsMapUnit", "IsMultiDivide", "IsTutorial") instance=ExtResource("1_rdu8i")]
+[sub_resource type="LabelSettings" id="LabelSettings_xbl6x"]
+font_size = 11
+font_color = Color(1, 1, 1, 0.827451)
+
+[node name="EventFlowNodeMessageBalloon" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "MessageResolverConfig", "OptionBalloon", "OptionSource", "IsMultiDivide") instance=ExtResource("1_rdu8i")]
 script = ExtResource("2_tsyva")
 TextMessagePreview = NodePath("Content/Display/BalloonText/MessageResolverConfig/Text_Preview")
 LabelTextSource = NodePath("Content/Display/BalloonText/MessageResolverConfig/Label_TargetSource")
 MessageResolverConfig = NodePath("Content/Display/BalloonText/MessageResolverConfig")
-IsTalkBalloon = NodePath("Content/Display/BalloonText/Check_IsTalkBalloon")
-IsIconBalloon = NodePath("Content/Display/BalloonText/Check_IsIconBalloon")
-IsMapUnit = NodePath("Content/Display/BalloonText/Grid_Options/Check_IsMapUnit")
+OptionBalloon = NodePath("Content/Display/BalloonText/Option_BalloonType")
+OptionSource = NodePath("Content/Display/BalloonText/Option_SourceType")
 IsMultiDivide = NodePath("Content/Display/BalloonText/Check_IsMultiDevide")
-IsTutorial = NodePath("Content/Display/BalloonText/Grid_Options/Check_IsTutorial")
 
 [node name="BalloonText" type="VBoxContainer" parent="Content/Display" index="2"]
 layout_mode = 2
 theme = ExtResource("3_ut8lw")
 
-[node name="HSep" type="HSeparator" parent="Content/Display/BalloonText" index="0"]
+[node name="HSep0" type="HSeparator" parent="Content/Display/BalloonText" index="0"]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("4_met63")
 
-[node name="Check_IsTalkBalloon" type="CheckBox" parent="Content/Display/BalloonText" index="1"]
+[node name="Label_BalloonType" type="Label" parent="Content/Display/BalloonText" index="1"]
 layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
-mouse_default_cursor_shape = 2
-text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
-text_overrun_behavior = 1
+text = "EVENT_FLOW_NODE_MESSAGE_BALLOON_TYPE_HEADER"
+label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="Check_IsIconBalloon" type="CheckBox" parent="Content/Display/BalloonText" index="2"]
+[node name="Option_BalloonType" type="OptionButton" parent="Content/Display/BalloonText" index="2"]
 layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON_TOOLTIP"
-mouse_default_cursor_shape = 2
-text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
-text_overrun_behavior = 1
+selected = 0
+script = ExtResource("5_rvgo4")
 
-[node name="Grid_Options" type="GridContainer" parent="Content/Display/BalloonText" index="3"]
+[node name="Label_SourceType" type="Label" parent="Content/Display/BalloonText" index="3"]
 layout_mode = 2
-columns = 2
+text = "EVENT_FLOW_NODE_MESSAGE_BALLOON_SOURCE_HEADER"
+label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="Check_IsMapUnit" type="CheckBox" parent="Content/Display/BalloonText/Grid_Options" index="0"]
+[node name="Option_SourceType" type="OptionButton" parent="Content/Display/BalloonText" index="4"]
 layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
-mouse_default_cursor_shape = 2
-text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
-text_overrun_behavior = 1
+selected = 0
+script = ExtResource("6_lkh3i")
 
-[node name="Check_IsTutorial" type="CheckBox" parent="Content/Display/BalloonText/Grid_Options" index="1"]
+[node name="Label_MultiDevide" type="Label" parent="Content/Display/BalloonText" index="5"]
 layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL_TOOLTIP"
-mouse_default_cursor_shape = 2
-text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
-text_overrun_behavior = 1
+text = "EVENT_FLOW_NODE_MESSAGE_BALLOON_MULTI_DEVIDE_HEADER"
+label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="Check_IsMultiDevide" type="CheckBox" parent="Content/Display/BalloonText" index="4"]
+[node name="Check_IsMultiDevide" type="CheckBox" parent="Content/Display/BalloonText" index="6"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE_TOOLTIP"
 mouse_default_cursor_shape = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
 
-[node name="MessageResolverConfig" parent="Content/Display/BalloonText" index="5" instance=ExtResource("4_nokhd")]
+[node name="HSep1" type="HSeparator" parent="Content/Display/BalloonText" index="7"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("4_met63")
+
+[node name="MessageResolverConfig" parent="Content/Display/BalloonText" index="8" instance=ExtResource("4_nokhd")]
 layout_mode = 2
 
 [node name="HSep" parent="Content/Display/Params" index="0"]
 theme_override_constants/separation = 32
 
-[connection signal="toggled" from="Content/Display/BalloonText/Check_IsTalkBalloon" to="." method="OnToggleTalkBalloon"]
-[connection signal="toggled" from="Content/Display/BalloonText/Check_IsIconBalloon" to="." method="OnToggleIconBalloon"]
-[connection signal="toggled" from="Content/Display/BalloonText/Grid_Options/Check_IsMapUnit" to="." method="OnToggleMapUnit"]
-[connection signal="toggled" from="Content/Display/BalloonText/Grid_Options/Check_IsTutorial" to="." method="OnToggleTutorial"]
+[connection signal="OptionSelected" from="Content/Display/BalloonText/Option_BalloonType" to="." method="OnBalloonTypeOrSourceModified"]
+[connection signal="OptionSelected" from="Content/Display/BalloonText/Option_SourceType" to="." method="OnBalloonTypeOrSourceModified"]
 [connection signal="toggled" from="Content/Display/BalloonText/Check_IsMultiDevide" to="." method="OnToggleMultiDivide"]
 [connection signal="pressed" from="Content/Display/BalloonText/MessageResolverConfig/Button_SelectSource" to="." method="OnSelectNewTextSource"]
 

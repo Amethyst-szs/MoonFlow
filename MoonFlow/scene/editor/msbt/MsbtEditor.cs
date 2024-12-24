@@ -351,8 +351,8 @@ public partial class MsbtEditor : PanelContainer
 
 	private void OnLanguagePickerSelectedLang(int idx)
 	{
-		// Save file before switching languages
-		SaveFile(false);
+        // Save file before switching languages
+        _ = SaveFile(false);
 
 		// Update current language and reload editor
 		CurrentLanguage = LanguageKeyTranslator.Table.Keys.ElementAt(idx);

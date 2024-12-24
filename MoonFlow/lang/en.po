@@ -2120,7 +2120,6 @@ msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
 msgstr "Add Outgoing Port"
 
 #: scene/editor/event/node/typedef/talk/talk.tscn
-#: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
 msgstr ""
 "Instead of referencing a specific text entry, supply a prefix\n"
@@ -2128,7 +2127,6 @@ msgstr ""
 "current stage's MSBT file, followed by the object ID"
 
 #: scene/editor/event/node/typedef/talk/talk.tscn
-#: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 msgstr "Stage Map"
 
@@ -2168,37 +2166,16 @@ msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Go back!"
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
-msgstr ""
-"Pause the event flow at this point, waiting for the player\n"
-"to approach the actor and start a conversation with A. This is\n"
-"usually followed by starting a demo and a MessageTalk node to\n"
-"display text to the screen."
+msgid "EVENT_FLOW_NODE_MESSAGE_BALLOON_TYPE_HEADER"
+msgstr "Balloon Type:"
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
-msgstr "Talk Interaction"
+msgid "EVENT_FLOW_NODE_MESSAGE_BALLOON_SOURCE_HEADER"
+msgstr "Text Source:"
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON_TOOLTIP"
-msgstr ""
-"Display a bubble above the actor showing an icon. This does\n"
-"not pause the rest of the event flow, and cannot reference\n"
-"a specific MSBT entry."
-
-#: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
-msgstr "Icon Only"
-
-#: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL_TOOLTIP"
-msgstr ""
-"Retrieve text from SystemMessage/Tutorial.msbt, with the\n"
-"entry determined by the ShowMessage property on the actor."
-
-#: scene/editor/event/node/typedef/balloon/balloon.tscn
-msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
-msgstr "Tutorial"
+msgid "EVENT_FLOW_NODE_MESSAGE_BALLOON_MULTI_DEVIDE_HEADER"
+msgstr "Branching"
 
 #: scene/editor/event/node/typedef/balloon/balloon.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE_TOOLTIP"
@@ -2279,6 +2256,108 @@ msgstr "Hide App"
 #: scene/main/main.tscn
 msgid "MAIN_HEADER_CLOSE_CURRENT_APP"
 msgstr "Close App"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+#| msgctxt "EVENT_GRAPH_NODE_TYPE"
+#| msgid "MessageBalloon"
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "MiniBalloon"
+msgstr "Small Text Balloon"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+#| msgctxt "EVENT_GRAPH_NODE_TYPE"
+#| msgid "MessageBalloon"
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "TalkBalloon"
+msgstr "Talk Interaction Balloon"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "IconBalloon"
+msgstr "Icon Balloon"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "Path"
+msgstr "Select Source"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "MapUnit"
+msgstr "Stage Map"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "Tutorial"
+msgstr "Tutorial"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "MiniBalloonTooltip"
+msgstr "Display a small text bubble above the actor's head."
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "TalkBalloonTooltip"
+msgstr ""
+"Pause the event flow at this point, waiting for the player\n"
+"to approach the actor and start a conversation with A. This is\n"
+"usually followed by starting a demo and a MessageTalk node to\n"
+"display text to the screen."
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "IconBalloonTooltip"
+msgstr ""
+"Display a bubble above the actor showing an icon. This does\n"
+"not pause the rest of the event flow like TalkBalloon."
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "PathTooltip"
+msgstr "Select text source from a specific MSBT file entry"
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "MapUnitTooltip"
+msgstr ""
+"Select text source from the current stage's MSBT file. The\n"
+"ParameterName option will determine the label's prefix in the\n"
+"text file, which will be followed by this actor's ObjId."
+
+#: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
+msgid "TutorialTooltip"
+msgstr ""
+"Retrieve text from SystemMessage/Tutorial.msbt, with the\n"
+"entry determined by the ShowMessage property on the actor."
+
+#~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
+#~ msgstr ""
+#~ "Pause the event flow at this point, waiting for the player\n"
+#~ "to approach the actor and start a conversation with A. This is\n"
+#~ "usually followed by starting a demo and a MessageTalk node to\n"
+#~ "display text to the screen."
+
+#~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON"
+#~ msgstr "Talk Interaction"
+
+#~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON_TOOLTIP"
+#~ msgstr ""
+#~ "Display a bubble above the actor showing an icon. This does\n"
+#~ "not pause the rest of the event flow, and cannot reference\n"
+#~ "a specific MSBT entry."
+
+#~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
+#~ msgstr "Icon Only"
+
+#~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL_TOOLTIP"
+#~ msgstr ""
+#~ "Retrieve text from SystemMessage/Tutorial.msbt, with the\n"
+#~ "entry determined by the ShowMessage property on the actor."
+
+#~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
+#~ msgstr "Tutorial"
 
 #~ msgid "ASYNC_DISPLAY_SUCCESS"
 #~ msgstr "Success!"
