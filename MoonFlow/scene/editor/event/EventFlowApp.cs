@@ -34,6 +34,10 @@ public partial class EventFlowApp : AppScene
     [Export]
     public NodeHolder GraphNodeHolder { get; private set; } = null;
 
+    // ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
+
+    private bool IsInitCompleted = false;
+
     // ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
 
     [Signal]
@@ -63,6 +67,8 @@ public partial class EventFlowApp : AppScene
 
     private async void InitEditor()
     {
+        IsInitCompleted = false;
+
         // Destroy current contents of editor, if any exist
         foreach (var child in GraphNodeHolder.GetChildren())
         {
@@ -79,6 +85,8 @@ public partial class EventFlowApp : AppScene
             Metadata.IsFirstOpen = false;
             GraphNodeHolder.ArrangeAllNodes();
         }
+
+        IsInitCompleted = true;
     }
 
     private async Task InitNodeList()
@@ -159,6 +167,8 @@ public partial class EventFlowApp : AppScene
 
     public void OpenFile(SarcFile sarc, string name)
     {
+        IsInitCompleted = false;
+
         Graph = sarc.GetFileEventFlow(name, new ProjectSmoEventFlowFactory());
         MetadataHolder = GraphMetaHolder.Create(Graph);
 
@@ -219,7 +229,11 @@ public partial class EventFlowApp : AppScene
         BackgroundCanvas.Visible = Visible;
     }
 
-    private void OnFileModified() { IsModified = true; }
+    private void OnFileModified()
+    {
+        if (IsInitCompleted)
+            IsModified = true;
+    }
 
     #endregion
 }
