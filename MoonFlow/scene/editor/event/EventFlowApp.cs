@@ -34,6 +34,11 @@ public partial class EventFlowApp : AppScene
     [Export]
     public NodeHolder GraphNodeHolder { get; private set; } = null;
 
+    // ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
+
+    [Signal]
+    public delegate void EntryPointListModifiedEventHandler(string oldName, string name);
+
     #endregion
 
     #region Initilization
@@ -144,6 +149,8 @@ public partial class EventFlowApp : AppScene
             Metadata.EntryPoints.TryGetValue(entry.Key, out NodeMetadata data);
             entryEdit.InitContentMetadata(Metadata, data);
         }
+
+        EmitSignal(SignalName.EntryPointListModified, "", "");
     }
 
     #endregion

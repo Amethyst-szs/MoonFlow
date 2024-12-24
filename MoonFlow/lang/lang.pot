@@ -51,6 +51,7 @@
 # res://scene/editor/event/node/component/message_resolver_config.tscn
 # res://scene/main/main.tscn
 # res://scene/editor/event/node/typedef/balloon/message_balloon_options.tres
+# res://scene/editor/event/node/typedef/jump/entry_point_jump.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2329,4 +2330,8 @@ msgstr ""
 #: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
 msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
 msgid "TutorialTooltip"
+msgstr ""
+
+#: scene/editor/event/node/typedef/jump/entry_point_jump.tscn
+msgid "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
 msgstr ""

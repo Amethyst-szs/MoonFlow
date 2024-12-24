@@ -95,6 +95,8 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 	private void OnEntryPointNameChanged(string txt)
 	{
 		SetNodeModified();
+
+		var oldName = Name;
 		
 		if (Graph.EntryPoints.ContainsKey(txt))
 		{
@@ -111,6 +113,8 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 
 		Name = txt;
 		DrawDebugLabel();
+
+		Application.EmitSignal(EventFlowApp.SignalName.EntryPointListModified, oldName, Name);
 	}
 
 	#endregion

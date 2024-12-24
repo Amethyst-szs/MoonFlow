@@ -9,7 +9,7 @@ public class NodeJumpEntry : Node
     // ====== Initilization and Standard Virtual Config ===== //
     // ====================================================== //
 
-    private string JumpEntryName = null;
+    public string JumpEntryName = null;
 
     public NodeJumpEntry(Dictionary<object, object> dict) : base(dict)
     {

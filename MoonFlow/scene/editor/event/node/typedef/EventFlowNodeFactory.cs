@@ -11,7 +11,7 @@ public static class EventFlowNodeFactory
     private static readonly Dictionary<Type, string> FactoryEntries = new(){
         { typeof(NodeFork), "fork/fork.tscn" },
         { typeof(NodeJoin), "join/join.tscn" },
-        { typeof(NodeJumpEntry), "" },
+        { typeof(NodeJumpEntry), "jump/entry_point_jump.tscn" },
 
         { typeof(NodeMessageBalloon), "balloon/balloon.tscn" },
         { typeof(NodeMessageTalk), "talk/talk.tscn" },

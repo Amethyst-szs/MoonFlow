@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://chshtl4kankbh"]
+
+[ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_qackf"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/jump/EntryPointJump.cs" id="2_1em8n"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_cr68a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5q6jw"]
+font_size = 13
+font_color = Color(1, 1, 1, 0.768627)
+
+[node name="EventFlowNodeJumpToEntryPoint" node_paths=PackedStringArray("JumpList") instance=ExtResource("1_qackf")]
+script = ExtResource("2_1em8n")
+JumpList = NodePath("Content/Display/Option_JumpTarget")
+
+[node name="HSeparator" type="HSeparator" parent="Content/Display" index="2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/Display" index="3"]
+layout_mode = 2
+text = "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
+label_settings = SubResource("LabelSettings_5q6jw")
+
+[node name="Option_JumpTarget" type="OptionButton" parent="Content/Display" index="4"]
+custom_minimum_size = Vector2(224, 0)
+layout_mode = 2
+theme = ExtResource("3_cr68a")
+alignment = 1
+
+[connection signal="item_selected" from="Content/Display/Option_JumpTarget" to="." method="OnEntryPointJumpTargetSelected"]

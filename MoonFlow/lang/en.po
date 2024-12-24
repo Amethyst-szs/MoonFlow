@@ -1699,7 +1699,7 @@ msgstr "Join"
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "JumpEntry"
-msgstr "Change Entry Point"
+msgstr "Jump to Entry Point"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
@@ -2258,15 +2258,11 @@ msgid "MAIN_HEADER_CLOSE_CURRENT_APP"
 msgstr "Close App"
 
 #: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
-#| msgctxt "EVENT_GRAPH_NODE_TYPE"
-#| msgid "MessageBalloon"
 msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
 msgid "MiniBalloon"
 msgstr "Small Text Balloon"
 
 #: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
-#| msgctxt "EVENT_GRAPH_NODE_TYPE"
-#| msgid "MessageBalloon"
 msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
 msgid "TalkBalloon"
 msgstr "Talk Interaction Balloon"
@@ -2321,9 +2317,9 @@ msgstr "Select text source from a specific MSBT file entry"
 msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
 msgid "MapUnitTooltip"
 msgstr ""
-"Select text source from the current stage's MSBT file. The\n"
-"ParameterName option will determine the label's prefix in the\n"
-"text file, which will be followed by this actor's ObjId."
+"Instead of referencing a specific text entry, supply a prefix\n"
+"in the ParameterName property. This will be looked up in the\n"
+"current stage's MSBT file, followed by the object ID"
 
 #: scene/editor/event/node/typedef/balloon/message_balloon_options.tres
 msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
@@ -2331,6 +2327,10 @@ msgid "TutorialTooltip"
 msgstr ""
 "Retrieve text from SystemMessage/Tutorial.msbt, with the\n"
 "entry determined by the ShowMessage property on the actor."
+
+#: scene/editor/event/node/typedef/jump/entry_point_jump.tscn
+msgid "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
+msgstr "Jump Target:"
 
 #~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
 #~ msgstr ""
