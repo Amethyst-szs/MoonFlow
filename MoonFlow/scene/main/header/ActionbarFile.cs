@@ -1,6 +1,8 @@
 using Godot;
-using MoonFlow.Project;
 using System;
+
+using MoonFlow.Project;
+using MoonFlow.Scene.Home;
 
 namespace MoonFlow.Scene.Main;
 
@@ -24,7 +26,19 @@ public partial class ActionbarFile : ActionbarItemBase
 		AssignFunction((int)MenuIds.FILE_CLOSE, OnFileClose);
 	}
 
-	private void OnFileSave()
+    protected async override void AppFocusChanged()
+    {
+        base.AppFocusChanged();
+
+		var scene = await GetScene();
+		if (scene.GetActiveApp() is not HomeRoot)
+			return;
+		
+		for (var i = 0; i < ItemCount; i++)
+			SetItemDisabled(i, true);
+    }
+
+    private void OnFileSave()
 	{
 		Header.EmitSignal(Header.SignalName.ButtonSave, true);
 	}
@@ -34,7 +48,7 @@ public partial class ActionbarFile : ActionbarItemBase
 	}
 	private async void OnFileSaveAll()
 	{
-		var scene = GetScene();
+		var scene = await GetScene();
 		foreach (var app in scene.GetApps())
 		{
 			if (!IsInstanceValid(app))
@@ -46,18 +60,9 @@ public partial class ActionbarFile : ActionbarItemBase
 			await app.SaveFile(false);
 		}
 	}
-	private void OnFileClose()
+	private async void OnFileClose()
 	{
-        var scene = GetScene();
+        var scene = await GetScene();
 		scene.CloseActiveApp();
-	}
-
-	private MainSceneRoot GetScene()
-	{
-		var sceneBase = GetTree().CurrentScene;
-        if (sceneBase.GetType() != typeof(MainSceneRoot))
-            throw new Exception("Invalid scene type!");
-        
-        return (MainSceneRoot)sceneBase;
 	}
 }

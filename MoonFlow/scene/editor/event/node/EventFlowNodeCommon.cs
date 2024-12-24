@@ -114,6 +114,16 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 			return;
 		}
 
+		if (type == Nindot.Al.EventFlow.Node.NodeOptionType.ANY_VALUE)
+		{
+			ParamAddDropdownHolder.Hide();
+
+			foreach (var p in Content.Params)
+				EventNodeParamFactory.CreateParamEditor(this, (string)p.Key, p.Value.GetType());
+			
+			return;
+		}
+
 		// Create all param editors
 		foreach (var p in pList)
 			EventNodeParamFactory.CreateParamEditor(this, p.Key, p.Value);

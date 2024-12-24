@@ -12,7 +12,7 @@ public class NodeEvent : Node
     public override NodeOptionType GetNodeNameOptions(out string[] options)
     {
         options = [];
-        return NodeOptionType.ANY_VALUE;
+        return NodeOptionType.NO_OPTIONS;
     }
     public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
     {

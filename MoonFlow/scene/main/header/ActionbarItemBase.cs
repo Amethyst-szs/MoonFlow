@@ -2,6 +2,7 @@ using Godot;
 using MoonFlow.Project;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.Main;
 
@@ -14,13 +15,7 @@ public abstract partial class ActionbarItemBase : PopupMenu
     {
         IdPressed += OnIdPressed;
 
-        var sceneBase = GetTree().CurrentScene;
-        if (sceneBase.GetType() != typeof(MainSceneRoot))
-            throw new Exception("Invalid scene type!");
-        
-        var scene = (MainSceneRoot)sceneBase;
-        if (!scene.IsNodeReady())
-            await ToSignal(scene, SignalName.Ready);
+        var scene = await GetScene();
         
         Header = scene.NodeHeader;
         Header.Connect(Header.SignalName.AppFocused, Callable.From(AppFocusChanged));
@@ -63,4 +58,17 @@ public abstract partial class ActionbarItemBase : PopupMenu
 		shortcut.Events.Add(action);
 		SetItemShortcut(idx, shortcut);
 	}
+
+    protected async Task<MainSceneRoot> GetScene()
+    {
+        var sceneBase = GetTree().CurrentScene;
+        if (sceneBase.GetType() != typeof(MainSceneRoot))
+            throw new Exception("Invalid scene type!");
+        
+        var scene = (MainSceneRoot)sceneBase;
+        if (!scene.IsNodeReady())
+            await ToSignal(scene, SignalName.Ready);
+        
+        return scene;
+    }
 }
