@@ -6,6 +6,8 @@ using System.Linq;
 
 using Nindot.Al.EventFlow;
 
+using CSExtensions;
+
 namespace MoonFlow.Scene.EditorEvent;
 
 public partial class EventFlowNodeBase : Node2D
@@ -59,11 +61,18 @@ public partial class EventFlowNodeBase : Node2D
 
 			_isSelected = value;
 			SelectionPanel.Visible = value;
+
+			OnNodeSelectionStateChanged(value);
 		}
 	}
 
 	public Vector2 RawPosition;
 	private const float PositionSnapSize = 16.0F;
+
+	// ~~~~~~~~~~~~~~ Callables ~~~~~~~~~~~~~~ //
+
+	private Callable CallDragged;
+	private Callable CallDragEnded;
 
 	// ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
 
@@ -102,8 +111,8 @@ public partial class EventFlowNodeBase : Node2D
 		Connect(SignalName.NodeModified, Callable.From(Parent.OnNodeModified));
 		Parent.Connect(GraphCanvas.SignalName.DeselectAll, Callable.From(OnNodeDeselected));
 		Parent.Connect(GraphCanvas.SignalName.SelectAll, Callable.From(OnNodeSelected));
-		Parent.Connect(GraphCanvas.SignalName.DragSelection, Callable.From(new Action<Vector2>(OnNodeDragged)));
-		Parent.Connect(GraphCanvas.SignalName.DragSelectionEnded, Callable.From(OnNodeDragEnded));
+
+		InitCallables();
 
 		// Setup node position
 		RawPosition = new Vector2(
@@ -130,6 +139,12 @@ public partial class EventFlowNodeBase : Node2D
 			root.QueueFree();
 			DebugDataDisplay = null;
 		}
+	}
+
+	private void InitCallables()
+	{
+		CallDragged = Callable.From(new Action<Vector2>(OnNodeDragged));
+		CallDragEnded = Callable.From(OnNodeDragEnded);
 	}
 
 	public virtual void InitContent(Nindot.Al.EventFlow.Node content, Graph graph) {}
@@ -194,6 +209,12 @@ public partial class EventFlowNodeBase : Node2D
 		IsSelected = false;
 	}
 
+	private void OnNodeSelectionStateChanged(bool isSelected)
+	{
+		Parent.TryUpdateSignal(GraphCanvas.SignalName.DragSelection, isSelected, CallDragged);
+		Parent.TryUpdateSignal(GraphCanvas.SignalName.DragSelectionEnded, isSelected, CallDragEnded);
+	}
+
 	private void OnNodeColliderDragged(Vector2 dist)
 	{
 		Parent.DragSelectedNodes(dist);
@@ -206,8 +227,6 @@ public partial class EventFlowNodeBase : Node2D
 
 	private void OnNodeDragged(Vector2 dist)
 	{
-		if (!IsSelected) return;
-
 		Vector2 oldPos = Position;
 		RawPosition += dist;
 

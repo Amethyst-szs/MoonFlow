@@ -113,8 +113,6 @@ func _enter_tree() -> void:
 	_sync_project_settings()
 	ProjectSettings.settings_changed.connect(_sync_project_settings)
 	
-	_update_version_in_editor()
-	
 	if STORE_LOCATION == VersionStoreLocation.SCRIPT and not FileAccess.file_exists(SCRIPT_PATH):
 		store_version_as_script(get_version(PackedStringArray(), true, "", 0))
 
