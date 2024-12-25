@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 using Nindot;
@@ -36,12 +37,14 @@ public partial class EventFlowApp : AppScene
 
     // ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
-    private bool IsInitCompleted = false;
+    public bool IsInitCompleted { get; private set; } = false;
 
     // ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
 
     [Signal]
     public delegate void EntryPointListModifiedEventHandler(string oldName, string name);
+    [Signal]
+    public delegate void FileOpenCompleteEventHandler();
 
     #endregion
 
@@ -65,7 +68,7 @@ public partial class EventFlowApp : AppScene
         Scene.NodeHeader.Connect(Header.SignalName.ButtonSave, Callable.From(new Action<bool>(SaveFileInternal)));
     }
 
-    private async void InitEditor()
+    public async void InitEditor()
     {
         IsInitCompleted = false;
 
@@ -87,6 +90,7 @@ public partial class EventFlowApp : AppScene
         }
 
         IsInitCompleted = true;
+        EmitSignal(SignalName.FileOpenComplete);
     }
 
     private async Task InitNodeList()
@@ -96,42 +100,13 @@ public partial class EventFlowApp : AppScene
 
         // Initilize nodes from the Graph data container
         foreach (var node in Graph.Nodes.Values)
-        {
-            if (node.Id == int.MinValue)
-                throw new EventFlowException("Node initilized without an Id!");
-
-            // Create node
-            var factoryMethod = factory.MakeGenericMethod(node.GetType());
-            var nodeEdit = factoryMethod.Invoke(null, null) as EventFlowNodeCommon;
-            GraphNodeHolder.AddChild(nodeEdit);
-
-            // Init main content from event flow graph byml
-            nodeEdit.InitContent(node, Graph);
-
-            // Setup metadata access (Node position, comments, and other additional info)
-            Metadata.Nodes.TryGetValue(node.Id, out NodeMetadata data);
-            nodeEdit.InitContentMetadata(Metadata, data);
-        }
+            InitNode(node, factory);
 
         await ToSignal(Engine.GetMainLoop(), "process_frame");
 
         // Setup node port connections
         foreach (var n in GraphNodeHolder.GetChildren())
-        {
-            var nodeEdit = n as EventFlowNodeCommon;
-
-            var idList = nodeEdit.Content.GetNextIds();
-            if (idList.Length == 0)
-                continue;
-
-            var list = idList.Select(s =>
-            {
-                if (s == int.MinValue) return null;
-                return GraphNodeHolder.GetChild(s) as EventFlowNodeCommon;
-            });
-
-            nodeEdit.SetupConnections(list.ToList());
-        }
+            InitNodeConnections(n);
 
         await ToSignal(Engine.GetMainLoop(), "process_frame");
     }
@@ -159,6 +134,47 @@ public partial class EventFlowApp : AppScene
         }
 
         EmitSignal(SignalName.EntryPointListModified, "", "");
+    }
+
+    private EventFlowNodeCommon InitNode(Nindot.Al.EventFlow.Node node, MethodInfo factory)
+    {
+        if (node.Id == int.MinValue)
+            throw new EventFlowException("Node initilized without an Id!");
+
+        // Create node
+        var factoryMethod = factory.MakeGenericMethod(node.GetType());
+        var nodeEdit = factoryMethod.Invoke(null, null) as EventFlowNodeCommon;
+        GraphNodeHolder.AddChild(nodeEdit);
+
+        // Init main content from event flow graph byml
+        nodeEdit.InitContent(node, Graph);
+
+        // Setup metadata access (Node position, comments, and other additional info)
+        Metadata.Nodes.TryGetValue(node.Id, out NodeMetadata data);
+        nodeEdit.InitContentMetadata(Metadata, data);
+
+        return nodeEdit;
+    }
+
+    private void InitNodeConnections(Godot.Node node)
+    {
+        var t = node.GetType();
+        if (t == typeof(EventFlowEntryPoint) || !t.IsSubclassOf(typeof(EventFlowNodeBase)))
+            return;
+
+        var nodeEdit = node as EventFlowNodeCommon;
+
+        var idList = nodeEdit.Content.GetNextIds();
+        if (idList.Length == 0)
+            return;
+
+        var list = idList.Select(s =>
+        {
+            if (s == int.MinValue) return null;
+            return GraphNodeHolder.FindChild(s.ToString(), true, false) as EventFlowNodeCommon;
+        });
+
+        nodeEdit.SetupConnections(list.ToList());
     }
 
     #endregion
@@ -212,6 +228,21 @@ public partial class EventFlowApp : AppScene
         // Reset flag
         display.UpdateProgress(2, 2);
         IsModified = false;
+    }
+
+    #endregion
+
+    #region Backend Util
+
+    public EventFlowNodeCommon InjectNewNode(Nindot.Al.EventFlow.Node node)
+    {
+        var factory = typeof(EventFlowNodeFactory).GetMethod("Create");
+        return InitNode(node, factory);
+    }
+
+    public void InjectNodeConnections(EventFlowNodeCommon node)
+    {
+        InitNodeConnections(node);
     }
 
     #endregion

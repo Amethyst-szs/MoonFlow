@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ContributorList" load_steps=8 format=3 uid="uid://daifqujnq80l7"]
+[gd_resource type="Resource" script_class="ContributorList" load_steps=9 format=3 uid="uid://daifqujnq80l7"]
 
 [ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_4ty61"]
 [ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_module.gd" id="2_lax34"]
@@ -28,8 +28,14 @@ author = "aaubry"
 name = "YamlDotNet"
 url = "https://github.com/aaubry/YamlDotNet"
 
+[sub_resource type="Resource" id="Resource_abuhm"]
+script = ExtResource("2_lax34")
+author = "Burtsev-Alexey"
+name = "net-object-deep-copy"
+url = "https://github.com/Burtsev-Alexey/net-object-deep-copy"
+
 [resource]
 script = ExtResource("3_3j7fu")
 list_name = "C# Packages"
 list_color = Color(0.646, 0.51, 0.85, 1)
-list = Array[ExtResource("1_4ty61")]([SubResource("Resource_hvqrg"), SubResource("Resource_ve3wk"), SubResource("Resource_cyc1t"), SubResource("Resource_d4eey")])
+list = Array[ExtResource("1_4ty61")]([SubResource("Resource_hvqrg"), SubResource("Resource_ve3wk"), SubResource("Resource_cyc1t"), SubResource("Resource_d4eey"), SubResource("Resource_abuhm")])

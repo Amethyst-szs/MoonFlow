@@ -40,7 +40,7 @@ public partial class EventFlowNodeFork : EventFlowNodeCommon
 		var list = ids.Select(s =>
 		{
 			if (s == int.MinValue) return null;
-			return Application.GraphNodeHolder.GetChild(s) as EventFlowNodeCommon;
+			return Application.GraphNodeHolder.FindChild(s.ToString(), true, false) as EventFlowNodeCommon;
 		});
 			
 		SetupConnections(list.ToList());

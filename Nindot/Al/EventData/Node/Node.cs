@@ -69,6 +69,11 @@ public abstract class Node
             CaseEventList = new();
     }
 
+    public virtual T Clone<T>() where T : Node
+    {
+        return ObjectExtensions.Copy((T)this);
+    }
+
     // ====================================================== //
     // =========== Writing and Dictionary Packing =========== //
     // ====================================================== //
@@ -251,6 +256,11 @@ public abstract class Node
         NodeOptionType type = GetNodeNameOptions(out string[] list);
         if (type == NodeOptionType.ANY_VALUE)
             Name = name;
+    }
+
+    public void SetIdUnsafe(int id)
+    {
+        Id = id;
     }
 
     // ====================================================== //
