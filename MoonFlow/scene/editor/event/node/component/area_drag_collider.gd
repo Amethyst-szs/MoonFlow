@@ -10,6 +10,7 @@ signal node_multiselected
 signal node_deselected
 
 signal node_dragged(dist: Vector2)
+signal node_drag_ended
 
 func _ready() -> void:
 	$Shape.shape = RectangleShape2D.new()
@@ -41,6 +42,9 @@ func _unhandled_input_mouse_button(event: InputEventMouseButton) -> void:
 		get_viewport().set_input_as_handled()
 	else:
 		return
+	
+	if !event.is_pressed():
+		node_drag_ended.emit()
 	
 	if event.shift_pressed:
 		node_multiselected.emit()

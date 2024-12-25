@@ -7,15 +7,15 @@ namespace MoonFlow.Scene.EditorEvent;
 
 public static class GraphNodeClipboardServer
 {
-    private static Dictionary<string, Node> EntryPoints = [];
-    private static List<Node> Nodes = [];
+    private static readonly List<Node> Nodes = [];
+    private static readonly Dictionary<int, Godot.Vector2> NodePositions = [];
 
-    private static Dictionary<int, Godot.Vector2> NodePositions = [];
-
-    public static void Copy(IList<EventFlowNodeCommon> cNodes, IDictionary<string, EventFlowEntryPoint> cEnter)
+    public static void Copy(IList<EventFlowNodeCommon> cNodes)
     {
+        if (cNodes.Count == 0)
+            return;
+        
         // Clear current clipboard contents
-        EntryPoints.Clear();
         Nodes.Clear();
         NodePositions.Clear();
 
@@ -34,7 +34,7 @@ public static class GraphNodeClipboardServer
         var cNodesSrc = cNodes.Select(n => n.Content).ToList();
 
         // Clone all provided nodes into internal list
-        CloneIntoClipboard(cNodesSrc, cEnter);
+        CloneIntoClipboard(cNodesSrc);
 
         var ctx = Nodes.Select(n => n.Id).ToList();
 
@@ -56,6 +56,9 @@ public static class GraphNodeClipboardServer
 
     public static async void Paste(GraphCanvas context)
     {
+        if (Nodes.Count == 0)
+            return;
+        
         // Get list of ids from the paste context
         var ctxNodes = context.Parent.GraphNodeHolder.GetChildren();
         var ctxIdList = new List<int>();
@@ -73,23 +76,11 @@ public static class GraphNodeClipboardServer
         foreach (var node in Nodes)
             ctxIdList.Add(ReassignIdsInList(Nodes, node, ctxIdList));
 
-        // Reassign clipboard entry point names to prevent conflicts with context
-        foreach (var enter in EntryPoints)
-        {
-            if (!context.Graph.EntryPoints.ContainsKey(enter.Key))
-                continue;
-
-            EntryPoints.Remove(enter.Key);
-            EntryPoints.Add(enter.Key + "2", enter.Value);
-        }
-
         // Insert new data into graph data
         var graph = context.Graph;
 
         foreach (var node in Nodes)
             graph.AddNode(node);
-        foreach (var entry in EntryPoints)
-            graph.EntryPoints.Add(entry.Key, entry.Value);
 
         // Inject new nodes into graph
         var nodeEditors = new List<EventFlowNodeCommon>();
@@ -130,26 +121,6 @@ public static class GraphNodeClipboardServer
             var copy = (Node)copyFactory.Invoke(source, []);
 
             Nodes.Add(copy);
-        }
-    }
-
-    private static void CloneIntoClipboard(IList<Node> cNodes, IDictionary<string, EventFlowEntryPoint> cEnter)
-    {
-        var entryTargetList = cEnter.Values.Select(n => n.Connection.Content).ToList();
-
-        for (int i = 0; i < cNodes.Count; i++)
-        {
-            var source = cNodes[i];
-            var type = source.GetType();
-
-            var copyFactory = type.GetMethod("Clone").MakeGenericMethod(type);
-            var copy = (Node)copyFactory.Invoke(source, []);
-
-            Nodes.Add(copy);
-
-            var entryTargetIdx = entryTargetList.FindIndex(n => n == source);
-            if (entryTargetIdx != -1)
-                EntryPoints.Add(cEnter.Keys.ElementAt(entryTargetIdx), copy);
         }
     }
 

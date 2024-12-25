@@ -116,6 +116,7 @@ debug_color = Color(0.221667, 0, 0.7, 0.419608)
 [connection signal="mouse_entered" from="Area_DragCollider" to="Area_DragCollider" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area_DragCollider" to="Area_DragCollider" method="_on_mouse_exited"]
 [connection signal="node_deselected" from="Area_DragCollider" to="." method="OnNodeDeselected"]
+[connection signal="node_drag_ended" from="Area_DragCollider" to="." method="OnNodeColliderDragEnded"]
 [connection signal="node_dragged" from="Area_DragCollider" to="." method="OnNodeColliderDragged"]
 [connection signal="node_multiselected" from="Area_DragCollider" to="." method="OnNodeSelected" binds= [true]]
 [connection signal="node_selected" from="Area_DragCollider" to="." method="OnNodeSelected" binds= [false]]

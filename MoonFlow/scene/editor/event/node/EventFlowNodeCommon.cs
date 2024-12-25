@@ -237,6 +237,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		string txt = "";
 
 		txt += AppendDebugLabel(nameof(Type), GetType().Name);
+		txt += AppendDebugLabel(nameof(RawPosition), RawPosition.ToString("0"));
 		txt += AppendDebugLabel(nameof(Position), Position);
 
 		if (Content != null)

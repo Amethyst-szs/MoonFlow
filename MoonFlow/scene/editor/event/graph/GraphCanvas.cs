@@ -46,10 +46,9 @@ public partial class GraphCanvas : CanvasLayer
 
     private void UnhandledInputCopy()
     {
-        GetSelectedData(out List<EventFlowNodeCommon> nodes,
-            out Dictionary<string, EventFlowEntryPoint> entryPoints);
+        GetSelectedData(out List<EventFlowNodeCommon> nodes);
         
-        GraphNodeClipboardServer.Copy(nodes, entryPoints);
+        GraphNodeClipboardServer.Copy(nodes);
         GetViewport().SetInputAsHandled();
     }
 
@@ -72,6 +71,9 @@ public partial class GraphCanvas : CanvasLayer
     [Signal]
 	public delegate void DragSelectionEventHandler(Vector2 dist);
     [Signal]
+	public delegate void DragSelectionEndedEventHandler();
+
+    [Signal]
 	public delegate void ContentModifiedEventHandler();
     [Signal]
 	public delegate void ToggleDebugDataViewEventHandler(bool isActive);
@@ -85,6 +87,10 @@ public partial class GraphCanvas : CanvasLayer
         dist *= new Vector2(1.0F / Scale.X, 1.0F / Scale.Y);
         EmitSignal(SignalName.DragSelection, dist);
     }
+    public void DragSelectedNodesEnd()
+    {
+        EmitSignal(SignalName.DragSelectionEnded);
+    }
 
     private void SetMouseDragSelectionState(bool isActive) { IsMouseDragSelectionActive = isActive; }
 
@@ -96,26 +102,21 @@ public partial class GraphCanvas : CanvasLayer
 
     #region Utility
 
-    private void GetSelectedData(out List<EventFlowNodeCommon> nodes,
-        out Dictionary<string, EventFlowEntryPoint> enters)
+    private void GetSelectedData(out List<EventFlowNodeCommon> nodes)
     {
         nodes = [];
-        enters = [];
 
         foreach (var child in Parent.GraphNodeHolder.GetChildren())
         {
             var t = child.GetType();
-            if (t != typeof(EventFlowNodeBase) && !t.IsSubclassOf(typeof(EventFlowNodeBase)))
+            if (t != typeof(EventFlowNodeCommon) && !t.IsSubclassOf(typeof(EventFlowNodeCommon)))
                 continue;
             
-            var node = (EventFlowNodeBase)child;
+            var node = (EventFlowNodeCommon)child;
             if (!node.IsSelected)
                 continue;
             
-            if (node is EventFlowEntryPoint point)
-                enters.Add(node.Name, point);
-            else
-                nodes.Add((EventFlowNodeCommon)node);
+            nodes.Add(node);
         }
     }
 

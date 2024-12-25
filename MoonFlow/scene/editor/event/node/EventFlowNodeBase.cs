@@ -103,6 +103,7 @@ public partial class EventFlowNodeBase : Node2D
 		Parent.Connect(GraphCanvas.SignalName.DeselectAll, Callable.From(OnNodeDeselected));
 		Parent.Connect(GraphCanvas.SignalName.SelectAll, Callable.From(OnNodeSelected));
 		Parent.Connect(GraphCanvas.SignalName.DragSelection, Callable.From(new Action<Vector2>(OnNodeDragged)));
+		Parent.Connect(GraphCanvas.SignalName.DragSelectionEnded, Callable.From(OnNodeDragEnded));
 
 		// Setup node position
 		RawPosition = new Vector2(
@@ -198,6 +199,11 @@ public partial class EventFlowNodeBase : Node2D
 		Parent.DragSelectedNodes(dist);
 	}
 
+	private void OnNodeColliderDragEnded()
+	{
+		Parent.DragSelectedNodesEnd();
+	}
+
 	private void OnNodeDragged(Vector2 dist)
 	{
 		if (!IsSelected) return;
@@ -218,6 +224,16 @@ public partial class EventFlowNodeBase : Node2D
 			SetNodeModified();
 		}
 
+		DrawDebugLabel();
+	}
+
+	private void OnNodeDragEnded()
+	{
+		Vector2 snapPos;
+		snapPos.X = MathF.Floor(RawPosition.X / PositionSnapSize) * PositionSnapSize;
+		snapPos.Y = MathF.Floor(RawPosition.Y / PositionSnapSize) * PositionSnapSize;
+
+		RawPosition = snapPos;
 		DrawDebugLabel();
 	}
 
