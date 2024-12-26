@@ -29,7 +29,7 @@ public partial class EventFlowApp : AppScene
     // ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
     [Export, ExportGroup("Internal References")]
-    private GraphCanvas GraphCanvas = null;
+    public GraphCanvas GraphCanvas { get; private set; } = null;
     [Export]
     private CanvasLayer BackgroundCanvas = null;
     [Export]
@@ -49,6 +49,18 @@ public partial class EventFlowApp : AppScene
     #endregion
 
     #region Initilization
+
+    public override void _EnterTree()
+    {
+        // Spawn inject menu if it doesn't already exist
+        var scene = ProjectManager.SceneRoot;
+        if (scene.HasNode(PopupInjectGraphNode.DefaultNodeName))
+            return;
+        
+        var popup = SceneCreator<PopupInjectGraphNode>.Create();
+        popup.Name = PopupInjectGraphNode.DefaultNodeName;
+        scene.AddChild(popup);
+    }
 
     public static EventFlowApp OpenApp(SarcFile arc, string key)
 	{

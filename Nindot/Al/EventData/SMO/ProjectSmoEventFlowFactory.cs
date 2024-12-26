@@ -126,4 +126,16 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         object n = factoryType.GetConstructor([typeof(Dictionary<object, object>)]).Invoke([dict]);
         return (Node)n;
     }
+    public static Node CreateNode(Graph graph, string name)
+    {
+        // Setup a string to access into the factory table
+        var nType = name.Replace("EventFlowNode", "");
+
+        // Ensure this string exists in the factory table
+        if (!FactoryEntries.TryGetValue(nType, out Type factoryType))
+            return new NodeGeneric(graph, name);
+
+        object n = factoryType.GetConstructor([typeof(Graph), typeof(string)]).Invoke([graph, name]);
+        return (Node)n;
+    }
 }

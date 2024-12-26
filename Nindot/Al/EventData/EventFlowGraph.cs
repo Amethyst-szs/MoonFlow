@@ -61,8 +61,13 @@ public partial class Graph
     }
     public int GetNextUnusedNodeId()
     {
-        int maxValue = Nodes.Keys.Max();
-        return Nodes.Keys.ToList().IndexOf(maxValue);
+        var context = Nodes.Select(n => n.Value.Id);
+
+        int? newId = Enumerable.Range(0, int.MaxValue).Except(context).FirstOrDefault();
+        if (newId == null)
+            throw new Exception("Failed to create new node id");
+        
+        return (int)newId;
     }
 
     public string GetNodeEntryPointName(Node node)

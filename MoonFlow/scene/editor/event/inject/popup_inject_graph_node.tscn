@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bovx285ki32a6"]
+
+[ext_resource type="Script" path="res://scene/editor/event/inject/PopupInjectGraphNode.cs" id="1_0ams4"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_pt7cc"]
+[ext_resource type="StyleBox" uid="uid://ddq0lrvtrq2pr" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_panel.tres" id="3_1vumm"]
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="4_ok1qq"]
+[ext_resource type="Theme" uid="uid://bfe7r5pai77uy" path="res://asset/theme/event/inject/node_inject_popup.tres" id="4_v8di6"]
+[ext_resource type="Script" path="res://scene/editor/event/inject/NodeInjectLineSearch.cs" id="5_p7pnm"]
+
+[node name="PopupInjectGraphNode" type="Popup" node_paths=PackedStringArray("ContainerRoot", "ContainerFav")]
+disable_3d = true
+size = Vector2i(384, 432)
+visible = true
+theme = ExtResource("1_pt7cc")
+script = ExtResource("1_0ams4")
+ContainerRoot = NodePath("Panel/Scroll/Content")
+ContainerFav = NodePath("Panel/Scroll/Content/VBox_Favorite")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_1vumm")
+
+[node name="Scroll" type="ScrollContainer" parent="Panel"]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Panel/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_v8di6")
+
+[node name="Line_Search" type="LineEdit" parent="Panel/Scroll/Content"]
+custom_minimum_size = Vector2(344, 0)
+layout_mode = 2
+right_icon = ExtResource("4_ok1qq")
+script = ExtResource("5_p7pnm")
+
+[node name="VBox_Favorite" type="VBoxContainer" parent="Panel/Scroll/Content"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Scroll/Content"]
+layout_mode = 2

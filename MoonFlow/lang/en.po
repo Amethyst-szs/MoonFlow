@@ -2332,6 +2332,108 @@ msgstr ""
 msgid "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
 msgstr "Jump Target:"
 
+#: scene/editor/event/inject/popup_inject_graph_node.tscn
+msgid "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
+msgstr "Search"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DEFAULT"
+msgstr "Default"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ENTRY_POINT"
+msgstr "Entry Point"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "CUSTOM_TYPE"
+msgstr "Custom Node"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ACTOR"
+msgstr "Parent Actor"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "AMIIBO"
+msgstr "Amiibo"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "AUDIO"
+msgstr "Audio Control"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "CAMERA"
+msgstr "Camera"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DIALOUGE"
+msgstr "Dialouge"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DEMO"
+msgstr "Demo / Cutscene"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "EVENT"
+msgstr "Custom Event"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "FLAGS"
+msgstr "Save Flags"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "FLOW"
+msgstr "Graph Flow"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ITEM"
+msgstr "Items"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "PLAYER"
+msgstr "Player"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "QUERY"
+msgstr "Query"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "STAGE"
+msgstr "Stage"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "SWITCH"
+msgstr "Stage Switch"
+
+#: scene/editor/event/meta/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "WIPE"
+msgstr "Wipe Transitions"
+
+#~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+#~ msgid "COIN"
+#~ msgstr "Currency"
+
+#~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+#~ msgid "SHINE"
+#~ msgstr "Shine"
+
 #~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TALK_BALLOON_TOOLTIP"
 #~ msgstr ""
 #~ "Pause the event flow at this point, waiting for the player\n"

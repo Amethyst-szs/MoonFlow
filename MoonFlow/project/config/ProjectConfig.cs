@@ -1,4 +1,4 @@
-using System.IO;
+using System.Collections.Generic;
 using System.Text.Json;
 
 using Nindot.Al.SMO;
@@ -12,6 +12,8 @@ public partial class ProjectConfig : ProjectConfigFileBase
         public RomfsValidation.RomfsVersion Version = RomfsValidation.RomfsVersion.INVALID_VERSION;
         public string DefaultLanguage = "USen";
         public bool IsDebugProject = false;
+
+        public List<string> EventFlowGraphPins = [];
     };
 
     public DataContainer Data { get; private set; } = new();

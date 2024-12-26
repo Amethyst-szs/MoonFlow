@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bfe7r5pai77uy"]
+
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_2h5wf"]
+[ext_resource type="StyleBox" uid="uid://dxf3rs64wfnhv" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_button_focus.tres" id="2_r3k7q"]
+[ext_resource type="Texture2D" uid="uid://gkt4uth2coun" path="res://asset/material/arrow/down.svg" id="2_xi3dl"]
+[ext_resource type="Texture2D" uid="uid://bxdtn8valrbqg" path="res://asset/material/arrow/right.svg" id="3_7u671"]
+[ext_resource type="StyleBox" uid="uid://cbqb5uagsb668" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_button_hover.tres" id="3_te118"]
+[ext_resource type="StyleBox" uid="uid://b2fct0uesa87t" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_button_hover_pressed.tres" id="4_7kql0"]
+[ext_resource type="StyleBox" uid="uid://dyy5pvtkndfkf" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_button_normal.tres" id="5_2kd0o"]
+[ext_resource type="StyleBox" uid="uid://7cc48hnresuf" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_button_pressed.tres" id="6_5oya2"]
+
+[resource]
+Button/constants/icon_max_width = 16
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_2h5wf")
+Button/styles/focus = ExtResource("2_r3k7q")
+Button/styles/hover = ExtResource("3_te118")
+Button/styles/hover_pressed = ExtResource("4_7kql0")
+Button/styles/normal = ExtResource("5_2kd0o")
+Button/styles/pressed = ExtResource("6_5oya2")
+CheckBox/constants/h_separation = 6
+CheckBox/constants/icon_max_width = 20
+CheckBox/font_sizes/font_size = 18
+CheckBox/fonts/font = ExtResource("1_2h5wf")
+CheckBox/icons/checked = ExtResource("2_xi3dl")
+CheckBox/icons/checked_disabled = ExtResource("2_xi3dl")
+CheckBox/icons/unchecked = ExtResource("3_7u671")
+CheckBox/icons/unchecked_disabled = ExtResource("3_7u671")
+CheckBox/styles/focus = ExtResource("2_r3k7q")
+CheckBox/styles/hover = ExtResource("3_te118")
+CheckBox/styles/hover_pressed = ExtResource("4_7kql0")
+CheckBox/styles/normal = ExtResource("5_2kd0o")
+CheckBox/styles/pressed = ExtResource("6_5oya2")
+MarginContainer/constants/margin_left = 16
+MarginContainer/constants/margin_right = 8

@@ -51,9 +51,10 @@ public abstract class Node
     {
         Id = graph.GetNextUnusedNodeId();
         Name = factoryType;
+        TypeBase ??= Name;
 
-        if (GetSupportedParams(out _) != NodeOptionType.NO_OPTIONS)
-            Params = [];
+        Params = [];
+        
         if (IsUseMultipleOutgoingEdges())
             CaseEventList = new();
     }

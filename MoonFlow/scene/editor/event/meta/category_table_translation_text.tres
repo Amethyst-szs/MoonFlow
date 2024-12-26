@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://dn52hjukdto60"]
+
+[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_2oiwn"]
+
+[resource]
+script = ExtResource("1_2oiwn")
+context = "GRAPH_NODE_CATEGORY_TABLE"
+keys = Array[String](["DEFAULT", "ENTRY_POINT", "CUSTOM_TYPE", "ACTOR", "AMIIBO", "CAMERA", "DIALOUGE", "DEMO", "EVENT", "FLAGS", "FLOW", "ITEM", "PLAYER", "QUERY", "STAGE", "WIPE"])

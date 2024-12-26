@@ -10,28 +10,25 @@ public static class MetaCategoryTable
         ENTRY_POINT,
         CUSTOM_TYPE,
 
+        FLOW,
+        EVENT,
         ACTOR,
+        PLAYER,
+        DIALOUGE,
+        ITEM,
+        CAMERA,
+        STAGE,
+        QUERY,
+        DEMO,
+        WIPE,
+        FLAGS,
         AMIIBO,
         AUDIO,
-        CAMERA,
-        COIN,
-        DIALOUGE,
-        DEMO,
-        EVENT,
-        FLAGS,
-        FLOW,
-        ITEM,
-        PLAYER,
-        QUERY,
-        SHINE,
-        STAGE,
-        SWITCH,
-        WIPE,
     }
 
-    private static readonly Dictionary<string, Categories> Table = new(){
+    public static readonly Dictionary<string, Categories> Table = new(){
         { "EntryPoint", Categories.ENTRY_POINT },
-        
+
         { "ActionLoop", Categories.ACTOR },
         { "ActionOneTime", Categories.ACTOR },
         { "ActorBaseMovementEnd", Categories.ACTOR },
@@ -53,14 +50,20 @@ public static class MetaCategoryTable
         { "IsEnableSearchAmiibo", Categories.AMIIBO },
         { "IsTalkAmiiboHelp", Categories.AMIIBO },
 
-        { "BgmCtrl", Categories.AUDIO },
-
         { "AnimCameraStart", Categories.CAMERA },
         { "CameraEnd", Categories.CAMERA },
         { "CameraStart", Categories.CAMERA },
         { "VrGyroReset", Categories.CAMERA },
 
-        { "CoinPayment", Categories.COIN },
+        { "CapMessage", Categories.DIALOUGE },
+        { "CloseTalkMessage", Categories.DIALOUGE },
+        { "CloseTalkMessageNoSe", Categories.DIALOUGE },
+        { "MessageBalloon", Categories.DIALOUGE },
+        { "MessageTalk", Categories.DIALOUGE },
+        { "MessageTalkSpecialPurpose", Categories.DIALOUGE },
+        { "NextTalkMessage", Categories.DIALOUGE },
+        { "SelectChoice", Categories.DIALOUGE },
+        { "SelectYesNo", Categories.DIALOUGE },
 
         { "DemoAction", Categories.DEMO },
         { "DemoCamera", Categories.DEMO },
@@ -85,16 +88,6 @@ public static class MetaCategoryTable
         { "NormalDemoTryStart", Categories.DEMO },
         { "SetDemoInfoDemoName", Categories.DEMO },
 
-        { "CapMessage", Categories.DIALOUGE },
-        { "CloseTalkMessage", Categories.DIALOUGE },
-        { "CloseTalkMessageNoSe", Categories.DIALOUGE },
-        { "MessageBalloon", Categories.DIALOUGE },
-        { "MessageTalk", Categories.DIALOUGE },
-        { "MessageTalkSpecialPurpose", Categories.DIALOUGE },
-        { "NextTalkMessage", Categories.DIALOUGE },
-        { "SelectChoice", Categories.DIALOUGE },
-        { "SelectYesNo", Categories.DIALOUGE },
-
         { "Event", Categories.EVENT },
         { "EventQuery", Categories.EVENT },
 
@@ -110,7 +103,10 @@ public static class MetaCategoryTable
         { "JumpEntry", Categories.FLOW },
         { "WaitSimple", Categories.FLOW },
 
+        { "CoinPayment", Categories.ITEM },
         { "PopItem", Categories.ITEM },
+        { "DirectGetLinkShine", Categories.ITEM },
+        { "PopLinkShine", Categories.ITEM },
 
         { "CheckPlayerOnGround", Categories.PLAYER },
         { "PlayerAction", Categories.PLAYER },
@@ -136,15 +132,12 @@ public static class MetaCategoryTable
         { "CheckYukimaruRaceResult", Categories.QUERY },
         { "SessionWaitMusician", Categories.QUERY },
 
-        { "DirectGetLinkShine", Categories.SHINE },
-        { "PopLinkShine", Categories.SHINE },
-
+        { "BgmCtrl", Categories.STAGE },
         { "ChangeStage", Categories.STAGE },
-
-        { "CheckSwitch", Categories.SWITCH },
-        { "CheckWaitSwitch", Categories.SWITCH },
-        { "SwitchOff", Categories.SWITCH },
-        { "SwitchOn", Categories.SWITCH },
+        { "CheckSwitch", Categories.STAGE },
+        { "CheckWaitSwitch", Categories.STAGE },
+        { "SwitchOff", Categories.STAGE },
+        { "SwitchOn", Categories.STAGE },
 
         { "WaitWipeOpenEnd", Categories.WIPE },
         { "WipeFadeBlackClose", Categories.WIPE },
