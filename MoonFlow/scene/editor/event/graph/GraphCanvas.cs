@@ -12,6 +12,7 @@ public partial class GraphCanvas : CanvasLayer
 
     public Graph Graph { get; protected set; } = null;
 	public EventFlowApp Parent { get; protected set; } = null;
+    public GraphNodeUndoRedoServer UndoRedoServer = null;
 
     public override async void _Ready()
     {
@@ -32,6 +33,9 @@ public partial class GraphCanvas : CanvasLayer
 
         // Set graph reference from app
         Graph = Parent.Graph;
+
+        // Setup undo/redo server
+        UndoRedoServer = new(this);
     }
 
     #endregion
@@ -40,9 +44,11 @@ public partial class GraphCanvas : CanvasLayer
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event.IsActionPressed("ui_copy")) UnhandledInputCopy();
-        if (@event.IsActionPressed("ui_paste")) UnhandledInputPaste();
-        if (@event.IsActionPressed("ui_graph_delete")) UnhandledInputDelete();
+        if (@event.IsActionPressed("ui_copy", false, true)) UnhandledInputCopy();
+        if (@event.IsActionPressed("ui_paste", false, true)) UnhandledInputPaste();
+        if (@event.IsActionPressed("ui_graph_delete", false, true)) UnhandledInputDelete();
+        if (@event.IsActionPressed("ui_undo", false, true)) UnhandledInputUndo();
+        if (@event.IsActionPressed("ui_redo", false, true)) UnhandledInputRedo();
     }
 
     private void UnhandledInputCopy()
@@ -63,6 +69,16 @@ public partial class GraphCanvas : CanvasLayer
         foreach (var node in nodes)
             node.DeleteNode();
         
+        GetViewport().SetInputAsHandled();
+    }
+    private void UnhandledInputUndo()
+    {
+        UndoRedoServer.Undo();
+        GetViewport().SetInputAsHandled();
+    }
+    private void UnhandledInputRedo()
+    {
+        UndoRedoServer.Redo();
         GetViewport().SetInputAsHandled();
     }
 
