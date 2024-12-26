@@ -64,7 +64,7 @@ public partial class GraphCanvas : CanvasLayer
 
     private void UnhandledInputCopy()
     {
-        GetSelectedData(out List<EventFlowNodeCommon> nodes);
+        GetSelectedData(out List<EventFlowNodeCommon> nodes, out _);
 
         GraphNodeClipboardServer.Copy(nodes);
         GetViewport().SetInputAsHandled();
@@ -76,9 +76,13 @@ public partial class GraphCanvas : CanvasLayer
     }
     private void UnhandledInputDelete()
     {
-        GetSelectedData(out List<EventFlowNodeCommon> nodes);
+        GetSelectedData(out List<EventFlowNodeCommon> nodes, out List<EventFlowEntryPoint> enters);
+
         foreach (var node in nodes)
             node.DeleteNode();
+        
+        foreach (var enter in enters)
+            enter.DeleteNode();
 
         GetViewport().SetInputAsHandled();
     }
@@ -161,21 +165,25 @@ public partial class GraphCanvas : CanvasLayer
 
     #region Utility
 
-    private void GetSelectedData(out List<EventFlowNodeCommon> nodes)
+    private void GetSelectedData(out List<EventFlowNodeCommon> nodes, out List<EventFlowEntryPoint> enters)
     {
         nodes = [];
+        enters = [];
 
         foreach (var child in Parent.GraphNodeHolder.GetChildren())
         {
             var t = child.GetType();
-            if (t != typeof(EventFlowNodeCommon) && !t.IsSubclassOf(typeof(EventFlowNodeCommon)))
+            if (!t.IsSubclassOf(typeof(EventFlowNodeBase)))
                 continue;
 
-            var node = (EventFlowNodeCommon)child;
+            var node = (EventFlowNodeBase)child;
             if (!node.IsSelected)
                 continue;
 
-            nodes.Add(node);
+            if (node is EventFlowEntryPoint enter)
+                enters.Add(enter);
+            else
+                nodes.Add((EventFlowNodeCommon)node);
         }
     }
 

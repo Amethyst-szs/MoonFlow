@@ -105,12 +105,25 @@ public partial class PopupInjectGraphNode : Popup
 		if (!IsInstanceValid(Context))
 			return;
 		
+		// If adding an entry point, handle differently
+		if (name == "EntryPoint")
+		{
+			var next = GetNextValidEntryPointName();
+			Context.Graph.EntryPoints.Add(next, null);
+
+			var entryEdit = Context.InjectNewEntryPoint(next);
+
+			entryEdit.SetPosition(Context.GraphCanvas.InjectNodePosition);
+			Hide();
+
+			return;
+		}
+		
 		var node = ProjectSmoEventFlowFactory.CreateNode(Context.Graph, name);
 		Context.Graph.AddNode(node);
 		var nodeEdit = Context.InjectNewNode(node);
 
 		nodeEdit.SetPosition(Context.GraphCanvas.InjectNodePosition);
-
 		Hide();
 	}
 
@@ -146,6 +159,25 @@ public partial class PopupInjectGraphNode : Popup
 			return;
 		
 		ContainerFav.FindChild(name, false, false).QueueFree();
+	}
+
+	#endregion
+
+	#region Utilities
+
+	private string GetNextValidEntryPointName()
+	{
+		var points = Context.Graph.EntryPoints.Keys;
+		int suffixID = 1;
+
+		while (true)
+		{
+			var str = "EntryPoint_" + suffixID.ToString();
+			if (!points.Contains(str))
+				return str;
+			
+			suffixID++;
+		}
 	}
 
 	#endregion

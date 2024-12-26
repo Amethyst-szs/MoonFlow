@@ -211,6 +211,8 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		foreach (var incoming in PortIn.IncomingList)
 			incoming?.CallDeferred("RemoveConnection");
 
+		SetNodeModified();
+
         // Delete content and godot object
 		Graph.RemoveNode(Content);
 		QueueFree();

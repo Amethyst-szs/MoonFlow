@@ -11,6 +11,7 @@ using Nindot.Al.EventFlow.Smo;
 using MoonFlow.Async;
 using MoonFlow.Scene.Main;
 using MoonFlow.Project;
+using System.Collections.Generic;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -126,24 +127,7 @@ public partial class EventFlowApp : AppScene
     private void InitEntryPointNodes()
     {
         foreach (var entry in Graph.EntryPoints)
-        {
-            var id = entry.Value?.Id.ToString();
-            EventFlowNodeCommon target = null;
-
-            if (GraphNodeHolder.HasNode(id))
-                target = GraphNodeHolder.GetNode<EventFlowNodeCommon>(id);
-
-            // Create node
-            var entryEdit = SceneCreator<EventFlowEntryPoint>.Create();
-            GraphNodeHolder.AddChild(entryEdit);
-
-            // Init main content from event flow graph byml
-            entryEdit.InitContent(entry.Key, Graph, target);
-
-            // Setup metadata access (Node position, comments, and other additional info)
-            Metadata.EntryPoints.TryGetValue(entry.Key, out NodeMetadata data);
-            entryEdit.InitContentMetadata(Metadata, data);
-        }
+            InitEntryPoint(entry);
 
         EmitSignal(SignalName.EntryPointListModified, "", "");
     }
@@ -187,6 +171,28 @@ public partial class EventFlowApp : AppScene
         });
 
         nodeEdit.SetupConnections(list.ToList());
+    }
+
+    private EventFlowEntryPoint InitEntryPoint(KeyValuePair<string, Nindot.Al.EventFlow.Node> entry)
+    {
+        var id = entry.Value?.Id.ToString();
+        EventFlowNodeCommon target = null;
+
+        if (GraphNodeHolder.HasNode(id))
+            target = GraphNodeHolder.GetNode<EventFlowNodeCommon>(id);
+
+        // Create node
+        var entryEdit = SceneCreator<EventFlowEntryPoint>.Create();
+        GraphNodeHolder.AddChild(entryEdit);
+
+        // Init main content from event flow graph byml
+        entryEdit.InitContent(entry.Key, Graph, target);
+
+        // Setup metadata access (Node position, comments, and other additional info)
+        Metadata.EntryPoints.TryGetValue(entry.Key, out NodeMetadata data);
+        entryEdit.InitContentMetadata(Metadata, data);
+
+        return entryEdit;
     }
 
     #endregion
@@ -255,6 +261,16 @@ public partial class EventFlowApp : AppScene
     public void InjectNodeConnections(EventFlowNodeCommon node)
     {
         InitNodeConnections(node);
+    }
+
+    public EventFlowEntryPoint InjectNewEntryPoint(string name, EventFlowNodeCommon connection = null)
+    {
+        var pair = new KeyValuePair<string, Nindot.Al.EventFlow.Node>(name, connection?.Content);
+        var entry = InitEntryPoint(pair);
+
+        EmitSignal(SignalName.EntryPointListModified, "", "");
+
+        return entry;
     }
 
     #endregion

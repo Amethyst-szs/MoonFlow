@@ -109,9 +109,13 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 			var jump = (EntryPointJump)node;
 			jump.OnEntryPointDeleted(Name);
 		}
+
+		SetNodeModified();
 		
         // Delete content and godot object
 		Graph.EntryPoints.Remove(Name);
+		Application.Metadata.EntryPoints.Remove(Name);
+		
 		QueueFree();
     }
 
