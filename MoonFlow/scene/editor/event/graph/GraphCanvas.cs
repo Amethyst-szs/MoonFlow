@@ -42,6 +42,7 @@ public partial class GraphCanvas : CanvasLayer
     {
         if (@event.IsActionPressed("ui_copy")) UnhandledInputCopy();
         if (@event.IsActionPressed("ui_paste")) UnhandledInputPaste();
+        if (@event.IsActionPressed("ui_graph_delete")) UnhandledInputDelete();
     }
 
     private void UnhandledInputCopy()
@@ -51,10 +52,17 @@ public partial class GraphCanvas : CanvasLayer
         GraphNodeClipboardServer.Copy(nodes);
         GetViewport().SetInputAsHandled();
     }
-
     private void UnhandledInputPaste()
     {
         GraphNodeClipboardServer.Paste(this);
+        GetViewport().SetInputAsHandled();
+    }
+    private void UnhandledInputDelete()
+    {
+        GetSelectedData(out List<EventFlowNodeCommon> nodes);
+        foreach (var node in nodes)
+            node.DeleteNode();
+        
         GetViewport().SetInputAsHandled();
     }
 

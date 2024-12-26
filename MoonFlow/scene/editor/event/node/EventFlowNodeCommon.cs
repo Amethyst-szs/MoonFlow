@@ -15,7 +15,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	// ~~~~~~~~~~~ Node References ~~~~~~~~~~~ //
 
-	public EventFlowNodeBase[] Connections = [];
+	public EventFlowNodeCommon[] Connections = [];
 
 	// ~~~~~~~~~~~~~~~~~ Data ~~~~~~~~~~~~~~~~ //
 
@@ -69,7 +69,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	public override void SetupConnections(List<EventFlowNodeCommon> list)
 	{
-		Connections = new EventFlowNodeBase[list.Count];
+		Connections = new EventFlowNodeCommon[list.Count];
 
 		for (int i = 0; i < list.Count; i++)
 		{
@@ -201,7 +201,22 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
-	public void OnSetName(int index)
+    public override void DeleteNode()
+    {
+		// Remove self from outgoing connections
+		foreach (var con in Connections)
+			con?.PortIn?.RemoveIncoming(this);
+		
+		// Remove self from incoming connections
+		foreach (var incoming in PortIn.IncomingList)
+			incoming?.CallDeferred("RemoveConnection");
+
+        // Delete content and godot object
+		Graph.RemoveNode(Content);
+		QueueFree();
+    }
+
+    public void OnSetName(int index)
 	{
 		Content.SetName(index);
 

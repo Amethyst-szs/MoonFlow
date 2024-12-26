@@ -64,14 +64,14 @@ public partial class NodeHolder : Node2D
 				// If this node is already sorted, skip it unless it's further left than the current node
 				if (connection.HasMeta("Sort"))
 				{
-					node = (EventFlowNodeCommon)connection;
+					node = connection;
 					continue;
 				}
 
 				var posOffset = node.RootPanel.Size.X + 32.0F;
 				connection.SetPosition(new Vector2(node.Position.X + posOffset, node.Position.Y));
 
-				node = (EventFlowNodeCommon)connection;
+				node = connection;
 				continue;
 			}
 

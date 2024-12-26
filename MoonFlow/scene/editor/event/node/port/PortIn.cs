@@ -66,6 +66,17 @@ public partial class PortIn : TextureRect
 		UpdateDisplay();
 	}
 
+	public void RemoveIncoming(EventFlowNodeCommon n)
+	{
+		foreach (var b in n.PortOutList.GetChildren())
+		{
+			if (b is not PortOut) continue;
+			var port = (PortOut)b;
+
+			RemoveIncoming(port);
+		}
+	}
+
 	private void UpdateDisplay()
 	{
 		// Get color list

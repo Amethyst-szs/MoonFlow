@@ -92,7 +92,30 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
-	private void OnEntryPointNameChanged(string txt)
+    public override void DeleteNode()
+    {
+		// Update connection that we are dead o7
+		foreach (var node in PortOutList.GetChildren())
+		{
+			var port = node as PortOut;
+			Connection?.PortIn.RemoveIncoming(port);
+		}
+
+		// Loop through graph, removing self from jump nodes
+		foreach (var node in Application.GraphNodeHolder.GetChildren())
+		{
+			if (node is not EntryPointJump) continue;
+
+			var jump = (EntryPointJump)node;
+			jump.OnEntryPointDeleted(Name);
+		}
+		
+        // Delete content and godot object
+		Graph.EntryPoints.Remove(Name);
+		QueueFree();
+    }
+
+    private void OnEntryPointNameChanged(string txt)
 	{
 		SetNodeModified();
 

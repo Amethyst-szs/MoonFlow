@@ -91,7 +91,7 @@ public partial class EventFlowNodeBase : Node2D
 		// Godot doesn't properly support abstract classes so this has to be a runtime check
 		if (GetType() == typeof(EventFlowNodeBase))
 			throw new Exception("Base class should not be constructed!");
-		
+
 		// Search upward for parent graph and application
 		Godot.Node nextParent = this;
 		while (Parent == null || Application == null)
@@ -102,7 +102,7 @@ public partial class EventFlowNodeBase : Node2D
 
 			if (nextParent.GetType() == typeof(GraphCanvas))
 				Parent = nextParent as GraphCanvas;
-			
+
 			if (nextParent.GetType() == typeof(EventFlowApp))
 				Application = nextParent as EventFlowApp;
 		}
@@ -147,10 +147,10 @@ public partial class EventFlowNodeBase : Node2D
 		CallDragEnded = Callable.From(OnNodeDragEnded);
 	}
 
-	public virtual void InitContent(Nindot.Al.EventFlow.Node content, Graph graph) {}
-	public virtual void InitContent(string entryName, Graph graph, EventFlowNodeCommon target)  {}
-	public virtual void SetupConnections(List<EventFlowNodeCommon> list)  {}
-	protected virtual void InitParamEditor() {}
+	public virtual void InitContent(Nindot.Al.EventFlow.Node content, Graph graph) { }
+	public virtual void InitContent(string entryName, Graph graph, EventFlowNodeCommon target) { }
+	public virtual void SetupConnections(List<EventFlowNodeCommon> list) { }
+	protected virtual void InitParamEditor() { }
 
 	public virtual bool InitContentMetadata(GraphMetadata holder, NodeMetadata data)
 	{
@@ -182,7 +182,7 @@ public partial class EventFlowNodeBase : Node2D
 		outPort.Connect(PortOut.SignalName.PortConnected, Callable.From(
 			new Action<PortOut, PortIn>(OnConnectionChanged)
 		));
-		
+
 		outPort.PortColor = DefaultPortOutColor;
 		return outPort;
 	}
@@ -259,7 +259,7 @@ public partial class EventFlowNodeBase : Node2D
 	public void OffsetPosition(Vector2 offset) { OnNodeDragged(offset); }
 	public void OffsetPositionX(float offset) { OnNodeDragged(new Vector2(offset, 0)); }
 	public void OffsetPositionY(float offset) { OnNodeDragged(new Vector2(0, offset)); }
-	
+
 	public new void SetPosition(Vector2 pos)
 	{
 		Vector2 oldPos = Position;
@@ -291,7 +291,9 @@ public partial class EventFlowNodeBase : Node2D
 
 	#region Signals
 
-	protected virtual void OnConnectionChanged(PortOut port, PortIn connection) {}
+	protected virtual void OnConnectionChanged(PortOut port, PortIn connection) { }
+	public virtual void DeleteNode() { }
+
 	protected void SetDebugVisiblity(bool isActive)
 	{
 		if (IsInstanceValid(DebugDataDisplay))
@@ -304,7 +306,7 @@ public partial class EventFlowNodeBase : Node2D
 
 	protected void SetNodeModified() { EmitSignal(SignalName.NodeModified); }
 
-	protected virtual void DrawDebugLabel() {}
+	protected virtual void DrawDebugLabel() { }
 	protected static string AppendDebugLabel(string property, object value)
 	{
 		return property + ": " + value.ToString() + "\n";

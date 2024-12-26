@@ -282,4 +282,14 @@ public partial class PortOut : TextureRect
 	}
 
 	#endregion
+
+	#region Utility
+
+	public void RemoveConnection()
+	{
+		if (Connection != null)
+			Connection = null;
+	}
+
+	#endregion
 }

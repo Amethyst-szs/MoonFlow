@@ -126,7 +126,7 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		lastPort.Connection = null;
 		lastPort.QueueFree();
 
-		var newList = new EventFlowNodeBase[1];
+		var newList = new EventFlowNodeCommon[1];
 		newList[0] = Connections[0];
 		Connections = newList;
 

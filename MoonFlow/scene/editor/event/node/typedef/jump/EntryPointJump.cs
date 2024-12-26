@@ -34,6 +34,15 @@ public partial class EntryPointJump : EventFlowNodeCommon
 
 	#region Signals
 
+	public void OnEntryPointDeleted(string name)
+	{
+		if (NodeJump.JumpEntryName != name)
+			return;
+		
+		JumpList.Select(-1);
+		OnEntryPointJumpTargetSelected(-1);
+	}
+
 	private void OnEntryPointListModified(string oldName, string name)
 	{
 		JumpList.Clear();
@@ -55,6 +64,12 @@ public partial class EntryPointJump : EventFlowNodeCommon
 
 	private void OnEntryPointJumpTargetSelected(int idx)
 	{
+		if (idx == -1)
+		{
+			NodeJump.JumpEntryName = "__NULL__";
+			return;
+		}
+
 		var name = Graph.EntryPoints.Keys.ElementAt(idx);
 		NodeJump.JumpEntryName = name;
 	}
