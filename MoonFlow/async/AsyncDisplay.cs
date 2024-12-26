@@ -103,7 +103,7 @@ public partial class AsyncDisplay : Control
             return null;
 
         var display = SceneCreator<AsyncDisplay>.Create();
-        ProjectManager.SceneRoot.NodeAsync.AddChild(display);
+        ProjectManager.SceneRoot.NodeAlerts.AddChild(display);
         display.Setup(type);
         return display;
     }

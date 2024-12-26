@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=23 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://qcjh1t51akmr" path="res://scene/front_door/front_door.tscn" id="9_1ew1g"]
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
 [ext_resource type="Script" path="res://scene/main/display_server_setup.gd" id="13_jlow7"]
+[ext_resource type="Script" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlewa"]
 
@@ -86,7 +87,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("5_7wt0y")
 
-[node name="File" type="PopupMenu" parent="Content/Header/Content/Actionbar" node_paths=PackedStringArray("CloseCurrentAppButton")]
+[node name="File" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
 size = Vector2i(250, 100)
 item_count = 5
@@ -101,7 +102,6 @@ item_3/separator = true
 item_4/text = "MAIN_ACTIONBAR_FILE_CLOSE"
 item_4/id = 3
 script = ExtResource("5_2c21b")
-CloseCurrentAppButton = NodePath("../../Button_Close")
 
 [node name="Project" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
@@ -160,7 +160,7 @@ custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 script = ExtResource("4_kco4x")
 
-[node name="Async" type="VBoxContainer" parent="."]
+[node name="Alert" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -171,6 +171,7 @@ anchor_bottom = 0.98
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
+script = ExtResource("14_dvyda")
 
 [node name="BootAnimation" type="PanelContainer" parent="."]
 visible = false

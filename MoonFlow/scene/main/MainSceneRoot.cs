@@ -13,14 +13,14 @@ public partial class MainSceneRoot : Control
     public Header NodeHeader = null;
     public Control NodeApps = null;
     public Taskbar NodeTaskbar = null;
-    public VBoxContainer NodeAsync = null;
+    public VBoxContainer NodeAlerts = null;
 
     public override void _Ready()
     {
         NodeHeader = GetNode<Header>("%Header");
         NodeApps = GetNode<Control>("%Apps");
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
-        NodeAsync = GetNode<VBoxContainer>("%Async");
+        NodeAlerts = GetNode<VBoxContainer>("%Alert");
 
         // Add self-reference to ProjectManager
         ProjectManager.SceneRoot = this;
@@ -115,7 +115,7 @@ public partial class MainSceneRoot : Control
         {
             if (app is HomeRoot)
                 continue;
-            
+
             var res = app.AppClose(true);
             if (res != null)
             {

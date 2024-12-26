@@ -1,0 +1,44 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dskvusrskxbgf"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_v3hih"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="2_0f6ht"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4aw47"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0562916, 0.0562916, 0.0562915, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.333333)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e34qf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8domg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_bottom = 6.0
+
+[resource]
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_v3hih")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_4aw47")
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_e34qf")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_8domg")
+RichTextLabel/colors/default_color = Color(0.728822, 0.728822, 0.728822, 1)
+RichTextLabel/constants/line_separation = 2
+RichTextLabel/font_sizes/normal_font_size = 15
+RichTextLabel/fonts/bold_font = ExtResource("1_v3hih")
+RichTextLabel/fonts/normal_font = ExtResource("2_0f6ht")
