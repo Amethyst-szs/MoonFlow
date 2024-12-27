@@ -64,7 +64,7 @@ public partial class NodeInjectButton : Button
 		var category = MetaCategoryTable.Lookup(name);
 		var color = MetaDefaultColorLookupTable.Lookup(category);
 
-		TooltipText = Tr(Enum.GetName(category), "GRAPH_NODE_CATEGORY_TABLE");
+		TooltipText = Tr(Enum.GetName(category), "GRAPH_NODE_CATEGORY_TABLE") + '\n' + name;
 		SelfModulate = color.Lightened(0.15F);
 
 		var config = ProjectManager.GetProject().Config;

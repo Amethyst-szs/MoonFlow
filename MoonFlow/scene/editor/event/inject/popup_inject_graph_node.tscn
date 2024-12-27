@@ -47,3 +47,5 @@ layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Panel/Scroll/Content"]
 layout_mode = 2
+
+[connection signal="text_changed" from="Panel/Scroll/Content/Line_Search" to="." method="OnSearchUpdated"]
