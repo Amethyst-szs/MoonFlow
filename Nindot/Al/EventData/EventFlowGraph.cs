@@ -57,6 +57,9 @@ public partial class Graph
 
     public Node GetNode(int id)
     {
+        if (id == int.MinValue)
+            return null;
+        
         return Nodes[id];
     }
     public int GetNextUnusedNodeId()

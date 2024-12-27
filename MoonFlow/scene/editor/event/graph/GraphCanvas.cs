@@ -57,6 +57,7 @@ public partial class GraphCanvas : CanvasLayer
 
         if (@event.IsActionPressed("ui_copy", false, true)) UnhandledInputCopy();
         if (@event.IsActionPressed("ui_paste", false, true)) UnhandledInputPaste();
+        if (@event.IsActionPressed("ui_graph_duplicate", false, true)) UnhandledInputDuplicate();
         if (@event.IsActionPressed("ui_graph_delete", false, true)) UnhandledInputDelete();
         if (@event.IsActionPressed("ui_undo", false, true)) UnhandledInputUndo();
         if (@event.IsActionPressed("ui_redo", false, true)) UnhandledInputRedo();
@@ -69,9 +70,16 @@ public partial class GraphCanvas : CanvasLayer
         GraphNodeClipboardServer.Copy(nodes);
         GetViewport().SetInputAsHandled();
     }
-    private void UnhandledInputPaste()
+    private async void UnhandledInputPaste()
     {
-        GraphNodeClipboardServer.Paste(this);
+        await GraphNodeClipboardServer.Paste(this);
+        GetViewport().SetInputAsHandled();
+    }
+    private void UnhandledInputDuplicate()
+    {
+        GetSelectedData(out List<EventFlowNodeCommon> nodes, out _);
+
+        GraphNodeClipboardServer.Duplicate(nodes, this);
         GetViewport().SetInputAsHandled();
     }
     private void UnhandledInputDelete()
@@ -157,8 +165,8 @@ public partial class GraphCanvas : CanvasLayer
     [Signal]
     public delegate void ToggleDebugDataViewEventHandler(bool isActive);
 
-    private void DeselectAllNodes() { EmitSignal(SignalName.DeselectAll); }
-    private void SelectAllNodes() { EmitSignal(SignalName.SelectAll); }
+    public void DeselectAllNodes() { EmitSignal(SignalName.DeselectAll); }
+    public void SelectAllNodes() { EmitSignal(SignalName.SelectAll); }
     public void DragSelectedNodes(Vector2 dist)
     {
         if (IsMouseDragSelectionActive)

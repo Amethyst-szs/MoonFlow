@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Nindot.Al.EventFlow;
 
 namespace MoonFlow.Scene.EditorEvent;
@@ -54,10 +55,10 @@ public static class GraphNodeClipboardServer
             ctx.Add(ReassignIdsInList(Nodes, node, ctx));
     }
 
-    public static async void Paste(GraphCanvas context)
+    public static async Task<List<EventFlowNodeCommon>> Paste(GraphCanvas context)
     {
         if (Nodes.Count == 0)
-            return;
+            return [];
         
         // Get list of ids from the paste context
         var ctxNodes = context.Parent.GraphNodeHolder.GetChildren();
@@ -108,6 +109,19 @@ public static class GraphNodeClipboardServer
         Nodes.Clear();
 
         CloneIntoClipboard(list);
+
+        return nodeEditors;
+    }
+
+    public static async void Duplicate(IList<EventFlowNodeCommon> cNodes, GraphCanvas context)
+    {
+        Copy(cNodes);
+        var list = await Paste(context);
+
+        // Select all nodes in clipboard
+        context.DeselectAllNodes();
+        foreach (var item in list)
+            item.SetSelectedMulti();
     }
 
     private static void CloneIntoClipboard(IList<Node> cNodes)

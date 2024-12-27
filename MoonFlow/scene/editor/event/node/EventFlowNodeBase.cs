@@ -192,6 +192,7 @@ public partial class EventFlowNodeBase : Node2D
 	#region Selection
 
 	public void SetSelected() { OnNodeSelected(false); }
+	public void SetSelectedMulti() { OnNodeSelected(true); }
 	private void OnNodeSelected() { OnNodeSelected(true); }
 	private void OnNodeSelected(bool isMultiselect)
 	{

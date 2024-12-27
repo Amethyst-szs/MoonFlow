@@ -57,7 +57,7 @@ public class NodeJoin : Node
         if (!base.TryWriteBuild(out build))
             return false;
 
-        build["PreIdList"] = PreIdList;
+        build["PreIdList"] = PreIdList.Select(id => id != int.MinValue);
         return true;
     }
 

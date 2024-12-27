@@ -1684,7 +1684,7 @@ msgstr "Query"
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "Fork"
-msgstr "Split"
+msgstr "Fork"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"

@@ -57,7 +57,7 @@ public class NodeFork : Node
         if (!base.TryWriteBuild(out build))
             return false;
 
-        build["NextIdList"] = NextIdList;
+        build["NextIdList"] = NextIdList.Select(id => id != int.MinValue);
         return true;
     }
 
