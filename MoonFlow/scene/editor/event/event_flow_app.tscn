@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=25 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cy0acrnosdjdw" path="res://asset/material/graph/zoom_out.svg" id="10_k8svk"]
 [ext_resource type="Texture2D" uid="uid://w3rxhvslqs13" path="res://asset/material/graph/zoom_reset.svg" id="11_uvpj5"]
 [ext_resource type="Texture2D" uid="uid://kgy23al2n62k" path="res://asset/material/graph/zoom_in.svg" id="12_570rd"]
-[ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/sort_selection.svg" id="12_bb2ug"]
 [ext_resource type="Texture2D" uid="uid://dti6ok2kka208" path="res://asset/material/debug/debug.svg" id="12_scho0"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="14_co2bl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
 shader = ExtResource("3_budwu")
@@ -23,6 +23,18 @@ shader_parameter/dot_size = Vector2(45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3jgl"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_mfvuv"]
+action = &"ui_graph_reset_zoom"
+
+[sub_resource type="Shortcut" id="Shortcut_e8ok1"]
+events = [SubResource("InputEventAction_mfvuv")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_hoajv"]
+action = &"ui_graph_inject"
+
+[sub_resource type="Shortcut" id="Shortcut_8p0il"]
+events = [SubResource("InputEventAction_hoajv")]
+
 [sub_resource type="GDScript" id="GDScript_mtjrf"]
 script/source = "extends HBoxContainer
 
@@ -30,6 +42,12 @@ func _ready():
 	if !OS.is_debug_build():
 		queue_free()
 "
+
+[sub_resource type="InputEventAction" id="InputEventAction_lu5vy"]
+action = &"ui_toggle_debug"
+
+[sub_resource type="Shortcut" id="Shortcut_bx36p"]
+events = [SubResource("InputEventAction_lu5vy")]
 
 [node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder")]
 layout_mode = 3
@@ -101,22 +119,28 @@ theme_override_constants/separation = 8
 
 [node name="Button_ZoomOut" type="Button" parent="Header/UI/HBox_ZoomControl"]
 layout_mode = 2
+tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
 icon = ExtResource("10_k8svk")
 
 [node name="Button_ZoomReset" type="Button" parent="Header/UI/HBox_ZoomControl"]
 layout_mode = 2
+tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_RESET"
+shortcut = SubResource("Shortcut_e8ok1")
 icon = ExtResource("11_uvpj5")
 
 [node name="Button_ZoomIn" type="Button" parent="Header/UI/HBox_ZoomControl"]
 layout_mode = 2
+tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
 icon = ExtResource("12_570rd")
 
 [node name="HBox_Tools" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
 
-[node name="Button_ArrangeSelection" type="Button" parent="Header/UI/HBox_Tools"]
+[node name="Button_InjectNode" type="Button" parent="Header/UI/HBox_Tools"]
 layout_mode = 2
-icon = ExtResource("12_bb2ug")
+tooltip_text = "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
+shortcut = SubResource("Shortcut_8p0il")
+icon = ExtResource("14_co2bl")
 
 [node name="HBox_DebugControl" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
@@ -124,7 +148,9 @@ script = SubResource("GDScript_mtjrf")
 
 [node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_DebugControl"]
 layout_mode = 2
+tooltip_text = "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
 toggle_mode = true
+shortcut = SubResource("Shortcut_bx36p")
 icon = ExtResource("12_scho0")
 
 [connection signal="ContentModified" from="Graph" to="." method="OnFileModified"]
@@ -135,4 +161,5 @@ icon = ExtResource("12_scho0")
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
+[connection signal="pressed" from="Header/UI/HBox_Tools/Button_InjectNode" to="Graph" method="OpenInjectMenu"]
 [connection signal="toggled" from="Header/UI/HBox_DebugControl/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]

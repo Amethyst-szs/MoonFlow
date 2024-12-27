@@ -39,6 +39,7 @@ theme = ExtResource("4_v8di6")
 [node name="Line_Search" type="LineEdit" parent="Panel/Scroll/Content"]
 custom_minimum_size = Vector2(344, 0)
 layout_mode = 2
+placeholder_text = "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
 right_icon = ExtResource("4_ok1qq")
 script = ExtResource("5_p7pnm")
 

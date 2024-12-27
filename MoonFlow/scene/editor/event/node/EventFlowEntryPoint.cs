@@ -92,8 +92,8 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
-    public override void DeleteNode()
-    {
+	public override void DeleteNode()
+	{
 		// Update connection that we are dead o7
 		foreach (var node in PortOutList.GetChildren())
 		{
@@ -111,20 +111,20 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		}
 
 		SetNodeModified();
-		
-        // Delete content and godot object
+
+		// Delete content and godot object
 		Graph.EntryPoints.Remove(Name);
 		Application.Metadata.EntryPoints.Remove(Name);
-		
-		QueueFree();
-    }
 
-    private void OnEntryPointNameChanged(string txt)
+		QueueFree();
+	}
+
+	private void OnEntryPointNameChanged(string txt)
 	{
 		SetNodeModified();
 
 		var oldName = Name;
-		
+
 		if (Graph.EntryPoints.ContainsKey(txt))
 		{
 			var caret = NameEdit.CaretColumn;

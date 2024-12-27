@@ -17,7 +17,7 @@ public partial class NodeInjectButton : Button
 		set
 		{
 			_isPin = value;
-			
+
 			if (value)
 			{
 				Icon = PinIcon;
@@ -36,21 +36,21 @@ public partial class NodeInjectButton : Button
 	// ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
 
 	[Signal]
-    public delegate void PinAddedEventHandler(string name);
+	public delegate void PinAddedEventHandler(string name);
 	[Signal]
-    public delegate void PinRemovedEventHandler(string name);
+	public delegate void PinRemovedEventHandler(string name);
 	[Signal]
-    public delegate void InjectSelectedEventHandler(string name);
+	public delegate void InjectSelectedEventHandler(string name);
 
 	#endregion
 
-    public override void _EnterTree()
-    {
+	public override void _EnterTree()
+	{
 		ActionMode = ActionModeEnum.Press;
-        ButtonMask = MouseButtonMask.Left | MouseButtonMask.Right;
+		ButtonMask = MouseButtonMask.Left | MouseButtonMask.Right;
 		IconAlignment = HorizontalAlignment.Right;
-    }
-    public override void _Ready()
+	}
+	public override void _Ready()
 	{
 		Pressed += OnPressed;
 	}
@@ -72,6 +72,16 @@ public partial class NodeInjectButton : Button
 		{
 			_isPin = true;
 			Icon = PinIcon;
+		}
+
+		// Disable if name is part of the version exclusivity table and project is earlier than that version
+		var ver = config.Data.Version;
+		var nodeVer = MetaVersionExclusivityTable.Lookup(name);
+		if (ver < nodeVer)
+		{
+			Disabled = true;
+			TooltipText = Tr("FRONT_DOOR_NEW_PROJECT_VERSION_SELECT_HEADER")
+				+ ' ' + Enum.GetName(nodeVer);
 		}
 
 		// Connect self to context
@@ -104,7 +114,7 @@ public partial class NodeInjectButton : Button
 	{
 		if (name != Name)
 			return;
-		
+
 		IsPin = false;
 	}
 }

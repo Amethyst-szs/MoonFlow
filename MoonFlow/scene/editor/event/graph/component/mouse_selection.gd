@@ -19,11 +19,11 @@ func _ready() -> void:
 	hide()
 
 func _on_visiblity_changed() -> void:
-	monitorable = visible
-	is_active = visible
-	
 	position = Vector2.ZERO
 	(shape.shape as RectangleShape2D).size = Vector2.ZERO
+	
+	monitorable = visible
+	is_active = visible
 	
 	if is_active:
 		if is_hold_shift:

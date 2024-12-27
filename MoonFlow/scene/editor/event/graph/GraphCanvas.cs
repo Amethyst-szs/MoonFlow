@@ -50,7 +50,7 @@ public partial class GraphCanvas : CanvasLayer
             if (m.ButtonIndex != MouseButton.Right || !m.Pressed)
                 return;
 
-            TryOpenInjectMenu();
+            OpenInjectMenuFromMouse();
             GetViewport().SetInputAsHandled();
             return;
         }
@@ -101,14 +101,15 @@ public partial class GraphCanvas : CanvasLayer
 
     #region Inject Menu
 
-    public Vector2 InjectNodePosition = Vector2.Zero;
+    public Vector2 InjectNodePosition { get; private set; } = Vector2.Zero;
     private Vector2 InjectScreenPosition = Vector2.Zero;
 
-    private void TryOpenInjectMenu()
+    private void OpenInjectMenuFromMouse()
     {
         // Copy the position of the mouse pointer into the inject target
         var mouse = Parent.GetLocalMousePosition();
-        InjectNodePosition = mouse - Offset;
+        var factor = Vector2.One / Scale;
+        InjectNodePosition = mouse - (Offset * factor);
 
         InjectScreenPosition = Parent.GetGlobalMousePosition();
 
@@ -118,6 +119,22 @@ public partial class GraphCanvas : CanvasLayer
             throw new Exception("Could not access PopupInjectGraphNode!");
         
         popup.SetupWithContext(Parent);
+    }
+    private void OpenInjectMenu()
+    {
+        // Copy the position of the mouse pointer into the inject target
+        var center = GetWindow().Size / 2;
+        var factor = Vector2.One / Scale;
+        InjectNodePosition = center - (Offset * factor);
+
+        InjectScreenPosition = center;
+
+        // Access inject menu
+        var node = ProjectManager.SceneRoot.FindChild(PopupInjectGraphNode.DefaultNodeName, false, false);
+        if (node is not PopupInjectGraphNode popup)
+            throw new Exception("Could not access PopupInjectGraphNode!");
+        
+        popup.SetupWithContextCentered(Parent);
     }
 
     #endregion

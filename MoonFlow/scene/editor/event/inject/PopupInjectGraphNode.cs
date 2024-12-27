@@ -94,6 +94,12 @@ public partial class PopupInjectGraphNode : Popup
 		Popup();
 	}
 
+	public void SetupWithContextCentered(EventFlowApp context)
+	{
+		Context = context;
+		PopupCentered();
+	}
+
 	#endregion
 
 	#region Signals

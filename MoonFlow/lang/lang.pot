@@ -54,6 +54,7 @@
 # res://scene/editor/event/node/typedef/jump/entry_point_jump.tscn
 # res://scene/editor/event/inject/popup_inject_graph_node.tscn
 # res://scene/editor/event/meta/category_table_translation_text.tres
+# res://scene/editor/event/event_flow_app.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2369,11 +2370,6 @@ msgstr ""
 
 #: scene/editor/event/meta/category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "AUDIO"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 msgid "CAMERA"
 msgstr ""
 
@@ -2424,10 +2420,25 @@ msgstr ""
 
 #: scene/editor/event/meta/category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "SWITCH"
+msgid "WIPE"
 msgstr ""
 
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "WIPE"
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
+msgstr ""
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_ZOOM_RESET"
+msgstr ""
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
+msgstr ""
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
+msgstr ""
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
 msgstr ""

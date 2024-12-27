@@ -14,9 +14,9 @@ public partial class EntryPointJump : EventFlowNodeCommon
 	[Export]
 	private OptionButton JumpList;
 
-    public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
-    {
-        base.InitContent(content, graph);
+	public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
+	{
+		base.InitContent(content, graph);
 
 		// Setup references and colors
 		NodeJump = (NodeJumpEntry)content;
@@ -30,7 +30,7 @@ public partial class EntryPointJump : EventFlowNodeCommon
 		// Connect to event from application
 		Application.Connect(EventFlowApp.SignalName.EntryPointListModified,
 			Callable.From(new Action<string, string>(OnEntryPointListModified)));
-    }
+	}
 
 	#region Signals
 
@@ -38,7 +38,7 @@ public partial class EntryPointJump : EventFlowNodeCommon
 	{
 		if (NodeJump.JumpEntryName != name)
 			return;
-		
+
 		JumpList.Select(-1);
 		OnEntryPointJumpTargetSelected(-1);
 	}
@@ -48,7 +48,7 @@ public partial class EntryPointJump : EventFlowNodeCommon
 		JumpList.Clear();
 
 		var newIdx = -1;
-		
+
 		for (var i = 0; i < Graph.EntryPoints.Count; i++)
 		{
 			var point = Graph.EntryPoints.ElementAt(i).Key;
@@ -57,7 +57,7 @@ public partial class EntryPointJump : EventFlowNodeCommon
 			if (point == name)
 				newIdx = i;
 		}
-		
+
 		if (oldName == NodeJump.JumpEntryName && newIdx != -1)
 			JumpList.Select(newIdx);
 	}

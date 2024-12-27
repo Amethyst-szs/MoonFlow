@@ -12,7 +12,7 @@ script = ExtResource("1_7s7lh")
 ParamHolder = NodePath("Content/Display/Params")
 ParamAddDropdownHolder = NodePath("Content/Display/ParamAdditionalOptions")
 NameOptionButton = NodePath("Content/Display/HBox_Name/Menu_Options")
-PortColorList = [Color(0.34, 1, 0.34, 1), Color(1, 0.53, 0.53, 1)]
+PortColorList = [Color(0.34, 1, 0.34, 1), Color(1, 0.53, 0.53, 1), Color(0.53, 0.913833, 1, 1), Color(0.9295, 0.53, 1, 1), Color(0.937333, 1, 0.53, 1), Color(0.53, 1, 0.702333, 1)]
 
 [node name="Menu_Options" type="MenuButton" parent="Content/Display/HBox_Name" index="1"]
 layout_mode = 2

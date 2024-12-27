@@ -120,7 +120,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 			foreach (var p in Content.Params)
 				EventNodeParamFactory.CreateParamEditor(this, (string)p.Key, p.Value.GetType());
-			
+
 			return;
 		}
 
@@ -137,7 +137,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 	{
 		if (!IsInstanceValid(NameOptionButton))
 			return;
-		
+
 		var popup = NameOptionButton.GetPopup();
 
 		popup.Clear();
@@ -201,24 +201,24 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 
-    public override void DeleteNode()
-    {
+	public override void DeleteNode()
+	{
 		// Remove self from outgoing connections
 		foreach (var con in Connections)
 			con?.PortIn?.RemoveIncoming(this);
-		
+
 		// Remove self from incoming connections
 		foreach (var incoming in PortIn.IncomingList)
 			incoming?.CallDeferred("RemoveConnection");
 
 		SetNodeModified();
 
-        // Delete content and godot object
+		// Delete content and godot object
 		Graph.RemoveNode(Content);
 		QueueFree();
-    }
+	}
 
-    public void OnSetName(int index)
+	public void OnSetName(int index)
 	{
 		Content.SetName(index);
 
@@ -240,7 +240,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		OnNodeNameModified();
 	}
 
-	protected virtual void OnNodeNameModified() {}
+	protected virtual void OnNodeNameModified() { }
 
 	#endregion
 

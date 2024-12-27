@@ -2363,11 +2363,6 @@ msgstr "Amiibo"
 
 #: scene/editor/event/meta/category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "AUDIO"
-msgstr "Audio Control"
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 msgid "CAMERA"
 msgstr "Camera"
 
@@ -2418,13 +2413,36 @@ msgstr "Stage"
 
 #: scene/editor/event/meta/category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "SWITCH"
-msgstr "Stage Switch"
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 msgid "WIPE"
 msgstr "Wipe Transitions"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
+msgstr "Zoom Out"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_ZOOM_RESET"
+msgstr "Reset Zoom"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
+msgstr "Zoom In"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
+msgstr "Add Node"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
+msgstr "Debug Display"
+
+#~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+#~ msgid "AUDIO"
+#~ msgstr "Audio Control"
+
+#~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+#~ msgid "SWITCH"
+#~ msgstr "Stage Switch"
 
 #~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 #~ msgid "COIN"
