@@ -104,9 +104,9 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		// Loop through graph, removing self from jump nodes
 		foreach (var node in Application.GraphNodeHolder.GetChildren())
 		{
-			if (node is not EntryPointJump) continue;
+			if (node is not EventFlowNodeEntryJump) continue;
 
-			var jump = (EntryPointJump)node;
+			var jump = (EventFlowNodeEntryJump)node;
 			jump.OnEntryPointDeleted(Name);
 		}
 

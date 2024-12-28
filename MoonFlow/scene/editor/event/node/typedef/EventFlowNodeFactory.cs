@@ -9,10 +9,11 @@ namespace MoonFlow.Scene.EditorEvent;
 public static class EventFlowNodeFactory
 {
     private static readonly Dictionary<Type, string> FactoryEntries = new(){
-        { typeof(NodeFork), "fork/fork.tscn" },
-        { typeof(NodeJoin), "join/join.tscn" },
-        { typeof(NodeJumpEntry), "jump/entry_point_jump.tscn" },
+        { typeof(NodeFork), "flow/fork.tscn" },
+        { typeof(NodeJoin), "flow/join.tscn" },
+        { typeof(NodeJumpEntry), "flow/entry_point_jump.tscn" },
 
+        { typeof(NodeCapMessage), "cap_message/cap_message.tscn" },
         { typeof(NodeMessageBalloon), "balloon/balloon.tscn" },
         { typeof(NodeMessageTalk), "talk/talk.tscn" },
         { typeof(NodeSelectChoice), "talk/choice.tscn" },

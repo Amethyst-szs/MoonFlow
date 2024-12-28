@@ -17,6 +17,8 @@ public partial class PopupMsbtSelectEntry : Window
 	[Export]
 	public bool IsLayoutMessage = true;
 	[Export]
+	public bool IsDisplayWithoutSearch = false;
+	[Export]
 	public int MaxResults = 300;
 
 	[Export, ExportGroup("Internal References")]
@@ -42,6 +44,7 @@ public partial class PopupMsbtSelectEntry : Window
             WaitTime = 0.2,
 			OneShot = true,
         };
+
         InputTimer.Timeout += OnInputTimerTimeout;
 		AddChild(InputTimer);
 
@@ -53,7 +56,7 @@ public partial class PopupMsbtSelectEntry : Window
 		LabelInvalidRequest.Show();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("ui_cancel"))
 			QueueFree();
@@ -85,6 +88,9 @@ public partial class PopupMsbtSelectEntry : Window
 		size.X /= 2;
 		size.Y -= 128;
 		Size = size;
+
+		if (IsDisplayWithoutSearch)
+			OnInputTimerTimeout();
 	}
 
 	private void OnLineSearchModified(string _) { InputTimer.Start(); }
@@ -105,7 +111,7 @@ public partial class PopupMsbtSelectEntry : Window
 		// Fetch search request
 		var txt = LineSearch.Text;
 
-		if (txt == string.Empty)
+		if (txt == string.Empty && !IsDisplayWithoutSearch)
 		{
 			LabelInvalidRequest.Show();
 			return;
@@ -120,6 +126,9 @@ public partial class PopupMsbtSelectEntry : Window
 
 		switch (txtList.Length)
 		{
+			case 0:
+				results = LookupTerm(lookup, "");
+				break;
 			case 1:
 				results = LookupTerm(lookup, txtList[0]);
 				break;
@@ -160,7 +169,7 @@ public partial class PopupMsbtSelectEntry : Window
 
 	#region Label Lookup
 
-	private List<ProjectLabelCache.LabelLookupResult> LookupTerm(ProjectLabelCache cache, string term)
+	protected virtual List<ProjectLabelCache.LabelLookupResult> LookupTerm(ProjectLabelCache cache, string term)
 	{
 		List<ProjectLabelCache.LabelLookupResult> results = [];
 
@@ -174,7 +183,7 @@ public partial class PopupMsbtSelectEntry : Window
 		return results;
 	}
 
-	private List<ProjectLabelCache.LabelLookupResult> LookupTermInFile(ProjectLabelCache cache, string term, string file)
+	protected virtual List<ProjectLabelCache.LabelLookupResult> LookupTermInFile(ProjectLabelCache cache, string term, string file)
 	{
 		List<ProjectLabelCache.LabelLookupResult> results = [];
 

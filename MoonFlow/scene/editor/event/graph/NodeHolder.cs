@@ -79,6 +79,9 @@ public partial class NodeHolder : Node2D
 			var vOffset = 0.0F;
 			foreach (var con in node.Connections)
 			{
+				if (!IsInstanceValid(con))
+					continue;
+				
 				var hOffset = node.RootPanel.Size.X + 32.0F;
 				con.SetPosition(new Vector2(node.Position.X + hOffset, node.Position.Y + vOffset));
 

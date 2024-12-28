@@ -14,9 +14,9 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 	[Export, ExportGroup("Internal References")]
 	private CheckBox ButtonIsMapUnit;
 	[Export]
-	private TextEdit TextMessagePreview;
+	protected TextEdit TextMessagePreview;
 	[Export]
-	private Label LabelTextSource;
+	protected Label LabelTextSource;
 
 	public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
 	{
@@ -24,27 +24,34 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 
 		if (Content.Name.Contains("MapUnit"))
 		{
-			ButtonIsMapUnit.ButtonPressed = true;
+			if (ButtonIsMapUnit != null)
+				ButtonIsMapUnit.ButtonPressed = true;
+			
 			return;
 		}
 
-		ButtonIsMapUnit.ButtonPressed = false;
+		if (ButtonIsMapUnit != null)
+			ButtonIsMapUnit.ButtonPressed = false;
 
 		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))
 		{
-			Content.TrySetParamMessageData("Text", new NodeMessageResolverData());
-			msg = (NodeMessageResolverData)Content.Params["Text"];
+			if (Content.TrySetParamMessageData("Text", new NodeMessageResolverData()))
+				msg = (NodeMessageResolverData)Content.Params["Text"];
 		}
 
-		SetLabelDisplayTextSource(msg);
+		if (msg != null && msg.MessageArchive != string.Empty && msg.MessageFile != string.Empty)
+			SetLabelDisplayTextSource(msg);
 	}
 
 	#region Signals
 
 	protected override void OnNodeNameModified()
 	{
+		if (ButtonIsMapUnit == null)
+			return;
+		
 		var value = Content.Name.Contains("MapUnit");
-
+		
 		if (ButtonIsMapUnit.ButtonPressed != value)
 			ButtonIsMapUnit.ButtonPressed = value;
 
@@ -55,6 +62,9 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 
 	private void OnMapUnitToggled(bool state)
 	{
+		if (ButtonIsMapUnit == null)
+			return;
+		
 		if (!IsSupportMapUnit())
 		{
 			ButtonIsMapUnit.ButtonPressed = false;
@@ -102,12 +112,12 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 
 	#region Utilities
 
-	private void SetLabelDisplayTextSource()
+	protected void SetLabelDisplayTextSource()
 	{
 		Content.TryGetParam("Text", out NodeMessageResolverData msg);
 		SetLabelDisplayTextSource(msg);
 	}
-	private void SetLabelDisplayTextSource(NodeMessageResolverData msg)
+	protected void SetLabelDisplayTextSource(NodeMessageResolverData msg)
 	{
 		if (!IsContainMessageResolver())
 		{
@@ -128,12 +138,12 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 		TextMessagePreview.Text = txt.GetRawText(true);
 	}
 
-	private bool IsSupportMapUnit()
+	protected bool IsSupportMapUnit()
 	{
 		var s = Content.Name;
 		return s == "MessageTalk" || s == "MessageTalkMapUnit" || s == "MessageTalkDemo" || s == "MessageTalkDemoMapUnit";
 	}
-	private bool IsContainMessageResolver()
+	protected virtual bool IsContainMessageResolver()
 	{
 		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))
 			return false;

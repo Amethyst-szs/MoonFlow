@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-public partial class EntryPointJump : EventFlowNodeCommon
+public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 {
 	protected NodeJumpEntry NodeJump;
 

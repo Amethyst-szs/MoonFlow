@@ -56,10 +56,14 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		// Initilize properties and connections
 		InitParamEditor();
 
-		for (var i = 0; i < content.GetNextIdCount(); i++)
+		var edgeCount = Math.Max(content.GetNextIdCount(), content.GetMaxOutgoingEdges());
+		for (var i = 0; i < edgeCount; i++)
 			CreatePortOut();
 
 		DrawDebugLabel();
+
+		// Ensure connection array has enough space for ports
+		Array.Resize(ref Connections, edgeCount);
 	}
 
 	public override void InitContent(string entryName, Graph graph, EventFlowNodeCommon target)
@@ -69,7 +73,8 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	public override void SetupConnections(List<EventFlowNodeCommon> list)
 	{
-		Connections = new EventFlowNodeCommon[list.Count];
+		if (list.Count > Connections.Length)
+			Array.Resize(ref Connections, list.Count);
 
 		for (int i = 0; i < list.Count; i++)
 		{

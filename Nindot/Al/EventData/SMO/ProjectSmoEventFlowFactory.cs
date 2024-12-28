@@ -40,7 +40,7 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "AppearMapAmiiboHint", typeof(NodeGeneric) }, // Display map screen to showcase new amiibo hints
         { "BgmCtrl", typeof(NodeBgmCtrl) }, // Control music playback
         { "BindKeepDemoStart", typeof(NodeGenericQuery) }, // Something with demos and binds, not fully understood
-        { "CapMessage", typeof(NodeGeneric) }, // Display a cappy message from SystemMessage/CapMessage.msbt
+        { "CapMessage", typeof(NodeCapMessage) }, // Display a cappy message from SystemMessage/CapMessage.msbt
         { "CapManHeroTalkSetDemoStartPose", typeof(NodeGeneric) }, // Setup demo cappy's start pose
         { "CapManHeroTalkAppear", typeof(NodeCapManHeroTalkAppear) }, // Play appear animation for demo cappy
         { "CapManHeroTalkFocus", typeof(NodeCapManHeroTalkFocus) }, // Define focus point by link from demo cappy

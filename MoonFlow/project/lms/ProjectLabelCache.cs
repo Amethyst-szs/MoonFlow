@@ -88,11 +88,34 @@ public class ProjectLabelCache()
 
         foreach (var file in LabelList[arc])
         {
-            if (!file.Key.Contains(fileName, System.StringComparison.OrdinalIgnoreCase))
+            if (!file.Key.Contains(fileName, StringComparison.OrdinalIgnoreCase))
                 continue;
             
             var matches = file.Value.ToList().FindAll(l =>
-                l.Key.Contains(label, System.StringComparison.OrdinalIgnoreCase)
+                l.Key.Contains(label, StringComparison.OrdinalIgnoreCase)
+            );
+
+            if (matches.Count == 0)
+                continue;
+
+            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value));
+            list.AddRange(result);
+        }
+
+        return list;
+    }
+
+    public List<LabelLookupResult> LookupLabelInFileExact(ArchiveType arc, string fileName, string label)
+    {
+        var list = new List<LabelLookupResult>();
+
+        foreach (var file in LabelList[arc])
+        {
+            if (file.Key != fileName)
+                continue;
+            
+            var matches = file.Value.ToList().FindAll(l =>
+                l.Key.Contains(label, StringComparison.OrdinalIgnoreCase)
             );
 
             if (matches.Count == 0)

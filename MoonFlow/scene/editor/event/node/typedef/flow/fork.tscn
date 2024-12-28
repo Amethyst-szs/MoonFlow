@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://byyiu2khxy0tv"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_xyc7e"]
-[ext_resource type="Script" path="res://scene/editor/event/node/typedef/fork/EventFlowNodeFork.cs" id="2_t0ky5"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/flow/EventFlowNodeFork.cs" id="2_t0ky5"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_dx1m3"]
 [ext_resource type="Texture2D" uid="uid://cb3g1mcgfvkwa" path="res://asset/material/file/backspace.svg" id="4_e40j5"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_rufyy"]

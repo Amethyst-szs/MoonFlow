@@ -41,6 +41,7 @@ public class NodeMessageResolverDataOnlyLabel
         if (dict.ContainsKey("LabelName")) LabelName = (string)dict["LabelName"];
     }
     public NodeMessageResolverDataOnlyLabel(string label) { LabelName = label; }
+    public NodeMessageResolverDataOnlyLabel() {}
 
     public Dictionary<string, string> WriteBuild()
     {

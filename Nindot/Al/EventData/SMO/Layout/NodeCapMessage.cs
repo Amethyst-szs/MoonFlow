@@ -17,7 +17,7 @@ public class NodeCapMessage : Node
     public override NodeOptionType GetSupportedParams(out Dictionary<string, Type> paramInfo)
     {
         paramInfo = new Dictionary<string, Type>() {
-            { "Text", typeof(NodeMessageResolverDataOnlyLabel) },
+            { "Text", typeof(NodeMessageResolverData) },
             { "WaitStep", typeof(int) },
             { "IsAppearInfinity", typeof(bool) },
         };

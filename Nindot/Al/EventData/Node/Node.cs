@@ -318,6 +318,9 @@ public abstract class Node
         if (!Params.TryGetValue(param, out object v))
             return false;
 
+        if (v == null || v.GetType() != typeof(T))
+            return false;
+        
         value = (T)v;
         return true;
     }

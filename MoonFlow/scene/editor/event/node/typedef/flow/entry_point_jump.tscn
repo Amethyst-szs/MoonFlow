@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://chshtl4kankbh"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_qackf"]
-[ext_resource type="Script" path="res://scene/editor/event/node/typedef/jump/EntryPointJump.cs" id="2_1em8n"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/flow/EventFlowNodeEntryJump.cs" id="2_1em8n"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_cr68a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5q6jw"]

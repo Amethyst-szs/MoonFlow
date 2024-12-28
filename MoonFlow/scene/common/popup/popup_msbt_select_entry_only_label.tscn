@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3ptll5plbktm"]
+
+[ext_resource type="PackedScene" uid="uid://h84sss0s2x5b" path="res://scene/common/popup/popup_msbt_select_entry.tscn" id="1_8gln0"]
+[ext_resource type="Script" path="res://scene/common/popup/PopupMsbtSelectEntryOnlyLabel.cs" id="2_aj8fa"]
+
+[node name="PopupMsbtSelectEntryOnlyLabel" instance=ExtResource("1_8gln0")]
+script = ExtResource("2_aj8fa")
+IsDisplayWithoutSearch = true

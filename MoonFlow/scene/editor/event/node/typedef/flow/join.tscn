@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0x611dg6yde8"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_y5j6f"]
-[ext_resource type="Script" path="res://scene/editor/event/node/typedef/join/EventFlowNodeJoin.cs" id="2_m16ol"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/flow/EventFlowNodeJoin.cs" id="2_m16ol"]
 
 [node name="EventFlowNodeJoin" instance=ExtResource("1_y5j6f")]
 script = ExtResource("2_m16ol")
