@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx5wrgv3ugohw"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2x6cb"]
+font = ExtResource("1_1hk75")
+font_size = 19
+
+[sub_resource type="GDScript" id="GDScript_4x0fm"]
+script/source = "extends OptionButton
+
+@onready var list := TranslationServer.get_loaded_locales()
+
+func _ready() -> void:
+	for item in list:
+		add_item(TranslationServer.get_locale_name(item))
+	
+	var idx := list.find(TranslationServer.get_locale())
+	if idx != -1:
+		select(idx)
+	else:
+		select(0)
+	
+	item_selected.connect(_on_item_selected)
+
+func _on_item_selected(idx: int) -> void:
+	var lang := list[idx]
+	
+	TranslationServer.set_locale(lang)
+	print(\"Set application locale to \" + lang)
+	
+	EngineSettings.set_setting(\"moonflow/general/locale\", lang)
+"
+
+[node name="Page_General" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+
+[node name="Label_Header" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_GENERAL_HEADER"
+label_settings = SubResource("LabelSettings_2x6cb")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label_LocaleHeader" type="Label" parent="."]
+layout_mode = 2
+text = "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
+
+[node name="Option_Locale" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = SubResource("GDScript_4x0fm")

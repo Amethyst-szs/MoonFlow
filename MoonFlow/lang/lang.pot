@@ -42,7 +42,6 @@
 # res://async/async_text.tres
 # res://scene/front_door/load/loading_message_text.tres
 # res://scene/editor/event/node/node_type_name_text.tres
-# res://scene/editor/event/node/typedef/fork/fork.tscn
 # res://scene/editor/event/node/typedef/talk/talk.tscn
 # res://scene/common/popup/popup_msbt_select_entry.tscn
 # res://scene/home/tab_event/tab_event.tscn
@@ -51,10 +50,13 @@
 # res://scene/editor/event/node/component/message_resolver_config.tscn
 # res://scene/main/main.tscn
 # res://scene/editor/event/node/typedef/balloon/message_balloon_options.tres
-# res://scene/editor/event/node/typedef/jump/entry_point_jump.tscn
 # res://scene/editor/event/inject/popup_inject_graph_node.tscn
-# res://scene/editor/event/meta/category_table_translation_text.tres
 # res://scene/editor/event/event_flow_app.tscn
+# res://scene/settings/engine/engine_settings_app.tscn
+# res://scene/settings/engine/page/general.tscn
+# res://scene/editor/event/meta/tables/category_table_translation_text.tres
+# res://scene/editor/event/node/typedef/flow/entry_point_jump.tscn
+# res://scene/editor/event/node/typedef/flow/fork.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2139,14 +2141,6 @@ msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "EntryPoint"
 msgstr ""
 
-#: scene/editor/event/node/typedef/fork/fork.tscn
-msgid "EVENT_FLOW_NODE_FORK_BUTTON_REMOVE_PORT_TOOLTIP"
-msgstr ""
-
-#: scene/editor/event/node/typedef/fork/fork.tscn
-msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
-msgstr ""
-
 #: scene/editor/event/node/typedef/talk/talk.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
 msgstr ""
@@ -2335,92 +2329,8 @@ msgctxt "EVENT_FLOW_NODE_MESSAGE_BALLOON_OPTIONS"
 msgid "TutorialTooltip"
 msgstr ""
 
-#: scene/editor/event/node/typedef/jump/entry_point_jump.tscn
-msgid "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
-msgstr ""
-
 #: scene/editor/event/inject/popup_inject_graph_node.tscn
 msgid "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "DEFAULT"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "ENTRY_POINT"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "CUSTOM_TYPE"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "ACTOR"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "AMIIBO"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "CAMERA"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "DIALOUGE"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "DEMO"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "EVENT"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "FLAGS"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "FLOW"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "ITEM"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "PLAYER"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "QUERY"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "STAGE"
-msgstr ""
-
-#: scene/editor/event/meta/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "WIPE"
 msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
@@ -2441,4 +2351,116 @@ msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
+msgstr ""
+
+#: scene/settings/engine/engine_settings_app.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
+msgstr ""
+
+#: scene/settings/engine/engine_settings_app.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
+msgstr ""
+
+#: scene/settings/engine/engine_settings_app.tscn
+msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DEFAULT"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ENTRY_POINT"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "CUSTOM_TYPE"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ACTOR"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "AMIIBO"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "CAMERA"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DIALOUGE"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DEMO"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "EVENT"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "FLAGS"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "FLOW"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ITEM"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "PLAYER"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "QUERY"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "STAGE"
+msgstr ""
+
+#: scene/editor/event/meta/tables/category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "WIPE"
+msgstr ""
+
+#: scene/editor/event/node/typedef/flow/entry_point_jump.tscn
+msgid "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
+msgstr ""
+
+#: scene/editor/event/node/typedef/flow/fork.tscn
+msgid "EVENT_FLOW_NODE_FORK_BUTTON_REMOVE_PORT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/node/typedef/flow/fork.tscn
+msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
 msgstr ""

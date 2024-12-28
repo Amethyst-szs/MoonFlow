@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/settings/romfs/RomfsAccessorConfigApp.cs" id="1_r13aa"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="2_6p26v"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_etysk"]
-[ext_resource type="FontFile" uid="uid://c5btw8xoivg1g" path="res://asset/font/FontNewRodin.ttf" id="5_3fo2x"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_7fipc"]
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_li4wf"]
 [ext_resource type="PackedScene" uid="uid://cdgrcigpyveoj" path="res://scene/settings/romfs/path_display.tscn" id="7_x1uik"]
 
@@ -16,7 +16,7 @@ bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
 corner_detail = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_e2o0d"]
-font = ExtResource("5_3fo2x")
+font = ExtResource("4_7fipc")
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_phx0g"]

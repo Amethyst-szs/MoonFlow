@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=33 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -23,6 +23,7 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="15_xr5ea"]
 [ext_resource type="Script" path="res://scene/front_door/button_update.gd" id="16_8ntwn"]
 [ext_resource type="Script" path="res://scene/common/option/LangPicker.cs" id="16_qq0jv"]
+[ext_resource type="Texture2D" uid="uid://dhens1l4fbxep" path="res://asset/material/debug/debug_code_on.svg" id="17_glr2l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
 shader = ExtResource("3_etpfy")
@@ -282,6 +283,11 @@ layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/separation = 12
 
+[node name="Button_Settings" type="Button" parent="Content/Shortcuts"]
+layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
+icon = ExtResource("17_glr2l")
+
 [node name="Button_RomfsConfig" type="Button" parent="Content/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
@@ -367,6 +373,7 @@ resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwf
 [connection signal="pressed" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Option_Version" to="." method="OnNewProjectVersionButtonPressed"]
 [connection signal="LangSelected" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Option_DefaultLang" to="." method="OnNewProjectDefaultLangSelected"]
 [connection signal="pressed" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Button_Create" to="." method="OnNewProjectCreate"]
+[connection signal="pressed" from="Content/Shortcuts/Button_Settings" to="." method="OpenEngineSettingsApp"]
 [connection signal="pressed" from="Content/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
 [connection signal="pressed" from="Content/Shortcuts/Button_Contributors" to="." method="OpenContributorPage"]
 [connection signal="request_completed" from="Content/Shortcuts/Button_Update/HTTPRequest" to="Content/Shortcuts/Button_Update" method="_on_request_completed"]

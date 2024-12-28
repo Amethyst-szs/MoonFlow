@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bpoxm31ltuycw"]
+
+[ext_resource type="Script" path="res://scene/settings/engine/EngineSettingsApp.cs" id="1_uf06t"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_p7vkx"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_t3cmk"]
+[ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="4_d1iky"]
+[ext_resource type="Script" path="res://scene/settings/engine/setting_category_button.gd" id="4_ombcx"]
+[ext_resource type="PackedScene" uid="uid://dx5wrgv3ugohw" path="res://scene/settings/engine/page/general.tscn" id="6_cicul"]
+[ext_resource type="StyleBox" uid="uid://b333duw0kswvw" path="res://asset/theme/common/stylebox/common_vsep_minimal.tres" id="6_xjfkm"]
+[ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="7_h42e4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blbrj"]
+content_margin_left = 12.0
+content_margin_top = 32.0
+content_margin_right = 12.0
+content_margin_bottom = 32.0
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_m8qj0"]
+font = ExtResource("3_p7vkx")
+font_size = 22
+
+[sub_resource type="Theme" id="Theme_b01h6"]
+VBoxContainer/constants/separation = 12
+
+[node name="EngineSettingsApp" type="Control"]
+auto_translate_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uf06t")
+AppName = "EngineSettingsApp"
+AppTaskbarTitle = "Settings"
+AppFlags = 35
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_t3cmk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_blbrj")
+
+[node name="HSplit" type="HSplitContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 4
+split_offset = -220
+
+[node name="Category" type="HBoxContainer" parent="Content/HSplit"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Content" type="VBoxContainer" parent="Content/HSplit/Category"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Label_CatHeader" type="Label" parent="Content/HSplit/Category/Content"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
+label_settings = SubResource("LabelSettings_m8qj0")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSep" type="HSeparator" parent="Content/HSplit/Category/Content"]
+layout_mode = 2
+
+[node name="Button_General" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
+text_overrun_behavior = 3
+script = ExtResource("4_ombcx")
+target = NodePath("../../../Content/Page_General")
+is_default_page = true
+
+[node name="HSep_BottomAlignment" type="HSeparator" parent="Content/HSplit/Category/Content"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Button_Exit" type="Button" parent="Content/HSplit/Category/Content"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
+icon = ExtResource("4_d1iky")
+text_overrun_behavior = 3
+icon_alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="Content/HSplit/Category"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("6_xjfkm")
+
+[node name="Content" type="PanelContainer" parent="Content/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b01h6")
+theme_override_styles/panel = ExtResource("7_h42e4")
+
+[node name="Page_General" parent="Content/HSplit/Content" instance=ExtResource("6_cicul")]
+layout_mode = 2

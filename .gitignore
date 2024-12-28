@@ -10,6 +10,9 @@
 # Unit test output
 src/Nindot.Tests/output/
 
+# Editor-generated override.cfg
+MoonFlow/override.cfg
+
 # User-specific files
 *.rsuser
 *.suo

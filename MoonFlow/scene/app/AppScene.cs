@@ -31,7 +31,7 @@ public partial class AppScene : Control
 	}
 	private string _appTaskbarTitle = "Application";
 
-	public string AppUniqueIdentifier { get; private set; } = "";
+	public string AppUniqueIdentifier { get; private set; } = null;
 
 	[Export]
 	public Texture2D AppIcon { get; private set; } = GD.Load<Texture2D>("res://iconS.png");
@@ -157,8 +157,8 @@ public partial class AppScene : Control
 
 	#region App Controls
 
-	public virtual string GetUniqueIdentifier(string input) { throw new NotImplementedException(); }
-	public void SetUniqueIdentifier(string input) { AppUniqueIdentifier = GetUniqueIdentifier(input); }
+	public virtual string GetUniqueIdentifier(string input) { return AppName + input; }
+	public void SetUniqueIdentifier(string input = "") { AppUniqueIdentifier = GetUniqueIdentifier(input); }
 
 	public virtual void AppFocus()
 	{

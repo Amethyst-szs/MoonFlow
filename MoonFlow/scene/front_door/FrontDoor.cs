@@ -47,6 +47,13 @@ public partial class FrontDoor : AppScene
 			ForceOpenRomfsAccessorApp();
 	}
 
+	private void OpenEngineSettingsApp()
+	{
+		var app = SceneCreator<EngineSettingsApp>.Create();
+		SetUniqueIdentifier();
+		Scene.NodeApps.AddChild(app);
+	}
+
 	private void ForceOpenRomfsAccessorApp()
 	{
 		var app = SceneCreator<RomfsAccessorConfigApp>.Create();
