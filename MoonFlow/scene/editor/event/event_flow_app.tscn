@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=27 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cy0acrnosdjdw" path="res://asset/material/graph/zoom_out.svg" id="10_k8svk"]
 [ext_resource type="Texture2D" uid="uid://w3rxhvslqs13" path="res://asset/material/graph/zoom_reset.svg" id="11_uvpj5"]
 [ext_resource type="Texture2D" uid="uid://kgy23al2n62k" path="res://asset/material/graph/zoom_in.svg" id="12_570rd"]
+[ext_resource type="Script" path="res://scene/editor/event/graph/component/scroll_bar_ui.gd" id="12_kgg6l"]
 [ext_resource type="Texture2D" uid="uid://dti6ok2kka208" path="res://asset/material/debug/debug.svg" id="12_scho0"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="14_co2bl"]
 
@@ -87,8 +88,9 @@ graph = NodePath("../../Graph")
 layer = -2
 script = ExtResource("5_5dp1p")
 
-[node name="Graph_ScrollNavigation" type="Node" parent="Graph"]
+[node name="Graph_ScrollNavigation" type="Node" parent="Graph" node_paths=PackedStringArray("ui_bar_holder")]
 script = ExtResource("6_va4yh")
+ui_bar_holder = NodePath("../../ScollNavigationBars")
 
 [node name="OriginLines" type="Node2D" parent="Graph"]
 self_modulate = Color(1, 1, 1, 0.184314)
@@ -108,6 +110,47 @@ debug_color = Color(0, 0.595, 0.7, 0.513726)
 
 [node name="NodeHolder" type="Node2D" parent="Graph"]
 script = ExtResource("8_je2jj")
+
+[node name="ScollNavigationBars" type="Control" parent="." node_paths=PackedStringArray("graph", "node_holder")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("9_1hwnx")
+script = ExtResource("12_kgg6l")
+graph = NodePath("../Graph")
+node_holder = NodePath("../Graph/NodeHolder")
+
+[node name="HScroll" type="HScrollBar" parent="ScollNavigationBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1152.0
+page = 1152.0
+custom_step = 120.0
+
+[node name="VScroll" type="VScrollBar" parent="ScollNavigationBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 648.0
+page = 648.0
+custom_step = 120.0
 
 [node name="Header" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -159,11 +202,14 @@ toggle_mode = true
 shortcut = SubResource("Shortcut_bx36p")
 icon = ExtResource("12_scho0")
 
+[connection signal="FileOpenComplete" from="." to="ScollNavigationBars" method="_on_window_size_changed"]
 [connection signal="ContentModified" from="Graph" to="." method="OnFileModified"]
+[connection signal="graph_offset_changed" from="Graph/Graph_ScrollNavigation" to="ScollNavigationBars" method="_on_graph_offset_changed"]
 [connection signal="selection_ended" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [false]]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="DeselectAllNodes"]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]
 [connection signal="selection_started_with_shift" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]
+[connection signal="child_entered_tree" from="Graph/NodeHolder" to="ScollNavigationBars" method="_on_graph_node_added"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]

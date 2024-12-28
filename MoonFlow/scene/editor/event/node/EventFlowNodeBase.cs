@@ -307,6 +307,8 @@ public partial class EventFlowNodeBase : Node2D
 
 	#region Utility
 
+	public Rect2 GetRect() { return new Rect2(Position, RootPanel.Size); }
+
 	public void SetNodeModified() { EmitSignal(SignalName.NodeModified); }
 
 	protected virtual void DrawDebugLabel() { }

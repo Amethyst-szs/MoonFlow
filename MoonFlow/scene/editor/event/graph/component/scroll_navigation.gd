@@ -3,6 +3,7 @@ extends Node
 @export var zoom_factor: float = 0.1
 @export var zoom_min: float = 0.2
 @export var zoom_max: float = 3.0
+@export var ui_bar_holder: EventFlowGraphScrollNavigationBars
 
 var is_drag: bool = false
 
@@ -10,12 +11,17 @@ var zoom_pivot: Vector2 = Vector2.ZERO
 
 @onready var parent: CanvasLayer = null
 
+signal graph_offset_changed(offset: Vector2, scale: Vector2)
+
 func _ready() -> void:
 	parent = get_parent() as CanvasLayer
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_drag:
 		parent.offset += event.screen_relative / (parent.scale * 2.25)
+		_clamp_offset_within_bounds()
+		
+		_update_position_for_scroll_navigation_ui()
 		get_viewport().set_input_as_handled()
 		return
 
@@ -90,3 +96,23 @@ func _handle_zoom(new_scale: Vector2) -> void:
 	# Update transformation
 	parent.scale = new_scale
 	parent.offset = final_offset
+	
+	_clamp_offset_within_bounds()
+	_update_position_for_scroll_navigation_ui()
+
+func _clamp_offset_within_bounds() -> void:
+	var fac := Vector2.ONE / ui_bar_holder.graph_scale
+	var bound := ui_bar_holder.node_extent_rect
+	bound.end *= fac
+	
+	var win_size := Vector2(get_window().size) * fac
+	bound = bound.grow_side(SIDE_LEFT, win_size.x)
+	bound = bound.grow_side(SIDE_TOP, win_size.y)
+	
+	parent.offset = -((-parent.offset).clamp(bound.position, bound.end))
+
+func _update_position_for_scroll_navigation_ui() -> void:
+	var factor := Vector2.ONE / parent.scale
+	var pos := parent.offset * factor
+	
+	graph_offset_changed.emit(pos, factor)
