@@ -1,7 +1,8 @@
 extends Node2D
 
-var canvas: CanvasLayer = null
+@export var miniline_count: int = 10
 
+var canvas: CanvasLayer = null
 var render_offset := Vector2.ZERO
 
 func _ready() -> void:
@@ -22,9 +23,11 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	var target = Vector2(get_window().size) * (Vector2.ONE / canvas.scale)
+	var factorf := 1.0 / canvas.scale.x
+	var factor := Vector2.ONE / canvas.scale
+	var target := Vector2(get_window().size) * factor
 	
-	var col = Color.CADET_BLUE
-	draw_line(Vector2(render_offset.x, 0), Vector2(render_offset.x + target.x, 0), col, 4)
-	draw_line(Vector2(0, render_offset.y), Vector2(0, render_offset.y + target.y), col, 4)
-	draw_circle(Vector2.ZERO, 8.0, Color.ALICE_BLUE)
+	var col := Color.WEB_GRAY
+	draw_line(Vector2(render_offset.x, 0), Vector2(render_offset.x + target.x, 0), col, 4 * factorf)
+	draw_line(Vector2(0, render_offset.y), Vector2(0, render_offset.y + target.y), col, 4 * factorf)
+	draw_circle(Vector2.ZERO, 8 * factorf, Color.DARK_GRAY)

@@ -91,7 +91,7 @@ script = ExtResource("5_5dp1p")
 script = ExtResource("6_va4yh")
 
 [node name="OriginLines" type="Node2D" parent="Graph"]
-self_modulate = Color(1, 1, 1, 0.294118)
+self_modulate = Color(1, 1, 1, 0.184314)
 z_index = -15
 script = ExtResource("8_4n4mt")
 
