@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 using Nindot;
 using Nindot.LMS.Msbt;
-using Nindot.LMS.Msbt.TagLib;
+using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Async;
 
@@ -15,7 +14,7 @@ namespace MoonFlow.Project.Cache;
 
 public class ProjectLabelCache()
 {
-    private readonly Dictionary<ArchiveType, Dictionary<string, ReadOnlyCollection<string>>> LabelList = [];
+    private readonly Dictionary<ArchiveType, Dictionary<string, Dictionary<string, string>>> LabelList = [];
     private int TaskProgress = 0;
     private int TaskCount = 0;
 
@@ -28,11 +27,12 @@ public class ProjectLabelCache()
 
     #region Cache Accessor
 
-    public struct LabelLookupResult(ArchiveType arc, string file, string label)
+    public struct LabelLookupResult(ArchiveType arc, string file, string label, string preview)
     {
         public ArchiveType Archive = arc;
         public string File = file;
         public string Label = label;
+        public string PreviewText = preview;
     }
 
     public ReadOnlyCollection<string> GetLabelsInArchive(ArchiveType arc)
@@ -40,7 +40,7 @@ public class ProjectLabelCache()
         var list = new List<string>();
 
         foreach (var file in LabelList[arc].Values)
-            list.AddRange(file);
+            list.AddRange(file.Keys);
 
         return new ReadOnlyCollection<string>(list);
     }
@@ -48,8 +48,9 @@ public class ProjectLabelCache()
     public ReadOnlyCollection<string> GetLabelsInFile(ArchiveType arc, string file)
     {
         var files = LabelList[arc];
-        files.TryGetValue(file, out ReadOnlyCollection<string> value);
-        return value;
+        files.TryGetValue(file, out Dictionary<string, string> value);
+
+        return new ReadOnlyCollection<string>([.. value.Keys]);
     }
 
     public List<LabelLookupResult> LookupLabelAllArc(string label)
@@ -68,13 +69,13 @@ public class ProjectLabelCache()
         foreach (var file in LabelList[arc])
         {
             var matches = file.Value.ToList().FindAll(l =>
-                l.Contains(label, System.StringComparison.OrdinalIgnoreCase)
+                l.Key.Contains(label, System.StringComparison.OrdinalIgnoreCase)
             );
 
             if (matches.Count == 0)
                 continue;
 
-            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s));
+            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value));
             list.AddRange(result);
         }
 
@@ -91,13 +92,13 @@ public class ProjectLabelCache()
                 continue;
             
             var matches = file.Value.ToList().FindAll(l =>
-                l.Contains(label, System.StringComparison.OrdinalIgnoreCase)
+                l.Key.Contains(label, System.StringComparison.OrdinalIgnoreCase)
             );
 
             if (matches.Count == 0)
                 continue;
 
-            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s));
+            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value));
             list.AddRange(result);
         }
 
@@ -155,9 +156,9 @@ public class ProjectLabelCache()
         LabelList[ArchiveType.LAYOUT] = UpdateArchiveCache(holder.LayoutMessage, display);
     }
 
-    private Dictionary<string, ReadOnlyCollection<string>> UpdateArchiveCache(SarcFile arc, AsyncDisplay display)
+    private Dictionary<string, Dictionary<string, string>> UpdateArchiveCache(SarcFile arc, AsyncDisplay display)
     {
-        var dict = new Dictionary<string, ReadOnlyCollection<string>>();
+        var dict = new Dictionary<string, Dictionary<string, string>>();
 
         foreach (var data in arc.Content)
         {
@@ -165,7 +166,7 @@ public class ProjectLabelCache()
 
             try
             {
-                file = MsbtFile.FromBytes([.. data.Value], data.Key, new MsbtElementFactory());
+                file = MsbtFile.FromBytes([.. data.Value], data.Key, new MsbtElementFactoryProjectSmo());
             }
             catch
             {
@@ -177,7 +178,11 @@ public class ProjectLabelCache()
             var labels = file.GetEntryLabels().ToList();
             labels.Sort(string.Compare);
 
-            dict[data.Key] = new ReadOnlyCollection<string>(labels);
+            var text = labels.Select(l => file.GetEntry(l).GetRawText(true)).ToList();
+            
+            var result = labels.Zip(text, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
+            
+            dict[data.Key] = result;
 
             IncrementTaskProgress(display);
         }

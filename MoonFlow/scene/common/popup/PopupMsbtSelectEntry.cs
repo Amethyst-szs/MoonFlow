@@ -207,6 +207,7 @@ public partial class PopupMsbtSelectEntry : Window
 		{
 			Name = item.Label,
 			Text = item.Label,
+			TooltipText = item.PreviewText,
 			AutowrapMode = TextServer.AutowrapMode.Arbitrary,
 		};
 
