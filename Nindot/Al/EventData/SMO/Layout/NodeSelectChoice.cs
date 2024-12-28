@@ -28,4 +28,37 @@ public class NodeSelectChoice : Node
         };
         return NodeOptionType.PRESET_LIST;
     }
+
+    internal override bool TryWriteBuild(out Dictionary<string, object> build)
+    {
+        var result = base.TryWriteBuild(out build);
+        if (!result) return false;
+
+        if (!build.ContainsKey("CaseEventList")) return false;
+
+        var list = build["CaseEventList"] as List<Dictionary<string, object>>;
+
+        var newList = new List<Dictionary<string, object>>();
+        var index = 0;
+
+        foreach (var item in list)
+        {
+            if (!item.TryGetValue("NextId", out object next))
+                return false;
+            
+            var nextI = (int)next;
+            
+            if (nextI != int.MinValue)
+            {
+                item["Index"] = index;
+                newList.Add(item);
+
+                index++;
+                continue;
+            }
+        }
+
+        build["CaseEventList"] = newList;
+        return true;
+    }
 }

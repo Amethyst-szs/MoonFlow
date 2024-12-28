@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgb5onof1c5qh"]
+
+[ext_resource type="PackedScene" uid="uid://d2grhpwwh7whc" path="res://scene/editor/event/node/typedef/talk/talk.tscn" id="1_di3wa"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/talk/EventFlowNodeChoice.cs" id="2_ospva"]
+
+[node name="EventFlowNodeChoiceYesNo" instance=ExtResource("1_di3wa")]
+script = ExtResource("2_ospva")
+MaxOutgoingEdges = 2
+IsUseMessagePorts = true
+PortColorList = [Color(0.34, 1, 0.34, 1), Color(1, 0.53, 0.53, 1)]
+
+[editable path="Content/Display/TalkText/MessageResolverConfig"]

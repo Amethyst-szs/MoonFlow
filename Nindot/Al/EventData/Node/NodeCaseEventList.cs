@@ -9,7 +9,7 @@ public class NodeCaseEventList
     // ============ Initilization and Parameters ============ //
     // ====================================================== //
 
-    private List<NodeCaseEvent> CaseList = [];
+    public List<NodeCaseEvent> CaseList { get; private set; } = [];
 
     public NodeCaseEventList() { }
     public NodeCaseEventList(List<object> array)
@@ -67,7 +67,7 @@ public class NodeCaseEventList
 
     public void SetNextNodeForCase(Node node, int caseIndex)
     {
-        SetCaseListSize(caseIndex + 1);
+        TryIncreaseCaseListSize(caseIndex + 1);
         CaseList[caseIndex].SetNextId(node);
     }
     public void RemoveNextNodeForCase(int caseIndex)
@@ -78,7 +78,7 @@ public class NodeCaseEventList
         CaseList[caseIndex].SetNextId(null);
     }
 
-    private void SetCaseListSize(int size)
+    public void TryIncreaseCaseListSize(int size)
     {
         int idx = CaseList.Count;
         while (CaseList.Count < size)

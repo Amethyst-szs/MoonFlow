@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
+using Nindot;
+using Nindot.LMS.Msbt.TagLib.Smo;
+
+using MoonFlow.Project;
+
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
@@ -13,6 +18,16 @@ public partial class PortOut : TextureRect
 	// ~~~~~~~~~~~ Node References ~~~~~~~~~~~ //
 
 	public EventFlowNodeBase Parent { get; private set; } = null;
+	public Nindot.Al.EventFlow.Node Content
+	{
+		get
+		{
+			if (Parent is EventFlowEntryPoint)
+				return null;
+
+			return (Parent as EventFlowNodeCommon).Content;
+		}
+	}
 
 	private PortIn ConnectionHover = null;
 
@@ -38,7 +53,7 @@ public partial class PortOut : TextureRect
 				var call = Callable.From(CalcConnectionLine);
 				if (!Connection.IsConnected(EventFlowNodeBase.SignalName.NodeMoved, call))
 					Connection.Connect(EventFlowNodeBase.SignalName.NodeMoved, call);
-				
+
 				CalcConnectionLine();
 			}
 
@@ -59,6 +74,10 @@ public partial class PortOut : TextureRect
 
 	[Export, ExportGroup("Port")]
 	public int Index { get; private set; } = int.MinValue;
+	public bool IsMessagePort
+	{
+		get { return Parent.IsUseMessagePorts; }
+	}
 
 	// ~~~~~~~~~~~~ Grabber State ~~~~~~~~~~~~ //
 
@@ -102,6 +121,10 @@ public partial class PortOut : TextureRect
 		}
 	}
 
+	// ~~~~~~~~~~ Constant Textures ~~~~~~~~~~ //
+
+	public static readonly Texture2D TexPortTxt = GD.Load<Texture2D>("res://asset/material/graph/port_txt.svg");
+
 	// ~~~~~~~~~~ Signal Definitions ~~~~~~~~~ //
 
 	[Signal]
@@ -139,6 +162,43 @@ public partial class PortOut : TextureRect
 		// Setup port index
 		Index = GetIndex();
 		Name = Index.ToString();
+
+		// If this port has a message attached to it, swap out texture and setup
+		if (IsMessagePort)
+		{
+			Texture = TexPortTxt;
+			SetupPortMessage();
+		}
+	}
+
+	private void SetupPortMessage(Nindot.Al.EventFlow.NodeMessageResolverData resolver = null)
+	{
+		// Access case's event info
+		if (Content == null)
+			throw new Exception("Cannot setup port message without content!");
+
+		if (Content.CaseEventList == null)
+			Content.CaseEventList ??= new();
+
+		var list = Content.CaseEventList;
+		list.TryIncreaseCaseListSize(Index + 1);
+
+		var caseEvent = list.CaseList[Index];
+		
+		// If there is no message assigned to case, assign a default value
+		caseEvent.MessageData ??= new("SystemMessage", "GlossarySystem", "Answer_Yes_2");
+
+		if (resolver != null)
+			caseEvent.MessageData = resolver;
+
+		// Assign tooltip to port
+		var holder = ProjectManager.GetMSBTArchives();
+		SarcFile arc = holder.GetArchiveByFileName(caseEvent.MessageData.MessageArchive);
+		var msbt = arc.GetFileMSBT(caseEvent.MessageData.MessageFile + ".msbt", new MsbtElementFactoryProjectSmo());
+
+		var txt = msbt.GetEntry(caseEvent.MessageData.LabelName);
+
+		TooltipText = txt.GetRawText(true);
 	}
 
 	#endregion
@@ -222,6 +282,15 @@ public partial class PortOut : TextureRect
 
 	private void UnhandledInputMoseButton(InputEventMouseButton m)
 	{
+		// If middle clicked and contains a message, open msbt selector
+		bool isCtrlL = m.ButtonIndex == MouseButton.Left && m.IsCommandOrControlPressed();
+		if ((isCtrlL || m.ButtonIndex == MouseButton.Middle) && IsMessagePort)
+		{
+			OnSelectNewTextSource();
+			GetViewport().SetInputAsHandled();
+			return;
+		}
+
 		// If right clicked, clear the current connection
 		if (m.ButtonIndex == MouseButton.Right)
 		{
@@ -279,6 +348,36 @@ public partial class PortOut : TextureRect
 
 		port = portRaw as PortIn;
 		return port.Parent != Parent;
+	}
+
+	#endregion
+
+	#region Signals
+
+	private void OnSelectNewTextSource()
+	{
+		var popup = SceneCreator<PopupMsbtSelectEntry>.Create();
+		GetTree().CurrentScene.AddChild(popup);
+		popup.Popup();
+
+		popup.Connect(PopupMsbtSelectEntry.SignalName.ItemSelected, Callable.From(
+			new Action<string, string, string>(OnNewTextSourceSelectedFromPopup)
+		));
+	}
+
+	private void OnNewTextSourceSelectedFromPopup(string arc, string file, string label)
+	{
+		// Setup text resolver
+		if (arc.EndsWith(".szs"))
+			arc = arc[..arc.Find(".szs")];
+
+		if (file.EndsWith(".msbt"))
+			file = file[..file.Find(".msbt")];
+
+		var resolver = new Nindot.Al.EventFlow.NodeMessageResolverData(arc, file, label);
+		SetupPortMessage(resolver);
+
+		Parent.SetNodeModified();
 	}
 
 	#endregion

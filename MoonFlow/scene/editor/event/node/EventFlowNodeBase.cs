@@ -26,7 +26,9 @@ public partial class EventFlowNodeBase : Node2D
 
 	// ~~~~~~~~~~~~ Editor Config ~~~~~~~~~~~~ //
 
-	[Export, ExportGroup("Port Colors")]
+	[Export, ExportGroup("Ports")]
+	public bool IsUseMessagePorts { get; private set; } = false;
+	[Export]
 	protected Color DefaultPortOutColor = Colors.White;
 	[Export]
 	protected Array<Color> PortColorList = [];
@@ -305,7 +307,7 @@ public partial class EventFlowNodeBase : Node2D
 
 	#region Utility
 
-	protected void SetNodeModified() { EmitSignal(SignalName.NodeModified); }
+	public void SetNodeModified() { EmitSignal(SignalName.NodeModified); }
 
 	protected virtual void DrawDebugLabel() { }
 	protected static string AppendDebugLabel(string property, object value)
