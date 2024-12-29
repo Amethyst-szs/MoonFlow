@@ -19,6 +19,9 @@ public partial class MsbtPageEditor : TextEdit
 
     public Timer ActivityTimer = new();
 
+    [Signal]
+    public delegate void PageModifiedEventHandler();
+
     public override void _Ready()
     {
         // Setup activity timer

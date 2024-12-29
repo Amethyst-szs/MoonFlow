@@ -36,6 +36,7 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 
 		// Connect to page editor signals
 		PageEditor.Connect(TextEdit.SignalName.TextChanged, Callable.From(OnPageModified));
+		PageEditor.Connect(MsbtPageEditor.SignalName.PageModified, Callable.From(OnPageModified));
 
 		return this;
 	}

@@ -124,6 +124,7 @@ public partial class MsbtPageEditor : TextEdit
         else
             scene.SetupScene(tag);
 
+        EmitSignal(SignalName.PageModified);
         return true;
     }
 
