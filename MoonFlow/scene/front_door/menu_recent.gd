@@ -98,4 +98,5 @@ func _clear_recent_history() -> void:
 	file.store_string("")
 	file.close()
 	
+	history.clear()
 	hide()

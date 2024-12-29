@@ -150,7 +150,7 @@ msgstr "Version 1.3.0"
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_DEFAULT_LANGUAGE_HEADER"
-msgstr "Default Language:"
+msgstr "Default Game Language:"
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"

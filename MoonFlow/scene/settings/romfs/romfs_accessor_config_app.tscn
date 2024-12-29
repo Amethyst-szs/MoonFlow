@@ -24,6 +24,8 @@ corner_detail = 1
 font = ExtResource("4_7fipc")
 font_size = 24
 font_color = Color(0.988235, 0.792157, 0.27451, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfwh8"]
 

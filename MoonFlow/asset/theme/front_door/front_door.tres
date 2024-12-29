@@ -5,8 +5,8 @@
 [ext_resource type="StyleBox" uid="uid://eiax8q0e66o" path="res://asset/theme/front_door/stylebox/front_door_button_focus.tres" id="8_eeit0"]
 [ext_resource type="StyleBox" uid="uid://bs7cbsqc1muw5" path="res://asset/theme/common/stylebox/common_button_hover.tres" id="8_o0t0j"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="8_san7l"]
-[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="9_00p7g"]
 [ext_resource type="StyleBox" uid="uid://bo2ov2pm2ovec" path="res://asset/theme/front_door/stylebox/front_door_button_hover.tres" id="9_iw07i"]
+[ext_resource type="StyleBox" uid="uid://bq75lce6usfp3" path="res://asset/theme/main/stylebox/header_popup_menu_panel.tres" id="9_jw50u"]
 [ext_resource type="StyleBox" uid="uid://bdw4rs5jxfclg" path="res://asset/theme/front_door/stylebox/front_door_button_hover_pressed.tres" id="10_wive1"]
 [ext_resource type="StyleBox" uid="uid://cys3dv01cl5ea" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_edit_window_border.tres" id="11_kxyef"]
 [ext_resource type="StyleBox" uid="uid://grixapu2vuvo" path="res://asset/theme/front_door/stylebox/front_door_button_normal.tres" id="11_lxe2k"]
@@ -18,10 +18,11 @@ grow_begin = -12.0
 grow_end = -12.0
 thickness = 2
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_rm3c6"]
-content_margin_top = 0.0
-content_margin_bottom = 8.0
-color = Color(0.78, 0.78, 0.78, 0.301961)
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6lm05"]
+content_margin_bottom = 6.0
+color = Color(1, 1, 1, 0.352941)
+grow_begin = -25.0
+grow_end = -25.0
 thickness = 2
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_o0anw"]
@@ -53,11 +54,11 @@ OptionButton/styles/hover = ExtResource("9_iw07i")
 OptionButton/styles/hover_pressed = ExtResource("10_wive1")
 OptionButton/styles/normal = ExtResource("11_lxe2k")
 OptionButton/styles/pressed = ExtResource("12_ccc42")
-PopupMenu/constants/v_separation = 6
+PopupMenu/constants/v_separation = 14
 PopupMenu/fonts/font = ExtResource("1_e4j1m")
 PopupMenu/styles/hover = ExtResource("8_o0t0j")
-PopupMenu/styles/panel = ExtResource("9_00p7g")
-PopupMenu/styles/separator = SubResource("StyleBoxLine_rm3c6")
+PopupMenu/styles/panel = ExtResource("9_jw50u")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_6lm05")
 TooltipLabel/fonts/font = ExtResource("1_e4j1m")
 TooltipPanel/styles/panel = ExtResource("8_san7l")
 VSeparator/constants/separation = 24

@@ -47,6 +47,8 @@ font_color = Color(1, 0.23, 0.23, 1)
 font = ExtResource("15_xr5ea")
 font_size = 21
 font_color = Color(0.988235, 0.792157, 0.27451, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ry8px"]
 font_color = Color(1, 0.43, 0.43, 1)
@@ -325,8 +327,9 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_xdqeg")
 
 [node name="Button_Create" type="Button" parent="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
+size_flags_vertical = 0
 text = "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 icon = ExtResource("6_clkik")
 icon_alignment = 2

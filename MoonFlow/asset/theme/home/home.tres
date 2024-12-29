@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://ddexy01pp37b1"]
+[gd_resource type="Theme" load_steps=28 format=3 uid="uid://ddexy01pp37b1"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_l1jp4"]
 [ext_resource type="StyleBox" uid="uid://diowequepd8ed" path="res://asset/theme/common/stylebox/common_accept_dialog_panel.tres" id="1_rf4hs"]
@@ -20,7 +20,7 @@
 [ext_resource type="StyleBox" uid="uid://du1aj0r1pa6at" path="res://asset/theme/home/stylebox/home_checkbox_hover.tres" id="10_qp6k4"]
 [ext_resource type="StyleBox" uid="uid://binjmxbf7rse2" path="res://asset/theme/home/stylebox/home_tab_container_bar_background_panel.tres" id="11_0cqet"]
 [ext_resource type="StyleBox" uid="uid://nm18tplkr134" path="res://asset/theme/home/stylebox/home_checkbox_pressed.tres" id="11_thos2"]
-[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="13_fsr2p"]
+[ext_resource type="StyleBox" uid="uid://bq75lce6usfp3" path="res://asset/theme/main/stylebox/header_popup_menu_panel.tres" id="14_0avqo"]
 [ext_resource type="StyleBox" uid="uid://bs2v8yiuqopt8" path="res://asset/theme/home/stylebox/home_tab_background_panel.tres" id="14_s4siw"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="20_i4ubv"]
 [ext_resource type="StyleBox" uid="uid://cys3dv01cl5ea" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_edit_window_border.tres" id="23_w7qp7"]
@@ -29,6 +29,13 @@
 color = Color(1, 0.737255, 0.258824, 0.713726)
 grow_begin = -12.0
 grow_end = -12.0
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6lm05"]
+content_margin_bottom = 6.0
+color = Color(1, 1, 1, 0.352941)
+grow_begin = -25.0
+grow_end = -25.0
 thickness = 2
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_o0anw"]
@@ -75,9 +82,11 @@ MenuButton/styles/hover = ExtResource("3_ff0pw")
 MenuButton/styles/hover_pressed = ExtResource("4_usreh")
 MenuButton/styles/normal = ExtResource("5_jc6nw")
 MenuButton/styles/pressed = ExtResource("6_t6ubk")
+PopupMenu/constants/v_separation = 14
 PopupMenu/fonts/font = ExtResource("1_l1jp4")
 PopupMenu/styles/hover = ExtResource("3_ff0pw")
-PopupMenu/styles/panel = ExtResource("13_fsr2p")
+PopupMenu/styles/panel = ExtResource("14_0avqo")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_6lm05")
 TabContainer/font_sizes/font_size = 21
 TabContainer/fonts/font = ExtResource("7_nh43o")
 TabContainer/styles/panel = ExtResource("14_s4siw")
