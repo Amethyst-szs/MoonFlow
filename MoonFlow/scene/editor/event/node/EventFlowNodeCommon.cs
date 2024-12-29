@@ -187,7 +187,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 	{
 		var port = base.CreatePortOut();
 
-		if (Content.GetMaxOutgoingEdges() == 2 && Content.IsForceOutgoingEdgeCount())
+		if (Content.GetMaxOutgoingEdges() > 1)
 			port.PortColor = PortColorList[port.Index];
 
 		return port;

@@ -80,7 +80,7 @@ public class ProjectSmoEventFlowFactory : EventFlowFactoryBase
         { "FirstTalkEndCollectBgmNpc", typeof(NodeGeneric) }, // Set GameDataFile flag for talking to collect bgm npc
         { "ForcePutOnDemoCap", typeof(NodeGeneric) }, // Force the demo cappy into put on state
         { "GetAmiiboCostume", typeof(NodeGetAmiiboCostume) }, // Accquire a costume by amiibo, and optionally equip it
-        /* Incorrect type! */ { "GetAmiiboNotSearchHintNum", typeof(NodeGenericQuery) }, // ???
+        { "GetAmiiboNotSearchHintNum", typeof(NodeGetAmiiboNotSearchHintNum) }, // ???
         { "GetCollectBgmBonus01", typeof(NodeGeneric) }, // Unlock CollectBgm 01
         { "GetCollectBgmBonus02", typeof(NodeGeneric) }, // Unlock CollectBgm 02
         { "GetSearchAmiibo", typeof(NodeGetSearchAmiibo) }, // Four-way branch based on searching amiibo
