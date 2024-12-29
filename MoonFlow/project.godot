@@ -17,6 +17,7 @@ AutoExportVersion/version_config_file="res://version/config.gd"
 [application]
 
 config/name="MoonFlow"
+config/description="A Super Mario Odyssey project management & mod development tool"
 run/main_scene="res://scene/main/main.tscn"
 run/print_header=false
 config/auto_accept_quit=false

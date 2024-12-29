@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=10 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
+[ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_ihk7t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_skk56"]
 font = ExtResource("1_1hk75")
@@ -72,6 +73,8 @@ func _on_item_selected(idx: int) -> void:
 	EngineSettings.set_setting(key, value)
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gn66n"]
+
 [node name="Page_General" type="VBoxContainer"]
 anchors_preset = 10
 anchor_right = 1.0
@@ -138,6 +141,21 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
 script = SubResource("GDScript_nl872")
+
+[node name="HSep_MiniSpacer0" type="HSeparator" parent="VBox_Performance"]
+layout_mode = 2
+theme_override_constants/separation = 14
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gn66n")
+
+[node name="Label_VSync" type="Label" parent="VBox_Performance"]
+layout_mode = 2
+text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_HEADER"
+
+[node name="Check_VSync" type="CheckBox" parent="VBox_Performance"]
+layout_mode = 2
+text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC"
+script = ExtResource("2_ihk7t")
+key = "display/window/vsync/vsync_mode"
 
 [node name="HSep_Spacer" type="HSeparator" parent="VBox_Performance"]
 layout_mode = 2
