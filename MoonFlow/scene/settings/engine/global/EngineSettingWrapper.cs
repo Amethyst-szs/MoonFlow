@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace MoonFlow;
@@ -24,5 +25,10 @@ public static class EngineSettings
     public static void Save()
     {
         Engine.GetSingleton(AutoloadName).Call("save");
+    }
+
+    public static void Connect(string signalName, Action method)
+    {
+        Engine.GetSingleton(AutoloadName).Connect(signalName, Callable.From(method));
     }
 }

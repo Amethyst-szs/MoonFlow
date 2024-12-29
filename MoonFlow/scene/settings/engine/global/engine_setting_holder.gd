@@ -4,6 +4,8 @@ var cfg := ConfigFile.new()
 
 const path: String = "res://override.cfg"
 
+signal taskbar_size_modified()
+
 func _enter_tree() -> void:
 	Engine.register_singleton("EngineSettingsCSharp", self)
 	
@@ -30,3 +32,6 @@ func set_setting(key: String, value: Variant) -> void:
 
 func save() -> void:
 	cfg.save(path)
+
+func _taskbar_size_modified() -> void:
+	taskbar_size_modified.emit()

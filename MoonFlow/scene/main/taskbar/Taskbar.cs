@@ -9,6 +9,8 @@ public partial class Taskbar : Control
     public override void _Ready()
     {
         GetWindow().SizeChanged += UpdateDisplay;
+        EngineSettings.Connect("taskbar_size_modified", OnTaskbarSizeChanged);
+
         UpdateDisplay();
     }
 
@@ -86,7 +88,8 @@ public partial class Taskbar : Control
             return;
 
         var windowSize = GetWindow().Size;
-        CustomMinimumSize = new Vector2(windowSize.X, ((Control)GetChild(0)).Size.Y);
+        var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
+        CustomMinimumSize = new Vector2(windowSize.X, height);
 
         float buttonWidth = CalcButtonWidth();
         for (int i = 0; i < GetChildCount(); i++)
@@ -111,4 +114,11 @@ public partial class Taskbar : Control
         var windowSize = GetWindow().Size;
         return Math.Min(164, windowSize.X / GetChildCount());
     }
+
+    private void OnTaskbarSizeChanged()
+	{
+		var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
+		CustomMinimumSize = new Vector2(CustomMinimumSize.X, height);
+		Size = new Vector2(Size.X, height);
+	}
 }

@@ -5,6 +5,7 @@ extends HSlider
 @export_group("Display")
 @export var label: Label
 @export var display_as_percent: bool = false
+@export var percent_excludes_zero: bool = true
 @export var display_factor: float = 1
 
 @export var format: String = " %0.2f"
@@ -27,6 +28,8 @@ func _on_value_changed(v: float) -> void:
 		label.text = tr(_initial_label_text) + (format % display) + suffix
 	else:
 		var dist = inverse_lerp(min_value, max_value, v) * 100
-		dist = clampf(dist, 2, 100)
+		
+		if percent_excludes_zero:
+			dist = clampf(dist, 2, 100)
 		
 		label.text = tr(_initial_label_text) + " %01.0f%%" % dist + suffix

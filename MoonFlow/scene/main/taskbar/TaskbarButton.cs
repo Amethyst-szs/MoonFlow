@@ -31,6 +31,10 @@ public partial class TaskbarButton : Button
 		ExpandIcon = true;
 		TextOverrunBehavior = TextServer.OverrunBehavior.TrimChar;
 
+		var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
+		CustomMinimumSize = new Vector2(CustomMinimumSize.X, height);
+		EngineSettings.Connect("taskbar_size_modified", OnTaskbarSizeChanged);
+
 		// Setup unsaved changes dot if app supports it
 		if (app.IsAppAllowUnsavedChanges())
 		{
@@ -81,5 +85,12 @@ public partial class TaskbarButton : Button
 	{
 		if (IsInstanceValid(UnsavedDot))
 			UnsavedDot.SetDeferred(PropertyName.Visible, isModified);
+	}
+
+	private void OnTaskbarSizeChanged()
+	{
+		var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
+		CustomMinimumSize = new Vector2(CustomMinimumSize.X, height);
+		Size = new Vector2(Size.X, height);
 	}
 }

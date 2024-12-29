@@ -160,7 +160,6 @@ theme = ExtResource("6_2jriu")
 
 [node name="Taskbar" type="Control" parent="Content/TaskbarPanel"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 script = ExtResource("4_kco4x")
 
