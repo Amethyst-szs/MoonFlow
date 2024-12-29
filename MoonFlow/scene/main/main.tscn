@@ -106,10 +106,14 @@ script = ExtResource("5_2c21b")
 [node name="Project" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
 size = Vector2i(309, 100)
-item_count = 2
+item_count = 4
 item_0/text = "MAIN_ACTIONBAR_PROJECT_RELOAD"
 item_1/text = "MAIN_ACTIONBAR_PROJECT_CLOSE"
 item_1/id = 1
+item_2/id = 10000
+item_2/separator = true
+item_3/text = "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+item_3/id = 2
 script = ExtResource("5_8pvlw")
 
 [node name="Debug" type="PopupMenu" parent="Content/Header/Content/Actionbar"]

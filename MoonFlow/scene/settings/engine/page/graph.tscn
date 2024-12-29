@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://cloegljf3qn5e"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_2xewp"]
+[ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_rm84r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3gba"]
+font = ExtResource("1_2xewp")
+font_size = 24
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vh227"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3f1a"]
+font = ExtResource("1_2xewp")
+font_size = 19
+
+[node name="Page_Graph" type="VBoxContainer"]
+
+[node name="Label_Head" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
+label_settings = SubResource("LabelSettings_v3gba")
+
+[node name="HSep_Head" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vh227")
+
+[node name="Label_VisualHeader" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
+label_settings = SubResource("LabelSettings_g3f1a")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Check_DisableShaderBG" type="CheckBox" parent="."]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND_TOOLTIP"
+text = "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND"
+script = ExtResource("2_rm84r")
+key = "moonflow/event_graph/disable_background"

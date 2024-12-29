@@ -50,7 +50,7 @@ public partial class FrontDoor : AppScene
 	private void OpenEngineSettingsApp()
 	{
 		var app = SceneCreator<EngineSettingsApp>.Create();
-		SetUniqueIdentifier();
+		app.SetUniqueIdentifier();
 		Scene.NodeApps.AddChild(app);
 	}
 

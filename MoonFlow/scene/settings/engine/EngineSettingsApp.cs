@@ -6,4 +6,9 @@ namespace MoonFlow.Scene.Settings;
 [ScenePath("res://scene/settings/engine/engine_settings_app.tscn")]
 public partial class EngineSettingsApp : AppScene
 {
+    private void OnSaveAndExit()
+    {
+        EngineSettings.Save();
+        AppClose(true);
+    }
 }

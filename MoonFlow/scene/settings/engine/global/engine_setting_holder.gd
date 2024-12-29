@@ -5,6 +5,8 @@ var cfg := ConfigFile.new()
 const path: String = "res://override.cfg"
 
 func _enter_tree() -> void:
+	Engine.register_singleton("EngineSettingsCSharp", self)
+	
 	if FileAccess.file_exists(path):
 		cfg.load(path)
 	
@@ -25,8 +27,6 @@ func set_setting(key: String, value: Variant) -> void:
 	
 	cfg.set_value(cfg_access[0], cfg_access[1], value)
 	ProjectSettings.set_setting(key, value)
-	
-	save()
 
 func save() -> void:
 	cfg.save(path)

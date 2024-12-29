@@ -57,6 +57,7 @@
 # res://scene/editor/event/meta/tables/category_table_translation_text.tres
 # res://scene/editor/event/node/typedef/flow/entry_point_jump.tscn
 # res://scene/editor/event/node/typedef/flow/fork.tscn
+# res://scene/settings/engine/page/graph.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -176,6 +177,10 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
@@ -2246,6 +2251,10 @@ msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
 msgstr ""
 
@@ -2362,11 +2371,15 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 msgstr ""
 
 #: scene/settings/engine/engine_settings_app.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
+msgstr ""
+
+#: scene/settings/engine/engine_settings_app.tscn
 msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
-msgid "ENGINE_SETTINGS_PAGE_GENERAL_HEADER"
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
@@ -2463,4 +2476,12 @@ msgstr ""
 
 #: scene/editor/event/node/typedef/flow/fork.tscn
 msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND"
 msgstr ""

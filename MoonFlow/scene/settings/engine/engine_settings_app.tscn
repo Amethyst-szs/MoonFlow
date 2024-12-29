@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpoxm31ltuycw"]
+[gd_scene load_steps=13 format=3 uid="uid://bpoxm31ltuycw"]
 
 [ext_resource type="Script" path="res://scene/settings/engine/EngineSettingsApp.cs" id="1_uf06t"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_p7vkx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dx5wrgv3ugohw" path="res://scene/settings/engine/page/general.tscn" id="6_cicul"]
 [ext_resource type="StyleBox" uid="uid://b333duw0kswvw" path="res://asset/theme/common/stylebox/common_vsep_minimal.tres" id="6_xjfkm"]
 [ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="7_h42e4"]
+[ext_resource type="PackedScene" uid="uid://cloegljf3qn5e" path="res://scene/settings/engine/page/graph.tscn" id="9_v00pt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blbrj"]
 content_margin_left = 12.0
@@ -60,7 +61,7 @@ size_flags_horizontal = 3
 [node name="Content" type="VBoxContainer" parent="Content/HSplit/Category"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 16
+theme_override_constants/separation = 10
 
 [node name="Label_CatHeader" type="Label" parent="Content/HSplit/Category/Content"]
 custom_minimum_size = Vector2(64, 0)
@@ -78,8 +79,15 @@ layout_mode = 2
 text = "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 text_overrun_behavior = 3
 script = ExtResource("4_ombcx")
-target = NodePath("../../../Content/Page_General")
+target = NodePath("../../../Content/Scroll/VBox/Page_General")
 is_default_page = true
+
+[node name="Button_Graph" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
+text_overrun_behavior = 3
+script = ExtResource("4_ombcx")
+target = NodePath("../../../Content/Scroll/VBox/Page_Graph")
 
 [node name="HSep_BottomAlignment" type="HSeparator" parent="Content/HSplit/Category/Content"]
 layout_mode = 2
@@ -103,5 +111,20 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_b01h6")
 theme_override_styles/panel = ExtResource("7_h42e4")
 
-[node name="Page_General" parent="Content/HSplit/Content" instance=ExtResource("6_cicul")]
+[node name="Scroll" type="ScrollContainer" parent="Content/HSplit/Content"]
 layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBox" type="VBoxContainer" parent="Content/HSplit/Content/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Page_General" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("6_cicul")]
+layout_mode = 2
+
+[node name="Page_Graph" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("9_v00pt")]
+layout_mode = 2
+
+[connection signal="pressed" from="Content/HSplit/Category/Content/Button_Exit" to="." method="OnSaveAndExit"]

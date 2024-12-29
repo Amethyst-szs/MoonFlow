@@ -1,6 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=6 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_skk56"]
+font = ExtResource("1_1hk75")
+font_size = 24
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_av5ml"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2x6cb"]
 font = ExtResource("1_1hk75")
@@ -38,13 +45,24 @@ anchor_right = 1.0
 offset_bottom = 28.0
 grow_horizontal = 2
 
-[node name="Label_Header" type="Label" parent="."]
+[node name="Label_Head" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
+label_settings = SubResource("LabelSettings_skk56")
+
+[node name="HSep_Head" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_av5ml")
+
+[node name="Label_LanguageHeader" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "ENGINE_SETTINGS_PAGE_GENERAL_HEADER"
+text = "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
 label_settings = SubResource("LabelSettings_2x6cb")
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSep" type="HSeparator" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 24
 

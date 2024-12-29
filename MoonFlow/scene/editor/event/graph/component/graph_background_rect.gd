@@ -4,6 +4,13 @@ extends ColorRect
 
 var initial_dot_size: Vector2 = Vector2.ZERO
 
+const key: String = "moonflow/event_graph/disable_background"
+
+func _enter_tree() -> void:
+	if EngineSettings.get_setting(key, false):
+		material = null
+		set_script(null)
+
 func _ready() -> void:
 	var shader := material as ShaderMaterial
 	initial_dot_size = shader.get_shader_parameter("dot_size")

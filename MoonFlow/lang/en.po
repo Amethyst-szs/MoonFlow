@@ -137,6 +137,10 @@ msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 msgstr "Create Project"
 
 #: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
+msgstr "MoonFlow Settings"
+
+#: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 msgstr "Romfs Path Settings"
 
@@ -2226,6 +2230,10 @@ msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr "Close Project"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr "Open MoonFlow Settings"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
 msgstr "Open MSBP MSTXT viewer"
 
@@ -2353,12 +2361,16 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 msgstr "General"
 
 #: scene/settings/engine/engine_settings_app.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
+msgstr "Event Graph"
+
+#: scene/settings/engine/engine_settings_app.tscn
 msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 msgstr "Save & Exit"
 
 #: scene/settings/engine/page/general.tscn
-msgid "ENGINE_SETTINGS_PAGE_GENERAL_HEADER"
-msgstr "General"
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
+msgstr "Language Config"
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
@@ -2455,6 +2467,14 @@ msgstr "Remove Outgoing Port"
 #: scene/editor/event/node/typedef/flow/fork.tscn
 msgid "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
 msgstr "Add Outgoing Port"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
+msgstr "Visual"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND"
+msgstr "Disable Detailed Background"
 
 #~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 #~ msgid "AUDIO"
