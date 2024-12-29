@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=8 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
 
@@ -39,6 +39,39 @@ func _on_item_selected(idx: int) -> void:
 	EngineSettings.set_setting(\"moonflow/general/locale\", lang)
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8tvi"]
+
+[sub_resource type="GDScript" id="GDScript_nl872"]
+script/source = "extends OptionButton
+
+const option_tr_context: String = \"ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS\"
+const key: String = \"application/run/low_processor_mode_sleep_usec\"
+
+var option_list: Dictionary = {
+	0: tr(\"DISABLED\", option_tr_context),
+	2000: tr(\"MINIMAL\", option_tr_context),
+	10000: tr(\"STANDARD\", option_tr_context),
+	50000: tr(\"STRONG\", option_tr_context),
+	100000: tr(\"VERY_STRONG\", option_tr_context),
+}
+
+func _ready():
+	for i in range(option_list.size()):
+		add_item(option_list.values()[i], option_list.keys()[i])
+	
+	var value: int = EngineSettings.get_setting(key, 10000)
+	if option_list.has(value):
+		select(option_list.keys().find(value))
+	else:
+		select(get_item_index(10000))
+	
+	item_selected.connect(_on_item_selected)
+
+func _on_item_selected(idx: int) -> void:
+	var value = option_list.keys()[idx]
+	EngineSettings.set_setting(key, value)
+"
+
 [node name="Page_General" type="VBoxContainer"]
 anchors_preset = 10
 anchor_right = 1.0
@@ -56,21 +89,57 @@ layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_av5ml")
 
-[node name="Label_LanguageHeader" type="Label" parent="."]
+[node name="VBox_Lang" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label_LanguageHeader" type="Label" parent="VBox_Lang"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
 label_settings = SubResource("LabelSettings_2x6cb")
 
-[node name="HSep" type="HSeparator" parent="."]
+[node name="HSep" type="HSeparator" parent="VBox_Lang"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label_LocaleHeader" type="Label" parent="."]
+[node name="Label_LocaleHeader" type="Label" parent="VBox_Lang"]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
 
-[node name="Option_Locale" type="OptionButton" parent="."]
+[node name="Option_Locale" type="OptionButton" parent="VBox_Lang"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = SubResource("GDScript_4x0fm")
+
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Lang"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
+
+[node name="VBox_Performance" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label_PerformanceHeader" type="Label" parent="VBox_Performance"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_HEADER"
+label_settings = SubResource("LabelSettings_2x6cb")
+
+[node name="HSep" type="HSeparator" parent="VBox_Performance"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label_LowProcessorHeader" type="Label" parent="VBox_Performance"]
+layout_mode = 2
+text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_HEADER"
+
+[node name="Option_LowProcessor" type="OptionButton" parent="VBox_Performance"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
+script = SubResource("GDScript_nl872")
+
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Performance"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")

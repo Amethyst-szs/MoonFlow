@@ -2371,12 +2371,51 @@ msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 msgstr "Save & Exit"
 
 #: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "DISABLED"
+msgstr "Disabled"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "MINIMAL"
+msgstr "Minimal"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "STANDARD"
+msgstr "Normal"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "STRONG"
+msgstr "Strong"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "VERY_STRONG"
+msgstr "ULTRA"
+
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
-msgstr "Language Config"
+msgstr "Language"
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
 msgstr "Application Language:"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_HEADER"
+msgstr "Performance"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_HEADER"
+msgstr "Low-Processor Mode:"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
+msgstr ""
+"Reduce CPU usage by setting the strength of the\n"
+"Low-Processor mode. ( REQUIRES RESTART )"
 
 #: scene/editor/event/meta/tables/category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"

@@ -2381,11 +2381,48 @@ msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "DISABLED"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "MINIMAL"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "STANDARD"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "STRONG"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "VERY_STRONG"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
 msgstr ""
 
 #: scene/editor/event/meta/tables/category_table_translation_text.tres
