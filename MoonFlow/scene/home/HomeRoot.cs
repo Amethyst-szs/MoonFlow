@@ -20,6 +20,19 @@ public partial class HomeRoot : AppScene
 
     public static void RecursiveFileSearch(Control root, string term)
 	{
+		if (root.Name.ToString().StartsWith("NotInSearch_"))
+		{
+			if (root is MarginContainer)
+				root.Hide();
+			else
+				root.Visible = term == string.Empty;
+			
+			if (root is Button b)
+				b.SetPressedNoSignal(false);
+			
+			return;
+		}
+		
 		if (root is Button button)
 		{
 			if (root.GetScript().As<Script>() != DropdownButton)
@@ -41,7 +54,7 @@ public partial class HomeRoot : AppScene
 			root.Visible = term == string.Empty;
         
         if (term != string.Empty && root is MarginContainer)
-            root.Visible = IsAnyChildVisible<Button>(root);
+            SetVisibleIfAnyChildVisible<Button>(root);
 		
 		if (root.GetChildCount() == 0)
 			return;
@@ -52,6 +65,12 @@ public partial class HomeRoot : AppScene
 				RecursiveFileSearch(child as Control, term);
 		}
 	}
+
+    public static async void SetVisibleIfAnyChildVisible<T>(Control root)
+    {
+		await root.ToSignal(Engine.GetMainLoop(), "process_frame");
+        root.Visible = IsAnyChildVisible<T>(root);
+    }
 
     public static bool IsAnyChildVisible<T>(Control initialRoot, Control root = null)
     {

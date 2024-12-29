@@ -339,6 +339,13 @@ public partial class TabMsbt : HSplitContainer
 		HomeRoot.RecursiveFileSearch(FileListRoot, txt);
 	}
 
+	private static void OnOpenMsbpColorEditor()
+	{
+		var app = SceneCreator<MsbpColorEditor>.Create();
+		app.SetUniqueIdentifier();
+		ProjectManager.SceneRoot.NodeApps.AddChild(app);
+	}
+
 	#endregion
 
 	#region File Utility

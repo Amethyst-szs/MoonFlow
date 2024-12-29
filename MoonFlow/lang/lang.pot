@@ -58,6 +58,9 @@
 # res://scene/editor/event/node/typedef/flow/entry_point_jump.tscn
 # res://scene/editor/event/node/typedef/flow/fork.tscn
 # res://scene/settings/engine/page/graph.tscn
+# res://scene/editor/msbp/color/msbp_color_editor.tscn
+# res://scene/editor/msbp/color/color_editor_element.tscn
+# res://scene/editor/msbp/color/color_editor_element_preview.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -269,6 +272,7 @@ msgid "HOME_TAB_WORLD"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 msgstr ""
 
@@ -285,6 +289,14 @@ msgstr ""
 #: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOLS"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
@@ -1576,6 +1588,11 @@ msgstr ""
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbp"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveWorldArchives"
 msgstr ""
 
@@ -2571,4 +2588,28 @@ msgstr ""
 
 #: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_TOOLTIP"
+msgstr ""
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_APP_HEADER"
+msgstr ""
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
+msgstr ""
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_BLACK"
+msgstr ""
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_WHITE"
+msgstr ""
+
+#: scene/editor/msbp/color/color_editor_element.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/editor/msbp/color/color_editor_element_preview.tscn
+msgid "MSBP_COLOR_EDITOR_PREVIEW_TEXT"
 msgstr ""

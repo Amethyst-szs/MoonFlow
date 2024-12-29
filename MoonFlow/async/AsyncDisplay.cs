@@ -82,6 +82,7 @@ public partial class AsyncDisplay : Control
         UpdateProjectLabelCache = 0x3A648EFF,
 
         SaveMsbtArchives = 0xF46202FF,
+        SaveMsbp = 0xF46203FF,
         SaveWorldArchives = 0xF46302FF,
         SaveEventFlowGraph = 0xF46303FF,
     }

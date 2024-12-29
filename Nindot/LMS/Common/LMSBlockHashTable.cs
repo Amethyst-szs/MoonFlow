@@ -320,9 +320,6 @@ public class BlockHashTable(byte[] data, string typeName, int offset, FileBase p
 
         HashTableLabel label = GetItem(labelName, table);
         label.ItemIndex = (uint)newIndex;
-
-        table.LabelList.Remove(label);
-        table.LabelList.Insert(newIndex, label);
     }
 
     internal void MoveItemByOffset(string labelName, int offset)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=27 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_nlvsm"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="5_2s2c7"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_gi3dm"]
+[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="6_pbk2q"]
 [ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_puq1e"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_n1hpl"]
 [ext_resource type="PackedScene" uid="uid://cskp7so180vjn" path="res://scene/home/tab_msbt/popup_msbt_create.tscn" id="9_0g6c8"]
@@ -126,6 +127,25 @@ layout_mode = 2
 [node name="LayoutMessage_VBox" type="VBoxContainer" parent="FileList/FileListContent/VBox/Layout"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="NotInSearch_Check_MSBP" type="CheckBox" parent="FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+text = "HOME_TAB_TEXT_MSBP_TOOLS"
+script = ExtResource("1_8nwia")
+dropdown = NodePath("../NotInSearch_MSBP")
+
+[node name="NotInSearch_MSBP" type="MarginContainer" parent="FileList/FileListContent/VBox"]
+layout_mode = 2
+
+[node name="MSBP_VBox" type="VBoxContainer" parent="FileList/FileListContent/VBox/NotInSearch_MSBP"]
+layout_mode = 2
+
+[node name="Button_MsbpColors" type="Button" parent="FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox"]
+layout_mode = 2
+text = "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
+icon = ExtResource("6_pbk2q")
+alignment = 0
+icon_alignment = 2
 
 [node name="Footer" type="PanelContainer" parent="FileList"]
 layout_mode = 2
@@ -301,6 +321,7 @@ dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 dialog_autowrap = true
 
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
+[connection signal="pressed" from="FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="." method="OnDuplicateFileRequested"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_New" to="." method="OnNewFileRequested"]

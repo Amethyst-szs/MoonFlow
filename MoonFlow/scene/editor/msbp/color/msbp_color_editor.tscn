@@ -1,0 +1,166 @@
+[gd_scene load_steps=18 format=3 uid="uid://041p6wwk4vvx"]
+
+[ext_resource type="Script" path="res://scene/editor/msbp/color/MsbpColorEditor.cs" id="1_fmpb3"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_gpn8b"]
+[ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="2_ktat6"]
+[ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="3_5s4ya"]
+[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="4_4fny0"]
+[ext_resource type="StyleBox" uid="uid://dc7dabk10eeb5" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_edit.tres" id="5_21sd3"]
+[ext_resource type="Theme" uid="uid://bv475afvceima" path="res://asset/theme/msbp/color/msbp_color_editor.tres" id="5_vj61p"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="7_4dmpa"]
+[ext_resource type="StyleBox" uid="uid://dybfq2wo8ge5x" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_preview_black.tres" id="8_dwog8"]
+[ext_resource type="StyleBox" uid="uid://dakwxngoo4qdv" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_preview_white.tres" id="9_qc2bw"]
+[ext_resource type="PackedScene" uid="uid://d2775ugm6di8r" path="res://scene/editor/msbp/color/color_editor_element.tscn" id="10_htxiy"]
+[ext_resource type="StyleBox" uid="uid://bfgjw02pqlueh" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_picker_panel.tres" id="12_h18l2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ic1sj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oybk2"]
+font = ExtResource("7_4dmpa")
+font_size = 20
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_clgfl"]
+font = ExtResource("7_4dmpa")
+font_size = 18
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_17jwe"]
+font = ExtResource("7_4dmpa")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_prxu4"]
+font = ExtResource("7_4dmpa")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[node name="MsbpColorEditorApp" type="Control" node_paths=PackedStringArray("ElementHolder", "ColorPickerHolder", "ColorPicker")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_gpn8b")
+script = ExtResource("1_fmpb3")
+ElementScene = ExtResource("10_htxiy")
+ElementHolder = NodePath("Content/Margin/Scroll_Content/Layout/VBox_ColorList")
+ColorPickerHolder = NodePath("Popup_Picker")
+ColorPicker = NodePath("Popup_Picker/Panel_Picker/Picker")
+AppName = "MsbpColorEditor"
+AppTaskbarTitle = "Project Colors"
+AppIcon = ExtResource("2_ktat6")
+AppFlags = 115
+UnsavedChangesScene = ExtResource("3_5s4ya")
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_vj61p")
+theme_override_styles/panel = ExtResource("4_4fny0")
+
+[node name="Margin" type="MarginContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 24
+
+[node name="Scroll_Content" type="ScrollContainer" parent="Content/Margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ic1sj")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Layout" type="VBoxContainer" parent="Content/Margin/Scroll_Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Label_Header" type="Label" parent="Content/Margin/Scroll_Content/Layout"]
+layout_mode = 2
+text = "MSBP_COLOR_EDITOR_APP_HEADER"
+label_settings = SubResource("LabelSettings_oybk2")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Content/Margin/Scroll_Content/Layout"]
+layout_mode = 2
+
+[node name="HBox_TableHeader" type="HBoxContainer" parent="Content/Margin/Scroll_Content/Layout"]
+layout_mode = 2
+
+[node name="Header_Color" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("5_21sd3")
+
+[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_Color"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
+label_settings = SubResource("LabelSettings_clgfl")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Header_PreviewB" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("8_dwog8")
+
+[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_PreviewB"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_BLACK"
+label_settings = SubResource("LabelSettings_17jwe")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Header_PreviewW" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("9_qc2bw")
+
+[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_PreviewW"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_WHITE"
+label_settings = SubResource("LabelSettings_prxu4")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="VBox_ColorList" type="VBoxContainer" parent="Content/Margin/Scroll_Content/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Popup_Picker" type="Popup" parent="."]
+transparent_bg = true
+size = Vector2i(346, 501)
+transparent = true
+theme = ExtResource("5_vj61p")
+
+[node name="Panel_Picker" type="PanelContainer" parent="Popup_Picker"]
+offset_right = 306.0
+offset_bottom = 485.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("12_h18l2")
+
+[node name="Picker" type="ColorPicker" parent="Popup_Picker/Panel_Picker"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+edit_alpha = false
+can_add_swatches = false
+presets_visible = false
+
+[connection signal="color_changed" from="Popup_Picker/Panel_Picker/Picker" to="." method="OnColorPickerColorChanged"]

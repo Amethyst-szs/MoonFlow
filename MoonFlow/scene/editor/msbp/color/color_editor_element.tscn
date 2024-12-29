@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://d2775ugm6di8r"]
+
+[ext_resource type="Theme" uid="uid://bv475afvceima" path="res://asset/theme/msbp/color/msbp_color_editor.tres" id="1_00ii6"]
+[ext_resource type="StyleBox" uid="uid://dc7dabk10eeb5" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_edit.tres" id="1_m6c5j"]
+[ext_resource type="Script" path="res://scene/editor/msbp/color/color_editor_element.gd" id="2_5xs7q"]
+[ext_resource type="StyleBox" uid="uid://dybfq2wo8ge5x" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_preview_black.tres" id="2_l4ct1"]
+[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="3_0d0pn"]
+[ext_resource type="StyleBox" uid="uid://dakwxngoo4qdv" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_preview_white.tres" id="3_0x0g4"]
+[ext_resource type="Theme" uid="uid://bgm7xdd8rieur" path="res://asset/theme/common/app_color_swatch_button.tres" id="3_h36ao"]
+[ext_resource type="Shader" path="res://asset/shader/common/color_invert.gdshader" id="4_4qx4e"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="6_c447u"]
+[ext_resource type="PackedScene" uid="uid://f68g2wbg8gpk" path="res://scene/editor/msbp/color/color_editor_element_preview.tscn" id="8_5bfqn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ftjp"]
+shader = ExtResource("4_4qx4e")
+
+[node name="Element" type="HBoxContainer"]
+theme = ExtResource("1_00ii6")
+script = ExtResource("2_5xs7q")
+
+[node name="Panel_Color" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_m6c5j")
+
+[node name="Layout" type="HBoxContainer" parent="Panel_Color"]
+layout_mode = 2
+
+[node name="Button_OpenPicker" type="Button" parent="Panel_Color/Layout"]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("3_h36ao")
+
+[node name="Texture_Icon" type="TextureRect" parent="Panel_Color/Layout/Button_OpenPicker"]
+material = SubResource("ShaderMaterial_3ftjp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0d0pn")
+expand_mode = 1
+
+[node name="Line_ColorName" type="LineEdit" parent="Panel_Color/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
+max_length = 32
+script = ExtResource("6_c447u")
+is_return_if_empty = true
+
+[node name="Panel_PreviewBlack" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_l4ct1")
+
+[node name="Preview" parent="Panel_PreviewBlack" instance=ExtResource("8_5bfqn")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Panel_PreviewWhite" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_0x0g4")
+
+[node name="Preview" parent="Panel_PreviewWhite" instance=ExtResource("8_5bfqn")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[connection signal="pressed" from="Panel_Color/Layout/Button_OpenPicker" to="." method="_on_color_picker_request"]
+[connection signal="text_validated" from="Panel_Color/Layout/Line_ColorName" to="." method="_on_line_color_name_changed"]

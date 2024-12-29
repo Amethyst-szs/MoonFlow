@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://f68g2wbg8gpk"]
+
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_81uyn"]
+[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/anim/preview_beat.gd" id="1_lwk63"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_d6yhc"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_q0bor"]
+script = ExtResource("1_lwk63")
+
+[node name="Preview" type="RichTextLabel"]
+custom_minimum_size = Vector2(128, 0)
+theme_override_fonts/normal_font = ExtResource("1_81uyn")
+theme_override_fonts/bold_font = ExtResource("2_d6yhc")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "MSBP_COLOR_EDITOR_PREVIEW_TEXT"
+fit_content = true
+shortcut_keys_enabled = false
+custom_effects = [SubResource("RichTextEffect_q0bor")]

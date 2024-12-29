@@ -230,7 +230,7 @@ msgstr "Events"
 msgid "HOME_TAB_WORLD"
 msgstr "Kingdom"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 msgstr "Search Files"
 
@@ -245,6 +245,14 @@ msgstr "Stage Text"
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr "Layout Text"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOLS"
+msgstr "Message Studio Project"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
+msgstr "Color Palette Editor"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
@@ -1545,6 +1553,11 @@ msgstr "Saving MSBT Archives..."
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbp"
+msgstr "Saving MSBP..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveWorldArchives"
 msgstr "Saving World Info..."
 
@@ -2572,6 +2585,38 @@ msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_TOOLTIP"
 msgstr ""
 "Speed of vertical camera movement from dragging\n"
 "with middle mouse in event graph editor."
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+#| msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
+msgid "MSBP_COLOR_EDITOR_APP_HEADER"
+msgstr ""
+"Message Studio Project\n"
+"Color Pallete"
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+#| msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
+msgstr "Color Editor"
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_BLACK"
+msgstr "Preview (Dark)"
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_WHITE"
+msgstr "Preview (Light)"
+
+#: scene/editor/msbp/color/color_editor_element.tscn
+#| msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
+msgid "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
+msgstr "Color Name"
+
+#: scene/editor/msbp/color/color_editor_element_preview.tscn
+#| msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
+msgid "MSBP_COLOR_EDITOR_PREVIEW_TEXT"
+msgstr ""
+"[center]Preview [b]text[/b] [i]here[/i] [wave]wowie[/wave] [beat]123456[/"
+"beat]"
 
 #~ msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_HEADER"
 #~ msgstr "VSync"

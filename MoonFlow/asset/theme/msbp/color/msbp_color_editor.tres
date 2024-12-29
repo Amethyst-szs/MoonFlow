@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bv475afvceima"]
+
+[ext_resource type="StyleBox" uid="uid://eiax8q0e66o" path="res://asset/theme/front_door/stylebox/front_door_button_focus.tres" id="1_0xclc"]
+[ext_resource type="StyleBox" uid="uid://ebv5kn5klsso" path="res://asset/theme/home/stylebox/home_tab_button_selected.tres" id="1_ldmcr"]
+[ext_resource type="StyleBox" uid="uid://grixapu2vuvo" path="res://asset/theme/front_door/stylebox/front_door_button_normal.tres" id="1_uxu3e"]
+[ext_resource type="StyleBox" uid="uid://bomiwbeifql63" path="res://asset/theme/home/stylebox/home_tab_button_unselected.tres" id="2_imbdc"]
+[ext_resource type="StyleBox" uid="uid://bo2ov2pm2ovec" path="res://asset/theme/front_door/stylebox/front_door_button_hover.tres" id="2_ue53d"]
+[ext_resource type="StyleBox" uid="uid://bdw4rs5jxfclg" path="res://asset/theme/front_door/stylebox/front_door_button_hover_pressed.tres" id="3_bp6po"]
+[ext_resource type="StyleBox" uid="uid://px5fuqpp8fob" path="res://asset/theme/front_door/stylebox/front_door_button_pressed.tres" id="5_08nt5"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="8_yubxr"]
+[ext_resource type="StyleBox" uid="uid://dwt2fn0qqwydm" path="res://asset/theme/home/stylebox/home_tab_button_disabled.tres" id="9_0sg31"]
+[ext_resource type="StyleBox" uid="uid://b05defux4r3bw" path="res://asset/theme/home/stylebox/home_tab_button_focus.tres" id="10_fjn4h"]
+[ext_resource type="StyleBox" uid="uid://b3lh17fgxyphl" path="res://asset/theme/home/stylebox/home_tab_button_hover.tres" id="11_dpr7q"]
+
+[resource]
+ColorPicker/constants/center_slider_grabbers = 1
+ColorPicker/constants/h_width = 31
+ColorPicker/constants/label_width = 15
+ColorPicker/constants/separation = 12
+ColorPicker/styles/tab_selected = ExtResource("1_ldmcr")
+ColorPicker/styles/tab_unselected = ExtResource("2_imbdc")
+ColorPickerButton/constants/icon_max_width = 26
+ColorPickerButton/styles/focus = ExtResource("1_0xclc")
+ColorPickerButton/styles/hover = ExtResource("2_ue53d")
+ColorPickerButton/styles/hover_pressed = ExtResource("3_bp6po")
+ColorPickerButton/styles/normal = ExtResource("1_uxu3e")
+ColorPickerButton/styles/pressed = ExtResource("5_08nt5")
+HBoxContainer/constants/separation = 12
+TabContainer/fonts/font = ExtResource("8_yubxr")
+TabContainer/styles/tab_disabled = ExtResource("9_0sg31")
+TabContainer/styles/tab_focus = ExtResource("10_fjn4h")
+TabContainer/styles/tab_hovered = ExtResource("11_dpr7q")
+TabContainer/styles/tab_selected = ExtResource("1_ldmcr")
+TabContainer/styles/tab_unselected = ExtResource("2_imbdc")
