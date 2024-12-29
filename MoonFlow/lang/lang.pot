@@ -2367,10 +2367,12 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
 msgstr ""
 
 #: scene/settings/engine/engine_settings_app.tscn
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 msgstr ""
 
 #: scene/settings/engine/engine_settings_app.tscn
+#: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 msgstr ""
 
@@ -2483,5 +2485,37 @@ msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
 msgstr ""
 
 #: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_X_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_X_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_TOOLTIP"
 msgstr ""

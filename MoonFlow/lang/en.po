@@ -2357,10 +2357,12 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
 msgstr "MoonFlow Settings"
 
 #: scene/settings/engine/engine_settings_app.tscn
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 msgstr "General"
 
 #: scene/settings/engine/engine_settings_app.tscn
+#: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 msgstr "Event Graph"
 
@@ -2473,8 +2475,48 @@ msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
 msgstr "Visual"
 
 #: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND_TOOLTIP"
+msgstr ""
+"Replaces the pattern background of the event editor with\n"
+"a flat color, improving performance and accessibility if needed."
+
+#: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND"
 msgstr "Disable Detailed Background"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS"
+msgstr "Controls"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_HEADER"
+msgstr "Zoom Sensitivity:"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+msgstr ""
+"How fast should the event graph editor zoom in/out\n"
+"when using the mouse wheel?"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_X_HEADER"
+msgstr "Horizontal Panning Sensitivity:"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_X_TOOLTIP"
+msgstr ""
+"Speed of horizontal camera movement from dragging\n"
+"with middle mouse in event graph editor."
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_HEADER"
+msgstr "Vertical Panning Sensitivity:"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_TOOLTIP"
+msgstr ""
+"Speed of vertical camera movement from dragging\n"
+"with middle mouse in event graph editor."
 
 #~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 #~ msgid "AUDIO"

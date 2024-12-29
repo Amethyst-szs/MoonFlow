@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpoxm31ltuycw"]
+[gd_scene load_steps=14 format=3 uid="uid://bpoxm31ltuycw"]
 
 [ext_resource type="Script" path="res://scene/settings/engine/EngineSettingsApp.cs" id="1_uf06t"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_p7vkx"]
@@ -24,6 +24,8 @@ font_size = 22
 
 [sub_resource type="Theme" id="Theme_b01h6"]
 VBoxContainer/constants/separation = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0oyq"]
 
 [node name="EngineSettingsApp" type="Control"]
 auto_translate_mode = 1
@@ -113,6 +115,7 @@ theme_override_styles/panel = ExtResource("7_h42e4")
 
 [node name="Scroll" type="ScrollContainer" parent="Content/HSplit/Content"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t0oyq")
 follow_focus = true
 horizontal_scroll_mode = 0
 

@@ -1,6 +1,5 @@
 extends Node
 
-@export var zoom_factor: float = 0.1
 @export var zoom_min: float = 0.2
 @export var zoom_max: float = 3.0
 @export var ui_bar_holder: EventFlowGraphScrollNavigationBars
@@ -11,6 +10,13 @@ var zoom_pivot: Vector2 = Vector2.ZERO
 
 @onready var parent: CanvasLayer = null
 
+@onready var zoom_factor: float = (
+	EngineSettings.get_setting("moonflow/event_graph/sensitivity_zoom", 0.1))
+
+@onready var pan_factor: Vector2 = Vector2(
+	EngineSettings.get_setting("moonflow/event_graph/sensitivity_pan_x", 1.0),
+	EngineSettings.get_setting("moonflow/event_graph/sensitivity_pan_y", 1.0))
+
 signal graph_offset_changed(offset: Vector2, scale: Vector2)
 
 func _ready() -> void:
@@ -18,7 +24,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_drag:
-		parent.offset += event.screen_relative / (parent.scale * 2.25)
+		var dist: Vector2 = event.screen_relative * pan_factor
+		
+		parent.offset += dist / (parent.scale * 2.25)
 		_clamp_offset_within_bounds()
 		
 		_update_position_for_scroll_navigation_ui()

@@ -173,3 +173,6 @@ pseudolocalization/override=true
 
 event_graph/disable_background=false
 general/locale="en"
+event_graph/sensitivity_zoom=0.1
+event_graph/sensitivity_pan_x=1.0
+event_graph/sensitivity_pan_y=1.0
