@@ -61,6 +61,7 @@
 # res://scene/editor/msbp/color/msbp_color_editor.tscn
 # res://scene/editor/msbp/color/color_editor_element.tscn
 # res://scene/editor/msbp/color/color_editor_element_preview.tscn
+# res://scene/editor/event/node/event_flow_node_common.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2621,4 +2622,12 @@ msgstr ""
 
 #: scene/editor/msbp/color/color_editor_element_preview.tscn
 msgid "MSBP_COLOR_EDITOR_PREVIEW_TEXT"
+msgstr ""
+
+#: scene/editor/event/node/event_flow_node_common.tscn
+msgid "EVENT_FLOW_NODE_NAME_EDIT_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/node/event_flow_node_common.tscn
+msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
 msgstr ""

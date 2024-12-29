@@ -30,6 +30,8 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	[Export]
 	public MenuButton NameOptionButton { get; private set; }
+	[Export]
+	public LineEdit NameLineEdit { get; private set; }
 
 	#endregion
 
@@ -94,12 +96,27 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		{
 			case Nindot.Al.EventFlow.Node.NodeOptionType.NO_OPTIONS:
 				NameOptionButton.QueueFree();
+				NameLineEdit.QueueFree();
 				break;
 			case Nindot.Al.EventFlow.Node.NodeOptionType.PRESET_LIST:
 				SetupNameOptions(options);
+
+				if (IsInstanceValid(NameLineEdit))
+					NameLineEdit.QueueFree();
+				
 				break;
 			case Nindot.Al.EventFlow.Node.NodeOptionType.ANY_VALUE:
-				NameOptionButton.QueueFree();
+				if (IsInstanceValid(NameOptionButton))
+					NameOptionButton.QueueFree();
+				
+				GetNode<Label>("%Label_Name").Hide();
+
+				if (!NameLineEdit.HasMeta("InitComplete"))
+				{
+					NameLineEdit.Text = Content.Name;
+					NameLineEdit.SetMeta("InitComplete", true);
+				}
+
 				break;
 		}
 
@@ -245,6 +262,12 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		OnNodeNameModified();
 	}
 
+	public void OnSetNameLineEdit(string name)
+	{
+		Content.Name = name;
+		OnNodeNameModified();
+		DrawDebugLabel();
+	}
 	protected virtual void OnNodeNameModified() { }
 
 	#endregion

@@ -1,20 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn6k75166p7ua"]
+[gd_scene load_steps=8 format=3 uid="uid://dn6k75166p7ua"]
 
 [ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNodeCommon.cs" id="1_7s7lh"]
 [ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_e82a6"]
 [ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/event_graph_ui_header.tres" id="3_6gwyg"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_eioh2"]
 [ext_resource type="Texture2D" uid="uid://bw6q6mibncpgu" path="res://asset/material/graph/edit.svg" id="4_p37at"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="5_ccntp"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/dropdown_vbox_with_dispose.gd" id="6_dn78i"]
 
-[node name="EventFlowNodeCommon" node_paths=PackedStringArray("ParamHolder", "ParamAddDropdownHolder", "NameOptionButton") instance=ExtResource("1_e82a6")]
+[node name="EventFlowNodeCommon" node_paths=PackedStringArray("ParamHolder", "ParamAddDropdownHolder", "NameOptionButton", "NameLineEdit") instance=ExtResource("1_e82a6")]
 script = ExtResource("1_7s7lh")
 ParamHolder = NodePath("Content/Display/Params")
 ParamAddDropdownHolder = NodePath("Content/Display/ParamAdditionalOptions")
 NameOptionButton = NodePath("Content/Display/HBox_Name/Menu_Options")
+NameLineEdit = NodePath("Content/Display/HBox_Name/Line_NameEdit")
 PortColorList = [Color(0.34, 1, 0.34, 1), Color(1, 0.53, 0.53, 1), Color(0.53, 0.913833, 1, 1), Color(0.9295, 0.53, 1, 1), Color(0.937333, 1, 0.53, 1), Color(0.53, 1, 0.702333, 1)]
 
-[node name="Menu_Options" type="MenuButton" parent="Content/Display/HBox_Name" index="1"]
+[node name="Content" parent="." index="0"]
+offset_right = 129.0
+offset_bottom = 110.0
+
+[node name="Line_NameEdit" type="LineEdit" parent="Content/Display/HBox_Name" index="1"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_eioh2")
+placeholder_text = "EVENT_FLOW_NODE_NAME_EDIT_PLACEHOLDER"
+max_length = 64
+expand_to_text_length = true
+context_menu_enabled = false
+
+[node name="Menu_Options" type="MenuButton" parent="Content/Display/HBox_Name" index="2"]
 layout_mode = 2
 theme = ExtResource("3_6gwyg")
 theme_override_constants/icon_max_width = 22
@@ -31,7 +47,8 @@ mouse_filter = 2
 
 [node name="Dropdown_Additional" type="CheckBox" parent="Content/Display" index="3" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
-text = "Additional Properties"
+text = "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
+text_overrun_behavior = 1
 script = ExtResource("5_ccntp")
 dropdown = NodePath("../ParamAdditionalOptions")
 
@@ -39,3 +56,5 @@ dropdown = NodePath("../ParamAdditionalOptions")
 layout_mode = 2
 script = ExtResource("6_dn78i")
 dropdown = NodePath("../Dropdown_Additional")
+
+[connection signal="text_changed" from="Content/Display/HBox_Name/Line_NameEdit" to="." method="OnSetNameLineEdit"]

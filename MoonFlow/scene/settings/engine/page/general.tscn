@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=11 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_rui4d"]
 [ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_ihk7t"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_8w1c2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2x6cb"]
 font = ExtResource("1_1hk75")
@@ -140,6 +141,7 @@ text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_TASKBAR_SIZE_HEADER"
 [node name="Slider_TaskbarSize" type="HSlider" parent="VBox_Visual" node_paths=PackedStringArray("label")]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+theme = ExtResource("3_8w1c2")
 min_value = 25.0
 max_value = 50.0
 value = 30.0

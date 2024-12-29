@@ -9,4 +9,3 @@ shader_parameter/second_color = Color(0.17, 0.17, 0.17, 1)
 shader_parameter/position = 0.235
 shader_parameter/color_angle = -1.47
 shader_parameter/stepIntensify = 10
-shader_parameter/margin = Vector2(0.01, 0.01)

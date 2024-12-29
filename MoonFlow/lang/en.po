@@ -2623,6 +2623,14 @@ msgstr ""
 "[center]Preview [b]text[/b] [i]here[/i] [wave]wowie[/wave] [beat]123456[/"
 "beat]"
 
+#: scene/editor/event/node/event_flow_node_common.tscn
+msgid "EVENT_FLOW_NODE_NAME_EDIT_PLACEHOLDER"
+msgstr "Node Name"
+
+#: scene/editor/event/node/event_flow_node_common.tscn
+msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
+msgstr "Additional Properties"
+
 #~ msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_HEADER"
 #~ msgstr "VSync"
 

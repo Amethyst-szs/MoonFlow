@@ -37,19 +37,19 @@ action = &"ui_graph_inject"
 [sub_resource type="Shortcut" id="Shortcut_8p0il"]
 events = [SubResource("InputEventAction_hoajv")]
 
-[sub_resource type="GDScript" id="GDScript_mtjrf"]
-script/source = "extends HBoxContainer
-
-func _ready():
-	if !OS.is_debug_build():
-		queue_free()
-"
-
 [sub_resource type="InputEventAction" id="InputEventAction_lu5vy"]
 action = &"ui_toggle_debug"
 
 [sub_resource type="Shortcut" id="Shortcut_bx36p"]
 events = [SubResource("InputEventAction_lu5vy")]
+
+[sub_resource type="GDScript" id="GDScript_mtjrf"]
+script/source = "extends Button
+
+func _ready():
+	if !OS.is_debug_build():
+		queue_free()
+"
 
 [node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder")]
 layout_mode = 3
@@ -185,6 +185,7 @@ icon = ExtResource("12_570rd")
 
 [node name="HBox_Tools" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="Button_InjectNode" type="Button" parent="Header/UI/HBox_Tools"]
 layout_mode = 2
@@ -192,16 +193,13 @@ tooltip_text = "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
 shortcut = SubResource("Shortcut_8p0il")
 icon = ExtResource("14_co2bl")
 
-[node name="HBox_DebugControl" type="HBoxContainer" parent="Header/UI"]
-layout_mode = 2
-script = SubResource("GDScript_mtjrf")
-
-[node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_DebugControl"]
+[node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_Tools"]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
 toggle_mode = true
 shortcut = SubResource("Shortcut_bx36p")
 icon = ExtResource("12_scho0")
+script = SubResource("GDScript_mtjrf")
 
 [connection signal="FileOpenComplete" from="." to="ScollNavigationBars" method="_on_window_size_changed"]
 [connection signal="ContentModified" from="Graph" to="." method="OnFileModified"]
@@ -215,4 +213,4 @@ icon = ExtResource("12_scho0")
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_Tools/Button_InjectNode" to="Graph" method="OpenInjectMenu"]
-[connection signal="toggled" from="Header/UI/HBox_DebugControl/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]
+[connection signal="toggled" from="Header/UI/HBox_Tools/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]

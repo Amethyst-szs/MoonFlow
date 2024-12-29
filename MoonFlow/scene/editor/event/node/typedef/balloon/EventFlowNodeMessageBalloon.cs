@@ -35,6 +35,7 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 
 		// Remove name option button
 		NameOptionButton.QueueFree();
+		NameLineEdit.QueueFree();
 
 		// Setup buttons
 		OptionBalloon.SetupSelection(content.Name);

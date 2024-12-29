@@ -1,12 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c61gmyptk1563"]
+[gd_scene load_steps=6 format=3 uid="uid://c61gmyptk1563"]
 
 [ext_resource type="Texture2D" uid="uid://j5kqgxssjrov" path="res://asset/material/graph/port.svg" id="1_xp2pk"]
 [ext_resource type="Script" path="res://scene/editor/event/node/port/PortOut.cs" id="2_jlr03"]
 [ext_resource type="Shader" path="res://asset/shader/graph/graph_port_dragger_line.gdshader" id="3_0qtkg"]
-
-[sub_resource type="Curve" id="Curve_7fslv"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0974843, 1), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_by1ul"]
 shader = ExtResource("3_0qtkg")
@@ -33,7 +29,6 @@ GrabCollider = NodePath("Area_MouseColliderScan")
 z_index = -1
 position = Vector2(12, 12)
 width = 5.0
-width_curve = SubResource("Curve_7fslv")
 default_color = Color(1, 1, 1, 0.85098)
 joint_mode = 2
 end_cap_mode = 2
