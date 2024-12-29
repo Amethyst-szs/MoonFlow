@@ -2605,6 +2605,10 @@ msgid "MSBP_COLOR_EDITOR_APP_HEADER"
 msgstr ""
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
+msgstr ""
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
 msgstr ""
 

@@ -31,6 +31,7 @@ self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme = ExtResource("3_h36ao")
+disabled = true
 
 [node name="Texture_Icon" type="TextureRect" parent="Panel_Color/Layout/Button_OpenPicker"]
 material = SubResource("ShaderMaterial_3ftjp")
@@ -54,6 +55,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
 max_length = 32
+editable = false
 script = ExtResource("6_c447u")
 is_return_if_empty = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://041p6wwk4vvx"]
+[gd_scene load_steps=19 format=3 uid="uid://041p6wwk4vvx"]
 
 [ext_resource type="Script" path="res://scene/editor/msbp/color/MsbpColorEditor.cs" id="1_fmpb3"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_gpn8b"]
@@ -21,6 +21,10 @@ font_size = 20
 font_color = Color(0.988235, 0.792157, 0.27451, 1)
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aln5j"]
+font_size = 14
+font_color = Color(1, 0.462667, 0.38, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_clgfl"]
 font = ExtResource("7_4dmpa")
@@ -92,6 +96,14 @@ layout_mode = 2
 text = "MSBP_COLOR_EDITOR_APP_HEADER"
 label_settings = SubResource("LabelSettings_oybk2")
 horizontal_alignment = 1
+
+[node name="Label_ReadOnlyWarn" type="Label" parent="Content/Margin/Scroll_Content/Layout"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
+label_settings = SubResource("LabelSettings_aln5j")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="HSeparator" type="HSeparator" parent="Content/Margin/Scroll_Content/Layout"]
 layout_mode = 2

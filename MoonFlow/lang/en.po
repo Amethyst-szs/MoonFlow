@@ -2602,6 +2602,14 @@ msgstr ""
 "Color Pallete"
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
+msgstr ""
+"This editor is currently READ-ONLY! The game seems to use hard-coded color "
+"values instead of this palette table. This editor is fully functional, but "
+"has no impact on the game. If an exefs patch is created to remedy this "
+"problem, the read-only restriction can be lifted."
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
 msgstr "Color Editor"
 
