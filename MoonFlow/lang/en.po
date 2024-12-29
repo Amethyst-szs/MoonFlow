@@ -231,7 +231,7 @@ msgid "HOME_TAB_WORLD"
 msgstr "Kingdom"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_SEARCH_FILES_PLACEHOLDER"
+msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 msgstr "Search Files"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn

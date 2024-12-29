@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=17 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="3_pgcah"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_kcoe0"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_wyx35"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="5_eo8lt"]
 [ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_tkrku"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="7_hy22n"]
@@ -43,6 +45,16 @@ metadata/_tab_index = 0
 [node name="FileList" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Line_Search" type="LineEdit" parent="FileList"]
+layout_mode = 2
+placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
+max_length = 32
+context_menu_enabled = false
+clear_button_enabled = true
+right_icon = ExtResource("3_pgcah")
+script = ExtResource("4_wyx35")
 
 [node name="Content" type="ScrollContainer" parent="FileList"]
 layout_mode = 2
@@ -135,5 +147,6 @@ ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
 dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 dialog_autowrap = true
 
+[connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteFile"]

@@ -69,7 +69,7 @@ theme_override_constants/separation = 8
 
 [node name="Line_Search" type="LineEdit" parent="FileList"]
 layout_mode = 2
-placeholder_text = "HOME_TAB_TEXT_SEARCH_FILES_PLACEHOLDER"
+placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 max_length = 32
 context_menu_enabled = false
 clear_button_enabled = true

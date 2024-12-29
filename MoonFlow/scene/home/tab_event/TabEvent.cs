@@ -50,39 +50,30 @@ public partial class TabEvent : HSplitContainer
 			var nameNoExt = name.TrimSuffix(".szs");
 
 			// Create a dropdown button and margin->vbox for each file
-			var margin = new MarginContainer();
-			var box = new VBoxContainer()
+			var container = new MarginContainer();
+			var vbox = new VBoxContainer()
 			{
 				Name = nameNoExt,
 			};
 
 			var dropdown = DropdownButton.New().As<Button>();
 			dropdown.Text = name;
-			dropdown.Set("dropdown", margin);
-
-			dropdown.Connect(Button.SignalName.Toggled, Callable.From(
-				new Action<bool>((b) => OnToggleArchiveFolder(b, nameNoExt))
-			));
+			dropdown.Set("dropdown", container);
 
 			ArchiveHolder.AddChild(dropdown);
-			ArchiveHolder.AddChild(margin);
-			margin.AddChild(box);
+			ArchiveHolder.AddChild(container);
+			container.AddChild(vbox);
+
+			// Add all BYML files as buttons in container
+			SetupArchiveFileList(nameNoExt);
 		}
 	}
 
-	private void OnToggleArchiveFolder(bool isActive, string name)
+	private void SetupArchiveFileList(string name)
 	{
 		var container = ArchiveHolder.FindChild(name, true, false);
 		if (!IsInstanceValid(container))
 			throw new NullReferenceException("Could not lookup " + name);
-		
-		if (!isActive)
-		{
-			foreach (var child in container.GetChildren())
-				child.QueueFree();
-			
-			return;
-		}
 
 		if (!FileList.TryGetValue(name + ".szs", out SarcFile arc))
 			throw new Exception("Could not find archive " + name);
@@ -98,6 +89,7 @@ public partial class TabEvent : HSplitContainer
 			button.ToggleMode = true;
 			button.Name = item;
 			button.Text = item;
+			button.TooltipText = arc.Name;
 			button.Alignment = HorizontalAlignment.Left;
 
 			// These signals are automatically disconnected on free by DoublePressButton gdscript code
@@ -129,6 +121,15 @@ public partial class TabEvent : HSplitContainer
 	private static void OnEventFileOpened(SarcFile archive, string key)
 	{
 		EventFlowApp.OpenApp(archive, key);
+	}
+
+	#endregion
+
+	#region Signals
+
+	private void OnLineSearchTextChanged(string txt)
+	{
+		HomeRoot.RecursiveFileSearch(ArchiveHolder, txt);
 	}
 
 	#endregion

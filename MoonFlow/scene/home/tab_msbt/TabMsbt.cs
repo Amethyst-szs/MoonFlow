@@ -108,14 +108,14 @@ public partial class TabMsbt : HSplitContainer
 				worldBox.AddChild(new HSeparator());
 			}
 
-			CreateButton(arc, key, worldBox);
+			CreateButton(arc, key, worldBox, world);
 			result.Add(key);
 		}
 
 		// Create dropdown button
 		var dropdown = DropdownButton.New().As<Button>();
 		dropdown.Text = world.Display;
-		dropdown.Set("dropdown", worldBox);
+		dropdown.Set("dropdown", worldBoxMargin);
 
 		// Add children
 		StageMessageVBox.AddChild(dropdown);
@@ -141,7 +141,7 @@ public partial class TabMsbt : HSplitContainer
 		// Create dropdown button
 		var dropdown = DropdownButton.New().As<Button>();
 		dropdown.Text = "Misc.";
-		dropdown.Set("dropdown", worldBox);
+		dropdown.Set("dropdown", worldBoxMargin);
 
 		// Add children
 		StageMessageVBox.AddChild(dropdown);
@@ -149,13 +149,17 @@ public partial class TabMsbt : HSplitContainer
 		worldBoxMargin.AddChild(worldBox);
 	}
 
-	private void CreateButton(SarcFile file, string key, VBoxContainer box)
+	private void CreateButton(SarcFile file, string key, Container box, WorldInfo world = null)
 	{
 		var button = DoublePressButton.New().As<Button>();
 		button.ToggleMode = true;
 		button.Name = key;
 		button.Text = key;
 		button.Alignment = HorizontalAlignment.Left;
+
+		button.TooltipText = file.Name;
+		if (world != null)
+			button.TooltipText += '\n' + world.Display;
 
 		if (box.IsInsideTree())
 			button.FocusNeighborLeft = box.GetPath();
@@ -332,7 +336,7 @@ public partial class TabMsbt : HSplitContainer
 
 	private void OnLineSearchTextChanged(string txt)
 	{
-		RecursiveFileSearch(FileListRoot, txt);
+		HomeRoot.RecursiveFileSearch(FileListRoot, txt);
 	}
 
 	#endregion
@@ -385,38 +389,6 @@ public partial class TabMsbt : HSplitContainer
 			msbp.PublishFile(arcName, newName);
 		else
 			msbp.PublishFile(arcName, newName, world);
-	}
-
-	private void RecursiveFileSearch(Control root, string term)
-	{
-		if (root is Button button)
-		{
-			if (root.GetScript().As<Script>() != DropdownButton)
-			{
-				root.Visible = root.Name.ToString().Contains(term, StringComparison.OrdinalIgnoreCase);
-			}
-			else
-			{
-				root.Visible = term == string.Empty;
-				button.SetPressedNoSignal(false);
-
-				var dropdownChild = root.Get("dropdown").As<Control>();
-				if (dropdownChild != null)
-					dropdownChild.Visible = !root.Visible;
-			}
-		}
-
-		if (root is HSeparator)
-			root.Visible = term == string.Empty;
-		
-		if (root.GetChildCount() == 0)
-			return;
-		
-		foreach (var child in root.GetChildren())
-		{
-			if (child.GetType().IsSubclassOf(typeof(Control)))
-				RecursiveFileSearch(child as Control, term);
-		}
 	}
 
 	#endregion
