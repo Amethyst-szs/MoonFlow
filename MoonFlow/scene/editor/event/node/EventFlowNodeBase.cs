@@ -201,7 +201,12 @@ public partial class EventFlowNodeBase : Node2D
 		if (IsSelected) return;
 
 		if (!isMultiselect)
+		{
 			Parent.EmitSignal(GraphCanvas.SignalName.DeselectAll);
+
+			var hold = Application.GraphNodeHolder;
+			hold.MoveChild(this, hold.GetChildCount() - 1);
+		}
 
 		IsSelected = true;
 	}
