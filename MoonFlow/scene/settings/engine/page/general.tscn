@@ -1,14 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=9 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
+[ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_rui4d"]
 [ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_ihk7t"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_skk56"]
-font = ExtResource("1_1hk75")
-font_size = 24
-font_color = Color(0.988235, 0.792157, 0.27451, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_av5ml"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2x6cb"]
 font = ExtResource("1_1hk75")
@@ -81,16 +75,11 @@ anchor_right = 1.0
 offset_bottom = 28.0
 grow_horizontal = 2
 
-[node name="Label_Head" type="Label" parent="."]
+[node name="Header" parent="." instance=ExtResource("1_rui4d")]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
-label_settings = SubResource("LabelSettings_skk56")
 
-[node name="HSep_Head" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_av5ml")
+[node name="Label_Head" parent="Header/Layout" index="0"]
+text = "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 
 [node name="VBox_Lang" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -147,12 +136,9 @@ layout_mode = 2
 theme_override_constants/separation = 14
 theme_override_styles/separator = SubResource("StyleBoxEmpty_gn66n")
 
-[node name="Label_VSync" type="Label" parent="VBox_Performance"]
-layout_mode = 2
-text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_HEADER"
-
 [node name="Check_VSync" type="CheckBox" parent="VBox_Performance"]
 layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_TOOLTIP"
 text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC"
 script = ExtResource("2_ihk7t")
 key = "display/window/vsync/vsync_mode"
@@ -161,3 +147,5 @@ key = "display/window/vsync/vsync_mode"
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
+
+[editable path="Header"]

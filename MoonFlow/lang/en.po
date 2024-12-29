@@ -41,6 +41,16 @@ msgstr ""
 "working with."
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_INVALID_PATH_WARNING"
+msgstr ""
+"Hmm... Something doesn't seem right about that path! Try again and make sure "
+"you select the correct path."
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
+msgstr "At least 1 path is required!"
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
 msgid "ROMFS_CONFIG_ADD_PATH"
 msgstr "Add Path"
 
@@ -49,22 +59,16 @@ msgid "ROMFS_CONFIG_SAVE_AND_QUIT"
 msgstr "Save & Continue"
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
-msgstr "At least 1 path is required!"
-
-#: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_INVALID_PATH_WARNING"
-msgstr ""
-"Hmm... Something doesn't seem right about that path! Try again and make sure "
-"you select the correct path."
-
-#: scene/settings/romfs/romfs_accessor_config_app.tscn
 msgid "ROMFS_CONFIG_PATH_HEADER"
 msgstr "Paths"
 
 #: scene/settings/romfs/path_display.tscn
 msgid "ROMFS_CONFIG_NO_PATH"
 msgstr "No Path"
+
+#: scene/settings/romfs/path_display.tscn
+msgid "ROMFS_ACCESSOR_CONFIG_DELETE_PATH_BUTTON_TOOLTIP"
+msgstr "Remove the saved path for this game version"
 
 #: scene/front_door/front_door.tscn
 msgid "NEW_PROJECT"
@@ -81,6 +85,22 @@ msgstr "Recent Projects"
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
 msgstr "Clear History"
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
+msgstr "MoonFlow Settings"
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+msgstr "Romfs Path Settings"
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
+msgstr "Contributions & Credits"
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
+msgstr "Update Available!"
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_MENU_HEADER"
@@ -135,22 +155,6 @@ msgstr "Default Language:"
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 msgstr "Create Project"
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
-msgstr "MoonFlow Settings"
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
-msgstr "Romfs Path Settings"
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
-msgstr "Contributions & Credits"
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
-msgstr "Update Available!"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
@@ -2417,6 +2421,14 @@ msgstr ""
 "Reduce CPU usage by setting the strength of the\n"
 "Low-Processor mode. ( REQUIRES RESTART )"
 
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_TOOLTIP"
+msgstr "Limit refresh rate to monitor refresh rate"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC"
+msgstr "V-Sync"
+
 #: scene/editor/event/meta/tables/category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 msgid "DEFAULT"
@@ -2556,6 +2568,9 @@ msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_TOOLTIP"
 msgstr ""
 "Speed of vertical camera movement from dragging\n"
 "with middle mouse in event graph editor."
+
+#~ msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_HEADER"
+#~ msgstr "VSync"
 
 #~ msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 #~ msgid "AUDIO"

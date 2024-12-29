@@ -88,6 +88,14 @@ msgid "CONFIG_CONFIG_DESCRIPTION"
 msgstr ""
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_INVALID_PATH_WARNING"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
+msgstr ""
+
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
 msgid "ROMFS_CONFIG_ADD_PATH"
 msgstr ""
 
@@ -96,19 +104,15 @@ msgid "ROMFS_CONFIG_SAVE_AND_QUIT"
 msgstr ""
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
-msgstr ""
-
-#: scene/settings/romfs/romfs_accessor_config_app.tscn
-msgid "ROMFS_CONFIG_INVALID_PATH_WARNING"
-msgstr ""
-
-#: scene/settings/romfs/romfs_accessor_config_app.tscn
 msgid "ROMFS_CONFIG_PATH_HEADER"
 msgstr ""
 
 #: scene/settings/romfs/path_display.tscn
 msgid "ROMFS_CONFIG_NO_PATH"
+msgstr ""
+
+#: scene/settings/romfs/path_display.tscn
+msgid "ROMFS_ACCESSOR_CONFIG_DELETE_PATH_BUTTON_TOOLTIP"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
@@ -125,6 +129,22 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
@@ -177,22 +197,6 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
@@ -2423,6 +2427,14 @@ msgstr ""
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC"
 msgstr ""
 
 #: scene/editor/event/meta/tables/category_table_translation_text.tres

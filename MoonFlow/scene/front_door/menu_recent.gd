@@ -85,6 +85,10 @@ func _on_front_door_open_project(target: String) -> void:
 	file.store_string(outstr)
 	file.close()
 
+func _on_front_door_open_project_failed(target: String) -> void:
+	_on_front_door_open_project(target)
+	_init_button_options()
+
 func _clear_recent_history() -> void:
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	if file == null:

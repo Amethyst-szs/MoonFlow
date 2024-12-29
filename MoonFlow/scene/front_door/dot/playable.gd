@@ -20,7 +20,15 @@ var death_delay_time: int = 0
 func _ready() -> void:
 	# Hide the object for appear delay time
 	hide()
-	await get_tree().create_timer(appear_delay_sec, false).timeout
+	
+	var timer := Timer.new()
+	timer.one_shot = true
+	timer.wait_time = appear_delay_sec
+	timer.autostart = true
+	add_child(timer)
+	
+	await timer.timeout
+	timer.queue_free()
 	
 	# Play appear animation
 	show()

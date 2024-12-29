@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://euc30cq3n857"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_2mlpu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_skk56"]
+font = ExtResource("1_2mlpu")
+font_size = 24
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_av5ml"]
+
+[node name="Header" type="Control"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -295.0
+offset_right = 295.0
+offset_bottom = 41.0
+grow_horizontal = 2
+rotation = 0.0349066
+
+[node name="Label_Head" type="Label" parent="Layout"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ENGINE_SETTINGS_APP_CATEGORY_"
+label_settings = SubResource("LabelSettings_skk56")
+
+[node name="HSep_Head" type="HSeparator" parent="Layout"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_av5ml")

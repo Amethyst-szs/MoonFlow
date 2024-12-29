@@ -1,16 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cloegljf3qn5e"]
+[gd_scene load_steps=8 format=3 uid="uid://cloegljf3qn5e"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_2xewp"]
+[ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_8d0hg"]
 [ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_rm84r"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_l4qnn"]
 [ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_slide_float.gd" id="3_oinyb"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_v3gba"]
-font = ExtResource("1_2xewp")
-font_size = 24
-font_color = Color(0.988235, 0.792157, 0.27451, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vh227"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g3f1a"]
 font = ExtResource("1_2xewp")
@@ -19,17 +13,16 @@ font_size = 19
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7hcg"]
 
 [node name="Page_Graph" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 470.0
+grow_horizontal = 2
 
-[node name="Label_Head" type="Label" parent="."]
+[node name="Header" parent="." instance=ExtResource("1_8d0hg")]
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="Label_Head" parent="Header/Layout" index="0"]
 text = "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
-label_settings = SubResource("LabelSettings_v3gba")
-
-[node name="HSep_Head" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vh227")
 
 [node name="VBox_Visual" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -138,3 +131,5 @@ suffix = "x"
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
+
+[editable path="Header"]

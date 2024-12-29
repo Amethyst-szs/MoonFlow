@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://dbung3qmbw5gp"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://dbung3qmbw5gp"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_rr64a"]
 [ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_5axl7"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://06wpd4sxywyp" path="res://asset/engine/checkbox_checked.png" id="8_dtegj"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="8_pimjq"]
 [ext_resource type="Texture2D" uid="uid://cp1hd83xldpq1" path="res://asset/engine/checkbox_unchecked.png" id="9_rp3a4"]
+[ext_resource type="StyleBox" uid="uid://5sibdim40mxl" path="res://asset/theme/common/stylebox/common_scroll_grabber.tres" id="10_3funn"]
 [ext_resource type="StyleBox" uid="uid://cys3dv01cl5ea" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_edit_window_border.tres" id="10_qif8v"]
+[ext_resource type="StyleBox" uid="uid://76kpkilhbrf2" path="res://asset/theme/common/stylebox/common_scroll_grabber_hover.tres" id="11_alnlw"]
+[ext_resource type="StyleBox" uid="uid://xfsagg4wksso" path="res://asset/theme/common/stylebox/common_scroll_grabber_pressed.tres" id="12_l7p2x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25x5c"]
 bg_color = Color(0.0784314, 0.137255, 0.176471, 1)
@@ -73,6 +76,9 @@ CheckBox/icons/checked = ExtResource("8_dtegj")
 CheckBox/icons/unchecked = ExtResource("9_rp3a4")
 GridContainer/constants/h_separation = 8
 GridContainer/constants/v_separation = 6
+HScrollBar/styles/grabber = ExtResource("10_3funn")
+HScrollBar/styles/grabber_highlight = ExtResource("11_alnlw")
+HScrollBar/styles/grabber_pressed = ExtResource("12_l7p2x")
 HSeparator/constants/separation = 8
 HSeparator/styles/separator = SubResource("StyleBoxLine_24gye")
 Label/fonts/font = ExtResource("1_rr64a")
@@ -97,6 +103,9 @@ RichTextLabel/fonts/normal_font = ExtResource("1_rr64a")
 ScrollContainer/styles/panel = ExtResource("8_pimjq")
 TooltipLabel/fonts/font = ExtResource("1_rr64a")
 TooltipPanel/styles/panel = ExtResource("7_s72yq")
+VScrollBar/styles/grabber = ExtResource("10_3funn")
+VScrollBar/styles/grabber_highlight = ExtResource("11_alnlw")
+VScrollBar/styles/grabber_pressed = ExtResource("12_l7p2x")
 VSeparator/constants/separation = 24
 VSeparator/styles/separator = SubResource("StyleBoxLine_o0anw")
 Window/colors/title_color = Color(0.93, 0.93, 0.93, 1)

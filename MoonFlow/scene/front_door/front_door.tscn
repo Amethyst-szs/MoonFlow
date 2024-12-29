@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=34 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -23,7 +23,7 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="15_xr5ea"]
 [ext_resource type="Script" path="res://scene/front_door/button_update.gd" id="16_8ntwn"]
 [ext_resource type="Script" path="res://scene/common/option/LangPicker.cs" id="16_qq0jv"]
-[ext_resource type="Texture2D" uid="uid://dhens1l4fbxep" path="res://asset/material/debug/debug_code_on.svg" id="17_glr2l"]
+[ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="17_yn102"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
 shader = ExtResource("3_etpfy")
@@ -32,6 +32,13 @@ shader_parameter/second_color = Color(0.054902, 0.0745098, 0.105882, 1)
 shader_parameter/position = 0.5
 shader_parameter/color_angle = 1.571
 shader_parameter/stepIntensify = 12
+
+[sub_resource type="GDScript" id="GDScript_pf6nj"]
+script/source = "extends Control
+
+func _ready():
+	custom_minimum_size = $Quickbar.size
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_bjmaa"]
 font_color = Color(1, 0.23, 0.23, 1)
@@ -103,47 +110,53 @@ z_index = 2
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Quickbar" type="VBoxContainer" parent="Content/Quickbar_Content"]
+[node name="QuickbarHolder" type="Control" parent="Content/Quickbar_Content"]
+custom_minimum_size = Vector2(295, 0)
 layout_mode = 2
+script = SubResource("GDScript_pf6nj")
+
+[node name="Quickbar" type="VBoxContainer" parent="Content/Quickbar_Content/QuickbarHolder"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 256.0
+grow_vertical = 2
+rotation = 0.0349066
+pivot_offset = Vector2(0, 402)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Texture_Logo" type="TextureRect" parent="Content/Quickbar_Content/Quickbar"]
+[node name="Logo" type="Control" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar"]
+custom_minimum_size = Vector2(256, 178)
+layout_mode = 2
+
+[node name="Texture_Logo" type="TextureRect" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Logo"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
+offset_right = 256.0
+offset_bottom = 182.857
+rotation = 0.0523599
+pivot_offset = Vector2(128, 91.428)
 texture = ExtResource("3_2iugp")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="HSeparator" type="HSeparator" parent="Content/Quickbar_Content/Quickbar"]
-layout_mode = 2
-
-[node name="Button_New" type="Button" parent="Content/Quickbar_Content/Quickbar"]
+[node name="Button_New" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "NEW_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
-[node name="Button_Open" type="Button" parent="Content/Quickbar_Content/Quickbar"]
+[node name="Button_Open" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "OPEN_PROJECT"
 icon = ExtResource("10_rxr5w")
 icon_alignment = 2
 
-[node name="Label_OpenError" type="Label" parent="Content/Quickbar_Content/Quickbar"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-label_settings = SubResource("LabelSettings_bjmaa")
-horizontal_alignment = 1
-autowrap_mode = 3
-script = ExtResource("9_mpvuk")
-
-[node name="Menu_Recent" type="MenuButton" parent="Content/Quickbar_Content/Quickbar"]
+[node name="Menu_Recent" type="MenuButton" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "RECENT_PROJECTS"
@@ -153,6 +166,47 @@ icon_alignment = 2
 item_count = 1
 popup/item_0/text = "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
 script = ExtResource("12_uh126")
+
+[node name="Shortcuts" type="HBoxContainer" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 12
+
+[node name="Button_Settings" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
+layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
+icon = ExtResource("17_yn102")
+
+[node name="Button_RomfsConfig" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
+layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+icon = ExtResource("10_sqwg3")
+
+[node name="Button_Contributors" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
+layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
+icon = ExtResource("14_mr0wr")
+
+[node name="Button_Update" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
+layout_mode = 2
+tooltip_text = "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
+icon = ExtResource("15_h6jnw")
+script = ExtResource("16_8ntwn")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts/Button_Update"]
+use_threads = true
+
+[node name="Label_OpenError" type="Label" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_bjmaa")
+horizontal_alignment = 1
+autowrap_mode = 3
+script = ExtResource("9_mpvuk")
 
 [node name="VSep" type="VSeparator" parent="Content/Quickbar_Content"]
 layout_mode = 2
@@ -277,36 +331,6 @@ text = "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
-[node name="Shortcuts" type="HBoxContainer" parent="Content"]
-z_index = 1
-layout_mode = 2
-size_flags_vertical = 10
-theme_override_constants/separation = 12
-
-[node name="Button_Settings" type="Button" parent="Content/Shortcuts"]
-layout_mode = 2
-tooltip_text = "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
-icon = ExtResource("17_glr2l")
-
-[node name="Button_RomfsConfig" type="Button" parent="Content/Shortcuts"]
-layout_mode = 2
-tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
-icon = ExtResource("10_sqwg3")
-
-[node name="Button_Contributors" type="Button" parent="Content/Shortcuts"]
-layout_mode = 2
-tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
-icon = ExtResource("14_mr0wr")
-
-[node name="Button_Update" type="Button" parent="Content/Shortcuts"]
-layout_mode = 2
-tooltip_text = "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
-icon = ExtResource("15_h6jnw")
-script = ExtResource("16_8ntwn")
-
-[node name="HTTPRequest" type="HTTPRequest" parent="Content/Shortcuts/Button_Update"]
-use_threads = true
-
 [node name="DotPlayable" type="Control" parent="."]
 z_index = 3
 layout_mode = 1
@@ -363,19 +387,20 @@ resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwf
 [connection signal="NewProjectPath" from="." to="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Label_Directory" method="set_text"]
 [connection signal="NewProjectPath" from="." to="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Label_Directory" method="show" unbinds=1]
 [connection signal="NewProjectPath" from="." to="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Label_InvalidDirectory" method="hide" unbinds=1]
-[connection signal="OpenProject" from="." to="Content/Quickbar_Content/Quickbar/Menu_Recent" method="_on_front_door_open_project"]
-[connection signal="pressed" from="Content/Quickbar_Content/Quickbar/Button_New" to="Content/Quickbar_Content/NewProject" method="set_visibility"]
-[connection signal="pressed" from="Content/Quickbar_Content/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
-[connection signal="open_recent_project" from="Content/Quickbar_Content/Quickbar/Menu_Recent" to="." method="OnDialogOpenProjectPathSelected"]
+[connection signal="OpenProject" from="." to="Content/Quickbar_Content/QuickbarHolder/Quickbar/Menu_Recent" method="_on_front_door_open_project"]
+[connection signal="OpenProjectFailed" from="." to="Content/Quickbar_Content/QuickbarHolder/Quickbar/Menu_Recent" method="_on_front_door_open_project_failed"]
+[connection signal="pressed" from="Content/Quickbar_Content/QuickbarHolder/Quickbar/Button_New" to="Content/Quickbar_Content/NewProject" method="set_visibility"]
+[connection signal="pressed" from="Content/Quickbar_Content/QuickbarHolder/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
+[connection signal="open_recent_project" from="Content/Quickbar_Content/QuickbarHolder/Quickbar/Menu_Recent" to="." method="OnDialogOpenProjectPathSelected"]
+[connection signal="pressed" from="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts/Button_Settings" to="." method="OpenEngineSettingsApp"]
+[connection signal="pressed" from="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
+[connection signal="pressed" from="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts/Button_Contributors" to="." method="OpenContributorPage"]
+[connection signal="request_completed" from="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts/Button_Update/HTTPRequest" to="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts/Button_Update" method="_on_request_completed"]
 [connection signal="pressed" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Button_Directory" to="Dialog_NewProject" method="popup"]
 [connection signal="id_pressed" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Option_Version" to="." method="OnNewProjectVersionSelected"]
 [connection signal="item_selected" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Option_Version" to="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Option_Version" method="_item_selected"]
 [connection signal="pressed" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Option_Version" to="." method="OnNewProjectVersionButtonPressed"]
 [connection signal="LangSelected" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Option_DefaultLang" to="." method="OnNewProjectDefaultLangSelected"]
 [connection signal="pressed" from="Content/Quickbar_Content/NewProject/Margin/Scroll/VBox_Options/Button_Create" to="." method="OnNewProjectCreate"]
-[connection signal="pressed" from="Content/Shortcuts/Button_Settings" to="." method="OpenEngineSettingsApp"]
-[connection signal="pressed" from="Content/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
-[connection signal="pressed" from="Content/Shortcuts/Button_Contributors" to="." method="OpenContributorPage"]
-[connection signal="request_completed" from="Content/Shortcuts/Button_Update/HTTPRequest" to="Content/Shortcuts/Button_Update" method="_on_request_completed"]
 [connection signal="dir_selected" from="Dialog_NewProject" to="." method="OnDialogNewProjectPathSelected"]
 [connection signal="dir_selected" from="Dialog_OpenProject" to="." method="OnDialogOpenProjectPathSelected"]

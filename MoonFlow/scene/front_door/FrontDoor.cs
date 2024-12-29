@@ -23,6 +23,8 @@ public partial class FrontDoor : AppScene
 	[Signal]
 	public delegate void OpenProjectEventHandler(string path);
 	[Signal]
+	public delegate void OpenProjectFailedEventHandler(string path);
+	[Signal]
 	public delegate void NewProjectPathEventHandler(string path);
 	[Signal]
 	public delegate void NewProjectInvalidPathEventHandler();
@@ -104,6 +106,8 @@ public partial class FrontDoor : AppScene
 
 		OpenProjectError.Show();
 		OpenProjectError.Call("set_label", [Enum.GetName(result), Enum.GetName(version)]);
+
+		EmitSignal(SignalName.OpenProjectFailed, path);
 	}
 
 	private void OnNewProjectVersionButtonPressed()
