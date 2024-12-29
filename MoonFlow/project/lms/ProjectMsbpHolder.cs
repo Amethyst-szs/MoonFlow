@@ -85,6 +85,8 @@ public class ProjectMsbpHolder
         }
         
         proj.Content.RemoveAt(idx);
+
+        Project.WriteArchive();
     }
 
     #endregion
