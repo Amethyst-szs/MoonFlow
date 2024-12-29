@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=26 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
 [ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbt.cs" id="2_ioahr"]
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="3_svb1l"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_8mx2o"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_nlvsm"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="5_2s2c7"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_gi3dm"]
@@ -63,54 +65,65 @@ metadata/_tab_index = 0
 [node name="FileList" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 8
 
-[node name="Content" type="ScrollContainer" parent="FileList"]
+[node name="Line_Search" type="LineEdit" parent="FileList"]
+layout_mode = 2
+placeholder_text = "HOME_TAB_TEXT_SEARCH_FILES_PLACEHOLDER"
+max_length = 32
+context_menu_enabled = false
+clear_button_enabled = true
+right_icon = ExtResource("3_svb1l")
+script = ExtResource("4_8mx2o")
+
+[node name="FileListContent" type="ScrollContainer" parent="FileList"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBox" type="VBoxContainer" parent="FileList/Content"]
+[node name="VBox" type="VBoxContainer" parent="FileList/FileListContent"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Check_System" type="CheckBox" parent="FileList/Content/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="Check_System" type="CheckBox" parent="FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_SYSTEM"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../System")
 
-[node name="System" type="MarginContainer" parent="FileList/Content/VBox"]
+[node name="System" type="MarginContainer" parent="FileList/FileListContent/VBox"]
 layout_mode = 2
 
-[node name="SystemMessage_VBox" type="VBoxContainer" parent="FileList/Content/VBox/System"]
+[node name="SystemMessage_VBox" type="VBoxContainer" parent="FileList/FileListContent/VBox/System"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Check_Stage" type="CheckBox" parent="FileList/Content/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="Check_Stage" type="CheckBox" parent="FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_STAGE"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../Stage")
 
-[node name="Stage" type="MarginContainer" parent="FileList/Content/VBox"]
+[node name="Stage" type="MarginContainer" parent="FileList/FileListContent/VBox"]
 layout_mode = 2
 theme = SubResource("Theme_oq1xr")
 
-[node name="StageMessage_VBox" type="VBoxContainer" parent="FileList/Content/VBox/Stage"]
+[node name="StageMessage_VBox" type="VBoxContainer" parent="FileList/FileListContent/VBox/Stage"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Check_Layout" type="CheckBox" parent="FileList/Content/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="Check_Layout" type="CheckBox" parent="FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_LAYOUT"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../Layout")
 
-[node name="Layout" type="MarginContainer" parent="FileList/Content/VBox"]
+[node name="Layout" type="MarginContainer" parent="FileList/FileListContent/VBox"]
 layout_mode = 2
 
-[node name="LayoutMessage_VBox" type="VBoxContainer" parent="FileList/Content/VBox/Layout"]
+[node name="LayoutMessage_VBox" type="VBoxContainer" parent="FileList/FileListContent/VBox/Layout"]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -287,6 +300,7 @@ ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
 dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 dialog_autowrap = true
 
+[connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="." method="OnDuplicateFileRequested"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_New" to="." method="OnNewFileRequested"]

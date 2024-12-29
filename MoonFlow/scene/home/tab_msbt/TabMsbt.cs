@@ -22,6 +22,7 @@ public partial class TabMsbt : HSplitContainer
 {
 	private SarcMsbtFile SelectedFile = null;
 
+	private ScrollContainer FileListRoot = null;
 	private VBoxContainer SystemMessageButtons = null;
 	private VBoxContainer StageMessageVBox = null;
 	private VBoxContainer LayoutMessageButtons = null;
@@ -33,9 +34,9 @@ public partial class TabMsbt : HSplitContainer
 
 	public override void _Ready()
 	{
+		FileListRoot = GetNode<ScrollContainer>("%FileListContent");
 		SystemMessageButtons = GetNode<VBoxContainer>("%SystemMessage_VBox");
 		LayoutMessageButtons = GetNode<VBoxContainer>("%LayoutMessage_VBox");
-
 		StageMessageVBox = GetNode<VBoxContainer>("%StageMessage_VBox");
 
 		foreach (var child in StageMessageVBox.GetChildren())
@@ -329,6 +330,11 @@ public partial class TabMsbt : HSplitContainer
 		_Ready();
 	}
 
+	private void OnLineSearchTextChanged(string txt)
+	{
+		RecursiveFileSearch(FileListRoot, txt);
+	}
+
 	#endregion
 
 	#region File Utility
@@ -379,6 +385,38 @@ public partial class TabMsbt : HSplitContainer
 			msbp.PublishFile(arcName, newName);
 		else
 			msbp.PublishFile(arcName, newName, world);
+	}
+
+	private void RecursiveFileSearch(Control root, string term)
+	{
+		if (root is Button button)
+		{
+			if (root.GetScript().As<Script>() != DropdownButton)
+			{
+				root.Visible = root.Name.ToString().Contains(term, StringComparison.OrdinalIgnoreCase);
+			}
+			else
+			{
+				root.Visible = term == string.Empty;
+				button.SetPressedNoSignal(false);
+
+				var dropdownChild = root.Get("dropdown").As<Control>();
+				if (dropdownChild != null)
+					dropdownChild.Visible = !root.Visible;
+			}
+		}
+
+		if (root is HSeparator)
+			root.Visible = term == string.Empty;
+		
+		if (root.GetChildCount() == 0)
+			return;
+		
+		foreach (var child in root.GetChildren())
+		{
+			if (child.GetType().IsSubclassOf(typeof(Control)))
+				RecursiveFileSearch(child as Control, term);
+		}
 	}
 
 	#endregion

@@ -15,4 +15,4 @@ url = "https://godotengine.org/"
 script = ExtResource("4_h3eqc")
 list_name = "Godot Project"
 list_color = Color(0.4, 0.67451, 0.870588, 1)
-list = Array[ExtResource("1_eqx3j")]([ExtResource("2_3s7a1"), SubResource("Resource_bbsb2")])
+list = Array[ExtResource("1_eqx3j")]([SubResource("Resource_bbsb2"), ExtResource("2_3s7a1")])
