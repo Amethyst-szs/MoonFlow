@@ -185,7 +185,11 @@ public partial class TabMsbt : HSplitContainer
 		StageMessageVBox.DeselectAllButtons();
 
 		// Get last modified time
-		var t = ProjectManager.GetMSBTMetaHolder().GetLastModifiedTime(archive, key);
+		var meta = ProjectManager.GetMSBTMetaHolder();
+		if (meta == null)
+			return;
+		
+		var t = meta.GetLastModifiedTime(archive, key);
 		bool isEpoch = t.ToFileTimeUtc() == DateTime.UnixEpoch.ToFileTimeUtc();
 
 		// Set current selection
@@ -282,7 +286,11 @@ public partial class TabMsbt : HSplitContainer
 
 	private static void UpdateFileButtonModulation(SarcFile file, string key, Button button)
 	{
-		var t = ProjectManager.GetMSBTMetaHolder().GetLastModifiedTime(file, key);
+		var meta = ProjectManager.GetMSBTMetaHolder();
+		if (meta == null)
+			return;
+		
+		var t = meta.GetLastModifiedTime(file, key);
 		bool isEpoch = t.ToFileTimeUtc() == DateTime.UnixEpoch.ToFileTimeUtc();
 
 		if (isEpoch) button.SelfModulate = Colors.Gray;

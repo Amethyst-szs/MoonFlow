@@ -63,15 +63,10 @@ public abstract class ProjectConfigFileBase
         File.WriteAllBytes(Path, dataCompressed.ToArray());
 
         // Get project config and check if this is a debug project and a debug build
-        if (!OS.IsDebugBuild())
+        if (!ProjectManager.IsProjectDebug())
             return true;
         
         GD.Print(Path.Split(['/', '\\']).Last() + " saved");
-
-        var isDebugProj = ProjectManager.GetProject()?.Config?.Data?.IsDebugProject;
-        if (isDebugProj == null || isDebugProj == false)
-            return true;
-
         File.WriteAllText(Path + "_d", dataStr);
         return true;
     }

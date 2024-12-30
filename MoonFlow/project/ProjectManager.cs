@@ -26,17 +26,27 @@ public static class ProjectManager
 
     public static bool IsProjectExist() { return Project != null; }
     public static ProjectState GetProject() { return Project; }
-    public static RomfsValidation.RomfsVersion GetProjectVersion() { return Project.Config.Data.Version; }
+    public static RomfsValidation.RomfsVersion GetProjectVersion()
+    {
+        if (Project == null) return RomfsValidation.RomfsVersion.INVALID_VERSION;
+        return Project.Config.Data.Version;
+    }
+    public static bool IsProjectDebug()
+    {
+        if (!OS.IsDebugBuild()) return false;
+        if (Project == null) return false;
+        return Project.Config.Data.IsDebugProject;
+    }
 
-    public static ProjectMsbpHolder GetMSBPHolder() { return Project.MsgStudioProject; }
-    public static SarcMsbpFile GetMSBP() { return Project.MsgStudioProject.Project; }
+    public static ProjectMsbpHolder GetMSBPHolder() { return Project?.MsgStudioProject; }
+    public static SarcMsbpFile GetMSBP() { return Project?.MsgStudioProject?.Project; }
 
-    public static ProjectMessageStudioText GetMSBT() { return Project.MsgStudioText; }
-    public static ProjectLanguageHolder GetMSBTArchives() { return Project.MsgStudioText.DefaultLanguage; }
-    public static ProjectLanguageHolder GetMSBTArchives(string lang) { return Project.MsgStudioText[lang]; }
+    public static ProjectMessageStudioText GetMSBT() { return Project?.MsgStudioText; }
+    public static ProjectLanguageHolder GetMSBTArchives() { return Project?.MsgStudioText?.DefaultLanguage; }
+    public static ProjectLanguageHolder GetMSBTArchives(string lang) { return Project?.MsgStudioText[lang]; }
     public static ProjectLanguageMetaHolder GetMSBTMetaHolder()
     {
-        return GetMSBTMetaHolder(Project.Config.Data.DefaultLanguage);
+        return GetMSBTMetaHolder(Project?.Config?.Data?.DefaultLanguage);
     }
     public static ProjectLanguageMetaHolder GetMSBTMetaHolder(string lang)
     {
@@ -103,7 +113,7 @@ public static class ProjectManager
     {
         if (Project == null || SceneRoot == null)
             return;
-        
+
         Project = null;
 
         SceneRoot.ForceCloseAllApps();
@@ -177,7 +187,7 @@ public static class ProjectManager
 
         if (isCreateDir)
             Directory.CreateDirectory(projectFilePath);
-        
+
         projectFilePath += ProjectFileName;
 
         // Check if this path contains a project config file

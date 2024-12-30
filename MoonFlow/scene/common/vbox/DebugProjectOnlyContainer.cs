@@ -10,8 +10,7 @@ public partial class DebugProjectOnlyContainer : VBoxContainer
 {
     public override void _EnterTree()
     {
-        var config = ProjectManager.GetProject()?.Config;
-		if (!OS.IsDebugBuild() || !config.Data.IsDebugProject)
+		if (!ProjectManager.IsProjectDebug())
 			QueueFree();
     }
 }
