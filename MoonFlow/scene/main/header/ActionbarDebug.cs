@@ -59,6 +59,13 @@ public partial class ActionbarDebug : ActionbarItemBase
 		// Update checkbox
 		var idx = GetItemIndex((int)MenuIds.TOGGLE_PROJECT_IS_DEBUG);
 		SetItemChecked(idx, config.Data.IsDebugProject);
+
+		// Reload project
+		if (!ProjectManager.SceneRoot.TryCloseAllApps())
+			return;
+		
+		var path = ProjectManager.GetProject().Path;
+		ProjectManager.TryOpenProject(path, out _);
 	}
 
 	private void OnPressedOpenMstxtViewer()

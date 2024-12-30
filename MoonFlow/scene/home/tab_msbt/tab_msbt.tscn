@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=28 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cskp7so180vjn" path="res://scene/home/tab_msbt/popup_msbt_create.tscn" id="9_0g6c8"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="9_pqb3l"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="10_m4jr4"]
+[ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="14_62h41"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
 color = Color(1, 1, 1, 0.317647)
@@ -169,7 +170,7 @@ mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_c6cgf")
 icon = ExtResource("6_puq1e")
 
-[node name="VSep" type="VSeparator" parent="FileList/Footer/HBox"]
+[node name="VSep1" type="VSeparator" parent="FileList/Footer/HBox"]
 self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
@@ -291,6 +292,28 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "PLACEHOLDER"
 
+[node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+script = ExtResource("14_62h41")
+
+[node name="HSep" type="HSeparator" parent="Info/VBox/VBox_Stats/DebugHash"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("10_m4jr4")
+
+[node name="Content" type="HBoxContainer" parent="Info/VBox/VBox_Stats/DebugHash"]
+layout_mode = 2
+
+[node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_Stats/DebugHash/Content"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_COPY_DEBUG_HASH_HEADER"
+label_settings = SubResource("LabelSettings_7ddx3")
+
+[node name="Button_Copy" type="Button" parent="Info/VBox/VBox_Stats/DebugHash/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HOME_TAB_COPY_DEBUG_HASH"
+
 [node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
 layout_mode = 2
 size_flags_vertical = 10
@@ -347,6 +370,7 @@ dialog_autowrap = true
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="." method="OnDuplicateFileRequested"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_New" to="." method="OnNewFileRequested"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
+[connection signal="pressed" from="Info/VBox/VBox_Stats/DebugHash/Content/Button_Copy" to="." method="OnCopyFileHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="submitted" from="Popup_DuplicateMsbt" to="." method="OnDuplicateFile"]
 [connection signal="submitted" from="Popup_NewMsbt" to="." method="OnNewFile"]

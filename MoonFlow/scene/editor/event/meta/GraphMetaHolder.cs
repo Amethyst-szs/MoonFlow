@@ -57,7 +57,7 @@ public class GraphMetaHolder : ProjectConfigFileBase
         return true;
     }
 
-    private static string CalcNameHash(string archive, string file)
+    public static string CalcNameHash(string archive, string file)
     {
         var input = Encoding.UTF8.GetBytes(archive + file + "SALT_z8anMl1o");
 

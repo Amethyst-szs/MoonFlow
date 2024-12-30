@@ -353,6 +353,17 @@ public partial class TabMsbt : HSplitContainer
 		ProjectManager.SceneRoot.NodeApps.AddChild(app);
 	}
 
+	private void OnCopyFileHashPressed()
+	{
+		if (SelectedFile == null)
+			return;
+		
+		var hash = ProjectLanguageMetaHolder.CalcHash(SelectedFile.Sarc.Name, SelectedFile.Name);
+		DisplayServer.ClipboardSet(hash);
+
+		GD.Print(hash + " added to system clipboard!");
+	}
+
 	#endregion
 
 	#region File Utility
@@ -394,7 +405,7 @@ public partial class TabMsbt : HSplitContainer
 		return false;
 	}
 
-	private void PublishMsbtToProject(string arcName, string newName, WorldInfo world)
+	private static void PublishMsbtToProject(string arcName, string newName, WorldInfo world)
 	{
 		// Publish entry to ProjectData
 		var msbp = ProjectManager.GetMSBPHolder();

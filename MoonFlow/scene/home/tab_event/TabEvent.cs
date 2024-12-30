@@ -65,8 +65,6 @@ public partial class TabEvent : HSplitContainer
 			var name = file.Split('/', '\\').Last();
 			var nameNoExt = name.TrimSuffix(".szs");
 
-			SelectedArchive ??= name;
-
 			// Create a dropdown button and margin->vbox for each file
 			var container = new MarginContainer();
 			var vbox = new VBoxContainer()
@@ -79,6 +77,8 @@ public partial class TabEvent : HSplitContainer
 			dropdown.Set("dropdown", container);
 
 			dropdown.Connect(Button.SignalName.Pressed, Callable.From(() => OnArchiveDropdownPressed(FileList[name])));
+			if (SelectedArchive == null)
+				OnArchiveDropdownPressed(FileList[name]);
 
 			ArchiveHolder.AddChild(dropdown);
 			ArchiveHolder.AddChild(container);
@@ -155,7 +155,7 @@ public partial class TabEvent : HSplitContainer
 		// Update info box
 		SelectionLabel.Text = key;
 		SelectionInfoBox.Show();
-		VBoxArcInfo.Show();
+		VBoxArcInfo.Hide();
 		VBoxEventInfo.Show();
 
 		UpdateInfoBoxArchive(archive);
@@ -172,30 +172,37 @@ public partial class TabEvent : HSplitContainer
 		HomeRoot.RecursiveFileSearch(ArchiveHolder, txt);
 	}
 
+	private void OnButtonCopyGraphDebugHashPressed()
+	{
+		if (SelectedArchive == null || SelectedEvent == null)
+			return;
+		
+		var hash = GraphMetaHolder.CalcNameHash(SelectedArchive, SelectedEvent);
+		DisplayServer.ClipboardSet(hash);
+
+		GD.Print(hash + " added to system clipboard!");
+	}
+
 	#endregion
 
 	#region Utilties
 
 	private void UpdateInfoBoxArchive(SarcFile archive)
 	{
+		// Set archive last modification time
 		if (File.Exists(archive.FilePath))
 		{
-			long length = new FileInfo(archive.FilePath).Length;
-			GetNode<Label>("%Label_ArcSize").Text = ByteSize.FromBytes(length).ToString();
-
 			var t = archive.GetLastModifiedTime();
 			GetNode<Label>("%Label_ArcDateTime").Text = t.ToShortDateString() + "\n(" + t.ToLongTimeString() + ')';
 		}
 		else
-		{
-			GetNode<Label>("%Label_ArcSize").Text = "";
 			GetNode<Label>("%Label_ArcDateTime").Text = "N/A";
-		}
 	}
 
 	private void UpdateInfoBoxEvent(SarcFile archive, string key)
 	{
-
+		GetNode<Label>("%Label_ArcName").Text = archive.Name;
+		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(archive.Content[key].Count).ToString();;
 	}
 
 	#endregion

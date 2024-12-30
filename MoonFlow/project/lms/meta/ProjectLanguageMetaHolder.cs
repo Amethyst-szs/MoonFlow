@@ -95,14 +95,14 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         Data.TimeTable[hash] = DateTime.Now.ToFileTime();
     }
 
-    private static string CalcHash(string archive, string file, string entry)
+    public static string CalcHash(string archive, string file, string entry)
     {
         var input = Encoding.UTF8.GetBytes(archive + file + entry + "SALT_4mAn0Lq");
         byte[] hashValue = MD5.HashData(input);
 
         return BitConverter.ToString(hashValue).Replace("-", string.Empty);
     }
-    private static string CalcHash(string archive, string file)
+    public static string CalcHash(string archive, string file)
     {
         var input = Encoding.UTF8.GetBytes(archive + file + "SALT_6zAmnOB");
         byte[] hashValue = MD5.HashData(input);

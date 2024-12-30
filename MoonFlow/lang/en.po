@@ -287,6 +287,14 @@ msgid "HOME_TAB_TEXT_DETAILS_USAGE"
 msgstr "File Usage:"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
+msgstr "Metadata Hash"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_COPY_DEBUG_HASH"
+msgstr "Copy to Clipboard"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr "Open File"
 
@@ -2170,8 +2178,12 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
 
 #: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_FILE_SIZE"
-msgstr "Archive Size:"
+msgid "HOME_TAB_EVENT_ARCHIVE_NAME"
+msgstr "Archive Name:"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
+msgstr "Graph Size:"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"

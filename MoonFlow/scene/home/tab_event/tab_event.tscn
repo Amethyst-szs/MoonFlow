@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=24 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_j3ltd"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="10_xss54"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
+[ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="12_dpnv5"]
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -37,11 +38,11 @@ events = [SubResource("InputEventAction_0tmku")]
 font = ExtResource("10_xss54")
 font_size = 22
 
-[sub_resource type="LabelSettings" id="LabelSettings_muqe5"]
+[sub_resource type="LabelSettings" id="LabelSettings_c7mur"]
 font_size = 14
 font_color = Color(1, 1, 1, 0.87451)
 
-[sub_resource type="LabelSettings" id="LabelSettings_c7mur"]
+[sub_resource type="LabelSettings" id="LabelSettings_d4vbl"]
 font_size = 14
 font_color = Color(1, 1, 1, 0.87451)
 
@@ -152,26 +153,6 @@ theme_override_constants/separation = 24
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ArcFileSize" type="HBoxContainer" parent="Info/VBox/VBox_ArcInfo"]
-layout_mode = 2
-
-[node name="Label_ArcSizeHeader" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcFileSize"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "HOME_TAB_EVENT_ARCHIVE_DETAILS_FILE_SIZE"
-label_settings = SubResource("LabelSettings_muqe5")
-
-[node name="Label_ArcSize" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcFileSize"]
-unique_name_in_owner = true
-auto_translate_mode = 2
-layout_mode = 2
-size_flags_horizontal = 6
-text = "PLACEHOLDER"
-
-[node name="HSep1" type="HSeparator" parent="Info/VBox/VBox_ArcInfo"]
-layout_mode = 2
-theme_override_styles/separator = ExtResource("11_1pteu")
-
 [node name="ArcDateTime" type="HBoxContainer" parent="Info/VBox/VBox_ArcInfo"]
 layout_mode = 2
 
@@ -195,6 +176,67 @@ theme_override_styles/separator = ExtResource("11_1pteu")
 
 [node name="VBox_EventInfo" type="VBoxContainer" parent="Info/VBox"]
 layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ArcName" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo"]
+layout_mode = 2
+
+[node name="Label_ArcNameHeader" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_EVENT_ARCHIVE_NAME"
+label_settings = SubResource("LabelSettings_c7mur")
+
+[node name="Label_ArcName" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+
+[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_EventInfo"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("11_1pteu")
+
+[node name="Size" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo"]
+layout_mode = 2
+
+[node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_EventInfo/Size"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
+label_settings = SubResource("LabelSettings_c7mur")
+
+[node name="Label_Size" type="Label" parent="Info/VBox/VBox_EventInfo/Size"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+
+[node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_EventInfo"]
+layout_mode = 2
+script = ExtResource("12_dpnv5")
+
+[node name="HSep" type="HSeparator" parent="Info/VBox/VBox_EventInfo/DebugHash"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("11_1pteu")
+
+[node name="Content" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo/DebugHash"]
+layout_mode = 2
+
+[node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_EventInfo/DebugHash/Content"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_COPY_DEBUG_HASH_HEADER"
+label_settings = SubResource("LabelSettings_d4vbl")
+
+[node name="Button_Copy" type="Button" parent="Info/VBox/VBox_EventInfo/DebugHash/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HOME_TAB_COPY_DEBUG_HASH"
 
 [node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
 layout_mode = 2
@@ -231,5 +273,6 @@ dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 dialog_autowrap = true
 
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
+[connection signal="pressed" from="Info/VBox/VBox_EventInfo/DebugHash/Content/Button_Copy" to="." method="OnButtonCopyGraphDebugHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteFile"]
