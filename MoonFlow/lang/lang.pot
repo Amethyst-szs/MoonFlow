@@ -2230,6 +2230,10 @@ msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_IS_WITHIN_PROJECT_NOTICE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_NAME"
 msgstr ""
 

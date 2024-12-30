@@ -40,10 +40,6 @@ public partial class TabEvent : HSplitContainer
 
 	public override void _Ready()
 	{
-		ProjectManager.SceneRoot.NodeHeader.Connect(Header.SignalName.ButtonSave,
-			Callable.From(new Action<bool>(OnAnyFileSaved)), (uint)ConnectFlags.Deferred
-		);
-
 		SelectionInfoBox.Hide();
 		GenerateFileList();
 	}
@@ -86,24 +82,21 @@ public partial class TabEvent : HSplitContainer
 			};
 
 			var dropdown = DropdownButton.New().As<Button>();
+			dropdown.Name = name.Replace(".", "");
 			dropdown.Text = name;
 			dropdown.Set("dropdown", container);
+			UpdateDropdownButtonModulate(sarc, dropdown);
 
-			var call = Callable.From(() => OnArchiveDropdownPressed(sarc));
+			var call = Callable.From(() => OnArchiveDropdownPressed(sarc, dropdown));
 			dropdown.Connect(Button.SignalName.Pressed, call);
 			dropdown.Connect(Button.SignalName.FocusEntered, call);
 
 			if (SelectedArchive == null)
-				OnArchiveDropdownPressed(sarc);
+				OnArchiveDropdownPressed(sarc, dropdown);
 
 			ArchiveHolder.AddChild(dropdown);
 			ArchiveHolder.AddChild(container);
 			container.AddChild(vbox);
-
-			// If this sarc is originating from RomFs and not the project, slightly darken
-			// archive button
-			if (sarc.Source == EventDataArchive.ArchiveSource.ROMFS)
-				dropdown.SelfModulate = Colors.Gray;
 
 			// Add all BYML files as buttons in container
 			SetupArchiveFileList(sarc, nameNoExt);
@@ -125,7 +118,7 @@ public partial class TabEvent : HSplitContainer
 
 			var button = DoublePressButton.New().As<Button>();
 			button.ToggleMode = true;
-			button.Name = item;
+			button.Name = file.Replace(".", "");
 			button.Text = item;
 			button.TooltipText = arc.Name;
 			button.Alignment = HorizontalAlignment.Left;
@@ -146,14 +139,7 @@ public partial class TabEvent : HSplitContainer
 
 	#region Signals
 
-	private async void OnAnyFileSaved(bool _)
-	{
-		// Janky fix I know :(
-		await ToSignal(GetTree().CreateTimer(0.75F), Timer.SignalName.Timeout);
-		GenerateFileList();
-	}
-
-	private void OnArchiveDropdownPressed(EventDataArchive archive)
+	private void OnArchiveDropdownPressed(EventDataArchive archive, Button dropdown)
 	{
 		// Set fields
 		SelectedArchive = archive;
@@ -166,6 +152,9 @@ public partial class TabEvent : HSplitContainer
 		VBoxEventInfo.Hide();
 
 		UpdateInfoBoxArchive(archive);
+
+		// Update dropdown color
+		UpdateDropdownButtonModulate(archive, dropdown);
 
 		// Update button states
 		foreach (var item in DisableWhenNoGraphSelected)
@@ -192,6 +181,11 @@ public partial class TabEvent : HSplitContainer
 
 		UpdateInfoBoxArchive(archive);
 		UpdateInfoBoxEvent(archive, key);
+
+		// Update dropdown color
+		var buttonName = archive.Name.Replace(".", "");
+		if (ArchiveHolder.FindChild(buttonName, false, false) is Button dropdown)
+			UpdateDropdownButtonModulate(archive, dropdown);
 
 		// Update button states
 		foreach (var item in DisableWhenNoGraphSelected)
@@ -239,6 +233,7 @@ public partial class TabEvent : HSplitContainer
 			// Delete archive from project manager
 			ProjectManager.GetProject().EventArcHolder.DeleteArchive(SelectedArchive);
 			GenerateFileList();
+			return;
 		}
 	}
 
@@ -262,6 +257,37 @@ public partial class TabEvent : HSplitContainer
 
 	#region Utilties
 
+	public void ReloadInterface(bool isRunReady)
+	{
+		if (isRunReady)
+			_Ready();
+
+		if (SelectedArchive == null)
+			return;
+
+		if (SelectedEvent == null)
+		{
+			if (ArchiveHolder.FindChild(SelectedArchive.Name.Replace(".", ""), false, false) is not Button dropdown)
+				return;
+
+			OnArchiveDropdownPressed(SelectedArchive, dropdown);
+			return;
+		}
+
+		if (ArchiveHolder.FindChild(SelectedEvent.Replace(".", ""), true, false) is not Button button)
+			return;
+
+		OnEventFilePressed(SelectedArchive, SelectedEvent, button);
+	}
+
+	private static void UpdateDropdownButtonModulate(EventDataArchive arc, Button button)
+	{
+		if (arc.Source == EventDataArchive.ArchiveSource.ROMFS)
+			button.SelfModulate = Colors.Gray;
+		else
+			button.SelfModulate = Colors.White;
+	}
+
 	private void UpdateInfoBoxArchive(SarcFile archive)
 	{
 		// Set archive last modification time
@@ -269,9 +295,13 @@ public partial class TabEvent : HSplitContainer
 		{
 			var t = archive.GetLastModifiedTime();
 			GetNode<Label>("%Label_ArcDateTime").Text = t.ToShortDateString() + "\n(" + t.ToLongTimeString() + ')';
+			GetNode<Control>("%ArcNotWithinProject").Visible = false;
 		}
 		else
+		{
 			GetNode<Label>("%Label_ArcDateTime").Text = "N/A";
+			GetNode<Control>("%ArcNotWithinProject").Visible = true;
+		}
 	}
 
 	private void UpdateInfoBoxEvent(SarcFile archive, string key)

@@ -259,7 +259,6 @@ msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 msgstr "Color Palette Editor"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-#| msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
 msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 msgstr "Open File"
 
@@ -2197,6 +2196,10 @@ msgstr "New Event Archive"
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr "Archive Last Modified:"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_IS_WITHIN_PROJECT_NOTICE"
+msgstr "Archive not added to project!"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_NAME"
