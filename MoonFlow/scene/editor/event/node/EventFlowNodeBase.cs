@@ -6,7 +6,7 @@ using System.Linq;
 
 using Nindot.Al.EventFlow;
 
-using CSExtensions;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -94,20 +94,8 @@ public partial class EventFlowNodeBase : Node2D
 		if (GetType() == typeof(EventFlowNodeBase))
 			throw new Exception("Base class should not be constructed!");
 
-		// Search upward for parent graph and application
-		Godot.Node nextParent = this;
-		while (Parent == null || Application == null)
-		{
-			nextParent = nextParent.GetParent();
-			if (!IsInstanceValid(nextParent))
-				throw new NullReferenceException("Node is not a child of an GraphCanvas!");
-
-			if (nextParent.GetType() == typeof(GraphCanvas))
-				Parent = nextParent as GraphCanvas;
-
-			if (nextParent.GetType() == typeof(EventFlowApp))
-				Application = nextParent as EventFlowApp;
-		}
+		Application = this.FindParentByType<EventFlowApp>();
+		Parent = this.FindParentByType<GraphCanvas>();
 
 		// Connect to signals from graph
 		Connect(SignalName.NodeModified, Callable.From(Parent.OnNodeModified));

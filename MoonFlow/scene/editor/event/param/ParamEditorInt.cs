@@ -1,6 +1,6 @@
 using Godot;
 
-using CSExtensions;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -13,7 +13,7 @@ public partial class ParamEditorInt : EventNodeParamEditorBase
 	public override void Init()
 	{
 		Spin.Prefix = Param.SplitCamelCase();
-		
+
 		if (!Node.Content.TryGetParam(Param, out int value))
 		{
 			Spin.Editable = false;
@@ -25,12 +25,12 @@ public partial class ParamEditorInt : EventNodeParamEditorBase
 	}
 
 	public override void AddPropertyToNode()
-    {
+	{
 		base.AddPropertyToNode();
-		
+
 		Spin.Editable = true;
-        SetValue(0);
-    }
+		SetValue(0);
+	}
 
 	private void SetValue(int value)
 	{

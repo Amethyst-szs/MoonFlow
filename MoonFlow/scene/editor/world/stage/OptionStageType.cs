@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using MoonFlow.Project.Database;
 using System.Linq;
 
-using CSExtensions;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorWorld;
 

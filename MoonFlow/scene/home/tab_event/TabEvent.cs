@@ -11,7 +11,7 @@ using MoonFlow.Project;
 using MoonFlow.Scene.EditorEvent;
 using MoonFlow.Scene.Main;
 
-using CSExtensions;
+using MoonFlow.Ext;
 using ByteSizeLib;
 
 namespace MoonFlow.Scene.Home;
@@ -44,7 +44,7 @@ public partial class TabEvent : HSplitContainer
 	{
 		ProjectManager.SceneRoot.NodeHeader.Connect(Header.SignalName.ButtonSave,
 			Callable.From(new Action<bool>(OnAnyFileSaved)), (uint)ConnectFlags.Deferred
-        );
+		);
 
 		SelectionInfoBox.Hide();
 		GenerateFileList();
@@ -209,7 +209,7 @@ public partial class TabEvent : HSplitContainer
 	{
 		if (SelectedArchive == null || SelectedEvent == null)
 			return;
-		
+
 		EventFlowApp.OpenApp(SelectedArchive, SelectedEvent);
 	}
 
@@ -226,7 +226,7 @@ public partial class TabEvent : HSplitContainer
 			// Return if the archive isn't saved to project
 			if (!File.Exists(SelectedArchive.FilePath))
 				return;
-			
+
 			// Delete all mfgraph metadata files stored in archive
 			foreach (var file in SelectedArchive.Content.Keys)
 			{
@@ -253,7 +253,7 @@ public partial class TabEvent : HSplitContainer
 	{
 		if (SelectedArchive == null || SelectedEvent == null)
 			return;
-		
+
 		var hash = GraphMetaHolder.CalcNameHash(SelectedArchive.Name, SelectedEvent);
 		DisplayServer.ClipboardSet(hash);
 
@@ -279,7 +279,7 @@ public partial class TabEvent : HSplitContainer
 	private void UpdateInfoBoxEvent(SarcFile archive, string key)
 	{
 		GetNode<Label>("%Label_ArcName").Text = archive.Name;
-		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(archive.Content[key].Count).ToString();;
+		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(archive.Content[key].Count).ToString();
 	}
 
 	#endregion

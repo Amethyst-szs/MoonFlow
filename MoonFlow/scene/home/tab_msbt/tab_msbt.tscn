@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=30 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_8nwia"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="9_pqb3l"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="10_m4jr4"]
 [ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="14_62h41"]
+[ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbtFileAccessor.cs" id="15_3v0li"]
 [ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="16_hrtuc"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
@@ -331,6 +332,9 @@ mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_OPEN_FILE"
 flat = true
 
+[node name="TabMsbtFileAccessor" type="Node" parent="."]
+script = ExtResource("15_3v0li")
+
 [node name="Popup_DuplicateMsbt" parent="." instance=ExtResource("9_0g6c8")]
 visible = false
 
@@ -370,11 +374,11 @@ script = ExtResource("16_hrtuc")
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Open" to="." method="OnFooterOpenFilePressed"]
-[connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="." method="OnDuplicateFileRequested"]
-[connection signal="pressed" from="FileList/Footer/HBox/Button_New" to="." method="OnNewFileRequested"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_DuplicateMsbt"]]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_New" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_NewMsbt"]]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="pressed" from="Info/VBox/VBox_Stats/DebugHash/Content/Button_Copy" to="." method="OnCopyFileHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
-[connection signal="submitted" from="Popup_DuplicateMsbt" to="." method="OnDuplicateFile"]
-[connection signal="submitted" from="Popup_NewMsbt" to="." method="OnNewFile"]
-[connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteFile"]
+[connection signal="submitted" from="Popup_DuplicateMsbt" to="TabMsbtFileAccessor" method="OnDuplicateFile"]
+[connection signal="submitted" from="Popup_NewMsbt" to="TabMsbtFileAccessor" method="OnNewFile"]
+[connection signal="confirmed" from="Dialog_ConfirmDelete" to="TabMsbtFileAccessor" method="OnDeleteFile"]

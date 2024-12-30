@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 using Nindot.Al.EventFlow;
-using System.Collections.Generic;
+
 using MoonFlow.Project;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -17,18 +19,7 @@ public partial class GraphCanvas : CanvasLayer
 
     public override async void _Ready()
     {
-        // Search upward for EventFlowApp parent
-        Godot.Node nextParent = this;
-        while (Parent == null)
-        {
-            nextParent = nextParent.GetParent();
-            if (!IsInstanceValid(nextParent))
-                throw new NullReferenceException("Node is not a child of an GraphCanvas!");
-
-            if (nextParent.GetType() == typeof(EventFlowApp))
-                Parent = nextParent as EventFlowApp;
-        }
-
+        Parent = this.FindParentByType<EventFlowApp>();
         if (!Parent.IsInitCompleted)
             await ToSignal(Parent, EventFlowApp.SignalName.FileOpenComplete);
 

@@ -13,7 +13,7 @@ public abstract partial class ActionbarItemBase : PopupMenu
 
     public override async void _Ready()
     {
-        IdPressed += OnIdPressed;
+        IndexPressed += OnIdxPressed;
 
         var scene = await GetScene();
         
@@ -29,9 +29,10 @@ public abstract partial class ActionbarItemBase : PopupMenu
 			SetItemDisabled(i, !isValid);
     }
 
-    private void OnIdPressed(long id)
+    private void OnIdxPressed(long idx)
     {
-        if (!FuncLookup.TryGetValue((int)id, out Action value))
+        var id = GetItemId((int)idx);
+        if (!FuncLookup.TryGetValue(id, out Action value))
         {
             GD.PushWarning("No function found for menu item ", id);
             return;

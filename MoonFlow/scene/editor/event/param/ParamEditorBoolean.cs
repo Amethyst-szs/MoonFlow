@@ -3,7 +3,7 @@ using System;
 
 using MoonFlow.Scene.EditorEvent;
 
-using CSExtensions;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -16,7 +16,7 @@ public partial class ParamEditorBoolean : EventNodeParamEditorBase
 	public override void Init()
 	{
 		Check.Text = Param.SplitCamelCase();
-		
+
 		if (!Node.Content.TryGetParam(Param, out bool value))
 		{
 			Check.Disabled = true;
@@ -27,15 +27,15 @@ public partial class ParamEditorBoolean : EventNodeParamEditorBase
 		Check.SetPressedNoSignal(value);
 	}
 
-    public override void AddPropertyToNode()
-    {
+	public override void AddPropertyToNode()
+	{
 		base.AddPropertyToNode();
-		
-		Check.Disabled = false;
-        SetValue(false);
-    }
 
-    private void SetValue(bool state)
+		Check.Disabled = false;
+		SetValue(false);
+	}
+
+	private void SetValue(bool state)
 	{
 		Node.Content.TrySetParam(Param, state);
 	}

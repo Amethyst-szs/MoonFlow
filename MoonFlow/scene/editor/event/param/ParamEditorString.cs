@@ -1,6 +1,6 @@
 using Godot;
 
-using CSExtensions;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -15,7 +15,7 @@ public partial class ParamEditorString : EventNodeParamEditorBase
 	public override void Init()
 	{
 		EditHeader.Text = Param.SplitCamelCase();
-		
+
 		if (!Node.Content.TryGetParam(Param, out string value))
 		{
 			Edit.Editable = false;
@@ -27,12 +27,12 @@ public partial class ParamEditorString : EventNodeParamEditorBase
 	}
 
 	public override void AddPropertyToNode()
-    {
+	{
 		base.AddPropertyToNode();
-		
+
 		Edit.Editable = true;
-        SetValue("");
-    }
+		SetValue("");
+	}
 
 	private void SetValue(string value)
 	{

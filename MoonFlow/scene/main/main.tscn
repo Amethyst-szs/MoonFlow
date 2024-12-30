@@ -127,12 +127,13 @@ item_1/id = 1001
 item_1/disabled = true
 item_1/separator = true
 item_2/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+item_2/id = 10
 item_3/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-item_3/id = 1
+item_3/id = 11
 item_4/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-item_4/id = 2
+item_4/id = 12
 item_5/text = "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
-item_5/id = 3
+item_5/id = 13
 script = ExtResource("6_jwfa5")
 
 [node name="Center" type="VSeparator" parent="Content/Header/Content"]

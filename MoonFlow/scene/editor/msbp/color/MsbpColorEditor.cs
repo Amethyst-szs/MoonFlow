@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-using CSExtensions;
+using MoonFlow.Ext;
 
 using MoonFlow.Project;
 using MoonFlow.Async;
@@ -62,7 +62,7 @@ public partial class MsbpColorEditor : AppScene
 	#region Save
 
 	private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
-    public override async Task SaveFile(bool isRequireFocus)
+	public override async Task SaveFile(bool isRequireFocus)
 	{
 		if (!AppIsFocused() && isRequireFocus)
 			return;
@@ -116,7 +116,7 @@ public partial class MsbpColorEditor : AppScene
 		var idx = msbp.Color_GetIndex(name);
 		if (idx == -1)
 			throw new Exception("Cannot set color of " + ColorPickerTarget);
-		
+
 		msbp.Color_Remove(name);
 		msbp.Color_AddNew(name, c.ToMsbpColor());
 		msbp.Color_MoveIndex(name, idx);

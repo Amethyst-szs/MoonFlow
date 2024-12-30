@@ -11,9 +11,12 @@ public partial class AppScene : Control
 {
 	#region Properties
 
+	// ~~~~~~~~~~~~~~~ Exports ~~~~~~~~~~~~~~~ //
+
 	[Export]
 	public string AppName { get; private set; } = "Application";
 
+	private string _appTaskbarTitle = "Application";
 	[Export]
 	public string AppTaskbarTitle
 	{
@@ -29,9 +32,6 @@ public partial class AppScene : Control
 			}
 		}
 	}
-	private string _appTaskbarTitle = "Application";
-
-	public string AppUniqueIdentifier { get; private set; } = null;
 
 	[Export]
 	public Texture2D AppIcon { get; private set; } = GD.Load<Texture2D>("res://iconS.png");
@@ -54,8 +54,7 @@ public partial class AppScene : Control
 	[Export]
 	private PackedScene UnsavedChangesScene = null;
 
-	[Signal]
-	public delegate void ModifyStateUpdateEventHandler(bool isModified);
+	// ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
 	private bool _isModified = false;
 	protected bool IsModified
@@ -68,9 +67,9 @@ public partial class AppScene : Control
 		}
 	}
 
-	#endregion
+	public string AppUniqueIdentifier { get; private set; } = null;
 
-	#region Node References
+	// ~~~~~~~~~~~ Node References ~~~~~~~~~~~ //
 
 	public MainSceneRoot Scene { get; protected set; } = null;
 
@@ -80,6 +79,13 @@ public partial class AppScene : Control
 		get { return _taskbarButton; }
 		set { _taskbarButton ??= value; }
 	}
+
+	// ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
+
+	[Signal]
+	public delegate void ModifyStateUpdateEventHandler(bool isModified);
+	[Signal]
+	public delegate void AppFocusedEventHandler();
 
 	#endregion
 
@@ -212,6 +218,8 @@ public partial class AppScene : Control
 				control.ProcessMode = ProcessModeEnum.Inherit;
 			}
 		}
+
+		focusingApp.EmitSignal(SignalName.AppFocused);
 
 		// Update header
 		Scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();

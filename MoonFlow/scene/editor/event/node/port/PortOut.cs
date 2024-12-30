@@ -5,6 +5,7 @@ using Nindot;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Project;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -140,24 +141,13 @@ public partial class PortOut : TextureRect
 
 	public override void _Ready()
 	{
+		// Access parent node
+		Parent = this.FindParentByType<EventFlowNodeBase>();
+		Parent.Connect(EventFlowNodeBase.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
+
 		// Hide line rendering
 		ConnectionLine.Hide();
 		DraggerLine.Hide();
-
-		// Search upward for parent flow node
-		Node nextParent = this;
-		while (Parent == null)
-		{
-			nextParent = nextParent.GetParent();
-			if (!IsInstanceValid(nextParent))
-				throw new NullReferenceException("Port is not a child of an EventFlowNode!");
-
-			if (nextParent.GetType().IsSubclassOf(typeof(EventFlowNodeBase)))
-				Parent = nextParent as EventFlowNodeBase;
-		}
-
-		// Connect to signals from parent
-		Parent.Connect(EventFlowNodeBase.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
 
 		// Setup port index
 		Index = GetIndex();
