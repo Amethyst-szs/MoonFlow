@@ -142,7 +142,7 @@ public partial class PortOut : TextureRect
 	public override void _Ready()
 	{
 		// Access parent node
-		Parent = this.FindParentByType<EventFlowNodeBase>();
+		Parent = this.FindParentBySubclass<EventFlowNodeBase>();
 		Parent.Connect(EventFlowNodeBase.SignalName.NodeMoved, Callable.From(CalcConnectionLine));
 
 		// Hide line rendering

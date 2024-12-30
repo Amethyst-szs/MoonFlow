@@ -24,7 +24,11 @@ public partial class PortIn : TextureRect
 
 	public override void _Ready()
 	{
-		Parent = this.FindParentByType<EventFlowNodeCommon>();
+		var parentBase = this.FindParentBySubclass<EventFlowNodeBase>();
+		if (parentBase.GetType() == typeof(EventFlowEntryPoint))
+			return;
+		
+		Parent = parentBase as EventFlowNodeCommon;
 
 		// Setup shader and display
 		Material = new ShaderMaterial();

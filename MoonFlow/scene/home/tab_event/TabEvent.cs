@@ -1,8 +1,6 @@
 using Godot;
 using System;
 using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.IO;
 
 using Nindot;
