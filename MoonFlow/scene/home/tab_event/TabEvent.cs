@@ -19,6 +19,11 @@ public partial class TabEvent : HSplitContainer
 {
 	[Export, ExportGroup("Internal References")]
 	private VBoxContainer ArchiveHolder;
+	private ScrollContainer ArchiveHolderParent
+	{
+		get { return ArchiveHolder.GetParent() as ScrollContainer; }
+	}
+
 	[Export]
 	private Label SelectionLabel;
 	[Export]
@@ -46,6 +51,11 @@ public partial class TabEvent : HSplitContainer
 
 	public void GenerateFileList()
 	{
+		// If present, copy old selection to restore after generation
+		var oldSelectArc = SelectedArchive?.Name;
+		var oldSelectEvent = SelectedEvent;
+		var oldScroll = ArchiveHolderParent.ScrollVertical;
+
 		// Reset selection
 		SelectedArchive = null;
 		SelectedEvent = null;
@@ -101,6 +111,25 @@ public partial class TabEvent : HSplitContainer
 			// Add all BYML files as buttons in container
 			SetupArchiveFileList(sarc, nameNoExt);
 		}
+
+		// Restore old selected file and event
+		if (oldSelectArc != null)
+		{
+			var buttonName = oldSelectArc.Replace(".", "");
+			if (ArchiveHolder.FindChild(buttonName, false, false) is Button dropdown)
+			{
+				dropdown.ButtonPressed = true;
+				OnArchiveDropdownPressed(arcList[oldSelectArc], dropdown);
+			}
+		}
+
+		if (oldSelectArc != null && oldSelectEvent != null)
+		{
+			if (ArchiveHolder.FindChild(oldSelectEvent.Replace(".", ""), true, false) is Button button)
+				OnEventFilePressed(arcList[oldSelectArc], oldSelectEvent, button);
+		}
+
+		ArchiveHolderParent.SetDeferred(ScrollContainer.PropertyName.ScrollVertical, oldScroll);
 	}
 
 	private void SetupArchiveFileList(EventDataArchive arc, string nodeName)

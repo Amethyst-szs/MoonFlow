@@ -35,5 +35,14 @@ public partial class TabEventFileAccessor : Node
             Parent.GenerateFileList();
             return;
         }
+
+        // If a specific event is selected, delete that byml from archive
+        if (!arc.Content.ContainsKey(@event))
+            throw new Exception("Selected event isn't present in selected archive!");
+        
+        arc.Content.Remove(@event);
+        arc.WriteArchive();
+        
+        Parent.GenerateFileList();
     }
 }
