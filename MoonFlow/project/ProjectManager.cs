@@ -50,6 +50,9 @@ public static class ProjectManager
     }
     public static ProjectLanguageMetaHolder GetMSBTMetaHolder(string lang)
     {
+        if (Project == null || Project.MsgStudioText == null || lang == null)
+            return null;
+        
         Project.MsgStudioText.TryGetValue(lang, out ProjectLanguageHolder langHolder);
         if (langHolder == null)
             throw new Exception("Invalid Language: " + lang);
