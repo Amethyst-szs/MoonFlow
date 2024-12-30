@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=31 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -14,6 +14,7 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="10_xss54"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
 [ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="12_dpnv5"]
+[ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="15_j2wr0"]
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -62,7 +63,7 @@ font_color = Color(1, 1, 1, 0.87451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2a70"]
 
-[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder", "SelectionLabel", "SelectionInfoBox", "VBoxArcInfo", "VBoxEventInfo")]
+[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder", "SelectionLabel", "SelectionInfoBox", "VBoxArcInfo", "VBoxEventInfo", "DisableWhenNoGraphSelected")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -75,6 +76,7 @@ SelectionLabel = NodePath("Info/VBox/Label_InfoName")
 SelectionInfoBox = NodePath("Info")
 VBoxArcInfo = NodePath("Info/VBox/VBox_ArcInfo")
 VBoxEventInfo = NodePath("Info/VBox/VBox_EventInfo")
+DisableWhenNoGraphSelected = [NodePath("Info/VBox/Footer/Button_Open"), NodePath("FileList/Footer/HBox/Button_Open")]
 metadata/_tab_index = 0
 
 [node name="FileList" type="VBoxContainer" parent="."]
@@ -293,6 +295,7 @@ ok_button_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
 dialog_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
 dialog_autowrap = true
 cancel_button_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
+script = ExtResource("15_j2wr0")
 
 [node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="."]
 title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"

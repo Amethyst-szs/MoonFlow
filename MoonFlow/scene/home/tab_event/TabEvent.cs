@@ -29,6 +29,8 @@ public partial class TabEvent : HSplitContainer
 	private VBoxContainer VBoxArcInfo;
 	[Export]
 	private VBoxContainer VBoxEventInfo;
+	[Export]
+	private Godot.Collections.Array<Button> DisableWhenNoGraphSelected = [];
 
 	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
 	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
@@ -57,7 +59,7 @@ public partial class TabEvent : HSplitContainer
 		// Get archive list
 		var arcHolder = ProjectManager.GetProject().EventArcHolder;
 		arcHolder.RefreshArchiveList();
-		
+
 		var arcList = arcHolder.Content;
 
 		// Clear current file list
@@ -89,7 +91,10 @@ public partial class TabEvent : HSplitContainer
 			dropdown.Text = name;
 			dropdown.Set("dropdown", container);
 
-			dropdown.Connect(Button.SignalName.Pressed, Callable.From(() => OnArchiveDropdownPressed(sarc)));
+			var call = Callable.From(() => OnArchiveDropdownPressed(sarc));
+			dropdown.Connect(Button.SignalName.Pressed, call);
+			dropdown.Connect(Button.SignalName.FocusEntered, call);
+
 			if (SelectedArchive == null)
 				OnArchiveDropdownPressed(sarc);
 
@@ -128,7 +133,10 @@ public partial class TabEvent : HSplitContainer
 			button.Alignment = HorizontalAlignment.Left;
 
 			// These signals are automatically disconnected on free by DoublePressButton gdscript code
-			button.Connect("pressed", Callable.From(() => OnEventFilePressed(arc, file, button)));
+			var pressCall = Callable.From(() => OnEventFilePressed(arc, file, button));
+			button.Connect(Button.SignalName.Pressed, pressCall);
+			button.Connect(Button.SignalName.FocusEntered, pressCall);
+
 			button.Connect("double_pressed",
 				Callable.From(() => OnEventFileOpened(arc, file)));
 
@@ -160,6 +168,10 @@ public partial class TabEvent : HSplitContainer
 		VBoxEventInfo.Hide();
 
 		UpdateInfoBoxArchive(archive);
+
+		// Update button states
+		foreach (var item in DisableWhenNoGraphSelected)
+			item.Disabled = true;
 	}
 
 	private void OnEventFilePressed(EventDataArchive archive, string key, Button button)
@@ -182,6 +194,10 @@ public partial class TabEvent : HSplitContainer
 
 		UpdateInfoBoxArchive(archive);
 		UpdateInfoBoxEvent(archive, key);
+
+		// Update button states
+		foreach (var item in DisableWhenNoGraphSelected)
+			item.Disabled = false;
 	}
 
 	private static void OnEventFileOpened(SarcFile archive, string key)

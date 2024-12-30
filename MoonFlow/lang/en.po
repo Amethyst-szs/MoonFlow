@@ -2212,16 +2212,20 @@ msgstr "Open Graph"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
-msgstr "Confirm File Deletion"
+msgstr "Are you sure?"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
-msgstr "I'm sure."
+msgstr "Delete!"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
 msgstr ""
-"Deleting EventData files required by the game can cause issues, are you sure?"
+"Are you sure you'd like to delete the selected EventData archive/graph? This "
+"cannot be undone.\n"
+"\n"
+"If you delete a base-game archive, it will be removed from your project, but "
+"the original version will still be accessible by the game's romfs. "
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
