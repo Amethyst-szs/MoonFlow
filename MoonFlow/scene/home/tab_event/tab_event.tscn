@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=32 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -15,6 +15,7 @@
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
 [ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="12_dpnv5"]
 [ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="15_j2wr0"]
+[ext_resource type="Script" path="res://scene/home/tab_event/TabEventFileAccessor.cs" id="15_obiaq"]
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -298,6 +299,9 @@ mouse_default_cursor_shape = 2
 text = "HOME_TAB_EVENT_OPEN_FILE"
 flat = true
 
+[node name="TabEventFileAccessor" type="Node" parent="."]
+script = ExtResource("15_obiaq")
+
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
 title = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1
@@ -318,8 +322,8 @@ dialog_autowrap = true
 
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Open" to="." method="OnFooterOpenFilePressed"]
-[connection signal="pressed" from="FileList/Footer/HBox/Button_Reload" to="." method="GenerateFileList"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Reload" to="." method="ReloadInterface" binds= [true]]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="pressed" from="Info/VBox/VBox_EventInfo/DebugHash/Content/Button_Copy" to="." method="OnButtonCopyGraphDebugHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
-[connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteFile"]
+[connection signal="confirmed" from="Dialog_ConfirmDelete" to="TabEventFileAccessor" method="OnDeleteFile"]

@@ -33,8 +33,8 @@ public partial class TabEvent : HSplitContainer
 	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
 	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
 
-	private EventDataArchive SelectedArchive = null;
-	private string SelectedEvent = null;
+	public EventDataArchive SelectedArchive { get; private set; } = null;
+	public string SelectedEvent { get; private set; } = null;
 
 	#region Initilization
 
@@ -44,7 +44,7 @@ public partial class TabEvent : HSplitContainer
 		GenerateFileList();
 	}
 
-	private void GenerateFileList()
+	public void GenerateFileList()
 	{
 		// Reset selection
 		SelectedArchive = null;
@@ -205,38 +205,6 @@ public partial class TabEvent : HSplitContainer
 		EventFlowApp.OpenApp(SelectedArchive, SelectedEvent);
 	}
 
-	private void OnDeleteFile()
-	{
-		if (SelectedArchive == null)
-		{
-			GD.PushError("No archive selected!");
-			return;
-		}
-
-		if (SelectedEvent == null)
-		{
-			// Return if the archive isn't saved to project
-			if (!File.Exists(SelectedArchive.FilePath))
-				return;
-
-			// Delete all mfgraph metadata files stored in archive
-			foreach (var file in SelectedArchive.Content.Keys)
-			{
-				var path = GraphMetaHolder.GetPath(SelectedArchive.Name, file);
-				if (File.Exists(path))
-					File.Delete(path);
-			}
-
-			// Delete archive file
-			File.Delete(SelectedArchive.FilePath);
-
-			// Delete archive from project manager
-			ProjectManager.GetProject().EventArcHolder.DeleteArchive(SelectedArchive);
-			GenerateFileList();
-			return;
-		}
-	}
-
 	private void OnLineSearchTextChanged(string txt)
 	{
 		HomeRoot.RecursiveFileSearch(ArchiveHolder, txt);
@@ -260,7 +228,7 @@ public partial class TabEvent : HSplitContainer
 	public void ReloadInterface(bool isRunReady)
 	{
 		if (isRunReady)
-			_Ready();
+			GenerateFileList();
 
 		if (SelectedArchive == null)
 			return;

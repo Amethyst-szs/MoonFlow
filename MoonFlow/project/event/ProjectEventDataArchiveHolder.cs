@@ -7,6 +7,7 @@ using Godot;
 using Nindot;
 
 using MoonFlow.Scene;
+using MoonFlow.Scene.EditorEvent;
 
 namespace MoonFlow.Project;
 
@@ -34,32 +35,18 @@ public class ProjectEventDataArchiveHolder
         // Load files from project first
         foreach (var file in projEvents)
         {
-            var sarc = EventDataArchive.FromFilePath(Path + file, EventDataArchive.ArchiveSource.PROJECT);
-            Content.Add(file, sarc);
-
+            RegisterArchive(Path, file, EventDataArchive.ArchiveSource.PROJECT);
             UpdateLoading(loadScreen, ++taskProgress, taskTotal);
         }
 
         // Afterwards, load files from RomfsAccessor if they weren't already loaded by project
         foreach (var file in romEvents)
         {
-            var sarc = EventDataArchive.FromFilePath(romPath + file, EventDataArchive.ArchiveSource.ROMFS);
-            Content.Add(file, sarc);
-
-            // Change the target path of the sarc file to be in the project, so that if the
-            // archive is saved it writes to the project and not the romfs
-            sarc.FilePath = Path + file;
-
+            RegisterArchive(romPath, file, EventDataArchive.ArchiveSource.ROMFS);
             UpdateLoading(loadScreen, ++taskProgress, taskTotal);
         }
 
         GD.Print("Loaded all event archives");
-    }
-
-    private static void UpdateLoading(ProjectLoading loadScreen, float progress, float total)
-    {
-        float res = progress / total * 100F;
-        loadScreen?.LoadingUpdateProgress("LOAD_EVENT_DATA", string.Format("{0:0}%", res));
     }
 
     #region Public Util
@@ -73,9 +60,8 @@ public class ProjectEventDataArchiveHolder
         {
             if (Content.ContainsKey(e))
                 continue;
-            
-            var sarc = EventDataArchive.FromFilePath(Path + e, EventDataArchive.ArchiveSource.PROJECT);
-            Content.Add(e, sarc);
+
+            RegisterArchive(Path, e, EventDataArchive.ArchiveSource.PROJECT);
         }
 
         // Remove any deleted project events
@@ -83,30 +69,62 @@ public class ProjectEventDataArchiveHolder
         {
             if (projEvents.Contains(item.Key) || romEvents.Contains(item.Key))
                 continue;
-            
+
             Content.Remove(item.Key);
         }
     }
 
-    public void DeleteArchive(EventDataArchive arc)
+    public bool TryDeleteArchive(EventDataArchive arc)
     {
         if (!Content.ContainsValue(arc))
             throw new Exception("Archive is not contained in holder!");
         
-        var romPath = RomfsAccessor.ActiveDirectory + "EventData/";
-        if (File.Exists(romPath + arc.Name))
+        // ~~~~~~~~~~~ Remove from Disk ~~~~~~~~~~ //
+
+        // Return if the archive isn't saved to project
+        if (!File.Exists(arc.FilePath))
+            return false;
+
+        // Delete all mfgraph metadata files linked to archive
+        foreach (var file in arc.Content.Keys)
         {
-            var sarc = EventDataArchive.FromFilePath(romPath + arc.Name, EventDataArchive.ArchiveSource.ROMFS);
-            Content[arc.Name] = sarc;
-            return;
+            var path = GraphMetaHolder.GetPath(arc.Name, file);
+            if (File.Exists(path))
+                File.Delete(path);
         }
 
-        Content[arc.Name] = null;
+        // Delete archive file
+        File.Delete(arc.FilePath);
+
+        // ~~~~~~~~~~ Remove from Holder ~~~~~~~~~ //
+
+        // If this file doesn't exist in the romfs accessor, remove and return
+        var romPath = RomfsAccessor.ActiveDirectory + "EventData/";
+        if (!File.Exists(romPath + arc.Name))
+        {
+            Content[arc.Name] = null;
+            return true;
+        }
+
+        // If it does exist, register the romfs accessor version of the file
+        RegisterArchive(romPath, arc.Name, EventDataArchive.ArchiveSource.ROMFS);
+        return true;
     }
 
     #endregion
 
     #region Backend Util
+
+    private void RegisterArchive(string dir, string file, EventDataArchive.ArchiveSource type)
+    {
+        var sarc = EventDataArchive.FromFilePath(dir + file, type);
+        Content[file] = sarc;
+
+        // Change the target path of the sarc file to be in the project, so that if the
+        // archive is saved it writes to the project and not the romfs
+        if (type == EventDataArchive.ArchiveSource.ROMFS)
+            sarc.FilePath = Path + file;
+    }
 
     private void GetFileLists(out List<string> projEvents, out List<string> romEvents, out string romPath)
     {
@@ -116,6 +134,12 @@ public class ProjectEventDataArchiveHolder
         romPath = RomfsAccessor.ActiveDirectory + "EventData/";
         romEvents = [.. Directory.GetFiles(romPath)];
         romEvents = romEvents.Select(p => p.Split('/', '\\').Last()).ToList();
+    }
+
+    private static void UpdateLoading(ProjectLoading loadScreen, float progress, float total)
+    {
+        float res = progress / total * 100F;
+        loadScreen?.LoadingUpdateProgress("LOAD_EVENT_DATA", string.Format("{0:0}%", res));
     }
 
     #endregion
