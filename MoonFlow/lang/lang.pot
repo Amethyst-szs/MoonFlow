@@ -212,6 +212,10 @@ msgid "MSBT_TOOLTIP_TRASH_PAGE"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_DEBUG_COPY_ENTRY_HASH"
+msgstr ""
+
+#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
 msgstr ""
 
@@ -337,10 +341,12 @@ msgid "HOME_TAB_TEXT_DETAILS_USAGE"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_COPY_DEBUG_HASH"
 msgstr ""
 
@@ -2209,15 +2215,15 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_NAME"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
-msgstr ""
-
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn

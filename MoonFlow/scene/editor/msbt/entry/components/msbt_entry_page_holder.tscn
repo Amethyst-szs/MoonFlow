@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqq2fg3a6fqij"]
+[gd_scene load_steps=7 format=3 uid="uid://bqq2fg3a6fqij"]
 
 [ext_resource type="Script" path="res://scene/editor/msbt/entry/components/MsbtEntryPageHolder.cs" id="1_ruo46"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="2_1ma0b"]
 [ext_resource type="Texture2D" uid="uid://dklnltxsfaufc" path="res://asset/material/arrow/double_up.svg" id="2_gtqsp"]
 [ext_resource type="Texture2D" uid="uid://dxlc03dwnwlug" path="res://asset/material/arrow/double_down.svg" id="4_syujp"]
+[ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="4_uvcju"]
+[ext_resource type="Texture2D" uid="uid://dti6ok2kka208" path="res://asset/material/debug/debug.svg" id="5_fpfhs"]
 
 [node name="MsbtEntryPageHolder" type="HBoxContainer"]
 anchors_preset = 15
@@ -34,6 +36,18 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("2_1ma0b")
 icon_alignment = 1
 
+[node name="DebugOnly" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+script = ExtResource("4_uvcju")
+
+[node name="Button_HashCopy" type="Button" parent="VBox/DebugOnly"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "MSBT_TOOLTIP_DEBUG_COPY_ENTRY_HASH"
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_fpfhs")
+icon_alignment = 1
+
 [node name="Button_OrganizeDown" type="Button" parent="VBox"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -44,4 +58,5 @@ icon_alignment = 1
 
 [connection signal="pressed" from="VBox/Button_OrganizeUp" to="." method="OnPressOrganize" binds= [-1]]
 [connection signal="pressed" from="VBox/Button_Trash" to="." method="OnDeleteConfirmed"]
+[connection signal="pressed" from="VBox/DebugOnly/Button_HashCopy" to="." method="OnDebugHashCopyPressed"]
 [connection signal="pressed" from="VBox/Button_OrganizeDown" to="." method="OnPressOrganize" binds= [1]]

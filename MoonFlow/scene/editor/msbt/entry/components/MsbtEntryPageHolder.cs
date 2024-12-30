@@ -23,6 +23,8 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	public delegate void PageDeleteEventHandler(MsbtPageEditor page);
 	[Signal]
 	public delegate void PageModifiedEventHandler(MsbtPageEditor page);
+	[Signal]
+	public delegate void DebugHashCopyEventHandler();
 
 	public MsbtEntryPageHolder Init(SarcMsbpFile project, MsbtPage page)
 	{
@@ -58,6 +60,11 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	public void OnPageModified()
 	{
 		EmitSignal(SignalName.PageModified, PageEditor);
+	}
+
+	public void OnDebugHashCopyPressed()
+	{
+		EmitSignal(SignalName.DebugHashCopy);
 	}
 
 	public void HandleSyncToggled(bool isDisableSync)

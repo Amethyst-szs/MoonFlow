@@ -165,6 +165,10 @@ msgid "MSBT_TOOLTIP_TRASH_PAGE"
 msgstr "Delete page"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_DEBUG_COPY_ENTRY_HASH"
+msgstr "Copy Metadata Hash to Clipboard"
+
+#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
 msgstr "Move page down"
 
@@ -286,11 +290,11 @@ msgstr "Total Strings:"
 msgid "HOME_TAB_TEXT_DETAILS_USAGE"
 msgstr "File Usage:"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
 msgstr "Metadata Hash"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_COPY_DEBUG_HASH"
 msgstr "Copy to Clipboard"
 
@@ -2178,16 +2182,16 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
+msgstr "Archive Last Modified:"
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_NAME"
 msgstr "Archive Name:"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
 msgstr "Graph Size:"
-
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
-msgstr "Archive Last Modified:"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"

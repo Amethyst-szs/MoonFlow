@@ -47,6 +47,8 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageModified,
 				Callable.From(new Action<MsbtPageEditor>(OnModifiedPage)));
+			
+			holder.Connect(MsbtEntryPageHolder.SignalName.DebugHashCopy, Callable.From(OnDebugHashCopy));
 
 			AddChild(holder.Init(Parent.Project, page));
 
@@ -104,6 +106,14 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 	}
 
 	private void OnModifiedPage(MsbtPageEditor page) { SetModified(); }
+
+	private void OnDebugHashCopy()
+	{
+		var hash = ProjectLanguageMetaHolder.CalcHash(Parent.File.Sarc.Name, Parent.File.Name, Entry.Name);
+		DisplayServer.ClipboardSet(hash);
+
+		GD.Print(hash + " added to system clipboard!");
+	}
 
 	private void OnSyncToggled(bool isDisableSync)
 	{
