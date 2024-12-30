@@ -52,6 +52,5 @@ public partial class MsbtEntry
     }
 
     public void SetModifiedFlag() { IsModified = true; }
-
     public void ResetModifiedFlag() { IsModified = false; }
 }

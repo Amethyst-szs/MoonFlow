@@ -7,11 +7,11 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, ProjectLanguageMetaHolder.Meta meta) : VBoxContainer
+public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, ProjectLanguageFileEntryMeta meta) : VBoxContainer
 {
 	private readonly MsbtEditor Parent = parent;
 	public readonly MsbtEntry Entry = entry;
-	public readonly ProjectLanguageMetaHolder.Meta Metadata = meta;
+	public readonly ProjectLanguageFileEntryMeta Metadata = meta;
 
 	[Signal]
 	public delegate void EntryModifiedEventHandler(MsbtEntryEditor entry);
@@ -153,6 +153,8 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 	public void SetModified()
 	{
 		Entry.SetModifiedFlag();
+		Metadata.IsMod = true;
+		
 		EmitSignal(SignalName.EntryModified, this);
 	}
 }

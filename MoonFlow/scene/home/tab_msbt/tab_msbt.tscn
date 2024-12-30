@@ -220,7 +220,7 @@ layout_mode = 2
 [node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
 layout_mode = 2
 size_flags_horizontal = 6
-text = "HOME_TAB_TEXT_DETAILS_FILE_SIZE"
+text = "HOME_TAB_DETAILS_FILE_SIZE"
 label_settings = SubResource("LabelSettings_7ddx3")
 
 [node name="Label_Size" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
@@ -231,6 +231,27 @@ size_flags_horizontal = 6
 text = "PLACEHOLDER"
 
 [node name="HSep1" type="HSeparator" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("10_m4jr4")
+
+[node name="DateTime" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+layout_mode = 2
+
+[node name="Label_DateTimeHeader" type="Label" parent="Info/VBox/VBox_Stats/DateTime"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_DETAILS_MODIFIED_TIME"
+label_settings = SubResource("LabelSettings_7ddx3")
+
+[node name="Label_DateTime" type="Label" parent="Info/VBox/VBox_Stats/DateTime"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+
+[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("10_m4jr4")
 

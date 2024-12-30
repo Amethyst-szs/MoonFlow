@@ -13,6 +13,7 @@ public partial class ProjectConfig : ProjectConfigFileBase
         public string DefaultLanguage = "USen";
         public bool IsDebugProject = false;
 
+        // EventFlow graph info
         public List<string> EventFlowGraphPins = [];
     };
 

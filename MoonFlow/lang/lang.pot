@@ -321,7 +321,11 @@ msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DETAILS_FILE_SIZE"
+msgid "HOME_TAB_DETAILS_FILE_SIZE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_DETAILS_MODIFIED_TIME"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
@@ -2197,6 +2201,14 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_FILE_SIZE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
 msgstr ""
 
@@ -2278,6 +2290,10 @@ msgstr ""
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
 msgstr ""
 
 #: scene/main/main.tscn

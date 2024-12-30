@@ -32,15 +32,15 @@ public class ProjectLanguageHolder
         // Ensure directory exists
         Directory.CreateDirectory(Path);
 
+        // Init metadata
+        Metadata = new(Path + ".mfmeta");
+
         // Init all archives from path
         InitArchive(ref SystemMessage, Path + "SystemMessage.szs", localPath);
         InitArchive(ref StageMessage, Path + "StageMessage.szs", localPath);
         InitArchive(ref LayoutMessage, Path + "LayoutMessage.szs", localPath);
 
         InitProjectIconResolver();
-
-        // Init metadata
-        Metadata = new(Path + ".mfmeta");
 
         GD.Print(string.Format(" - {0} OK", lang));
     }

@@ -271,8 +271,12 @@ msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
 msgstr "Delete File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DETAILS_FILE_SIZE"
+msgid "HOME_TAB_DETAILS_FILE_SIZE"
 msgstr "File Size:"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_DETAILS_MODIFIED_TIME"
+msgstr "Last Modified:"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
@@ -2166,6 +2170,14 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_FILE_SIZE"
+msgstr "Archive Size:"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
+msgstr "Archive Last Modified:"
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
 msgstr "Open Graph"
 
@@ -2253,6 +2265,10 @@ msgstr "Close Project"
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr "Open MoonFlow Settings"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
+msgstr "Debug Project"
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"

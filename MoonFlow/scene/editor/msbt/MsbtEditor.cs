@@ -275,8 +275,10 @@ public partial class MsbtEditor : PanelContainer
 		// Write metadata
 		display.UpdateProgress(FileList.Count, FileList.Count + 1);
 
-		var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-		metadataAccessor.WriteFile();
+		var metaAccess = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+		metaAccess.SetLastModifiedTime(File);
+		
+		metaAccess.WriteFile();
 
 		// Reset flag
 		ForceResetModifiedFlag();

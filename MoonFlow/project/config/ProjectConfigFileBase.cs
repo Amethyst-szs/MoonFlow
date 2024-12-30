@@ -76,7 +76,7 @@ public abstract class ProjectConfigFileBase
         return true;
     }
 
-    protected abstract bool TryGetWriteData(out object data);
+    protected abstract bool TryGetWriteData(out dynamic data);
 }
 
 public class GodotColorJsonConverter : JsonConverter<Color>

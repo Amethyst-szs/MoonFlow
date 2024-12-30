@@ -11,6 +11,8 @@ public partial class ActionbarDebug : ActionbarItemBase
 {
 	private enum MenuIds : int
 	{
+		TOGGLE_PROJECT_IS_DEBUG = 1000,
+
 		OPEN_MSTXT_VIEWER = 0,
 		OPEN_MSBP_TGG_VIEWER = 1,
 		OPEN_MSBT_ENTRY_LOOKUP_POPUP = 2,
@@ -19,16 +21,44 @@ public partial class ActionbarDebug : ActionbarItemBase
 
 	public override void _Ready()
 	{
-		// Free if not a debug build
 		if (!OS.IsDebugBuild())
+		{
 			QueueFree();
-		
+			return;
+		}
+
 		base._Ready();
-		
+
+		AssignFunction((int)MenuIds.TOGGLE_PROJECT_IS_DEBUG, OnToggleProjectIsDebug);
 		AssignFunction((int)MenuIds.OPEN_MSTXT_VIEWER, OnPressedOpenMstxtViewer);
 		AssignFunction((int)MenuIds.OPEN_MSBP_TGG_VIEWER, OnPressedOpenMsbpTggViewer);
 		AssignFunction((int)MenuIds.OPEN_MSBT_ENTRY_LOOKUP_POPUP, OnPressedOpenMsbtEntryLookup);
 		AssignFunction((int)MenuIds.OPEN_EVENT_FLOW_GRAPH_PROTOTYPE, OnPressedOpenEventFlowPrototype);
+
+		AboutToPopup += OnAboutToAppear;
+	}
+
+	private void OnAboutToAppear()
+	{
+		var idx = GetItemIndex((int)MenuIds.TOGGLE_PROJECT_IS_DEBUG);
+		var isDebug = ProjectManager.GetProject()?.Config?.Data?.IsDebugProject;
+
+		SetItemAsCheckable(idx, true);
+		if (isDebug != null)
+			SetItemChecked(idx, (bool)isDebug);
+	}
+
+	private void OnToggleProjectIsDebug()
+	{
+		// Update config
+		var config = ProjectManager.GetProject().Config;
+		config.Data.IsDebugProject = !config.Data.IsDebugProject;
+
+		config.WriteFile();
+
+		// Update checkbox
+		var idx = GetItemIndex((int)MenuIds.TOGGLE_PROJECT_IS_DEBUG);
+		SetItemChecked(idx, config.Data.IsDebugProject);
 	}
 
 	private void OnPressedOpenMstxtViewer()

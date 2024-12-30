@@ -83,6 +83,8 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
     // ================ File Reading Utilities ============== //
     // ====================================================== //
 
+    public DateTime GetLastModifiedTime() { return File.GetLastAccessTime(FilePath); }
+
     public BymlFile GetFileBYML(string name)
     {
         return BymlFile.FromBytes([.. Content[name]]);

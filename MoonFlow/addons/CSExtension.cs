@@ -20,13 +20,18 @@ namespace CSExtensions
 			);
 		}
 
-		public static void DeselectAllButtons(this Node node)
+		public static void DeselectAllButtons(this Node node, bool isEmitSignal = false)
 		{
 			if (node is not Control)
 				return;
 
 			if (node.GetType() == typeof(Button))
-				(node as Button).SetPressedNoSignal(false);
+			{
+				if (isEmitSignal)
+					(node as Button).ButtonPressed = false;
+				else
+					(node as Button).SetPressedNoSignal(false);
+			}
 
 			if (node.GetChildCount() == 0)
 				return;

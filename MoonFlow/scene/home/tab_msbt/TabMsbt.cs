@@ -195,6 +195,13 @@ public partial class TabMsbt : HSplitContainer
 
 		// Update info box
 		GetNode<Label>("%Label_InfoName").Text = key;
+
+		var t = ProjectManager.GetMSBTMetaHolder().GetLastModifiedTime(archive, key);
+		if (t.ToFileTimeUtc() != DateTime.UnixEpoch.ToFileTimeUtc())
+			GetNode<Label>("%Label_DateTime").Text = t.ToShortDateString() + "\n(" + t.ToLongTimeString() + ')';
+		else
+			GetNode<Label>("%Label_DateTime").Text = "N/A";
+
 		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(length).ToString();
 		GetNode<Label>("%Label_EntryCount").Text = SelectedFile.GetEntryCount().ToString();
 

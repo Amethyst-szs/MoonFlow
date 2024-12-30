@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=23 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_tkrku"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="7_hy22n"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_j3ltd"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="10_xss54"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -31,7 +33,21 @@ action = &"ui_graph_delete"
 [sub_resource type="Shortcut" id="Shortcut_stxmf"]
 events = [SubResource("InputEventAction_0tmku")]
 
-[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder")]
+[sub_resource type="LabelSettings" id="LabelSettings_xv48r"]
+font = ExtResource("10_xss54")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_muqe5"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.87451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c7mur"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.87451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2a70"]
+
+[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder", "SelectionLabel", "SelectionInfoBox", "VBoxArcInfo", "VBoxEventInfo")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,6 +56,10 @@ grow_vertical = 2
 theme = ExtResource("1_8utrk")
 script = ExtResource("2_m1qug")
 ArchiveHolder = NodePath("FileList/Content/VBox_ArchiveHolder")
+SelectionLabel = NodePath("Info/VBox/Label_InfoName")
+SelectionInfoBox = NodePath("Info")
+VBoxArcInfo = NodePath("Info/VBox/VBox_ArcInfo")
+VBoxEventInfo = NodePath("Info/VBox/VBox_EventInfo")
 metadata/_tab_index = 0
 
 [node name="FileList" type="VBoxContainer" parent="."]
@@ -117,6 +137,69 @@ theme_override_constants/margin_bottom = 0
 [node name="VBox" type="VBoxContainer" parent="Info"]
 layout_mode = 2
 theme_override_constants/separation = 8
+
+[node name="Label_InfoName" type="Label" parent="Info/VBox"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_xv48r")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HSep_Header" type="HSeparator" parent="Info/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="VBox_ArcInfo" type="VBoxContainer" parent="Info/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ArcFileSize" type="HBoxContainer" parent="Info/VBox/VBox_ArcInfo"]
+layout_mode = 2
+
+[node name="Label_ArcSizeHeader" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcFileSize"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_EVENT_ARCHIVE_DETAILS_FILE_SIZE"
+label_settings = SubResource("LabelSettings_muqe5")
+
+[node name="Label_ArcSize" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcFileSize"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+
+[node name="HSep1" type="HSeparator" parent="Info/VBox/VBox_ArcInfo"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("11_1pteu")
+
+[node name="ArcDateTime" type="HBoxContainer" parent="Info/VBox/VBox_ArcInfo"]
+layout_mode = 2
+
+[node name="Label_ArcDateTimeHeader" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
+label_settings = SubResource("LabelSettings_c7mur")
+
+[node name="Label_ArcDateTime" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+
+[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_ArcInfo"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("11_1pteu")
+
+[node name="VBox_EventInfo" type="VBoxContainer" parent="Info/VBox"]
+layout_mode = 2
+
+[node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_n2a70")
 
 [node name="Footer" type="PanelContainer" parent="Info/VBox"]
 layout_mode = 2

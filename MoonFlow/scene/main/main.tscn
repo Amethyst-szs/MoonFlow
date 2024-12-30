@@ -119,14 +119,20 @@ script = ExtResource("5_8pvlw")
 [node name="Debug" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
 size = Vector2i(590, 100)
-item_count = 4
-item_0/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
-item_1/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-item_1/id = 1
-item_2/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-item_2/id = 2
-item_3/text = "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
-item_3/id = 3
+item_count = 6
+item_0/text = "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
+item_0/checkable = 1
+item_0/id = 1000
+item_1/id = 1001
+item_1/disabled = true
+item_1/separator = true
+item_2/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+item_3/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+item_3/id = 1
+item_4/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+item_4/id = 2
+item_5/text = "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+item_5/id = 3
 script = ExtResource("6_jwfa5")
 
 [node name="Center" type="VSeparator" parent="Content/Header/Content"]

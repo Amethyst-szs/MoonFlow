@@ -90,7 +90,7 @@ public class ProjectLabelCache()
         {
             if (!file.Key.Contains(fileName, StringComparison.OrdinalIgnoreCase))
                 continue;
-            
+
             var matches = file.Value.ToList().FindAll(l =>
                 l.Key.Contains(label, StringComparison.OrdinalIgnoreCase)
             );
@@ -113,7 +113,7 @@ public class ProjectLabelCache()
         {
             if (file.Key != fileName)
                 continue;
-            
+
             var matches = file.Value.ToList().FindAll(l =>
                 l.Key.Contains(label, StringComparison.OrdinalIgnoreCase)
             );
@@ -182,11 +182,14 @@ public class ProjectLabelCache()
     private Dictionary<string, Dictionary<string, string>> UpdateArchiveCache(SarcFile arc, AsyncDisplay display)
     {
         var dict = new Dictionary<string, Dictionary<string, string>>();
+        var meta = ProjectManager.GetMSBTMetaHolder();
 
         foreach (var data in arc.Content)
         {
-            MsbtFile file;
+            // Ensure last modified time in metadata
+            meta.GetLastModifiedTime(arc, data.Key);
 
+            MsbtFile file;
             try
             {
                 file = MsbtFile.FromBytes([.. data.Value], data.Key, new MsbtElementFactoryProjectSmo());
@@ -202,9 +205,9 @@ public class ProjectLabelCache()
             labels.Sort(string.Compare);
 
             var text = labels.Select(l => file.GetEntry(l).GetRawText(true)).ToList();
-            
+
             var result = labels.Zip(text, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
-            
+
             dict[data.Key] = result;
 
             IncrementTaskProgress(display);
