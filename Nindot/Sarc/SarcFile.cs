@@ -66,7 +66,7 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
     }
 
     public Exception WriteArchive() { return WriteArchive(FilePath); }
-    public Exception WriteArchive(string path)
+    public virtual Exception WriteArchive(string path)
     {
         MemoryStream stream = new();
         Content.Write(stream);

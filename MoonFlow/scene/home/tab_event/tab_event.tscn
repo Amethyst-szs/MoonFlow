@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=30 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_wyx35"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="5_eo8lt"]
 [ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_tkrku"]
+[ext_resource type="Texture2D" uid="uid://b2akcps2lmaw3" path="res://asset/material/file/sync.svg" id="6_xkxyy"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="7_hy22n"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_j3ltd"]
+[ext_resource type="Texture2D" uid="uid://di2baaugrrgl1" path="res://asset/material/file/add_folder.svg" id="9_bqhdu"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="10_xss54"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
 [ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="12_dpnv5"]
@@ -22,11 +24,23 @@ action = &"ui_graph_duplicate"
 [sub_resource type="Shortcut" id="Shortcut_c6cgf"]
 events = [SubResource("InputEventAction_sn5hf")]
 
-[sub_resource type="InputEventAction" id="InputEventAction_bkhkj"]
+[sub_resource type="InputEventAction" id="InputEventAction_6sfsk"]
+action = &"ui_refresh"
+
+[sub_resource type="Shortcut" id="Shortcut_uqggt"]
+events = [SubResource("InputEventAction_6sfsk")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_8gdm1"]
+action = &"ui_new_archive"
+
+[sub_resource type="Shortcut" id="Shortcut_t43t0"]
+events = [SubResource("InputEventAction_8gdm1")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_71i00"]
 action = &"msbt_add_entry"
 
 [sub_resource type="Shortcut" id="Shortcut_2mm84"]
-events = [SubResource("InputEventAction_bkhkj")]
+events = [SubResource("InputEventAction_71i00")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_0tmku"]
 action = &"ui_graph_delete"
@@ -98,31 +112,48 @@ alignment = 1
 
 [node name="Button_Open" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_OPEN_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 icon = ExtResource("5_eo8lt")
 
 [node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
+disabled = true
 shortcut = SubResource("Shortcut_c6cgf")
 icon = ExtResource("6_tkrku")
+
+[node name="Button_Reload" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_uqggt")
+icon = ExtResource("6_xkxyy")
 
 [node name="VSep" type="VSeparator" parent="FileList/Footer/HBox"]
 self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
+[node name="Button_NewArc" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
+mouse_default_cursor_shape = 2
+disabled = true
+shortcut = SubResource("Shortcut_t43t0")
+icon = ExtResource("9_bqhdu")
+
 [node name="Button_New" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_NEW_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
+disabled = true
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("7_hy22n")
 
 [node name="Button_Delete" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_DELETE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_stxmf")
 icon = ExtResource("8_j3ltd")
@@ -250,15 +281,14 @@ theme_override_styles/panel = ExtResource("4_kcoe0")
 [node name="Button_Open" type="Button" parent="Info/VBox/Footer"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_EVENT_OPEN_FILE"
 flat = true
 
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
-title = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+title = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1
-size = Vector2i(902, 100)
+size = Vector2i(930, 100)
 ok_button_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
 dialog_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
 dialog_autowrap = true
@@ -273,6 +303,9 @@ dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 dialog_autowrap = true
 
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Open" to="." method="OnFooterOpenFilePressed"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Reload" to="." method="GenerateFileList"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="pressed" from="Info/VBox/VBox_EventInfo/DebugHash/Content/Button_Copy" to="." method="OnButtonCopyGraphDebugHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteFile"]

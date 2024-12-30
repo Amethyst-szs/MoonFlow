@@ -259,19 +259,20 @@ msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 msgstr "Color Palette Editor"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+#| msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 msgstr "Open File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
+msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 msgstr "Duplicate File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
-msgstr "New FIle"
+msgid "HOME_TAB_NEW_FILE_TOOLTIP"
+msgstr "New File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
+msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
 msgstr "Delete File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
@@ -302,7 +303,7 @@ msgstr "Copy to Clipboard"
 msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr "Open File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr "Are you sure?"
 
@@ -1537,6 +1538,10 @@ msgstr "Duplicate File"
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr "Create New File"
 
+#: scene/home/tab_msbt/popup_msbt_create.gd
+msgid "HOME_MSBT_POPUP_TITLE_RENAME"
+msgstr "Rename File"
+
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "Success"
@@ -2182,6 +2187,14 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
+msgstr "Refresh File List"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
+msgstr "New Event Archive"
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr "Archive Last Modified:"
 
@@ -2196,6 +2209,10 @@ msgstr "Graph Size:"
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
 msgstr "Open Graph"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr "Confirm File Deletion"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
@@ -2670,6 +2687,12 @@ msgstr "Node Name"
 #: scene/editor/event/node/event_flow_node_common.tscn
 msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
 msgstr "Additional Properties"
+
+#~ msgctxt "TAB_EVENT_EXTRA_TEXT"
+#~ msgid "ARCHIVE_SOURCED_FROM_ROMFS_TOOLTIP"
+#~ msgstr ""
+#~ "This archive hasn't been added to your project. When the\n"
+#~ "file is saved for the first time it will be added automatically."
 
 #~ msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_HEADER"
 #~ msgstr "VSync"

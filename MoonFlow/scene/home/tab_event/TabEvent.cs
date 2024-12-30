@@ -2,15 +2,17 @@ using Godot;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.IO;
 
 using Nindot;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.EditorEvent;
+using MoonFlow.Scene.Main;
 
 using CSExtensions;
 using ByteSizeLib;
-using System.IO;
 
 namespace MoonFlow.Scene.Home;
 
@@ -31,24 +33,33 @@ public partial class TabEvent : HSplitContainer
 	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
 	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
 
-	private Dictionary<string, SarcFile> FileList = [];
-
-	private string SelectedArchive = null;
+	private EventDataArchive SelectedArchive = null;
 	private string SelectedEvent = null;
 
 	#region Initilization
 
 	public override void _Ready()
 	{
-		FileList = ProjectManager.GetProject().EventArcHolder.Content;
+		ProjectManager.SceneRoot.NodeHeader.Connect(Header.SignalName.ButtonSave,
+			Callable.From(new Action<bool>(OnAnyFileSaved)), (uint)ConnectFlags.Deferred
+        );
 
 		SelectionInfoBox.Hide();
-
 		GenerateFileList();
 	}
 
 	private void GenerateFileList()
 	{
+		// Reset selection
+		SelectedArchive = null;
+		SelectedEvent = null;
+
+		// Get archive list
+		var arcHolder = ProjectManager.GetProject().EventArcHolder;
+		arcHolder.RefreshArchiveList();
+		
+		var arcList = arcHolder.Content;
+
 		// Clear current file list
 		foreach (var child in ArchiveHolder.GetChildren())
 		{
@@ -57,13 +68,15 @@ public partial class TabEvent : HSplitContainer
 		}
 
 		// Get list of files in sorted order
-		var list = FileList.Keys.ToList();
+		var list = arcList.Keys.ToList();
 		list.Sort(string.Compare);
 
 		foreach (var file in list)
 		{
 			var name = file.Split('/', '\\').Last();
 			var nameNoExt = name.TrimSuffix(".szs");
+
+			var sarc = arcList[name];
 
 			// Create a dropdown button and margin->vbox for each file
 			var container = new MarginContainer();
@@ -76,27 +89,29 @@ public partial class TabEvent : HSplitContainer
 			dropdown.Text = name;
 			dropdown.Set("dropdown", container);
 
-			dropdown.Connect(Button.SignalName.Pressed, Callable.From(() => OnArchiveDropdownPressed(FileList[name])));
+			dropdown.Connect(Button.SignalName.Pressed, Callable.From(() => OnArchiveDropdownPressed(sarc)));
 			if (SelectedArchive == null)
-				OnArchiveDropdownPressed(FileList[name]);
+				OnArchiveDropdownPressed(sarc);
 
 			ArchiveHolder.AddChild(dropdown);
 			ArchiveHolder.AddChild(container);
 			container.AddChild(vbox);
 
+			// If this sarc is originating from RomFs and not the project, slightly darken
+			// archive button
+			if (sarc.Source == EventDataArchive.ArchiveSource.ROMFS)
+				dropdown.SelfModulate = Colors.Gray;
+
 			// Add all BYML files as buttons in container
-			SetupArchiveFileList(nameNoExt);
+			SetupArchiveFileList(sarc, nameNoExt);
 		}
 	}
 
-	private void SetupArchiveFileList(string name)
+	private void SetupArchiveFileList(EventDataArchive arc, string nodeName)
 	{
-		var container = ArchiveHolder.FindChild(name, true, false);
+		var container = ArchiveHolder.FindChild(nodeName, true, false);
 		if (!IsInstanceValid(container))
-			throw new NullReferenceException("Could not lookup " + name);
-
-		if (!FileList.TryGetValue(name + ".szs", out SarcFile arc))
-			throw new Exception("Could not find archive " + name);
+			throw new NullReferenceException("Could not lookup " + nodeName);
 
 		var list = arc.Content.Keys.ToList();
 		list.Sort(string.Compare);
@@ -125,10 +140,17 @@ public partial class TabEvent : HSplitContainer
 
 	#region Signals
 
-	private void OnArchiveDropdownPressed(SarcFile archive)
+	private async void OnAnyFileSaved(bool _)
+	{
+		// Janky fix I know :(
+		await ToSignal(GetTree().CreateTimer(0.75F), Timer.SignalName.Timeout);
+		GenerateFileList();
+	}
+
+	private void OnArchiveDropdownPressed(EventDataArchive archive)
 	{
 		// Set fields
-		SelectedArchive = archive.Name;
+		SelectedArchive = archive;
 		SelectedEvent = null;
 
 		// Update info box
@@ -140,7 +162,7 @@ public partial class TabEvent : HSplitContainer
 		UpdateInfoBoxArchive(archive);
 	}
 
-	private void OnEventFilePressed(SarcFile archive, string key, Button button)
+	private void OnEventFilePressed(EventDataArchive archive, string key, Button button)
 	{
 		// Setup selection
 		ArchiveHolder.DeselectAllButtons();
@@ -149,7 +171,7 @@ public partial class TabEvent : HSplitContainer
 		button.GrabFocus();
 
 		// Set selection fields
-		SelectedArchive = archive.Name;
+		SelectedArchive = archive;
 		SelectedEvent = key;
 
 		// Update info box
@@ -167,6 +189,45 @@ public partial class TabEvent : HSplitContainer
 		EventFlowApp.OpenApp(archive, key);
 	}
 
+	private void OnFooterOpenFilePressed()
+	{
+		if (SelectedArchive == null || SelectedEvent == null)
+			return;
+		
+		EventFlowApp.OpenApp(SelectedArchive, SelectedEvent);
+	}
+
+	private void OnDeleteFile()
+	{
+		if (SelectedArchive == null)
+		{
+			GD.PushError("No archive selected!");
+			return;
+		}
+
+		if (SelectedEvent == null)
+		{
+			// Return if the archive isn't saved to project
+			if (!File.Exists(SelectedArchive.FilePath))
+				return;
+			
+			// Delete all mfgraph metadata files stored in archive
+			foreach (var file in SelectedArchive.Content.Keys)
+			{
+				var path = GraphMetaHolder.GetPath(SelectedArchive.Name, file);
+				if (File.Exists(path))
+					File.Delete(path);
+			}
+
+			// Delete archive file
+			File.Delete(SelectedArchive.FilePath);
+
+			// Delete archive from project manager
+			ProjectManager.GetProject().EventArcHolder.DeleteArchive(SelectedArchive);
+			GenerateFileList();
+		}
+	}
+
 	private void OnLineSearchTextChanged(string txt)
 	{
 		HomeRoot.RecursiveFileSearch(ArchiveHolder, txt);
@@ -177,7 +238,7 @@ public partial class TabEvent : HSplitContainer
 		if (SelectedArchive == null || SelectedEvent == null)
 			return;
 		
-		var hash = GraphMetaHolder.CalcNameHash(SelectedArchive, SelectedEvent);
+		var hash = GraphMetaHolder.CalcNameHash(SelectedArchive.Name, SelectedEvent);
 		DisplayServer.ClipboardSet(hash);
 
 		GD.Print(hash + " added to system clipboard!");

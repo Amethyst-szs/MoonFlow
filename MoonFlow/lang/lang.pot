@@ -306,22 +306,22 @@ msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
+msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
+msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
+msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
@@ -355,7 +355,6 @@ msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr ""
 
@@ -1575,6 +1574,10 @@ msgstr ""
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr ""
 
+#: scene/home/tab_msbt/popup_msbt_create.gd
+msgid "HOME_MSBT_POPUP_TITLE_RENAME"
+msgstr ""
+
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "Success"
@@ -2215,6 +2218,14 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr ""
 
@@ -2228,6 +2239,10 @@ msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn

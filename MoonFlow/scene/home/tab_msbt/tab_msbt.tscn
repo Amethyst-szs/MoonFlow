@@ -159,13 +159,13 @@ alignment = 1
 
 [node name="Button_Open" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_OPEN_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 icon = ExtResource("5_2s2c7")
 
 [node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_DUPLICATE_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_c6cgf")
 icon = ExtResource("6_puq1e")
@@ -176,14 +176,14 @@ layout_mode = 2
 
 [node name="Button_New" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_NEW_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_NEW_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("5_gi3dm")
 
 [node name="Button_Delete" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_DELETE_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_DELETE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_stxmf")
 icon = ExtResource("8_n1hpl")
@@ -326,7 +326,6 @@ theme_override_styles/panel = ExtResource("4_nlvsm")
 [node name="Button_Open" type="Button" parent="Info/VBox/Footer"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-tooltip_text = "HOME_TAB_TEXT_OPEN_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_OPEN_FILE"
 flat = true

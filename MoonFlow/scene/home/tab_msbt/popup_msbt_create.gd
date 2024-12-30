@@ -3,9 +3,10 @@ extends Popup
 var titles: Array[String] = [
 	tr("HOME_MSBT_POPUP_TITLE_DUPLICATE"),
 	tr("HOME_MSBT_POPUP_TITLE_NEW"),
+	tr("HOME_MSBT_POPUP_TITLE_RENAME"),
 ]
 
-@export_enum("Duplicate:0", "New:1") var title_selection: int = 0
+@export_enum("Duplicate:0", "New:1", "Rename:2") var title_selection: int = 0
 
 var archive_id: int = 0:
 	set(value):

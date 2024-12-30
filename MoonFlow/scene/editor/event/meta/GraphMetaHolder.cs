@@ -64,4 +64,13 @@ public class GraphMetaHolder : ProjectConfigFileBase
         byte[] hashValue = MD5.HashData(input);
         return BitConverter.ToString(hashValue).Replace("-", string.Empty) + ".mfgraph";
     }
+    
+    public static string GetPath(string archive, string file)
+    {
+        var path = ProjectManager.GetProject().Path + PathBase;
+        Directory.CreateDirectory(path);
+
+        var fileName = CalcNameHash(archive, file);
+        return path + fileName;
+    }
 }

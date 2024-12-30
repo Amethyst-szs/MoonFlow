@@ -13,7 +13,7 @@ namespace MoonFlow.Project;
 public class ProjectEventDataArchiveHolder
 {
     public string Path { get; private set; } = null;
-    public Dictionary<string, SarcFile> Content { get; private set; } = [];
+    public Dictionary<string, EventDataArchive> Content { get; private set; } = [];
 
     public ProjectEventDataArchiveHolder(string projectPath, ProjectLoading loadScreen)
     {
@@ -22,13 +22,7 @@ public class ProjectEventDataArchiveHolder
         // Ensure directory exists
         Directory.CreateDirectory(Path);
 
-        // Get file lists
-        var projEvents = Directory.GetFiles(Path).ToList();
-        projEvents = projEvents.Select(p => p.Split('/', '\\').Last()).ToList();
-
-        var romPath = RomfsAccessor.ActiveDirectory + "EventData/";
-        var romEvents = Directory.GetFiles(romPath).ToList();
-        romEvents = romEvents.Select(p => p.Split('/', '\\').Last()).ToList();
+        GetFileLists(out List<string> projEvents, out List<string> romEvents, out string romPath);
 
         // Remove all entries from romEvents that are also in projEvents
         romEvents.RemoveAll(projEvents.Contains);
@@ -40,9 +34,7 @@ public class ProjectEventDataArchiveHolder
         // Load files from project first
         foreach (var file in projEvents)
         {
-            var sarc = SarcFile.FromFilePath(Path + file);
-            sarc.UserFlags.Add("Project");
-
+            var sarc = EventDataArchive.FromFilePath(Path + file, EventDataArchive.ArchiveSource.PROJECT);
             Content.Add(file, sarc);
 
             UpdateLoading(loadScreen, ++taskProgress, taskTotal);
@@ -51,9 +43,7 @@ public class ProjectEventDataArchiveHolder
         // Afterwards, load files from RomfsAccessor if they weren't already loaded by project
         foreach (var file in romEvents)
         {
-            var sarc = SarcFile.FromFilePath(romPath + file);
-            sarc.UserFlags.Add("Rom");
-
+            var sarc = EventDataArchive.FromFilePath(romPath + file, EventDataArchive.ArchiveSource.ROMFS);
             Content.Add(file, sarc);
 
             // Change the target path of the sarc file to be in the project, so that if the
@@ -69,6 +59,64 @@ public class ProjectEventDataArchiveHolder
     private static void UpdateLoading(ProjectLoading loadScreen, float progress, float total)
     {
         float res = progress / total * 100F;
-        loadScreen.LoadingUpdateProgress("LOAD_EVENT_DATA", string.Format("{0:0}%", res));
+        loadScreen?.LoadingUpdateProgress("LOAD_EVENT_DATA", string.Format("{0:0}%", res));
     }
+
+    #region Public Util
+
+    public void RefreshArchiveList()
+    {
+        GetFileLists(out List<string> projEvents, out List<string> romEvents, out string romPath);
+
+        // Add any missing project events
+        foreach (var e in projEvents)
+        {
+            if (Content.ContainsKey(e))
+                continue;
+            
+            var sarc = EventDataArchive.FromFilePath(Path + e, EventDataArchive.ArchiveSource.PROJECT);
+            Content.Add(e, sarc);
+        }
+
+        // Remove any deleted project events
+        foreach (var item in Content)
+        {
+            if (projEvents.Contains(item.Key) || romEvents.Contains(item.Key))
+                continue;
+            
+            Content.Remove(item.Key);
+        }
+    }
+
+    public void DeleteArchive(EventDataArchive arc)
+    {
+        if (!Content.ContainsValue(arc))
+            throw new Exception("Archive is not contained in holder!");
+        
+        var romPath = RomfsAccessor.ActiveDirectory + "EventData/";
+        if (File.Exists(romPath + arc.Name))
+        {
+            var sarc = EventDataArchive.FromFilePath(romPath + arc.Name, EventDataArchive.ArchiveSource.ROMFS);
+            Content[arc.Name] = sarc;
+            return;
+        }
+
+        Content[arc.Name] = null;
+    }
+
+    #endregion
+
+    #region Backend Util
+
+    private void GetFileLists(out List<string> projEvents, out List<string> romEvents, out string romPath)
+    {
+        projEvents = [.. Directory.GetFiles(Path)];
+        projEvents = projEvents.Select(p => p.Split('/', '\\').Last()).ToList();
+
+        romPath = RomfsAccessor.ActiveDirectory + "EventData/";
+        romEvents = [.. Directory.GetFiles(romPath)];
+        romEvents = romEvents.Select(p => p.Split('/', '\\').Last()).ToList();
+    }
+
+    #endregion
 }

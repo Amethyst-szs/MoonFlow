@@ -40,12 +40,16 @@ horizontal_alignment = 1
 [node name="HSep" type="HSeparator" parent="Content/VBox"]
 layout_mode = 2
 
-[node name="Label_Archive" type="Label" parent="Content/VBox"]
+[node name="VBox_ArcPicker" type="VBoxContainer" parent="Content/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label_Archive" type="Label" parent="Content/VBox/VBox_ArcPicker"]
 layout_mode = 2
 text = "HOME_TAB_POPUP_SELECT_ARCHIVE"
 label_settings = SubResource("LabelSettings_1pvya")
 
-[node name="Option_Archive" type="OptionButton" parent="Content/VBox"]
+[node name="Option_Archive" type="OptionButton" parent="Content/VBox/VBox_ArcPicker"]
 unique_name_in_owner = true
 layout_mode = 2
 item_count = 3
@@ -55,7 +59,7 @@ popup/item_1/id = 1
 popup/item_2/text = "HOME_TAB_TEXT_LAYOUT"
 popup/item_2/id = 2
 
-[node name="HSep_Invis" type="HSeparator" parent="Content/VBox"]
+[node name="HSep_Invis" type="HSeparator" parent="Content/VBox/VBox_ArcPicker"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_rndet")
@@ -78,7 +82,7 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "HOME_TAB_POPUP_SUBMIT"
 
-[connection signal="item_selected" from="Content/VBox/Option_Archive" to="." method="_on_archive_selected"]
+[connection signal="item_selected" from="Content/VBox/VBox_ArcPicker/Option_Archive" to="." method="_on_archive_selected"]
 [connection signal="text_submitted" from="Content/VBox/Line_FileName" to="." method="_on_submit" unbinds=1]
 [connection signal="text_validated" from="Content/VBox/Line_FileName" to="." method="_on_file_name_updated"]
 [connection signal="pressed" from="Content/VBox/Button_Submit" to="." method="_on_submit"]
