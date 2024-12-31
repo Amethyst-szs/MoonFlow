@@ -26,7 +26,7 @@ func _ready():
 
 func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, body_b: PackedByteArray) -> void:
 	if response_code != 200:
-		print_v(" -> Update check failed (%s) <- " % response_code)
+		print_v_error("Update check failed (%s)" % response_code)
 		return
 	
 	var body: Dictionary = JSON.parse_string(body_b.get_string_from_utf8())
@@ -59,8 +59,13 @@ func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, b
 		return
 	
 	# New update available, setup button
-	print_v(" -> Update available - " + update_tag + " <- ")
-	tooltip_text = "%s\n%s\n%s" % [tr(tooltip_text), update_name, update_tag]
+	print_v("Update available: " + update_tag)
+	
+	var timezone: int = Time.get_time_zone_from_system().bias * 60
+	var remote_unix_local: int = remote_unix + timezone
+	var timestr := Time.get_datetime_string_from_unix_time(remote_unix_local, true)
+	
+	tooltip_text = "%s\n%s\n%s\n%s" % [tr(tooltip_text), update_name, update_tag, timestr]
 	
 	pressed.connect(_on_updater_pressed.bind(update_url))
 	show()
