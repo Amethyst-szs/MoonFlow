@@ -34,6 +34,8 @@ public partial class TabEvent : HSplitContainer
 	private VBoxContainer VBoxEventInfo;
 	[Export]
 	private Godot.Collections.Array<Button> DisableWhenNoGraphSelected = [];
+	[Export]
+	private TabEventFileAccessor FileAccessor = null;
 
 	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
 	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
@@ -173,6 +175,7 @@ public partial class TabEvent : HSplitContainer
 		// Set fields
 		SelectedArchive = archive;
 		SelectedEvent = null;
+		FileAccessor.OnArchiveSelected(archive, null);
 
 		// Update info box
 		SelectionLabel.Text = archive.Name;
@@ -201,6 +204,7 @@ public partial class TabEvent : HSplitContainer
 		// Set selection fields
 		SelectedArchive = archive;
 		SelectedEvent = key;
+		FileAccessor.OnArchiveSelected(archive, key);
 
 		// Update info box
 		SelectionLabel.Text = key;
@@ -253,29 +257,6 @@ public partial class TabEvent : HSplitContainer
 	#endregion
 
 	#region Utilties
-
-	public void ReloadInterface(bool isRunReady)
-	{
-		if (isRunReady)
-			GenerateFileList();
-
-		if (SelectedArchive == null)
-			return;
-
-		if (SelectedEvent == null)
-		{
-			if (ArchiveHolder.FindChild(SelectedArchive.Name.Replace(".", ""), false, false) is not Button dropdown)
-				return;
-
-			OnArchiveDropdownPressed(SelectedArchive, dropdown);
-			return;
-		}
-
-		if (ArchiveHolder.FindChild(SelectedEvent.Replace(".", ""), true, false) is not Button button)
-			return;
-
-		OnEventFilePressed(SelectedArchive, SelectedEvent, button);
-	}
 
 	private static void UpdateDropdownButtonModulate(EventDataArchive arc, Button button)
 	{

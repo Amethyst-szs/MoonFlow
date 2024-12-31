@@ -57,5 +57,5 @@ metadata/_tab_index = 2
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("app_msbt_editor"), [ExtResource("6_bc8ek")]]
 
+[connection signal="AppFocused" from="." to="Content/VBox/Tab/HOME_TAB_EVENT" method="GenerateFileList"]
 [connection signal="AppFocused" from="." to="Content/VBox/Tab/HOME_TAB_TEXT" method="ReloadInterface" binds= [false]]
-[connection signal="AppFocused" from="." to="Content/VBox/Tab/HOME_TAB_EVENT" method="ReloadInterface" binds= [false]]

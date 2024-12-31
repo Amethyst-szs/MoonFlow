@@ -42,7 +42,7 @@ public abstract class ProjectConfigFileBase
     public ProjectConfigFileBase(byte[] data)
     {
         JsonConfig.Converters.Add(new GodotColorJsonConverter());
-        
+
         data = Yaz0.Decompress(data);
 
         var jsonStr = Encoding.UTF8.GetString(data);
@@ -51,6 +51,7 @@ public abstract class ProjectConfigFileBase
 
     protected abstract void Init(string json);
 
+    public void ChangeWritePath(string path) { Path = path; }
     public bool WriteFile()
     {
         if (!TryGetWriteData(out object data))
@@ -65,7 +66,7 @@ public abstract class ProjectConfigFileBase
         // Get project config and check if this is a debug project and a debug build
         if (!ProjectManager.IsProjectDebug())
             return true;
-        
+
         GD.Print(Path.Split(['/', '\\']).Last() + " saved");
         File.WriteAllText(Path + "_d", dataStr);
         return true;
@@ -84,10 +85,10 @@ public class GodotColorJsonConverter : JsonConverter<Color>
         {
             if (reader.TokenType == JsonTokenType.EndObject)
                 break;
-            
+
             if (reader.TokenType != JsonTokenType.PropertyName)
                 continue;
-            
+
             var property = Encoding.UTF8.GetString(reader.ValueSpan);
 
             reader.Read();

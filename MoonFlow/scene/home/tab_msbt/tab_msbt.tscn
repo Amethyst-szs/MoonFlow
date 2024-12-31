@@ -386,11 +386,12 @@ mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_OPEN_FILE"
 flat = true
 
-[node name="TabMsbtFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton")]
+[node name="TabMsbtFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
 script = ExtResource("15_3v0li")
 CopyButton = NodePath("../FileList/Footer/HBox/Button_Copy")
 PasteButton = NodePath("../FileList/Footer/HBox/Button_Paste")
 CutButton = NodePath("../FileList/Footer/HBox/Button_Cut")
+DeleteButton = NodePath("../FileList/Footer/HBox/Button_Delete")
 
 [node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="TabMsbtFileAccessor"]
 title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"

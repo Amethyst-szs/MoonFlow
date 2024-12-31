@@ -74,11 +74,68 @@ public class ProjectEventDataArchiveHolder
         }
     }
 
+    public bool TryDuplicateArchive(EventDataArchive source, string target)
+    {
+        // Attempt to copy archive file on disk
+        var sourcePath = source.FilePath;
+        if (source.Source == EventDataArchive.ArchiveSource.ROMFS)
+            sourcePath = GetRomfsPathEquivalent(source.FilePath);
+        
+        if (!File.Exists(sourcePath))
+            return false;
+
+        var targetPath = Path + target;
+        if (File.Exists(targetPath))
+            return false;
+
+        File.Copy(sourcePath, targetPath);
+
+        // Attempt to copy each byml's mfgraph metadata file
+        foreach (var file in source.Content)
+        {
+            var metaSource = GraphMetaHolder.GetPath(source.Name, file.Key);
+            var metaTarget = GraphMetaHolder.GetPath(target, file.Key);
+
+            if (File.Exists(metaSource))
+                File.Copy(metaSource, metaTarget, true);
+        }
+
+        RefreshArchiveList();
+        return true;
+    }
+    public static bool TryDuplicateGraph(EventDataArchive arc, string source, string target)
+    {
+        // Duplicate byml in archive
+        if (arc.Content.ContainsKey(target) || !arc.Content.ContainsKey(source))
+            return false;
+        
+        var value = arc.Content[source];
+        arc.Content[target] = value.ToArray();
+        
+        arc.WriteArchive();
+
+        // Duplicate mfgraph file
+        var sourceMetaPath = GraphMetaHolder.GetPath(arc.Name, source);
+        var targetMetaPath = GraphMetaHolder.GetPath(arc.Name, target);
+
+        var sourceMeta = new GraphMetaHolder(sourceMetaPath);
+        if (sourceMeta.Data == null)
+            return true;
+
+        sourceMeta.Data.ArchiveName = arc.Name;
+        sourceMeta.Data.FileName = target;
+
+        sourceMeta.ChangeWritePath(targetMetaPath);
+        sourceMeta.WriteFile();
+
+        return true;
+    }
+
     public bool TryDeleteArchive(EventDataArchive arc)
     {
         if (!Content.ContainsValue(arc))
             throw new Exception("Archive is not contained in holder!");
-        
+
         // ~~~~~~~~~~~ Remove from Disk ~~~~~~~~~~ //
 
         // Return if the archive isn't saved to project
@@ -111,12 +168,28 @@ public class ProjectEventDataArchiveHolder
         return true;
     }
 
+    public static void DeleteGraph(EventDataArchive arc, string key)
+    {
+        if (!arc.Content.ContainsKey(key))
+            throw new FileNotFoundException("Event isn't present in provided archive!");
+
+        var hashPath = GraphMetaHolder.GetPath(arc.Name, key);
+        if (File.Exists(hashPath))
+            File.Delete(hashPath);
+
+        arc.Content.Remove(key);
+        arc.WriteArchive();
+    }
+
     #endregion
 
     #region Backend Util
 
     private void RegisterArchive(string dir, string file, EventDataArchive.ArchiveSource type)
     {
+        if (!file.EndsWith(".szs"))
+            return;
+        
         var sarc = EventDataArchive.FromFilePath(dir + file, type);
         Content[file] = sarc;
 
@@ -134,6 +207,13 @@ public class ProjectEventDataArchiveHolder
         romPath = RomfsAccessor.ActiveDirectory + "EventData/";
         romEvents = [.. Directory.GetFiles(romPath)];
         romEvents = romEvents.Select(p => p.Split('/', '\\').Last()).ToList();
+    }
+
+    private static string GetRomfsPathEquivalent(string path)
+    {
+        var file = path.Split(['/', '\\']).Last();
+        var romPath = RomfsAccessor.ActiveDirectory + "EventData/";
+        return romPath + file;
     }
 
     private static void UpdateLoading(ProjectLoading loadScreen, float progress, float total)

@@ -1,29 +1,19 @@
 using Godot;
 using System;
 
-using Nindot;
+using Nindot.LMS.Msbt;
 
 using MoonFlow.Ext;
 using MoonFlow.Project.Database;
 using MoonFlow.Project;
 using MoonFlow.Project.Templates;
-using Nindot.LMS.Msbt;
 
 namespace MoonFlow.Scene.Home;
 
-public partial class TabMsbtFileAccessor : Node
+public partial class TabMsbtFileAccessor : TabFileAccessorBase
 {
     private TabMsbt Parent = null;
-
 	private SarcMsbtFile CopyContent = null;
-	bool IsCut = false;
-
-	[Export, ExportGroup("Internal References")]
-	private Button CopyButton;
-	[Export]
-	private Button PasteButton;
-	[Export]
-	private Button CutButton;
 
     public override void _Ready()
     {
@@ -44,16 +34,18 @@ public partial class TabMsbtFileAccessor : Node
 			PasteButton.Disabled = !isCopyPaste || CopyContent == null;
 	}
 
-	private void OnCopyFile()
+	protected override void OnCopyFile()
 	{
+		base.OnCopyFile();
+
 		CopyContent = Parent.SelectedFile;
-		IsCut = false;
 		OnFileSelected(CopyContent);
 	}
-	private void OnCutFile()
+	protected override void OnCutFile()
 	{
+		base.OnCutFile();
+
 		CopyContent = Parent.SelectedFile;
-		IsCut = true;
 		OnFileSelected(CopyContent);
 	}
 
@@ -238,17 +230,6 @@ public partial class TabMsbtFileAccessor : Node
     #endregion
 
     #region Utility
-
-    private bool IsFileNameValid(string name, SarcFile sourceArc)
-	{
-		if (sourceArc == null || sourceArc.Content.ContainsKey(name))
-		{
-			GetNode<AcceptDialog>("Dialog_CreateError_DuplicateName").Popup();
-			return false;
-		}
-
-		return true;
-	}
 
 	private bool TryGetWorld(string arc, string targetName, out WorldInfo world)
 	{

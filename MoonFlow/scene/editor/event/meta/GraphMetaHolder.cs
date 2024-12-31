@@ -16,7 +16,7 @@ public class GraphMetaHolder : ProjectConfigFileBase
     private const string PathBase = "EventData/.graph/";
     private const string EmbedGraphPath = "res://project/event/embed/";
 
-    private GraphMetaHolder(string path) : base(path) { }
+    public GraphMetaHolder(string path) : base(path) { }
     public GraphMetaHolder(byte[] data) : base(data) { }
 
     public static GraphMetaHolder Create(SarcEventFlowGraph graph)

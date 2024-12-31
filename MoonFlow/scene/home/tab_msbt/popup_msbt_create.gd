@@ -40,6 +40,7 @@ func init_data(arc: String, source_name: String) -> void:
 	line_name.placeholder_text = default_str
 	
 	if autofill_text:
+		file_name = default_str
 		line_name.text = default_str
 		line_name.caret_column = default_str.length()
 

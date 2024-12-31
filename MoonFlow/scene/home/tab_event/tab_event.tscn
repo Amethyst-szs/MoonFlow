@@ -1,35 +1,58 @@
-[gd_scene load_steps=31 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=42 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="3_pgcah"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_kcoe0"]
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_wyx35"]
-[ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="5_eo8lt"]
+[ext_resource type="Texture2D" uid="uid://0qfv1wl6bwps" path="res://asset/material/file/duplicate.svg" id="6_tkrku"]
 [ext_resource type="Texture2D" uid="uid://b2akcps2lmaw3" path="res://asset/material/file/sync.svg" id="6_xkxyy"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="7_hy22n"]
+[ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="7_qw17o"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_j3ltd"]
+[ext_resource type="Texture2D" uid="uid://g3gxcj4c4niq" path="res://asset/material/file/cut.svg" id="8_w6r2f"]
 [ext_resource type="Texture2D" uid="uid://di2baaugrrgl1" path="res://asset/material/file/add_folder.svg" id="9_bqhdu"]
+[ext_resource type="Texture2D" uid="uid://8lrc2fwgcutm" path="res://asset/material/file/paste.svg" id="9_gmrq3"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="10_xss54"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
 [ext_resource type="Script" path="res://scene/common/vbox/DebugProjectOnlyContainer.cs" id="12_dpnv5"]
+[ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="13_tboky"]
 [ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="15_j2wr0"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEventFileAccessor.cs" id="15_obiaq"]
+[ext_resource type="PackedScene" uid="uid://kkrq88b8tbec" path="res://scene/home/tab_event/popup_event_base.tscn" id="19_77ica"]
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
-
-[sub_resource type="InputEventAction" id="InputEventAction_sn5hf"]
-action = &"ui_graph_duplicate"
-
-[sub_resource type="Shortcut" id="Shortcut_c6cgf"]
-events = [SubResource("InputEventAction_sn5hf")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_6sfsk"]
 action = &"ui_refresh"
 
 [sub_resource type="Shortcut" id="Shortcut_uqggt"]
 events = [SubResource("InputEventAction_6sfsk")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_0jn01"]
+action = &"ui_copy"
+
+[sub_resource type="Shortcut" id="Shortcut_g0g2q"]
+events = [SubResource("InputEventAction_0jn01")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ogujr"]
+action = &"ui_cut"
+
+[sub_resource type="Shortcut" id="Shortcut_p2nu5"]
+events = [SubResource("InputEventAction_ogujr")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_sn5hf"]
+action = &"ui_paste"
+
+[sub_resource type="Shortcut" id="Shortcut_6piv2"]
+events = [SubResource("InputEventAction_sn5hf")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_3eod3"]
+action = &"ui_graph_duplicate"
+
+[sub_resource type="Shortcut" id="Shortcut_qh2pt"]
+events = [SubResource("InputEventAction_3eod3")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_8gdm1"]
 action = &"ui_new_archive"
@@ -63,7 +86,7 @@ font_color = Color(1, 1, 1, 0.87451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2a70"]
 
-[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder", "SelectionLabel", "SelectionInfoBox", "VBoxArcInfo", "VBoxEventInfo", "DisableWhenNoGraphSelected")]
+[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder", "SelectionLabel", "SelectionInfoBox", "VBoxArcInfo", "VBoxEventInfo", "DisableWhenNoGraphSelected", "FileAccessor")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,7 +99,8 @@ SelectionLabel = NodePath("Info/VBox/Label_InfoName")
 SelectionInfoBox = NodePath("Info")
 VBoxArcInfo = NodePath("Info/VBox/VBox_ArcInfo")
 VBoxEventInfo = NodePath("Info/VBox/VBox_EventInfo")
-DisableWhenNoGraphSelected = [NodePath("Info/VBox/Footer/Button_Open"), NodePath("FileList/Footer/HBox/Button_Open")]
+DisableWhenNoGraphSelected = [NodePath("Info/VBox/Footer/Button_Open")]
+FileAccessor = NodePath("TabEventFileAccessor")
 metadata/_tab_index = 0
 
 [node name="FileList" type="VBoxContainer" parent="."]
@@ -112,19 +136,6 @@ layout_mode = 2
 theme = SubResource("Theme_fwkao")
 alignment = 1
 
-[node name="Button_Open" type="Button" parent="FileList/Footer/HBox"]
-layout_mode = 2
-tooltip_text = "HOME_TAB_OPEN_FILE_TOOLTIP"
-mouse_default_cursor_shape = 2
-icon = ExtResource("5_eo8lt")
-
-[node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox"]
-layout_mode = 2
-tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
-mouse_default_cursor_shape = 2
-disabled = true
-shortcut = SubResource("Shortcut_c6cgf")
-
 [node name="Button_Reload" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
@@ -132,11 +143,46 @@ mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_uqggt")
 icon = ExtResource("6_xkxyy")
 
-[node name="VSep" type="VSeparator" parent="FileList/Footer/HBox"]
+[node name="VSep0" type="VSeparator" parent="FileList/Footer/HBox"]
+self_modulate = Color(1, 1, 1, 0.439216)
+layout_mode = 2
+
+[node name="Button_Copy" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_COPY_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_g0g2q")
+icon = ExtResource("7_qw17o")
+
+[node name="Button_Cut" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_CUT_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_p2nu5")
+icon = ExtResource("8_w6r2f")
+
+[node name="Button_Paste" type="Button" parent="FileList/Footer/HBox"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+tooltip_text = "HOME_TAB_PASTE_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+disabled = true
+shortcut = SubResource("Shortcut_6piv2")
+icon = ExtResource("9_gmrq3")
+
+[node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_qh2pt")
+icon = ExtResource("6_tkrku")
+
+[node name="VSep1" type="VSeparator" parent="FileList/Footer/HBox"]
 self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
 [node name="Button_NewArc" type="Button" parent="FileList/Footer/HBox"]
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 tooltip_text = "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -145,12 +191,22 @@ shortcut = SubResource("Shortcut_t43t0")
 icon = ExtResource("9_bqhdu")
 
 [node name="Button_New" type="Button" parent="FileList/Footer/HBox"]
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 tooltip_text = "HOME_TAB_NEW_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 disabled = true
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("7_hy22n")
+
+[node name="Button_Rename" type="Button" parent="FileList/Footer/HBox"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+tooltip_text = "HOME_TAB_RENAME_FILE_TOOLTIP"
+mouse_default_cursor_shape = 2
+disabled = true
+shortcut = SubResource("Shortcut_2mm84")
+icon = ExtResource("13_tboky")
 
 [node name="Button_Delete" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2
@@ -297,8 +353,37 @@ mouse_default_cursor_shape = 2
 text = "HOME_TAB_EVENT_OPEN_FILE"
 flat = true
 
-[node name="TabEventFileAccessor" type="Node" parent="."]
+[node name="TabEventFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
 script = ExtResource("15_obiaq")
+CopyButton = NodePath("../FileList/Footer/HBox/Button_Copy")
+PasteButton = NodePath("../FileList/Footer/HBox/Button_Paste")
+CutButton = NodePath("../FileList/Footer/HBox/Button_Cut")
+DeleteButton = NodePath("../FileList/Footer/HBox/Button_Delete")
+
+[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="TabEventFileAccessor"]
+title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
+initial_position = 2
+size = Vector2i(520, 100)
+theme = ExtResource("1_8utrk")
+ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
+dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
+dialog_autowrap = true
+
+[node name="Popup_DuplicateArchive" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+visible = false
+theme = ExtResource("1_8utrk")
+autofill_text = true
+
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_DuplicateArchive/Content/VBox" index="0"]
+text = "HOME_TAB_EVENT_POPUP_ARCHIVE_DUPLICATE"
+
+[node name="Popup_DuplicateEvent" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+visible = false
+theme = ExtResource("1_8utrk")
+autofill_text = true
+
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_DuplicateEvent/Content/VBox" index="0"]
+text = "HOME_TAB_EVENT_POPUP_EVENT_DUPLICATE"
 
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
 title = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
@@ -310,18 +395,18 @@ dialog_autowrap = true
 cancel_button_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("15_j2wr0")
 
-[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="."]
-title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
-initial_position = 2
-size = Vector2i(520, 100)
-ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
-dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
-dialog_autowrap = true
-
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
-[connection signal="pressed" from="FileList/Footer/HBox/Button_Open" to="." method="OnFooterOpenFilePressed"]
-[connection signal="pressed" from="FileList/Footer/HBox/Button_Reload" to="." method="ReloadInterface" binds= [true]]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Reload" to="." method="GenerateFileList"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Copy" to="TabEventFileAccessor" method="OnCopyFile"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Cut" to="TabEventFileAccessor" method="OnCutFile"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Paste" to="TabEventFileAccessor" method="OnPasteFile"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="TabEventFileAccessor" method="OnDuplicateFooterPressed"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="pressed" from="Info/VBox/VBox_EventInfo/DebugHash/Content/Button_Copy" to="." method="OnButtonCopyGraphDebugHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
+[connection signal="submitted" from="TabEventFileAccessor/Popup_DuplicateArchive" to="TabEventFileAccessor" method="OnDuplicateArchive"]
+[connection signal="submitted" from="TabEventFileAccessor/Popup_DuplicateEvent" to="TabEventFileAccessor" method="OnDuplicateEvent"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="TabEventFileAccessor" method="OnDeleteFile"]
+
+[editable path="TabEventFileAccessor/Popup_DuplicateArchive"]
+[editable path="TabEventFileAccessor/Popup_DuplicateEvent"]
