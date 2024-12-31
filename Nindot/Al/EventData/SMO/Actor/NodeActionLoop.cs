@@ -8,6 +8,7 @@ public class NodeActionLoop : Node
     public NodeActionLoop(Dictionary<object, object> dict) : base(dict) { }
     public NodeActionLoop(Graph graph, string factoryType) : base(graph, factoryType) { }
     public NodeActionLoop(Graph graph, string typeBase, string type) : base(graph, typeBase, type) { }
+    public NodeActionLoop(string factoryType, int id) : base(factoryType, id) { }
 
     public override NodeOptionType GetNodeNameOptions(out string[] options)
     {

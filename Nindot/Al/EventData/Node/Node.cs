@@ -64,8 +64,19 @@ public abstract class Node
         TypeBase = factoryName;
         Name = name;
 
-        if (GetSupportedParams(out _) != NodeOptionType.NO_OPTIONS)
-            Params = [];
+        Params = [];
+        
+        if (IsUseMultipleOutgoingEdges())
+            CaseEventList = new();
+    }
+    public Node(string factoryType, int id)
+    {
+        Id = id;
+        Name = factoryType;
+        TypeBase ??= Name;
+
+        Params = [];
+        
         if (IsUseMultipleOutgoingEdges())
             CaseEventList = new();
     }

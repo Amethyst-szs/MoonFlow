@@ -274,7 +274,7 @@ msgstr "Paste Selected File"
 msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 msgstr "Duplicate Selected File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr "New File"
 
@@ -2206,6 +2206,10 @@ msgid "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
 msgstr "New Event Archive"
 
 #: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_NEW_EVENT_TOOLTIP"
+msgstr "New Event Graph"
+
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr "Archive Last Modified:"
 
@@ -2236,6 +2240,10 @@ msgstr "Duplicate Event Graph"
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
 msgstr "Create new Event Archive"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_EVENT_NEW"
+msgstr "Create new Event Graph"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_RENAME_ARCHIVE"

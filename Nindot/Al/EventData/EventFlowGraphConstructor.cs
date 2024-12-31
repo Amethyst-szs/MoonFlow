@@ -7,6 +7,20 @@ namespace Nindot.Al.EventFlow;
 
 public partial class Graph
 {
+    public Graph(string name, Node baseNode)
+    {
+        Name = name;
+        _bymlVersion = 3;
+
+        baseNode.SetIdUnsafe(0);
+        Nodes.Add(baseNode.Id, baseNode);
+
+        EntryPoints.Add("Init", baseNode);
+
+        _isValid = true;
+        return;
+    }
+
     public Graph(BymlFile byml, string name, EventFlowFactoryBase nodeFactory)
     {
         Name = name;

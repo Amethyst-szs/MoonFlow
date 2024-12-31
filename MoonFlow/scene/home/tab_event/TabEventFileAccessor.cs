@@ -3,6 +3,8 @@ using System.IO;
 using Godot;
 
 using Nindot;
+using Nindot.Al.EventFlow;
+using Nindot.Al.EventFlow.Smo;
 
 using MoonFlow.Ext;
 using MoonFlow.Project;
@@ -65,7 +67,6 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         CopySourceEvent = Parent.SelectedEvent;
         UpdatePasteButton();
     }
-
     private void OnPasteFile()
     {
         if (CopySourceArchive == null || CopySourceEvent == null)
@@ -91,19 +92,34 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         ProjectEventDataArchiveHolder.TryDuplicateGraph(Parent.SelectedArchive, source, newName);
         Parent.GenerateFileList();
     }
-
+    
     private void OnNewArchiveFooterPressed()
     {
         var eventPopup = GetNode<Popup>("Popup_NewArchive");
         eventPopup.PopupCentered();
-        eventPopup.Call("init_data", Parent.SelectedEvent);
+        eventPopup.Call("init_data", "");
     }
+    private void OnNewEventFooterPressed()
+    {
+        var eventPopup = GetNode<Popup>("Popup_NewEvent");
+        eventPopup.PopupCentered();
+        eventPopup.Call("init_data", "");
+    }
+
     private void OnNewArchive(string newName)
     {
         if (!IsArchiveNameUnique(ref newName, out ProjectEventDataArchiveHolder arcHolder))
             return;
 
         arcHolder.TryNewArchive(newName);
+        Parent.GenerateFileList();
+    }
+    private void OnNewEvent(string newName)
+    {
+        if (!IsEventNameUnique(ref newName, false))
+            return;
+
+        ProjectEventDataArchiveHolder.NewGraph(Parent.SelectedArchive, newName);
         Parent.GenerateFileList();
     }
 
@@ -183,11 +199,11 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         return true;
     }
 
-    private bool IsEventNameUnique(ref string newName)
+    private bool IsEventNameUnique(ref string newName, bool isRequireEventSelection = true)
     {
         if (!newName.EndsWith(".bmyl")) newName += ".byml";
 
-        if (Parent.SelectedArchive == null || Parent.SelectedEvent == null)
+        if (Parent.SelectedArchive == null || (Parent.SelectedEvent == null && isRequireEventSelection))
             return false;
         
         if (Parent.SelectedArchive.Content.ContainsKey(newName))

@@ -195,11 +195,9 @@ shortcut = SubResource("Shortcut_t43t0")
 icon = ExtResource("9_bqhdu")
 
 [node name="Button_New" type="Button" parent="FileList/Footer/HBox"]
-self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-tooltip_text = "HOME_TAB_NEW_FILE_TOOLTIP"
+tooltip_text = "HOME_TAB_EVENT_NEW_EVENT_TOOLTIP"
 mouse_default_cursor_shape = 2
-disabled = true
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("7_hy22n")
 
@@ -394,6 +392,13 @@ theme = ExtResource("1_8utrk")
 [node name="Label_Header" parent="TabEventFileAccessor/Popup_NewArchive/Content/VBox" index="0"]
 text = "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
 
+[node name="Popup_NewEvent" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+visible = false
+theme = ExtResource("1_8utrk")
+
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_NewEvent/Content/VBox" index="0"]
+text = "HOME_TAB_EVENT_POPUP_EVENT_NEW"
+
 [node name="Popup_RenameArchive" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
 visible = false
 theme = ExtResource("1_8utrk")
@@ -427,6 +432,7 @@ script = ExtResource("15_j2wr0")
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Paste" to="TabEventFileAccessor" method="OnPasteFile"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="TabEventFileAccessor" method="OnCommonFooterPressed" binds= ["Duplicate"]]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_NewArc" to="TabEventFileAccessor" method="OnNewArchiveFooterPressed"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_New" to="TabEventFileAccessor" method="OnNewEventFooterPressed"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Rename" to="TabEventFileAccessor" method="OnCommonFooterPressed" binds= ["Rename"]]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="pressed" from="Info/VBox/VBox_EventInfo/DebugHash/Content/Button_Copy" to="." method="OnButtonCopyGraphDebugHashPressed"]
@@ -434,6 +440,7 @@ script = ExtResource("15_j2wr0")
 [connection signal="submitted" from="TabEventFileAccessor/Popup_DuplicateArchive" to="TabEventFileAccessor" method="OnDuplicateArchive"]
 [connection signal="submitted" from="TabEventFileAccessor/Popup_DuplicateEvent" to="TabEventFileAccessor" method="OnDuplicateEvent"]
 [connection signal="submitted" from="TabEventFileAccessor/Popup_NewArchive" to="TabEventFileAccessor" method="OnNewArchive"]
+[connection signal="submitted" from="TabEventFileAccessor/Popup_NewEvent" to="TabEventFileAccessor" method="OnNewEvent"]
 [connection signal="submitted" from="TabEventFileAccessor/Popup_RenameArchive" to="TabEventFileAccessor" method="OnRenameArchive"]
 [connection signal="submitted" from="TabEventFileAccessor/Popup_RenameEvent" to="TabEventFileAccessor" method="OnRenameEvent"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="TabEventFileAccessor" method="OnDeleteFile"]
@@ -441,5 +448,6 @@ script = ExtResource("15_j2wr0")
 [editable path="TabEventFileAccessor/Popup_DuplicateArchive"]
 [editable path="TabEventFileAccessor/Popup_DuplicateEvent"]
 [editable path="TabEventFileAccessor/Popup_NewArchive"]
+[editable path="TabEventFileAccessor/Popup_NewEvent"]
 [editable path="TabEventFileAccessor/Popup_RenameArchive"]
 [editable path="TabEventFileAccessor/Popup_RenameEvent"]

@@ -5,6 +5,8 @@ using System.Linq;
 using Godot;
 
 using Nindot;
+using Nindot.Al.EventFlow;
+using Nindot.Al.EventFlow.Smo;
 
 using MoonFlow.Scene;
 using MoonFlow.Scene.EditorEvent;
@@ -87,6 +89,19 @@ public class ProjectEventDataArchiveHolder
 
         RefreshArchiveList();
         return true;
+    }
+    public static void NewGraph(EventDataArchive arc, string newName)
+    {
+        // Generate graph byte data
+        var root = new NodeActionLoop("ActionLoop", 0);
+        var graph = new Graph(newName, root);
+
+        if (!graph.WriteBytes(out byte[] file))
+            throw new EventFlowException("Failed to generate new graph");
+        
+        // Add data into selected archive
+        arc.Content.Add(newName, file);
+        arc.WriteArchive();
     }
 
     public bool TryDuplicateArchive(EventDataArchive source, string target)
