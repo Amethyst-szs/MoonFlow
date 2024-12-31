@@ -63,7 +63,10 @@ public partial class TabEvent : HSplitContainer
 		SelectedEvent = null;
 
 		// Get archive list
-		var arcHolder = ProjectManager.GetProject().EventArcHolder;
+		var arcHolder = ProjectManager.GetProject()?.EventArcHolder;
+		if (arcHolder == null)
+			return;
+		
 		arcHolder.RefreshArchiveList();
 
 		var arcList = arcHolder.Content;

@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="14_mr0wr"]
 [ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="15_h6jnw"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="15_xr5ea"]
-[ext_resource type="Script" path="res://scene/front_door/button_update.gd" id="16_8ntwn"]
+[ext_resource type="Script" path="res://version/button_update.gd" id="16_8ntwn"]
 [ext_resource type="Script" path="res://scene/common/option/LangPicker.cs" id="16_qq0jv"]
 [ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="17_yn102"]
 
