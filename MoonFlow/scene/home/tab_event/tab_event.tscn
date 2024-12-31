@@ -168,11 +168,9 @@ shortcut = SubResource("Shortcut_p2nu5")
 icon = ExtResource("8_w6r2f")
 
 [node name="Button_Paste" type="Button" parent="FileList/Footer/HBox"]
-self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 tooltip_text = "HOME_TAB_PASTE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
-disabled = true
 shortcut = SubResource("Shortcut_6piv2")
 icon = ExtResource("9_gmrq3")
 

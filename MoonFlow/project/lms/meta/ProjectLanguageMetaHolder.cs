@@ -94,7 +94,7 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     public void SetLastModifiedTime(SarcFile file, string key)
     {
         string hash = CalcHash(file.Name, key);
-        Data.FileTable[hash] = DateTime.Now.ToFileTime();
+        Data.FileTable[hash] = DateTime.Now.ToFileTimeUtc();
     }
 
     #endregion
@@ -107,8 +107,11 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         var sourceHash = CalcHash(sourceArc.Name, sourceEntry);
         var targetHash = CalcHash(newArc, newName);
 
-        if (Data.FileTable.TryGetValue(sourceHash, out long value))
+        if (Data.FileTable.TryGetValue(sourceHash, out _))
+        {
+            long value = DateTime.Now.ToFileTimeUtc();
             Data.FileTable[targetHash] = value;
+        }
 
         // Move EntryTable contents
         var content = sourceArc.GetFileMSBT(sourceEntry, new MsbtElementFactory());

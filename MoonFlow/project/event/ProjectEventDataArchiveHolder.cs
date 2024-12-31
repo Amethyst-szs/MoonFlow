@@ -135,24 +135,28 @@ public class ProjectEventDataArchiveHolder
     }
     public static bool TryDuplicateGraph(EventDataArchive arc, string source, string target)
     {
+        return TryDuplicateGraph(arc, arc, source, target);
+    }
+    public static bool TryDuplicateGraph(EventDataArchive arcSource, EventDataArchive arcTarget, string source, string target)
+    {
         // Duplicate byml in archive
-        if (arc.Content.ContainsKey(target) || !arc.Content.ContainsKey(source))
+        if (arcTarget.Content.ContainsKey(target) || !arcSource.Content.ContainsKey(source))
             return false;
         
-        var value = arc.Content[source];
-        arc.Content[target] = value.ToArray();
+        var value = arcSource.Content[source];
+        arcTarget.Content[target] = value.ToArray();
         
-        arc.WriteArchive();
+        arcTarget.WriteArchive();
 
         // Duplicate mfgraph file
-        var sourceMetaPath = GraphMetaHolder.GetPath(arc.Name, source);
-        var targetMetaPath = GraphMetaHolder.GetPath(arc.Name, target);
+        var sourceMetaPath = GraphMetaHolder.GetPath(arcSource.Name, source);
+        var targetMetaPath = GraphMetaHolder.GetPath(arcTarget.Name, target);
 
         var sourceMeta = new GraphMetaHolder(sourceMetaPath);
         if (sourceMeta.Data == null)
             return true;
 
-        sourceMeta.Data.ArchiveName = arc.Name;
+        sourceMeta.Data.ArchiveName = arcTarget.Name;
         sourceMeta.Data.FileName = target;
 
         sourceMeta.ChangeWritePath(targetMetaPath);

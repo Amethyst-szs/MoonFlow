@@ -22,7 +22,7 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
     public override void _Ready()
     {
         Parent = this.FindParentByType<TabEvent>();
-        UpdatePasteButton();
+        UpdateCopyCutPasteButton();
     }
 
     #region Signals
@@ -31,13 +31,15 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
     {
         var isProj = arc.Source == EventDataArchive.ArchiveSource.PROJECT;
         DeleteButton.Disabled = !isProj && @event == null;
+
+        UpdateCopyCutPasteButton();
     }
 
     private void OnCommonFooterPressed(string actionName)
     {
         if (Parent.SelectedArchive == null)
             return;
-        
+
         if (Parent.SelectedEvent == null)
         {
             var archivePopup = GetNode<Popup>("Popup_" + actionName + "Archive");
@@ -57,22 +59,70 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
 
         CopySourceArchive = Parent.SelectedArchive;
         CopySourceEvent = Parent.SelectedEvent;
-        UpdatePasteButton();
+        UpdateCopyCutPasteButton();
     }
     protected override void OnCutFile()
     {
+        if (Parent.SelectedEvent == null)
+            return;
+        
         base.OnCutFile();
 
         CopySourceArchive = Parent.SelectedArchive;
         CopySourceEvent = Parent.SelectedEvent;
-        UpdatePasteButton();
+        UpdateCopyCutPasteButton();
     }
     private void OnPasteFile()
     {
-        if (CopySourceArchive == null || CopySourceEvent == null)
+        if (CopySourceArchive == null)
             return;
         
-        GD.Print("PLACEHOLDER FUNCTION");
+        if (CopySourceEvent == null)
+            OnPasteArchive();
+        else
+            OnPasteEvent();
+        
+        if (IsCut)
+            ClearCopyContents();
+    }
+
+    private void OnPasteArchive()
+    {
+        var arcHolder = ProjectManager.GetProject().EventArcHolder;
+
+        string nameBase = CopySourceArchive.Name.RemoveFileExtension();
+        string name = nameBase + ".szs";
+        int nameIdx = 2;
+        
+        while (arcHolder.Content.ContainsKey(name))
+        {
+            name = nameBase + nameIdx + ".szs";
+            nameIdx++;
+        }
+
+        arcHolder.TryDuplicateArchive(CopySourceArchive, name);
+        Parent.GenerateFileList();
+    }
+    private void OnPasteEvent()
+    {
+        var target = Parent.SelectedArchive;
+
+        string nameBase = CopySourceEvent.RemoveFileExtension();
+        string name = nameBase + ".byml";
+        int nameIdx = 2;
+
+        while (target.Content.ContainsKey(name))
+        {
+            name = nameBase + nameIdx + ".byml";
+            nameIdx++;
+        }
+        
+        ProjectEventDataArchiveHolder.TryDuplicateGraph(CopySourceArchive, target, CopySourceEvent, name);
+
+        if (IsCut)
+            ProjectEventDataArchiveHolder.DeleteGraph(CopySourceArchive, CopySourceEvent);
+        
+        Parent.GenerateFileList();
     }
 
     private void OnDuplicateArchive(string newName)
@@ -92,7 +142,7 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         ProjectEventDataArchiveHolder.TryDuplicateGraph(Parent.SelectedArchive, source, newName);
         Parent.GenerateFileList();
     }
-    
+
     private void OnNewArchiveFooterPressed()
     {
         var eventPopup = GetNode<Popup>("Popup_NewArchive");
@@ -138,7 +188,7 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
     {
         if (!IsEventNameUnique(ref newName))
             return;
-        
+
         var select = Parent.SelectedArchive;
         var source = Parent.SelectedEvent;
 
@@ -176,12 +226,14 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
 
     private void ClearCopyContents()
     {
+        IsCut = false;
         CopySourceArchive = null;
         CopySourceEvent = null;
-        UpdatePasteButton();
+        UpdateCopyCutPasteButton();
     }
-    private void UpdatePasteButton()
+    private void UpdateCopyCutPasteButton()
     {
+        CutButton.Disabled = Parent.SelectedEvent == null;
         PasteButton.Disabled = CopySourceArchive == null;
     }
 
@@ -205,7 +257,7 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
 
         if (Parent.SelectedArchive == null || (Parent.SelectedEvent == null && isRequireEventSelection))
             return false;
-        
+
         if (Parent.SelectedArchive.Content.ContainsKey(newName))
         {
             ThrowDuplicateNameDialog();

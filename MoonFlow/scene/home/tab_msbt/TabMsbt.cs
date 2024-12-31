@@ -209,6 +209,7 @@ public partial class TabMsbt : HSplitContainer
 		// Update info box
 		GetNode<Label>("%Label_InfoName").Text = key;
 
+		t = t.ToLocalTime();
 		if (!isEpoch)
 			GetNode<Label>("%Label_DateTime").Text = t.ToShortDateString() + "\n(" + t.ToLongTimeString() + ')';
 		else
