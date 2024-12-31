@@ -7,6 +7,9 @@ extends RefCounted
 func get_version(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> String:
 	return ""
 
+func get_unix(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> String:
+	return ""
+
 ## Name of the current git branch                                                               [br]
 ## Useful for versions like 'master-1.0.0'                                                      [br]
 ## !!! Requires git installed and project inside of a git repository.
@@ -15,6 +18,16 @@ func get_git_branch_name() -> String:
 	OS.execute("git", PackedStringArray(["rev-parse", "--abbrev-ref", "HEAD"]), output)
 	if output.is_empty() or output[0].is_empty():
 		push_error("Failed to fetch version. Make sure you have git installed and project is inside a valid git directory.")
+		return ""
+	return output[0].trim_suffix("\n")
+
+## Unix timestamp of the most recent commit                                                     [br]
+## !!! Requires git installed and project inside of a git repository.
+func get_git_commit_unix_time() -> String:
+	var output: Array = []
+	OS.execute("git", PackedStringArray(["show", "--no-patch", "--format=%ct"]), output)
+	if output.is_empty() or output[0].is_empty():
+		push_error("Failed to fetch timestamp. Make sure you have git installed and project is inside a valid git directory.")
 		return ""
 	return output[0].trim_suffix("\n")
 

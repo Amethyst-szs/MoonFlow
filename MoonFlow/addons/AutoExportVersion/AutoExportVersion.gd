@@ -21,7 +21,7 @@ var STORE_LOCATION: VersionStoreLocation = VersionStoreLocation.PROJECT_SETTING
 ## Path to the version script file where it is going to be saved. See [member SCRIPT_TEMPLATE]
 var SCRIPT_PATH: String = "res://version.gd"
 ## This template String is going to be formatted so that it contains the version.
-const SCRIPT_TEMPLATE: String ="extends RefCounted\nconst VERSION: String = \"{version}\""
+const SCRIPT_TEMPLATE: String ="extends RefCounted\nconst VERSION: String = \"{version}\"\nconst TIME: String = \"{time}\""
 ## Name of the project setting where the version is going to be stored as a String.
 var PROJECT_SETTING_NAME: String = "application/config/version"
 ## Path to the configuration file for the plugin.
@@ -30,29 +30,28 @@ var CONFIG_PATH = "res://auto_export_version_config_file.gd"
 
 ## Stores a [param version] based on [param version_store_location].                            [br]
 ## See [member PROJECT_SETTING_NAME], [member SCRIPT_PATH]
-func store_version(version: String, version_store_location := VersionStoreLocation.PROJECT_SETTING) -> void:
+func store_version(version: String, unix: String, version_store_location := VersionStoreLocation.PROJECT_SETTING) -> void:
 	match version_store_location:
 		VersionStoreLocation.SCRIPT:
-			store_version_as_script(version)
+			store_version_as_script(version, unix)
 		VersionStoreLocation.PROJECT_SETTING:
 			store_version_as_project_setting(version)
 
 ## Stores the version as a script based on [member SCRIPT_TEMPLATE] in [member SCRIPT_PATH].
-func store_version_as_script(version: String) -> void:
+func store_version_as_script(version: String, unix: String) -> void:
 	if version.is_empty():
 		printerr("Cannot store version. " + _EMPTY_VERSION_ERROR.format({"script_path": get_script().get_path()}))
 		return
 	
 	var script: GDScript = GDScript.new()
-	script.source_code = SCRIPT_TEMPLATE.format({"version": version})
+	script.source_code = SCRIPT_TEMPLATE.format({
+		"version": version,
+		"time": unix
+	})
+	
 	var err: int = ResourceSaver.save(script, SCRIPT_PATH)
 	if err:
 		push_error("Failed to save version as script. Error: %s" % error_string(err))
-	
-	if FileAccess.file_exists("res://../MoonFlow.sln"):
-		var simple_out := FileAccess.open("res://../version", FileAccess.WRITE)
-		simple_out.store_string(version)
-		simple_out.close()
 
 ## Stores the version in ProjectSettings.
 func store_version_as_project_setting(version: String) -> void:
@@ -114,7 +113,9 @@ func _enter_tree() -> void:
 	ProjectSettings.settings_changed.connect(_sync_project_settings)
 	
 	if STORE_LOCATION == VersionStoreLocation.SCRIPT and not FileAccess.file_exists(SCRIPT_PATH):
-		store_version_as_script(get_version(PackedStringArray(), true, "", 0))
+		var version := get_version(PackedStringArray(), true, "", 0)
+		var unix := get_unix(PackedStringArray(), true, "", 0)
+		store_version_as_script(version, unix)
 
 func _sync_project_settings():
 	STORE_LOCATION = ProjectSettings.get_setting("addons/AutoExportVersion/version_store_location")
@@ -136,6 +137,7 @@ func _exit_tree() -> void:
 
 func _tool_menu_print_version() -> void:
 	var version: String = get_version(PackedStringArray(), true, "", 0)
+	var unix: String = get_unix(PackedStringArray(), true, "", 0)
 	
 	if version.is_empty():
 		printerr(_EMPTY_VERSION_ERROR.format({ "script_path": get_script().get_path() }))
@@ -144,13 +146,14 @@ func _tool_menu_print_version() -> void:
 	
 	print(_CURRENT_VERSION.format({ "version": version }))
 	OS.alert(_CURRENT_VERSION.format({ "version": version }))
-	store_version(version, STORE_LOCATION)
+	store_version(version, unix, STORE_LOCATION)
 
 func _update_version_in_editor() -> void:
 	if !Engine.is_editor_hint():
 		return
 	
 	var version: String = get_version(PackedStringArray(), true, "", 0)
+	var unix: String = get_unix(PackedStringArray(), true, "", 0)
 	
 	if version.is_empty():
 		printerr(_EMPTY_VERSION_ERROR.format({ "script_path": get_script().get_path() }))
@@ -158,7 +161,7 @@ func _update_version_in_editor() -> void:
 		return
 	
 	print(_CURRENT_VERSION.format({ "version": version }))
-	store_version(version, STORE_LOCATION)
+	store_version(version, unix, STORE_LOCATION)
 
 func get_version(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> String:
 	if not ResourceLoader.exists(CONFIG_PATH, "GDScript"):
@@ -167,6 +170,14 @@ func get_version(features: PackedStringArray, is_debug: bool, path: String, flag
 	
 	var provider: RefCounted = load(CONFIG_PATH).new()
 	return provider.get_version(features, is_debug, path, flags)
+
+func get_unix(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> String:
+	if not ResourceLoader.exists(CONFIG_PATH, "GDScript"):
+		push_error("Version config file does not exist!")
+		return ""
+	
+	var provider: RefCounted = load(CONFIG_PATH).new()
+	return provider.get_unix(features, is_debug, path, flags)
 
 class AutoExportVersionExporter extends EditorExportPlugin:
 	var plugin: EditorPlugin
@@ -180,4 +191,6 @@ class AutoExportVersionExporter extends EditorExportPlugin:
 			return
 		
 		var version: String = plugin.get_version(features, is_debug, path, flags)
-		plugin.store_version(version, plugin.STORE_LOCATION)
+		var unix: String = plugin.get_unix(features, is_debug, path, flags)
+		
+		plugin.store_version(version, unix, plugin.STORE_LOCATION)

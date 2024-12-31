@@ -8,3 +8,6 @@ func get_version(features: PackedStringArray, is_debug: bool, path: String, flag
 	]
 	
 	return version
+
+func get_unix(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> String:
+	return get_git_commit_unix_time()
