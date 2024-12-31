@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=31 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -6,7 +6,6 @@
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_kcoe0"]
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_wyx35"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="5_eo8lt"]
-[ext_resource type="Texture2D" uid="uid://ce067c0cww065" path="res://asset/material/file/duplicate.svg" id="6_tkrku"]
 [ext_resource type="Texture2D" uid="uid://b2akcps2lmaw3" path="res://asset/material/file/sync.svg" id="6_xkxyy"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="7_hy22n"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_j3ltd"]
@@ -125,7 +124,6 @@ tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 disabled = true
 shortcut = SubResource("Shortcut_c6cgf")
-icon = ExtResource("6_tkrku")
 
 [node name="Button_Reload" type="Button" parent="FileList/Footer/HBox"]
 layout_mode = 2

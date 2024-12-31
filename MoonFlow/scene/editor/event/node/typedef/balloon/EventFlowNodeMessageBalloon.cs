@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using MoonFlow.Ext;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.EditorWorld;
@@ -152,11 +153,8 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 	private void OnNewTextSourceSelectedFromPopup(string arc, string file, string label)
 	{
 		// Setup text resolver
-		if (arc.EndsWith(".szs"))
-			arc = arc[..arc.Find(".szs")];
-
-		if (file.EndsWith(".msbt"))
-			file = file[..file.Find(".msbt")];
+		arc = arc.RemoveFileExtension();
+		file = file.RemoveFileExtension();
 
 		Content.TrySetParam("Text", new NodeMessageResolverData(arc, file, label));
 		SetLabelDisplayTextSource();

@@ -40,9 +40,13 @@ public partial class TabEventFileAccessor : Node
         if (!arc.Content.ContainsKey(@event))
             throw new Exception("Selected event isn't present in selected archive!");
         
+        var hashPath = GraphMetaHolder.GetPath(arc.Name, @event);
+        if (File.Exists(hashPath))
+            File.Delete(hashPath);
+        
         arc.Content.Remove(@event);
         arc.WriteArchive();
-        
+
         Parent.GenerateFileList();
     }
 }

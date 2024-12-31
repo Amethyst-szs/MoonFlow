@@ -22,10 +22,16 @@ public partial class TabMsbt : HSplitContainer
 {
 	public SarcMsbtFile SelectedFile { get; private set; } = null;
 
+	[Export, ExportCategory("Internal References")]
 	private ScrollContainer FileListRoot = null;
+	[Export]
 	private VBoxContainer SystemMessageButtons = null;
+	[Export]
 	private VBoxContainer StageMessageVBox = null;
+	[Export]
 	private VBoxContainer LayoutMessageButtons = null;
+	[Export]
+	private TabMsbtFileAccessor FileAccessor = null;
 
 	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
 	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
@@ -34,11 +40,6 @@ public partial class TabMsbt : HSplitContainer
 
 	public override void _Ready()
 	{
-		FileListRoot = GetNode<ScrollContainer>("%FileListContent");
-		SystemMessageButtons = GetNode<VBoxContainer>("%SystemMessage_VBox");
-		LayoutMessageButtons = GetNode<VBoxContainer>("%LayoutMessage_VBox");
-		StageMessageVBox = GetNode<VBoxContainer>("%StageMessage_VBox");
-
 		foreach (var child in StageMessageVBox.GetChildren())
 		{
 			StageMessageVBox.RemoveChild(child);
@@ -203,6 +204,8 @@ public partial class TabMsbt : HSplitContainer
 		button.GrabFocus();
 		UpdateFileButtonModulation(archive, key, button);
 
+		FileAccessor.OnFileSelected(SelectedFile);
+
 		// Update info box
 		GetNode<Label>("%Label_InfoName").Text = key;
 
@@ -238,7 +241,7 @@ public partial class TabMsbt : HSplitContainer
 		if (SelectedFile == null) return;
 
 		var popup = GetNode<Popup>(nodeName);
-		popup.Popup();
+		popup.PopupCentered();
 		popup.Call("init_data", SelectedFile.Sarc.Name, SelectedFile.Name);
 	}
 

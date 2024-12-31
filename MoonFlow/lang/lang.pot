@@ -305,8 +305,15 @@ msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
+msgid "HOME_TAB_COPY_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_CUT_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
@@ -317,6 +324,10 @@ msgstr ""
 #: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
@@ -2215,6 +2226,10 @@ msgstr ""
 
 #: scene/common/popup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn

@@ -6,6 +6,7 @@ using Nindot.Al.EventFlow;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Project;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -46,11 +47,8 @@ public partial class EventFlowNodeCapMessage : EventFlowNodeMessageTalk
 	private void OnNewTextSourceSelectedFromPopup(string arc, string file, string label)
 	{
 		// Setup text resolver
-		if (arc.EndsWith(".szs"))
-			arc = arc[..arc.Find(".szs")];
-
-		if (file.EndsWith(".msbt"))
-			file = file[..file.Find(".msbt")];
+		arc = arc.RemoveFileExtension();
+		file = file.RemoveFileExtension();
 
 		var resolver = new NodeMessageResolverDataOnlyLabel(label);
 		Content.Params["Text"] = resolver;

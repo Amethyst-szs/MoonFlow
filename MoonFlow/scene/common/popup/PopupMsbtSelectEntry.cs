@@ -1,4 +1,5 @@
 using Godot;
+using MoonFlow.Ext;
 using MoonFlow.Project;
 using MoonFlow.Project.Cache;
 using System;
@@ -205,7 +206,7 @@ public partial class PopupMsbtSelectEntry : Window
 	{
 		VBoxContainer container;
 
-		var noExt = item.File[..item.File.Find(".msbt")];
+		var noExt = item.File.RemoveFileExtension();
 
 		if (ResultList.HasNode(noExt))
 			container = ResultList.GetNode<VBoxContainer>(noExt);

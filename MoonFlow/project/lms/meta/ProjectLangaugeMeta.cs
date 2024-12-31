@@ -25,5 +25,5 @@ public class ProjectLanguageFileEntryMeta()
 public class ProjectLanguageMetaData
 {
     public Dictionary<string, ProjectLanguageFileEntryMeta> EntryTable = [];
-    public Dictionary<string, long> TimeTable = [];
+    public Dictionary<string, long> FileTable = [];
 }

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Godot;
 
@@ -5,7 +6,7 @@ using Nindot;
 using Nindot.LMS.Msbp;
 
 using MoonFlow.Project.Database;
-using System;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Project;
 
@@ -47,11 +48,8 @@ public class ProjectMsbpHolder
         if (arc == "StageMessage.szs")
             throw new Exception("Any request for publishing a StageMessage msbt must include WorldInfo");
 
-        if (arc.EndsWith(".szs"))
-            arc = arc[..arc.Find(".szs")];
-        
-        if (msbt.EndsWith(".msbt"))
-            msbt = msbt[..msbt.Find(".msbt")];
+        arc = arc.RemoveFileExtension();
+		msbt = msbt.RemoveFileExtension();
         
         var entry = string.Format("{0}/{1}.mstxt", arc, msbt);
         Project.Project_AddElement(entry);
@@ -69,11 +67,8 @@ public class ProjectMsbpHolder
 
     public void UnpublishFile(string arc, string msbt)
     {
-        if (arc.EndsWith(".szs"))
-            arc = arc[..arc.Find(".szs")];
-        
-        if (msbt.EndsWith(".msbt"))
-            msbt = msbt[..msbt.Find(".msbt")];
+        arc = arc.RemoveFileExtension();
+		msbt = msbt.RemoveFileExtension();
 
         var proj = Project.Project;
         var idx = proj.Content.FindIndex(s => s.StartsWith(arc) && s.EndsWith(msbt + ".mstxt"));

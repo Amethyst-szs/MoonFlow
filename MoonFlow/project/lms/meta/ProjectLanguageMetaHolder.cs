@@ -8,6 +8,7 @@ using System.Linq;
 
 using Nindot;
 using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib;
 
 using CsYaz0;
 
@@ -38,7 +39,7 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         }
 
         // Compress time table by removing timestamps equal to the unix epoch
-        var timeC = Data.TimeTable.ToDictionary(entry => entry.Key, entry => entry.Value);
+        var timeC = Data.FileTable.ToDictionary(entry => entry.Key, entry => entry.Value);
         foreach (var item in timeC)
         {
             if (item.Value == DateTime.UnixEpoch.ToFileTimeUtc())
@@ -46,19 +47,20 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         }
 
         data.EntryTable = lookupC;
-        data.TimeTable = timeC;
+        data.FileTable = timeC;
 
         return true;
     }
 
-    // ====================================================== //
-    // ================== Access Utilities ================== //
-    // ====================================================== //
+    #region Public Utility
 
     public ProjectLanguageFileEntryMeta GetMetadata(SarcMsbtFile file, MsbtEntry entry)
     {
         string hash = CalcHash(file.Sarc.Name, file.Name, entry.Name);
-
+        return GetMetadata(hash);
+    }
+    public ProjectLanguageFileEntryMeta GetMetadata(string hash)
+    {
         if (Data.EntryTable.TryGetValue(hash, out ProjectLanguageFileEntryMeta value))
             return value;
 
@@ -76,11 +78,11 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     {
         string hash = CalcHash(file.Name, key);
 
-        if (Data.TimeTable.TryGetValue(hash, out long value))
+        if (Data.FileTable.TryGetValue(hash, out long value))
             return DateTime.FromFileTime(value);
 
         var newMeta = DateTime.UnixEpoch.ToFileTimeUtc();
-        Data.TimeTable.Add(hash, newMeta);
+        Data.FileTable.Add(hash, newMeta);
 
         return DateTime.FromFileTime(newMeta);
     }
@@ -92,8 +94,58 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     public void SetLastModifiedTime(SarcFile file, string key)
     {
         string hash = CalcHash(file.Name, key);
-        Data.TimeTable[hash] = DateTime.Now.ToFileTime();
+        Data.FileTable[hash] = DateTime.Now.ToFileTime();
     }
+
+    #endregion
+
+    #region Entry Manip
+
+    public void EntryDuplicate(SarcFile sourceArc, string sourceEntry, string newArc, string newName)
+    {
+        // Move FileTable contents
+        var sourceHash = CalcHash(sourceArc.Name, sourceEntry);
+        var targetHash = CalcHash(newArc, newName);
+
+        if (Data.FileTable.TryGetValue(sourceHash, out long value))
+            Data.FileTable[targetHash] = value;
+
+        // Move EntryTable contents
+        var content = sourceArc.GetFileMSBT(sourceEntry, new MsbtElementFactory());
+
+        foreach (var label in content.GetEntryLabels())
+        {
+            var sourceLabelHash = CalcHash(sourceArc.Name, sourceEntry, label);
+            var targetLabelHash = CalcHash(newArc, newName, label);
+
+            var entryMeta = GetMetadata(sourceLabelHash);
+            Data.EntryTable[targetLabelHash] = entryMeta;
+        }
+
+        WriteFile();
+    }
+
+    public void EntryRemove(SarcFile sourceArc, string sourceEntry)
+    {
+        // Remove FileTable contents
+        var hash = CalcHash(sourceArc.Name, sourceEntry);
+        Data.FileTable.Remove(hash);
+
+        // Remove EntryTable contents
+        var content = sourceArc.GetFileMSBT(sourceEntry, new MsbtElementFactory());
+
+        foreach (var label in content.GetEntryLabels())
+        {
+            var sourceLabel = CalcHash(sourceArc.Name, sourceEntry, label);
+            Data.EntryTable.Remove(sourceLabel);
+        }
+
+        WriteFile();
+    }
+
+    #endregion
+
+    #region Hash Calcluation
 
     public static string CalcHash(string archive, string file, string entry)
     {
@@ -109,4 +161,6 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
 
         return BitConverter.ToString(hashValue).Replace("-", string.Empty);
     }
+
+    #endregion
 }

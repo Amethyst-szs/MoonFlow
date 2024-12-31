@@ -258,21 +258,33 @@ msgstr "Message Studio Project"
 msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 msgstr "Color Palette Editor"
 
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
-msgstr "Open File"
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_COPY_FILE_TOOLTIP"
+msgstr "Copy Selected File"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_CUT_FILE_TOOLTIP"
+msgstr "Cut Selected File"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
+msgstr "Paste Selected File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
-msgstr "Duplicate File"
+msgstr "Duplicate Selected File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr "New File"
 
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
+msgstr "Rename Selected File"
+
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
-msgstr "Delete File"
+msgstr "Delete Selected File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_DETAILS_FILE_SIZE"
@@ -2184,6 +2196,10 @@ msgstr "No results!"
 #: scene/common/popup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
+msgstr "Open File"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"

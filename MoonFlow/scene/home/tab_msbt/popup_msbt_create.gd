@@ -7,6 +7,7 @@ var titles: Array[String] = [
 ]
 
 @export_enum("Duplicate:0", "New:1", "Rename:2") var title_selection: int = 0
+@export var autofill_text: bool = false
 
 var archive_id: int = 0:
 	set(value):
@@ -23,6 +24,10 @@ signal submitted(archive: String, file_name: String)
 
 func _ready() -> void:
 	header.text = titles[title_selection]
+	about_to_popup.connect(_on_appear)
+
+func _on_appear() -> void:
+	line_name.grab_focus()
 
 func init_data(arc: String, source_name: String) -> void:
 	match(arc):
@@ -30,8 +35,13 @@ func init_data(arc: String, source_name: String) -> void:
 		"StageMessage.szs": archive_id = 1
 		"LayoutMessage.szs": archive_id = 2
 	
+	var default_str := source_name.substr(0, source_name.find(".msbt"))
 	line_name.clear()
-	line_name.placeholder_text = source_name.substr(0, source_name.find(".msbt"))
+	line_name.placeholder_text = default_str
+	
+	if autofill_text:
+		line_name.text = default_str
+		line_name.caret_column = default_str.length()
 
 func _on_file_name_updated(word: String) -> void:
 	file_name = word

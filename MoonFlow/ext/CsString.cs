@@ -19,4 +19,11 @@ public static partial class Extension
 			"$1 $2"
 		);
 	}
+
+	public static string RemoveFileExtension(this string str)
+	{
+		int idx = str.LastIndexOf('.');
+		if (idx != -1) return str[..idx];
+		return str;
+	}
 }
