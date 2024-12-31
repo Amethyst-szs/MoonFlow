@@ -62,6 +62,7 @@
 # res://scene/editor/msbp/color/color_editor_element.tscn
 # res://scene/editor/msbp/color/color_editor_element_preview.tscn
 # res://scene/editor/event/node/event_flow_node_common.tscn
+# res://scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -305,14 +306,17 @@ msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_COPY_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_CUT_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
 msgstr ""
 
@@ -327,6 +331,7 @@ msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
 msgstr ""
 
@@ -366,22 +371,6 @@ msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 msgstr ""
@@ -406,6 +395,22 @@ msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
 #: scene/common/dialog/dialog_unsaved_changes.tscn
@@ -2229,10 +2234,6 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 msgstr ""
 
@@ -2258,6 +2259,26 @@ msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_DUPLICATE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_EVENT_DUPLICATE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_RENAME_ARCHIVE"
+msgstr ""
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_RENAME_EVENT"
 msgstr ""
 
 #: scene/home/tab_event/tab_event.tscn
@@ -2702,4 +2723,9 @@ msgstr ""
 
 #: scene/editor/event/node/event_flow_node_common.tscn
 msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
+msgstr ""
+
+#: scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
+msgctxt "HOME_TAB_EVENT"
+msgid "EVENT_ARCHIVE_EMPTY"
 msgstr ""

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://cpoigi1r0pcyg"]
+
+[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_vbktb"]
+
+[resource]
+script = ExtResource("1_vbktb")
+context = "HOME_TAB_EVENT"
+keys = Array[String](["EVENT_ARCHIVE_EMPTY"])

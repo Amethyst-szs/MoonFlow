@@ -258,15 +258,15 @@ msgstr "Message Studio Project"
 msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 msgstr "Color Palette Editor"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_COPY_FILE_TOOLTIP"
 msgstr "Copy Selected File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_CUT_FILE_TOOLTIP"
 msgstr "Cut Selected File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
 msgstr "Paste Selected File"
 
@@ -278,7 +278,7 @@ msgstr "Duplicate Selected File"
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr "New File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
+#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
 msgstr "Rename Selected File"
 
@@ -314,25 +314,6 @@ msgstr "Copy to Clipboard"
 msgid "HOME_TAB_TEXT_OPEN_FILE"
 msgstr "Open File"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
-msgstr "Are you sure?"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
-msgstr "Yes I'm sure."
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
-msgstr ""
-"Deleting MSBT files cannot be undone. Removing files required by the game "
-"can cause crashes and other glitches. Are you absolutely sure you want to "
-"delete this?"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
-msgstr "Wait, no, go back!"
-
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 msgstr "File already exists!"
@@ -359,6 +340,25 @@ msgstr ""
 "This name doesn't seem to connect to a real stage! Make sure to check for "
 "any typos, and make sure to add your stage to the WorldList before creating "
 "the text file."
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr "Are you sure?"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
+msgstr "Yes I'm sure."
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+"Deleting MSBT files cannot be undone. Removing files required by the game "
+"can cause crashes and other glitches. Are you absolutely sure you want to "
+"delete this?"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr "Wait, no, go back!"
 
 #: scene/common/dialog/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_TITLE"
@@ -2198,10 +2198,6 @@ msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
 
 #: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
-msgstr "Open File"
-
-#: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 msgstr "Refresh File List"
 
@@ -2228,6 +2224,26 @@ msgstr "Graph Size:"
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
 msgstr "Open Graph"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_DUPLICATE"
+msgstr "Duplicate Event Archive"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_EVENT_DUPLICATE"
+msgstr "Duplicate Event Graph"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
+msgstr "Create new Event Archive"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_RENAME_ARCHIVE"
+msgstr "Rename Event Archive"
+
+#: scene/home/tab_event/tab_event.tscn
+msgid "HOME_TAB_EVENT_POPUP_RENAME_EVENT"
+msgstr "Rename Event Graph"
 
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
@@ -2710,6 +2726,14 @@ msgstr "Node Name"
 #: scene/editor/event/node/event_flow_node_common.tscn
 msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
 msgstr "Additional Properties"
+
+#: scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
+msgctxt "HOME_TAB_EVENT"
+msgid "EVENT_ARCHIVE_EMPTY"
+msgstr "This archive is empty!"
+
+#~ msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
+#~ msgstr "Open File"
 
 #~ msgctxt "TAB_EVENT_EXTRA_TEXT"
 #~ msgid "ARCHIVE_SOURCED_FROM_ROMFS_TOOLTIP"

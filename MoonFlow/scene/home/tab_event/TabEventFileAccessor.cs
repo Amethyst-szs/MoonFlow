@@ -31,6 +31,24 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         DeleteButton.Disabled = !isProj && @event == null;
     }
 
+    private void OnCommonFooterPressed(string actionName)
+    {
+        if (Parent.SelectedArchive == null)
+            return;
+        
+        if (Parent.SelectedEvent == null)
+        {
+            var archivePopup = GetNode<Popup>("Popup_" + actionName + "Archive");
+            archivePopup.PopupCentered();
+            archivePopup.Call("init_data", Parent.SelectedArchive.Name);
+            return;
+        }
+
+        var eventPopup = GetNode<Popup>("Popup_" + actionName + "Event");
+        eventPopup.PopupCentered();
+        eventPopup.Call("init_data", Parent.SelectedEvent);
+    }
+
     protected override void OnCopyFile()
     {
         base.OnCopyFile();
@@ -56,52 +74,61 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         GD.Print("PLACEHOLDER FUNCTION");
     }
 
-    private void OnDuplicateFooterPressed()
-    {
-        if (Parent.SelectedArchive == null)
-            return;
-        
-        if (Parent.SelectedEvent == null)
-        {
-            var archivePopup = GetNode<Popup>("Popup_DuplicateArchive");
-            archivePopup.PopupCentered();
-            archivePopup.Call("init_data", Parent.SelectedArchive.Name);
-            return;
-        }
-
-        var eventPopup = GetNode<Popup>("Popup_DuplicateEvent");
-        eventPopup.PopupCentered();
-        eventPopup.Call("init_data", Parent.SelectedEvent);
-    }
     private void OnDuplicateArchive(string newName)
     {
-        if (!newName.EndsWith(".szs")) newName += ".szs";
-
-        var arcHolder = ProjectManager.GetProject().EventArcHolder;
-        if (arcHolder.Content.ContainsKey(newName))
-        {
-            ThrowDuplicateNameDialog();
+        if (!IsArchiveNameUnique(ref newName, out ProjectEventDataArchiveHolder arcHolder))
             return;
-        }
 
         arcHolder.TryDuplicateArchive(Parent.SelectedArchive, newName);
         Parent.GenerateFileList();
     }
     private void OnDuplicateEvent(string newName)
     {
-        if (!newName.EndsWith(".bmyl")) newName += ".byml";
-
-        if (Parent.SelectedArchive == null || Parent.SelectedEvent == null)
+        if (!IsEventNameUnique(ref newName))
             return;
-        
-        if (Parent.SelectedArchive.Content.ContainsKey(newName))
-        {
-            ThrowDuplicateNameDialog();
-            return;
-        }
 
         var source = Parent.SelectedEvent;
         ProjectEventDataArchiveHolder.TryDuplicateGraph(Parent.SelectedArchive, source, newName);
+        Parent.GenerateFileList();
+    }
+
+    private void OnNewArchiveFooterPressed()
+    {
+        var eventPopup = GetNode<Popup>("Popup_NewArchive");
+        eventPopup.PopupCentered();
+        eventPopup.Call("init_data", Parent.SelectedEvent);
+    }
+    private void OnNewArchive(string newName)
+    {
+        if (!IsArchiveNameUnique(ref newName, out ProjectEventDataArchiveHolder arcHolder))
+            return;
+
+        arcHolder.TryNewArchive(newName);
+        Parent.GenerateFileList();
+    }
+
+    private void OnRenameArchive(string newName)
+    {
+        if (!IsArchiveNameUnique(ref newName, out ProjectEventDataArchiveHolder arcHolder))
+            return;
+
+        var select = Parent.SelectedArchive;
+        arcHolder.TryDuplicateArchive(select, newName);
+        arcHolder.TryDeleteArchive(select);
+
+        Parent.GenerateFileList();
+    }
+    private void OnRenameEvent(string newName)
+    {
+        if (!IsEventNameUnique(ref newName))
+            return;
+        
+        var select = Parent.SelectedArchive;
+        var source = Parent.SelectedEvent;
+
+        ProjectEventDataArchiveHolder.TryDuplicateGraph(select, source, newName);
+        ProjectEventDataArchiveHolder.DeleteGraph(select, source);
+
         Parent.GenerateFileList();
     }
 
@@ -140,6 +167,36 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
     private void UpdatePasteButton()
     {
         PasteButton.Disabled = CopySourceArchive == null;
+    }
+
+    private bool IsArchiveNameUnique(ref string newName, out ProjectEventDataArchiveHolder arcHolder)
+    {
+        if (!newName.EndsWith(".szs")) newName += ".szs";
+
+        arcHolder = ProjectManager.GetProject().EventArcHolder;
+        if (arcHolder.Content.ContainsKey(newName))
+        {
+            ThrowDuplicateNameDialog();
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool IsEventNameUnique(ref string newName)
+    {
+        if (!newName.EndsWith(".bmyl")) newName += ".byml";
+
+        if (Parent.SelectedArchive == null || Parent.SelectedEvent == null)
+            return false;
+        
+        if (Parent.SelectedArchive.Content.ContainsKey(newName))
+        {
+            ThrowDuplicateNameDialog();
+            return false;
+        }
+
+        return true;
     }
 
     #endregion

@@ -44,10 +44,6 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
         }
     }
 
-    // Allow storing additional temporary data with the sarc file
-    // This is not stored within the archive, and not written to disk
-    public List<string> UserFlags = [];
-
     public static SarcFile FromFilePath(string path)
     {
         byte[] data = File.ReadAllBytes(path);
@@ -66,10 +62,11 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
     }
 
     public Exception WriteArchive() { return WriteArchive(FilePath); }
-    public virtual Exception WriteArchive(string path)
+    public virtual Exception WriteArchive(string path) { return WriteArchive(Content, path); }
+    public static Exception WriteArchive(SarcLibrary.Sarc sarcBase, string path)
     {
         MemoryStream stream = new();
-        Content.Write(stream);
+        sarcBase.Write(stream);
 
         var fileCompressed = Yaz0.Compress(stream.ToArray());
 

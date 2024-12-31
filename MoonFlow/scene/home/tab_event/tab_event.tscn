@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=44 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -65,6 +65,12 @@ action = &"msbt_add_entry"
 
 [sub_resource type="Shortcut" id="Shortcut_2mm84"]
 events = [SubResource("InputEventAction_71i00")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_thfik"]
+action = &"ui_rename"
+
+[sub_resource type="Shortcut" id="Shortcut_jgauy"]
+events = [SubResource("InputEventAction_thfik")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_0tmku"]
 action = &"ui_graph_delete"
@@ -182,11 +188,9 @@ self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
 [node name="Button_NewArc" type="Button" parent="FileList/Footer/HBox"]
-self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 tooltip_text = "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
 mouse_default_cursor_shape = 2
-disabled = true
 shortcut = SubResource("Shortcut_t43t0")
 icon = ExtResource("9_bqhdu")
 
@@ -200,12 +204,10 @@ shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("7_hy22n")
 
 [node name="Button_Rename" type="Button" parent="FileList/Footer/HBox"]
-self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 tooltip_text = "HOME_TAB_RENAME_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
-disabled = true
-shortcut = SubResource("Shortcut_2mm84")
+shortcut = SubResource("Shortcut_jgauy")
 icon = ExtResource("13_tboky")
 
 [node name="Button_Delete" type="Button" parent="FileList/Footer/HBox"]
@@ -385,6 +387,29 @@ autofill_text = true
 [node name="Label_Header" parent="TabEventFileAccessor/Popup_DuplicateEvent/Content/VBox" index="0"]
 text = "HOME_TAB_EVENT_POPUP_EVENT_DUPLICATE"
 
+[node name="Popup_NewArchive" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+visible = false
+theme = ExtResource("1_8utrk")
+
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_NewArchive/Content/VBox" index="0"]
+text = "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
+
+[node name="Popup_RenameArchive" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+visible = false
+theme = ExtResource("1_8utrk")
+autofill_text = true
+
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_RenameArchive/Content/VBox" index="0"]
+text = "HOME_TAB_EVENT_POPUP_RENAME_ARCHIVE"
+
+[node name="Popup_RenameEvent" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+visible = false
+theme = ExtResource("1_8utrk")
+autofill_text = true
+
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_RenameEvent/Content/VBox" index="0"]
+text = "HOME_TAB_EVENT_POPUP_RENAME_EVENT"
+
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
 title = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1
@@ -400,13 +425,21 @@ script = ExtResource("15_j2wr0")
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Copy" to="TabEventFileAccessor" method="OnCopyFile"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Cut" to="TabEventFileAccessor" method="OnCutFile"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Paste" to="TabEventFileAccessor" method="OnPasteFile"]
-[connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="TabEventFileAccessor" method="OnDuplicateFooterPressed"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Duplicate" to="TabEventFileAccessor" method="OnCommonFooterPressed" binds= ["Duplicate"]]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_NewArc" to="TabEventFileAccessor" method="OnNewArchiveFooterPressed"]
+[connection signal="pressed" from="FileList/Footer/HBox/Button_Rename" to="TabEventFileAccessor" method="OnCommonFooterPressed" binds= ["Rename"]]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="pressed" from="Info/VBox/VBox_EventInfo/DebugHash/Content/Button_Copy" to="." method="OnButtonCopyGraphDebugHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="submitted" from="TabEventFileAccessor/Popup_DuplicateArchive" to="TabEventFileAccessor" method="OnDuplicateArchive"]
 [connection signal="submitted" from="TabEventFileAccessor/Popup_DuplicateEvent" to="TabEventFileAccessor" method="OnDuplicateEvent"]
+[connection signal="submitted" from="TabEventFileAccessor/Popup_NewArchive" to="TabEventFileAccessor" method="OnNewArchive"]
+[connection signal="submitted" from="TabEventFileAccessor/Popup_RenameArchive" to="TabEventFileAccessor" method="OnRenameArchive"]
+[connection signal="submitted" from="TabEventFileAccessor/Popup_RenameEvent" to="TabEventFileAccessor" method="OnRenameEvent"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="TabEventFileAccessor" method="OnDeleteFile"]
 
 [editable path="TabEventFileAccessor/Popup_DuplicateArchive"]
 [editable path="TabEventFileAccessor/Popup_DuplicateEvent"]
+[editable path="TabEventFileAccessor/Popup_NewArchive"]
+[editable path="TabEventFileAccessor/Popup_RenameArchive"]
+[editable path="TabEventFileAccessor/Popup_RenameEvent"]

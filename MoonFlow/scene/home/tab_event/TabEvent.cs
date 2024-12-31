@@ -77,14 +77,35 @@ public partial class TabEvent : HSplitContainer
 
 		// Get list of files in sorted order
 		var list = arcList.Keys.ToList();
-		list.Sort(string.Compare);
+		list.Sort((a, b) =>
+		{
+			var aS = arcList[a].Source;
+			var bS = arcList[b].Source;
 
+			if (aS != bS)
+				return aS - bS;
+			
+			return string.Compare(a, b);
+		});
+
+		// Create dropdown container for every archive in list
+		var currentSource = arcList[list.First()].Source;
 		foreach (var file in list)
 		{
 			var name = file.Split('/', '\\').Last();
 			var nameNoExt = name.TrimSuffix(".szs");
 
 			var sarc = arcList[name];
+
+			// If this sarc's source doesn't match current source, add separator
+			if (currentSource != sarc.Source)
+			{
+				currentSource = sarc.Source;
+				
+				var hsep = new HSeparator();
+				hsep.AddThemeConstantOverride("separation", 24);
+				ArchiveHolder.AddChild(hsep);
+			}
 
 			// Create a dropdown button and margin->vbox for each file
 			var container = new MarginContainer();
@@ -109,6 +130,10 @@ public partial class TabEvent : HSplitContainer
 			ArchiveHolder.AddChild(dropdown);
 			ArchiveHolder.AddChild(container);
 			container.AddChild(vbox);
+
+			// If sarc has no contents, add a small warning tooltip
+			if (sarc.Content.Count == 0)
+				dropdown.TooltipText = Tr("EVENT_ARCHIVE_EMPTY", "HOME_TAB_EVENT");
 
 			// Add all BYML files as buttons in container
 			SetupArchiveFileList(sarc, nameNoExt);
@@ -284,8 +309,11 @@ public partial class TabEvent : HSplitContainer
 
 	private void UpdateInfoBoxEvent(SarcFile archive, string key)
 	{
+		if (!archive.Content.TryGetValue(key, out ArraySegment<byte> data))
+			return;
+		
 		GetNode<Label>("%Label_ArcName").Text = archive.Name;
-		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(archive.Content[key].Count).ToString();
+		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(data.Count).ToString();
 	}
 
 	#endregion

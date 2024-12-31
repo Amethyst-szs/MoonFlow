@@ -74,6 +74,21 @@ public class ProjectEventDataArchiveHolder
         }
     }
 
+    public bool TryNewArchive(string target)
+    {
+        // Ensure target doesn't already exist on disk
+        var targetPath = Path + target;
+        if (File.Exists(targetPath))
+            return false;
+
+        // Create new empty sarc and write to disk
+        var sarc = new SarcLibrary.Sarc();
+        SarcFile.WriteArchive(sarc, targetPath);
+
+        RefreshArchiveList();
+        return true;
+    }
+
     public bool TryDuplicateArchive(EventDataArchive source, string target)
     {
         // Attempt to copy archive file on disk
