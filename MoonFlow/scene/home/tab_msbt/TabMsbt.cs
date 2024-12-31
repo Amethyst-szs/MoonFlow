@@ -274,17 +274,20 @@ public partial class TabMsbt : HSplitContainer
 
 	public void ReloadInterface(bool isRunReady)
 	{
+		var oldSelection = SelectedFile;
+		var oldScroll = FileListRoot.ScrollVertical;
+		
 		if (isRunReady)
 			_Ready();
+		
+		FileListRoot.SetDeferred(ScrollContainer.PropertyName.ScrollVertical, oldScroll);
 
-		if (SelectedFile == null)
+		if (oldSelection == null)
 			return;
 
-		var buttonName = SelectedFile.Name.Replace('.', '_');
-		if (FileListRoot.FindChild(buttonName, true, false) is not Button button)
-			return;
-
-		OnFilePressed(SelectedFile.Sarc, SelectedFile.Name, button);
+		var buttonName = oldSelection.Name.Replace('.', '_');
+		if (FileListRoot.FindChild(buttonName, true, false) is Button button)
+			OnFilePressed(oldSelection.Sarc, oldSelection.Name, button);
 	}
 
 	private static void UpdateFileButtonModulation(SarcFile file, string key, Button button)
