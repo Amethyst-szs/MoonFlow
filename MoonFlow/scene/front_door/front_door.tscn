@@ -72,14 +72,23 @@ font_color = Color(0.8, 0.8, 0.8, 0.607843)
 [sub_resource type="GDScript" id="GDScript_fdlxl"]
 script/source = "extends Label
 
-var ver: String = preload(\"res://version/data.gd\").VERSION
+var data := preload(\"res://version/data.gd\")
 
 func _ready() -> void:
 	var n: String = ProjectSettings.get_setting(\"application/config/name\", \"MoonFlow\")
 	
-	text += \"%s\\n\" % ver
-	text += \"%s (%s)\\n\" % [n, DisplayServer.get_name()]
-	text += \"%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+	# Calculate commit date
+	var timezone: int = Time.get_time_zone_from_system().bias * 60
+	var unix_l: int = int(data.TIME) + timezone
+	var time: String = Time.get_date_string_from_unix_time(unix_l)
+	
+	# Setup label
+	var out: String = \"\"
+	out += \"%s\\n%s\\n\\n\" % [time, data.VERSION]
+	out += \"%s (%s)\\n\" % [n, DisplayServer.get_name()]
+	out += \"%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+	
+	text = out
 "
 
 [node name="FrontDoor" type="Control"]
