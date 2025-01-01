@@ -181,6 +181,11 @@ public class ProjectDatabaseHolder
         return null;
     }
 
+    public WorldInfo GetWorldByName(string name)
+    {
+        return WorldList.Find((w) => w.WorldName == name);;
+    }
+
     private List<WorldInfo> GetWorldListDb(string arcPath)
     {
         // Attempt to access archive

@@ -19,13 +19,13 @@ public partial class WorldEditorApp : AppScene
 	[Export]
 	private Array<InfoBoxBase> InfoBoxList = [];
 	[Export]
-	private VBoxContainer VBoxStageList = null;
+	private VBoxContainer VBoxStageList;
 	[Export]
-	private VBoxContainer VBoxShineList = null;
+	private VBoxContainer VBoxShineList;
 	[Export]
-	private Label LabelNewStageError = null;
+	private Label LabelNewStageError;
 
-	private WorldInfo World = null;
+	private WorldInfo World;
 	private bool IsRunningInit = false;
 
 	private string NewStageName = "";
@@ -111,18 +111,15 @@ public partial class WorldEditorApp : AppScene
 
 		var msbtHolder = ProjectManager.GetMSBTArchives().StageMessage;
 
-		for (int i = 0; i < World.ShineList.Count; i++)
+		foreach (var shine in World.ShineList)
 		{
-			var shine = World.ShineList[i];
-
 			var msbt = msbtHolder.GetFileMSBT(shine.StageName + ".msbt", new MsbtElementFactory());
 			var entry = msbt.GetEntry("ScenarioName_" + shine.ObjId);
 
 			var scene = SceneCreator<WorldShineEditorHolder>.Create();
 			VBoxShineList.AddChild(scene);
 
-			scene.SetupShineEditor(World, shine, entry, i);
-
+			scene.SetupShineEditor(World, shine, entry, World.ShineList.IndexOf(shine));
 			scene.Connect(WorldShineEditorHolder.SignalName.ContentModified, Callable.From(OnShineListModify));
 		}
 	}

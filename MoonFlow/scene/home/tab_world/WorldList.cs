@@ -24,8 +24,10 @@ public partial class WorldList : HBoxContainer
 			child.QueueFree();
 		}
 
-		var db = ProjectManager.GetProject().Database;
-		foreach (var world in db.WorldList)
+		var db = ProjectManager.GetDB()
+		?? throw new NullReferenceException("No reference to project database!");
+
+        foreach (var world in db.WorldList)
 		{
 			var button = ButtonResource.Instantiate();
 			AddChild(button);
@@ -38,7 +40,7 @@ public partial class WorldList : HBoxContainer
 
 			// Connect to button press event
 			button.Connect(Button.SignalName.Pressed,
-				Callable.From(() => OnItemPressed(world)));
+				Callable.From(() => OnItemPressed(world.WorldName)));
 		}
 
 		// Setup focus neighbors
@@ -60,9 +62,12 @@ public partial class WorldList : HBoxContainer
 		AddChild(new VSeparator());
 	}
 
-	private static void OnItemPressed(WorldInfo world)
+	private static void OnItemPressed(string worldName)
 	{
-		var editor = SceneCreator<WorldEditorApp>.Create();
+		var world = (ProjectManager.GetDB()?.GetWorldByName(worldName))
+		?? throw new Exception("Could not get reference to world!");
+		
+        var editor = SceneCreator<WorldEditorApp>.Create();
 		editor.SetUniqueIdentifier(world.WorldName);
 		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
 

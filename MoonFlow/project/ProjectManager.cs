@@ -60,7 +60,7 @@ public static class ProjectManager
         return langHolder.Metadata;
     }
 
-    public static ProjectDatabaseHolder GetDB() { return Project.Database; }
+    public static ProjectDatabaseHolder GetDB() { return Project?.Database; }
 
     // ====================================================== //
     // ============== Open Project by Directory ============= //

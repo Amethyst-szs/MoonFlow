@@ -84,12 +84,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 	public void UpdateShineIndex()
 	{
-		var idx = GetIndex();
-
-		World.ShineList.Remove(Shine);
-		World.ShineList.Insert(idx, Shine);
-
-		SpinIndex.SetValueNoSignal(idx);
+		SpinIndex.SetValueNoSignal(GetIndex());
 	}
 
 	#endregion
