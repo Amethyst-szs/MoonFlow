@@ -1,13 +1,15 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Nindot.LMS.Msbt.TagLib;
 
 using MoonFlow.Project.Database;
 using MoonFlow.Project;
 using MoonFlow.Scene.Main;
 using MoonFlow.Async;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.EditorWorld;
 
@@ -16,10 +18,15 @@ public partial class WorldEditorApp : AppScene
 {
 	[Export]
 	private Array<InfoBoxBase> InfoBoxList = [];
+	[Export]
 	private VBoxContainer VBoxStageList = null;
+	[Export]
+	private VBoxContainer VBoxShineList = null;
+	[Export]
 	private Label LabelNewStageError = null;
 
 	private WorldInfo World = null;
+	private bool IsRunningInit = false;
 
 	private string NewStageName = "";
 	private StageInfo.CatEnum NewStageCategory = StageInfo.CatEnum.ExStage;
@@ -35,10 +42,11 @@ public partial class WorldEditorApp : AppScene
 	public void OpenWorld(WorldInfo world)
 	{
 		// Setup basic app info
+		IsRunningInit = true;
+
 		World = world;
 		AppTaskbarTitle = world.Display;
 
-		LabelNewStageError = GetNode<Label>("%Label_Error");
 		LabelNewStageError.Hide();
 
 		// Initilize info boxes
@@ -51,20 +59,25 @@ public partial class WorldEditorApp : AppScene
 			box.Connect(InfoBoxBase.SignalName.ModifiedItemInfo, Callable.From(OnItemInfoModify));
 		}
 
-		VBoxStageList = GetNode<VBoxContainer>("%StageList");
 		SetupStageList();
+		SetupShineList();
 
 		GetNode<OptionButton>("%Option_Type").Selected = (int)NewStageCategory;
 
 		// Setup signals with header
 		var header = ProjectManager.SceneRoot.NodeHeader;
 		header.Connect(Header.SignalName.ButtonSave, Callable.From(new Action<bool>(SaveFileInternal)));
+
+		IsRunningInit = false;
 	}
 
 	private void SetupStageList()
 	{
 		foreach (var child in VBoxStageList.GetChildren())
+		{
+			VBoxStageList.RemoveChild(child);
 			child.QueueFree();
+		}
 
 		var prevCategory = StageInfo.CatEnum.Unknown;
 		foreach (var stage in World.StageList)
@@ -85,6 +98,32 @@ public partial class WorldEditorApp : AppScene
 
 			VBoxStageList.AddChild(scene);
 			scene.Setup(World, stage);
+		}
+	}
+
+	private void SetupShineList()
+	{
+		foreach (var child in VBoxShineList.GetChildren())
+		{
+			VBoxShineList.RemoveChild(child);
+			child.QueueFree();
+		}
+
+		var msbtHolder = ProjectManager.GetMSBTArchives().StageMessage;
+
+		for (int i = 0; i < World.ShineList.Count; i++)
+		{
+			var shine = World.ShineList[i];
+
+			var msbt = msbtHolder.GetFileMSBT(shine.StageName + ".msbt", new MsbtElementFactory());
+			var entry = msbt.GetEntry("ScenarioName_" + shine.ObjId);
+
+			var scene = SceneCreator<WorldShineEditorHolder>.Create();
+			VBoxShineList.AddChild(scene);
+
+			scene.SetupShineEditor(World, shine, entry, i);
+
+			scene.Connect(WorldShineEditorHolder.SignalName.ContentModified, Callable.From(OnShineListModify));
 		}
 	}
 
@@ -186,11 +225,21 @@ public partial class WorldEditorApp : AppScene
 		SetupStageList();
     }
 
-	private void OnModify()
+	private void OnShineListChildOrderChanged()
 	{
-		IsModified = true;
+		if (IsRunningInit)
+			return;
+		
+		foreach (var child in VBoxShineList.GetChildren())
+		{
+			if (child is not WorldShineEditorHolder editor)
+				continue;
+			
+			editor.UpdateShineIndex();
+		}
 	}
 
+	private void OnModify() { IsModified = true; }
 	private void OnWorldInfoModify()
 	{
 		IsWorldInfoModified = true;

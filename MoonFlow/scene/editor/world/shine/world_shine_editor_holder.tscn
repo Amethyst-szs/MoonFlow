@@ -1,0 +1,121 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctp1ncef3xift"]
+
+[ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
+[ext_resource type="StyleBox" uid="uid://bx0ltvemuw3qy" path="res://asset/theme/world/stylebox/editor_world_list_panel.tres" id="1_vequ3"]
+[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_yop2g"]
+[ext_resource type="Script" path="res://scene/editor/world/shine/WorldShineEditorHolder.cs" id="3_nii6g"]
+[ext_resource type="Theme" uid="uid://b2d1f54edqxpw" path="res://asset/theme/world/world_editor_shine_list.tres" id="4_j7oie"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_neh1k"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="7_dbbq7"]
+[ext_resource type="Texture2D" uid="uid://bu0dqvc0p3bar" path="res://asset/nindot/lms/icon/PictureFont_Dummy.png" id="8_msi0w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b5m5i"]
+font = ExtResource("4_neh1k")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cx7u1"]
+font_size = 14
+font_color = Color(0.74, 0.74, 0.74, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q0u7j"]
+font = ExtResource("7_dbbq7")
+font_size = 17
+
+[sub_resource type="GDScript" id="GDScript_i7wnd"]
+script/source = "extends SpinBox
+
+func _ready() -> void:
+	custom_arrow_step = -1
+"
+
+[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "SpinIndex")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 57.0
+grow_horizontal = 2
+theme = ExtResource("1_edytr")
+theme_override_styles/panel = ExtResource("1_vequ3")
+script = ExtResource("3_nii6g")
+LabelShineName = NodePath("Content/Layout/VBox_InfoDisplay/Label_Name")
+LabelStageName = NodePath("Content/Layout/VBox_InfoDisplay/Label_Stage")
+IconType = NodePath("Content/Layout/Texture_TypeIcon")
+IconGrand = NodePath("Content/Layout/Texture_GrandIcon")
+SpinIndex = NodePath("Content/Layout/Spin_Index")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("4_j7oie")
+
+[node name="Layout" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Check_Expand" type="CheckBox" parent="Content/Layout" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_408cb")
+script = ExtResource("1_yop2g")
+dropdown = NodePath("../../VBox_Expand")
+
+[node name="VBox_InfoDisplay" type="VBoxContainer" parent="Content/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label_Name" type="Label" parent="Content/Layout/VBox_InfoDisplay"]
+layout_mode = 2
+text = "ABCDEFG ABCDEFG"
+label_settings = SubResource("LabelSettings_b5m5i")
+text_overrun_behavior = 4
+
+[node name="Label_Stage" type="Label" parent="Content/Layout/VBox_InfoDisplay"]
+layout_mode = 2
+text = "ABCDEFG"
+label_settings = SubResource("LabelSettings_cx7u1")
+text_overrun_behavior = 4
+
+[node name="Texture_TypeIcon" type="TextureRect" parent="Content/Layout"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texture_GrandIcon" type="TextureRect" parent="Content/Layout"]
+self_modulate = Color(1, 1, 1, 0.121569)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_msi0w")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Content/Layout/Texture_GrandIcon"]
+auto_translate_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_q0u7j")
+horizontal_alignment = 1
+
+[node name="Spin_Index" type="SpinBox" parent="Content/Layout"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+rounded = true
+alignment = 1
+select_all_on_focus = true
+script = SubResource("GDScript_i7wnd")
+
+[node name="VBox_Expand" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[connection signal="value_changed" from="Content/Layout/Spin_Index" to="." method="OnSpinIndexValueSet"]

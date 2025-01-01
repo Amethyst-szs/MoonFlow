@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://haskx3ghiaxm"]
 
-[ext_resource type="StyleBox" uid="uid://bx0ltvemuw3qy" path="res://asset/theme/world/stylebox/editor_world_stage_list_panel.tres" id="1_iyosc"]
+[ext_resource type="StyleBox" uid="uid://bx0ltvemuw3qy" path="res://asset/theme/world/stylebox/editor_world_list_panel.tres" id="1_iyosc"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hlnsh"]
 color = Color(1, 1, 1, 0.509804)
