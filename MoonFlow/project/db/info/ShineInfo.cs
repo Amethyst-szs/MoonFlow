@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Numerics;
 
 using Nindot.LMS.Msbt;
@@ -31,13 +33,60 @@ public class ShineInfo
 
         if (!msbtHolder.Content.ContainsKey(StageName + ".msbt"))
             return null;
-        
+
         var txtFile = msbtHolder.GetFileMSBT(StageName + ".msbt", new MsbtElementFactory());
         var label = "ScenarioName_" + ObjId;
 
         if (!txtFile.IsContainKey(label))
             return null;
-        
+
         return txtFile.GetEntry(label);
+    }
+
+    public void ReassignUID()
+    {
+        var db = ProjectManager.GetDB()
+        ?? throw new NullReferenceException("Cannot get project database!");
+
+        int uid = 0;
+        while (true)
+        {
+            if (db.GetShineByUID(uid) != null)
+            {
+                uid++;
+                continue;
+            }
+
+            UniqueId = uid;
+            return;
+        }
+    }
+    public bool IsUIDUnique()
+    {
+        var db = ProjectManager.GetDB()
+        ?? throw new NullReferenceException("Cannot get project database!");
+
+        return db.GetShineCountWithUID(UniqueId) < 2;
+    }
+
+    public void ReassignHintId(WorldInfo world)
+    {
+        int hint = 0;
+        while (true)
+        {
+            if (!IsHintIdUnique(world, hint))
+            {
+                hint++;
+                continue;
+            }
+
+            HintIdx = hint;
+            return;
+        }
+    }
+    public bool IsHintIdUnique(WorldInfo world) { return IsHintIdUnique(world, HintIdx); }
+    public bool IsHintIdUnique(WorldInfo world, int id)
+    {
+        return !world.ShineList.Any(s => s != this && s.HintIdx == id);
     }
 }

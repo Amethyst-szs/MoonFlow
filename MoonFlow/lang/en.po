@@ -2767,8 +2767,38 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
 msgstr "Object ID:"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
+msgstr "objID"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
 msgstr "Unique ID:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_HEADER"
+msgstr "Hint ID:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_AUTO_BUTTON_TOOLTIP"
+msgstr "Automatically assign to an unused UID"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_DUPLICATE_WARNING_TOOLTIP"
+msgstr ""
+"This UID is not unique! Any Power Moons sharing the\n"
+"same UID will count as the same moon. If this is not\n"
+"intentional, change the UID or press the automatic\n"
+"re-assign button."
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_AUTO_BUTTON_TOOLTIP"
+msgstr "Automatically assign to an unused Hint ID"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_DUPLICATE_WARNING_TOOLTIP"
+msgstr ""
+"This Hint ID is not unique! For Hint Toad, Talkatoo, and other\n"
+"forms of hints to function correctly, please re-assign this ID!"
 
 #~ msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 #~ msgstr "Open File"

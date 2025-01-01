@@ -2764,5 +2764,29 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_AUTO_BUTTON_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_DUPLICATE_WARNING_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_AUTO_BUTTON_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_DUPLICATE_WARNING_TOOLTIP"
 msgstr ""

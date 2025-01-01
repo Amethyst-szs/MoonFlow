@@ -113,6 +113,10 @@ public partial class WorldShineEditorHolder : PanelContainer
 	{
 		SpinIndex.SetValueNoSignal(GetIndex());
 	}
+	public void UpdateShineUniqueness()
+	{
+		Editor.UpdateUniquenessWarnings();
+	}
 
 	#endregion
 }

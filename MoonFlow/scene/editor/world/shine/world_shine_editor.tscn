@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5upu8m5vshym"]
+[gd_scene load_steps=8 format=3 uid="uid://c5upu8m5vshym"]
 
 [ext_resource type="Script" path="res://scene/editor/world/shine/WorldShineEditor.cs" id="1_yi0vg"]
 [ext_resource type="Script" path="res://scene/editor/world/shine/component/OptionStageName.cs" id="2_a2ycu"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="2_n8mta"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_qgqcx"]
+[ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="5_gwbnv"]
+[ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_dnj4b"]
 
-[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b80t2"]
+
+[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 121.0
@@ -14,12 +19,17 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_bottom = 6
 script = ExtResource("1_yi0vg")
 OptionStageName = NodePath("Content/Grid_NameId/Option_StageName")
+LineObjId = NodePath("Content/Grid_NameId/Line_ObjId")
+SpinUID = NodePath("Content/Grid_UniqueHint/HBox_UniqueId/Spin_UniqueId")
+SpinHint = NodePath("Content/Grid_UniqueHint/HBox_HintId/Spin_HintId")
+TextureUIDWarning = NodePath("Content/Grid_UniqueHint/HBox_UniqueId/Texture_DuplicateWarn")
+TextureHintWarning = NodePath("Content/Grid_UniqueHint/HBox_HintId/Texture_DuplicateWarn")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HSep2" type="HSeparator" parent="Content"]
+[node name="HSep_Head" type="HSeparator" parent="Content"]
 layout_mode = 2
 
 [node name="Grid_NameId" type="GridContainer" parent="Content"]
@@ -51,9 +61,18 @@ script = ExtResource("2_a2ycu")
 
 [node name="Line_ObjId" type="LineEdit" parent="Content/Grid_NameId"]
 layout_mode = 2
+placeholder_text = "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
+max_length = 126
+context_menu_enabled = false
+clear_button_enabled = true
+script = ExtResource("4_qgqcx")
+regex_string = "[A-Za-z0-9_]"
+is_return_if_empty = true
 
-[node name="HSep" type="HSeparator" parent="Content"]
+[node name="HSep_Spacer" type="HSeparator" parent="Content"]
 layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_b80t2")
 
 [node name="Grid_UniqueHint" type="GridContainer" parent="Content"]
 layout_mode = 2
@@ -66,4 +85,84 @@ text = "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
+[node name="Label_HintIdHead" type="Label" parent="Content/Grid_UniqueHint"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HBox_UniqueId" type="HBoxContainer" parent="Content/Grid_UniqueHint"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="Spin_UniqueId" type="SpinBox" parent="Content/Grid_UniqueHint/HBox_UniqueId"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+rounded = true
+allow_greater = true
+alignment = 1
+prefix = "UID"
+custom_arrow_step = 1.0
+
+[node name="Button_UniqueIdAuto" type="Button" parent="Content/Grid_UniqueHint/HBox_UniqueId"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_AUTO_BUTTON_TOOLTIP"
+theme_override_constants/icon_max_width = 24
+icon = ExtResource("5_gwbnv")
+
+[node name="Texture_DuplicateWarn" type="TextureRect" parent="Content/Grid_UniqueHint/HBox_UniqueId"]
+self_modulate = Color(1, 0.808, 0.28, 0.866667)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_DUPLICATE_WARNING_TOOLTIP"
+texture = ExtResource("6_dnj4b")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBox_HintId" type="HBoxContainer" parent="Content/Grid_UniqueHint"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="Spin_HintId" type="SpinBox" parent="Content/Grid_UniqueHint/HBox_HintId"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+rounded = true
+allow_greater = true
+alignment = 1
+prefix = "Hint"
+custom_arrow_step = 1.0
+
+[node name="Button_HintIdAuto" type="Button" parent="Content/Grid_UniqueHint/HBox_HintId"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_AUTO_BUTTON_TOOLTIP"
+theme_override_constants/icon_max_width = 24
+icon = ExtResource("5_gwbnv")
+
+[node name="Texture_DuplicateWarn" type="TextureRect" parent="Content/Grid_UniqueHint/HBox_HintId"]
+self_modulate = Color(1, 0.808, 0.28, 0.866667)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_DUPLICATE_WARNING_TOOLTIP"
+texture = ExtResource("6_dnj4b")
+expand_mode = 1
+stretch_mode = 5
+
 [connection signal="StageSelected" from="Content/Grid_NameId/Option_StageName" to="." method="OnShineStageNameChanged"]
+[connection signal="text_validated" from="Content/Grid_NameId/Line_ObjId" to="." method="OnLineObjectIdModified"]
+[connection signal="mouse_entered" from="Content/Grid_UniqueHint/HBox_UniqueId/Spin_UniqueId" to="." method="UpdateUniquenessWarnings"]
+[connection signal="value_changed" from="Content/Grid_UniqueHint/HBox_UniqueId/Spin_UniqueId" to="." method="OnUniqueIdValueChanged"]
+[connection signal="mouse_entered" from="Content/Grid_UniqueHint/HBox_UniqueId/Button_UniqueIdAuto" to="." method="UpdateUniquenessWarnings"]
+[connection signal="pressed" from="Content/Grid_UniqueHint/HBox_UniqueId/Button_UniqueIdAuto" to="." method="OnUniqueIdAutoReassign"]
+[connection signal="mouse_entered" from="Content/Grid_UniqueHint/HBox_UniqueId/Texture_DuplicateWarn" to="." method="UpdateUniquenessWarnings"]
+[connection signal="mouse_entered" from="Content/Grid_UniqueHint/HBox_HintId/Spin_HintId" to="." method="UpdateUniquenessWarnings"]
+[connection signal="value_changed" from="Content/Grid_UniqueHint/HBox_HintId/Spin_HintId" to="." method="OnHintIdValueChanged"]
+[connection signal="mouse_entered" from="Content/Grid_UniqueHint/HBox_HintId/Button_HintIdAuto" to="." method="UpdateUniquenessWarnings"]
+[connection signal="pressed" from="Content/Grid_UniqueHint/HBox_HintId/Button_HintIdAuto" to="." method="OnHintIdAutoReassign"]
+[connection signal="mouse_entered" from="Content/Grid_UniqueHint/HBox_HintId/Texture_DuplicateWarn" to="." method="UpdateUniquenessWarnings"]

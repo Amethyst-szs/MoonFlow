@@ -186,6 +186,27 @@ public class ProjectDatabaseHolder
         return WorldList.Find((w) => w.WorldName == name);;
     }
 
+    public ShineInfo GetShineByUID(int uid)
+    {
+        foreach (var world in WorldList)
+        {
+            var shine = world.ShineList.Find(s => s.UniqueId == uid);
+            if (shine != null)
+                return shine;
+        }
+
+        return null;
+    }
+
+    public int GetShineCountWithUID(int uid)
+    {
+        int count = 0;
+        foreach (var world in WorldList)
+            count += world.ShineList.Count(s => s.UniqueId == uid);
+
+        return count;
+    }
+
     private List<WorldInfo> GetWorldListDb(string arcPath)
     {
         // Attempt to access archive
