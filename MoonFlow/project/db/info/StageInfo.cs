@@ -1,5 +1,9 @@
 using System;
+using System.Linq;
 using Godot;
+
+using MoonFlow.Ext;
+
 using YamlDotNet.Serialization;
 
 namespace MoonFlow.Project.Database;
@@ -64,6 +68,9 @@ public class StageInfo : IComparable
         
         Unknown = 0xFFFF
     }
+
+    public static readonly string[] CategoryNames =
+		Enum.GetNames(typeof(CatEnum)).Select(s => s.SplitCamelCase()).ToArray();
 
     public int CompareTo(object obj)
     {

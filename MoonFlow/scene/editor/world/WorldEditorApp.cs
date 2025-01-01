@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 
 using MoonFlow.Project.Database;
@@ -109,17 +110,14 @@ public partial class WorldEditorApp : AppScene
 			child.QueueFree();
 		}
 
-		var msbtHolder = ProjectManager.GetMSBTArchives().StageMessage;
-
 		foreach (var shine in World.ShineList)
 		{
-			var msbt = msbtHolder.GetFileMSBT(shine.StageName + ".msbt", new MsbtElementFactory());
-			var entry = msbt.GetEntry("ScenarioName_" + shine.ObjId);
+			MsbtEntry shineDisplay = shine.LookupDisplayName();
 
 			var scene = SceneCreator<WorldShineEditorHolder>.Create();
 			VBoxShineList.AddChild(scene);
 
-			scene.SetupShineEditor(World, shine, entry, World.ShineList.IndexOf(shine));
+			scene.SetupShineEditor(World, shine, shineDisplay, World.ShineList.IndexOf(shine));
 			scene.Connect(WorldShineEditorHolder.SignalName.ContentModified, Callable.From(OnShineListModify));
 		}
 	}

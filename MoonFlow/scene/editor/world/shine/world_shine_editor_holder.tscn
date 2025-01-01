@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctp1ncef3xift"]
+[gd_scene load_steps=15 format=3 uid="uid://ctp1ncef3xift"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
@@ -9,9 +9,12 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_neh1k"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="7_dbbq7"]
 [ext_resource type="Texture2D" uid="uid://bu0dqvc0p3bar" path="res://asset/nindot/lms/icon/PictureFont_Dummy.png" id="8_msi0w"]
+[ext_resource type="PackedScene" uid="uid://c5upu8m5vshym" path="res://scene/editor/world/shine/world_shine_editor.tscn" id="10_ncq3p"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_b5m5i"]
-font = ExtResource("4_neh1k")
+[sub_resource type="FontVariation" id="FontVariation_35sq1"]
+base_font = ExtResource("7_dbbq7")
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+baseline_offset = 0.15
 
 [sub_resource type="LabelSettings" id="LabelSettings_cx7u1"]
 font_size = 14
@@ -28,7 +31,7 @@ func _ready() -> void:
 	custom_arrow_step = -1
 "
 
-[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "SpinIndex")]
+[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("Editor", "LabelShineName", "LabelStageName", "IconType", "IconGrand", "SpinIndex")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 57.0
@@ -36,7 +39,8 @@ grow_horizontal = 2
 theme = ExtResource("1_edytr")
 theme_override_styles/panel = ExtResource("1_vequ3")
 script = ExtResource("3_nii6g")
-LabelShineName = NodePath("Content/Layout/VBox_InfoDisplay/Label_Name")
+Editor = NodePath("Content/ContentEditor")
+LabelShineName = NodePath("Content/Layout/VBox_InfoDisplay/Rich_Name")
 LabelStageName = NodePath("Content/Layout/VBox_InfoDisplay/Label_Stage")
 IconType = NodePath("Content/Layout/Texture_TypeIcon")
 IconGrand = NodePath("Content/Layout/Texture_GrandIcon")
@@ -55,22 +59,27 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_408cb")
 script = ExtResource("1_yop2g")
-dropdown = NodePath("../../VBox_Expand")
+dropdown = NodePath("../../ContentEditor")
 
 [node name="VBox_InfoDisplay" type="VBoxContainer" parent="Content/Layout"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Label_Name" type="Label" parent="Content/Layout/VBox_InfoDisplay"]
+[node name="Rich_Name" type="RichTextLabel" parent="Content/Layout/VBox_InfoDisplay"]
 layout_mode = 2
-text = "ABCDEFG ABCDEFG"
-label_settings = SubResource("LabelSettings_b5m5i")
-text_overrun_behavior = 4
+theme_override_fonts/normal_font = ExtResource("4_neh1k")
+theme_override_fonts/italics_font = SubResource("FontVariation_35sq1")
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
 
 [node name="Label_Stage" type="Label" parent="Content/Layout/VBox_InfoDisplay"]
+auto_translate_mode = 2
 layout_mode = 2
-text = "ABCDEFG"
+text = "ABCDEF"
 label_settings = SubResource("LabelSettings_cx7u1")
 text_overrun_behavior = 4
 
@@ -115,7 +124,7 @@ alignment = 1
 select_all_on_focus = true
 script = SubResource("GDScript_i7wnd")
 
-[node name="VBox_Expand" type="VBoxContainer" parent="Content"]
+[node name="ContentEditor" parent="Content" instance=ExtResource("10_ncq3p")]
 layout_mode = 2
 
 [connection signal="value_changed" from="Content/Layout/Spin_Index" to="." method="OnSpinIndexValueSet"]

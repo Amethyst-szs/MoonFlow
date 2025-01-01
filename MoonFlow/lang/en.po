@@ -2371,6 +2371,10 @@ msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
 msgstr "Open Event Flow Graph Prototype"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
+msgstr "Force C# Runtime Exception"
+
+#: scene/main/main.tscn
 msgid "MAIN_HEADER_MINIMIZE_CURRENT_APP"
 msgstr "Hide App"
 
@@ -2753,6 +2757,18 @@ msgstr "Additional Properties"
 msgctxt "HOME_TAB_EVENT"
 msgid "EVENT_ARCHIVE_EMPTY"
 msgstr "This archive is empty!"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_HEADER"
+msgstr "Stage Name:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
+msgstr "Object ID:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
+msgstr "Unique ID:"
 
 #~ msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 #~ msgstr "Open File"

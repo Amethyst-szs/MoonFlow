@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5upu8m5vshym"]
+
+[ext_resource type="Script" path="res://scene/editor/world/shine/WorldShineEditor.cs" id="1_yi0vg"]
+[ext_resource type="Script" path="res://scene/editor/world/shine/component/OptionStageName.cs" id="2_a2ycu"]
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="2_n8mta"]
+
+[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 121.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_bottom = 6
+script = ExtResource("1_yi0vg")
+OptionStageName = NodePath("Content/Grid_NameId/Option_StageName")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HSep2" type="HSeparator" parent="Content"]
+layout_mode = 2
+
+[node name="Grid_NameId" type="GridContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="Label_StageHead" type="Label" parent="Content/Grid_NameId"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Label_ObjIdHead" type="Label" parent="Content/Grid_NameId"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Option_StageName" type="OptionButton" parent="Content/Grid_NameId"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_n8mta")
+text_overrun_behavior = 3
+script = ExtResource("2_a2ycu")
+
+[node name="Line_ObjId" type="LineEdit" parent="Content/Grid_NameId"]
+layout_mode = 2
+
+[node name="HSep" type="HSeparator" parent="Content"]
+layout_mode = 2
+
+[node name="Grid_UniqueHint" type="GridContainer" parent="Content"]
+layout_mode = 2
+columns = 2
+
+[node name="Label_UniqueIdHead" type="Label" parent="Content/Grid_UniqueHint"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[connection signal="StageSelected" from="Content/Grid_NameId/Option_StageName" to="." method="OnShineStageNameChanged"]

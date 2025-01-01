@@ -63,6 +63,8 @@
 # res://scene/editor/msbp/color/color_editor_element_preview.tscn
 # res://scene/editor/event/node/event_flow_node_common.tscn
 # res://scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
+# res://scene/editor/world/shine/world_shine_editor_holder.tscn
+# res://scene/editor/world/shine/world_shine_editor.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2397,6 +2399,10 @@ msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_HEADER_MINIMIZE_CURRENT_APP"
 msgstr ""
 
@@ -2747,4 +2753,16 @@ msgstr ""
 #: scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
 msgctxt "HOME_TAB_EVENT"
 msgid "EVENT_ARCHIVE_EMPTY"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
 msgstr ""

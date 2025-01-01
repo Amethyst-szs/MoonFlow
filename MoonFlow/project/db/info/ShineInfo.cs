@@ -1,6 +1,7 @@
-using System;
+using System.Numerics;
 
-using YamlDotNet.Serialization;
+using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib;
 
 namespace MoonFlow.Project.Database;
 
@@ -20,5 +21,23 @@ public class ShineInfo
     public bool IsGrand;
     public bool IsMoonRock;
 
-    public System.Numerics.Vector3 Trans = System.Numerics.Vector3.Zero;
+    public Vector3 Trans = Vector3.Zero;
+
+    public MsbtEntry LookupDisplayName()
+    {
+        var msbtHolder = ProjectManager.GetMSBTArchives()?.StageMessage;
+        if (msbtHolder == null)
+            return null;
+
+        if (!msbtHolder.Content.ContainsKey(StageName + ".msbt"))
+            return null;
+        
+        var txtFile = msbtHolder.GetFileMSBT(StageName + ".msbt", new MsbtElementFactory());
+        var label = "ScenarioName_" + ObjId;
+
+        if (!txtFile.IsContainKey(label))
+            return null;
+        
+        return txtFile.GetEntry(label);
+    }
 }
