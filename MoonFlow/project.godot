@@ -180,6 +180,7 @@ pseudolocalization/override=true
 
 [layer_names]
 
+2d_render/layer_2="SphereRender"
 2d_physics/layer_1="GraphSelection"
 2d_physics/layer_2="GraphNode"
 2d_physics/layer_3="GraphPortIn"
@@ -197,3 +198,4 @@ version/update_user="Amethyst-szs"
 version/update_repo="MoonFlow"
 version/update_domain_api="https://api.github.com/repos"
 version/update_domain_api_headers=PackedStringArray("Accept: application/vnd.github+json", "X-GitHub-Api-Version: 2022-11-28")
+general/world_list_shader=true

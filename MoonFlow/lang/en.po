@@ -2536,6 +2536,16 @@ msgstr ""
 "when using the mouse wheel?"
 
 #: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER_TOOLTIP"
+msgstr ""
+"Toggle the spherical earth render in the background of\n"
+"the Kingdom tab on the home page"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER"
+msgstr "Enable Planet Sphere"
+
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_HEADER"
 msgstr "Performance"
 

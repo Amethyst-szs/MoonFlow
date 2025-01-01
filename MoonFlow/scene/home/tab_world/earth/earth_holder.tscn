@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjuty71e2t356"]
+
+[ext_resource type="PackedScene" uid="uid://dv4k4m35f2bxa" path="res://scene/home/tab_world/earth/earth_render_sprite.tscn" id="1_gal0s"]
+
+[node name="EarthHolder" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EarthRenderSprite" parent="." instance=ExtResource("1_gal0s")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -495.0
+offset_top = -833.0
+offset_right = 2577.0
+offset_bottom = -65.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.20944
+scale = Vector2(0.375, 1.5)

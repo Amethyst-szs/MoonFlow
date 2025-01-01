@@ -158,6 +158,18 @@ layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
+[node name="Check_WorldListShader" type="CheckBox" parent="VBox_Visual"]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER_TOOLTIP"
+text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER"
+script = ExtResource("2_ihk7t")
+key = "moonflow/general/world_list_shader"
+
+[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Visual"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
+
 [node name="VBox_Performance" type="VBoxContainer" parent="."]
 layout_mode = 2
 

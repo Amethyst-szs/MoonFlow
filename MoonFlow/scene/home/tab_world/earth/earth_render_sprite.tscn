@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dv4k4m35f2bxa"]
+
+[ext_resource type="Shader" path="res://asset/shader/canvas_item_sphere/earth_globe_render.gdshader" id="1_ipyad"]
+[ext_resource type="Texture2D" path="res://asset/app/spread/earth-nrm.dds" id="2_2vuxf"]
+[ext_resource type="Texture2D" path="res://asset/app/spread/earth-alb.dds" id="3_xathp"]
+[ext_resource type="Script" path="res://scene/home/tab_world/earth/earth_render_sprite.gd" id="4_kk7su"]
+[ext_resource type="Texture2D" uid="uid://bbpa2c84t03qu" path="res://asset/app/spread/white.png" id="5_47w6b"]
+[ext_resource type="Texture2D" uid="uid://cbimotphce4kr" path="res://asset/app/spread/light.png" id="6_sisi7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbd7o"]
+shader = ExtResource("1_ipyad")
+shader_parameter/quaternion = Vector4(0, 0, 0, 1)
+shader_parameter/normal = ExtResource("2_2vuxf")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_g2w6x"]
+diffuse_texture = ExtResource("3_xathp")
+normal_texture = ExtResource("2_2vuxf")
+specular_color = Color(0.0756, 0.25354, 0.42, 1)
+specular_shininess = 0.0
+
+[node name="EarthRenderSprite" type="TextureRect"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("ShaderMaterial_qbd7o")
+scale = Vector2(0.25, 1)
+texture = SubResource("CanvasTexture_g2w6x")
+script = ExtResource("4_kk7su")
+velocity_div = 40000.0
+speed = -0.001
+friction = 0.005
+idle_speed = 0.001
+max_speed = 0.03
+
+[node name="DarknessBase" type="PointLight2D" parent="."]
+position = Vector2(3080, 72)
+scale = Vector2(12, 3)
+energy = 0.23
+blend_mode = 2
+range_item_cull_mask = 2
+texture = ExtResource("5_47w6b")
+texture_scale = 50.0
+metadata/_edit_lock_ = true
+
+[node name="Sunlight" type="PointLight2D" parent="."]
+position = Vector2(164, 155)
+scale = Vector2(4, 1)
+energy = 1.4
+range_item_cull_mask = 2
+texture = ExtResource("6_sisi7")
+texture_scale = 8.0
+height = 640.0
+metadata/_edit_lock_ = true
