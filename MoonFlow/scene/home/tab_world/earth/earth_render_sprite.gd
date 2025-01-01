@@ -2,6 +2,8 @@
 extends TextureRect
 
 var current_rotation := Quaternion(Vector3(1, 0, 0), PI)
+var base_scale := Vector2.ONE
+var base_win_size := Vector2.ONE
 
 @export var velocity_div: float = 1.0
 
@@ -12,8 +14,20 @@ var current_rotation := Quaternion(Vector3(1, 0, 0), PI)
 @export var idle_speed: float = 1.0
 @export var max_speed: float = 1.0
 
-func _ready():
+func _ready() -> void:
+	base_scale = scale
+	base_win_size.x = ProjectSettings.get_setting("display/window/size/viewport_width")
+	base_win_size.y = ProjectSettings.get_setting("display/window/size/viewport_height")
+	
+	get_window().size_changed.connect(_on_window_size_changed)
+	_on_window_size_changed()
+	
 	_update_shader()
+
+func _on_window_size_changed() -> void:
+	var ratio := Vector2(get_window().size) / base_win_size
+	var ratio_max := maxf(ratio.x, ratio.y)
+	scale = base_scale * Vector2(ratio_max, ratio_max)
 
 func _input(event: InputEvent) -> void:
 	if !visible: return

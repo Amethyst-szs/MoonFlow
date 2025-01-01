@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="3_0d0pn"]
 [ext_resource type="StyleBox" uid="uid://dakwxngoo4qdv" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_preview_white.tres" id="3_0x0g4"]
 [ext_resource type="Theme" uid="uid://bgm7xdd8rieur" path="res://asset/theme/common/app_color_swatch_button.tres" id="3_h36ao"]
-[ext_resource type="Shader" path="res://asset/shader/common/color_invert.gdshader" id="4_4qx4e"]
+[ext_resource type="Shader" path="res://asset/shader/common/color_invert_mono.gdshader" id="4_4qx4e"]
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="6_c447u"]
 [ext_resource type="PackedScene" uid="uid://f68g2wbg8gpk" path="res://scene/editor/msbp/color/color_editor_element_preview.tscn" id="8_5bfqn"]
 

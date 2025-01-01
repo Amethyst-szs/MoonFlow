@@ -1372,6 +1372,10 @@ msgstr ""
 msgid "MSBT_SEARCH_ENTRIES"
 msgstr "Search Entries"
 
+#: scene/home/tab_world/tab_world.tscn
+msgid "HOME_TAB_WORLD_HEADER"
+msgstr "Select a Kingdom"
+
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
 msgstr "Kingdom Info:"
@@ -2539,11 +2543,11 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER_TOOLTIP"
 msgstr ""
 "Toggle the spherical earth render in the background of\n"
-"the Kingdom tab on the home page"
+"the Kingdom tab on a project's Home page"
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER"
-msgstr "Enable Planet Sphere"
+msgstr "3D Earth Background"
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_HEADER"

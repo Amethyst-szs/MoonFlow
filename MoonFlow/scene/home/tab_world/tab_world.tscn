@@ -1,16 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://cei1tg8ys1x2u"]
+[gd_scene load_steps=9 format=3 uid="uid://cei1tg8ys1x2u"]
 
 [ext_resource type="Theme" uid="uid://pv7wa46kuqjf" path="res://asset/theme/home/home_tab_world.tres" id="1_but3c"]
 [ext_resource type="Script" path="res://scene/home/tab_world/tab_world.gd" id="2_qshap"]
 [ext_resource type="PackedScene" uid="uid://c53j1q8gs0b1g" path="res://scene/home/tab_world/button_tab_world.tscn" id="2_wiuva"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_sgcac"]
 [ext_resource type="Script" path="res://scene/home/tab_world/WorldList.cs" id="4_hb7y2"]
+[ext_resource type="FontFile" uid="uid://baym28jc275tl" path="res://asset/font/FontHead.ttf" id="6_8f0m7"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_i384y"]
 color = Color(0.988235, 0.792157, 0.27451, 1)
 grow_begin = 250.0
 grow_end = 250.0
 thickness = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_0v056"]
+font = ExtResource("6_8f0m7")
+font_size = 48
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+outline_size = 24
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.415686)
+shadow_offset = Vector2(12, 12)
 
 [node name="TabWorld" type="Control"]
 layout_mode = 3
@@ -67,3 +77,15 @@ size_flags_vertical = 10
 alignment = 1
 script = ExtResource("4_hb7y2")
 ButtonResource = ExtResource("2_wiuva")
+
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+
+[node name="Label_Header" type="Label" parent="Header"]
+layout_mode = 2
+text = "HOME_TAB_WORLD_HEADER"
+label_settings = SubResource("LabelSettings_0v056")

@@ -1412,6 +1412,10 @@ msgstr ""
 msgid "MSBT_SEARCH_ENTRIES"
 msgstr ""
 
+#: scene/home/tab_world/tab_world.tscn
+msgid "HOME_TAB_WORLD_HEADER"
+msgstr ""
+
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
 msgstr ""
