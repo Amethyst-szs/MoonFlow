@@ -2770,6 +2770,27 @@ msgstr "Create a Display Name"
 msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
 msgstr "Edit the Display Name"
 
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
+msgstr "Delete Power Moon Entry"
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr "Are you sure?"
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_OK"
+msgstr "Confirm"
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+"Just checking, you sure you want to remove this power moon from the list?"
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr "Cancel"
+
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
 msgstr ""

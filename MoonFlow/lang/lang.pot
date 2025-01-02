@@ -2767,6 +2767,26 @@ msgstr ""
 msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
 msgstr ""
 
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_OK"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr ""
+
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
 msgstr ""

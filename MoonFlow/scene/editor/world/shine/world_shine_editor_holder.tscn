@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctp1ncef3xift"]
+[gd_scene load_steps=19 format=3 uid="uid://ctp1ncef3xift"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="10_61kdi"]
 [ext_resource type="PackedScene" uid="uid://c5upu8m5vshym" path="res://scene/editor/world/shine/world_shine_editor.tscn" id="10_ncq3p"]
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="11_b6myh"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="12_hwalq"]
+[ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="14_h4xx8"]
 
 [sub_resource type="FontVariation" id="FontVariation_35sq1"]
 base_font = ExtResource("7_dbbq7")
@@ -135,6 +137,13 @@ mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 20
 icon = ExtResource("11_b6myh")
 
+[node name="Button_Delete" type="Button" parent="Content/Layout"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 20
+icon = ExtResource("12_hwalq")
+
 [node name="Spin_Index" type="SpinBox" parent="Content/Layout"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -149,6 +158,19 @@ script = SubResource("GDScript_i7wnd")
 visible = false
 layout_mode = 2
 
+[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_TITLE"
+initial_position = 1
+size = Vector2i(1001, 100)
+ok_button_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_OK"
+dialog_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DESCRIPTION"
+dialog_autowrap = true
+cancel_button_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
+script = ExtResource("14_h4xx8")
+
 [connection signal="pressed" from="Content/Layout/Button_CreateDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
+[connection signal="pressed" from="Content/Layout/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="value_changed" from="Content/Layout/Spin_Index" to="." method="OnSpinIndexValueSet"]
+[connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteShine"]

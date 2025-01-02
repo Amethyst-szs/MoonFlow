@@ -147,6 +147,15 @@ public partial class WorldShineEditorHolder : PanelContainer
 		editor.Editor.UpdateEntrySearch(label);
 	}
 
+	private void OnDeleteShine()
+	{
+		EmitSignal(SignalName.ContentModified);
+		World.ShineList.Remove(Shine);
+
+		GetParent().RemoveChild(this);
+		QueueFree();
+	}
+
 	private void OnVisibilityChanged()
 	{
 		var display = Shine.LookupDisplayName();
