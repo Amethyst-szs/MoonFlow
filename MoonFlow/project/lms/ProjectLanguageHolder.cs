@@ -4,11 +4,14 @@ using System.Linq;
 using Godot;
 
 using Nindot;
+using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Project;
 
-public class ProjectLanguageHolder
+public partial class ProjectLanguageHolder
 {
+    public string LocalPath { get; private set; } = null;
     public string Path { get; private set; } = null;
 
     public SarcFile SystemMessage = null;
@@ -26,8 +29,8 @@ public class ProjectLanguageHolder
     public ProjectLanguageHolder(string projectPath, string lang)
     {
         // Create path to this set of sarc files
-        var localPath = "LocalizedData/" + lang + "/MessageData/";
-        Path = projectPath + localPath;
+        LocalPath = "LocalizedData/" + lang + "/MessageData/";
+        Path = projectPath + LocalPath;
 
         // Ensure directory exists
         Directory.CreateDirectory(Path);
@@ -36,16 +39,16 @@ public class ProjectLanguageHolder
         Metadata = new(Path + ".mfmeta");
 
         // Init all archives from path
-        InitArchive(ref SystemMessage, Path + "SystemMessage.szs", localPath);
-        InitArchive(ref StageMessage, Path + "StageMessage.szs", localPath);
-        InitArchive(ref LayoutMessage, Path + "LayoutMessage.szs", localPath);
+        InitArchive(ref SystemMessage, Path + "SystemMessage.szs");
+        InitArchive(ref StageMessage, Path + "StageMessage.szs");
+        InitArchive(ref LayoutMessage, Path + "LayoutMessage.szs");
 
         InitProjectIconResolver();
 
         GD.Print(string.Format(" - {0} OK", lang));
     }
 
-    private static void InitArchive(ref SarcFile file, string filePath, string localPath)
+    private void InitArchive(ref SarcFile file, string filePath)
     {
         // If a file does not exist at this directory, copy from romfs accessor
         if (!File.Exists(filePath))
@@ -53,7 +56,7 @@ public class ProjectLanguageHolder
             if (!RomfsAccessor.TryGetRomfsDirectory(out string romfs))
                 throw new RomfsAccessException("Cannot clone msbt archive from romfs!");
 
-            var romfsFilePath = romfs + localPath + filePath.Split(['/', '\\']).Last();
+            var romfsFilePath = romfs + LocalPath + filePath.Split(['/', '\\']).Last();
             if (!File.Exists(romfsFilePath))
                 throw new RomfsAccessException("Romfs does not contain " + romfsFilePath);
 
@@ -107,5 +110,10 @@ public class ProjectLanguageHolder
             
             _ => throw new Exception("Unknown file name: " + name),
         };
+    }
+
+    public bool IsMetadataOnDisk()
+    {
+        return File.Exists(Path + ".mfmeta");
     }
 }

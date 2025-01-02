@@ -11,6 +11,7 @@ public partial class ProjectConfig : ProjectConfigFileBase
     {
         public RomfsValidation.RomfsVersion Version = RomfsValidation.RomfsVersion.INVALID_VERSION;
         public string DefaultLanguage = "USen";
+        public bool IsFirstBoot = true;
         public bool IsDebugProject = false;
 
         // EventFlow graph info

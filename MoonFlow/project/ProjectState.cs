@@ -62,11 +62,42 @@ public class ProjectState(string path, ProjectConfig config)
         EventArcHolder = new(Path, loadScreen);
 
         // Complete Initilization
+        if (Config.Data.IsFirstBoot)
+        {
+            InitProjectFirstOpen(loadScreen);
+
+            Config.Data.IsFirstBoot = false;
+            Config.WriteFile();
+        }
+        
         loadScreen.LoadingComplete();
         StartupTask = null;
         
         GD.Print("Project initilization successful");
         IsInitComplete = true;
+    }
+
+    public void InitProjectFirstOpen(ProjectLoading loadScreen)
+    {
+        // Build metadata table for MSBT files
+        int progress = 0;
+        foreach (var lang in MsgStudioText)
+        {
+            // Skip if metadata is already on disk for language
+            if (lang.Value.IsMetadataOnDisk())
+            {
+                progress++;
+                continue;
+            }
+            
+            // Update loading screen with percentage
+            float percent = (float)progress / MsgStudioText.Count * 100F;
+            loadScreen?.LoadingUpdateProgress("LOAD_FIRST_BOOT_METADATA_BUILDER", string.Format("{0:0}%", percent));
+
+            // Run table builder
+            lang.Value.BuildMetadataTableForInit();
+            progress++;
+        }
     }
 
     public bool IsReady() { return IsInitComplete; }

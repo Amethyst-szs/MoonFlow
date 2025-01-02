@@ -1696,6 +1696,11 @@ msgstr ""
 
 #: scene/front_door/load/loading_message_text.tres
 msgctxt "PROJECT_LOADING"
+msgid "LOAD_FIRST_BOOT_METADATA_BUILDER"
+msgstr ""
+
+#: scene/front_door/load/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr ""
 
