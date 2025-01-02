@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctp1ncef3xift"]
+[gd_scene load_steps=17 format=3 uid="uid://ctp1ncef3xift"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
@@ -9,7 +9,9 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_neh1k"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="7_dbbq7"]
 [ext_resource type="Texture2D" uid="uid://bu0dqvc0p3bar" path="res://asset/nindot/lms/icon/PictureFont_Dummy.png" id="8_msi0w"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="10_61kdi"]
 [ext_resource type="PackedScene" uid="uid://c5upu8m5vshym" path="res://scene/editor/world/shine/world_shine_editor.tscn" id="10_ncq3p"]
+[ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="11_b6myh"]
 
 [sub_resource type="FontVariation" id="FontVariation_35sq1"]
 base_font = ExtResource("7_dbbq7")
@@ -31,7 +33,7 @@ func _ready() -> void:
 	custom_arrow_step = -1
 "
 
-[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("Editor", "LabelShineName", "LabelStageName", "IconType", "IconGrand", "SpinIndex")]
+[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("Editor", "LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "SpinIndex")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 57.0
@@ -44,6 +46,8 @@ LabelShineName = NodePath("Content/Layout/VBox_InfoDisplay/Rich_Name")
 LabelStageName = NodePath("Content/Layout/VBox_InfoDisplay/Label_Stage")
 IconType = NodePath("Content/Layout/Texture_TypeIcon")
 IconGrand = NodePath("Content/Layout/Texture_GrandIcon")
+ButtonCreateDisplayName = NodePath("Content/Layout/Button_CreateDisplayName")
+ButtonOpenDisplayName = NodePath("Content/Layout/Button_OpenDisplayName")
 SpinIndex = NodePath("Content/Layout/Spin_Index")
 
 [node name="Content" type="VBoxContainer" parent="."]
@@ -117,6 +121,20 @@ text = "3"
 label_settings = SubResource("LabelSettings_q0u7j")
 horizontal_alignment = 1
 
+[node name="Button_CreateDisplayName" type="Button" parent="Content/Layout"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_CREATE"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 20
+icon = ExtResource("10_61kdi")
+
+[node name="Button_OpenDisplayName" type="Button" parent="Content/Layout"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 20
+icon = ExtResource("11_b6myh")
+
 [node name="Spin_Index" type="SpinBox" parent="Content/Layout"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -128,6 +146,9 @@ select_all_on_focus = true
 script = SubResource("GDScript_i7wnd")
 
 [node name="ContentEditor" parent="Content" instance=ExtResource("10_ncq3p")]
+visible = false
 layout_mode = 2
 
+[connection signal="pressed" from="Content/Layout/Button_CreateDisplayName" to="." method="OnOpenDisplayNameMsbt"]
+[connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="value_changed" from="Content/Layout/Spin_Index" to="." method="OnSpinIndexValueSet"]

@@ -2762,6 +2762,14 @@ msgstr "This archive is empty!"
 msgid "WORLD_EDITOR_SHINE_EDITOR_ICON_GRAND_TOOLTIP"
 msgstr "Multi-Moon"
 
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_CREATE"
+msgstr "Create a Display Name"
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
+msgstr "Edit the Display Name"
+
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
 msgstr ""

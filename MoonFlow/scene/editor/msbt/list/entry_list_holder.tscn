@@ -37,10 +37,11 @@ keycode = 4194332
 [sub_resource type="Shortcut" id="Shortcut_ysvcm"]
 events = [SubResource("InputEventKey_hdlgh")]
 
-[node name="EntryListHolder" type="VBoxContainer"]
+[node name="EntryListHolder" type="VBoxContainer" node_paths=PackedStringArray("SearchBoxLine")]
 size_flags_horizontal = 3
 theme = ExtResource("1_e4ni0")
 script = ExtResource("1_q1mta")
+SearchBoxLine = NodePath("Controls/VBox/Line_Search")
 
 [node name="HSep" type="HSeparator" parent="."]
 layout_mode = 2

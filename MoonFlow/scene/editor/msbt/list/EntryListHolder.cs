@@ -8,6 +8,9 @@ public partial class EntryListHolder : VBoxContainer
 	public MsbtEditor Editor { get; private set; } = null;
 	public EntryListBase EntryList { get; private set; } = null;
 
+	[Export]
+	public LineEdit SearchBoxLine { get; private set; } = null;
+
 	private static readonly GDScript SmoothScroll
 		= GD.Load<GDScript>("res://addons/SmoothScroll/SmoothScrollContainer.gd");
 

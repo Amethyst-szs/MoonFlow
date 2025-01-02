@@ -304,7 +304,7 @@ public partial class MsbtEditor : PanelContainer
 		FileEntryName.Text = label;
 	}
 
-	private void OnAddEntryNameSubmitted(string name)
+	public void OnAddEntryNameSubmitted(string name)
 	{
 		foreach (var file in FileList.Values)
 			file.AddEntry(name);
@@ -392,8 +392,12 @@ public partial class MsbtEditor : PanelContainer
 	}
 
 	public void ForceResetModifiedFlag() { IsModified = false; }
-	public void UpdateEntrySearch(string str) { EntryList.UpdateSearch(str); }
 	public void SetSelection(string str) { EntryList.SetSelection(str, false); }
+	public void UpdateEntrySearch(string str)
+	{
+		EntryListHolder.SearchBoxLine.Text = str;
+		EntryList.UpdateSearch(str);
+	}
 
 	private void FixMissingEntryKeys(SarcMsbtFile source)
 	{

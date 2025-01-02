@@ -2759,6 +2759,14 @@ msgstr ""
 msgid "WORLD_EDITOR_SHINE_EDITOR_ICON_GRAND_TOOLTIP"
 msgstr ""
 
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_CREATE"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
+msgstr ""
+
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
 msgstr ""

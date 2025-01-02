@@ -2,9 +2,12 @@ using Godot;
 using System;
 
 using Nindot.LMS.Msbt;
+using Nindot.LMS.Msbt.TagLib;
+
 using MoonFlow.Project.Database;
 using MoonFlow.Project;
 using MoonFlow.Ext;
+using MoonFlow.Scene.EditorMsbt;
 
 namespace MoonFlow.Scene.EditorWorld;
 
@@ -22,10 +25,17 @@ public partial class WorldShineEditorHolder : PanelContainer
 	private RichTextLabel LabelShineName;
 	[Export]
 	private Label LabelStageName;
+
 	[Export]
 	private TextureRect IconType;
 	[Export]
 	private TextureRect IconGrand;
+
+	[Export]
+	private Button ButtonCreateDisplayName;
+	[Export]
+	private Button ButtonOpenDisplayName;
+
 	[Export]
 	private SpinBox SpinIndex;
 
@@ -44,6 +54,7 @@ public partial class WorldShineEditorHolder : PanelContainer
         ParentScroll = this.FindParentByType<ScrollContainer>();
 
 		Editor.Connect(WorldShineEditor.SignalName.ContentModified, Callable.From(OnEditorModifiedContent));
+		Editor.Connect(SignalName.VisibilityChanged, Callable.From(OnVisibilityChanged));
     }
 
     public void SetupShineEditor(WorldInfo world, ShineInfo shine, MsbtEntry displayName, int idx)
@@ -53,17 +64,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 		Shine = shine;
 
 		// Setup visual display
-		LabelShineName.Text = string.Empty;
-
-		if (displayName != null)
-		{
-			LabelShineName.AddText(displayName.GetRawText());
-			LabelShineName.PushItalics();
-			LabelShineName.PushColor(Colors.Gray);
-		}
-
-		LabelShineName.AddText(string.Format(" ({0})", shine.ObjId));
-
+		UpdateDisplayName(displayName?.GetRawText());
 		LabelStageName.Text = shine.StageName;
 
 		// Setup type icons
@@ -72,6 +73,26 @@ public partial class WorldShineEditorHolder : PanelContainer
 		else IconType.Texture = null;
 
 		IconGrand.Visible = shine.IsGrand;
+
+		// Setup display name buttons
+		var msbtHolder = ProjectManager.GetMSBTArchives()?.StageMessage
+        ?? throw new NullReferenceException("Could not access msbt archives!");
+
+		if (displayName != null)
+		{
+			ButtonCreateDisplayName.Hide();
+			ButtonOpenDisplayName.Show();
+		}
+		else if (msbtHolder.Content.ContainsKey(shine.StageName + ".msbt"))
+		{
+			ButtonCreateDisplayName.Show();
+			ButtonOpenDisplayName.Hide();
+		}
+		else
+		{
+			ButtonCreateDisplayName.Hide();
+			ButtonOpenDisplayName.Hide();
+		}
 
 		// Setup index spinner
 		SpinIndex.MinValue = 0;
@@ -97,6 +118,41 @@ public partial class WorldShineEditorHolder : PanelContainer
 		EmitSignal(SignalName.ContentModified);
 	}
 
+	private async void OnOpenDisplayNameMsbt()
+	{
+		// Access msbt holder
+		var msbtHolder = ProjectManager.GetMSBTArchives()?.StageMessage
+        ?? throw new NullReferenceException("Could not access msbt archives!");
+
+		// If msbt holder doesn't contain msbt file, cancel
+		var file = Shine.StageName + ".msbt";
+		var label = "ScenarioName_" + Shine.ObjId;
+
+		if (!msbtHolder.Content.ContainsKey(file))
+			return;
+		
+		// Check if the requested shine label exists
+		MsbtAppHolder editor;
+		if (msbtHolder.GetFileMSBT(file, new MsbtElementFactory()).IsContainKey(label))
+		{
+			editor = MsbtAppHolder.OpenAppWithSearch("StageMessage.szs", file, label);
+			editor.Editor.SetSelection(label);
+			return;
+		}
+
+		editor = MsbtAppHolder.OpenApp("StageMessage.szs", file);
+		await ToSignal(Engine.GetMainLoop(), "process_frame");
+		
+		editor.Editor.OnAddEntryNameSubmitted(label);
+		editor.Editor.UpdateEntrySearch(label);
+	}
+
+	private void OnVisibilityChanged()
+	{
+		var display = Shine.LookupDisplayName();
+		UpdateDisplayName(display?.GetRawText());
+	}
+
 	#endregion
 
 	#region Utility
@@ -107,6 +163,20 @@ public partial class WorldShineEditorHolder : PanelContainer
 		SetupShineEditor(World, Shine, display, World.ShineList.IndexOf(Shine));
 
 		EmitSignal(SignalName.ContentModified);
+	}
+
+	private void UpdateDisplayName(string displayName)
+	{
+		LabelShineName.Text = string.Empty;
+
+		if (displayName != null)
+		{
+			LabelShineName.AddText(displayName);
+			LabelShineName.PushItalics();
+			LabelShineName.PushColor(Colors.Gray);
+		}
+
+		LabelShineName.AddText(string.Format(" ({0})", Shine.ObjId));
 	}
 
 	public void UpdateShineIndex()
