@@ -1,4 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://b2d1f54edqxpw"]
 
 [resource]
+GridContainer/constants/h_separation = 12
+GridContainer/constants/v_separation = 12
 HBoxContainer/constants/separation = 12

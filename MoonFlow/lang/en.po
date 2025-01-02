@@ -2758,9 +2758,25 @@ msgctxt "HOME_TAB_EVENT"
 msgid "EVENT_ARCHIVE_EMPTY"
 msgstr "This archive is empty!"
 
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_ICON_GRAND_TOOLTIP"
+msgstr "Multi-Moon"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
+msgstr ""
+"Which stage is this moon collected in? Also used\n"
+"as the source file for the moon's display name."
+
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_HEADER"
 msgstr "Stage Name:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_TOOLTIP"
+msgstr ""
+"Object ID of the Power Moon actor. Used in the label\n"
+"lookup for the display name."
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
@@ -2771,12 +2787,33 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
 msgstr "objID"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_TOOLTIP"
+msgstr ""
+"Unique number identifying this Power Moon, used to track\n"
+"game progression and what has been obtained."
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
 msgstr "Unique ID:"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_TOOLTIP"
+msgstr ""
+"Unique number identifying this Power Moon, but only local\n"
+"to this one specific kingdom. Used by Hint Toad, Talkatoo, and\n"
+"other hint mechanics."
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_HEADER"
 msgstr "Hint ID:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_TOOLTIP"
+msgstr "What type of Power Moon is this?"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_HEADER"
+msgstr "Power Moon Type:"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_AUTO_BUTTON_TOOLTIP"
@@ -2799,6 +2836,40 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_DUPLICATE_WARNING_TOOLTIP"
 msgstr ""
 "This Hint ID is not unique! For Hint Toad, Talkatoo, and other\n"
 "forms of hints to function correctly, please re-assign this ID!"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_GRAND_TOOLTIP"
+msgstr "Multi-Moon"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_MOONROCK_TOOLTIP"
+msgstr "Post-game Moon Rock"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_ACHIEVEMENT_TOOLTIP"
+msgstr "Toadette Achievement"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_TOOLTIP"
+msgstr ""
+"Which story quest objective ID is assigned to this Power Moon?\n"
+"Can only be assigned to one quest at a time, and is only\n"
+"applicable to Story Moons or Multi Moons."
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_HEADER"
+msgstr "Story Quest:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_TOOLTIP"
+msgstr "Which scenarios can this Power Moon collected in?"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
+msgstr "Valid Scenarios:"
+
+#~ msgid "WORLD_EDITOR_SHINE_EDITOR_MAIN_SCENARIO_HEADER"
+#~ msgstr "Story Scenario:"
 
 #~ msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 #~ msgstr "Open File"

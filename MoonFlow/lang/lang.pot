@@ -2755,8 +2755,20 @@ msgctxt "HOME_TAB_EVENT"
 msgid "EVENT_ARCHIVE_EMPTY"
 msgstr ""
 
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_ICON_GRAND_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
+msgstr ""
+
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_TOOLTIP"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
@@ -2768,11 +2780,27 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_HEADER"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
@@ -2789,4 +2817,32 @@ msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_DUPLICATE_WARNING_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_GRAND_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_MOONROCK_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_ACHIEVEMENT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
 msgstr ""
