@@ -197,8 +197,8 @@ public partial class MsbtEditor : PanelContainer
 		LanguagePicker.SetGameVersion(projConfig.Version);
 
 		// If any language is missing entry keys, add them
-		foreach (var source in FileList.Values)
-			FixMissingEntryKeys(source);
+		foreach (var target in FileList.Values)
+			FixMissingOrExtraEntryKeys(defaultMsbt, target);
 
 		InitEditor();
 	}
@@ -258,6 +258,9 @@ public partial class MsbtEditor : PanelContainer
 
 				// If the default language entry was modified, replace this language's entry
 				var entryDL = fileDL.GetEntry(entryLabel);
+				if (entryDL == null)
+					continue;
+				
 				if (entryDL.IsModified)
 				{
 					var newEntry = entryDL.CloneDeep();
@@ -399,17 +402,25 @@ public partial class MsbtEditor : PanelContainer
 		EntryList.UpdateSearch(str);
 	}
 
-	private void FixMissingEntryKeys(SarcMsbtFile source)
+	private static void FixMissingOrExtraEntryKeys(SarcMsbtFile source, SarcMsbtFile target)
 	{
+		if (source == target)
+			return;
+		
 		foreach (var label in source.GetEntryLabels())
 		{
-			foreach (var target in FileList.Values)
-			{
-				if (target.IsContainKey(label))
-					continue;
-				
-				target.AddEntry(label, source.GetEntry(label).CloneDeep());
-			}
+			if (target.IsContainKey(label))
+				continue;
+			
+			target.AddEntry(label, source.GetEntry(label).CloneDeep());
+		}
+
+		foreach (var label in target.GetEntryLabels())
+		{
+			if (source.IsContainKey(label))
+				continue;
+			
+			target.RemoveEntry(label);
 		}
 	}
 

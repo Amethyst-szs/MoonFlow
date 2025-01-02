@@ -189,7 +189,7 @@ public partial class TabMsbt : HSplitContainer
 		var meta = ProjectManager.GetMSBTMetaHolder();
 		if (meta == null)
 			return;
-		
+
 		var t = meta.GetLastModifiedTime(archive, key);
 		bool isEpoch = t.ToFileTimeUtc() == DateTime.UnixEpoch.ToFileTimeUtc();
 
@@ -222,9 +222,7 @@ public partial class TabMsbt : HSplitContainer
 		if (archive.Name == "StageMessage.szs")
 		{
 			var world = ProjectManager.GetDB().GetWorldInfoByStageName(key);
-			if (world == null)
-				GD.PushWarning("Stage does not exist in WorldList!");
-			else
+			if (world != null)
 				usage = world.WorldName;
 		}
 
@@ -277,10 +275,10 @@ public partial class TabMsbt : HSplitContainer
 	{
 		var oldSelection = SelectedFile;
 		var oldScroll = FileListRoot.ScrollVertical;
-		
+
 		if (isRunReady)
 			_Ready();
-		
+
 		FileListRoot.SetDeferred(ScrollContainer.PropertyName.ScrollVertical, oldScroll);
 
 		if (oldSelection == null)
@@ -296,7 +294,7 @@ public partial class TabMsbt : HSplitContainer
 		var meta = ProjectManager.GetMSBTMetaHolder();
 		if (meta == null)
 			return;
-		
+
 		var t = meta.GetLastModifiedTime(file, key);
 		bool isEpoch = t.ToFileTimeUtc() == DateTime.UnixEpoch.ToFileTimeUtc();
 
