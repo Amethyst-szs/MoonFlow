@@ -88,6 +88,7 @@ public class BlockAttributeLists(byte[] data, string listingName, int offset, Ms
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("WARNING: Writing attribute list blocks is currently experimental! The output MSBP may not be functional!");
+        Console.ForegroundColor = ConsoleColor.Gray;
 
         stream.Write((uint)Lists.Count);
 

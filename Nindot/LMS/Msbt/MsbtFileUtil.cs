@@ -63,10 +63,8 @@ public partial class MsbtFile : FileBase
     }
     public MsbtEntry GetEntry(string label)
     {
-        if (!Content.ContainsKey(label))
-            return null;
-
-        return Content[label];
+        Content.TryGetValue(label, out MsbtEntry entry);
+        return entry;
     }
     public int GetEntryIndex(string label)
     {

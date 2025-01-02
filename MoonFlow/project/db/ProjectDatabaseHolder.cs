@@ -97,7 +97,10 @@ public class ProjectDatabaseHolder
             var key = "WorldName_" + world.WorldName;
             var entry = msbt.GetEntry(key);
 
-            world.Display = entry.GetRawText();
+            if (entry != null)
+                world.Display = entry.GetRawText();
+            else
+                world.Display = world.WorldName;
         }
     }
 

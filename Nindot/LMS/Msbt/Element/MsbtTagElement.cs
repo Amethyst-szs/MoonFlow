@@ -2,9 +2,8 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Text;
-
 using CommunityToolkit.HighPerformance;
-using Nindot.Al.SMO;
+
 using Nindot.LMS.Msbp;
 
 namespace Nindot.LMS.Msbt.TagLib;
@@ -77,15 +76,15 @@ public abstract class MsbtTagElement : MsbtBaseElement
     public override bool IsTagClose() { return false; }
     public override bool IsPageBreak() { return false; }
 
-    public string GetTagNameInProject(Msbp.MsbpFile project)
+    public string GetTagNameInProject(MsbpFile project)
     {
-        Msbp.TagGroupInfo group = project.TagGroup_Get(GroupName);
+        TagGroupInfo group = project.TagGroup_Get(GroupName);
         if (group == null || group.ListingIndexList.Count <= TagName)
             return null;
         
         int tagBlockIdx = group.ListingIndexList[TagName];
 
-        Msbp.TagInfo tag = project.Tag_Get(tagBlockIdx);
+        TagInfo tag = project.Tag_Get(tagBlockIdx);
         if (tag == null)
             return null;
         
@@ -132,6 +131,16 @@ public abstract class MsbtTagElementWithTextData : MsbtTagElement
 
         // Convert buffer segment to string
         int endPointer = pointer + length;
+        if (endPointer >= buffer.Length)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("WARNING: Ran into an invalid MSBT text tag. String will be empty.");
+            Console.ForegroundColor = ConsoleColor.Gray;
+
+            Text = "";
+            return false;
+        }
+
         Text = Encoding.Unicode.GetString(buffer[pointer..endPointer]);
 
         pointer = endPointer;
