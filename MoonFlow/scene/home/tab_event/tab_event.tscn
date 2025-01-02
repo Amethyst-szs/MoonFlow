@@ -333,6 +333,7 @@ label_settings = SubResource("LabelSettings_d4vbl")
 [node name="Button_Copy" type="Button" parent="Info/VBox/VBox_EventInfo/DebugHash/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "HOME_TAB_COPY_DEBUG_HASH"
 
 [node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]

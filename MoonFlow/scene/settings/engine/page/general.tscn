@@ -141,6 +141,7 @@ text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_TASKBAR_SIZE_HEADER"
 [node name="Slider_TaskbarSize" type="HSlider" parent="VBox_Visual" node_paths=PackedStringArray("label")]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+mouse_default_cursor_shape = 10
 theme = ExtResource("3_8w1c2")
 min_value = 25.0
 max_value = 50.0
@@ -161,6 +162,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 [node name="Check_WorldListShader" type="CheckBox" parent="VBox_Visual"]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER_TOOLTIP"
+mouse_default_cursor_shape = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER"
 script = ExtResource("2_ihk7t")
 key = "moonflow/general/world_list_shader"
@@ -201,6 +203,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_gn66n")
 [node name="Check_VSync" type="CheckBox" parent="VBox_Performance"]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_TOOLTIP"
+mouse_default_cursor_shape = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC"
 script = ExtResource("2_ihk7t")
 key = "display/window/vsync/vsync_mode"

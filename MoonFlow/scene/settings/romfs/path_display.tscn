@@ -56,6 +56,7 @@ text_overrun_behavior = 3
 [node name="Button_Delete" type="Button" parent="."]
 layout_mode = 2
 tooltip_text = "ROMFS_ACCESSOR_CONFIG_DELETE_PATH_BUTTON_TOOLTIP"
+mouse_default_cursor_shape = 2
 theme = ExtResource("4_4c36o")
 icon = ExtResource("4_22wqa")
 

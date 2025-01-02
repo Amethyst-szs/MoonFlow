@@ -26,5 +26,5 @@ offset_bottom = 233.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = 0.20944
-scale = Vector2(0.375, 1.5)
+scale = Vector2(0.625, 2.5)
 pivot_offset = Vector2(1536, 384)

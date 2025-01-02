@@ -12,4 +12,8 @@ func _pressed() -> void:
 		if child is CanvasItem:
 			child.hide()
 	
+	for button in get_parent().get_children():
+		if button is Button:
+			button.set_pressed_no_signal(button == self)
+	
 	target.show()

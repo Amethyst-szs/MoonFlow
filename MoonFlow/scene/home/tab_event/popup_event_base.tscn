@@ -43,6 +43,7 @@ script = ExtResource("4_eadkk")
 [node name="Button_Submit" type="Button" parent="Content/VBox"]
 layout_mode = 2
 size_flags_vertical = 10
+mouse_default_cursor_shape = 2
 text = "HOME_TAB_POPUP_SUBMIT"
 
 [connection signal="text_submitted" from="Content/VBox/Line_FileName" to="." method="_on_submit" unbinds=1]

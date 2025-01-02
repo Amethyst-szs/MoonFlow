@@ -177,6 +177,7 @@ layout_mode = 2
 
 [node name="Button_MsbpColors" type="Button" parent="FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
 icon = ExtResource("6_pbk2q")
 alignment = 0
@@ -368,6 +369,7 @@ label_settings = SubResource("LabelSettings_7ddx3")
 [node name="Button_Copy" type="Button" parent="Info/VBox/VBox_Stats/DebugHash/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "HOME_TAB_COPY_DEBUG_HASH"
 
 [node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]

@@ -22,6 +22,7 @@ public partial class TaskbarButton : Button
 		TooltipText = app.AppTaskbarTitle;
 		Icon = app.AppIcon;
 
+		MouseDefaultCursorShape = CursorShape.PointingHand;
 		ButtonMask |= MouseButtonMask.Middle;
 		ActionMode = ActionModeEnum.Press;
 		ToggleMode = true;

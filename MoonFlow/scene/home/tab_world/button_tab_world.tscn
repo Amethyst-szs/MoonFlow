@@ -31,6 +31,7 @@ offset_right = 178.48
 offset_bottom = 30.5
 grow_vertical = 2
 rotation = -0.959931
+mouse_default_cursor_shape = 2
 alignment = 0
 
 [node name="Panel_Circle" type="Panel" parent="."]

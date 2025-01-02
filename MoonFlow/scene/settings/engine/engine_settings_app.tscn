@@ -84,6 +84,8 @@ layout_mode = 2
 
 [node name="Button_General" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
 text = "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 text_overrun_behavior = 3
 script = ExtResource("4_ombcx")
@@ -92,6 +94,8 @@ is_default_page = true
 
 [node name="Button_Graph" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
 text = "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 text_overrun_behavior = 3
 script = ExtResource("4_ombcx")
@@ -104,6 +108,7 @@ size_flags_vertical = 10
 [node name="Button_Exit" type="Button" parent="Content/HSplit/Category/Content"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 icon = ExtResource("4_d1iky")
 text_overrun_behavior = 3
