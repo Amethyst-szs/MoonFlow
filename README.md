@@ -1,4 +1,3 @@
-# Nindot
-## A Nintendo file format parser and writer for Godot Engine C#
+# Super Mario Odyssey : MoonFlow
 
-Readme is a work-in-progress, just like the rest of the project!
+![Banner of the MoonFlow logo against the Earth, Moon, and Sun](banner_render.jpg)
