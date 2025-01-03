@@ -4,7 +4,6 @@ var resource_path: String:
 	get: return resource_path
 	set(value):
 		resource_path = value
-		resource_changed.emit(value, local_path)
 
 var local_path: String:
 	get: return resource_path.trim_prefix(local_path_base)
@@ -16,10 +15,11 @@ static var remote_prefix: String = EngineSettings.get_setting(
 	"moonflow/wiki/remote_source", ""
 )
 
-signal resource_changed(path: String, local_path: String)
+signal hyperlink_changed_resource(path: String)
 
 func setup_app(path: String) -> void:
-	resource_path = path
+	if resource_path != path:
+		resource_path = path
 	
 	if !FileAccess.file_exists(path):
 		push_warning("Documentation file doesn't exist! ", path)
@@ -53,9 +53,18 @@ func _on_link(url: String) -> void:
 	var file: String = base
 	if !file.ends_with(".md"): file += ".md"
 	
-	if FileAccess.file_exists(local_path_base + file):
-		resource_path = local_path_base + file
-		display_file(resource_path)
+	var file_path: String = local_path_base + file
+	var is_exist: bool = FileAccess.file_exists(file_path)
+	
+	if !is_exist:
+		var local := local_path.left(local_path.rfind('/')) + '/'
+		
+		file_path = local_path_base + local + file
+		is_exist = FileAccess.file_exists(file_path)
+	
+	if is_exist:
+		resource_path = file_path
+		hyperlink_changed_resource.emit(resource_path)
 		scroll_to_line(0)
 		
 		# Attempt a header jump on the newly opened file

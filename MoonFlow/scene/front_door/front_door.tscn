@@ -21,10 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="14_mr0wr"]
 [ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="15_h6jnw"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="15_xr5ea"]
-[ext_resource type="Texture2D" uid="uid://blbojtkhi5w7v" path="res://asset/app/icon/wiki.png" id="15_yjbjl"]
 [ext_resource type="Script" path="res://scene/common/wiki/WikiAccessButton.cs" id="16_06dea"]
 [ext_resource type="Script" path="res://version/button_update.gd" id="16_8ntwn"]
 [ext_resource type="Script" path="res://scene/common/option/LangPicker.cs" id="16_qq0jv"]
+[ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="17_wxtt3"]
 [ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="17_yn102"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
@@ -197,14 +197,6 @@ layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 icon = ExtResource("10_sqwg3")
 
-[node name="Button_OpenWiki" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
-layout_mode = 2
-tooltip_text = "FRONT_DOOR_BUTTON_TOOLTIP_WIKI"
-icon = ExtResource("15_yjbjl")
-script = ExtResource("16_06dea")
-WikiPath = "res://docs/example.md"
-WikiLocalPath = "example.md"
-
 [node name="Button_Contributors" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
@@ -230,9 +222,11 @@ autowrap_mode = 3
 script = ExtResource("9_mpvuk")
 
 [node name="VSep" type="VSeparator" parent="Content/Quickbar_Content"]
+visible = false
 layout_mode = 2
 
 [node name="NewProject" type="PanelContainer" parent="Content/Quickbar_Content"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("13_npgqm")
@@ -353,6 +347,23 @@ text = "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
+[node name="Side_Content" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="WikiAccess" type="Button" parent="Content/Side_Content"]
+self_modulate = Color(1, 1, 1, 0.929412)
+layout_mode = 2
+size_flags_vertical = 8
+tooltip_text = "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
+theme_override_constants/icon_max_width = 28
+theme_override_font_sizes/font_size = 14
+text = "FRONT_DOOR_WIKI_ACCESS_BUTTON"
+icon = ExtResource("17_wxtt3")
+script = ExtResource("16_06dea")
+WikiPath = "res://docs/front_door.md"
+WikiLocalPath = "front_door.md"
+
 [node name="DotPlayable" type="Control" parent="."]
 z_index = 3
 layout_mode = 1
@@ -373,14 +384,18 @@ mouse_filter = 1
 [node name="Label_Debug" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.99
-anchor_top = 0.99
-anchor_right = 0.99
-anchor_bottom = 0.99
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -16.0
+offset_right = -16.0
+offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
-size_flags_vertical = 8
+size_flags_vertical = 10
 label_settings = SubResource("LabelSettings_8xr1l")
 horizontal_alignment = 2
 vertical_alignment = 2

@@ -66,8 +66,10 @@ public partial class WikiAccessButton : Button
 			return;
 		}
 
-		app.SetupWikiApp(wiki + WikiLocalPath, WikiLocalPath);
+		app.SetResource(wiki + WikiLocalPath, WikiLocalPath);
 		sceneRoot.NodeApps.AddChild(app);
+		
+		app.SetupWikiApp();
     }
 
     #region Utility

@@ -69,6 +69,7 @@
 # res://scene/settings/engine/page/keybind.tscn
 # res://scene/common/wiki/wiki_button_tooltip_text_bank.tres
 # res://scene/app/components/dialog_unsaved_changes.tscn
+# res://scene/common/wiki/app_local_wiki_viewer.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -208,6 +209,14 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
@@ -3043,4 +3052,12 @@ msgstr ""
 
 #: scene/app/components/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
+msgstr ""
+
+#: scene/common/wiki/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_BROWSE_HEADER"
+msgstr ""
+
+#: scene/common/wiki/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_OPEN_IN_BROWSER"
 msgstr ""

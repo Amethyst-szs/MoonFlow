@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://dbung3qmbw5gp"]
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://dbung3qmbw5gp"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_rr64a"]
 [ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_5axl7"]
@@ -49,6 +49,26 @@ color = Color(1, 0.737255, 0.258824, 0.713726)
 grow_begin = -12.0
 grow_end = -12.0
 thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2s5b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wcnh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmi7r"]
+bg_color = Color(0.135, 0.23675, 0.3, 0.54902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi4dp"]
+bg_color = Color(0.137255, 0.239216, 0.301961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_o0anw"]
 color = Color(1, 0.737255, 0.258824, 0.713726)
@@ -103,6 +123,20 @@ RichTextLabel/fonts/normal_font = ExtResource("1_rr64a")
 ScrollContainer/styles/panel = ExtResource("8_pimjq")
 TooltipLabel/fonts/font = ExtResource("1_rr64a")
 TooltipPanel/styles/panel = ExtResource("7_s72yq")
+Tree/colors/font_color = Color(1, 1, 1, 1)
+Tree/colors/font_selected_color = Color(0.988235, 0.792157, 0.27451, 1)
+Tree/colors/guide_color = Color(0.135, 0.23675, 0.3, 0.823529)
+Tree/colors/relationship_line_color = Color(0.135, 0.23675, 0.3, 0.466667)
+Tree/constants/draw_guides = 1
+Tree/constants/draw_relationship_lines = 1
+Tree/constants/item_margin = 15
+Tree/constants/scrollbar_h_separation = 12
+Tree/constants/v_separation = 8
+Tree/fonts/font = ExtResource("1_rr64a")
+Tree/styles/focus = SubResource("StyleBoxEmpty_u2s5b")
+Tree/styles/panel = SubResource("StyleBoxEmpty_8wcnh")
+Tree/styles/selected = SubResource("StyleBoxFlat_bmi7r")
+Tree/styles/selected_focus = SubResource("StyleBoxFlat_qi4dp")
 VScrollBar/styles/grabber = ExtResource("10_3funn")
 VScrollBar/styles/grabber_highlight = ExtResource("11_alnlw")
 VScrollBar/styles/grabber_pressed = ExtResource("12_l7p2x")

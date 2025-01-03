@@ -156,6 +156,14 @@ msgstr "Default Game Language:"
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 msgstr "Create Project"
 
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
+msgstr "Open Documentation"
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON"
+msgstr "Wiki"
+
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
 msgstr "Move page up"
@@ -3067,6 +3075,14 @@ msgstr "This file has unsaved changes, are you sure you'd like to close?"
 #: scene/app/components/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
 msgstr "Go back!!"
+
+#: scene/common/wiki/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_BROWSE_HEADER"
+msgstr "Documents"
+
+#: scene/common/wiki/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_OPEN_IN_BROWSER"
+msgstr "Online Docs"
 
 #~ msgid "PLACEHOLDER"
 #~ msgstr "Placeholder stuff :)"
