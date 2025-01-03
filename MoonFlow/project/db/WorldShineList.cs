@@ -21,7 +21,7 @@ public class WorldShineList(string name, List<ShineInfo> list) : List<ShineInfo>
     {
         var filePath = GetBymlFileName(world);
         if (!file.Content.TryGetValue(filePath, out ArraySegment<byte> data))
-            throw new SarcFileException("Missing " + filePath);
+            return new(world, []);
 
         var dict = BymlFileAccess.ParseBytes<Dictionary<string, List<ShineInfo>>>([.. data]);
         if (dict.Count != 1)
