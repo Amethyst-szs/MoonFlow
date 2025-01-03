@@ -214,15 +214,15 @@ msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
+msgstr ""
+
+#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_TRASH_PAGE"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_DEBUG_COPY_ENTRY_HASH"
-msgstr ""
-
-#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
-msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_separator.tscn
@@ -234,7 +234,15 @@ msgid "LOADING..."
 msgstr ""
 
 #: scene/front_door/load/project_loading.tscn
+msgid "LOADING_EXCEPTION_HEADER"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_EXCEPTION_ACCEPT"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_EXCEPTION_COPY_LOG_TO_CLIPBOARD"
 msgstr ""
 
 #: scene/front_door/quickbar_error_label.gd

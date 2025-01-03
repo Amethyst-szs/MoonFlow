@@ -106,7 +106,6 @@ public static class ProjectManager
 
         Task task = new(() => Project.InitProject(SceneRoot));
         Project.StartupTask = task;
-
         task.Start();
 
         return ProjectManagerResult.OK;
@@ -165,6 +164,9 @@ public static class ProjectManager
         if (!path.EndsWith('/')) path += '/';
 
         // If this directory contains a directory called romfs, enter that
+        if (!Directory.Exists(path))
+            return false;
+        
         if (Directory.GetDirectories(path).Any(s => s.EndsWith("romfs")))
             path += "romfs/";
 

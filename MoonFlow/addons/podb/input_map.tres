@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://e22nrio7cirq"]
 
-[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_rv00h"]
+[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_ligo4"]
 
 [resource]
-script = ExtResource("1_rv00h")
+script = ExtResource("1_ligo4")
 context = "INPUT_MAP"
 keys = Array[String](["ui_add_tag", "ui_edit_tag", "ui_save", "msbt_find_entry", "msbt_add_entry", "msbt_delete_entry", "ui_close_app", "ui_save_as", "dot_playable_left", "dot_playable_right", "dot_playable_up", "dot_playable_down", "home_actionbar_reload", "home_actionbar_close", "ui_save_all", "ui_toggle_debug", "ui_graph_inject", "ui_graph_reset_zoom", "ui_refresh", "ui_new_archive", "ui_rename"])

@@ -161,16 +161,16 @@ msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
 msgstr "Move page up"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
+msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
+msgstr "Move page down"
+
+#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_TRASH_PAGE"
 msgstr "Delete page"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_DEBUG_COPY_ENTRY_HASH"
 msgstr "Copy Metadata Hash to Clipboard"
-
-#: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
-msgid "MSBT_TOOLTIP_MOVE_DOWN_PAGE"
-msgstr "Move page down"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_separator.tscn
 msgid "MSBT_TOOLTIP_ADD_PAGE"
@@ -181,8 +181,16 @@ msgid "LOADING..."
 msgstr "Loading..."
 
 #: scene/front_door/load/project_loading.tscn
+msgid "LOADING_EXCEPTION_HEADER"
+msgstr "Something went Wrong!"
+
+#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_EXCEPTION_ACCEPT"
 msgstr "Okay :("
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_EXCEPTION_COPY_LOG_TO_CLIPBOARD"
+msgstr "Copy Log to Clipboard"
 
 #: scene/front_door/quickbar_error_label.gd
 msgctxt "FRONT_DOOR_OPEN_ERROR"

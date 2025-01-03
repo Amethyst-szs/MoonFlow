@@ -7,6 +7,10 @@
 # VSCode
 .vscode/
 
+# Obsidian
+.obsidian/
+docs/dev_notes/
+
 # Unit test output
 src/Nindot.Tests/output/
 

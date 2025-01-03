@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 using MoonFlow.Scene.Home;
+using MoonFlow.Scene.Main;
 
 using System.Threading.Tasks;
 
@@ -12,17 +13,22 @@ namespace MoonFlow.Scene;
 public partial class ProjectLoading : AppScene
 {
 	private Task LoadingTask = null;
+	private Exception TaskException = null;
 
+	[Export, ExportGroup("Internal References")]
 	private Label LabelProgress = null;
-	private ScrollContainer ContainerException = null;
+	[Export]
+	private VBoxContainer ContainerStatus = null;
+	[Export]
+	private MoonFlowStatusIcon IconStatus = null;
+
+	[Export]
+	private VBoxContainer ContainerException = null;
+	[Export]
 	private Label LabelException = null;
 
 	public override void _Ready()
 	{
-		LabelProgress = GetNode<Label>("%Label_ProgressTask");
-		ContainerException = GetNode<ScrollContainer>("%Scroll_LoadException");
-		LabelException = GetNode<Label>("%Label_Exception");
-
 		LoadingUpdateProgress("START");
 		ContainerException.Hide();
 	}
@@ -66,12 +72,16 @@ public partial class ProjectLoading : AppScene
 	// ================== Exception Events ================== //
 	// ====================================================== //
 
-	public void LoadingException(AggregateException e)
+	public void LoadingException(Exception e)
 	{
-		var eb = e.GetBaseException();
+		TaskException = e;
 
+		IconStatus.AnimationState = MoonFlowStatusIcon.AnimationStates.IDLE;
+		ContainerStatus.CallDeferred("hide");
 		ContainerException.CallDeferred("show");
-		LabelException.CallDeferred("set", ["text", eb.Message + '\n' + eb.Source + "\n\n" + eb.StackTrace]);
+
+		if (e != null)
+			LabelException.CallDeferred("set", ["text", GetExceptionAsString(e)]);
 	}
 
 	private void OnButtonExceptionQuitPressed()
@@ -80,5 +90,16 @@ public partial class ProjectLoading : AppScene
 
 		var frontDoor = SceneCreator<FrontDoor>.Create();
 		Scene.NodeApps.AddChild(frontDoor);
+	}
+
+	private void OnButtonExceptionCopyLogPressed()
+	{
+		DisplayServer.ClipboardSet(GetExceptionAsString(TaskException));
+		GD.Print("Copied " + TaskException.GetType().Name + " to clipboard");
+	}
+
+	private static string GetExceptionAsString(Exception e)
+	{
+		return e.Message + '\n' + e.Source + '\n' + e.TargetSite + "\n\n" + e.StackTrace;
 	}
 }

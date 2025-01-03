@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Godot;
 
@@ -42,6 +43,18 @@ public class ProjectState(string path, ProjectConfig config)
         // transation and improves the user experience a bit!
         await Task.Delay(200);
 
+        // Attempt to init project contents
+        try
+        {
+            InitProjectContent(scene, loadScreen);
+        }
+        catch(Exception e)
+        {
+            loadScreen.LoadingException(e);
+        }
+    }
+    private void InitProjectContent(MainSceneRoot scene, ProjectLoading loadScreen)
+    {
         // Setup MSBP holder
         loadScreen.LoadingUpdateProgress("LOAD_MSBP");
         MsgStudioProject = new(Path);
@@ -69,10 +82,10 @@ public class ProjectState(string path, ProjectConfig config)
             Config.Data.IsFirstBoot = false;
             Config.WriteFile();
         }
-        
+
         loadScreen.LoadingComplete();
         StartupTask = null;
-        
+
         GD.Print("Project initilization successful");
         IsInitComplete = true;
     }
@@ -89,7 +102,7 @@ public class ProjectState(string path, ProjectConfig config)
                 progress++;
                 continue;
             }
-            
+
             // Update loading screen with percentage
             float percent = (float)progress / MsgStudioText.Count * 100F;
             loadScreen?.LoadingUpdateProgress("LOAD_FIRST_BOOT_METADATA_BUILDER", string.Format("{0:0}%", percent));

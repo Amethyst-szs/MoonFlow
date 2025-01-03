@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bjqkhcyimcs7y"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://bjqkhcyimcs7y"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_3oxsf"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_e4j1m"]
@@ -8,9 +8,13 @@
 [ext_resource type="StyleBox" uid="uid://bo2ov2pm2ovec" path="res://asset/theme/front_door/stylebox/front_door_button_hover.tres" id="9_iw07i"]
 [ext_resource type="StyleBox" uid="uid://bq75lce6usfp3" path="res://asset/theme/main/stylebox/header_popup_menu_panel.tres" id="9_jw50u"]
 [ext_resource type="StyleBox" uid="uid://bdw4rs5jxfclg" path="res://asset/theme/front_door/stylebox/front_door_button_hover_pressed.tres" id="10_wive1"]
+[ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="10_wo438"]
 [ext_resource type="StyleBox" uid="uid://cys3dv01cl5ea" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_edit_window_border.tres" id="11_kxyef"]
 [ext_resource type="StyleBox" uid="uid://grixapu2vuvo" path="res://asset/theme/front_door/stylebox/front_door_button_normal.tres" id="11_lxe2k"]
+[ext_resource type="StyleBox" uid="uid://5sibdim40mxl" path="res://asset/theme/common/stylebox/common_scroll_grabber.tres" id="12_6ri5f"]
 [ext_resource type="StyleBox" uid="uid://px5fuqpp8fob" path="res://asset/theme/front_door/stylebox/front_door_button_pressed.tres" id="12_ccc42"]
+[ext_resource type="StyleBox" uid="uid://76kpkilhbrf2" path="res://asset/theme/common/stylebox/common_scroll_grabber_hover.tres" id="13_ghp1y"]
+[ext_resource type="StyleBox" uid="uid://xfsagg4wksso" path="res://asset/theme/common/stylebox/common_scroll_grabber_pressed.tres" id="14_6rmn3"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_24gye"]
 color = Color(1, 0.737255, 0.258824, 0.713726)
@@ -59,8 +63,12 @@ PopupMenu/fonts/font = ExtResource("1_e4j1m")
 PopupMenu/styles/hover = ExtResource("8_o0t0j")
 PopupMenu/styles/panel = ExtResource("9_jw50u")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_6lm05")
+ScrollContainer/styles/panel = ExtResource("10_wo438")
 TooltipLabel/fonts/font = ExtResource("1_e4j1m")
 TooltipPanel/styles/panel = ExtResource("8_san7l")
+VScrollBar/styles/grabber = ExtResource("12_6ri5f")
+VScrollBar/styles/grabber_highlight = ExtResource("13_ghp1y")
+VScrollBar/styles/grabber_pressed = ExtResource("14_6rmn3")
 VSeparator/constants/separation = 24
 VSeparator/styles/separator = SubResource("StyleBoxLine_o0anw")
 Window/colors/title_color = Color(0.93, 0.93, 0.93, 1)
