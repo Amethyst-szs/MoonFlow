@@ -56,4 +56,3 @@ script = ExtResource("5_elp84")
 automatic_links = false
 assume_https_links = false
 enable_checkbox_clicks = false
-_debug_mode = true

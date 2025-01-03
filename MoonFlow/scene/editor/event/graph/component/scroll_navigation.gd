@@ -24,12 +24,15 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_drag:
+		# Handle screen scroll updating
 		var dist: Vector2 = event.screen_relative * pan_factor
 		
 		parent.offset += dist / (parent.scale * 2.25)
 		_clamp_offset_within_bounds()
 		
 		_update_position_for_scroll_navigation_ui()
+		
+		_handle_mouse_wrap()
 		get_viewport().set_input_as_handled()
 		return
 
@@ -47,13 +50,16 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _handle_drag_toggle(is_pressed: bool) -> void:
 	is_drag = is_pressed
-	
-	if is_drag:
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	else:
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-	
 	get_viewport().set_input_as_handled()
+
+func _handle_mouse_wrap() -> void:
+	var mpos := Vector2i(get_window().get_mouse_position())
+	var wsize := get_window().size
+	
+	var new_pos := mpos % wsize
+	if mpos == new_pos: return
+	
+	DisplayServer.warp_mouse(new_pos)
 
 func _handle_wheel_up() -> void:
 	zoom_pivot = get_viewport().get_mouse_position()

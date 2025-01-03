@@ -467,7 +467,10 @@ func _process_image_syntax(line: String) -> String:
 				title = title_result.get_string(1)
 				url = url.rstrip(" ").trim_suffix(title_result.get_string()).rstrip(" ")
 			url = _escape_chars(url)
-			processed_line = processed_line.erase(_start, _end - _start).insert(_start, "[img]%s[/img]" % url.trim_prefix("MoonFlow/"))
+			
+			var img_path := "docs/" + url.trim_prefix("MoonFlow")
+			processed_line = processed_line.erase(_start, _end - _start).insert(_start, "[img]%s[/img]" % img_path)
+			
 			if title_result and title:
 				processed_line = processed_line.insert(_start + 12 + url.length() + _text.get_string(1).length(), "[/hint]").insert(_start, "[hint=%s]" % title)
 			_debug("... hyperlink: " + result.get_string())
