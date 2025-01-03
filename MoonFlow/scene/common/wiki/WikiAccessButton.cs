@@ -93,7 +93,7 @@ public partial class WikiAccessButton : Button
 		TooltipText = string.Format("{0}\n{1}: {2}\n{3}",
 			Tr(TooltipTextBase),
 			pathPrefix,
-			WikiLocalPath,
+			WikiLocalPath.TrimSuffix(".md").ToPascalCase(),
 			notice
 		);
 	}

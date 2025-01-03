@@ -8,9 +8,9 @@ namespace MoonFlow;
 [Icon("res://asset/material/debug/debug.svg")]
 public partial class DebugProjectOnlyContainer : VBoxContainer
 {
-    public override void _EnterTree()
-    {
+	public override void _EnterTree()
+	{
 		if (!ProjectManager.IsProjectDebug())
 			QueueFree();
-    }
+	}
 }

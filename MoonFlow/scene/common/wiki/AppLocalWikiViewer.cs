@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 namespace MoonFlow.Scene;
 
@@ -29,8 +30,15 @@ public partial class AppLocalWikiViewer : AppScene
 
 	private void OnResourceChanged(string resPath, string localPath)
 	{
-		AppTaskbarTitle = localPath;
+		AppTaskbarTitle = localPath.Split(['/', '\\']).Last();
 		FilePath = resPath;
 		SetUniqueIdentifier(resPath);
+	}
+
+	private void OnFileSelectedFromBrowser(string path)
+	{
+		var local = EngineSettings.GetSetting<string>("moonflow/wiki/local_source", "res://docs/");
+		OnResourceChanged(path, path.TrimPrefix(local));
+		Markdown.Call("setup_app", path);
 	}
 }

@@ -138,7 +138,7 @@ rotation = 0.0349066
 pivot_offset = Vector2(0, 402)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/separation = 20
+theme_override_constants/separation = 17
 
 [node name="Logo" type="Control" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar"]
 custom_minimum_size = Vector2(256, 178)
@@ -197,18 +197,18 @@ layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 icon = ExtResource("10_sqwg3")
 
+[node name="Button_OpenWiki" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
+layout_mode = 2
+tooltip_text = "FRONT_DOOR_BUTTON_TOOLTIP_WIKI"
+icon = ExtResource("15_yjbjl")
+script = ExtResource("16_06dea")
+WikiPath = "res://docs/example.md"
+WikiLocalPath = "example.md"
+
 [node name="Button_Contributors" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
 icon = ExtResource("14_mr0wr")
-
-[node name="WikiAccessButton" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
-modulate = Color(0.65, 0, 1, 1)
-layout_mode = 2
-icon = ExtResource("15_yjbjl")
-script = ExtResource("16_06dea")
-WikiPath = "res://docs/placeholder.md"
-WikiLocalPath = "placeholder.md"
 
 [node name="Button_Update" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2

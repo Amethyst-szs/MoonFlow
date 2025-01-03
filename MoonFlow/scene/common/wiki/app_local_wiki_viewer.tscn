@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgpdfqa825020"]
+[gd_scene load_steps=29 format=3 uid="uid://cgpdfqa825020"]
 
 [ext_resource type="Script" path="res://scene/common/wiki/AppLocalWikiViewer.cs" id="1_apa5k"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_noxf1"]
@@ -6,9 +6,81 @@
 [ext_resource type="Texture2D" uid="uid://blbojtkhi5w7v" path="res://asset/app/icon/wiki.png" id="3_ecq31"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="5_2yyqy"]
 [ext_resource type="Script" path="res://scene/common/wiki/markdown_holder.gd" id="5_elp84"]
+[ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="5_qdr3e"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_1147u"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="6_d7ndq"]
+[ext_resource type="Script" path="res://scene/common/wiki/wiki_file_tree.gd" id="6_kxboy"]
+[ext_resource type="Texture2D" uid="uid://gkt4uth2coun" path="res://asset/material/arrow/down.svg" id="8_5tgrs"]
+[ext_resource type="Script" path="res://addons/markdownlabel/header_formats/h1_format.gd" id="8_u3q7h"]
+[ext_resource type="Texture2D" uid="uid://bxdtn8valrbqg" path="res://asset/material/arrow/right.svg" id="9_1ordo"]
+[ext_resource type="Script" path="res://addons/markdownlabel/header_formats/h2_format.gd" id="9_umnl6"]
+[ext_resource type="Texture2D" uid="uid://och8rs2fu0jw" path="res://asset/material/arrow/left.svg" id="10_fdi8c"]
+[ext_resource type="Script" path="res://addons/markdownlabel/header_formats/h3_format.gd" id="10_wksr2"]
+[ext_resource type="Script" path="res://addons/markdownlabel/header_formats/h4_format.gd" id="11_oa7r6"]
+[ext_resource type="Script" path="res://addons/markdownlabel/header_formats/h5_format.gd" id="12_k0m16"]
+[ext_resource type="Script" path="res://addons/markdownlabel/header_formats/h6_format.gd" id="13_rcv6f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q3ilf"]
+font = ExtResource("6_1147u")
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u10vy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k62rx"]
+
+[sub_resource type="Resource" id="Resource_lnyo4"]
+script = ExtResource("8_u3q7h")
+font_size = 2.285
+is_bold = true
+is_italic = false
+is_underlined = false
+override_font_color = true
+font_color = Color(0.988235, 0.792157, 0.27451, 1)
+
+[sub_resource type="Resource" id="Resource_2pil3"]
+script = ExtResource("9_umnl6")
+font_size = 1.714
+is_bold = true
+is_italic = false
+is_underlined = false
+override_font_color = true
+font_color = Color(0.996078, 0.498039, 0.176471, 1)
+
+[sub_resource type="Resource" id="Resource_wjd1f"]
+script = ExtResource("10_wksr2")
+font_size = 1.428
+is_bold = false
+is_italic = false
+is_underlined = false
+override_font_color = false
+font_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_0a3ap"]
+script = ExtResource("11_oa7r6")
+font_size = 1.142
+is_bold = false
+is_italic = false
+is_underlined = false
+override_font_color = true
+font_color = Color(1, 1, 1, 0.784314)
+
+[sub_resource type="Resource" id="Resource_u8tgk"]
+script = ExtResource("12_k0m16")
+font_size = 1.0
+is_bold = false
+is_italic = false
+is_underlined = false
+override_font_color = true
+font_color = Color(1, 1, 1, 0.717647)
+
+[sub_resource type="Resource" id="Resource_vyhhh"]
+script = ExtResource("13_rcv6f")
+font_size = 0.857
+is_bold = false
+is_italic = false
+is_underlined = false
+override_font_color = true
+font_color = Color(1, 1, 1, 0.717647)
 
 [node name="AppLocalWikiViewer" type="Control" node_paths=PackedStringArray("Markdown")]
 layout_mode = 3
@@ -19,7 +91,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_noxf1")
 script = ExtResource("1_apa5k")
-Markdown = NodePath("Content/Margin/Markdown")
+Markdown = NodePath("Content/Margin/Split/Panel_Markdown/Margin/Markdown")
 AppName = "DocsWiki"
 AppTaskbarTitle = "Wiki"
 AppIcon = ExtResource("3_ecq31")
@@ -41,18 +113,90 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
 
-[node name="Markdown" type="RichTextLabel" parent="Content/Margin"]
-unique_name_in_owner = true
+[node name="Split" type="HSplitContainer" parent="Content/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_constants/autohide = 0
+split_offset = -250
+
+[node name="Panel_Browser" type="PanelContainer" parent="Content/Margin/Split"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("5_qdr3e")
+
+[node name="Scroll" type="ScrollContainer" parent="Content/Margin/Split/Panel_Browser"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+script = ExtResource("6_d7ndq")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
+
+[node name="VBox" type="VBoxContainer" parent="Content/Margin/Split/Panel_Browser/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label_BrowseHeader" type="Label" parent="Content/Margin/Split/Panel_Browser/Scroll/VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "WIKI_APP_BROWSE_HEADER"
+label_settings = SubResource("LabelSettings_q3ilf")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Tree_Files" type="Tree" parent="Content/Margin/Split/Panel_Browser/Scroll/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_2yyqy")
+theme_override_icons/arrow = ExtResource("8_5tgrs")
+theme_override_icons/arrow_collapsed = ExtResource("9_1ordo")
+theme_override_icons/arrow_collapsed_mirrored = ExtResource("10_fdi8c")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u10vy")
+allow_reselect = true
+hide_root = true
+scroll_horizontal_enabled = false
+script = ExtResource("6_kxboy")
+
+[node name="Panel_Markdown" type="PanelContainer" parent="Content/Margin/Split"]
+self_modulate = Color(0.658824, 0.658824, 0.658824, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_50pm3")
+
+[node name="Margin" type="MarginContainer" parent="Content/Margin/Split/Panel_Markdown"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Markdown" type="RichTextLabel" parent="Content/Margin/Split/Panel_Markdown/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 focus_mode = 2
+theme_override_constants/text_highlight_v_padding = 2
+theme_override_constants/text_highlight_h_padding = 2
 theme_override_constants/line_separation = 8
 theme_override_fonts/normal_font = ExtResource("5_2yyqy")
 theme_override_fonts/bold_font = ExtResource("6_1147u")
+theme_override_font_sizes/mono_font_size = 14
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k62rx")
 bbcode_enabled = true
 selection_enabled = true
 script = ExtResource("5_elp84")
 automatic_links = false
 assume_https_links = false
+h1 = SubResource("Resource_lnyo4")
+h2 = SubResource("Resource_2pil3")
+h3 = SubResource("Resource_wjd1f")
+h4 = SubResource("Resource_0a3ap")
+h5 = SubResource("Resource_u8tgk")
+h6 = SubResource("Resource_vyhhh")
 enable_checkbox_clicks = false
+
+[connection signal="file_selected" from="Content/Margin/Split/Panel_Browser/Scroll/VBox/Tree_Files" to="." method="OnFileSelectedFromBrowser"]
+[connection signal="item_selected" from="Content/Margin/Split/Panel_Browser/Scroll/VBox/Tree_Files" to="Content/Margin/Split/Panel_Browser/Scroll/VBox/Tree_Files" method="_on_item_selected"]

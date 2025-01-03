@@ -437,7 +437,7 @@ func _process_inline_code_syntax(line: String) -> String:
 		var unescaped_content := _reset_escaped_chars(result.get_string(2), true)
 		unescaped_content = _escape_bbcode(unescaped_content)
 		unescaped_content = _escape_chars(unescaped_content)
-		processed_line = processed_line.erase(_start, _end - _start).insert(_start, "[code]%s[/code]" % unescaped_content)
+		processed_line = processed_line.erase(_start, _end - _start).insert(_start, "[code][color=#fe7f2d]%s[/color][/code]" % unescaped_content)
 		_debug("... in-line code: " + unescaped_content)
 	return processed_line
 
