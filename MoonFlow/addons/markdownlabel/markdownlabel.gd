@@ -84,7 +84,9 @@ var _skip_line_break := false
 var _checkbox_id: int = 0
 var _current_line: int = 0
 var _checkbox_record := {}
-var _debug_mode := false
+
+@export_group("Debug")
+@export var _debug_mode := false
 #endregion
 
 #region Built-in methods:
@@ -121,11 +123,11 @@ func _on_meta_clicked(meta: Variant) -> void:
 		var parsed: Dictionary = JSON.parse_string(meta)
 		if parsed[_CHECKBOX_KEY] and _checkbox_record[int(parsed.id)]:
 			_on_checkbox_clicked(int(parsed.id), parsed.checked)
-	if not automatic_links:
-		unhandled_link_clicked.emit(meta)
-		return
 	if meta.begins_with("#") and meta in _header_anchor_paragraph:
 		self.scroll_to_paragraph(_header_anchor_paragraph[meta])
+		return
+	if not automatic_links:
+		unhandled_link_clicked.emit(meta)
 		return
 	var url_pattern := RegEx.new()
 	url_pattern.compile("^(ftp|http|https):\\/\\/[^\\s\\\"]+$")
@@ -465,7 +467,7 @@ func _process_image_syntax(line: String) -> String:
 				title = title_result.get_string(1)
 				url = url.rstrip(" ").trim_suffix(title_result.get_string()).rstrip(" ")
 			url = _escape_chars(url)
-			processed_line = processed_line.erase(_start, _end - _start).insert(_start, "[img]%s[/img]" % url)
+			processed_line = processed_line.erase(_start, _end - _start).insert(_start, "[img]%s[/img]" % url.trim_prefix("MoonFlow/"))
 			if title_result and title:
 				processed_line = processed_line.insert(_start + 12 + url.length() + _text.get_string(1).length(), "[/hint]").insert(_start, "[hint=%s]" % title)
 			_debug("... hyperlink: " + result.get_string())

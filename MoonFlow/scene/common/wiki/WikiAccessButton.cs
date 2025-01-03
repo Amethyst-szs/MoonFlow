@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using MoonFlow.Scene.Main;
 using System;
 using System.Linq;
 
@@ -15,6 +16,9 @@ public partial class WikiAccessButton : Button
 		get { return EngineSettings.GetWiki() + WikiLocalPath; }
 		set
 		{
+			if (!Engine.IsEditorHint())
+				return;
+			
 			var prefix = EngineSettings.GetSetting<string>("moonflow/wiki/local_source", "");
 			var result = value.TrimPrefix(prefix);
 			Set(PropertyName.WikiLocalPath, result);
@@ -52,7 +56,18 @@ public partial class WikiAccessButton : Button
 			return;
 		}
 
-		GD.Print("local placeholder " + WikiPath);
+		var app = SceneCreator<AppLocalWikiViewer>.Create();
+
+		var scene = GetTree().CurrentScene;
+		if (scene is not MainSceneRoot sceneRoot)
+		{
+			GD.PushError("Cannot open documentation without scene root");
+			app.QueueFree();
+			return;
+		}
+
+		app.SetupWikiApp(wiki + WikiLocalPath, WikiLocalPath);
+		sceneRoot.NodeApps.AddChild(app);
     }
 
     #region Utility

@@ -13,8 +13,6 @@ func _enter_tree():
 	# Setup input map translation DB
 	add_tool_menu_item("poDB: Regenerate Input Map Translation Bank", 
 		_setup_input_map_translation_bank)
-	
-	_setup_input_map_translation_bank()
 
 func _setup_input_map_translation_bank() -> void:
 	if !Engine.is_editor_hint():
