@@ -3,8 +3,10 @@ extends Node
 @export var zoom_min: float = 0.2
 @export var zoom_max: float = 3.0
 @export var ui_bar_holder: EventFlowGraphScrollNavigationBars
+@export var cursor_icon: Texture2D
 
 var is_drag: bool = false
+var is_warp_cursor: bool = false
 
 var zoom_pivot: Vector2 = Vector2.ZERO
 
@@ -23,22 +25,24 @@ func _ready() -> void:
 	parent = get_parent() as CanvasLayer
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_drag:
-		# Handle screen scroll updating
-		var dist: Vector2 = event.screen_relative * pan_factor
+	if event is InputEventMouseMotion:
+		if is_warp_cursor:
+			is_warp_cursor = false
+			return
 		
-		parent.offset += dist / (parent.scale * 2.25)
-		_clamp_offset_within_bounds()
-		
-		_update_position_for_scroll_navigation_ui()
-		
-		_handle_mouse_wrap()
-		get_viewport().set_input_as_handled()
-		return
+		if is_drag:
+			_handle_screen_movement(event.relative * pan_factor * 2)
+			_handle_mouse_wrap()
+			get_viewport().set_input_as_handled()
+			return
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
+			_handle_drag_toggle(event.pressed)
+			return
+		
+		if event.is_command_or_control_pressed() && event.button_index == MOUSE_BUTTON_LEFT:
 			_handle_drag_toggle(event.pressed)
 			return
 		
@@ -50,16 +54,26 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _handle_drag_toggle(is_pressed: bool) -> void:
 	is_drag = is_pressed
+	
+	if is_drag: Input.set_custom_mouse_cursor(cursor_icon)
+	else: Input.set_custom_mouse_cursor(null)
+	
 	get_viewport().set_input_as_handled()
 
 func _handle_mouse_wrap() -> void:
 	var mpos := Vector2i(get_window().get_mouse_position())
 	var wsize := get_window().size
 	
-	var new_pos := mpos % wsize
+	var new_pos := Vector2i(posmod(mpos.x, wsize.x), posmod(mpos.y, wsize.y))
 	if mpos == new_pos: return
 	
 	DisplayServer.warp_mouse(new_pos)
+	is_warp_cursor = true
+
+func _handle_screen_movement(offset: Vector2) -> void:
+	parent.offset += offset / (parent.scale * 2.25)
+	_clamp_offset_within_bounds()
+	_update_position_for_scroll_navigation_ui()
 
 func _handle_wheel_up() -> void:
 	zoom_pivot = get_viewport().get_mouse_position()

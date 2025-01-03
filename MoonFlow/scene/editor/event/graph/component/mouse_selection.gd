@@ -37,6 +37,9 @@ func _on_visiblity_changed() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		if event.is_command_or_control_pressed():
+			return
+		
 		is_hold_shift = event.shift_pressed
 		
 		if event.button_index == MOUSE_BUTTON_LEFT:

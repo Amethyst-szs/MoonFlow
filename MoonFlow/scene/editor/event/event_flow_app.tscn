@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=28 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/scroll_navigation.gd" id="6_va4yh"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/mouse_selection.gd" id="7_mr57c"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/axis_line_renderer.gd" id="8_4n4mt"]
+[ext_resource type="Texture2D" uid="uid://bbxsfrv8y7m5y" path="res://asset/material/graph/move.svg" id="8_70kp1"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/NodeHolder.cs" id="8_je2jj"]
 [ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/event_graph_ui_header.tres" id="9_1hwnx"]
 [ext_resource type="Texture2D" uid="uid://cy0acrnosdjdw" path="res://asset/material/graph/zoom_out.svg" id="10_k8svk"]
@@ -91,6 +92,7 @@ script = ExtResource("5_5dp1p")
 [node name="Graph_ScrollNavigation" type="Node" parent="Graph" node_paths=PackedStringArray("ui_bar_holder")]
 script = ExtResource("6_va4yh")
 ui_bar_holder = NodePath("../../ScollNavigationBars")
+cursor_icon = ExtResource("8_70kp1")
 
 [node name="OriginLines" type="Node2D" parent="Graph"]
 self_modulate = Color(1, 1, 1, 0.184314)

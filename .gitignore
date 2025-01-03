@@ -9,7 +9,7 @@
 
 # Obsidian
 .obsidian/
-.notes/
+notes/
 
 # Unit test output
 src/Nindot.Tests/output/
