@@ -21,6 +21,10 @@ public static class EngineSettings
     {
         Engine.GetSingleton(AutoloadName).Call("set_setting", [key, def]);
     }
+    public static void RemoveSetting(string key)
+    {
+        Engine.GetSingleton(AutoloadName).Call("remove_setting", [key]);
+    }
 
     public static void Save()
     {

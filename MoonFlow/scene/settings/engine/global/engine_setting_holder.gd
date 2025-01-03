@@ -30,6 +30,12 @@ func set_setting(key: String, value: Variant) -> void:
 	cfg.set_value(cfg_access[0], cfg_access[1], value)
 	ProjectSettings.set_setting(key, value)
 
+func remove_setting(key: String) -> void:
+	var cfg_access := key.split('/', true, 1)
+	
+	if cfg.has_section_key(cfg_access[0], cfg_access[1]):
+		cfg.erase_section_key(cfg_access[0], cfg_access[1])
+
 func save() -> void:
 	cfg.save(path)
 

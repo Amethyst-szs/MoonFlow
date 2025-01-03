@@ -43,6 +43,7 @@ public partial class MainSceneRoot : Control
     {
         var awaiter = ToSignal(Engine.GetMainLoop(), "process_frame");
 
+        // Attempt to close all applications
         foreach (var app in GetApps())
         {
             app.AppFocus();
@@ -61,6 +62,31 @@ public partial class MainSceneRoot : Control
             }
         }
 
+        // Update window properties in engine settings
+        var win = GetWindow();
+        var winSize = win.Size;
+        const int winType = (int)Window.WindowInitialPosition.Absolute;
+
+        if (win.Mode < Window.ModeEnum.Maximized)
+        {
+            EngineSettings.SetSetting("display/window/size/viewport_width", winSize.X);
+            EngineSettings.SetSetting("display/window/size/viewport_height", winSize.Y);
+            EngineSettings.SetSetting("display/window/size/initial_position_type", winType);
+            EngineSettings.SetSetting("display/window/size/initial_position", win.Position);
+        }
+        else
+        {
+            EngineSettings.RemoveSetting("display/window/size/viewport_width");
+            EngineSettings.RemoveSetting("display/window/size/viewport_height");
+            EngineSettings.RemoveSetting("display/window/size/initial_position_type");
+            EngineSettings.RemoveSetting("display/window/size/initial_position");
+        }
+
+        EngineSettings.SetSetting("display/window/size/mode", (int)win.Mode);
+        EngineSettings.SetSetting("display/window/size/initial_screen", win.CurrentScreen);
+        EngineSettings.Save();
+
+        // Terminate application
         GetTree().Quit(0);
     }
 
