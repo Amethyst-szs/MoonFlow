@@ -2497,6 +2497,11 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 msgstr "Event Graph"
 
 #: scene/settings/engine/engine_settings_app.tscn
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
+msgstr "Keybinds"
+
+#: scene/settings/engine/engine_settings_app.tscn
 msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 msgstr "Save & Exit"
 
@@ -2901,6 +2906,131 @@ msgstr "Which scenarios can this Power Moon collected in?"
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
 msgstr "Valid Scenarios:"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_add_tag"
+msgstr "Add Text Tag"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_edit_tag"
+msgstr "Edit Text Tag"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_save"
+msgstr "Save"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_find_entry"
+msgstr "Find Text Entry"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_add_entry"
+msgstr "Add Text Entry"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_delete_entry"
+msgstr "Delete Text Entry"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_close_app"
+msgstr "Close Application"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_save_as"
+msgstr "Save As"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_left"
+msgstr "Move Left"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_right"
+msgstr "Move Right"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_up"
+msgstr "Jump"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_down"
+msgstr "Crouch"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "home_actionbar_reload"
+msgstr "Reload Project"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "home_actionbar_close"
+msgstr "Close Project"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_save_all"
+msgstr "Save All Files"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_toggle_debug"
+msgstr "Toggle Debug Mode"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_graph_inject"
+msgstr "Add Node to Graph"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_graph_reset_zoom"
+msgstr "Reset Zoom in Graph"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_refresh"
+msgstr "Refresh"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_new_archive"
+msgstr "Create Archive"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_rename"
+msgstr "Rename File"
+
+#: scene/settings/engine/keybind/overlay_keybind_capture.tscn
+msgid "ENGINE_SETTINGS_APP_KEYBIND_PRESS_ANY_KEY_POPUP"
+msgstr "Press any Key..."
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
+msgstr "User Interface"
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
+msgstr "Project"
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
+msgstr "Text Editor"
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
+msgstr "Event Graph Editor"
 
 #~ msgid "WORLD_EDITOR_SHINE_EDITOR_MAIN_SCENARIO_HEADER"
 #~ msgstr "Story Scenario:"

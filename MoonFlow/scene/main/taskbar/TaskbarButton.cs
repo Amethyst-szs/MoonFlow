@@ -3,6 +3,7 @@ using System;
 
 namespace MoonFlow.Scene.Main;
 
+[ScenePath("res://scene/main/taskbar/taskbar_button.tscn")]
 public partial class TaskbarButton : Button
 {
 	public AppScene App { get; private set; } = null;
@@ -11,7 +12,10 @@ public partial class TaskbarButton : Button
 	private static readonly StyleBoxFlat UnsavedDotStyle
 		= GD.Load<StyleBoxFlat>("res://asset/theme/main/stylebox/taskbar_dot.tres");
 
-	public TaskbarButton(AppScene app)
+	[Export]
+	private Button AppCloser = null;
+
+	public void Init(AppScene app)
 	{
 		// Setup button
 		App = app;
@@ -22,19 +26,15 @@ public partial class TaskbarButton : Button
 		TooltipText = app.AppTaskbarTitle;
 		Icon = app.AppIcon;
 
-		MouseDefaultCursorShape = CursorShape.PointingHand;
-		ButtonMask |= MouseButtonMask.Middle;
-		ActionMode = ActionModeEnum.Press;
-		ToggleMode = true;
-		SetPressedNoSignal(false);
-
-		ClipText = true;
-		ExpandIcon = true;
-		TextOverrunBehavior = TextServer.OverrunBehavior.TrimChar;
-
 		var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
 		CustomMinimumSize = new Vector2(CustomMinimumSize.X, height);
+		Size = CustomMinimumSize;
+
 		EngineSettings.Connect("taskbar_size_modified", OnTaskbarSizeChanged);
+
+		// Setup app closer
+		if (!app.IsAppAllowUserToClose())
+			AppCloser.QueueFree();
 
 		// Setup unsaved changes dot if app supports it
 		if (app.IsAppAllowUnsavedChanges())
@@ -59,27 +59,32 @@ public partial class TaskbarButton : Button
 	{
 		if ((Input.GetMouseButtonMask() & MouseButtonMask.Middle) != 0)
 		{
-			// If the active app is exclusive (and this isn't the active app), ignore
-			var activeApp = App.Scene.GetActiveApp();
-			if (activeApp != App && activeApp.IsAppExclusive())
-			{
-				SetPressedNoSignal(false);
-				return;
-			}
-
-			// Do not allow closing the home page application
-			if (!App.IsAppAllowUserToClose())
-			{
-				SetPressedNoSignal(true);
-				return;
-			}
-
-			App.AppClose(true);
+			TryCloseApp();
 			return;
 		}
 
-		// If not a middle click, just focus app normally
 		App.AppFocus();
+	}
+
+	private void TryCloseApp()
+	{
+		// If the active app is exclusive (and this isn't the active app), ignore
+		var activeApp = App.Scene.GetActiveApp();
+		if (activeApp != App && activeApp.IsAppExclusive())
+		{
+			SetPressedNoSignal(false);
+			return;
+		}
+
+		// Do not allow closing the home page application
+		if (!App.IsAppAllowUserToClose())
+		{
+			SetPressedNoSignal(true);
+			return;
+		}
+
+		App.AppClose(true);
+		GetViewport().SetInputAsHandled();
 	}
 
 	private void OnModifyStateChanged(bool isModified)

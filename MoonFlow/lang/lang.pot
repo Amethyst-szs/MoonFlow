@@ -65,6 +65,9 @@
 # res://scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
 # res://scene/editor/world/shine/world_shine_editor_holder.tscn
 # res://scene/editor/world/shine/world_shine_editor.tscn
+# res://addons/podb/input_map.tres
+# res://scene/settings/engine/keybind/overlay_keybind_capture.tscn
+# res://scene/settings/engine/page/keybind.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2514,6 +2517,11 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 msgstr ""
 
 #: scene/settings/engine/engine_settings_app.tscn
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
+msgstr ""
+
+#: scene/settings/engine/engine_settings_app.tscn
 msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 msgstr ""
 
@@ -2878,4 +2886,129 @@ msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_add_tag"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_edit_tag"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_save"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_find_entry"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_add_entry"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_delete_entry"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_close_app"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_save_as"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_left"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_right"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_up"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "dot_playable_down"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "home_actionbar_reload"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "home_actionbar_close"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_save_all"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_toggle_debug"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_graph_inject"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_graph_reset_zoom"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_refresh"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_new_archive"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_rename"
+msgstr ""
+
+#: scene/settings/engine/keybind/overlay_keybind_capture.tscn
+msgid "ENGINE_SETTINGS_APP_KEYBIND_PRESS_ANY_KEY_POPUP"
+msgstr ""
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
+msgstr ""
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
+msgstr ""
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
+msgstr ""
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
 msgstr ""

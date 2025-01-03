@@ -32,9 +32,9 @@ public partial class Taskbar : Control
         }
 
         // Create new taskbar button
-        var button = new TaskbarButton(app);
-
-        // Setup button signal connections
+        var button = SceneCreator<TaskbarButton>.Create();
+        button.Init(app);
+        
         button.TreeExited += UpdateDisplay;
 
         // Calculate initial button position and add to child list

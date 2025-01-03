@@ -1,0 +1,157 @@
+[gd_scene load_steps=6 format=3 uid="uid://5cs2aobtcf6w"]
+
+[ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_tikfe"]
+[ext_resource type="PackedScene" uid="uid://7rqudtj0ycdw" path="res://scene/settings/engine/keybind/panel_keybind_editor.tscn" id="2_6ag4b"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_l8y7w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f716v"]
+font = ExtResource("3_l8y7w")
+font_size = 19
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gj7kb"]
+
+[node name="Page_Keybind" type="VBoxContainer"]
+
+[node name="Header" parent="." instance=ExtResource("1_tikfe")]
+layout_mode = 2
+
+[node name="Label_Head" parent="Header/Layout" index="0"]
+text = "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
+
+[node name="VBox_UI" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_UiHeader" type="Label" parent="VBox_UI"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
+label_settings = SubResource("LabelSettings_f716v")
+
+[node name="HSeparator" type="HSeparator" parent="VBox_UI"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Save" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_save"
+
+[node name="SaveAs" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_save_as"
+
+[node name="SaveAll" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_save_all"
+
+[node name="CloseApp" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_close_app"
+
+[node name="Refresh" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_refresh"
+
+[node name="Rename" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_rename"
+
+[node name="HSep_Spacer" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gj7kb")
+
+[node name="VBox_Project" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_ProjectHeader" type="Label" parent="VBox_Project"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
+label_settings = SubResource("LabelSettings_f716v")
+
+[node name="HSeparator" type="HSeparator" parent="VBox_Project"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Reload" parent="VBox_Project" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "home_actionbar_reload"
+
+[node name="Close" parent="VBox_Project" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "home_actionbar_close"
+
+[node name="HSep_Spacer2" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gj7kb")
+
+[node name="VBox_Msbt" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_MsbtHeader" type="Label" parent="VBox_Msbt"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
+label_settings = SubResource("LabelSettings_f716v")
+
+[node name="HSeparator" type="HSeparator" parent="VBox_Msbt"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="AddTag" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_add_tag"
+
+[node name="EditTag" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_edit_tag"
+
+[node name="Add" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "msbt_add_entry"
+
+[node name="Find" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "msbt_find_entry"
+
+[node name="Delete" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "msbt_delete_entry"
+
+[node name="HSep_Spacer3" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gj7kb")
+
+[node name="VBox_Event" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_EventHeader" type="Label" parent="VBox_Event"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
+label_settings = SubResource("LabelSettings_f716v")
+
+[node name="HSeparator" type="HSeparator" parent="VBox_Event"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="AddNode" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_graph_inject"
+
+[node name="ResetZoom" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_graph_reset_zoom"
+
+[node name="Debug" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_toggle_debug"
+is_debug_only = true
+
+[editable path="Header"]

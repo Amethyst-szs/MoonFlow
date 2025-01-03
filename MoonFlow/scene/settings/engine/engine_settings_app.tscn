@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpoxm31ltuycw"]
+[gd_scene load_steps=17 format=3 uid="uid://bpoxm31ltuycw"]
 
 [ext_resource type="Script" path="res://scene/settings/engine/EngineSettingsApp.cs" id="1_uf06t"]
 [ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="2_7515s"]
@@ -11,6 +11,7 @@
 [ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="7_h42e4"]
 [ext_resource type="Material" uid="uid://q8kd4hmy1qwe" path="res://asset/shader/gradient/shader_preset_subtle_panel_gradient.tres" id="8_uka3c"]
 [ext_resource type="PackedScene" uid="uid://cloegljf3qn5e" path="res://scene/settings/engine/page/graph.tscn" id="9_v00pt"]
+[ext_resource type="PackedScene" uid="uid://5cs2aobtcf6w" path="res://scene/settings/engine/page/keybind.tscn" id="12_k2v0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blbrj"]
 content_margin_left = 12.0
@@ -101,6 +102,15 @@ text_overrun_behavior = 3
 script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_Graph")
 
+[node name="Button_Keybind" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
+text_overrun_behavior = 3
+script = ExtResource("4_ombcx")
+target = NodePath("../../../Content/Scroll/VBox/Page_Keybind")
+
 [node name="HSep_BottomAlignment" type="HSeparator" parent="Content/HSplit/Category/Content"]
 layout_mode = 2
 size_flags_vertical = 10
@@ -140,6 +150,9 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="Page_Graph" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("9_v00pt")]
+layout_mode = 2
+
+[node name="Page_Keybind" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("12_k2v0t")]
 layout_mode = 2
 
 [connection signal="pressed" from="Content/HSplit/Category/Content/Button_Exit" to="." method="OnSaveAndExit"]

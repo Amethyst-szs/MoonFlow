@@ -280,9 +280,10 @@ public partial class AppScene : Control
 
 	private SignalAwaiter AppearUnsavedChangesDialog()
 	{
+		AppFocus();
+
 		var dialog = UnsavedChangesScene.Instantiate() as ConfirmationDialog;
 		AddChild(dialog);
-
 		dialog.Popup();
 
 		var sig = ConfirmationDialog.SignalName.Confirmed;

@@ -14,7 +14,8 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	{
 		SizeFlagsHorizontal = SizeFlags.ExpandFill,
 		SizeFlagsVertical = SizeFlags.ShrinkBegin,
-		CustomMinimumSize = new Vector2(0, 258),
+		CustomMinimumSize = new Vector2(0, 72),
+		ScrollFitContentHeight = true,
 	};
 
 	[Signal]

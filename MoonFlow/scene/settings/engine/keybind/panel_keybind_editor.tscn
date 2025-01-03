@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://7rqudtj0ycdw"]
+
+[ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="1_24ltj"]
+[ext_resource type="Script" path="res://scene/settings/engine/keybind/panel_keybind_editor.gd" id="2_ay4do"]
+[ext_resource type="SystemFont" uid="uid://cw8c0p3b5mv5y" path="res://addons/SmoothScroll/debug_font.tres" id="3_61hdb"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_dklwh"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="5_loks5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkil3"]
+font = ExtResource("3_61hdb")
+font_size = 20
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.945098)
+shadow_offset = Vector2(2, 2)
+
+[node name="Panel_KeybindEditor" type="VBoxContainer"]
+auto_translate_mode = 2
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+script = ExtResource("2_ay4do")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_24ltj")
+
+[node name="HBox_Layout" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Label_Name" type="Label" parent="Panel/HBox_Layout"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_xkil3")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBox_BindTable" type="VBoxContainer" parent="Panel/HBox_Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_Add" type="Button" parent="Panel/HBox_Layout"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("5_dklwh")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = ExtResource("5_loks5")
+
+[connection signal="pressed" from="Panel/HBox_Layout/Button_Add" to="." method="_on_add_pressed"]
