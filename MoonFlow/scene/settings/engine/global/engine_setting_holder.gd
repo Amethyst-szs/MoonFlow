@@ -4,8 +4,6 @@ var cfg := ConfigFile.new()
 
 const path: String = "res://override.cfg"
 
-signal taskbar_size_modified()
-
 func _enter_tree() -> void:
 	Engine.register_singleton("EngineSettingsCSharp", self)
 	
@@ -39,5 +37,25 @@ func remove_setting(key: String) -> void:
 func save() -> void:
 	cfg.save(path)
 
+#region Signals
+
+signal taskbar_size_modified()
+
 func _taskbar_size_modified() -> void:
 	taskbar_size_modified.emit()
+
+#endregion
+
+#region Utility
+
+func get_wiki() -> String:
+	var is_local: bool = get_setting("moonflow/wiki/is_use_local", true)
+	
+	if is_local:
+		return get_setting("moonflow/wiki/local_source",
+			"res://docs/")
+	else:
+		return get_setting("moonflow/wiki/remote_source",
+			"https://github.com/Amethyst-szs/MoonFlow/tree/stable/docs/")
+
+#endregion

@@ -17,7 +17,7 @@
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
 [ext_resource type="Script" path="res://scene/common/container/DebugProjectOnlyContainer.cs" id="12_dpnv5"]
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="13_tboky"]
-[ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="15_j2wr0"]
+[ext_resource type="Script" path="res://scene/app/components/dialog_center_text.gd" id="15_j2wr0"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEventFileAccessor.cs" id="15_obiaq"]
 [ext_resource type="PackedScene" uid="uid://kkrq88b8tbec" path="res://scene/home/tab_event/popup_event_base.tscn" id="19_77ica"]
 

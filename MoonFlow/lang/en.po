@@ -368,22 +368,6 @@ msgstr ""
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Wait, no, go back!"
 
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_TITLE"
-msgstr "Unsaved Changes!"
-
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_OK"
-msgstr "Yes I'm sure"
-
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_TEXT"
-msgstr "This file has unsaved changes, are you sure you'd like to close?"
-
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
-msgstr "Go back!!"
-
 #: async/async_display.tscn
 msgid "ASYNC_DISPLAY_EXCEPTION"
 msgstr "Task Failed!"
@@ -2547,6 +2531,17 @@ msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
 msgstr "Application Language:"
 
 #: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE_TOOLTIP"
+msgstr ""
+"When enabled, documentation will be opened inside the program.\n"
+"When disabled, will launch your default browser to open\n"
+"documentation remotely."
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE"
+msgstr "Open Documentation in App"
+
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_HEADER"
 msgstr "Visuals"
 
@@ -3039,6 +3034,42 @@ msgstr "Text Editor"
 #: scene/settings/engine/page/keybind.tscn
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
 msgstr "Event Graph Editor"
+
+#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "LocalNotice"
+msgstr "In-app documentation"
+
+#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "UrlNotice"
+msgstr "Online documentation"
+
+#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "SettingNotice"
+msgstr ""
+"Toggle between local and browser\n"
+"documentation in settings"
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_TITLE"
+msgstr "Unsaved Changes!"
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_OK"
+msgstr "Yes I'm sure"
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_TEXT"
+msgstr "This file has unsaved changes, are you sure you'd like to close?"
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
+msgstr "Go back!!"
+
+#~ msgid "PLACEHOLDER"
+#~ msgstr "Placeholder stuff :)"
 
 #~ msgid "WORLD_EDITOR_SHINE_EDITOR_MAIN_SCENARIO_HEADER"
 #~ msgstr "Story Scenario:"

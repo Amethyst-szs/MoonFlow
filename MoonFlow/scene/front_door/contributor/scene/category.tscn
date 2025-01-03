@@ -34,7 +34,6 @@ label_settings = SubResource("LabelSettings_2xtce")
 
 [node name="Entries" type="GridContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 4
 columns = 3
 
 [node name="HSep" type="HSeparator" parent="."]

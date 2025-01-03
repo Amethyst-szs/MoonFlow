@@ -121,6 +121,19 @@ layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
+[node name="Check_DocSource" type="CheckBox" parent="VBox_Lang"]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE"
+script = ExtResource("2_ihk7t")
+key = "moonflow/wiki/is_use_local"
+
+[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Lang"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
+
 [node name="VBox_Visual" type="VBoxContainer" parent="."]
 layout_mode = 2
 

@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c5upu8m5vshym" path="res://scene/editor/world/shine/world_shine_editor.tscn" id="10_ncq3p"]
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="11_b6myh"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="12_hwalq"]
-[ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="14_h4xx8"]
+[ext_resource type="Script" path="res://scene/app/components/dialog_center_text.gd" id="14_h4xx8"]
 
 [sub_resource type="FontVariation" id="FontVariation_35sq1"]
 base_font = ExtResource("7_dbbq7")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/editor/msbp/color/MsbpColorEditor.cs" id="1_fmpb3"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_gpn8b"]
 [ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="2_ktat6"]
-[ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/common/dialog/dialog_unsaved_changes.tscn" id="3_5s4ya"]
+[ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="3_5s4ya"]
 [ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="4_4fny0"]
 [ext_resource type="StyleBox" uid="uid://dc7dabk10eeb5" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_edit.tres" id="5_21sd3"]
 [ext_resource type="Theme" uid="uid://bv475afvceima" path="res://asset/theme/msbp/color/msbp_color_editor.tres" id="5_vj61p"]

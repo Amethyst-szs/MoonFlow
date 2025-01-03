@@ -9,10 +9,16 @@ public static class EngineSettings
 
     public static Variant GetSetting(string key, Variant def)
     {
+        if (Engine.IsEditorHint())
+            return ProjectSettings.GetSetting(key, def);
+        
         return Engine.GetSingleton(AutoloadName).Call("get_setting", [key, def]);
     }
     public static T GetSetting<[MustBeVariant] T>(string key, Variant def)
     {
+        if (Engine.IsEditorHint())
+            return ProjectSettings.GetSetting(key, def).As<T>();
+        
         var value = Engine.GetSingleton(AutoloadName).Call("get_setting", [key, def]);
         return value.As<T>();
     }
@@ -31,8 +37,20 @@ public static class EngineSettings
         Engine.GetSingleton(AutoloadName).Call("save");
     }
 
+    #region Utility
+
     public static void Connect(string signalName, Action method)
     {
         Engine.GetSingleton(AutoloadName).Connect(signalName, Callable.From(method));
     }
+
+    public static string GetWiki()
+    {
+        if (Engine.IsEditorHint())
+            return ProjectSettings.GetSetting("moonflow/wiki/local_source").AsString();
+        
+        return Engine.GetSingleton(AutoloadName).Call("get_wiki").AsString();
+    }
+
+    #endregion
 }

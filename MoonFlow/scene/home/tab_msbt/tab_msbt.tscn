@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="13_cdee3"]
 [ext_resource type="Script" path="res://scene/common/container/DebugProjectOnlyContainer.cs" id="14_62h41"]
 [ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbtFileAccessor.cs" id="15_3v0li"]
-[ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="16_hrtuc"]
+[ext_resource type="Script" path="res://scene/app/components/dialog_center_text.gd" id="16_hrtuc"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
 color = Color(1, 1, 1, 0.317647)

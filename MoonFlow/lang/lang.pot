@@ -9,7 +9,6 @@
 # res://scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 # res://scene/home/home.tscn
 # res://scene/home/tab_msbt/tab_msbt.tscn
-# res://scene/common/dialog/dialog_unsaved_changes.tscn
 # res://async/async_display.tscn
 # res://scene/editor/msbt/tag_edit/default/fallback.tscn
 # res://scene/editor/msbt/wheel/tag_wheel.tscn
@@ -68,6 +67,8 @@
 # res://addons/podb/input_map.tres
 # res://scene/settings/engine/keybind/overlay_keybind_capture.tscn
 # res://scene/settings/engine/page/keybind.tscn
+# res://scene/common/wiki/wiki_button_tooltip_text_bank.tres
+# res://scene/app/components/dialog_unsaved_changes.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -423,22 +424,6 @@ msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
-msgstr ""
-
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_TITLE"
-msgstr ""
-
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_OK"
-msgstr ""
-
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_TEXT"
-msgstr ""
-
-#: scene/common/dialog/dialog_unsaved_changes.tscn
-msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
 msgstr ""
 
 #: async/async_display.tscn
@@ -2567,6 +2552,14 @@ msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_HEADER"
 msgstr ""
 
@@ -3019,4 +3012,35 @@ msgstr ""
 
 #: scene/settings/engine/page/keybind.tscn
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
+msgstr ""
+
+#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "LocalNotice"
+msgstr ""
+
+#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "UrlNotice"
+msgstr ""
+
+#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "SettingNotice"
+msgstr ""
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_TITLE"
+msgstr ""
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_OK"
+msgstr ""
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_TEXT"
+msgstr ""
+
+#: scene/app/components/dialog_unsaved_changes.tscn
+msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
 msgstr ""

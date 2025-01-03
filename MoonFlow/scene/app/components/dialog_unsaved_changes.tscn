@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4j4g3xghg0a5"]
 
-[ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_iymjq"]
-[ext_resource type="Script" path="res://scene/common/dialog/dialog_center_text.gd" id="2_tldki"]
+[ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_pi2hg"]
+[ext_resource type="Script" path="res://scene/app/components/dialog_center_text.gd" id="2_bfv80"]
 
 [node name="Dialog_UnsavedChanges" type="ConfirmationDialog"]
 auto_translate_mode = 1
@@ -10,8 +10,8 @@ title = "UNSAVED_CHANGES_DIALOG_TITLE"
 initial_position = 2
 size = Vector2i(708, 125)
 unresizable = true
-theme = ExtResource("1_iymjq")
+theme = ExtResource("1_pi2hg")
 ok_button_text = "UNSAVED_CHANGES_DIALOG_OK"
 dialog_text = "UNSAVED_CHANGES_DIALOG_TEXT"
 cancel_button_text = "UNSAVED_CHANGES_DIALOG_CANCEL"
-script = ExtResource("2_tldki")
+script = ExtResource("2_bfv80")

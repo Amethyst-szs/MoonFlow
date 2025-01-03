@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://b0mm13kkye616"]
+
+[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_nfyg6"]
+
+[resource]
+script = ExtResource("1_nfyg6")
+context = "WIKI_BUTTON_TOOLTIP"
+keys = Array[String](["LocalNotice", "UrlNotice", "SettingNotice"])
