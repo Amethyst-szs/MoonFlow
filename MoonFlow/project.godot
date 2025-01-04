@@ -34,6 +34,7 @@ config/icon="res://iconS.png"
 
 StartupRunner="*res://addons/StartupRunner.cs"
 EngineSettings="*res://scene/settings/engine/global/engine_setting_holder.gd"
+ScreenshotCapture="*res://scene/common/screenshot/screenshot_capture.gd"
 
 [dotnet]
 
@@ -168,6 +169,11 @@ ui_new_archive={
 ui_rename={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194333,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+ui_screenshot={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"command_or_control_autoremap":true,"alt_pressed":false,"shift_pressed":false,"pressed":false,"keycode":4194343,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 
