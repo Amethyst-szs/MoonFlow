@@ -39,3 +39,24 @@ Any kingdom is fully customizable! Add stages, remove stages, add Power Moons, r
 
 ![Preview showing the kingdom selection menu](github_asset/editor_world.png)<sup>Picture showcasing Cascade Kingdom's Power Moon list, with Madame Broode's Multi Moon expanded to show its properties</sup>
 
+## Setup
+Getting started with MoonFlow is super easy. Go to the [releases](https://github.com/Amethyst-szs/MoonFlow/releases) tab and download the latest version for your operating system.
+
+On startup you'll need to provide at least 1 RomFS dump from your Super Mario Odyssey game files. This can be done via a modded switch or emulator. You can add game files for every released version of Mario Odyssey, but note that each project you create is tied to a specific version and cannot be opened unless you have a game file path for that specific version.
+
+### Running & Compiling from Source
+> This section is only for developers wanting to modify or debug MoonFlow
+
+MoonFlow runs on the [Godot Engine](https://godotengine.org/) and [C#](https://dotnet.microsoft.com/en-us/languages/csharp). This means you'll need a .NET supported version of the Godot Editor to open the project and make changes. If you don't have the C# enabled engine installed, [download here](https://godotengine.org/download/) and follow the [Godot C# setup](https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basics.html#introduction) guide.
+
+## Support
+This project is not for profit, is not affiliated with Nintendo, and does not encourage or distribute any pirated content owned by Nintendo. If you want to donate to show appreciation, you can do so on my [Ko-Fi](https://ko-fi.com/amethystszs) page, though there is no additional rewards or offers for doing so. This project is free and open source for all to use, only donate if you really want to!
+
+## Credits
+- [Amethyst-szs](http://www.youtube.com/@AmethystSZS): Project Lead, Programmer, & Designer
+- [Godot Foundation](https://godotengine.org/): Application Engine
+- [Microsoft](https://dotnet.microsoft.com/en-us/languages/csharp): C#
+- [EPD-Libraries](https://github.com/EPD-Libraries): Backend Nintendo file format libs
+- [Material Symbols](https://fonts.google.com/icons): SVG Graphics
+
+A more extensive and up-to-date list of all credits can be found in the Contributions section of the app!
