@@ -24,11 +24,13 @@ Featuring cross-language syncing, it's possible to create mods that support ever
 
 On top of that, this editor introduces the Tag Wheel! With the press of a button, open a wheel to insert any tag into your text! These can display pictures, change colors, fonts, text animations, play sound effects, and way more!
 ![Preview of the text editor, showing the name of a Power Moon in Cap Kingdom](github_asset/editor_msbt_2.png)
+
 <sup>Picture depicting the Tag Wheel which shows (in clockwise order from the top) a color tag, font tag, font size tag, text speed tag, text pause tag, text animation tag, sound tag, controller icon tag, and picture icon tag</sup>
 
 ### Kingdom Editor
-The Odyssey globe screen has been recreated on your desktop! Pick a destination in this dynamic menu capable of expanding to more than 17 kingdoms[^1] and get customizing!
-[^1]: Requires exefs patching and additional tools, [reference guide here](https://github.com/octember8/SMO-Kingdom-18/blob/main/Kingdom%2018%20Implementation%20Guide.md)
+The Odyssey globe screen has been recreated on your desktop! Pick a destination in this dynamic menu capable of expanding to more than 17 kingdoms and get customizing!
+
+> *Adding additional kingdoms requires exefs patching and additional tools, [reference guide here](https://github.com/octember8/SMO-Kingdom-18/blob/main/Kingdom%2018%20Implementation%20Guide.md)*
 
 ![Preview showing the kingdom selection menu](github_asset/home_world.png)
 <sup>Picture depicting the application's kingdom selection menu</sup>
