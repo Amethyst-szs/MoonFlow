@@ -97,7 +97,7 @@ func _preprocess_line(line: String) -> String:
 		return line
 	
 	if s_idx != -1 && e_idx != -1 && !is_github_only:
-		line = line.left(s_idx) + line.right(line.length() - (e_idx + e_key.length()))
+		line = line.left(s_idx) + line.right(-(e_idx + e_key.length()))
 		return line
 	
 	if s_idx != -1 && e_idx == -1:
@@ -106,7 +106,8 @@ func _preprocess_line(line: String) -> String:
 		return line
 	
 	if s_idx == -1 && e_idx != -1:
-		line = line.right(e_idx + e_key.length())
+		print(line.length() - (e_idx + e_key.length()))
+		line = line.right(-(e_idx + e_key.length()))
 		is_github_only = false
 		return line
 	

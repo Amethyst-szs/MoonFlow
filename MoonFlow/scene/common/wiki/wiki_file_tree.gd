@@ -20,8 +20,14 @@ func _generate_folder(root: TreeItem, path: String) -> void:
 	
 	for subdir in subdirs:
 		var target: String = path + subdir + '/'
-		var f_count := DirAccess.get_files_at(target).size()
+		var f_list := DirAccess.get_files_at(target)
+		
+		var f_count: int = 0
 		var d_count := DirAccess.get_directories_at(target).size()
+		
+		for i in range(f_list.size()):
+			if f_list[i].ends_with(".md"): f_count += 1
+		
 		if f_count == 0 && d_count == 0:
 			continue
 		
