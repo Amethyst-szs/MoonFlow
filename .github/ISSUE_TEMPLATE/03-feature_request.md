@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest an idea for MoonFlow to implement
 title: "[REQUEST] "
 labels: enhancement
 assignees: ''

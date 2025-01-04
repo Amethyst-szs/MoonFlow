@@ -1,7 +1,7 @@
 ---
 name: Documentation Issue
 about: Notice something incorrect in the documentation, event something as small as a typo? Make an issue report here!
-title: "[DOCS]" 
+title: "[DOCS] " 
 labels: documentation
 assignees: ''
 

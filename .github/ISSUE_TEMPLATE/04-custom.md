@@ -1,6 +1,6 @@
 ---
 name: Other
-about: Something other than a bug report or request then?
+about: Something else then?
 title: ''
 labels: ''
 assignees: ''
