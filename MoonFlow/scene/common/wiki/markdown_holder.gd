@@ -79,10 +79,37 @@ func _try_scroll_to_header(target: String) -> void:
 #region Overrides
 
 var blockquote_depth: int = 0
+var is_github_only: bool = false
 
 const hseparator_keys: PackedStringArray = ["[i]_[/i]", "---", "[i]*[/i]"]
 
 func _preprocess_line(line: String) -> String:
+	# Process github only syntax
+	const s_key: String = "<github>"
+	const e_key: String = "</github>"
+	
+	var s_idx: int = line.find(s_key)
+	var e_idx: int = line.find(e_key)
+	if s_idx == -1 && e_idx == -1:
+		if is_github_only:
+			return ""
+		
+		return line
+	
+	if s_idx != -1 && e_idx != -1 && !is_github_only:
+		line = line.left(s_idx) + line.right(line.length() - (e_idx + e_key.length()))
+		return line
+	
+	if s_idx != -1 && e_idx == -1:
+		line = line.left(s_idx)
+		is_github_only = true
+		return line
+	
+	if s_idx == -1 && e_idx != -1:
+		line = line.right(e_idx + e_key.length())
+		is_github_only = false
+		return line
+	
 	return line
 
 func _process_custom_syntax(line: String) -> String:

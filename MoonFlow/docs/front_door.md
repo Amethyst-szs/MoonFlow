@@ -7,5 +7,6 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 
 # Table of contents
 
-This placeholder text should appear on both GitHub and the desktop app
-<github>But this placeholder text should only appear on GitHub</github>
+This placeholder text should appear on both GitHub and the desktop app  
+<github>But this placeholder text should only appear on GitHub  </github>
+And back to both!  

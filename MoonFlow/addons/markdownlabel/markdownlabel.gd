@@ -510,7 +510,7 @@ func _process_link_syntax(line: String) -> String:
 				_end - _start - _text.get_start()
 			).insert(
 				_start + _text.get_start(),
-				"[url=%s]%s[/url]" % [url, _text.get_string(1)]
+				"[color=#fcca46][url=%s]%s[/url][/color]" % [url, _text.get_string(1)]
 			)
 			if title_result and title:
 				processed_line = processed_line.insert(
