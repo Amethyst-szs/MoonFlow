@@ -55,8 +55,8 @@ Getting started with MoonFlow is super easy. Go to the [releases](https://github
 
 On startup you'll need to provide at least 1 RomFS dump from your Super Mario Odyssey game files. This can be done via a modded switch or emulator. You can add game files for every released version of Mario Odyssey, but note that each project you create is tied to a specific version and cannot be opened unless you have a game file path for that specific version.
 
-## [Documentation](https://github.com/Amethyst-szs/MoonFlow/blob/stable/MoonFlow/docs/front_door.md)
-The wiki is available both on the GitHub repo and built-in to the app itself. [View the online wiki here](https://github.com/Amethyst-szs/MoonFlow/blob/stable/MoonFlow/docs/front_door.md)!
+## [Documentation](MoonFlow/docs/front_door.md)
+The wiki is available both on the GitHub repo and built-in to the app itself. [View the wiki here](MoonFlow/docs/front_door.md)!
 
 ## Running & Compiling from Source
 > This section is only for developers wanting to modify or debug MoonFlow
