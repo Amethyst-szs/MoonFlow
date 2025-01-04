@@ -49,6 +49,9 @@ On startup you'll need to provide at least 1 RomFS dump from your Super Mario Od
 
 MoonFlow runs on the [Godot Engine](https://godotengine.org/) and [C#](https://dotnet.microsoft.com/en-us/languages/csharp). This means you'll need a .NET supported version of the Godot Editor to open the project and make changes. If you don't have the C# enabled engine installed, [download here](https://godotengine.org/download/) and follow the [Godot C# setup](https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basics.html#introduction) guide.
 
+## [Documentation](https://github.com/Amethyst-szs/MoonFlow/blob/stable/MoonFlow/docs/front_door.md)
+The wiki is available both on the GitHub repo and built-in to the app itself. [View the online wiki here](https://github.com/Amethyst-szs/MoonFlow/blob/stable/MoonFlow/docs/front_door.md)!
+
 ## Support
 This project is not for profit, is not affiliated with Nintendo, and does not encourage or distribute any pirated content owned by Nintendo. If you want to donate to show appreciation, you can do so on my [Ko-Fi](https://ko-fi.com/amethystszs) page, though there is no additional rewards or offers for doing so. This project is free and open source for all to use, only donate if you really want to!
 
