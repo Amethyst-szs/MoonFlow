@@ -81,6 +81,9 @@ func _try_scroll_to_header(target: String) -> void:
 var blockquote_depth: int = 0
 var is_github_only: bool = false
 
+var footnote_mark_regex := RegEx.create_from_string("\\[\\^([0-9]+)\\]")
+var footnote_regex := RegEx.create_from_string("\\[\\^([0-9]+)\\]:")
+
 const hseparator_keys: PackedStringArray = ["[i]_[/i]", "---", "[i]*[/i]"]
 
 func _preprocess_line(line: String) -> String:
@@ -106,7 +109,6 @@ func _preprocess_line(line: String) -> String:
 		return line
 	
 	if s_idx == -1 && e_idx != -1:
-		print(line.length() - (e_idx + e_key.length()))
 		line = line.right(-(e_idx + e_key.length()))
 		is_github_only = false
 		return line
@@ -114,6 +116,16 @@ func _preprocess_line(line: String) -> String:
 	return line
 
 func _process_custom_syntax(line: String) -> String:
+	# Process footnote markers
+	var m := footnote_regex.search(line)
+	if m != null:
+		line = line.left(m.get_start()) + "[font_size=14][color=gray]" + m.get_string(1) + ':' + line.right(-m.get_end())
+		line += "[/color][/font_size]"
+	
+	var mark_match := footnote_mark_regex.search_all(line)
+	for mm in mark_match:
+		line = line.left(mm.get_start()) + "[font_size=10][color=gray][lb]" + mm.get_string(1) + "[rb]" + line.right(-mm.get_end()) + "[/color][/font_size]"
+	
 	# Process horizontal line breaks
 	for key in hseparator_keys:
 		if line.begins_with(key):

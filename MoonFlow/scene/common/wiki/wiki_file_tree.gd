@@ -18,6 +18,13 @@ func _generate_folder(root: TreeItem, path: String) -> void:
 	var subdirs = DirAccess.get_directories_at(path)
 	var files = DirAccess.get_files_at(path)
 	
+	for file in files:
+		var item := create_item(root)
+		item.set_metadata(0, path + file)
+		
+		var txt := file.trim_suffix(".md").capitalize()
+		item.set_text(0, txt)
+	
 	for subdir in subdirs:
 		var target: String = path + subdir + '/'
 		var f_list := DirAccess.get_files_at(target)
@@ -32,18 +39,12 @@ func _generate_folder(root: TreeItem, path: String) -> void:
 			continue
 		
 		var folder := create_item(root)
-		folder.set_text(0, subdir.to_pascal_case())
+		folder.set_text(0, subdir.capitalize())
 		folder.set_metadata(0, "__FOLDER__")
 		folder.set_custom_font_size(0, 18)
+		folder.collapsed = true
 		
 		_generate_folder(folder, target)
-	
-	for file in files:
-		var item := create_item(root)
-		item.set_metadata(0, path + file)
-		
-		var txt := file.trim_suffix(".md").to_pascal_case()
-		item.set_text(0, txt)
 
 func _on_item_selected():
 	var sel := get_selected()
