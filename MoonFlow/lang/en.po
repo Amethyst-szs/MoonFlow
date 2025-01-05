@@ -2459,6 +2459,10 @@ msgid "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
 msgstr "Search"
 
 #: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
+msgstr "Step-by-Step Debugger Active (F3)"
+
+#: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
 msgstr "Zoom Out"
 
@@ -2471,12 +2475,24 @@ msgid "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
 msgstr "Zoom In"
 
 #: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
+msgstr "Debug Display"
+
+#: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
 msgstr "Add Node"
 
 #: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
-msgstr "Debug Display"
+msgid "EVENT_FLOW_APP_BUTTON_DELETE_NODES"
+msgstr "Delete Nodes"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_BUTTON_WIKI"
+msgstr "Help Docs"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
+msgstr "Select by ID"
 
 #: scene/settings/engine/engine_settings_app.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
