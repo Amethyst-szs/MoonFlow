@@ -37,7 +37,13 @@ public partial class ActionbarFile : ActionbarItemBase
         base.AppFocusChanged();
 
 		var scene = await GetScene();
-		if (scene.GetActiveApp() is not HomeRoot)
+		var app = scene.GetActiveApp() ;
+		bool isAllowUserClose = app.IsAppAllowUserToClose();
+
+		Header.ButtonAppClose.Visible = isAllowUserClose;
+		Header.ButtonAppMinimize.Visible = isAllowUserClose;
+
+		if (app is not HomeRoot)
 			return;
 		
 		for (var i = 0; i < ItemCount; i++)
