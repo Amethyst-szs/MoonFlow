@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ck2mpawvgk0li"]
+[gd_scene load_steps=21 format=3 uid="uid://ck2mpawvgk0li"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_e4ni0"]
 [ext_resource type="Script" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_ykyf6"]
 [ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="9_7ww6o"]
 [ext_resource type="StyleBox" uid="uid://cv7cw0f7p5d7l" path="res://asset/theme/common/stylebox/common_button_normal.tres" id="10_68pqn"]
+[ext_resource type="Script" path="res://scene/common/wiki/WikiAccessButton.cs" id="11_i7gov"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_bpujh"]
 action = &"msbt_add_entry"
@@ -115,6 +116,9 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_ysvcm")
 icon = ExtResource("9_7ww6o")
+script = ExtResource("11_i7gov")
+WikiPath = "res://docs/getting_started/tutorial_text.md"
+WikiLocalPath = "getting_started/tutorial_text.md"
 
 [node name="Label_EntryCount" type="Label" parent="Controls/VBox/HBox"]
 custom_minimum_size = Vector2(175, 0)
@@ -133,4 +137,3 @@ autowrap_mode = 3
 [connection signal="toggled" from="Controls/VBox/HBox/Add" to="Controls" method="_on_add_toggled"]
 [connection signal="toggled" from="Controls/VBox/HBox/Search" to="Controls" method="_on_search_toggled"]
 [connection signal="pressed" from="Controls/VBox/HBox/Trash" to="." method="RequestDeleteEntry"]
-[connection signal="pressed" from="Controls/VBox/HBox/Help" to="." method="emit_signal" binds= [&"OpenHelpPage"]]
