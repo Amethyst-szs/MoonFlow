@@ -1343,18 +1343,6 @@ msgstr "Decap"
 msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr "Cap"
 
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "HELP_DIALOG_TITLE"
-msgstr "Help Information"
-
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "HELP_DIALOG_CLOSE"
-msgstr "Close"
-
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
-msgstr "Help Dialog"
-
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr "Entry Name"
@@ -2344,6 +2332,10 @@ msgid "MAIN_ACTIONBAR_FILE_CLOSE"
 msgstr "Close File"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
+msgstr "Quit MoonFlow"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
 msgstr "Reload Project"
 
@@ -3083,6 +3075,15 @@ msgstr "Documents"
 #: scene/common/wiki/app_local_wiki_viewer.tscn
 msgid "WIKI_APP_OPEN_IN_BROWSER"
 msgstr "Online Docs"
+
+#~ msgid "HELP_DIALOG_TITLE"
+#~ msgstr "Help Information"
+
+#~ msgid "HELP_DIALOG_CLOSE"
+#~ msgstr "Close"
+
+#~ msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
+#~ msgstr "Help Dialog"
 
 #~ msgid "PLACEHOLDER"
 #~ msgstr "Placeholder stuff :)"

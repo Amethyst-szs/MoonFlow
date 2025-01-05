@@ -1395,18 +1395,6 @@ msgstr ""
 msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr ""
 
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "HELP_DIALOG_TITLE"
-msgstr ""
-
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "HELP_DIALOG_CLOSE"
-msgstr ""
-
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
-msgstr ""
-
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr ""
@@ -2374,6 +2362,10 @@ msgstr ""
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_FILE_CLOSE"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
 msgstr ""
 
 #: scene/main/main.tscn

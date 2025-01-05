@@ -90,7 +90,7 @@ theme = ExtResource("5_7wt0y")
 [node name="File" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
 size = Vector2i(250, 100)
-item_count = 5
+item_count = 7
 item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
 item_1/text = "MAIN_ACTIONBAR_FILE_SAVE_AS"
 item_1/id = 1
@@ -101,6 +101,10 @@ item_3/disabled = true
 item_3/separator = true
 item_4/text = "MAIN_ACTIONBAR_FILE_CLOSE"
 item_4/id = 3
+item_5/id = 1001
+item_5/separator = true
+item_6/text = "MAIN_ACTIONBAR_QUIT_MOONFLOW"
+item_6/id = 42069
 script = ExtResource("5_2c21b")
 
 [node name="Project" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
@@ -210,5 +214,6 @@ script = SubResource("GDScript_vdahq")
 [node name="DisplayServerSetup" type="Node" parent="."]
 script = ExtResource("13_jlow7")
 
+[connection signal="MoonFlowCloseRequest" from="Content/Header/Content/Actionbar/File" to="." method="OnWindowCloseRequest"]
 [connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="FocusFirstApp"]
 [connection signal="pressed" from="Content/Header/Content/Button_Close" to="." method="CloseActiveApp"]

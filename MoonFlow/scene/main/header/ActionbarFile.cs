@@ -14,7 +14,12 @@ public partial class ActionbarFile : ActionbarItemBase
 		FILE_SAVE_AS = 1,
 		FILE_SAVE_ALL = 2,
 		FILE_CLOSE = 3,
+
+		CLOSE_MOONFLOW = 42069, // nice
 	}
+
+	[Signal]
+    public delegate void MoonFlowCloseRequestEventHandler();
 
 	public override void _Ready()
 	{
@@ -24,6 +29,7 @@ public partial class ActionbarFile : ActionbarItemBase
 		AssignFunction((int)MenuIds.FILE_SAVE_AS, OnFileSaveAs, "ui_save_as");
 		AssignFunction((int)MenuIds.FILE_SAVE_ALL, OnFileSaveAll, "ui_save_all");
 		AssignFunction((int)MenuIds.FILE_CLOSE, OnFileClose);
+		AssignFunction((int)MenuIds.CLOSE_MOONFLOW, OnMoonFlowApplicationClose);
 	}
 
     protected async override void AppFocusChanged()
@@ -36,6 +42,8 @@ public partial class ActionbarFile : ActionbarItemBase
 		
 		for (var i = 0; i < ItemCount; i++)
 			SetItemDisabled(i, true);
+		
+		SetItemDisabled(GetItemIndex((int)MenuIds.CLOSE_MOONFLOW), false);
     }
 
     private void OnFileSave()
@@ -64,5 +72,10 @@ public partial class ActionbarFile : ActionbarItemBase
 	{
         var scene = await GetScene();
 		scene.CloseActiveApp();
+	}
+
+	private void OnMoonFlowApplicationClose()
+	{
+		EmitSignal(SignalName.MoonFlowCloseRequest);
 	}
 }
