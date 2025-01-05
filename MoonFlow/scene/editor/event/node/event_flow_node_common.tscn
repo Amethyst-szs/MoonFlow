@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn6k75166p7ua"]
+[gd_scene load_steps=9 format=3 uid="uid://dn6k75166p7ua"]
 
 [ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNodeCommon.cs" id="1_7s7lh"]
 [ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_e82a6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bw6q6mibncpgu" path="res://asset/material/graph/edit.svg" id="4_p37at"]
 [ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="5_ccntp"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/dropdown_vbox_with_dispose.gd" id="6_dn78i"]
+[ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/extra.svg" id="7_jdg8o"]
 
 [node name="EventFlowNodeCommon" node_paths=PackedStringArray("ParamHolder", "ParamAddDropdownHolder", "NameOptionButton", "NameLineEdit") instance=ExtResource("1_e82a6")]
 script = ExtResource("1_7s7lh")
@@ -19,6 +20,9 @@ PortColorList = [Color(0.34, 1, 0.34, 1), Color(1, 0.53, 0.53, 1), Color(0.53, 0
 [node name="Content" parent="." index="0"]
 offset_right = 129.0
 offset_bottom = 110.0
+
+[node name="Ports" parent="Content" index="0"]
+metadata/_edit_lock_ = true
 
 [node name="Line_NameEdit" type="LineEdit" parent="Content/Display/HBox_Name" index="1"]
 custom_minimum_size = Vector2(180, 0)
@@ -33,7 +37,7 @@ context_menu_enabled = false
 [node name="Menu_Options" type="MenuButton" parent="Content/Display/HBox_Name" index="2"]
 layout_mode = 2
 theme = ExtResource("3_6gwyg")
-theme_override_constants/icon_max_width = 22
+theme_override_constants/icon_max_width = 18
 icon = ExtResource("4_p37at")
 flat = false
 
@@ -47,6 +51,7 @@ mouse_filter = 2
 
 [node name="Dropdown_Additional" type="CheckBox" parent="Content/Display" index="3" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
 text_overrun_behavior = 1
 script = ExtResource("5_ccntp")
@@ -57,4 +62,26 @@ layout_mode = 2
 script = ExtResource("6_dn78i")
 dropdown = NodePath("../Dropdown_Additional")
 
+[node name="Metadata" type="Control" parent="Content" index="3"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("3_eioh2")
+
+[node name="Button_Metadata" type="Button" parent="Content/Metadata" index="0"]
+self_modulate = Color(1, 1, 1, 0.807843)
+layout_mode = 1
+offset_left = -1.0
+offset_top = -7.0
+offset_right = 23.0
+offset_bottom = 17.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+tooltip_text = "EVENT_FLOW_NODE_METADATA_ACCESS_BUTTON_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_6gwyg")
+theme_override_constants/icon_max_width = 16
+icon = ExtResource("7_jdg8o")
+
 [connection signal="text_changed" from="Content/Display/HBox_Name/Line_NameEdit" to="." method="OnSetNameLineEdit"]
+[connection signal="pressed" from="Content/Metadata/Button_Metadata" to="." method="OnMetadataEditRequest"]

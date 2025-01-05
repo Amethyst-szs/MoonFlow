@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://toha7mro71ue"]
+
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_41gk0"]
+[ext_resource type="Script" path="res://scene/editor/event/meta/editor/PopupEventMetadata.cs" id="2_f0xbx"]
+[ext_resource type="StyleBox" uid="uid://diowequepd8ed" path="res://asset/theme/common/stylebox/common_accept_dialog_panel.tres" id="2_q77dw"]
+
+[node name="Popup_NodeMetadataEditor" type="Popup"]
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(186, 100)
+visible = true
+borderless = false
+theme = ExtResource("1_41gk0")
+script = ExtResource("2_f0xbx")
+
+[node name="Content" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_q77dw")
+
+[node name="Label" type="Label" parent="Content"]
+layout_mode = 2
+text = "Placeholder panel :)"

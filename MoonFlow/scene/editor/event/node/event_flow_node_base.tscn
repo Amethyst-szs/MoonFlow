@@ -23,7 +23,7 @@ PortIn = NodePath("Content/Ports/PortHolder_In/Port_In")
 PortOutList = NodePath("Content/Ports/PortHolder_Out/PortList_Out")
 RootPanel = NodePath("Content")
 SelectionPanel = NodePath("Content/Panel_Selection")
-DebugDataDisplay = NodePath("Content/Debug/VBox_DebugDisplay/Label_Debug")
+DebugDataDisplay = NodePath("Content/Extra/VBox_ExtraDisplay/Label_Debug")
 
 [node name="Content" type="PanelContainer" parent="."]
 offset_right = 40.0
@@ -83,13 +83,13 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("5_vyepf")
 
-[node name="Debug" type="Control" parent="Content"]
+[node name="Extra" type="Control" parent="Content"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="VBox_DebugDisplay" type="VBoxContainer" parent="Content/Debug"]
+[node name="VBox_ExtraDisplay" type="VBoxContainer" parent="Content/Extra"]
 layout_mode = 2
 offset_top = 16.0
 offset_bottom = 16.0
@@ -97,7 +97,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="Label_Debug" type="Label" parent="Content/Debug/VBox_DebugDisplay"]
+[node name="Label_Debug" type="Label" parent="Content/Extra/VBox_ExtraDisplay"]
 z_index = -25
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xs1ce")

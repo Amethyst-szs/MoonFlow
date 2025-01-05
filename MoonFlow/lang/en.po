@@ -2463,6 +2463,10 @@ msgid "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 msgstr "Step-by-Step Debugger Active (F3)"
 
 #: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
+msgstr "Select by ID"
+
+#: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
 msgstr "Zoom Out"
 
@@ -2473,10 +2477,6 @@ msgstr "Reset Zoom"
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
 msgstr "Zoom In"
-
-#: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
-msgstr "Debug Display"
 
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
@@ -2491,8 +2491,8 @@ msgid "EVENT_FLOW_APP_BUTTON_WIKI"
 msgstr "Help Docs"
 
 #: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
-msgstr "Select by ID"
+msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
+msgstr "Debug Display"
 
 #: scene/settings/engine/engine_settings_app.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
@@ -2785,6 +2785,10 @@ msgstr "Node Name"
 #: scene/editor/event/node/event_flow_node_common.tscn
 msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
 msgstr "Additional Properties"
+
+#: scene/editor/event/node/event_flow_node_common.tscn
+msgid "EVENT_FLOW_NODE_METADATA_ACCESS_BUTTON_TOOLTIP"
+msgstr "User Data"
 
 #: scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
 msgctxt "HOME_TAB_EVENT"
@@ -3186,11 +3190,6 @@ msgstr "Godot Packages"
 
 #~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_ICON_BALLOON"
 #~ msgstr "Icon Only"
-
-#~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL_TOOLTIP"
-#~ msgstr ""
-#~ "Retrieve text from SystemMessage/Tutorial.msbt, with the\n"
-#~ "entry determined by the ShowMessage property on the actor."
 
 #~ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_TUTORIAL"
 #~ msgstr "Tutorial"

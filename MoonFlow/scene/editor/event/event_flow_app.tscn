@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=39 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="21_urv24"]
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="21_xbido"]
 [ext_resource type="Script" path="res://scene/common/wiki/WikiAccessButton.cs" id="22_qdlgd"]
+[ext_resource type="PackedScene" uid="uid://toha7mro71ue" path="res://scene/editor/event/meta/editor/popup_event_metadata.tscn" id="25_puyck"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
 shader = ExtResource("3_budwu")
@@ -49,6 +50,18 @@ action = &"ui_graph_reset_zoom"
 [sub_resource type="Shortcut" id="Shortcut_e8ok1"]
 events = [SubResource("InputEventAction_mfvuv")]
 
+[sub_resource type="InputEventAction" id="InputEventAction_hoajv"]
+action = &"ui_graph_inject"
+
+[sub_resource type="Shortcut" id="Shortcut_8p0il"]
+events = [SubResource("InputEventAction_hoajv")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_6oj6g"]
+action = &"ui_graph_delete"
+
+[sub_resource type="Shortcut" id="Shortcut_7271u"]
+events = [SubResource("InputEventAction_6oj6g")]
+
 [sub_resource type="InputEventAction" id="InputEventAction_lu5vy"]
 action = &"ui_toggle_debug"
 
@@ -63,19 +76,7 @@ func _ready():
 		queue_free()
 "
 
-[sub_resource type="InputEventAction" id="InputEventAction_hoajv"]
-action = &"ui_graph_inject"
-
-[sub_resource type="Shortcut" id="Shortcut_8p0il"]
-events = [SubResource("InputEventAction_hoajv")]
-
-[sub_resource type="InputEventAction" id="InputEventAction_6oj6g"]
-action = &"ui_graph_delete"
-
-[sub_resource type="Shortcut" id="Shortcut_7271u"]
-events = [SubResource("InputEventAction_6oj6g")]
-
-[node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder")]
+[node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder", "PopupMetadata")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,6 +88,7 @@ script = ExtResource("1_rd7f7")
 GraphCanvas = NodePath("Graph")
 BackgroundCanvas = NodePath("Background")
 GraphNodeHolder = NodePath("Graph/NodeHolder")
+PopupMetadata = NodePath("Popup_NodeMetadataEditor")
 AppName = "EventFlowGraphApp"
 AppTaskbarTitle = "EventFlow"
 AppIcon = ExtResource("2_7jypk")
@@ -194,6 +196,18 @@ layout_mode = 2
 text = "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 label_settings = SubResource("LabelSettings_ygme5")
 
+[node name="VBox_DebugTools" type="VBoxContainer" parent="Header/UI"]
+visible = false
+layout_mode = 2
+
+[node name="Line_SelectId" type="LineEdit" parent="Header/UI/VBox_DebugTools"]
+layout_mode = 2
+theme = ExtResource("20_x5ttv")
+placeholder_text = "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
+max_length = 6
+script = ExtResource("21_xbido")
+regex_string = "[0-9]"
+
 [node name="HBox_ZoomControl" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
 theme_override_constants/separation = 8
@@ -213,14 +227,6 @@ icon = ExtResource("11_uvpj5")
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
 icon = ExtResource("12_570rd")
-
-[node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_ZoomControl"]
-layout_mode = 2
-tooltip_text = "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
-toggle_mode = true
-shortcut = SubResource("Shortcut_bx36p")
-icon = ExtResource("12_scho0")
-script = SubResource("GDScript_mtjrf")
 
 [node name="HBox_Tools" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
@@ -247,16 +253,17 @@ script = ExtResource("22_qdlgd")
 WikiPath = "res://docs/getting_started/tutorial_events.md"
 WikiLocalPath = "getting_started/tutorial_events.md"
 
-[node name="VBox_DebugTools" type="VBoxContainer" parent="Header/UI"]
+[node name="Button_DebugDataView" type="Button" parent="Header/UI"]
 layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
+toggle_mode = true
+shortcut = SubResource("Shortcut_bx36p")
+icon = ExtResource("12_scho0")
+script = SubResource("GDScript_mtjrf")
 
-[node name="Line_SelectId" type="LineEdit" parent="Header/UI/VBox_DebugTools"]
-layout_mode = 2
-theme = ExtResource("20_x5ttv")
-placeholder_text = "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
-max_length = 6
-script = ExtResource("21_xbido")
-regex_string = "[0-9]"
+[node name="Popup_NodeMetadataEditor" parent="." instance=ExtResource("25_puyck")]
+visible = false
 
 [connection signal="FileOpenComplete" from="." to="ScollNavigationBars" method="_on_window_size_changed"]
 [connection signal="ContentModified" from="Graph" to="." method="OnFileModified"]
@@ -269,12 +276,12 @@ regex_string = "[0-9]"
 [connection signal="StepByStepDebugger" from="Graph/NodeHolder" to="Header/UI/Label_StepByStepDebugger" method="show"]
 [connection signal="StepByStepDebugger" from="Graph/NodeHolder" to="Graph" method="SetDebugDataViewState" binds= [true]]
 [connection signal="child_entered_tree" from="Graph/NodeHolder" to="ScollNavigationBars" method="_on_graph_node_added"]
-[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
-[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
-[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
-[connection signal="toggled" from="Header/UI/HBox_ZoomControl/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]
-[connection signal="pressed" from="Header/UI/HBox_Tools/Button_InjectNode" to="Graph" method="OpenInjectMenu"]
-[connection signal="pressed" from="Header/UI/HBox_Tools/Button_DeleteNodes" to="Graph" method="UnhandledInputDelete"]
 [connection signal="tree_entered" from="Header/UI/VBox_DebugTools" to="Header/UI/VBox_DebugTools" method="hide"]
 [connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Graph/NodeHolder" method="SelectById"]
 [connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Header/UI/VBox_DebugTools/Line_SelectId" method="clear" unbinds=1]
+[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
+[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
+[connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
+[connection signal="pressed" from="Header/UI/HBox_Tools/Button_InjectNode" to="Graph" method="OpenInjectMenu"]
+[connection signal="pressed" from="Header/UI/HBox_Tools/Button_DeleteNodes" to="Graph" method="UnhandledInputDelete"]
+[connection signal="toggled" from="Header/UI/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]

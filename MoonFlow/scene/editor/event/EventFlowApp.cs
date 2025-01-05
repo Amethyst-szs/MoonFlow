@@ -35,6 +35,8 @@ public partial class EventFlowApp : AppScene
     private CanvasLayer BackgroundCanvas = null;
     [Export]
     public NodeHolder GraphNodeHolder { get; private set; } = null;
+    [Export]
+    public PopupEventMetadata PopupMetadata { get; private set; } = null;
 
     // ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
@@ -273,14 +275,14 @@ public partial class EventFlowApp : AppScene
         return entry;
     }
 
-    #endregion
-
-    #region Signals
-
     public override string GetUniqueIdentifier(string input)
 	{
 		return "EVENTFLOW_" + input;
 	}
+
+    #endregion
+
+    #region Signals
 
     private void OnVisiblityChanged()
     {
@@ -292,6 +294,11 @@ public partial class EventFlowApp : AppScene
     {
         if (IsInitCompleted)
             IsModified = true;
+    }
+
+    public void OnMetadataEditRequest(EventFlowNodeCommon source)
+    {
+        PopupMetadata.SetupPopup(source);
     }
 
     #endregion

@@ -115,20 +115,11 @@ public partial class EventFlowNodeBase : Node2D
 		// Hide selection panel
 		SelectionPanel.Hide();
 
-		// Setup debug panel
+		// Setup debug label in extras panel
 		DebugDataDisplay.Hide();
 
 		if (OS.IsDebugBuild())
 			Parent.Connect(GraphCanvas.SignalName.ToggleDebugDataView, Callable.From(new Action<bool>(SetDebugVisiblity)));
-		else
-		{
-			var root = DebugDataDisplay as Godot.Node;
-			while (root.GetType() != typeof(Control))
-				root = root.GetParent();
-
-			root.QueueFree();
-			DebugDataDisplay = null;
-		}
 	}
 
 	private void InitCallables()

@@ -33,9 +33,25 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 	[Export]
 	public LineEdit NameLineEdit { get; private set; }
 
+	// ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
+
+	[Signal]
+	public delegate void MetadataEditRequestEventHandler(EventFlowNodeCommon self);
+
 	#endregion
 
 	#region Initilization
+
+	public override void _Ready()
+	{
+		base._Ready();
+
+		// Setup additional signal connections
+		Connect(SignalName.MetadataEditRequest, Callable.From(
+			new Action<EventFlowNodeCommon>(Application.OnMetadataEditRequest)
+		));
+	}
+
 	public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
 	{
 		// Setup state
@@ -103,12 +119,12 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 				if (IsInstanceValid(NameLineEdit))
 					NameLineEdit.QueueFree();
-				
+
 				break;
 			case Nindot.Al.EventFlow.Node.NodeOptionType.ANY_VALUE:
 				if (IsInstanceValid(NameOptionButton))
 					NameOptionButton.QueueFree();
-				
+
 				GetNode<Label>("%Label_Name").Hide();
 
 				if (!NameLineEdit.HasMeta("InitComplete"))
@@ -269,6 +285,8 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		DrawDebugLabel();
 	}
 	protected virtual void OnNodeNameModified() { }
+
+	private void OnMetadataEditRequest() { EmitSignal(SignalName.MetadataEditRequest, this); }
 
 	#endregion
 

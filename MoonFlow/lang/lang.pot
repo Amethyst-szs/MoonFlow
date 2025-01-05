@@ -2491,6 +2491,10 @@ msgid "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
+msgstr ""
+
+#: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
 msgstr ""
 
@@ -2500,10 +2504,6 @@ msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
-msgstr ""
-
-#: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
 msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
@@ -2519,7 +2519,7 @@ msgid "EVENT_FLOW_APP_BUTTON_WIKI"
 msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
+msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
 msgstr ""
 
 #: scene/settings/engine/engine_settings_app.tscn
@@ -2789,6 +2789,10 @@ msgstr ""
 
 #: scene/editor/event/node/event_flow_node_common.tscn
 msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
+msgstr ""
+
+#: scene/editor/event/node/event_flow_node_common.tscn
+msgid "EVENT_FLOW_NODE_METADATA_ACCESS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
