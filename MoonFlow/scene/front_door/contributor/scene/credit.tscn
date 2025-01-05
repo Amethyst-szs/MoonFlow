@@ -75,21 +75,20 @@ label_settings = SubResource("LabelSettings_hcimq")
 layout_mode = 2
 mouse_filter = 1
 
-[node name="CategoryInfo" parent="Content/Margin/Scroll/Content" instance=ExtResource("6_b7d2p")]
+[node name="Publisher" parent="Content/Margin/Scroll/Content" instance=ExtResource("6_b7d2p")]
 layout_mode = 2
 
-[node name="Icon" parent="Content/Margin/Scroll/Content/CategoryInfo/HBox_Head" index="0"]
+[node name="Icon" parent="Content/Margin/Scroll/Content/Publisher/HBox_Head" index="0"]
 custom_minimum_size = Vector2(0, 0)
 
-[node name="Label" parent="Content/Margin/Scroll/Content/CategoryInfo/HBox_Head" index="1"]
-auto_translate_mode = 2
-text = "Game Publisher"
+[node name="Label" parent="Content/Margin/Scroll/Content/Publisher/HBox_Head" index="1"]
+text = "FRONT_DOOR_CONTRIBUTOR_HEADER_PUBLISHER"
 label_settings = SubResource("LabelSettings_tlbhh")
 
-[node name="Entries" parent="Content/Margin/Scroll/Content/CategoryInfo" index="1"]
+[node name="Entries" parent="Content/Margin/Scroll/Content/Publisher" index="1"]
 columns = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Content/Margin/Scroll/Content/CategoryInfo/Entries" index="0"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Content/Margin/Scroll/Content/Publisher/Entries" index="0"]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -100,4 +99,4 @@ text = "[center]Super Mario Odyssey
 This project is not affilated with or approved by Nintendo. This project is fully open source and free, and does not encourage or distrubte any pirated content."
 fit_content = true
 
-[editable path="Content/Margin/Scroll/Content/CategoryInfo"]
+[editable path="Content/Margin/Scroll/Content/Publisher"]

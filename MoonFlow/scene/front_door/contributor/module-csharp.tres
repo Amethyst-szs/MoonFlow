@@ -36,6 +36,6 @@ url = "https://github.com/Burtsev-Alexey/net-object-deep-copy"
 
 [resource]
 script = ExtResource("3_3j7fu")
-list_name = "C# Packages"
+list_name = "FRONT_DOOR_CONTRIBUTOR_HEADER_CSHARP_PACKAGES"
 list_color = Color(0.646, 0.51, 0.85, 1)
 list = Array[ExtResource("1_4ty61")]([SubResource("Resource_hvqrg"), SubResource("Resource_ve3wk"), SubResource("Resource_cyc1t"), SubResource("Resource_d4eey"), SubResource("Resource_abuhm")])

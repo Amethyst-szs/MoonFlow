@@ -6,6 +6,6 @@
 
 [resource]
 script = ExtResource("2_jof76")
-list_name = "GDScript Development"
+list_name = "FRONT_DOOR_CONTRIBUTOR_HEADER_GDSCRIPT"
 list_color = Color(0.4002, 0.67425, 0.87, 1)
 list = Array[ExtResource("1_mce3g")]([ExtResource("2_plpi3")])

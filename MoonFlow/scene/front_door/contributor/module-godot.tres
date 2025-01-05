@@ -30,6 +30,6 @@ url = "https://github.com/daenvil/MarkdownLabel"
 
 [resource]
 script = ExtResource("3_ryslk")
-list_name = "Godot Addons"
+list_name = "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT_ADDONS"
 list_color = Color(0.4, 0.67451, 0.870588, 1)
 list = Array[ExtResource("1_0o60r")]([SubResource("Resource_mpymb"), SubResource("Resource_3bmkw"), SubResource("Resource_dsrtj"), SubResource("Resource_43y4o")])

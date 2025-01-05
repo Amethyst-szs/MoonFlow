@@ -4,6 +4,7 @@ using System;
 namespace MoonFlow.Scene;
 
 [ScenePath("res://scene/front_door/contributor/scene/credit.tscn")]
+[Icon("res://asset/app/icon/credit.png")]
 public partial class FrontDoorContributorApp : AppScene
 {
 	// Called when the node enters the scene tree for the first time.

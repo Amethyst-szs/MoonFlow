@@ -70,6 +70,12 @@
 # res://scene/common/wiki/wiki_button_tooltip_text_bank.tres
 # res://scene/app/components/dialog_unsaved_changes.tscn
 # res://scene/common/wiki/app_local_wiki_viewer.tscn
+# res://scene/front_door/contributor/asset.tres
+# res://scene/front_door/contributor/dev-csharp.tres
+# res://scene/front_door/contributor/dev-gdscript.tres
+# res://scene/front_door/contributor/godot.tres
+# res://scene/front_door/contributor/module-csharp.tres
+# res://scene/front_door/contributor/module-godot.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1543,6 +1549,10 @@ msgstr ""
 msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
 msgstr ""
 
+#: scene/front_door/contributor/scene/credit.tscn
+msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_PUBLISHER"
+msgstr ""
+
 #: scene/editor/msbt/list/container/stage_message_category_table.gd
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "SCENARIO_NAME"
@@ -2995,6 +3005,11 @@ msgctxt "INPUT_MAP"
 msgid "ui_rename"
 msgstr ""
 
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_screenshot"
+msgstr ""
+
 #: scene/settings/engine/keybind/overlay_keybind_capture.tscn
 msgid "ENGINE_SETTINGS_APP_KEYBIND_PRESS_ANY_KEY_POPUP"
 msgstr ""
@@ -3052,4 +3067,28 @@ msgstr ""
 
 #: scene/common/wiki/app_local_wiki_viewer.tscn
 msgid "WIKI_APP_OPEN_IN_BROWSER"
+msgstr ""
+
+#: scene/front_door/contributor/asset.tres
+msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GRAPHICS"
+msgstr ""
+
+#: scene/front_door/contributor/dev-csharp.tres
+msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_CSHARP"
+msgstr ""
+
+#: scene/front_door/contributor/dev-gdscript.tres
+msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GDSCRIPT"
+msgstr ""
+
+#: scene/front_door/contributor/godot.tres
+msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT"
+msgstr ""
+
+#: scene/front_door/contributor/module-csharp.tres
+msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_CSHARP_PACKAGES"
+msgstr ""
+
+#: scene/front_door/contributor/module-godot.tres
+msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT_ADDONS"
 msgstr ""
