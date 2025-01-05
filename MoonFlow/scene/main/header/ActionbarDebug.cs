@@ -51,7 +51,7 @@ public partial class ActionbarDebug : ActionbarItemBase
 			SetItemChecked(idx, (bool)isDebug);
 	}
 
-	private void OnToggleProjectIsDebug()
+	private async void OnToggleProjectIsDebug()
 	{
 		// Update config
 		var config = ProjectManager.GetProject().Config;
@@ -64,7 +64,8 @@ public partial class ActionbarDebug : ActionbarItemBase
 		SetItemChecked(idx, config.Data.IsDebugProject);
 
 		// Reload project
-		if (!ProjectManager.SceneRoot.TryCloseAllApps())
+		var isValidReload = await ProjectManager.SceneRoot.TryCloseAllApps();
+		if (!isValidReload)
 			return;
 		
 		var path = ProjectManager.GetProject().Path;

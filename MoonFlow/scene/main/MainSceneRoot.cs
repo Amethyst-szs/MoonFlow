@@ -5,6 +5,7 @@ using System.Linq;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.Home;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.Main;
 
@@ -41,27 +42,10 @@ public partial class MainSceneRoot : Control
 
     private async void OnWindowCloseRequest()
     {
-        var awaiter = ToSignal(Engine.GetMainLoop(), "process_frame");
-
-        // Attempt to close all applications
-        foreach (var app in GetApps())
-        {
-            app.AppFocus();
-            await awaiter;
-
-            if (!app.TryCloseFromTreeQuit(out SignalAwaiter confirmationAwaiter))
-            {
-                if (confirmationAwaiter != null)
-                    await confirmationAwaiter;
-
-                if (IsInstanceValid(app) && !app.IsQueuedForDeletion())
-                {
-                    GD.Print("Tree could not quit because an application refused!");
-                    return;
-                }
-            }
-        }
-
+        var isValidClose = await TryCloseAllApps();
+        if (!isValidClose)
+            return;
+        
         // Update window properties in engine settings
         var win = GetWindow();
         var winSize = win.Size;
@@ -135,22 +119,24 @@ public partial class MainSceneRoot : Control
         foreach (var app in GetApps())
             app.AppClose(true);
     }
-    public bool TryCloseAllApps()
+    public async Task<bool> TryCloseAllApps()
     {
+        var process_frame = ToSignal(Engine.GetMainLoop(), "process_frame");
+
+        // Attempt to close all applications
         foreach (var app in GetApps())
         {
-            if (app is HomeRoot)
-                continue;
+            app.AppFocus();
+            await process_frame;
 
-            var res = app.AppClose(true);
-            if (res != null)
+            var closeResult = await app.TryCloseFromTreeQuit();
+            if (!closeResult)
             {
-                app.AppFocus();
+                GD.Print("App closing cancelled because " + app.AppName + " refused!");
                 return false;
             }
         }
 
-        ForceCloseAllApps();
         return true;
     }
 

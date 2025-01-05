@@ -229,7 +229,10 @@ public partial class AppScene : Control
 	public virtual SignalAwaiter AppClose(bool isEndExclusive = false)
 	{
 		if (IsModified && IsAppAllowUnsavedChanges())
-			return AppearUnsavedChangesDialog();
+		{
+			AppearUnsavedChangesDialog(out GodotObject signalParent, out string signal);
+			return ToSignal(signalParent, signal);
+		}
 
 		if (IsAppExclusive() && !isEndExclusive)
 			return null;
@@ -250,14 +253,13 @@ public partial class AppScene : Control
 		return null;
 	}
 
-	public virtual bool TryCloseFromTreeQuit(out SignalAwaiter awaiter)
+	public virtual async Task<bool> TryCloseFromTreeQuit()
 	{
-		awaiter = AppClose(true);
+		var result = AppClose(true);
+		if (result != null)
+			await result;
 
-		if (awaiter == null)
-			return true;
-
-		return false;
+		return !IsModified;
 	}
 
 	public void AppCloseForce()
@@ -278,7 +280,7 @@ public partial class AppScene : Control
 
 	#region Utilities
 
-	private SignalAwaiter AppearUnsavedChangesDialog()
+	private void AppearUnsavedChangesDialog(out GodotObject signalParent, out string signal)
 	{
 		AppFocus();
 
@@ -286,14 +288,16 @@ public partial class AppScene : Control
 		AddChild(dialog);
 		dialog.Popup();
 
-		var sig = ConfirmationDialog.SignalName.Confirmed;
-		dialog.Connect(sig, Callable.From(() =>
+		signalParent = dialog;
+		signal = "closed";
+		dialog.Connect(signal, Callable.From(new Action<bool>((b) =>
 		{
+			if (!b)
+				return;
+
 			IsModified = false;
 			AppClose(true);
-		}));
-
-		return ToSignal(dialog, sig);
+		})));
 	}
 
 	public bool AppIsFocused() { return ProcessMode == ProcessModeEnum.Inherit && Visible; }

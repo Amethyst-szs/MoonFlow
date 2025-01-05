@@ -25,18 +25,20 @@ public partial class ActionbarProject : ActionbarItemBase
 		AssignFunction((int)MenuIds.OPEN_ENGINE_SETTINGS, OnEngineSettingsPressed);
 	}
 
-    private void OnProjectReloadPressed()
+    private async void OnProjectReloadPressed()
 	{
-		if (!ProjectManager.SceneRoot.TryCloseAllApps())
+		var isValidReload = await ProjectManager.SceneRoot.TryCloseAllApps();
+		if (!isValidReload)
 			return;
 		
 		var path = ProjectManager.GetProject().Path;
 		ProjectManager.TryOpenProject(path, out _);
 	}
 
-	private void OnProjectClosePressed()
+	private async void OnProjectClosePressed()
 	{
-		if (!ProjectManager.SceneRoot.TryCloseAllApps())
+		var isValidClose = await ProjectManager.SceneRoot.TryCloseAllApps();
+		if (!isValidClose)
 			return;
 		
 		ProjectManager.CloseProject();
