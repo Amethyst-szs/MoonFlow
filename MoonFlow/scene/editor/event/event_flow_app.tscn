@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=33 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -18,6 +18,9 @@
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/scroll_bar_ui.gd" id="12_kgg6l"]
 [ext_resource type="Texture2D" uid="uid://dti6ok2kka208" path="res://asset/material/debug/debug.svg" id="12_scho0"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="14_co2bl"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="19_jis4j"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="20_x5ttv"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="21_xbido"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
 shader = ExtResource("3_budwu")
@@ -25,6 +28,17 @@ shader_parameter/graph_position = Vector2(0, 0)
 shader_parameter/dot_size = Vector2(45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3jgl"]
+
+[sub_resource type="FontVariation" id="FontVariation_upmlg"]
+base_font = ExtResource("19_jis4j")
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygme5"]
+font = SubResource("FontVariation_upmlg")
+font_size = 20
+font_color = Color(1, 0.34, 0.34, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="InputEventAction" id="InputEventAction_mfvuv"]
 action = &"ui_graph_reset_zoom"
@@ -165,6 +179,12 @@ theme = ExtResource("9_1hwnx")
 layout_mode = 2
 theme_override_constants/separation = 9
 
+[node name="Label_StepByStepDebugger" type="Label" parent="Header/UI"]
+visible = false
+layout_mode = 2
+text = "Step by Step Debugger Active (F3)"
+label_settings = SubResource("LabelSettings_ygme5")
+
 [node name="HBox_ZoomControl" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
 theme_override_constants/separation = 8
@@ -203,16 +223,33 @@ shortcut = SubResource("Shortcut_bx36p")
 icon = ExtResource("12_scho0")
 script = SubResource("GDScript_mtjrf")
 
+[node name="VBox_DebugTools" type="VBoxContainer" parent="Header/UI"]
+layout_mode = 2
+
+[node name="Line_SelectId" type="LineEdit" parent="Header/UI/VBox_DebugTools"]
+layout_mode = 2
+theme = ExtResource("20_x5ttv")
+placeholder_text = "Select by ID"
+max_length = 6
+script = ExtResource("21_xbido")
+regex_string = "[0-9]"
+
 [connection signal="FileOpenComplete" from="." to="ScollNavigationBars" method="_on_window_size_changed"]
 [connection signal="ContentModified" from="Graph" to="." method="OnFileModified"]
+[connection signal="ToggleDebugDataView" from="Graph" to="Header/UI/VBox_DebugTools" method="set_visible"]
 [connection signal="graph_offset_changed" from="Graph/Graph_ScrollNavigation" to="ScollNavigationBars" method="_on_graph_offset_changed"]
 [connection signal="selection_ended" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [false]]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="DeselectAllNodes"]
 [connection signal="selection_started" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]
 [connection signal="selection_started_with_shift" from="Graph/Area_MouseSelection" to="Graph" method="SetMouseDragSelectionState" binds= [true]]
+[connection signal="StepByStepDebugger" from="Graph/NodeHolder" to="Header/UI/Label_StepByStepDebugger" method="show"]
+[connection signal="StepByStepDebugger" from="Graph/NodeHolder" to="Graph" method="SetDebugDataViewState" binds= [true]]
 [connection signal="child_entered_tree" from="Graph/NodeHolder" to="ScollNavigationBars" method="_on_graph_node_added"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_Tools/Button_InjectNode" to="Graph" method="OpenInjectMenu"]
 [connection signal="toggled" from="Header/UI/HBox_Tools/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]
+[connection signal="tree_entered" from="Header/UI/VBox_DebugTools" to="Header/UI/VBox_DebugTools" method="hide"]
+[connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Graph/NodeHolder" method="SelectById"]
+[connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Header/UI/VBox_DebugTools/Line_SelectId" method="clear" unbinds=1]

@@ -31,9 +31,10 @@ public class NodeCaseEventList
 
         foreach (var c in CaseList)
         {
-            var dict = new Dictionary<string, object>();
-
-            dict["NextId"] = c.NextId;
+            var dict = new Dictionary<string, object>
+            {
+                ["NextId"] = c.NextId
+            };
 
             if (c.Index != int.MinValue)
                 dict["Index"] = c.Index;
@@ -57,10 +58,7 @@ public class NodeCaseEventList
         List<int> ids = [];
 
         foreach (var c in CaseList)
-        {
-            if (c.NextId != int.MinValue)
-                ids.Add(c.NextId);
-        }
+            ids.Add(c.NextId);
 
         return [.. ids];
     }

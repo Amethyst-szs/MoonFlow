@@ -99,7 +99,7 @@ public partial class EventFlowApp : AppScene
         if (Metadata.IsFirstOpen)
         {
             Metadata.IsFirstOpen = false;
-            GraphNodeHolder.ArrangeAllNodes();
+            await GraphNodeHolder.ArrangeAllNodes();
         }
 
         IsInitCompleted = true;
@@ -167,7 +167,7 @@ public partial class EventFlowApp : AppScene
         var list = idList.Select(s =>
         {
             if (s == int.MinValue) return null;
-            return GraphNodeHolder.FindChild(s.ToString(), true, false) as EventFlowNodeCommon;
+            return GraphNodeHolder.FindChild(s.ToString(), false, false) as EventFlowNodeCommon;
         });
 
         nodeEdit.SetupConnections(list.ToList());
