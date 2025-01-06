@@ -298,6 +298,7 @@ public partial class EventFlowApp : AppScene
 
     public void OnMetadataEditRequest(EventFlowNodeCommon source)
     {
+        OnFileModified();
         PopupMetadata.SetupPopup(source);
     }
 

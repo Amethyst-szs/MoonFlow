@@ -196,18 +196,6 @@ layout_mode = 2
 text = "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 label_settings = SubResource("LabelSettings_ygme5")
 
-[node name="VBox_DebugTools" type="VBoxContainer" parent="Header/UI"]
-visible = false
-layout_mode = 2
-
-[node name="Line_SelectId" type="LineEdit" parent="Header/UI/VBox_DebugTools"]
-layout_mode = 2
-theme = ExtResource("20_x5ttv")
-placeholder_text = "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
-max_length = 6
-script = ExtResource("21_xbido")
-regex_string = "[0-9]"
-
 [node name="HBox_ZoomControl" type="HBoxContainer" parent="Header/UI"]
 layout_mode = 2
 theme_override_constants/separation = 8
@@ -247,7 +235,6 @@ icon = ExtResource("19_74ak0")
 [node name="Button_Help" type="Button" parent="Header/UI/HBox_Tools"]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_WIKI"
-shortcut = SubResource("Shortcut_7271u")
 icon = ExtResource("21_urv24")
 script = ExtResource("22_qdlgd")
 WikiPath = "res://docs/getting_started/tutorial_events.md"
@@ -261,6 +248,18 @@ toggle_mode = true
 shortcut = SubResource("Shortcut_bx36p")
 icon = ExtResource("12_scho0")
 script = SubResource("GDScript_mtjrf")
+
+[node name="VBox_DebugTools" type="VBoxContainer" parent="Header/UI"]
+visible = false
+layout_mode = 2
+
+[node name="Line_SelectId" type="LineEdit" parent="Header/UI/VBox_DebugTools"]
+layout_mode = 2
+theme = ExtResource("20_x5ttv")
+placeholder_text = "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
+max_length = 6
+script = ExtResource("21_xbido")
+regex_string = "[0-9]"
 
 [node name="Popup_NodeMetadataEditor" parent="." instance=ExtResource("25_puyck")]
 visible = false
@@ -276,12 +275,12 @@ visible = false
 [connection signal="StepByStepDebugger" from="Graph/NodeHolder" to="Header/UI/Label_StepByStepDebugger" method="show"]
 [connection signal="StepByStepDebugger" from="Graph/NodeHolder" to="Graph" method="SetDebugDataViewState" binds= [true]]
 [connection signal="child_entered_tree" from="Graph/NodeHolder" to="ScollNavigationBars" method="_on_graph_node_added"]
-[connection signal="tree_entered" from="Header/UI/VBox_DebugTools" to="Header/UI/VBox_DebugTools" method="hide"]
-[connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Graph/NodeHolder" method="SelectById"]
-[connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Header/UI/VBox_DebugTools/Line_SelectId" method="clear" unbinds=1]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomOut" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_out_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomReset" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_reset_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_Tools/Button_InjectNode" to="Graph" method="OpenInjectMenu"]
 [connection signal="pressed" from="Header/UI/HBox_Tools/Button_DeleteNodes" to="Graph" method="UnhandledInputDelete"]
 [connection signal="toggled" from="Header/UI/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]
+[connection signal="tree_entered" from="Header/UI/VBox_DebugTools" to="Header/UI/VBox_DebugTools" method="hide"]
+[connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Graph/NodeHolder" method="SelectById"]
+[connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Header/UI/VBox_DebugTools/Line_SelectId" method="clear" unbinds=1]

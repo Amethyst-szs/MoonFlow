@@ -17,12 +17,13 @@ content_margin_left = 4.0
 content_margin_right = 4.0
 bg_color = Color(0, 0, 0, 0.309804)
 
-[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "RootPanel", "SelectionPanel", "DebugDataDisplay")]
+[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "RootPanel", "SelectionPanel", "EditorCommentDisplay", "DebugDataDisplay")]
 script = ExtResource("1_f1ryd")
 PortIn = NodePath("Content/Ports/PortHolder_In/Port_In")
 PortOutList = NodePath("Content/Ports/PortHolder_Out/PortList_Out")
 RootPanel = NodePath("Content")
 SelectionPanel = NodePath("Content/Panel_Selection")
+EditorCommentDisplay = NodePath("Content/Extra/VBox_ExtraDisplay/Label_EditorComment")
 DebugDataDisplay = NodePath("Content/Extra/VBox_ExtraDisplay/Label_Debug")
 
 [node name="Content" type="PanelContainer" parent="."]
@@ -96,6 +97,13 @@ offset_bottom = 16.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
+
+[node name="Label_EditorComment" type="Label" parent="Content/Extra/VBox_ExtraDisplay"]
+z_index = -25
+custom_minimum_size = Vector2(182, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xs1ce")
+autowrap_mode = 3
 
 [node name="Label_Debug" type="Label" parent="Content/Extra/VBox_ExtraDisplay"]
 z_index = -25

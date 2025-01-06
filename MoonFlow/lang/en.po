@@ -3129,6 +3129,34 @@ msgstr "C# Packages"
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT_ADDONS"
 msgstr "Godot Packages"
 
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_POPUP_TITLE"
+msgstr "Event Node - User Data"
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_HEADER"
+msgstr "Editor Comment:"
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_PLACEHOLDER"
+msgstr "Notes"
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_SET_COLOR_TOOLTIP"
+msgstr "Set Node Color"
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_RESET_COLOR_TOOLTIP"
+msgstr "Reset Node Color"
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_LINE_SEARCH_TAGS_PLACEHOLDER"
+msgstr "Enter a new Search Tag"
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
+msgstr "Search Tags:"
+
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
 

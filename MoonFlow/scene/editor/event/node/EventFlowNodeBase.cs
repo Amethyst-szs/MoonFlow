@@ -46,6 +46,8 @@ public partial class EventFlowNodeBase : Node2D
 	protected Panel SelectionPanel { get; private set; }
 
 	[Export]
+	protected Label EditorCommentDisplay { get; private set; }
+	[Export]
 	protected Label DebugDataDisplay { get; private set; }
 
 	// ~~~~~~~~~~~~~~ Selection ~~~~~~~~~~~~~~ //
@@ -116,6 +118,7 @@ public partial class EventFlowNodeBase : Node2D
 		SelectionPanel.Hide();
 
 		// Setup debug label in extras panel
+		SetEditorComment("");
 		DebugDataDisplay.Hide();
 
 		if (OS.IsDebugBuild())
@@ -145,11 +148,8 @@ public partial class EventFlowNodeBase : Node2D
 		Position = Metadata.Position;
 		EmitSignal(SignalName.NodeMoved);
 
-		if (Metadata.IsOverrideColor)
-		{
-			RootPanel.SelfModulate = Metadata.OverrideColor;
-			DefaultPortOutColor = Metadata.OverrideColor;
-		}
+		SetEditorComment(data.Comment);
+		SetNodeColor();
 
 		DrawDebugLabel();
 		return !isNull;
@@ -294,6 +294,22 @@ public partial class EventFlowNodeBase : Node2D
 	public Rect2 GetRect() { return new Rect2(Position, RootPanel.Size); }
 
 	public void SetNodeModified() { EmitSignal(SignalName.NodeModified); }
+
+	public void SetEditorComment(string comment)
+	{
+		EditorCommentDisplay.Visible = comment != string.Empty;
+		EditorCommentDisplay.Text = comment;
+
+		if (Metadata != null)
+			Metadata.Comment = comment;
+		
+		SetNodeModified();
+	}
+	public virtual void SetNodeColor()
+	{
+		if (Metadata.IsOverrideColor)
+			RootPanel.SelfModulate = Metadata.OverrideColor;
+	}
 
 	protected virtual void DrawDebugLabel() { }
 	protected static string AppendDebugLabel(string property, object value)

@@ -288,11 +288,28 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	private void OnMetadataEditRequest() { EmitSignal(SignalName.MetadataEditRequest, this); }
 
-	#endregion
+    #endregion
 
-	#region Debug
+    #region Utility
 
-	protected override void DrawDebugLabel()
+    public override void SetNodeColor()
+    {
+        base.SetNodeColor();
+
+		if (!Metadata.IsOverrideColor)
+		{
+			// Setup default colors
+			var category = MetaCategoryTable.Lookup(Content.GetFactoryType());
+			var color = MetaDefaultColorLookupTable.Lookup(category);
+			RootPanel.SelfModulate = color;
+		}
+    }
+
+    #endregion
+
+    #region Debug
+
+    protected override void DrawDebugLabel()
 	{
 		if (DebugDataDisplay == null)
 			return;

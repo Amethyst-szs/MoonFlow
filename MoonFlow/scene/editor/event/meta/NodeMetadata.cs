@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Godot;
 
+using static MoonFlow.Ext.Extension;
+
 namespace MoonFlow.Scene.EditorEvent;
 
 public class NodeMetadata
@@ -11,6 +13,6 @@ public class NodeMetadata
     public string Comment = "";
     public List<string> Tags = [];
 
+    public Color OverrideColor = Colors.White;
     public bool IsOverrideColor = false;
-    public Color OverrideColor;
 }

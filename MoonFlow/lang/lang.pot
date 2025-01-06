@@ -76,6 +76,7 @@
 # res://scene/front_door/contributor/godot.tres
 # res://scene/front_door/contributor/module-csharp.tres
 # res://scene/front_door/contributor/module-godot.tres
+# res://scene/editor/event/meta/editor/popup_event_metadata.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -3111,4 +3112,32 @@ msgstr ""
 
 #: scene/front_door/contributor/module-godot.tres
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT_ADDONS"
+msgstr ""
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_POPUP_TITLE"
+msgstr ""
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_HEADER"
+msgstr ""
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_SET_COLOR_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_RESET_COLOR_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_LINE_SEARCH_TAGS_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/meta/editor/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
 msgstr ""
