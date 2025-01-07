@@ -63,6 +63,15 @@ func _on_item_selected():
 	file_selected.emit(meta)
 
 func set_selection(path: String) -> void:
+	while path.contains("../"):
+		var end := path.find("../")
+		var start := end - 2
+		while path[start] != '/':
+			start -= 1
+		
+		path = path.left(start) + '/' + path.right(-end - "../".length())
+		continue
+	
 	var item: TreeItem = get_root()
 	while item != null:
 		if item.get_metadata(0) == path:
