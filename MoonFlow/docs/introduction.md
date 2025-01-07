@@ -54,6 +54,6 @@ The project creation process will create `.mfproj`, `.mfmeta`, and `.mfgraph` fi
 
 And with that, you've got MoonFlow set up and ready to roll! Check out the intro guides to whichever editor catches your eye below.
 
-* [Text Editor](tutorial_text.md)
-* [Event Graph Editor](tutorial_events.md)
-* [Kingdom Editor](tutorial_kingdoms.md)
+* [Text Editor](text/text_basics.md)
+* [Event Graph Editor](events/event_basics.md)
+* [Kingdom Editor](kingdoms/kingdom_basics.md)
