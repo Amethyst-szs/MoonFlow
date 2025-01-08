@@ -28,7 +28,7 @@ When writing text you'll frequently run into *tags*, one of the main features th
 In order to add new tags to your text you can `Right-Click` or press `Ctrl + T` (default keybind). This will pull up a tag insertion wheel, which can be rotated to additional pages with the spin button in the center. Read more about tag insertion [here].
 
 ### Header
-The header displays your selected entry and file, as well as offering a language selector. By default all edits you make in your [default language](../introduction#default-language) will copied to all other languages to preserve mod functionality for all players. If you want to provide manual translations, switch to that language and input them there. Read more about MoonFlow translations [here].
+The header displays your selected entry and file, as well as offering a language selector. By default all edits you make in your [default language](../introduction.md#default-language) will copied to all other languages to preserve mod functionality for all players. If you want to provide manual translations, switch to that language and input them there. Read more about MoonFlow translations [here].
 
 ## Beginner Tips
 - When working with stage text files, it's very helpful to have a level editor or actor inspector open to view object IDs. Being able to search for entries by ID is very helpful when attempting to add/modify text from a specific actor.
