@@ -2492,10 +2492,6 @@ msgid "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
-msgstr ""
-
-#: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
 msgstr ""
 
@@ -2521,6 +2517,10 @@ msgstr ""
 
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
+msgstr ""
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
 msgstr ""
 
 #: scene/settings/engine/engine_settings_app.tscn
@@ -2592,12 +2592,19 @@ msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_HEADER"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_UI_SCALE_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_UI_SCALE_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_TASKBAR_SIZE_HEADER"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
-#: scene/settings/engine/page/graph.tscn
-msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_TASKBAR_SIZE_TOOLTIP"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
@@ -2738,6 +2745,10 @@ msgstr ""
 
 #: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
 msgstr ""
 
 #: scene/settings/engine/page/graph.tscn

@@ -2463,10 +2463,6 @@ msgid "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 msgstr "Step-by-Step Debugger Active (F3)"
 
 #: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
-msgstr "Select by ID"
-
-#: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
 msgstr "Zoom Out"
 
@@ -2493,6 +2489,10 @@ msgstr "Help Docs"
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
 msgstr "Debug Display"
+
+#: scene/editor/event/event_flow_app.tscn
+msgid "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
+msgstr "Select by ID"
 
 #: scene/settings/engine/engine_settings_app.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
@@ -2566,15 +2566,24 @@ msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_HEADER"
 msgstr "Visuals"
 
 #: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_UI_SCALE_HEADER"
+msgstr "Additional UI Scale:"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_UI_SCALE_TOOLTIP"
+msgstr ""
+"Increase or decrease the interface size to match your\n"
+"comfort and/or monitor size."
+
+#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_TASKBAR_SIZE_HEADER"
 msgstr "Additional Taskbar Size:"
 
 #: scene/settings/engine/page/general.tscn
-#: scene/settings/engine/page/graph.tscn
-msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+msgid "ENGINE_SETTINGS_PAGE_GENERAL_TASKBAR_SIZE_TOOLTIP"
 msgstr ""
-"How fast should the event graph editor zoom in/out\n"
-"when using the mouse wheel?"
+"Increase or decrease the size of the app taskbar on the bottom\n"
+"of MoonFlow."
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER_TOOLTIP"
@@ -2721,6 +2730,12 @@ msgstr "Controls"
 #: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_HEADER"
 msgstr "Zoom Sensitivity:"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+msgstr ""
+"How fast should the event graph editor zoom in/out\n"
+"when using the mouse wheel?"
 
 #: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_X_HEADER"

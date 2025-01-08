@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=12 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_rui4d"]
@@ -36,6 +36,17 @@ func _on_item_selected(idx: int) -> void:
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8tvi"]
+
+[sub_resource type="GDScript" id="GDScript_7klgf"]
+script/source = "extends \"res://scene/settings/engine/common/common_engine_setting_slide_float.gd\"
+
+func _ready() -> void:
+	super()
+	drag_ended.connect(_on_value_changed_update_instant)
+
+func _on_value_changed_update_instant(_v: float) -> void:
+	get_window().content_scale_factor = value
+"
 
 [sub_resource type="GDScript" id="GDScript_2tifn"]
 script/source = "extends \"res://scene/settings/engine/common/common_engine_setting_slide_float.gd\"
@@ -147,13 +158,37 @@ label_settings = SubResource("LabelSettings_2x6cb")
 layout_mode = 2
 theme_override_constants/separation = 24
 
+[node name="Label_UiScaleHeader" type="Label" parent="VBox_Visual"]
+layout_mode = 2
+text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_UI_SCALE_HEADER"
+
+[node name="Slider_UiScale" type="HSlider" parent="VBox_Visual" node_paths=PackedStringArray("label")]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_UI_SCALE_TOOLTIP"
+mouse_default_cursor_shape = 10
+theme = ExtResource("3_8w1c2")
+min_value = 0.5
+max_value = 2.0
+step = 0.05
+value = 1.0
+scrollable = false
+script = SubResource("GDScript_7klgf")
+key = "display/window/stretch/scale"
+label = NodePath("../Label_UiScaleHeader")
+suffix = "x"
+
+[node name="HSep_Spacer3" type="HSeparator" parent="VBox_Visual"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
+
 [node name="Label_TaskbarSizeHeader" type="Label" parent="VBox_Visual"]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_TASKBAR_SIZE_HEADER"
 
 [node name="Slider_TaskbarSize" type="HSlider" parent="VBox_Visual" node_paths=PackedStringArray("label")]
 layout_mode = 2
-tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
+tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_TASKBAR_SIZE_TOOLTIP"
 mouse_default_cursor_shape = 10
 theme = ExtResource("3_8w1c2")
 min_value = 25.0

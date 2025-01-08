@@ -87,9 +87,8 @@ public partial class Taskbar : Control
         if (!IsInstanceValid(GetWindow()))
             return;
 
-        var windowSize = GetWindow().Size;
         var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
-        CustomMinimumSize = new Vector2(windowSize.X, height);
+        CustomMinimumSize = new Vector2(0, height);
 
         float buttonWidth = CalcButtonWidth();
         for (int i = 0; i < GetChildCount(); i++)
