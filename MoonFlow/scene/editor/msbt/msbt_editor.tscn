@@ -221,6 +221,6 @@ resources = [PackedStringArray("DeviceFont_Album", "DeviceFont_ArrowRight", "Dev
 
 [connection signal="ContentModified" from="MsbtEditor" to="." method="OnSignalContentModified" unbinds=1]
 [connection signal="ContentNotModified" from="MsbtEditor" to="." method="OnSignalContentNotModified"]
-[connection signal="LangSelected" from="MsbtEditor/Layout/Header/LanguagePicker" to="MsbtEditor" method="OnLanguagePickerSelectedLang"]
+[connection signal="LangSelectedByUser" from="MsbtEditor/Layout/Header/LanguagePicker" to="MsbtEditor" method="OnLanguagePickerSelectedLang"]
 [connection signal="CreateEntry" from="MsbtEditor/Layout/Divider/EntryListHolder" to="MsbtEditor" method="OnAddEntryNameSubmitted"]
 [connection signal="DeleteEntry" from="MsbtEditor/Layout/Divider/EntryListHolder" to="MsbtEditor" method="OnDeleteEntryTrash"]

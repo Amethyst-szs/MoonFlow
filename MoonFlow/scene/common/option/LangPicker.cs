@@ -14,7 +14,9 @@ public partial class LangPicker : OptionButton
 	private const string DisplayNameContext = "PROJECT_LANGUAGE_CODE";
 
 	[Signal]
-	public delegate void LangSelectedEventHandler(string lang, int idx);
+	public delegate void LangSelectedByEngineEventHandler(string lang, int idx);
+	[Signal]
+	public delegate void LangSelectedByUserEventHandler(string lang, int idx);
 
 	public override void _Ready()
 	{
@@ -35,7 +37,7 @@ public partial class LangPicker : OptionButton
 			throw new Exception("Unknown language code " + langCode);
 
 		Selected = idx;
-		EmitSignal(SignalName.LangSelected, langCode, idx);
+		EmitSignal(SignalName.LangSelectedByEngine, langCode, idx);
 	}
 
 	public void SetGameVersion(RomfsVersion ver)
@@ -53,6 +55,6 @@ public partial class LangPicker : OptionButton
 	private void OnItemSelected(long index)
 	{
 		var lang = LangList[(int)index];
-		EmitSignal(SignalName.LangSelected, lang, (int)index);
+		EmitSignal(SignalName.LangSelectedByUser, lang, (int)index);
 	}
 }

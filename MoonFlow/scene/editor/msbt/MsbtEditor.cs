@@ -356,10 +356,13 @@ public partial class MsbtEditor : PanelContainer
 		EmitSignal(SignalName.ContentModified, entryName);
 	}
 
-	private async void OnLanguagePickerSelectedLang(string lang, int _)
+	private void OnLanguagePickerSelectedLang(string lang, int idx)
 	{
+		if (!IsInsideTree() || !GetParent().IsNodeReady())
+			return;
+
         // Save file before switching languages
-        await SaveFile(false);
+        _ = SaveFile(false);
 
 		// Update current language and reload editor
 		CurrentLanguage = lang;
