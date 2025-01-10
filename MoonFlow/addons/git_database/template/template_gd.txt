@@ -1,0 +1,18 @@
+## Contains information about the github repository, automatically updated
+## on project export
+extends Object
+class_name GitInfo
+
+const version_name: String = {git_project_version_name}
+
+const branch: String = {git_branch_name}
+const author: String = {git_author_name}
+
+const commit_subject: String = {git_commit_subject}
+const commit_author: String = {git_commit_author_name}
+const commit_hash: String = {git_commit_hash}
+const commit_hash_short: String = {git_commit_hash_short}
+
+const commit_count: int = {git_commit_count}
+const commit_ahead: int = {git_commit_ahead_count}
+const commit_time_unix: int = {git_commit_unix_time}

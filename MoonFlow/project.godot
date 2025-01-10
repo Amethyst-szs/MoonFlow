@@ -32,6 +32,7 @@ config/icon="res://iconS.png"
 
 [autoload]
 
+GitInfoSingletonRegisterUtility="*res://addons/git_database/plugin/instance_register.gd"
 StartupRunner="*res://addons/StartupRunner.cs"
 EngineSettings="*res://scene/settings/engine/global/engine_setting_holder.gd"
 ScreenshotCapture="*res://scene/common/screenshot/screenshot_capture.gd"
@@ -43,7 +44,7 @@ project/solution_directory="res://../"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoExportVersion/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg", "res://addons/markdownlabel/plugin.cfg", "res://addons/mfgraph_resource/plugin.cfg", "res://addons/podb/plugin.cfg")
+enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/git_database/plugin.cfg", "res://addons/markdownlabel/plugin.cfg", "res://addons/mfgraph_resource/plugin.cfg", "res://addons/podb/plugin.cfg")
 
 [gui]
 

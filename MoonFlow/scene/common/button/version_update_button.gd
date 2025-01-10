@@ -3,8 +3,6 @@ extends Button
 const setting_group: String = "moonflow/version/update_"
 const api_token_path: String = "user://git_api_token"
 
-var local_unix := int(preload("res://version/data.gd").TIME)
-
 func _ready():
 	hide()
 	
@@ -50,11 +48,11 @@ func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, b
 	
 	# Get the remote unix time and comapre it to local
 	var remote_unix := int(Time.get_unix_time_from_datetime_string(unix_str))
-	if local_unix > remote_unix:
+	if GitInfo.commit_time_unix > remote_unix:
 		print_v("Most recent release is behind current build, ignoring updater")
 		return
 	
-	if local_unix == remote_unix:
+	if GitInfo.commit_time_unix == remote_unix:
 		print_v("No updates available")
 		return
 	
