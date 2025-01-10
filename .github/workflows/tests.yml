@@ -46,10 +46,10 @@ jobs:
         run: dotnet build
       
       - name: Run Unit Tests
-        run: dotnet test ./Nindot.Tests/Nindot.Tests.csproj --configuration Debug --no-build --logger "trx;LogFileName=TestResults.trx"
+        run: dotnet test ./Nindot.Tests/Nindot.Tests.csproj --configuration Debug --no-build --logger "trx;LogFileName=Tests-${{ matrix.os }}.trx"
       
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
           name: TestResults
-          path: ./Nindot.Tests/TestResults/TestResults.trx
+          path: ./Nindot.Tests/TestResults/Tests-${{ matrix.os }}.trx
