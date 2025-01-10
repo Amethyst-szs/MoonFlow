@@ -1,0 +1,63 @@
+name: 🚥 Status Checks
+on: [push, pull_request]
+
+jobs:
+  tests:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+      
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
+    
+    defaults:
+      run:
+        shell: bash
+    
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout
+
+      - uses: actions/setup-dotnet@v3
+        name: Setup .NET SDK
+        with:
+          global-json-file: global.json
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - uses: chickensoft-games/setup-godot@v1
+        name: Setup Godot
+        with:
+          version: 4.3.0
+          use-dotnet: true
+          include-templates: false
+
+      - name: Verify Setup
+        run: |
+          dotnet --version
+          godot --version
+
+      - name: Generate Godot Imports
+        working-directory: ./MoonFlow/
+        run: godot --headless --editor --quit
+
+      - name: Generate Godot Bindings
+        working-directory: ./MoonFlow/
+        run: godot --headless  --build-solutions --quit
+
+      - name: Build Projects
+        run: dotnet build
+      
+      - name: Run Unit Tests
+        run: dotnet test ./Nindot.Tests/Nindot.Tests.csproj --configuration Debug --no-build --logger "trx;LogFileName=TestResults.trx"
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestResults
+          path: ./Nindot.Tests/TestResults/TestResults.trx
