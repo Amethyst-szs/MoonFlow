@@ -1,4 +1,4 @@
-name: 🚥 Status Checks
+name: Compile Projects
 on: [push, pull_request]
 
 jobs:
@@ -53,7 +53,3 @@ jobs:
         with:
           name: TestResults
           path: ./Nindot.Tests/TestResults/TestResults.trx
-
-      - name: Generate Godot Bindings
-        working-directory: ./MoonFlow/
-        run: godot --headless  --build-solutions --quit
