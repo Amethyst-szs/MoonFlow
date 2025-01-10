@@ -2,6 +2,7 @@ using System;
 using Godot;
 
 using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.Settings;
@@ -39,7 +40,7 @@ public partial class FrontDoor : AppScene
 
 		NewProjectLangButton = GetNode<LangPicker>("%Option_DefaultLang");
 		NewProjectLangButton.SetSelection("USen");
-		NewProjectLangButton.SetGameVersion(RomfsValidation.RomfsVersion.INVALID_VERSION);
+		NewProjectLangButton.SetGameVersion(RomfsVersion.INVALID_VERSION);
 
 		NewProjectCreateButton = GetNode<Button>("%Button_Create");
 		OnUpdateCreateProjectButtonState();
@@ -79,7 +80,7 @@ public partial class FrontDoor : AppScene
 			EmitSignal(SignalName.NewProjectInvalidPath);
 			return;
 		}
-		
+
 		if (ProjectManager.IsProjectConfigExist(ref path, out _, false))
 		{
 			EmitSignal(SignalName.NewProjectInvalidPath);
@@ -96,7 +97,7 @@ public partial class FrontDoor : AppScene
 
 	private void OnDialogOpenProjectPathSelected(string path)
 	{
-		var result = ProjectManager.TryOpenProject(path, out RomfsValidation.RomfsVersion version);
+		var result = ProjectManager.TryOpenProject(path, out RomfsVersion version);
 
 		if (result == ProjectManager.ProjectManagerResult.OK)
 		{
@@ -112,11 +113,11 @@ public partial class FrontDoor : AppScene
 
 	private void OnNewProjectVersionButtonPressed()
 	{
-		foreach (var ver in Enum.GetValues<RomfsValidation.RomfsVersion>())
+		foreach (var ver in Enum.GetValues<RomfsVersion>())
 		{
-			if (ver == RomfsValidation.RomfsVersion.INVALID_VERSION)
+			if (ver == RomfsVersion.INVALID_VERSION)
 				continue;
-			
+
 			bool isHaveValidPath = RomfsAccessor.IsHaveVersion(ver);
 
 			var idx = NewProjectVersionButton.GetItemIndex((int)ver);
@@ -126,17 +127,17 @@ public partial class FrontDoor : AppScene
 
 	private void OnNewProjectVersionSelected(int id)
 	{
-		if (!Enum.IsDefined((RomfsValidation.RomfsVersion)id))
+		if (!Enum.IsDefined((RomfsVersion)id))
 		{
 			GD.Print("Set InitInfo.Version to INVALID_VERSION");
-			InitInfo.Version = RomfsValidation.RomfsVersion.INVALID_VERSION;
+			InitInfo.Version = RomfsVersion.INVALID_VERSION;
 			NewProjectLangButton.SetGameVersion(InitInfo.Version);
 
 			OnUpdateCreateProjectButtonState();
 			return;
 		}
-		
-		var select = (RomfsValidation.RomfsVersion)id;
+
+		var select = (RomfsVersion)id;
 		InitInfo.Version = select;
 		NewProjectLangButton.SetGameVersion(InitInfo.Version);
 
@@ -154,7 +155,7 @@ public partial class FrontDoor : AppScene
 	private void OnUpdateCreateProjectButtonState()
 	{
 		bool isOk = InitInfo.Path != null && InitInfo.Path != string.Empty;
-		isOk &= InitInfo.Version != RomfsValidation.RomfsVersion.INVALID_VERSION;
+		isOk &= InitInfo.Version != RomfsVersion.INVALID_VERSION;
 
 		NewProjectCreateButton.Disabled = !isOk;
 	}
@@ -164,7 +165,7 @@ public partial class FrontDoor : AppScene
 		var res = ProjectManager.TryCreateProject(InitInfo);
 		if (res != ProjectManager.ProjectManagerResult.OK)
 			GD.PushError("Failed to create project!");
-		
+
 		OnDialogOpenProjectPathSelected(InitInfo.Path);
 	}
 }

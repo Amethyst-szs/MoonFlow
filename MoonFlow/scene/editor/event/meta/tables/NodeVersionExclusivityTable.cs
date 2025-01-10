@@ -1,21 +1,22 @@
 using System.Collections.Generic;
 
 using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 namespace MoonFlow.Scene.EditorEvent;
 
 public static class MetaVersionExclusivityTable
 {
-    public static readonly Dictionary<string, RomfsValidation.RomfsVersion> Table = new(){
-        { "VrGyroReset", RomfsValidation.RomfsVersion.v130 },
-        { "CloseTalkMessageNoSe", RomfsValidation.RomfsVersion.v120 },
+    public static readonly Dictionary<string, RomfsVersion> Table = new(){
+        { "VrGyroReset", RomfsVersion.v130 },
+        { "CloseTalkMessageNoSe", RomfsVersion.v120 },
     };
 
-    public static RomfsValidation.RomfsVersion Lookup(string type)
+    public static RomfsVersion Lookup(string type)
     {
-        if (Table.TryGetValue(type, out RomfsValidation.RomfsVersion value))
+        if (Table.TryGetValue(type, out RomfsVersion value))
             return value;
 
-        return RomfsValidation.RomfsVersion.v100;
+        return RomfsVersion.v100;
     }
 }

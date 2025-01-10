@@ -6,6 +6,7 @@ using Godot;
 
 using Nindot.Al.SMO;
 using Nindot.LMS.Msbp;
+using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Scene;
 using MoonFlow.Scene.Main;
@@ -26,9 +27,9 @@ public static class ProjectManager
 
     public static bool IsProjectExist() { return Project != null; }
     public static ProjectState GetProject() { return Project; }
-    public static RomfsValidation.RomfsVersion GetProjectVersion()
+    public static RomfsVersion GetProjectVersion()
     {
-        if (Project == null) return RomfsValidation.RomfsVersion.INVALID_VERSION;
+        if (Project == null) return RomfsVersion.INVALID_VERSION;
         return Project.Config.Data.Version;
     }
     public static bool IsProjectDebug()
@@ -52,7 +53,7 @@ public static class ProjectManager
     {
         if (Project == null || Project.MsgStudioText == null || lang == null)
             return null;
-        
+
         Project.MsgStudioText.TryGetValue(lang, out ProjectLanguageHolder langHolder);
         if (langHolder == null)
             throw new Exception("Invalid Language: " + lang);
@@ -77,12 +78,12 @@ public static class ProjectManager
         PROJECT_FILE_ALREADY_EXISTS,
     }
 
-    public static ProjectManagerResult TryOpenProject(string path, out RomfsValidation.RomfsVersion version)
+    public static ProjectManagerResult TryOpenProject(string path, out RomfsVersion version)
     {
         GD.Print("Opening project at ", path);
 
         // Setup out variable
-        version = RomfsValidation.RomfsVersion.INVALID_VERSION;
+        version = RomfsVersion.INVALID_VERSION;
 
         if (!IsValidOpenOrCreate(ref path))
             return ProjectManagerResult.INVALID_PATH;
@@ -166,7 +167,7 @@ public static class ProjectManager
         // If this directory contains a directory called romfs, enter that
         if (!Directory.Exists(path))
             return false;
-        
+
         if (Directory.GetDirectories(path).Any(s => s.EndsWith("romfs")))
             path += "romfs/";
 

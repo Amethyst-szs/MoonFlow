@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace Nindot.Al.SMO;
+namespace Nindot;
 
-public static class RomfsValidation
+public static class RomfsPathUtility
 {
     public static bool ValidateAndUpdatePath(ref string path, out RomfsVersion version)
     {
@@ -31,7 +31,7 @@ public static class RomfsValidation
 
         // Make sure the path ends with a slash
         if (!path.EndsWith('/') && !path.EndsWith('\\')) path += '/';
-        
+
         // Check if the current path is valid
         if (!Directory.Exists(path)) return null;
 

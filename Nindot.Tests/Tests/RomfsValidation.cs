@@ -3,7 +3,7 @@ using System;
 using Nindot.Al.SMO;
 
 using static Nindot.Tests.PathUtility;
-using static Nindot.Al.SMO.RomfsValidation;
+using static Nindot.RomfsPathUtility;
 using System.IO;
 using System.Linq;
 using Xunit.Internal;

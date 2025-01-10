@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
-using Nindot.Al.Localize;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.Main;
@@ -357,13 +356,13 @@ public partial class MsbtEditor : PanelContainer
 		EmitSignal(SignalName.ContentModified, entryName);
 	}
 
-	private void OnLanguagePickerSelectedLang(int idx)
+	private async void OnLanguagePickerSelectedLang(string lang, int _)
 	{
         // Save file before switching languages
-        _ = SaveFile(false);
+        await SaveFile(false);
 
 		// Update current language and reload editor
-		CurrentLanguage = LanguageKeyTranslator.Table.Keys.ElementAt(idx);
+		CurrentLanguage = lang;
 		var newTarget = FileList[CurrentLanguage];
 
 		if (newTarget == File)

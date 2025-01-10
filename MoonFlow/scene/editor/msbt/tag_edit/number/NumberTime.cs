@@ -4,6 +4,7 @@ using System;
 using Nindot.LMS.Msbt.TagLib.Smo;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Project;
 
@@ -24,7 +25,7 @@ public partial class NumberTime : TagEditSceneWithText
 
 		// If project is before version 1.2.0, remove EU options in menu
 		var ver = ProjectManager.GetProjectVersion();
-		if (ver >= RomfsValidation.RomfsVersion.v120)
+		if (ver >= RomfsVersion.v120)
 			return;
 
 		int removeIdx = (ushort)TagNameNumber.DateEU - (ushort)TagNameNumber.Date;

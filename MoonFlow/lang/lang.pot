@@ -77,6 +77,7 @@
 # res://scene/front_door/contributor/module-csharp.tres
 # res://scene/front_door/contributor/module-godot.tres
 # res://scene/editor/event/meta/editor/popup_event_metadata.tscn
+# res://project/lms/ui_translation/language_code_to_text.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -3151,4 +3152,74 @@ msgstr ""
 
 #: scene/editor/event/meta/editor/popup_event_metadata.tscn
 msgid "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "CNzh"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUde"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUen"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUes"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUfr"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUit"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUnl"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUru"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "JPja"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "KRko"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "TWzh"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "USen"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "USes"
+msgstr ""
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "USfr"
 msgstr ""

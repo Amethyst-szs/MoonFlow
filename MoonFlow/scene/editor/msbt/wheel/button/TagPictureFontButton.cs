@@ -1,10 +1,12 @@
+using System;
 using Godot;
+using Godot.Collections;
+
 using Nindot.LMS.Msbt.TagLib.Smo;
+using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Project;
-using Godot.Collections;
-using System;
-using Nindot.Al.SMO;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -44,10 +46,10 @@ public partial class TagPictureFontButton : TagInsertButtonBase
             return;
 
         var ver = (int)proj.Config.Data.Version;
-        if (VersionRequirement == 1 && ver >= (int)RomfsValidation.RomfsVersion.v120)
+        if (VersionRequirement == 1 && ver >= (int)RomfsVersion.v120)
             QueueDeleteButton();
 
-        if (VersionRequirement == 2 && ver < (int)RomfsValidation.RomfsVersion.v120)
+        if (VersionRequirement == 2 && ver < (int)RomfsVersion.v120)
             QueueDeleteButton();
     }
 

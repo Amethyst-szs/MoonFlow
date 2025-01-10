@@ -1,10 +1,11 @@
 using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 namespace MoonFlow.Project;
 
 public struct ProjectInitInfo()
 {
     public string Path = null;
-    public RomfsValidation.RomfsVersion Version = RomfsValidation.RomfsVersion.INVALID_VERSION;
+    public RomfsVersion Version = RomfsVersion.INVALID_VERSION;
     public string DefaultLanguage = "USen";
 }

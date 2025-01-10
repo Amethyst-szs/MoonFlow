@@ -3172,6 +3172,76 @@ msgstr "Enter a new Search Tag"
 msgid "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
 msgstr "Search Tags:"
 
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "CNzh"
+msgstr "简体中文"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUde"
+msgstr "Deutsch"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUen"
+msgstr "English (EU)"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUes"
+msgstr "Español (España)"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUfr"
+msgstr "Français (France)"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUit"
+msgstr "Italiano"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUnl"
+msgstr "Nederlands"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "EUru"
+msgstr "Русский"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "JPja"
+msgstr "日本語"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "KRko"
+msgstr "한국어"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "TWzh"
+msgstr "繁體中文"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "USen"
+msgstr "English (US)"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "USes"
+msgstr "Español (Latinoamérica)"
+
+#: project/lms/ui_translation/language_code_to_text.tres
+msgctxt "PROJECT_LANGUAGE_CODE"
+msgid "USfr"
+msgstr "Français (Canada)"
+
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
 

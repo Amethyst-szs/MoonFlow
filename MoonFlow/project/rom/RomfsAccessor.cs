@@ -4,16 +4,17 @@ using System.Threading.Tasks;
 using Godot;
 
 using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 namespace MoonFlow.Project;
 
 public static class RomfsAccessor
 {
     public static string ActiveDirectory { get; private set; } = "";
-    public static RomfsValidation.RomfsVersion ActiveVersion { get; private set; }
-        = RomfsValidation.RomfsVersion.INVALID_VERSION;
+    public static RomfsVersion ActiveVersion { get; private set; }
+        = RomfsVersion.INVALID_VERSION;
 
-    public static Dictionary<RomfsValidation.RomfsVersion, string> VersionDirectories { get; private set; } = [];
+    public static Dictionary<RomfsVersion, string> VersionDirectories { get; private set; } = [];
 
     private const string ConfigDirectory = "user://romfs_config.ini";
 
@@ -23,10 +24,10 @@ public static class RomfsAccessor
 
     public static bool IsValid()
     {
-        return ActiveVersion != RomfsValidation.RomfsVersion.INVALID_VERSION;
+        return ActiveVersion != RomfsVersion.INVALID_VERSION;
     }
 
-    public static bool IsHaveVersion(RomfsValidation.RomfsVersion ver)
+    public static bool IsHaveVersion(RomfsVersion ver)
     {
         if (!VersionDirectories.TryGetValue(ver, out string path))
             return false;
@@ -107,14 +108,14 @@ public static class RomfsAccessor
         if (config.Load(ConfigDirectory) != Error.Ok) return;
 
         // Get list of version directory paths
-        foreach (var version in (RomfsValidation.RomfsVersion[])Enum.GetValues(typeof(RomfsValidation.RomfsVersion)))
+        foreach (var version in (RomfsVersion[])Enum.GetValues(typeof(RomfsVersion)))
         {
             string key = Enum.GetName(version);
 
             Variant item = config.GetValue("path", key, "");
             var value = item.AsString();
 
-            bool isOK = RomfsValidation.ValidateAndUpdatePath(ref value, out RomfsValidation.RomfsVersion validateVer);
+            bool isOK = ValidateAndUpdatePath(ref value, out RomfsVersion validateVer);
             if (!isOK || version != validateVer)
                 continue;
 
@@ -126,10 +127,10 @@ public static class RomfsAccessor
         if (selection == null || selection == string.Empty) return;
 
         // Ensure that the value read from the config is defined in the num
-        RomfsValidation.RomfsVersion selectionEnum;
+        RomfsVersion selectionEnum;
         try
         {
-            selectionEnum = Enum.Parse<RomfsValidation.RomfsVersion>(selection);
+            selectionEnum = Enum.Parse<RomfsVersion>(selection);
         }
         catch
         {
@@ -140,7 +141,7 @@ public static class RomfsAccessor
         if (!VersionDirectories.TryGetValue(selectionEnum, out string active)) return;
 
         // Assign active directory and ensure that this directory is a valid romfs endpoint
-        bool isValid = RomfsValidation.ValidateAndUpdatePath(ref active, out RomfsValidation.RomfsVersion ver);
+        bool isValid = ValidateAndUpdatePath(ref active, out RomfsVersion ver);
         if (!isValid) return;
 
         ActiveDirectory = active;
@@ -149,10 +150,10 @@ public static class RomfsAccessor
         GD.Print("Initilized RomfsAccessor for ", Enum.GetName(ActiveVersion));
     }
 
-    public static void TryAssignDirectory(ref string directory, out RomfsValidation.RomfsVersion version)
+    public static void TryAssignDirectory(ref string directory, out RomfsVersion version)
     {
         // Ensure new directory is valid
-        bool isValid = RomfsValidation.ValidateAndUpdatePath(ref directory, out version);
+        bool isValid = ValidateAndUpdatePath(ref directory, out version);
         if (!isValid) return;
 
         // Update version dictionary
@@ -177,12 +178,12 @@ public static class RomfsAccessor
         GD.Print(string.Format("Assigned path for {0} to {1}", Enum.GetName(ActiveVersion), directory));
     }
 
-    public static bool TrySetGameVersion(RomfsValidation.RomfsVersion version)
+    public static bool TrySetGameVersion(RomfsVersion version)
     {
         if (!VersionDirectories.TryGetValue(version, out string path)) return false;
 
         // Ensure new directory is valid
-        bool isValid = RomfsValidation.ValidateAndUpdatePath(ref path, out version);
+        bool isValid = ValidateAndUpdatePath(ref path, out version);
         if (!isValid) return false;
 
         // Update active information
@@ -203,7 +204,7 @@ public static class RomfsAccessor
         return true;
     }
 
-    public static void TryUnassignDirectory(RomfsValidation.RomfsVersion version)
+    public static void TryUnassignDirectory(RomfsVersion version)
     {
         if (!VersionDirectories.ContainsKey(version))
             return;
@@ -211,7 +212,7 @@ public static class RomfsAccessor
         if (version == ActiveVersion)
         {
             ActiveDirectory = null;
-            ActiveVersion = RomfsValidation.RomfsVersion.INVALID_VERSION;
+            ActiveVersion = RomfsVersion.INVALID_VERSION;
         }
 
         VersionDirectories.Remove(version);

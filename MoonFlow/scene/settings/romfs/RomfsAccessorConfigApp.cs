@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Project;
 
@@ -18,9 +19,9 @@ public partial class RomfsAccessorConfigApp : AppScene
         PathError = GetNode<VBoxContainer>("%VBox_PathError");
         PathError.Hide();
 
-        foreach (var version in Enum.GetNames(typeof(RomfsValidation.RomfsVersion)))
+        foreach (var version in Enum.GetNames(typeof(RomfsVersion)))
         {
-            var versionEnum = Enum.Parse<RomfsValidation.RomfsVersion>(version);
+            var versionEnum = Enum.Parse<RomfsVersion>(version);
 
             NodePath nodePath = string.Format("%{0}", version);
             if (!HasNode(nodePath))
@@ -49,8 +50,8 @@ public partial class RomfsAccessorConfigApp : AppScene
 
     private void OnPathPickerSelection(string dir)
     {
-        RomfsAccessor.TryAssignDirectory(ref dir, out RomfsValidation.RomfsVersion version);
-        if (version == RomfsValidation.RomfsVersion.INVALID_VERSION)
+        RomfsAccessor.TryAssignDirectory(ref dir, out RomfsVersion version);
+        if (version == RomfsVersion.INVALID_VERSION)
         {
             OnInvalidPathSelected();
             return;
@@ -65,9 +66,9 @@ public partial class RomfsAccessorConfigApp : AppScene
 
     private void OnDeletePath(string verStr)
     {
-        if (!Enum.TryParse(verStr, out RomfsValidation.RomfsVersion ver))
+        if (!Enum.TryParse(verStr, out RomfsVersion ver))
             throw new Exception("Name doesn't exist in enum");
-        
+
         RomfsAccessor.TryUnassignDirectory(ver);
 
         if (RomfsAccessor.VersionDirectories.Count == 0)

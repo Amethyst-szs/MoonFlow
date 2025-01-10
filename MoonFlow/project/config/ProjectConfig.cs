@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 
 using Nindot.Al.SMO;
+using static Nindot.RomfsPathUtility;
 
 namespace MoonFlow.Project;
 
@@ -9,7 +10,7 @@ public partial class ProjectConfig : ProjectConfigFileBase
 {
     public class DataContainer
     {
-        public RomfsValidation.RomfsVersion Version = RomfsValidation.RomfsVersion.INVALID_VERSION;
+        public RomfsVersion Version = RomfsVersion.INVALID_VERSION;
         public string DefaultLanguage = "USen";
         public bool IsFirstBoot = true;
         public bool IsDebugProject = false;
