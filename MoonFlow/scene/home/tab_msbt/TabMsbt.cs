@@ -33,8 +33,8 @@ public partial class TabMsbt : HSplitContainer
 	[Export]
 	private TabMsbtFileAccessor FileAccessor = null;
 
-	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
-	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
+	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
+	private GDScript DoublePressButton = GD.Load<GDScript>("res://scene/common/button/double_click_button.gd");
 
 	#region Init
 

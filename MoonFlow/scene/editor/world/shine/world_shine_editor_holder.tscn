@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
 [ext_resource type="StyleBox" uid="uid://bx0ltvemuw3qy" path="res://asset/theme/world/stylebox/editor_world_list_panel.tres" id="1_vequ3"]
-[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="1_yop2g"]
+[ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="1_yop2g"]
 [ext_resource type="Script" path="res://scene/editor/world/shine/WorldShineEditorHolder.cs" id="3_nii6g"]
 [ext_resource type="Theme" uid="uid://b2d1f54edqxpw" path="res://asset/theme/world/world_editor_shine_list.tres" id="4_j7oie"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_neh1k"]

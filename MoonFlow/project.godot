@@ -43,7 +43,7 @@ project/solution_directory="res://../"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoExportVersion/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg", "res://addons/markdownlabel/plugin.cfg", "res://addons/mfgraph_resource/plugin.cfg", "res://addons/podb/plugin.cfg", "res://addons/ui_node_ext/plugin.cfg")
+enabled=PackedStringArray("res://addons/AutoExportVersion/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg", "res://addons/markdownlabel/plugin.cfg", "res://addons/mfgraph_resource/plugin.cfg", "res://addons/podb/plugin.cfg")
 
 [gui]
 

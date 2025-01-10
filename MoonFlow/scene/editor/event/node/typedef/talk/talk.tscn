@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scene/editor/event/node/typedef/talk/EventFlowNodeMessageTalk.cs" id="2_qf2as"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_207b8"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="4_ec1t2"]
-[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="4_hvfgh"]
+[ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="4_hvfgh"]
 [ext_resource type="PackedScene" uid="uid://cjlli76vhlpfg" path="res://scene/editor/event/node/component/message_resolver_config.tscn" id="6_5jgdp"]
 
 [node name="EventFlowNodeMessageTalk" node_paths=PackedStringArray("ButtonIsMapUnit", "TextMessagePreview", "LabelTextSource") instance=ExtResource("1_uo123")]

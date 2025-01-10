@@ -19,7 +19,7 @@ public partial class PopupInjectGraphNode : Popup
 	private VBoxContainer ContainerFav;
 
 	public const string DefaultNodeName = "PopupInjectGraphNodeInstance";
-	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
+	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
 
 	[Signal]
 	public delegate void PinRemovedCommonEventHandler(string name);

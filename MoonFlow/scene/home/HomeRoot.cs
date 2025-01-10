@@ -11,7 +11,7 @@ namespace MoonFlow.Scene.Home;
 [Icon("res://asset/app/icon/home.png"), ScenePath("res://scene/home/home.tscn")]
 public partial class HomeRoot : AppScene
 {
-	private static readonly GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
+	private static readonly GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
 
 	public override async Task<bool> TryCloseFromTreeQuit()
 	{

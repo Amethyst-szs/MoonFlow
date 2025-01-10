@@ -18,7 +18,7 @@ public partial class EntryListStageMessage : EntryListBase
 
     // Load DropdownButton node class
     private readonly static GDScript DropdownButton =
-        GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
+        GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
 
     public override void CreateContent(SarcMsbtFile file, out string[] labels)
     {
@@ -45,7 +45,7 @@ public partial class EntryListStageMessage : EntryListBase
                 if (dif != 0)
                     return dif;
             }
-            
+
             return string.Compare(a, b);
         });
 
@@ -146,7 +146,7 @@ public partial class EntryListStageMessage : EntryListBase
     {
         if (!char.IsDigit(input.Last()))
             return -1;
-        
+
         // Black magic code from Stack Overflow :D
         return int.Parse(new string(input.Reverse().TakeWhile(char.IsDigit).Reverse().ToArray()));
     }

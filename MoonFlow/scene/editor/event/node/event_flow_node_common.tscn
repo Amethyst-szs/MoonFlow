@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/event_graph_ui_header.tres" id="3_6gwyg"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_eioh2"]
 [ext_resource type="Texture2D" uid="uid://bw6q6mibncpgu" path="res://asset/material/graph/edit.svg" id="4_p37at"]
-[ext_resource type="Script" path="res://addons/ui_node_ext/dropdown_checkbox.gd" id="5_ccntp"]
+[ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="5_ccntp"]
 [ext_resource type="Script" path="res://scene/editor/event/node/component/dropdown_vbox_with_dispose.gd" id="6_dn78i"]
 [ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/extra.svg" id="7_jdg8o"]
 

@@ -37,8 +37,8 @@ public partial class TabEvent : HSplitContainer
 	[Export]
 	private TabEventFileAccessor FileAccessor = null;
 
-	private GDScript DropdownButton = GD.Load<GDScript>("res://addons/ui_node_ext/dropdown_checkbox.gd");
-	private GDScript DoublePressButton = GD.Load<GDScript>("res://addons/ui_node_ext/double_click_button.gd");
+	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
+	private GDScript DoublePressButton = GD.Load<GDScript>("res://scene/common/button/double_click_button.gd");
 
 	public EventDataArchive SelectedArchive { get; private set; } = null;
 	public string SelectedEvent { get; private set; } = null;
@@ -66,7 +66,7 @@ public partial class TabEvent : HSplitContainer
 		var arcHolder = ProjectManager.GetProject()?.EventArcHolder;
 		if (arcHolder == null)
 			return;
-		
+
 		arcHolder.RefreshArchiveList();
 
 		var arcList = arcHolder.Content;
@@ -87,7 +87,7 @@ public partial class TabEvent : HSplitContainer
 
 			if (aS != bS)
 				return aS - bS;
-			
+
 			return string.Compare(a, b);
 		});
 
@@ -104,7 +104,7 @@ public partial class TabEvent : HSplitContainer
 			if (currentSource != sarc.Source)
 			{
 				currentSource = sarc.Source;
-				
+
 				var hsep = new HSeparator();
 				hsep.AddThemeConstantOverride("separation", 24);
 				ArchiveHolder.AddChild(hsep);
@@ -314,7 +314,7 @@ public partial class TabEvent : HSplitContainer
 	{
 		if (!archive.Content.TryGetValue(key, out ArraySegment<byte> data))
 			return;
-		
+
 		GetNode<Label>("%Label_ArcName").Text = archive.Name;
 		GetNode<Label>("%Label_Size").Text = ByteSize.FromBytes(data.Count).ToString();
 	}
