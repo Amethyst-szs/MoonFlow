@@ -14,7 +14,7 @@ public class GraphMetaHolder : ProjectConfigFileBase
 {
     public GraphMetadata Data { get; private set; } = new();
     private const string PathBase = "EventData/.graph/";
-    private const string EmbedGraphPath = "res://project/event/embed/";
+    public const string EmbedGraphPath = "res://project/event/embed/";
 
     public GraphMetaHolder(string path) : base(path) { }
     public GraphMetaHolder(byte[] data) : base(data) { }

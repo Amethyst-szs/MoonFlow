@@ -17,6 +17,8 @@ namespace MoonFlow.Project;
 public abstract class ProjectConfigFileBase
 {
     protected string Path = null;
+    public bool IsReadFromDisk { get; private set; } = false;
+
     protected readonly JsonSerializerOptions JsonConfig = new()
     {
         IncludeFields = true,
@@ -40,6 +42,8 @@ public abstract class ProjectConfigFileBase
 
         var jsonStr = Encoding.UTF8.GetString(data);
         Init(jsonStr);
+
+        IsReadFromDisk = true;
     }
 
     public ProjectConfigFileBase(byte[] data, bool isStoreColorAlpha = false)
@@ -50,6 +54,8 @@ public abstract class ProjectConfigFileBase
 
         var jsonStr = Encoding.UTF8.GetString(data);
         Init(jsonStr);
+
+        IsReadFromDisk = true;
     }
 
     protected abstract void Init(string json);

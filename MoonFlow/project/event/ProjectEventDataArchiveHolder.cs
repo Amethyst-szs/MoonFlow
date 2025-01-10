@@ -149,12 +149,22 @@ public class ProjectEventDataArchiveHolder
         arcTarget.WriteArchive();
 
         // Duplicate mfgraph file
+        var sourceHash = GraphMetaHolder.CalcNameHash(arcSource.Name, source);
         var sourceMetaPath = GraphMetaHolder.GetPath(arcSource.Name, source);
-        var targetMetaPath = GraphMetaHolder.GetPath(arcTarget.Name, target);
-
+        
         var sourceMeta = new GraphMetaHolder(sourceMetaPath);
-        if (sourceMeta.Data == null)
-            return true;
+        if (!sourceMeta.IsReadFromDisk)
+        {
+            // If there isn't a local metadata file, attempt to copy from embeds
+            var embed = GraphMetaHolder.EmbedGraphPath + sourceHash;
+            if (!Godot.FileAccess.FileExists(embed))
+                return true;
+            
+            var data = Godot.FileAccess.GetFileAsBytes(embed);
+            sourceMeta = new GraphMetaHolder(data);
+        }
+
+        var targetMetaPath = GraphMetaHolder.GetPath(arcTarget.Name, target);
 
         sourceMeta.Data.ArchiveName = arcTarget.Name;
         sourceMeta.Data.FileName = target;
