@@ -11,8 +11,8 @@
 .obsidian/
 notes/
 
-# Unit test output
-src/Nindot.Tests/output/
+# Unit testing
+Nindot.Tests/GamePaths.json
 
 # Editor-generated override.cfg
 MoonFlow/override.cfg
