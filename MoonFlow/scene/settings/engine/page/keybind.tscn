@@ -44,6 +44,10 @@ input_action = "ui_save_as"
 layout_mode = 2
 input_action = "ui_save_all"
 
+[node name="Rename" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_rename"
+
 [node name="CloseApp" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_close_app"
@@ -52,9 +56,9 @@ input_action = "ui_close_app"
 layout_mode = 2
 input_action = "ui_refresh"
 
-[node name="Rename" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="Screenshot" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
-input_action = "ui_rename"
+input_action = "ui_screenshot"
 
 [node name="HSep_Spacer" type="HSeparator" parent="."]
 layout_mode = 2

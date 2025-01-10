@@ -1,12 +1,10 @@
 using System;
 using Godot;
 
-using Nindot.Al.SMO;
 using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.Settings;
-using MoonFlow.Scene.EditorEvent;
 
 namespace MoonFlow.Scene;
 

@@ -3242,6 +3242,10 @@ msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "USfr"
 msgstr "Français (Canada)"
 
+#: scene/common/screenshot/screenshot_capture.gd
+msgid "SCREENSHOT_FILE_DIALOG_TITLE"
+msgstr "Save Screenshot to a File"
+
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
 
@@ -3318,9 +3322,6 @@ msgstr "Français (Canada)"
 
 #~ msgid "ASYNC_TASK_DISPLAY_FTP"
 #~ msgstr "Transferring Files..."
-
-#~ msgid "ROMFS_CONFIG_FILE_DIALOG_TITLE"
-#~ msgstr "Select a RomFS Directory"
 
 #~ msgid "ROMFS_CONFIG_FILE_DIALOG_ACCEPT_DIRECTORY"
 #~ msgstr "Select Folder"

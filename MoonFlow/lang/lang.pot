@@ -78,6 +78,7 @@
 # res://scene/front_door/contributor/module-godot.tres
 # res://scene/editor/event/meta/editor/popup_event_metadata.tscn
 # res://project/lms/ui_translation/language_code_to_text.tres
+# res://scene/common/screenshot/screenshot_capture.gd
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -3222,4 +3223,8 @@ msgstr ""
 #: project/lms/ui_translation/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "USfr"
+msgstr ""
+
+#: scene/common/screenshot/screenshot_capture.gd
+msgid "SCREENSHOT_FILE_DIALOG_TITLE"
 msgstr ""
