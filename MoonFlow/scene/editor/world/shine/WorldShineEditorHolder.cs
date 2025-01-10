@@ -8,6 +8,7 @@ using MoonFlow.Project.Database;
 using MoonFlow.Project;
 using MoonFlow.Ext;
 using MoonFlow.Scene.EditorMsbt;
+using System.Linq;
 
 namespace MoonFlow.Scene.EditorWorld;
 
@@ -49,15 +50,15 @@ public partial class WorldShineEditorHolder : PanelContainer
 		"res://asset/nindot/lms/icon/PictureFont_30.png"
 	);
 
-    public override void _Ready()
-    {
-        ParentScroll = this.FindParentByType<ScrollContainer>();
+	public override void _Ready()
+	{
+		ParentScroll = this.FindParentByType<ScrollContainer>();
 
 		Editor.Connect(WorldShineEditor.SignalName.ContentModified, Callable.From(OnEditorModifiedContent));
 		Editor.Connect(SignalName.VisibilityChanged, Callable.From(OnVisibilityChanged));
-    }
+	}
 
-    public void SetupShineEditor(WorldInfo world, ShineInfo shine, MsbtEntry displayName, int idx)
+	public void SetupShineEditor(WorldInfo world, ShineInfo shine, MsbtEntry displayName, int idx)
 	{
 		// Copy references
 		World = world;
@@ -76,7 +77,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 		// Setup display name buttons
 		var msbtHolder = ProjectManager.GetMSBTArchives()?.StageMessage
-        ?? throw new NullReferenceException("Could not access msbt archives!");
+		?? throw new NullReferenceException("Could not access msbt archives!");
 
 		if (displayName != null)
 		{
@@ -122,7 +123,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 	{
 		// Access msbt holder
 		var msbtHolder = ProjectManager.GetMSBTArchives()?.StageMessage
-        ?? throw new NullReferenceException("Could not access msbt archives!");
+		?? throw new NullReferenceException("Could not access msbt archives!");
 
 		// If msbt holder doesn't contain msbt file, cancel
 		var file = Shine.StageName + ".msbt";
@@ -130,21 +131,52 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 		if (!msbtHolder.Content.ContainsKey(file))
 			return;
-		
+
+		// Lookup msbt editor application
+		var scene = ProjectManager.SceneRoot;
+		var apps = scene.GetApps<MsbtAppHolder>();
+
+		MsbtAppHolder app = null;
+		var targetIdentifier = MsbtAppHolder.GetUniqueIdentifier(msbtHolder.Name, file);
+
+		foreach (var candidate in apps)
+		{
+			if (candidate.AppUniqueIdentifier != targetIdentifier)
+				continue;
+
+			app = candidate;
+			break;
+		}
+
 		// Check if the requested shine label exists
 		MsbtAppHolder editor;
 		if (msbtHolder.GetFileMSBT(file, new MsbtElementFactory()).IsContainKey(label))
 		{
-			editor = MsbtAppHolder.OpenAppWithSearch("StageMessage.szs", file, label);
-			editor.Editor.SetSelection(label);
+			// If the pre-existing msbt app lookup failed, create a new editor app
+			if (app == null)
+			{
+				editor = MsbtAppHolder.OpenAppWithSearch(msbtHolder.Name, file, label);
+				editor.Editor.SetSelection(label);
+				return;
+			}
+
+			app.Editor.UpdateEntrySearch(label);
+			app.Editor.SetSelection(label);
+			app.AppFocus();
+
 			return;
 		}
 
-		editor = MsbtAppHolder.OpenApp("StageMessage.szs", file);
-		await ToSignal(Engine.GetMainLoop(), "process_frame");
+		// If the label doesn't already exist, we'll need to create it
+		if (app == null)
+		{
+			app = MsbtAppHolder.OpenApp(msbtHolder.Name, file);
+			await ToSignal(Engine.GetMainLoop(), "process_frame");
+		}
 		
-		editor.Editor.OnAddEntryNameSubmitted(label);
-		editor.Editor.UpdateEntrySearch(label);
+		app.Editor.OnAddEntryNameSubmitted(label);
+		app.Editor.UpdateEntrySearch(label);
+		app.AppFocus();
 	}
 
 	private void OnDeleteShine()

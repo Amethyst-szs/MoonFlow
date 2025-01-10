@@ -81,6 +81,11 @@ public partial class MsbtAppHolder : AppScene
 		return "MSBT_" + input;
 	}
 
+	public static string GetUniqueIdentifier(string archive, string file)
+	{
+		return "MSBT_" + archive + file;
+	}
+
 	private void OnSignalContentModified() { IsModified = true; }
 	private void OnSignalContentNotModified() { IsModified = false; }
 }

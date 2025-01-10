@@ -83,7 +83,11 @@ public partial class MainSceneRoot : Control
         return NodeApps.GetChildren().Cast<AppScene>();
     }
 
-    // Returns first open app of type T
+    public IEnumerable<T> GetApps<T>() where T : AppScene
+    {
+        return NodeApps.GetChildren().Where(n => n is T).Cast<T>();
+    }
+
     public AppScene GetApp<T>()
     {
         foreach (var app in GetApps())
