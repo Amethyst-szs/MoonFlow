@@ -48,7 +48,7 @@ jobs:
           godot --version
 
       - name: 🧑‍🔬 Generate .NET Bindings
-        run: cd MoonFlow/ && godot --headless --build-solutions --quit || exit 0
+        run: cd MoonFlow/ && godot --headless --editor --build-solutions --quit || exit 0
 
       - name: 🦺 Build Projects
         run: dotnet build
