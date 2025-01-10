@@ -3059,6 +3059,26 @@ msgctxt "INPUT_MAP"
 msgid "ui_screenshot"
 msgstr "Screenshot"
 
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_graph_step_by_step_debug"
+msgstr "Step by Step Debugger"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_app_nav_left"
+msgstr "Previous App"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_app_nav_right"
+msgstr "Next App"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_app_nav_home"
+msgstr "Homepage"
+
 #: scene/settings/engine/keybind/overlay_keybind_capture.tscn
 msgid "ENGINE_SETTINGS_APP_KEYBIND_PRESS_ANY_KEY_POPUP"
 msgstr "Press any Key..."
@@ -3066,6 +3086,10 @@ msgstr "Press any Key..."
 #: scene/settings/engine/page/keybind.tscn
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
 msgstr "User Interface"
+
+#: scene/settings/engine/page/keybind.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_FILE_MANAGE"
+msgstr "File Management"
 
 #: scene/settings/engine/page/keybind.tscn
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"

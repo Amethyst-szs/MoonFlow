@@ -32,22 +32,6 @@ label_settings = SubResource("LabelSettings_f716v")
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Save" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
-layout_mode = 2
-input_action = "ui_save"
-
-[node name="SaveAs" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
-layout_mode = 2
-input_action = "ui_save_as"
-
-[node name="SaveAll" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
-layout_mode = 2
-input_action = "ui_save_all"
-
-[node name="Rename" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
-layout_mode = 2
-input_action = "ui_rename"
-
 [node name="CloseApp" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_close_app"
@@ -56,11 +40,58 @@ input_action = "ui_close_app"
 layout_mode = 2
 input_action = "ui_refresh"
 
+[node name="AppNavLeft" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_app_nav_left"
+
+[node name="AppNavRight" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_app_nav_right"
+
+[node name="AppNavHome" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_app_nav_home"
+
 [node name="Screenshot" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_screenshot"
 
 [node name="HSep_Spacer" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gj7kb")
+
+[node name="VBox_FileManage" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_FileManageHeader" type="Label" parent="VBox_FileManage"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_KEYBIND_FILE_MANAGE"
+label_settings = SubResource("LabelSettings_f716v")
+
+[node name="HSeparator" type="HSeparator" parent="VBox_FileManage"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Save" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_save"
+
+[node name="SaveAs" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_save_as"
+
+[node name="SaveAll" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_save_all"
+
+[node name="Rename" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_rename"
+
+[node name="HSep_Spacer4" type="HSeparator" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_gj7kb")
@@ -156,6 +187,11 @@ input_action = "ui_graph_reset_zoom"
 [node name="Debug" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_toggle_debug"
+is_debug_only = true
+
+[node name="StepByStepDebug" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_graph_step_by_step_debug"
 is_debug_only = true
 
 [editable path="Header"]

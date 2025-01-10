@@ -2,12 +2,21 @@ using Godot;
 using System;
 using System.Linq;
 
+using MoonFlow.Ext;
+using MoonFlow.Scene.Home;
+
 namespace MoonFlow.Scene.Main;
 
 public partial class Taskbar : Control
 {
+    #region Init & App Init
+
+    private MainSceneRoot Parent;
+
     public override void _Ready()
     {
+        Parent = this.FindParentByType<MainSceneRoot>();
+
         GetWindow().SizeChanged += UpdateDisplay;
         EngineSettings.Connect("taskbar_size_modified", OnTaskbarSizeChanged);
 
@@ -65,19 +74,37 @@ public partial class Taskbar : Control
         return true;
     }
 
-    public bool TrySelectAppByIndex(int idx)
-    {
-        var childCount = GetChildCount();
-        if (idx < 0 || idx >= childCount)
-            return false;
+    #endregion
 
-        GetChild<TaskbarButton>(idx).App.AppFocus();
-        return true;
+    #region Input
+
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_app_nav_left", true, true))
+        {
+            TryNavTaskbarByOffset(-1);
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+
+        if (@event.IsActionPressed("ui_app_nav_right", true, true))
+        {
+            TryNavTaskbarByOffset(1);
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+
+        if (@event.IsActionPressed("ui_app_nav_home", true, true))
+        {
+            TryNavTaskbarHome();
+            GetViewport().SetInputAsHandled();
+            return;
+        }
     }
 
-    // ====================================================== //
-    // =================== User Interface =================== //
-    // ====================================================== //
+    #endregion
+
+    #region UI Render
 
     public void UpdateDisplay()
     {
@@ -101,9 +128,41 @@ public partial class Taskbar : Control
         }
     }
 
-    // ====================================================== //
-    // ====================== Utilities ===================== //
-    // ====================================================== //
+    #endregion
+
+    #region Utility
+
+    public bool TrySelectAppByIndex(int idx)
+    {
+        var childCount = GetChildCount();
+        if (idx < 0 || idx >= childCount)
+            return false;
+
+        GetChild<TaskbarButton>(idx).App.AppFocus();
+        return true;
+    }
+
+    private void TryNavTaskbarByOffset(int offset)
+    {
+        var active = Parent.GetActiveApp();
+        if (active == null || active.IsAppExclusive()) return;
+
+        var idx = active.GetIndex() + offset;
+        idx = idx.ModPosNeg(Parent.NodeApps.GetChildCount());
+
+        TrySelectAppByIndex(idx);
+    }
+
+    private void TryNavTaskbarHome()
+    {
+        var active = Parent.GetActiveApp();
+        if (active == null || active.IsAppExclusive()) return;
+
+        var home = Parent.GetApp<HomeRoot>();
+        if (home == null) return;
+
+        TrySelectAppByIndex(home.GetIndex());
+    }
 
     private float CalcButtonWidth()
     {
@@ -120,4 +179,6 @@ public partial class Taskbar : Control
 		CustomMinimumSize = new Vector2(CustomMinimumSize.X, height);
 		Size = new Vector2(Size.X, height);
 	}
+
+    #endregion
 }
