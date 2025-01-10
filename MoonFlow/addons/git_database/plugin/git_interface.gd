@@ -30,12 +30,15 @@ static func git_commit_hash() -> String:
 
 static func git_commit_hash_short() -> String:
 	return _exe_rev_parse(["HEAD"]).left(8)
-	
+
 static func git_commit_count() -> int:
 	return int(_exe_rev_list(["--count", "HEAD"]))
 
+static func git_commit_count_stable() -> int:
+	return int(_exe_rev_list(["--count", "stable"]))
+
 static func git_commit_ahead_count() -> int:
-	return int(_exe_rev_list(["--count", "HEAD", "^" + git_branch_name()]))
+	return int(_exe_rev_list(["--count", "HEAD", "^" + "stable"]))
 
 static func git_commit_unix_time() -> int:
 	return int(_exe_show(["--no-patch", "--format=%ct"]))

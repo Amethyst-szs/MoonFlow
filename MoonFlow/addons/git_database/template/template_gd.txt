@@ -14,5 +14,6 @@ const commit_hash: String = {git_commit_hash}
 const commit_hash_short: String = {git_commit_hash_short}
 
 const commit_count: int = {git_commit_count}
+const commit_count_stable: int = {git_commit_count_stable}
 const commit_ahead: int = {git_commit_ahead_count}
 const commit_time_unix: int = {git_commit_unix_time}

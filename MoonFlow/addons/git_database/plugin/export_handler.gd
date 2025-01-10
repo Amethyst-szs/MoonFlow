@@ -28,10 +28,10 @@ func _export_begin(features: PackedStringArray, is_debug: bool, path: String, fl
 	ResourceSaver.save(script, "res://addons/git_database/git.gd")
 	
 	# Update project setting
-	var count := EditorPluginGitInterface.git_commit_count()
+	var count := EditorPluginGitInterface.git_commit_count_stable()
 	var ahead := EditorPluginGitInterface.git_commit_ahead_count()
 	var hash := EditorPluginGitInterface.git_commit_hash_short().hex_to_int()
-	var ver := "v%d.%d.%d" % [count, ahead, hash]
+	var ver := "%d.%d" % [count, ahead]
 	
 	ProjectSettings.set_setting("application/config/version", ver)
 	ProjectSettings.save()

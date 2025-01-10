@@ -20,6 +20,7 @@ public static class GitInfo
     public static string GitCommitHashShort() { return Instance.Get("commit_hash_short").AsString(); }
 
     public static string GitCommitCount() { return Instance.Get("commit_count").AsString(); }
+    public static string GitCommitCountStable() { return Instance.Get("commit_count_stable").AsString(); }
     public static string GitCommitAhead() { return Instance.Get("commit_ahead").AsString(); }
     public static string GitCommitUnixTime() { return Instance.Get("commit_time_unix").AsString(); }
 
