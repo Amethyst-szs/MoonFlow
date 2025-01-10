@@ -20,6 +20,7 @@ public class EventDataGraph
         Graph flow = Graph.FromFilePath(ResDirectory + "Graph-SphinxQuiz.byml", new ProjectSmoEventFlowFactory());
         Assert.True(flow.IsValid());
 
+        Directory.CreateDirectory(OutputDirectory);
         Assert.True(flow.WriteFile(OutputDirectory + "EventFlowGraphOutput.byml"));
 
         flow = Graph.FromFilePath(OutputDirectory + "EventFlowGraphOutput.byml", new ProjectSmoEventFlowFactory());
@@ -74,6 +75,7 @@ public class EventDataGraph
         // Compare yaml results
         if (bytesYaml != resYaml)
         {
+            Directory.CreateDirectory(OutputDirectory);
             File.WriteAllBytes(OutputDirectory + "EventFlowGraphError_Source.txt", Encoding.UTF8.GetBytes(bytesYaml));
             File.WriteAllBytes(OutputDirectory + "EventFlowGraphError_Result.txt", Encoding.UTF8.GetBytes(resYaml));
             File.WriteAllBytes(OutputDirectory + "EventFlowGraphError_Build.byml", result);

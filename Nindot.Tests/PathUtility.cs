@@ -23,7 +23,8 @@ public static class PathUtility
             return str;
         }
 
-        throw new Exception("No valid game path was provided!");
+        Assert.Skip("No path provided for test requiring SMO romfs");
+        return null;
     }
 
     public static string GetPathSmo100() { return GetPath("SMOv100"); }
@@ -65,6 +66,10 @@ public static class PathUtility
             Assert.Skip("No path provided for test requiring " + key);
             return null;
         }
+
+        str = str.Replace('\\', '/');
+        if (!str.EndsWith('/'))
+            str += '/';
 
         return str;
     }
