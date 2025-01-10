@@ -51,5 +51,5 @@ jobs:
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
-          name: TestResults
+          name: Tests-${{ matrix.os }}
           path: ./Nindot.Tests/TestResults/Tests-${{ matrix.os }}.trx
