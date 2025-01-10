@@ -1,3 +1,8 @@
+---
+tags:
+  - starter_guide
+---
+
 # Introduction to MoonFlow
 Welcome, welcome! This page will help you figure out if MoonFlow is the right tool for what you're trying to make, how to get it installed, and getting your first project created.
 
@@ -54,6 +59,6 @@ The project creation process will create `.mfproj`, `.mfmeta`, and `.mfgraph` fi
 
 And with that, you've got MoonFlow set up and ready to roll! Check out the intro guides to whichever editor catches your eye below.
 
-* [Text Editor](text/text_basics.md)
+* [Text Editor](basics_text_editor.md)
 * [Event Graph Editor](events/event_basics.md)
 * [Kingdom Editor](kingdoms/kingdom_basics.md)

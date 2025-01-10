@@ -1,3 +1,9 @@
+---
+tags:
+  - msbt
+  - starter_guide
+---
+
 # Text Editor - Basics
 MoonFlow's text editor is an [LMS](https://nintendo-formats.com/libs/lms/overview.html) [MSBT](https://nintendo-formats.com/libs/lms/msbt.html) file editor designed specifically for Super Mario Odyssey. This set of tools is inspired by and is meant to fully replace [Msbt Editor Reloaded](https://gbatemp.net/threads/release-msbt-editor-reloaded.406208/) for SMO.
 
@@ -8,7 +14,7 @@ Text files are split into three folders, called *archives* or `.szs` files.
 - **Stage** contains a file for every stage in the game. MoonFlow sorts the files in this folder into kingdoms and by stage type (sub area, shop, ect.)
 - **Layout** is used for text meant to be displayed on the HUD. Most menus, popups, and other related text is stored here.
 
-Any msbt text file can be opened by double clicking or pressing open file. Files can also be copied, pasted, duplicated, added, renamed, and deleted, but [that will be covered separately].
+Any msbt text file can be opened by double clicking or pressing open file. Files can also be copied, pasted, duplicated, added, renamed, and deleted, but that will be covered [here](file_management.md).
 
 ## Editor Layout
 The text editor is divided into three sections, the entry/label list, the page editor, and the header.
@@ -23,14 +29,19 @@ The page editor is the primary window of the text editor. This is what contains 
 
 Most text entries will only contain one page, and all displayed text is contained within that page. For character dialogue though, it is very common for there to be multiple pages which will require the player to press A to advance to the next dialogue box. You can add pages with the ➕ separators, as well as re-arranging or deleting pages on the right side of each page.
 
-When writing text you'll frequently run into *tags*, one of the main features that MoonFlow enables compatibility for. To edit a tag, use `Ctrl + Left-Click` or `Ctrl + Shift + T` (default keybind) open the tag editor. This menu will look different for each type of tag. Read more about tag editing [here].
+When writing text you'll frequently run into *tags*, one of the main features that MoonFlow enables compatibility for. To edit a tag, use `Ctrl + Left-Click` or `Ctrl + Shift + T` (default keybind) open the tag editor. This menu will look different for each type of tag. Read more about tag editing [here](tags.md#editing).
 
-In order to add new tags to your text you can `Right-Click` or press `Ctrl + T` (default keybind). This will pull up a tag insertion wheel, which can be rotated to additional pages with the spin button in the center. Read more about tag insertion [here].
+In order to add new tags to your text you can `Right-Click` or press `Ctrl + T` (default keybind). This will pull up a tag insertion wheel, which can be rotated to additional pages with the spin button in the center. Read more about tag insertion [here](tags.md#wheel).
 
 ### Header
-The header displays your selected entry and file, as well as offering a language selector. By default all edits you make in your [default language](../introduction.md#default-language) will copied to all other languages to preserve mod functionality for all players. If you want to provide manual translations, switch to that language and input them there. Read more about MoonFlow translations [here].
+The header displays your selected entry and file, as well as offering a language selector. By default all edits you make in your [default language](../introduction.md#default-language) will copied to all other languages to preserve mod functionality for all players. If you want to provide manual translations, switch to that language and input them there. Read more about MoonFlow translations [here](translations.md).
 
 ## Beginner Tips
 - When working with stage text files, it's very helpful to have a level editor or actor inspector open to view object IDs. Being able to search for entries by ID is very helpful when attempting to add/modify text from a specific actor.
 - Before adding a new text file for a new stage, make sure to register that stage with a kingdom first! This is required to update the msbp, a file that contains a database of all text files and is required for the game to recognize your new text file.
 - You do not need to manually manage the msbp with MoonFlow, that is automatically handled for you.
+
+## Additional Resources
+- [File Management](file_management.md)
+- [Text Tags](tags.md)
+- [Translations](translations.md)

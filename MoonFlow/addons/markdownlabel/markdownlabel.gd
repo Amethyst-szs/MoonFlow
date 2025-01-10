@@ -207,6 +207,19 @@ func _convert_markdown(source_text: String = "") -> String:
 	_table_row = -1
 	_skip_line_break = false
 	_checkbox_id = 0
+	
+	# Remove obsidian tag header
+	var line_remove_count: int = 0
+	if lines.size() > 0 and lines[0].begins_with("---"):
+		line_remove_count += 1
+		
+		while !lines[line_remove_count].begins_with("---"):
+			line_remove_count += 1
+		
+		line_remove_count += 1
+	
+	for i in range(line_remove_count):
+		lines.remove_at(0)
 
 	for line: String in lines:
 		line = line.trim_suffix("\r")

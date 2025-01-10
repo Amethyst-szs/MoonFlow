@@ -117,8 +117,8 @@ mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_ysvcm")
 icon = ExtResource("9_7ww6o")
 script = ExtResource("11_i7gov")
-WikiPath = "res://docs/text/text_basics.md"
-WikiLocalPath = "text/text_basics.md"
+WikiPath = "res://docs/text/basics_text_editor.md"
+WikiLocalPath = "text/basics_text_editor.md"
 
 [node name="Label_EntryCount" type="Label" parent="Controls/VBox/HBox"]
 custom_minimum_size = Vector2(175, 0)

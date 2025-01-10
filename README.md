@@ -1,8 +1,3 @@
----
-tags:
-  - front_door
----
-
 <h1 style="text-align:center">
 	<span style="color:#ec2312">
 		Super Mario Odyssey
