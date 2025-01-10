@@ -17,7 +17,10 @@ public partial class GrammarCaping : TagEditScene
 		Tag = tag as MsbtTagElementGrammar;
 
 		var option = GetNode<OptionButton>("%Option_TagName");
-		option.Selected = (int)Tag.Grammar;
+		if (Enum.IsDefined(Tag.Grammar))
+			option.Selected = (int)Tag.Grammar;
+		else
+			option.Disabled = true;
 	}
 
 	private void SetTagName(int id)

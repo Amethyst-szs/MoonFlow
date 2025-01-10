@@ -47,7 +47,7 @@ public class MsbtTagElementGrammar : MsbtTagElement
         {
             TagNameGrammar.Cap => "Grammar_Cap",
             TagNameGrammar.Decap => "Grammar_Decap",
-            _ => null,
+            _ => "Grammar_Unknown",
         };
     }
 };
