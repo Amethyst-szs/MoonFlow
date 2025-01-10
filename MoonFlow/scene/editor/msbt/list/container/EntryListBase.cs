@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 
 using Nindot.LMS.Msbt;
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -47,7 +48,7 @@ public abstract partial class EntryListBase : VBoxContainer
 
     public void OnEntryHovered(string label)
     {
-        if (Input.IsMouseButtonPressed(MouseButton.Left))
+        if (this.IsAnyChildFocused() && Input.IsMouseButtonPressed(MouseButton.Left))
             OnEntrySelected(label);
     }
 
