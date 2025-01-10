@@ -57,7 +57,14 @@ public static class PathUtility
         ?? throw new Exception("Could not find requested field on data instance");
 
         var value = field.GetValue(Instance);
-        if (value is not string str) throw new Exception();
+        if (value is not string str)
+            throw new Exception("Invalid type for field");
+
+        if (str == string.Empty)
+        {
+            Assert.Skip("No path provided for test requiring " + key);
+            return null;
+        }
 
         return str;
     }
@@ -80,7 +87,8 @@ public static class PathUtility
 
             const string errStr = "\n\n - MISSING GAME PATHS - \n\n go to Nindot.Tests/GamePaths.json and add your game paths!";
             Console.Write(errStr);
-            throw new Exception(errStr);
+            Assert.Skip(errStr);
+            return;
         }
 
         var json = File.ReadAllText(path);
