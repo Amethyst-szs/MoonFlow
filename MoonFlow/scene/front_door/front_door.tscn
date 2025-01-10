@@ -82,12 +82,17 @@ func _ready() -> void:
 	var unix_l: int = GitInfo.commit_time_unix + timezone
 	var time: String = Time.get_date_string_from_unix_time(unix_l)
 	
-	# Setup label
+	# Setup git info
 	var out: String = \"\"
-	out += \"%s\\n%s\\n\\n\" % [time, GitInfo.version_name]
-	out += \"%s (%s)\\n\" % [n, DisplayServer.get_name()]
-	out += \"%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+	out += \"%s\\n%s\\n%s\\n\\n\" % [time, GitInfo.version_name, GitInfo.author]
 	
+	# Setup compile info
+	out += \"%s (%s)\" % [n, DisplayServer.get_name()]
+	if OS.is_debug_build(): out += \" DEBUG\"
+	
+	out += \"\\n%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
+	
+	# Write text to label
 	text = out
 "
 
