@@ -42,14 +42,6 @@ jobs:
           dotnet --version
           godot --version
 
-      - name: Generate Godot Imports
-        working-directory: ./MoonFlow/
-        run: godot --headless --editor --quit
-
-      - name: Generate Godot Bindings
-        working-directory: ./MoonFlow/
-        run: godot --headless  --build-solutions --quit
-
       - name: Build Projects
         run: dotnet build
       
@@ -61,3 +53,7 @@ jobs:
         with:
           name: TestResults
           path: ./Nindot.Tests/TestResults/TestResults.trx
+
+      - name: Generate Godot Bindings
+        working-directory: ./MoonFlow/
+        run: godot --headless  --build-solutions --quit
