@@ -45,3 +45,4 @@ The header displays your selected entry and file, as well as offering a language
 - [File Management](file_management.md)
 - [Text Tags](tags.md)
 - [Translations](translations.md)
+- [Technical Details & Design Philosophy](technical.md)

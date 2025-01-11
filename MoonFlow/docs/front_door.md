@@ -11,16 +11,25 @@ Welcome to the official documentation for [MoonFlow](https://github.com/Amethyst
 
 To navigate the documentation, use the sidebar to pick out what you're looking for, or jump to a common category on the list below.
 
-# Table of Contents
+## Table of Contents
 
-##### Getting Started
-- [Installation and Project Setup](introduction.md)
-* [Text Editor](basics_text_editor.md)
-* [Event Graph Editor](events/event_basics.md)
-* [Kingdom Editor](kingdoms/kingdom_basics.md)
+### Getting Started
+- [Introduction, Installation, and Project Setup](introduction.md)
+* [Text Editor](text/basics_text_editor.md)
+* [Event Graph Editor](events/basics_event_graph.md)
+* [Kingdom Editor](kingdoms/basics_kingdoms.md)
 
+### File Editors
 ##### Text Editor
-* [Basics Introduction](basics_text_editor.md)
+* [Basics](text/basics_text_editor.md)
 * [File Management](text/file_management.md)
 * [Tags](text/tags.md)
 * [Translations](text/translations.md)
+* [Technical Details & Design Philosophy](technical.md)
+##### Event Graph Editor
+- [Basics](events/basics_event_graph.md)
+##### Kingdom Editor
+- [Basics](kingdoms/basics_kingdoms.md)
+
+### Contributing
+Coming soon!

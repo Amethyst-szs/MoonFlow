@@ -24,7 +24,7 @@ MoonFlow is **NOT** a piracy tool. It does not distribute or encourage pirated g
 ## Getting MoonFlow Installed
 MoonFlow is available on both Windows and Linux, visit the [GitHub releases](https://github.com/Amethyst-szs/MoonFlow/releases) to download the latest version of the application. The app features built-in update notifications on the boot screen, so you'll always know if a newer version is available.
 
-This application is built using [C#](https://dotnet.microsoft.com/en-us/languages/csharp) and the [Godot Engine](https://godotengine.org/). It is designed to support most systems, however there are some lightweight GPU shaders, which can cause issues on particularly underpowered machines. At least 1GB of free RAM is highly recommended. The most important specification is disk read/writes to manage your projects and read game files. A local (not cloud based) SSD storage device is highly recommended, but not required.
+This application is built using [C# .NET](https://dotnet.microsoft.com/en-us/languages/csharp) and the [Godot Engine](https://godotengine.org/). It is designed to support most systems, however there are some lightweight GPU shaders, which can cause issues on particularly underpowered machines. At least 1GB of free RAM is highly recommended. The most important specification is disk read/writes to manage your projects and read game files. A local (not cloud based) SSD storage device is highly recommended, but not required.
 
 Unless you want to compile the engine from source, downloading .[NET](https://dotnet.microsoft.com/en-us/languages/csharp) or the [Godot Engine Editor](https://godotengine.org/) is **NOT** required. All the required libraries are included in the download, just launch the executable to get started.
 
@@ -59,6 +59,6 @@ The project creation process will create `.mfproj`, `.mfmeta`, and `.mfgraph` fi
 
 And with that, you've got MoonFlow set up and ready to roll! Check out the intro guides to whichever editor catches your eye below.
 
-* [Text Editor](basics_text_editor.md)
-* [Event Graph Editor](events/event_basics.md)
-* [Kingdom Editor](kingdoms/kingdom_basics.md)
+* [Text Editor](text/basics_text_editor.md)
+* [Event Graph Editor](events/basics_event_graph.md)
+* [Kingdom Editor](kingdoms/basics_kingdoms.md)
