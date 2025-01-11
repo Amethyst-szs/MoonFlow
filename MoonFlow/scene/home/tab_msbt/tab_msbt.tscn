@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="1_8nwia"]
 [ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbt.cs" id="2_ioahr"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="3_svb1l"]
-[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_8mx2o"]
+[ext_resource type="Script" path="res://scene/common/line_edit/search_line_edit.gd" id="4_bc16x"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_nlvsm"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_gi3dm"]
 [ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="6_pbk2q"]
@@ -110,7 +110,8 @@ max_length = 32
 context_menu_enabled = false
 clear_button_enabled = true
 right_icon = ExtResource("3_svb1l")
-script = ExtResource("4_8mx2o")
+caret_blink = true
+script = ExtResource("4_bc16x")
 
 [node name="FileListContent" type="ScrollContainer" parent="FileList"]
 unique_name_in_owner = true

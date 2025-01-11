@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_05lxy")
 context = "INPUT_MAP"
-keys = Array[String](["ui_add_tag", "ui_edit_tag", "ui_save", "msbt_find_entry", "msbt_add_entry", "msbt_delete_entry", "ui_close_app", "ui_save_as", "dot_playable_left", "dot_playable_right", "dot_playable_up", "dot_playable_down", "home_actionbar_reload", "home_actionbar_close", "ui_save_all", "ui_toggle_debug", "ui_graph_inject", "ui_graph_reset_zoom", "ui_refresh", "ui_new_archive", "ui_rename", "ui_screenshot", "ui_graph_step_by_step_debug", "ui_app_nav_left", "ui_app_nav_right", "ui_app_nav_home"])
+keys = Array[String](["ui_add_tag", "ui_edit_tag", "ui_save", "ui_find", "msbt_add_entry", "msbt_delete_entry", "ui_close_app", "ui_save_as", "dot_playable_left", "dot_playable_right", "dot_playable_up", "dot_playable_down", "home_actionbar_reload", "home_actionbar_close", "ui_save_all", "ui_toggle_debug", "ui_graph_inject", "ui_graph_reset_zoom", "ui_refresh", "ui_new_archive", "ui_rename", "ui_screenshot", "ui_graph_step_by_step_debug", "ui_app_nav_left", "ui_app_nav_right", "ui_app_nav_home"])

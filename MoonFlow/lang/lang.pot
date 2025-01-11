@@ -2951,7 +2951,7 @@ msgstr ""
 
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"
-msgid "msbt_find_entry"
+msgid "ui_find"
 msgstr ""
 
 #: addons/podb/input_map.tres

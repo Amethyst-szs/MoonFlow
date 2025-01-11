@@ -151,7 +151,7 @@ input_action = "msbt_add_entry"
 
 [node name="Find" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
-input_action = "msbt_find_entry"
+input_action = "ui_find"
 
 [node name="Delete" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2

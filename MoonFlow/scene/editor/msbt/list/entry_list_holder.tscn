@@ -20,7 +20,7 @@ action = &"msbt_add_entry"
 events = [SubResource("InputEventAction_bpujh")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_sr0fp"]
-action = &"msbt_find_entry"
+action = &"ui_find"
 
 [sub_resource type="Shortcut" id="Shortcut_7w4d7"]
 events = [SubResource("InputEventAction_sr0fp")]
