@@ -1576,6 +1576,11 @@ msgstr "Updating Label Cache..."
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectMsbp"
+msgstr "Updating MSBP Database..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveMsbtArchives"
 msgstr "Saving MSBT Archives..."
 

@@ -80,6 +80,7 @@ public partial class AsyncDisplay : Control
         FTP = 0XF1B204FF,
 
         UpdateProjectLabelCache = 0x3A648EFF,
+        UpdateProjectMsbp = 0x3A648FFF,
 
         SaveMsbtArchives = 0xF46202FF,
         SaveMsbp = 0xF46203FF,

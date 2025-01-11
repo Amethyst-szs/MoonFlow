@@ -7,20 +7,21 @@ using MoonFlow.Ext;
 using MoonFlow.Project.Database;
 using MoonFlow.Project;
 using MoonFlow.Project.Templates;
+using System.Linq;
 
 namespace MoonFlow.Scene.Home;
 
 public partial class TabMsbtFileAccessor : TabFileAccessorBase
 {
-    private TabMsbt Parent = null;
+	private TabMsbt Parent = null;
 	private SarcMsbtFile CopyContent = null;
 
-    public override void _Ready()
-    {
-        Parent = this.FindParentByType<TabMsbt>();
-    }
+	public override void _Ready()
+	{
+		Parent = this.FindParentByType<TabMsbt>();
+	}
 
-    #region Signals
+	#region Signals
 
 	public void OnFileSelected(SarcMsbtFile selection)
 	{
@@ -32,6 +33,13 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			PasteButton.Disabled = !isCopyPaste || CopyContent == null || CopyContent.Sarc == selection.Sarc;
 		else
 			PasteButton.Disabled = !isCopyPaste || CopyContent == null;
+		
+		// Check if file is deletable
+		var msbpDB = ProjectManager.GetMSBP().Project.Content;
+		var selectTarget = selection.Name.TrimSuffix(".msbt") + ".mstxt";
+
+		var result = msbpDB.Find(s => s.EndsWith(selectTarget));
+		DeleteButton.Disabled = result.Contains("/Reference/");
 	}
 
 	protected override void OnCopyFile()
@@ -53,7 +61,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 	{
 		if (CopyContent == null)
 			return;
-		
+
 		var arcHolder = ProjectManager.GetMSBT();
 		if (arcHolder == null)
 			return;
@@ -73,13 +81,11 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 		foreach (var lang in arcHolder)
 		{
 			// Lookup source and target archives for this language
-			var localSourceArc = lang.Value.GetArchiveByFileName(CopyContent.Sarc.Name);
-			if (localSourceArc == null)
-				throw new NullReferenceException("Could not resolve source archive!");
-			
-			var localTargetArc = lang.Value.GetArchiveByFileName(Parent.SelectedFile.Sarc.Name);
-			if (localTargetArc == null)
-				throw new NullReferenceException("Could not resolve target archive!");
+			var localSourceArc = lang.Value.GetArchiveByFileName(CopyContent.Sarc.Name)
+			?? throw new NullReferenceException("Could not resolve source archive!");
+
+			var localTargetArc = lang.Value.GetArchiveByFileName(Parent.SelectedFile.Sarc.Name)
+			?? throw new NullReferenceException("Could not resolve target archive!");
 
 			// Ensure the language contains a text file with the copy source's name
 			if (!localSourceArc.Content.TryGetValue(CopyContent.Name, out ArraySegment<byte> data))
@@ -94,10 +100,9 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			localTargetArc.WriteArchive();
 		}
 
-		PublishMsbtToProject(Parent.SelectedFile.Sarc.Name, name, null);
-
 		if (!IsCut)
 		{
+			ProjectManager.GetMSBPHolder().ReloadProjectSources();
 			Parent.ReloadInterface(true);
 			return;
 		}
@@ -107,14 +112,14 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 		IsCut = false;
 	}
 
-    private void OnDuplicateFile(string arcName, string newName)
+	private void OnDuplicateFile(string arcName, string newName)
 	{
 		if (newName == string.Empty)
 			return;
-		
+
 		if (!TryGetWorld(arcName, newName, out WorldInfo world))
 			return;
-		
+
 		var target = TabMsbt.GetFileName(newName);
 		var arcHolder = ProjectManager.GetMSBT();
 
@@ -129,7 +134,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			var localSourceArc = lang.Value.GetArchiveByFileName(sourceArc.Name);
 			if (localSourceArc == null)
 				throw new NullReferenceException("Could not resolve source archive!");
-			
+
 			var localTargetArc = lang.Value.GetArchiveByFileName(arcName);
 			if (localTargetArc == null)
 				throw new NullReferenceException("Could not resolve source and/or target archive!");
@@ -147,7 +152,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			localTargetArc.WriteArchive();
 		}
 
-		PublishMsbtToProject(arcName, newName, world);
+		ProjectManager.GetMSBPHolder().ReloadProjectSources();
 		Parent.ReloadInterface(true);
 	}
 
@@ -155,10 +160,10 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 	{
 		if (newName == string.Empty)
 			return;
-		
+
 		if (!TryGetWorld(arcName, newName, out WorldInfo world))
 			return;
-		
+
 		var target = TabMsbt.GetFileName(newName);
 		var arcHolder = ProjectManager.GetMSBT();
 
@@ -172,12 +177,12 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			var targetArc = lang.Value.GetArchiveByFileName(arcName);
 			if (targetArc == null)
 				throw new NullReferenceException("Could not resolve source and/or target archive!");
-			
+
 			targetArc.Content.Add(target, LmsTemplates.EmptyMsbt);
 			targetArc.WriteArchive();
 		}
 
-		PublishMsbtToProject(arcName, newName, world);
+		ProjectManager.GetMSBPHolder().ReloadProjectSources();
 		Parent.ReloadInterface(true);
 	}
 
@@ -185,7 +190,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 	{
 		var arcName = Parent.SelectedFile.Sarc.Name;
 		var fileName = Parent.SelectedFile.Name;
-		OnDeleteFile(arcName, fileName);		
+		OnDeleteFile(arcName, fileName);
 	}
 	private void OnDeleteFile(string arcName, string fileName)
 	{
@@ -196,15 +201,14 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			var targetArc = lang.Value.GetArchiveByFileName(arcName);
 			if (targetArc == null)
 				throw new NullReferenceException("Could not resolve source and/or target archive!");
-			
+
 			lang.Value.Metadata.EntryRemove(targetArc, fileName);
 
 			targetArc.Content.Remove(fileName);
 			targetArc.WriteArchive();
 		}
 
-		// Remove from MSBP
-		ProjectManager.GetMSBPHolder().UnpublishFile(arcName, fileName);
+		ProjectManager.GetMSBPHolder().ReloadProjectSources();
 		Parent.ReloadInterface(true);
 	}
 
@@ -212,14 +216,14 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 	{
 		if (file == string.Empty)
 			return;
-		
+
 		if (!TryGetWorld(archive, file, out _))
 			return;
-		
+
 		var sourceArc = Parent.SelectedFile.Sarc;
 		if (!IsFileNameValid(TabMsbt.GetFileName(file), sourceArc))
 			return;
-		
+
 		var sourceArcName = sourceArc.Name;
 		var sourceFileName = Parent.SelectedFile.Name;
 
@@ -227,9 +231,9 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 		OnDeleteFile(sourceArcName, sourceFileName);
 	}
 
-    #endregion
+	#endregion
 
-    #region Utility
+	#region Utility
 
 	private bool TryGetWorld(string arc, string targetName, out WorldInfo world)
 	{
@@ -249,16 +253,5 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 		return false;
 	}
 
-	private static void PublishMsbtToProject(string arcName, string newName, WorldInfo world)
-	{
-		// Publish entry to ProjectData
-		var msbp = ProjectManager.GetMSBPHolder();
-
-		if (world == null)
-			msbp.PublishFile(arcName, newName);
-		else
-			msbp.PublishFile(arcName, newName, world);
-	}
-
-    #endregion
+	#endregion
 }
