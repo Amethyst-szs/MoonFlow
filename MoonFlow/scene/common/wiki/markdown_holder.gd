@@ -124,7 +124,7 @@ func _process_custom_syntax(line: String) -> String:
 	
 	var mark_match := footnote_mark_regex.search_all(line)
 	for mm in mark_match:
-		line = line.left(mm.get_start()) + "[font_size=10][color=gray][lb]" + mm.get_string(1) + "[rb]" + line.right(-mm.get_end()) + "[/color][/font_size]"
+		line = line.left(mm.get_start()) + "[font_size=10][color=gray][lb]" + mm.get_string(1) + "[rb]" + "[/color][/font_size]" + line.right(-mm.get_end())
 	
 	# Process horizontal line breaks
 	for key in hseparator_keys:
