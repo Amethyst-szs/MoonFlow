@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Godot.Extension;
 
@@ -38,6 +39,9 @@ public class ProjectMsbpHolder
 
         // Get msbp from archive
         Project = archive.GetFileMSBP(ProjectDataFileName);
+
+        // Clean out all DebugMessage entries in the msbp
+        Project.Project.Content.RemoveAll(s => s.StartsWith("DebugMessage/"));
 
         GD.Print("Parsed Project MSBP");
     }

@@ -25,7 +25,7 @@ This is also *not* the approach that MoonFlow uses. Instead, tags are stored as 
 ### CTI1
 Prior to MoonFlow, adding new **MSBT** text files required updating the `CTI1` / `Project Sources` in the **MSBP**. Instead of looking up files by name, the **MSBP** is responsible for providing a database of sources in the `CTI1` data block. This was an annoying manual process, which required handling lots of delicate archives.
 
-However, MoonFlow automatically handles updating your **MSBP** with all created text files. If you encounter any issues with text files not being registered automatically, ~~you can hit the refresh button in text tab of the home menu.~~ *(NOT YET IMPLEMENTED)*
+However, MoonFlow automatically handles updating your **MSBP** with all created text files.
 
 ## Archives & Languages
 MoonFlow is designed to abstract the handling of individual [SZS](https://nintendo-formats.com/libs/sead/sarc.html) archives, however all of these need to be carefully managed on the backend. This is done through language syncing.
