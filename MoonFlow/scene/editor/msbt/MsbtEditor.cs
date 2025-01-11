@@ -229,7 +229,7 @@ public partial class MsbtEditor : PanelContainer
 		FileTitleName.Text = FileTitleName.Text.TrimSuffix("*");
 
 		// Update label cache in background
-		ProjectManager.GetProject().MsgLabelCache.UpdateCache();
+		ProjectManager.UpdateMsbtLabelCache();
 	}
 
 	public void TaskRunWriteFile(AsyncDisplay display)

@@ -5,7 +5,6 @@ using Nindot;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Project;
-using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -174,7 +173,7 @@ public partial class PortOut : TextureRect
 		list.TryIncreaseCaseListSize(Index + 1);
 
 		var caseEvent = list.CaseList[Index];
-		
+
 		// If there is no message assigned to case, assign a default value
 		caseEvent.MessageData ??= new("SystemMessage", "GlossarySystem", "Answer_Yes_2");
 
@@ -360,7 +359,7 @@ public partial class PortOut : TextureRect
 		// Setup text resolver
 		arc = arc.RemoveFileExtension();
 		file = file.RemoveFileExtension();
-		
+
 		var resolver = new Nindot.Al.EventFlow.NodeMessageResolverData(arc, file, label);
 		SetupPortMessage(resolver);
 

@@ -53,7 +53,6 @@
 # res://scene/editor/event/event_flow_app.tscn
 # res://scene/settings/engine/engine_settings_app.tscn
 # res://scene/settings/engine/page/general.tscn
-# res://scene/editor/event/meta/tables/category_table_translation_text.tres
 # res://scene/editor/event/node/typedef/flow/entry_point_jump.tscn
 # res://scene/editor/event/node/typedef/flow/fork.tscn
 # res://scene/settings/engine/page/graph.tscn
@@ -76,9 +75,10 @@
 # res://scene/front_door/contributor/godot.tres
 # res://scene/front_door/contributor/module-csharp.tres
 # res://scene/front_door/contributor/module-godot.tres
-# res://scene/editor/event/meta/editor/popup_event_metadata.tscn
-# res://project/lms/ui_translation/language_code_to_text.tres
 # res://scene/common/screenshot/screenshot_capture.gd
+# res://lang/db/event_category_table_translation_text.tres
+# res://lang/db/language_code_to_text.tres
+# res://scene/editor/event/meta/popup_event_metadata.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2642,86 +2642,6 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC"
 msgstr ""
 
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "DEFAULT"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "ENTRY_POINT"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "CUSTOM_TYPE"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "ACTOR"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "AMIIBO"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "CAMERA"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "DIALOUGE"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "DEMO"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "EVENT"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "FLAGS"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "FLOW"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "ITEM"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "PLAYER"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "QUERY"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "STAGE"
-msgstr ""
-
-#: scene/editor/event/meta/tables/category_table_translation_text.tres
-msgctxt "GRAPH_NODE_CATEGORY_TABLE"
-msgid "WIPE"
-msgstr ""
-
 #: scene/editor/event/node/typedef/flow/entry_point_jump.tscn
 msgid "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
 msgstr ""
@@ -3156,104 +3076,184 @@ msgstr ""
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT_ADDONS"
 msgstr ""
 
-#: scene/editor/event/meta/editor/popup_event_metadata.tscn
-msgid "EVENT_EDITOR_METADATA_POPUP_TITLE"
+#: scene/common/screenshot/screenshot_capture.gd
+msgid "SCREENSHOT_FILE_DIALOG_TITLE"
 msgstr ""
 
-#: scene/editor/event/meta/editor/popup_event_metadata.tscn
-msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_HEADER"
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DEFAULT"
 msgstr ""
 
-#: scene/editor/event/meta/editor/popup_event_metadata.tscn
-msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_PLACEHOLDER"
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ENTRY_POINT"
 msgstr ""
 
-#: scene/editor/event/meta/editor/popup_event_metadata.tscn
-msgid "EVENT_EDITOR_METADATA_SET_COLOR_TOOLTIP"
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "CUSTOM_TYPE"
 msgstr ""
 
-#: scene/editor/event/meta/editor/popup_event_metadata.tscn
-msgid "EVENT_EDITOR_METADATA_RESET_COLOR_TOOLTIP"
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ACTOR"
 msgstr ""
 
-#: scene/editor/event/meta/editor/popup_event_metadata.tscn
-msgid "EVENT_EDITOR_METADATA_LINE_SEARCH_TAGS_PLACEHOLDER"
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "AMIIBO"
 msgstr ""
 
-#: scene/editor/event/meta/editor/popup_event_metadata.tscn
-msgid "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "CAMERA"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DIALOUGE"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "DEMO"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "EVENT"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "FLAGS"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "FLOW"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "ITEM"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "PLAYER"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "QUERY"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "STAGE"
+msgstr ""
+
+#: lang/db/event_category_table_translation_text.tres
+msgctxt "GRAPH_NODE_CATEGORY_TABLE"
+msgid "WIPE"
+msgstr ""
+
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "CNzh"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "EUde"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "EUen"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "EUes"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "EUfr"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "EUit"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "EUnl"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "EUru"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "JPja"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "KRko"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "TWzh"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "USen"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "USes"
 msgstr ""
 
-#: project/lms/ui_translation/language_code_to_text.tres
+#: lang/db/language_code_to_text.tres
 msgctxt "PROJECT_LANGUAGE_CODE"
 msgid "USfr"
 msgstr ""
 
-#: scene/common/screenshot/screenshot_capture.gd
-msgid "SCREENSHOT_FILE_DIALOG_TITLE"
+#: scene/editor/event/meta/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_POPUP_TITLE"
+msgstr ""
+
+#: scene/editor/event/meta/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_HEADER"
+msgstr ""
+
+#: scene/editor/event/meta/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_COMMENT_TEXT_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/meta/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_SET_COLOR_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/meta/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_RESET_COLOR_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/meta/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_LINE_SEARCH_TAGS_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/meta/popup_event_metadata.tscn
+msgid "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
 msgstr ""

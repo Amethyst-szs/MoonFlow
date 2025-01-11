@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-using MoonFlow.Scene.EditorEvent;
+using MoonFlow.Project;
 
 namespace MoonFlow.Addons;
 
@@ -22,11 +22,9 @@ public partial class MfgraphResource() : Resource()
 
     public void InitResource(string path)
     {
+        var data = new GraphMetaHolder(path).Data;
+
         HashName = path.Split(['/', '\\']).Last();
-        
-        var read = FileAccess.GetFileAsBytes(path);
-        var data = new GraphMetaHolder(read).Data;
-        
         ArchiveName = data.ArchiveName;
         FileName = data.FileName;
 

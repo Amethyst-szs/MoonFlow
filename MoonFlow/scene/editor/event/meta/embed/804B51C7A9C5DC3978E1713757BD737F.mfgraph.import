@@ -1,0 +1,14 @@
+[remap]
+
+importer="moonflow.mfgraph"
+type="Resource"
+uid="uid://bjpbyeygnirfr"
+path="res://.godot/imported/804B51C7A9C5DC3978E1713757BD737F.mfgraph-e96d46069c4eb82928ebff8b8a290303.res"
+
+[deps]
+
+source_file="res://scene/editor/event/meta/embed/804B51C7A9C5DC3978E1713757BD737F.mfgraph"
+dest_files=["res://.godot/imported/804B51C7A9C5DC3978E1713757BD737F.mfgraph-e96d46069c4eb82928ebff8b8a290303.res"]
+
+[params]
+

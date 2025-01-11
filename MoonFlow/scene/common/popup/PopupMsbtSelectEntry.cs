@@ -1,10 +1,8 @@
 using Godot;
-using MoonFlow.Ext;
 using MoonFlow.Project;
 using MoonFlow.Project.Cache;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MoonFlow.Scene;
 
@@ -32,51 +30,51 @@ public partial class PopupMsbtSelectEntry : Window
 	private Label LabelNoResults;
 	[Export]
 	private Label LabelTooManyResults;
-	
+
 	private Timer InputTimer;
 
 	[Signal]
 	public delegate void ItemSelectedEventHandler(string arc, string file, string label);
 
-    public override void _Ready()
-    {
-        InputTimer = new Timer
-        {
-            WaitTime = 0.2,
+	public override void _Ready()
+	{
+		InputTimer = new Timer
+		{
+			WaitTime = 0.2,
 			OneShot = true,
-        };
+		};
 
-        InputTimer.Timeout += OnInputTimerTimeout;
+		InputTimer.Timeout += OnInputTimerTimeout;
 		AddChild(InputTimer);
 
-        AboutToPopup += OnPopupReady;
+		AboutToPopup += OnPopupReady;
 
 		Hide();
 		LabelNoResults.Hide();
 		LabelTooManyResults.Hide();
 		LabelInvalidRequest.Show();
-    }
+	}
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_cancel"))
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ui_cancel"))
 			QueueFree();
-    }
+	}
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationWMCloseRequest)
+	public override void _Notification(int what)
+	{
+		if (what == NotificationWMCloseRequest)
 			QueueFree();
-    }
+	}
 
-    #region Signals
+	#region Signals
 
-    private void OnPopupReady()
+	private void OnPopupReady()
 	{
 		// Setup search box
 		LineSearch.Text = "";
 		LineSearch.GrabFocus();
-		
+
 		// Clear result list content
 		foreach (var child in ResultList.GetChildren())
 		{
@@ -180,7 +178,7 @@ public partial class PopupMsbtSelectEntry : Window
 			results.AddRange(cache.LookupLabel(ProjectLabelCache.ArchiveType.STAGE, term));
 		if (IsLayoutMessage)
 			results.AddRange(cache.LookupLabel(ProjectLabelCache.ArchiveType.LAYOUT, term));
-		
+
 		return results;
 	}
 
@@ -194,12 +192,12 @@ public partial class PopupMsbtSelectEntry : Window
 			results.AddRange(cache.LookupLabelInFile(ProjectLabelCache.ArchiveType.STAGE, file, term));
 		if (IsLayoutMessage)
 			results.AddRange(cache.LookupLabelInFile(ProjectLabelCache.ArchiveType.LAYOUT, file, term));
-		
+
 		return results;
 	}
 
 	#endregion
-	
+
 	#region Node Builders
 
 	private void CreateItem(ProjectLabelCache.LabelLookupResult item)
@@ -212,7 +210,7 @@ public partial class PopupMsbtSelectEntry : Window
 			container = ResultList.GetNode<VBoxContainer>(noExt);
 		else
 			container = CreateFileContainer(noExt);
-		
+
 		var button = new Button()
 		{
 			Name = item.Label,
@@ -230,12 +228,12 @@ public partial class PopupMsbtSelectEntry : Window
 		var hsep = new HSeparator();
 		ResultList.AddChild(hsep);
 
-        var label = new Label
-        {
+		var label = new Label
+		{
 			Name = file + "_Header",
-            Text = file,
+			Text = file,
 			SelfModulate = Colors.LightGray,
-        };
+		};
 
 		ResultList.AddChild(label);
 
@@ -246,7 +244,7 @@ public partial class PopupMsbtSelectEntry : Window
 
 		ResultList.AddChild(box);
 		return box;
-    }
+	}
 
 	#endregion
 }

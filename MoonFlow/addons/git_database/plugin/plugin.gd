@@ -11,7 +11,10 @@ var tools: Dictionary = {
 
 func _enter_tree():
 	# Setup export plugin
-	add_autoload_singleton("GitInfoSingletonRegisterUtility", "res://addons/git_database/plugin/instance_register.gd")
+	var n := "GitInfoSingletonRegisterUtility"
+	if !ProjectSettings.has_setting("autoload/" + n):
+		add_autoload_singleton(n, "res://addons/git_database/plugin/instance_register.gd")
+	
 	add_export_plugin(export_handler)
 	
 	# Setup tool menu
@@ -20,7 +23,6 @@ func _enter_tree():
 
 func _exit_tree():
 	# Cleanup export plugin
-	remove_autoload_singleton("GitInfoSingletonRegisterUtility")
 	remove_export_plugin(export_handler)
 	
 	# Cleanup tool menu

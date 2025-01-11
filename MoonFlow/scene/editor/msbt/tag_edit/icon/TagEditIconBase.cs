@@ -1,11 +1,9 @@
 using System;
-using System.Numerics;
 using Godot;
 using Godot.Collections;
 using Nindot.LMS.Msbt;
 
 using Nindot.LMS.Msbt.TagLib;
-using Nindot.LMS.Msbt.TagLib.Smo;
 
 namespace MoonFlow.Scene.EditorMsbt;
 

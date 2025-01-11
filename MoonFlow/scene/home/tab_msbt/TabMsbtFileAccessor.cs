@@ -2,12 +2,9 @@ using Godot;
 using System;
 
 using Nindot.LMS.Msbt;
-
-using MoonFlow.Ext;
 using MoonFlow.Project.Database;
 using MoonFlow.Project;
 using MoonFlow.Project.Templates;
-using System.Linq;
 
 namespace MoonFlow.Scene.Home;
 
@@ -33,7 +30,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			PasteButton.Disabled = !isCopyPaste || CopyContent == null || CopyContent.Sarc == selection.Sarc;
 		else
 			PasteButton.Disabled = !isCopyPaste || CopyContent == null;
-		
+
 		// Check if file is deletable
 		var msbpDB = ProjectManager.GetMSBP().Project.Content;
 		var selectTarget = selection.Name.TrimSuffix(".msbt") + ".mstxt";
@@ -102,7 +99,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 
 		if (!IsCut)
 		{
-			ProjectManager.GetMSBPHolder().ReloadProjectSources();
+			ProjectManager.UpdateMsbpProjectSources();
 			Parent.ReloadInterface(true);
 			return;
 		}
@@ -152,7 +149,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			localTargetArc.WriteArchive();
 		}
 
-		ProjectManager.GetMSBPHolder().ReloadProjectSources();
+		ProjectManager.UpdateMsbpProjectSources();
 		Parent.ReloadInterface(true);
 	}
 
@@ -182,7 +179,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			targetArc.WriteArchive();
 		}
 
-		ProjectManager.GetMSBPHolder().ReloadProjectSources();
+		ProjectManager.UpdateMsbpProjectSources();
 		Parent.ReloadInterface(true);
 	}
 
@@ -208,7 +205,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			targetArc.WriteArchive();
 		}
 
-		ProjectManager.GetMSBPHolder().ReloadProjectSources();
+		ProjectManager.UpdateMsbpProjectSources();
 		Parent.ReloadInterface(true);
 	}
 

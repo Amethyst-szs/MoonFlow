@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Nindot.LMS.Msbt;
-using Nindot.LMS.Msbt.TagLib;
 
 using MoonFlow.Project.Database;
 using MoonFlow.Project;
@@ -112,7 +111,10 @@ public partial class WorldEditorApp : AppScene
 
 		foreach (var shine in World.ShineList)
 		{
-			MsbtEntry shineDisplay = shine.LookupDisplayName();
+			var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage
+			?? throw new NullReferenceException("Could not get StageMessage!");
+
+			MsbtEntry shineDisplay = shine.LookupDisplayName(stageMessage);
 
 			var scene = SceneCreator<WorldShineEditorHolder>.Create();
 			VBoxShineList.AddChild(scene);

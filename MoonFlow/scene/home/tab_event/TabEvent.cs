@@ -7,9 +7,6 @@ using Nindot;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.EditorEvent;
-using MoonFlow.Scene.Main;
-
-using MoonFlow.Ext;
 using ByteSizeLib;
 
 namespace MoonFlow.Scene.Home;

@@ -1,6 +1,5 @@
 using Godot;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 
 public partial class OptionCoinType : OptionButton

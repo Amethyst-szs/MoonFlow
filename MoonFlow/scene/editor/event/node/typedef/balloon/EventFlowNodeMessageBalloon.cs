@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using MoonFlow.Ext;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.EditorWorld;
@@ -65,7 +64,7 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		{
 			OptionSource.Disabled = false;
 		}
-		
+
 		UpdateNodeName(type, src);
 	}
 
@@ -103,7 +102,7 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		{
 			if (Connections.Length == 2)
 				return;
-			
+
 			CreatePortOut();
 			portFirst.PortColor = PortColorList[portFirst.Index];
 
@@ -111,10 +110,10 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 				return;
 
 			var listSize2 = new List<EventFlowNodeCommon>
-            {
-                (EventFlowNodeCommon)Connections[0],
+			{
+				(EventFlowNodeCommon)Connections[0],
 				null
-            };
+			};
 
 			SetupConnections(listSize2);
 			return;
@@ -122,7 +121,7 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 
 		if (Connections.Length < 2)
 			return;
-		
+
 		// Remove connection from last port
 		var lastPort = PortOutList.GetChildren().Last() as PortOut;
 		lastPort.Connection = null;
@@ -169,7 +168,7 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 	private void UpdateNodeName(OptionBalloonType.Options type, OptionSourceType.Options source)
 	{
 		string name = "Message";
-		
+
 		switch (type)
 		{
 			case OptionBalloonType.Options.MiniBalloon:

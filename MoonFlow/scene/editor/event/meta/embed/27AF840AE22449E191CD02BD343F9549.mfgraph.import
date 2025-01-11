@@ -1,0 +1,14 @@
+[remap]
+
+importer="moonflow.mfgraph"
+type="Resource"
+uid="uid://8lrvmyy2wrht"
+path="res://.godot/imported/27AF840AE22449E191CD02BD343F9549.mfgraph-2de5f9bb08b02a4ef79a7fc7eda67e72.res"
+
+[deps]
+
+source_file="res://scene/editor/event/meta/embed/27AF840AE22449E191CD02BD343F9549.mfgraph"
+dest_files=["res://.godot/imported/27AF840AE22449E191CD02BD343F9549.mfgraph-2de5f9bb08b02a4ef79a7fc7eda67e72.res"]
+
+[params]
+

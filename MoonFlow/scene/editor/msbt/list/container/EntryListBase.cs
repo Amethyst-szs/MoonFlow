@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 
 using Nindot.LMS.Msbt;
-using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -207,7 +206,7 @@ public abstract partial class EntryListBase : VBoxContainer
 
             if (!margin.HasMeta("dropdown"))
                 continue;
-            
+
             var dropdown = margin.GetMeta("dropdown").As<Button>();
             dropdown.ButtonPressed = false;
             dropdown.Visible = IsDropdownMenuVisibleChildren(margin);
@@ -249,7 +248,7 @@ public abstract partial class EntryListBase : VBoxContainer
     {
         if (label == string.Empty)
             return;
-        
+
         var entryButton = FindChild(label, true, false) as Button;
 
         if (entryButton.Icon != ModifiedTexture)
@@ -260,7 +259,7 @@ public abstract partial class EntryListBase : VBoxContainer
     {
         if (node.GetType() == typeof(Button) && !node.Name.ToString().EndsWith("_Dropdown"))
             (node as Button).Icon = null;
-        
+
         foreach (var child in node.GetChildren())
             ClearAllModifiedIcons(child);
     }

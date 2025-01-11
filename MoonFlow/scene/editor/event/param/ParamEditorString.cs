@@ -1,7 +1,5 @@
 using Godot;
 
-using MoonFlow.Ext;
-
 namespace MoonFlow.Scene.EditorEvent;
 
 [ScenePath("res://scene/editor/event/param/param_editor_string.tscn")]

@@ -1,13 +1,6 @@
 using Godot;
-using System;
 
 using Nindot;
-
-using MoonFlow.Ext;
-using MoonFlow.Project.Database;
-using MoonFlow.Project;
-using MoonFlow.Project.Templates;
-using Nindot.LMS.Msbt;
 
 namespace MoonFlow.Scene.Home;
 
@@ -33,7 +26,7 @@ public abstract partial class TabFileAccessorBase : Node
 		IsCut = true;
 	}
 
-    protected bool IsFileNameValid(string name, SarcFile sourceArc)
+	protected bool IsFileNameValid(string name, SarcFile sourceArc)
 	{
 		if (sourceArc == null || sourceArc.Content.ContainsKey(name))
 		{

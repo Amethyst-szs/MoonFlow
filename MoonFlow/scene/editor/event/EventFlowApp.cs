@@ -206,7 +206,7 @@ public partial class EventFlowApp : AppScene
         IsInitCompleted = false;
 
         Graph = sarc.GetFileEventFlow(name, new ProjectSmoEventFlowFactory());
-        MetadataHolder = GraphMetaHolder.Create(Graph);
+        MetadataHolder = GraphMetaHolder.Create(Graph, ProjectManager.GetPath());
 
         Metadata.ArchiveName = sarc.Name;
         Metadata.FileName = name;

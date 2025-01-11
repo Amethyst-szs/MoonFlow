@@ -1,8 +1,6 @@
 using Godot;
 using System;
 using System.Linq;
-
-using MoonFlow.Ext;
 using MoonFlow.Scene.Home;
 
 namespace MoonFlow.Scene.Main;
@@ -43,7 +41,7 @@ public partial class Taskbar : Control
         // Create new taskbar button
         var button = SceneCreator<TaskbarButton>.Create();
         button.Init(app);
-        
+
         button.TreeExited += UpdateDisplay;
 
         // Calculate initial button position and add to child list
@@ -174,11 +172,11 @@ public partial class Taskbar : Control
     }
 
     private void OnTaskbarSizeChanged()
-	{
-		var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
-		CustomMinimumSize = new Vector2(CustomMinimumSize.X, height);
-		Size = new Vector2(Size.X, height);
-	}
+    {
+        var height = EngineSettings.GetSetting<float>("moonflow/general/taskbar_height", 40.0F);
+        CustomMinimumSize = new Vector2(CustomMinimumSize.X, height);
+        Size = new Vector2(Size.X, height);
+    }
 
     #endregion
 }

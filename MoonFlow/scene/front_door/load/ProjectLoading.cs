@@ -1,16 +1,16 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 using MoonFlow.Scene.Home;
 using MoonFlow.Scene.Main;
-
-using System.Threading.Tasks;
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene;
 
 [Icon("res://asset/app/icon/front_door_loading.png")]
 [ScenePath("res://scene/front_door/load/project_loading.tscn")]
-public partial class ProjectLoading : AppScene
+public partial class ProjectLoading : AppScene, IProjectLoadingScene
 {
 	private Task LoadingTask = null;
 	private Exception TaskException = null;

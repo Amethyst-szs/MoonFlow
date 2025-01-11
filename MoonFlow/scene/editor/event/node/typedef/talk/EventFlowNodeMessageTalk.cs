@@ -1,6 +1,5 @@
 using System;
 using Godot;
-using MoonFlow.Ext;
 
 using MoonFlow.Project;
 
@@ -27,7 +26,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 		{
 			if (ButtonIsMapUnit != null)
 				ButtonIsMapUnit.ButtonPressed = true;
-			
+
 			return;
 		}
 
@@ -50,9 +49,9 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 	{
 		if (ButtonIsMapUnit == null)
 			return;
-		
+
 		var value = Content.Name.Contains("MapUnit");
-		
+
 		if (ButtonIsMapUnit.ButtonPressed != value)
 			ButtonIsMapUnit.ButtonPressed = value;
 
@@ -65,7 +64,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 	{
 		if (ButtonIsMapUnit == null)
 			return;
-		
+
 		if (!IsSupportMapUnit())
 		{
 			ButtonIsMapUnit.ButtonPressed = false;
@@ -78,7 +77,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 			OnSetName(Content.Name + "MapUnit");
 		else if (con && !state)
 			OnSetName(Content.Name[..Content.Name.Find("MapUnit")]);
-		
+
 		SetLabelDisplayTextSource();
 		SetNodeModified();
 	}
@@ -145,7 +144,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 	{
 		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))
 			return false;
-		
+
 		return msg.MessageArchive != string.Empty && msg.MessageFile != string.Empty && msg.LabelName != string.Empty;
 	}
 

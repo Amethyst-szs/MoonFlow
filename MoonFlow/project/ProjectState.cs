@@ -63,13 +63,15 @@ public class ProjectState(string path, ProjectConfig config)
         loadScreen.LoadingUpdateProgress("LOAD_MSBT");
         MsgStudioText = new(Path, Config.Data.DefaultLanguage);
 
+        var defaultLanguageArcs = MsgStudioText.DefaultLanguage;
+
         // Initilize project database holder
-        Database = new(this, loadScreen);
+        Database = new(Path, defaultLanguageArcs, loadScreen);
 
         // Create label cache
         loadScreen.LoadingUpdateProgress("LOAD_LABEL_CACHE");
-        MsgLabelCache = new();
-        MsgLabelCache.UpdateCacheSynchronous();
+        MsgLabelCache = new(defaultLanguageArcs);
+        MsgLabelCache.UpdateCache();
 
         // Prepare event data archive cache
         EventArcHolder = new(Path, loadScreen);

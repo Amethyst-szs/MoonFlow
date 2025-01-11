@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using Nindot.Al.EventFlow;
 
 using MoonFlow.Project;
-using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -79,7 +78,7 @@ public partial class GraphCanvas : CanvasLayer
 
         foreach (var node in nodes)
             node.DeleteNode();
-        
+
         foreach (var enter in enters)
             enter.DeleteNode();
 
@@ -116,7 +115,7 @@ public partial class GraphCanvas : CanvasLayer
         var node = ProjectManager.SceneRoot.FindChild(PopupInjectGraphNode.DefaultNodeName, false, false);
         if (node is not PopupInjectGraphNode popup)
             throw new Exception("Could not access PopupInjectGraphNode!");
-        
+
         popup.SetupWithContext(Parent);
     }
     private void OpenInjectMenu()
@@ -132,7 +131,7 @@ public partial class GraphCanvas : CanvasLayer
         var node = ProjectManager.SceneRoot.FindChild(PopupInjectGraphNode.DefaultNodeName, false, false);
         if (node is not PopupInjectGraphNode popup)
             throw new Exception("Could not access PopupInjectGraphNode!");
-        
+
         popup.SetupWithContextCentered(Parent);
     }
 

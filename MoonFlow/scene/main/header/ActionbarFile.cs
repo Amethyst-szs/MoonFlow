@@ -1,7 +1,4 @@
 using Godot;
-using System;
-
-using MoonFlow.Project;
 using MoonFlow.Scene.Home;
 
 namespace MoonFlow.Scene.Main;

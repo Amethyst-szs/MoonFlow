@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 using MoonFlow.Project.Database;
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorWorld;
 
@@ -92,7 +93,9 @@ public partial class WorldShineEditor : MarginContainer
 	}
 	private void OnUniqueIdAutoReassign()
 	{
-		Shine.ReassignUID();
+		var db = ProjectManager.GetDB();
+		Shine.ReassignUID(db);
+
 		SpinUID.Value = Shine.UniqueId;
 
 		EmitSignal(SignalName.ContentModified);
@@ -146,7 +149,9 @@ public partial class WorldShineEditor : MarginContainer
 
 	public void UpdateUniquenessWarnings()
 	{
-		TextureUIDWarning.Visible = !Shine.IsUIDUnique();
+		var db = ProjectManager.GetDB();
+		TextureUIDWarning.Visible = !Shine.IsUIDUnique(db);
+		
 		TextureHintWarning.Visible = !Shine.IsHintIdUnique(World);
 	}
 

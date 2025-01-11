@@ -6,9 +6,7 @@ using Nindot.LMS.Msbt.TagLib;
 
 using MoonFlow.Project.Database;
 using MoonFlow.Project;
-using MoonFlow.Ext;
 using MoonFlow.Scene.EditorMsbt;
-using System.Linq;
 
 namespace MoonFlow.Scene.EditorWorld;
 
@@ -173,7 +171,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 			app = MsbtAppHolder.OpenApp(msbtHolder.Name, file);
 			await ToSignal(Engine.GetMainLoop(), "process_frame");
 		}
-		
+
 		app.Editor.OnAddEntryNameSubmitted(label);
 		app.Editor.UpdateEntrySearch(label);
 		app.AppFocus();
@@ -190,7 +188,10 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 	private void OnVisibilityChanged()
 	{
-		var display = Shine.LookupDisplayName();
+		var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage
+		?? throw new NullReferenceException("Could not get StageMessage!");
+
+		var display = Shine.LookupDisplayName(stageMessage);
 		UpdateDisplayName(display?.GetRawText());
 	}
 
@@ -200,7 +201,10 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 	public void OnEditorModifiedContent()
 	{
-		var display = Shine.LookupDisplayName();
+		var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage
+		?? throw new NullReferenceException("Could not get StageMessage!");
+
+		var display = Shine.LookupDisplayName(stageMessage);
 		SetupShineEditor(World, Shine, display, World.ShineList.IndexOf(Shine));
 
 		EmitSignal(SignalName.ContentModified);

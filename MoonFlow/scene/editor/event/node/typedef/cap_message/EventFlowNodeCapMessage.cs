@@ -6,7 +6,6 @@ using Nindot.Al.EventFlow;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Project;
-using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -15,7 +14,7 @@ public partial class EventFlowNodeCapMessage : EventFlowNodeMessageTalk
 	public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
 	{
 		base.InitContent(content, graph);
-		
+
 		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))
 		{
 			Content.Params["Text"] = new NodeMessageResolverDataOnlyLabel();
@@ -99,7 +98,7 @@ public partial class EventFlowNodeCapMessage : EventFlowNodeMessageTalk
 		{
 			if (!Content.Params.ContainsKey("Text"))
 				return false;
-			
+
 			msgOL = Content.Params["Text"] as NodeMessageResolverDataOnlyLabel;
 		}
 
@@ -107,7 +106,7 @@ public partial class EventFlowNodeCapMessage : EventFlowNodeMessageTalk
 			return msg.LabelName != null && msg.LabelName != string.Empty;
 		else if (msgOL != null)
 			return msgOL.LabelName != null && msgOL.LabelName != string.Empty;
-		
+
 		return false;
 	}
 

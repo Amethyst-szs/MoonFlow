@@ -2,11 +2,10 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using Nindot.Al.EventFlow;
 
-using MoonFlow.Ext;
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -302,7 +301,7 @@ public partial class EventFlowNodeBase : Node2D
 
 		if (Metadata != null)
 			Metadata.Comment = comment;
-		
+
 		SetNodeModified();
 	}
 	public virtual void SetNodeColor()

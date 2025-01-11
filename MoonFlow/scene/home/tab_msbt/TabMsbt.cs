@@ -10,11 +10,8 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 using MoonFlow.Project;
 using MoonFlow.Scene.EditorMsbt;
 using MoonFlow.Project.Database;
-using MoonFlow.Project.Templates;
 
 using ByteSizeLib;
-
-using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.Home;
 

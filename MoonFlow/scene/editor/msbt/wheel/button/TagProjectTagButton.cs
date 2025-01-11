@@ -4,7 +4,6 @@ using Nindot.LMS.Msbt.TagLib.Smo;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MoonFlow.Scene.EditorMsbt;
 

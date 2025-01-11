@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nindot", "Nindot\Nindot.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nindot.Tests", "Nindot.Tests\Nindot.Tests.csproj", "{6CC79D54-446C-4359-A10D-20631908B93E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonFlow.Project", "MoonFlow.Project\MoonFlow.Project.csproj", "{F4D17A01-0D1B-41FD-8C64-E1518CF487BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Godot.Extension", "Godot.Extension\Godot.Extension.csproj", "{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,18 @@ Global
 		{6CC79D54-446C-4359-A10D-20631908B93E}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC79D54-446C-4359-A10D-20631908B93E}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CC79D54-446C-4359-A10D-20631908B93E}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{F4D17A01-0D1B-41FD-8C64-E1518CF487BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D17A01-0D1B-41FD-8C64-E1518CF487BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D17A01-0D1B-41FD-8C64-E1518CF487BD}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{F4D17A01-0D1B-41FD-8C64-E1518CF487BD}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{F4D17A01-0D1B-41FD-8C64-E1518CF487BD}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{F4D17A01-0D1B-41FD-8C64-E1518CF487BD}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,14 +1,5 @@
-using System;
-using System.IO;
 using Godot;
-
-using Nindot;
-using Nindot.Al.EventFlow;
-using Nindot.Al.EventFlow.Smo;
-
-using MoonFlow.Ext;
 using MoonFlow.Project;
-using MoonFlow.Scene.EditorEvent;
 
 namespace MoonFlow.Scene.Home;
 
@@ -65,7 +56,7 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
     {
         if (Parent.SelectedEvent == null)
             return;
-        
+
         base.OnCutFile();
 
         CopySourceArchive = Parent.SelectedArchive;
@@ -76,12 +67,12 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
     {
         if (CopySourceArchive == null)
             return;
-        
+
         if (CopySourceEvent == null)
             OnPasteArchive();
         else
             OnPasteEvent();
-        
+
         if (IsCut)
             ClearCopyContents();
     }
@@ -93,18 +84,19 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         string nameBase = CopySourceArchive.Name.RemoveFileExtension();
         string name = nameBase + ".szs";
         int nameIdx = 2;
-        
+
         while (arcHolder.Content.ContainsKey(name))
         {
             name = nameBase + nameIdx + ".szs";
             nameIdx++;
         }
 
-        arcHolder.TryDuplicateArchive(CopySourceArchive, name);
+        arcHolder.TryDuplicateArchive(CopySourceArchive, name, ProjectManager.GetPath());
         Parent.GenerateFileList();
     }
     private void OnPasteEvent()
     {
+        var path = ProjectManager.GetPath();
         var target = Parent.SelectedArchive;
 
         string nameBase = CopySourceEvent.RemoveFileExtension();
@@ -116,12 +108,12 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
             name = nameBase + nameIdx + ".byml";
             nameIdx++;
         }
-        
-        ProjectEventDataArchiveHolder.TryDuplicateGraph(CopySourceArchive, target, CopySourceEvent, name);
+
+        ProjectEventDataArchiveHolder.TryDuplicateGraph(CopySourceArchive, target, CopySourceEvent, name, path);
 
         if (IsCut)
-            ProjectEventDataArchiveHolder.DeleteGraph(CopySourceArchive, CopySourceEvent);
-        
+            ProjectEventDataArchiveHolder.DeleteGraph(CopySourceArchive, CopySourceEvent, path);
+
         Parent.GenerateFileList();
     }
 
@@ -130,7 +122,7 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
         if (!IsArchiveNameUnique(ref newName, out ProjectEventDataArchiveHolder arcHolder))
             return;
 
-        arcHolder.TryDuplicateArchive(Parent.SelectedArchive, newName);
+        arcHolder.TryDuplicateArchive(Parent.SelectedArchive, newName, ProjectManager.GetPath());
         Parent.GenerateFileList();
     }
     private void OnDuplicateEvent(string newName)
@@ -139,7 +131,7 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
             return;
 
         var source = Parent.SelectedEvent;
-        ProjectEventDataArchiveHolder.TryDuplicateGraph(Parent.SelectedArchive, source, newName);
+        ProjectEventDataArchiveHolder.TryDuplicateGraph(Parent.SelectedArchive, source, newName, ProjectManager.GetPath());
         Parent.GenerateFileList();
     }
 
@@ -179,8 +171,10 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
             return;
 
         var select = Parent.SelectedArchive;
-        arcHolder.TryDuplicateArchive(select, newName);
-        arcHolder.TryDeleteArchive(select);
+        var path = ProjectManager.GetPath();
+
+        arcHolder.TryDuplicateArchive(select, newName, path);
+        arcHolder.TryDeleteArchive(select, path);
 
         Parent.GenerateFileList();
     }
@@ -191,15 +185,17 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
 
         var select = Parent.SelectedArchive;
         var source = Parent.SelectedEvent;
+        var path = ProjectManager.GetPath();
 
-        ProjectEventDataArchiveHolder.TryDuplicateGraph(select, source, newName);
-        ProjectEventDataArchiveHolder.DeleteGraph(select, source);
+        ProjectEventDataArchiveHolder.TryDuplicateGraph(select, source, newName, path);
+        ProjectEventDataArchiveHolder.DeleteGraph(select, source, path);
 
         Parent.GenerateFileList();
     }
 
     private void OnDeleteFile()
     {
+        var path = ProjectManager.GetPath();
         var arc = Parent.SelectedArchive;
         if (arc == null)
         {
@@ -213,9 +209,9 @@ public partial class TabEventFileAccessor : TabFileAccessorBase
             ClearCopyContents();
 
         if (@event == null)
-            ProjectManager.GetProject().EventArcHolder.TryDeleteArchive(arc);
+            ProjectManager.GetProject().EventArcHolder.TryDeleteArchive(arc, path);
         else
-            ProjectEventDataArchiveHolder.DeleteGraph(arc, @event);
+            ProjectEventDataArchiveHolder.DeleteGraph(arc, @event, path);
 
         Parent.GenerateFileList();
     }

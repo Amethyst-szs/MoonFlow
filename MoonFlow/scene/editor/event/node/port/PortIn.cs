@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MoonFlow.Ext;
-
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
@@ -20,14 +18,14 @@ public partial class PortIn : TextureRect
 	private static readonly Shader Shader = GD.Load<Shader>("res://asset/shader/graph/graph_port_in.gdshader");
 
 	[Signal]
-    public delegate void IncomingListModifiedEventHandler();
+	public delegate void IncomingListModifiedEventHandler();
 
 	public override void _Ready()
 	{
 		var parentBase = this.FindParentBySubclass<EventFlowNodeBase>();
 		if (parentBase.GetType() == typeof(EventFlowEntryPoint))
 			return;
-		
+
 		Parent = parentBase as EventFlowNodeCommon;
 
 		// Setup shader and display
@@ -41,7 +39,7 @@ public partial class PortIn : TextureRect
 	{
 		if (!IsInstanceValid(n) || IncomingList.Contains(n))
 			return;
-		
+
 		IncomingList.Add(n);
 		EmitSignal(SignalName.IncomingListModified);
 
@@ -52,10 +50,10 @@ public partial class PortIn : TextureRect
 	{
 		if (!IsInstanceValid(n) || !IncomingList.Contains(n))
 			return;
-		
+
 		IncomingList.Remove(n);
 		EmitSignal(SignalName.IncomingListModified);
-		
+
 		UpdateDisplay();
 	}
 
@@ -79,7 +77,7 @@ public partial class PortIn : TextureRect
 		{
 			if (listPos >= list.Length)
 				break;
-			
+
 			var color = connection.PortColor;
 			if (!list.Contains(color))
 			{
