@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=43 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="1_8nwia"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scene/common/container/DebugProjectOnlyContainer.cs" id="14_62h41"]
 [ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbtFileAccessor.cs" id="15_3v0li"]
 [ext_resource type="Script" path="res://scene/app/components/dialog_center_text.gd" id="16_hrtuc"]
+[ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="16_ygdce"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
 color = Color(1, 1, 1, 0.317647)
@@ -76,6 +77,8 @@ events = [SubResource("InputEventAction_0tmku")]
 [sub_resource type="LabelSettings" id="LabelSettings_7bmst"]
 font = ExtResource("9_pqb3l")
 font_size = 22
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twpxa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ddx3"]
 font_size = 14
@@ -258,16 +261,29 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label_InfoName" type="Label" parent="Info/VBox"]
+[node name="HBox_Header" type="HBoxContainer" parent="Info/VBox"]
+layout_mode = 2
+
+[node name="Label_InfoName" type="Label" parent="Info/VBox/HBox_Header"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 label_settings = SubResource("LabelSettings_7bmst")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
+[node name="Texture_PageIcon" type="TextureRect" parent="Info/VBox/HBox_Header"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("16_ygdce")
+
+[node name="VSep" type="VSeparator" parent="Info/VBox/HBox_Header"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_twpxa")
+
 [node name="HSep_Header" type="HSeparator" parent="Info/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 12
 
 [node name="VBox_Stats" type="VBoxContainer" parent="Info/VBox"]
 layout_mode = 2
