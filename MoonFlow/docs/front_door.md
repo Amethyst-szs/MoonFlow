@@ -14,7 +14,7 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 ## Table of Contents
 
 ### Getting Started
-- [Introduction, Installation, and Project Setup](introduction.md)
+- [Introduction, Installation, and Setup](introduction.md)
 * [Text Editor](text/basics_text_editor.md)
 * [Event Graph Editor](events/basics_event_graph.md)
 * [Kingdom Editor](kingdoms/basics_kingdoms.md)
