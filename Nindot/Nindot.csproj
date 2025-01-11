@@ -4,6 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <PackageVersion>1.0.0</PackageVersion>
     <PackageProjectUrl>https://github.com/Amethyst-szs/MoonFlow</PackageProjectUrl>
+    <NoWarn>IDE0130,IDE0160</NoWarn> <!-- Disable namespace folder structure matching -->
   </PropertyGroup>
 
   <ItemGroup>

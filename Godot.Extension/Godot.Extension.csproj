@@ -4,6 +4,7 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
+    <NoWarn>IDE0130,IDE0160</NoWarn> <!-- Disable namespace folder structure matching -->
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nindot\Nindot.csproj" />
