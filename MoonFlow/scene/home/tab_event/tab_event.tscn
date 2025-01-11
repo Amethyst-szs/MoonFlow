@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=47 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEventFileAccessor.cs" id="15_obiaq"]
 [ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="16_3flvg"]
 [ext_resource type="PackedScene" uid="uid://kkrq88b8tbec" path="res://scene/home/tab_event/popup_event_base.tscn" id="19_77ica"]
+[ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="19_f5lsa"]
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -368,7 +369,10 @@ custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_EVENT_OPEN_FILE"
+icon = ExtResource("19_f5lsa")
 flat = true
+icon_alignment = 2
+expand_icon = true
 
 [node name="TabEventFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
 script = ExtResource("15_obiaq")

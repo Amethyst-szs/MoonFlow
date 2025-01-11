@@ -1,16 +1,32 @@
 extends Button
+class_name ExclusiveCategoryButton
 
 @export var target: Control
 @export var is_default_page: bool = false
 
+enum FilterType
+{
+	CANVAS_ITEM,
+	VBOX_CONTAINER,
+}
+
+@export var filter_type := FilterType.CANVAS_ITEM
+
 func _ready() -> void:
+	toggle_mode = true
+	
 	if is_default_page:
 		_pressed()
 
 func _pressed() -> void:
 	for child in target.get_parent().get_children():
-		if child is CanvasItem:
+		if filter_type == FilterType.CANVAS_ITEM && child is CanvasItem:
 			child.hide()
+			continue
+		
+		if filter_type == FilterType.VBOX_CONTAINER && child is VBoxContainer:
+			child.hide()
+			continue
 	
 	for button in get_parent().get_children():
 		if button is Button:

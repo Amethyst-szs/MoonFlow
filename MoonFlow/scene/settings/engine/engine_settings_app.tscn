@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_p7vkx"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_t3cmk"]
 [ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="4_d1iky"]
-[ext_resource type="Script" path="res://scene/settings/engine/setting_category_button.gd" id="4_ombcx"]
+[ext_resource type="Script" path="res://scene/common/button/exclusive_category_button.gd" id="4_ombcx"]
 [ext_resource type="PackedScene" uid="uid://dx5wrgv3ugohw" path="res://scene/settings/engine/page/general.tscn" id="6_cicul"]
 [ext_resource type="StyleBox" uid="uid://b333duw0kswvw" path="res://asset/theme/common/stylebox/common_vsep_minimal.tres" id="6_xjfkm"]
 [ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="7_h42e4"]
@@ -92,6 +92,7 @@ text_overrun_behavior = 3
 script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_General")
 is_default_page = true
+filter_type = 1
 
 [node name="Button_Graph" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
 layout_mode = 2
@@ -101,6 +102,7 @@ text = "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 text_overrun_behavior = 3
 script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_Graph")
+filter_type = 1
 
 [node name="Button_Keybind" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
 layout_mode = 2
@@ -110,6 +112,7 @@ text = "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
 text_overrun_behavior = 3
 script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_Keybind")
+filter_type = 1
 
 [node name="HSep_BottomAlignment" type="HSeparator" parent="Content/HSplit/Category/Content"]
 layout_mode = 2

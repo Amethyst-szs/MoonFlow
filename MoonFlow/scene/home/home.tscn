@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=10 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
@@ -8,6 +8,25 @@
 [ext_resource type="PackedScene" uid="uid://bwicpcn2le56s" path="res://scene/editor/msbt/msbt_editor.tscn" id="6_bc8ek"]
 [ext_resource type="PackedScene" uid="uid://cei1tg8ys1x2u" path="res://scene/home/tab_world/tab_world.tscn" id="6_ps61c"]
 [ext_resource type="PackedScene" uid="uid://djaf0d3bxuxkh" path="res://scene/home/tab_event/tab_event.tscn" id="9_l2bha"]
+
+[sub_resource type="GDScript" id="GDScript_d4dbm"]
+script/source = "extends TabContainer
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if !event.pressed || !event.is_command_or_control_pressed():
+		return
+	
+	var value = (event as InputEventKey).keycode
+	if value < KEY_1  || value > KEY_9:
+		return
+	
+	var tab = value - 49
+	if tab < 0 || tab >= get_tab_count():
+		return
+	
+	current_tab = tab
+	get_viewport().set_input_as_handled()
+"
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -40,6 +59,7 @@ layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
 current_tab = 0
+script = SubResource("GDScript_d4dbm")
 
 [node name="HOME_TAB_TEXT" parent="Content/VBox/Tab" instance=ExtResource("4_o0ymp")]
 layout_mode = 2

@@ -250,6 +250,22 @@ msgstr "Events"
 msgid "HOME_TAB_WORLD"
 msgstr "Kingdom"
 
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
+msgstr "All text file in your project's default language"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_SUBTAB_SOURCE_TEXT"
+msgstr "Source"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_SUBTAB_TRANSLATION_TOOLTIP"
+msgstr "Provide translations for modified text"
+
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_SUBTAB_TRANSLATION"
+msgstr "Translation"
+
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 msgstr "Search Files"
