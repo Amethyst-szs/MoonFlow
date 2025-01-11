@@ -1,8 +1,9 @@
 using Godot;
-using Nindot.LMS.Msbt.TagLib.Smo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using MoonFlow.Ext;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -230,13 +231,13 @@ public partial class TagWheel : Control
 
 		// FocusLeft
 		if (i == 0) button.FocusNeighborLeft = buttons.Last().GetPath();
-		else if (MathUtil.AlmostZero(posTL.Y)) button.FocusNeighborLeft = buttons[buttons.Count / 4 * 3].GetPath();
+		else if (posTL.Y.AlmostZero()) button.FocusNeighborLeft = buttons[buttons.Count / 4 * 3].GetPath();
 		else if (posTL.Y < 0) button.FocusNeighborLeft = buttons[i - 1].GetPath();
 		else if (posTL.Y > 0) button.FocusNeighborLeft = buttons[i + 1].GetPath();
 
 		// FocusRight
 		if (i == buttons.Count - 1) button.FocusNeighborRight = buttons[0].GetPath();
-		else if (MathUtil.AlmostZero(posTL.Y)) button.FocusNeighborRight = buttons[buttons.Count / 4].GetPath();
+		else if (posTL.Y.AlmostZero()) button.FocusNeighborRight = buttons[buttons.Count / 4].GetPath();
 		else if (posTL.Y < 0) button.FocusNeighborRight = buttons[i + 1].GetPath();
 		else if (posTL.Y > 0) button.FocusNeighborRight = buttons[i - 1].GetPath();
 	}
