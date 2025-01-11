@@ -72,10 +72,10 @@ public partial class ProjectLanguageHolder
 
         if (!SystemMessage.Content.TryGetValue(style, out ArraySegment<byte> byteStyle))
             throw new SarcFileException("SystemMessage missing key " + style);
-        
+
         if (!SystemMessage.Content.TryGetValue(pair, out ArraySegment<byte> bytePair))
             throw new SarcFileException("SystemMessage missing key " + pair);
-        
+
         ProjectIconResolver = ProjectIconResolver.FromPadStyleAndPadPair([.. byteStyle], [.. bytePair]);
     }
 
@@ -94,7 +94,7 @@ public partial class ProjectLanguageHolder
     // ====================== Utilities ===================== //
     // ====================================================== //
 
-    public SarcFile GetArchiveByFileName(string name)
+    public SarcFile GetArchiveByFileName(string name, bool throwOnInvalid = true)
     {
         return name switch
         {
@@ -105,8 +105,8 @@ public partial class ProjectLanguageHolder
             "SystemMessage" => SystemMessage,
             "StageMessage" => StageMessage,
             "LayoutMessage" => LayoutMessage,
-            
-            _ => throw new Exception("Unknown file name: " + name),
+
+            _ => throwOnInvalid ? throw new Exception("Unknown file name: " + name) : null,
         };
     }
 

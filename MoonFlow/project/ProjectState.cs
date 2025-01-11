@@ -68,6 +68,9 @@ public class ProjectState(string path, ProjectConfig config)
         // Initilize project database holder
         Database = new(Path, defaultLanguageArcs, loadScreen);
 
+        // Refresh MSBP database using newly loaded archives and database
+        MsgStudioProject.ReloadProjectSources(defaultLanguageArcs, Database);
+
         // Create label cache
         loadScreen.LoadingUpdateProgress("LOAD_LABEL_CACHE");
         MsgLabelCache = new(defaultLanguageArcs);

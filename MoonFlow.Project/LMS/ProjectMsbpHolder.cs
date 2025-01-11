@@ -40,9 +40,6 @@ public class ProjectMsbpHolder
         // Get msbp from archive
         Project = archive.GetFileMSBP(ProjectDataFileName);
 
-        // Clean out all DebugMessage entries in the msbp
-        Project.Project.Content.RemoveAll(s => s.StartsWith("DebugMessage/"));
-
         GD.Print("Parsed Project MSBP");
     }
 
@@ -52,10 +49,11 @@ public class ProjectMsbpHolder
     {
         var db = Project.Project.Content;
 
+        // Add all missing entries from SystemMessage and LayoutMessage
         AddAllEntriesInArc(arcs.SystemMessage, db);
         AddAllEntriesInArc(arcs.LayoutMessage, db);
 
-        // Handle StageMessage separately
+        // Handle StageMessage separately due to world marks
         foreach (var file in arcs.StageMessage.Content.Keys)
         {
             var world = worldDB.GetWorldInfoByStageName(file);
@@ -72,6 +70,24 @@ public class ProjectMsbpHolder
 
             PublishFile(arcs.StageMessage.Name, file, world, db);
         }
+
+        // Remove unused keys
+        db.RemoveAll(s => {
+            var sPath = s.Split(['/', '\\']);
+            var arc = arcs.GetArchiveByFileName(sPath.First(), false);
+
+            // Remove all debug message entries
+            if (sPath.First() == "DebugMessage")
+                return true;
+
+            // If this key doesn't have a connected archive, ignore it
+            if (arc == null)
+                return false;
+            
+            // If the requested archive doesn't have this file, remove it
+            var sNameConverted = sPath.Last().Replace(".mstxt", ".msbt");
+            return !arc.Content.ContainsKey(sNameConverted);
+        });
 
         // Sort database alphabetically
         db.Sort();
