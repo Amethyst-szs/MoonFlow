@@ -83,6 +83,16 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         return DateTime.FromFileTime(newMeta);
     }
 
+    public bool IsLastModifiedTimeAtEpoch(SarcMsbtFile file)
+    {
+        return IsLastModifiedTimeAtEpoch(file.Sarc, file.Name);
+    }
+    public bool IsLastModifiedTimeAtEpoch(SarcFile file, string key)
+    {
+        var time = GetLastModifiedTime(file, key);
+        return time.ToFileTimeUtc() == DateTime.UnixEpoch.ToFileTimeUtc();
+    }
+
     public void SetLastModifiedTime(SarcMsbtFile file)
     {
         SetLastModifiedTime(file.Sarc, file.Name);

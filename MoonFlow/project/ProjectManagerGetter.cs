@@ -25,6 +25,7 @@ public static partial class ProjectManager
         return Project.Config.Data.Version;
     }
     public static string GetPath() { return Project?.Path; }
+    public static string GetDefaultLang() { return Project?.Config?.Data?.DefaultLanguage; }
     
 
     public static ProjectMsbpHolder GetMSBPHolder() { return Project?.MsgStudioProject; }

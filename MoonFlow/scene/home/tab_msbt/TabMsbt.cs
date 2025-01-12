@@ -17,21 +17,39 @@ namespace MoonFlow.Scene.Home;
 
 public partial class TabMsbt : HSplitContainer
 {
+	#region Properties
+
+	// ~~~~~~~~~~~~~~~ Contents ~~~~~~~~~~~~~~ //
+
 	public SarcMsbtFile SelectedFile { get; private set; } = null;
 
-	[Export, ExportCategory("Internal References")]
+	public bool IsEnableTranslationFeatures { get; private set; } = false;
+	public string TranslationLanguage { get; private set; } = "USen";
+
+	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
+
+	[Export, ExportGroup("Internal References")]
 	private ScrollContainer FileListRoot = null;
+
 	[Export]
 	private VBoxContainer SystemMessageButtons = null;
 	[Export]
 	private VBoxContainer StageMessageVBox = null;
 	[Export]
 	private VBoxContainer LayoutMessageButtons = null;
+
+	[Export]
+	private Label TranslationLanguageWarning = null;
+
 	[Export]
 	private TabMsbtFileAccessor FileAccessor = null;
 
+	// ~~~~~~~~~~~~~~~ Scripts ~~~~~~~~~~~~~~~ //
+
 	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
 	private GDScript DoublePressButton = GD.Load<GDScript>("res://scene/common/button/double_click_button.gd");
+
+	#endregion
 
 	#region Init
 
@@ -40,11 +58,16 @@ public partial class TabMsbt : HSplitContainer
 		StageMessageVBox.QueueFreeAllChildren();
 
 		// Setup vbox buttons for system and layout
+		ShowDropdown(SystemMessageButtons);
+		ShowDropdown(LayoutMessageButtons);
+
 		var archives = ProjectManager.GetMSBTArchives();
 		SetupGenericVBox(SystemMessageButtons, archives.SystemMessage);
 		SetupGenericVBox(LayoutMessageButtons, archives.LayoutMessage);
 
 		// Setup buttons for stage messages
+		ShowDropdown(StageMessageVBox);
+
 		var db = ProjectManager.GetProject().Database;
 		var stageFiles = archives.StageMessage.Content.Keys.ToList();
 
@@ -56,6 +79,7 @@ public partial class TabMsbt : HSplitContainer
 		}
 
 		SetupWorldVBoxWithoutWorld(stageFiles, archives.StageMessage);
+		HideDropdownIfEmpty(StageMessageVBox);
 	}
 
 	private void SetupGenericVBox(VBoxContainer box, SarcFile file)
@@ -67,6 +91,9 @@ public partial class TabMsbt : HSplitContainer
 
 		foreach (var key in keys)
 			CreateButton(file, key, box);
+		
+		// If no buttons were created, hide the dropdown
+		HideDropdownIfEmpty(box);
 
 		if (file.Name == "SystemMessage.szs")
 			OnFilePressed(file, keys[0], box.GetChild(0) as Button);
@@ -95,7 +122,9 @@ public partial class TabMsbt : HSplitContainer
 			if (stage.CategoryType != prevCategory)
 			{
 				prevCategory = stage.CategoryType;
-				worldBox.AddChild(new HSeparator());
+
+				if (!IsEnableTranslationFeatures)
+					worldBox.AddChild(new HSeparator());
 			}
 
 			CreateButton(arc, key, worldBox, world);
@@ -111,6 +140,9 @@ public partial class TabMsbt : HSplitContainer
 		StageMessageVBox.AddChild(dropdown);
 		StageMessageVBox.AddChild(worldBoxMargin);
 		worldBoxMargin.AddChild(worldBox);
+
+		// If no buttons were created, hide the dropdown
+		HideDropdownIfEmpty(worldBox);
 
 		return result;
 	}
@@ -137,10 +169,20 @@ public partial class TabMsbt : HSplitContainer
 		StageMessageVBox.AddChild(dropdown);
 		StageMessageVBox.AddChild(worldBoxMargin);
 		worldBoxMargin.AddChild(worldBox);
+
+		// If no buttons were created, hide the dropdown
+		HideDropdownIfEmpty(worldBox);
 	}
 
 	private void CreateButton(SarcFile file, string key, Container box, WorldInfo world = null)
 	{
+		// Check if the default language's metadata has an epoch timestamp
+		var metaDefaultLang = ProjectManager.GetMSBTMetaHolder();
+		bool isDefaultLangAtEpoch = metaDefaultLang.IsLastModifiedTimeAtEpoch(file, key);
+
+		if (IsEnableTranslationFeatures && isDefaultLangAtEpoch)
+			return;
+
 		var button = DoublePressButton.New().As<Button>();
 		button.ToggleMode = true;
 		button.Name = key;
@@ -175,7 +217,7 @@ public partial class TabMsbt : HSplitContainer
 		StageMessageVBox.DeselectAllButtons();
 
 		// Get last modified time
-		var meta = ProjectManager.GetMSBTMetaHolder();
+		var meta = ProjectManager.GetMSBTMetaHolder(GetActiveLanguage());
 		if (meta == null)
 			return;
 
@@ -238,6 +280,27 @@ public partial class TabMsbt : HSplitContainer
 		HomeRoot.RecursiveFileSearch(FileListRoot, txt);
 	}
 
+	private void OnEnableTranslationFeatures(bool enabled)
+	{
+		var isReloadInterface = enabled != IsEnableTranslationFeatures;
+		IsEnableTranslationFeatures = enabled;
+
+		UpdateTranslationWarning();
+
+		if (isReloadInterface)
+			ReloadInterface(true);
+	}
+	private void OnTranslationLanguageSelected(string lang)
+	{
+		var isReloadInterface = lang != TranslationLanguage && IsEnableTranslationFeatures;
+		TranslationLanguage = lang;
+
+		UpdateTranslationWarning();
+
+		if (isReloadInterface)
+			ReloadInterface(true);
+	}
+
 	private static void OnOpenMsbpColorEditor()
 	{
 		var app = SceneCreator<MsbpColorEditor>.Create();
@@ -278,17 +341,53 @@ public partial class TabMsbt : HSplitContainer
 			OnFilePressed(oldSelection.Sarc, oldSelection.Name, button);
 	}
 
-	private static void UpdateFileButtonModulation(SarcFile file, string key, Button button)
+	private void UpdateFileButtonModulation(SarcFile file, string key, Button button)
 	{
-		var meta = ProjectManager.GetMSBTMetaHolder();
+		var meta = ProjectManager.GetMSBTMetaHolder(GetActiveLanguage());
 		if (meta == null)
 			return;
 
-		var t = meta.GetLastModifiedTime(file, key);
-		bool isEpoch = t.ToFileTimeUtc() == DateTime.UnixEpoch.ToFileTimeUtc();
+		bool isEpoch = meta.IsLastModifiedTimeAtEpoch(file, key);
 
 		if (isEpoch) button.SelfModulate = Colors.Gray;
 		else button.SelfModulate = Colors.White;
+	}
+
+	private static void ShowDropdown(VBoxContainer box)
+	{
+		if (box.GetParent() is not MarginContainer parent)
+			throw new Exception("Invalid parent for box!");
+		
+		parent.Show();
+		return;
+	}
+
+	private void HideDropdownIfEmpty(VBoxContainer box)
+	{
+		if (box.GetParent() is not MarginContainer parent)
+			throw new Exception("Invalid parent for box!");
+		
+		if (box.GetChildCount() == 0 || (box == StageMessageVBox && !box.IsAnyChildVisible()))
+		{
+			parent.Hide();
+			if (parent.HasMeta("dropdown"))
+				parent.GetMeta("dropdown").As<Button>().Hide();
+			
+			return;
+		}
+	}
+
+	private bool UpdateTranslationWarning()
+	{
+		var lang = TranslationLanguage;
+		var defaultLang = ProjectManager.GetDefaultLang();
+
+		bool isWarn = IsEnableTranslationFeatures && lang == defaultLang;
+
+		TranslationLanguageWarning.Visible = isWarn;
+		FileListRoot.Visible = !isWarn;
+
+		return !isWarn;
 	}
 
 	public static string GetFileName(string name)
@@ -297,6 +396,15 @@ public partial class TabMsbt : HSplitContainer
 			return name;
 
 		return name + ".msbt";
+	}
+
+	public string GetActiveLanguage()
+	{
+		var lang = ProjectManager.GetDefaultLang();
+		if (IsEnableTranslationFeatures)
+			lang = TranslationLanguage;
+
+		return lang;
 	}
 
 	#endregion

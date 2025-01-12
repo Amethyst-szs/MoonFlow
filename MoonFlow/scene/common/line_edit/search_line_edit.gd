@@ -1,5 +1,9 @@
 extends "res://scene/common/line_edit/filter_input_to_regex.gd"
 
+func emit_text() -> void:
+	await Engine.get_main_loop().process_frame
+	text_validated.emit(text)
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if !is_visible_in_tree():
 		return

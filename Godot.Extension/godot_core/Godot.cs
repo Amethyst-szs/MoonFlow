@@ -5,6 +5,23 @@ namespace Godot.Extension;
 
 public static partial class Extension
 {
+    public static bool IsAnyChildVisible(this Node self)
+    {
+        foreach (var child in self.GetChildren())
+        {
+            if (child is not CanvasItem item)
+                continue;
+
+            if (item.IsVisibleInTree())
+                return true;
+
+            if (IsAnyChildVisible(item))
+                return true;
+        }
+
+        return false;
+    }
+
     public static T FindParentByType<T>(this Node root) where T : Node
     {
         T parent = null;

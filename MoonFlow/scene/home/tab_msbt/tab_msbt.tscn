@@ -43,6 +43,9 @@ keycode = 50
 [sub_resource type="Shortcut" id="Shortcut_x11v8"]
 events = [SubResource("InputEventKey_n36k0")]
 
+[sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
+font_color = Color(1, 0.563667, 0.23, 0.745098)
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
 color = Color(1, 1, 1, 0.317647)
 
@@ -99,10 +102,6 @@ events = [SubResource("InputEventAction_0tmku")]
 font_size = 14
 font_color = Color(1, 1, 1, 0.745098)
 
-[sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
-font_size = 14
-font_color = Color(1, 0.563667, 0.23, 0.745098)
-
 [sub_resource type="LabelSettings" id="LabelSettings_7bmst"]
 font = ExtResource("9_pqb3l")
 font_size = 22
@@ -115,7 +114,7 @@ font_color = Color(1, 1, 1, 0.87451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5v4w"]
 
-[node name="Text" type="HSplitContainer" node_paths=PackedStringArray("FileListRoot", "SystemMessageButtons", "StageMessageVBox", "LayoutMessageButtons", "FileAccessor")]
+[node name="Text" type="HSplitContainer" node_paths=PackedStringArray("FileListRoot", "SystemMessageButtons", "StageMessageVBox", "LayoutMessageButtons", "TranslationLanguageWarning", "FileAccessor")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -127,6 +126,7 @@ FileListRoot = NodePath("FileList/FileList/FileListContent")
 SystemMessageButtons = NodePath("FileList/FileList/FileListContent/VBox/System/SystemMessage_VBox")
 StageMessageVBox = NodePath("FileList/FileList/FileListContent/VBox/Stage/StageMessage_VBox")
 LayoutMessageButtons = NodePath("FileList/FileList/FileListContent/VBox/Layout/LayoutMessage_VBox")
+TranslationLanguageWarning = NodePath("FileList/FileList/Label_TranslateDefaultWarning")
 FileAccessor = NodePath("TabMsbtFileAccessor")
 metadata/_tab_index = 0
 
@@ -180,6 +180,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
+
+[node name="Label_TranslateDefaultWarning" type="Label" parent="FileList/FileList"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
+label_settings = SubResource("LabelSettings_dgqq0")
+horizontal_alignment = 1
 
 [node name="FileListContent" type="ScrollContainer" parent="FileList/FileList"]
 unique_name_in_owner = true
@@ -554,10 +561,14 @@ dialog_autowrap = true
 cancel_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("16_hrtuc")
 
+[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/Line_Search" method="emit_text"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="show"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/VBox_TranslationPicker" method="hide"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="." method="OnEnableTranslationFeatures" binds= [false]]
+[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/Line_Search" method="emit_text"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="hide"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/VBox_TranslationPicker" method="show"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="." method="OnEnableTranslationFeatures" binds= [true]]
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="FileList/FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
@@ -567,6 +578,8 @@ script = ExtResource("16_hrtuc")
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_New" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_NewMsbt"]]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Rename" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_RenameMsbt"]]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
+[connection signal="LangSelectedByEngine" from="FileList/FileList/Footer/VBox_TranslationPicker/Option_Lang" to="." method="OnTranslationLanguageSelected" unbinds=1]
+[connection signal="LangSelectedByUser" from="FileList/FileList/Footer/VBox_TranslationPicker/Option_Lang" to="." method="OnTranslationLanguageSelected" unbinds=1]
 [connection signal="pressed" from="Info/VBox/VBox_Stats/DebugHash/Content/Button_Copy" to="." method="OnCopyFileHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="submitted" from="Popup_DuplicateMsbt" to="TabMsbtFileAccessor" method="OnDuplicateFile"]
