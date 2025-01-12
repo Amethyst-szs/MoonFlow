@@ -41,4 +41,15 @@ public static partial class Extension
 
         return parent;
     }
+
+    public static void QueueFreeAllChildren(this Node self, bool isRemoveFromTree = true)
+    {
+        foreach (var child in self.GetChildren())
+        {
+            if (isRemoveFromTree)
+                self.RemoveChild(child);
+
+            child.QueueFree();
+        }
+    }
 }

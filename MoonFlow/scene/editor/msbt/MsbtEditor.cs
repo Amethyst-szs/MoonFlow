@@ -17,11 +17,15 @@ public partial class MsbtEditor : PanelContainer
 {
 	#region Properties
 
+	// ~~~~~~~~~~~~~~~ Content ~~~~~~~~~~~~~~~ //
+
 	public SarcMsbpFile Project { get; private set; } = null;
 	public SarcMsbtFile File { get; private set; } = null;
 	public Dictionary<string, SarcMsbtFile> FileList { get; private set; } = null;
 	public string DefaultLanguage { get; private set; } = "USen";
 	public string CurrentLanguage { get; private set; } = "USen";
+
+	// ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
 	private bool _isModified = false;
 	public bool IsModified
@@ -36,18 +40,35 @@ public partial class MsbtEditor : PanelContainer
 		}
 	}
 
+	public MsbtEntryEditor EntryContentSelection { get; private set; }
+
+	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
+
+	private MsbtAppHolder Parent = null;
+
+	[Export, ExportGroup("Internal References")]
 	private EntryListHolder EntryListHolder = null;
 	private EntryListBase EntryList
 	{
 		get { return EntryListHolder?.EntryList; }
 	}
 
-	public VBoxContainer EntryContent { get; private set; } = null;
-	public MsbtEntryEditor EntryContentSelection { get; private set; } = null;
+	[Export]
+	public VBoxContainer EntryContentHolder { get; private set; }
 
-	private Label FileTitleName = null;
-	private Label FileEntryName = null;
-	private LangPicker LanguagePicker = null;
+	[Export]
+	private Label FileTitleName;
+	[Export]
+	private Label FileEntryName;
+	[Export]
+	private LangPicker LanguagePicker;
+
+	// ~~~~~~~~~~~~ Packed Scenes ~~~~~~~~~~~~ //
+
+	[Export, ExportGroup("Packed Scenes")]
+	private PackedScene UnsavedChangesLanguageChangePopup;
+
+	// ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
 
 	[Signal]
 	public delegate void ContentModifiedEventHandler(string label);
@@ -60,20 +81,15 @@ public partial class MsbtEditor : PanelContainer
 
 	public override void _Ready()
 	{
+		// Get parent
+		Parent = this.FindParentByType<MsbtAppHolder>();
+
 		// Setup entry list holder
-		EntryListHolder = GetNode<EntryListHolder>("%EntryListHolder");
 		EntryListHolder.SetupList<EntryListSimple>();
 
 		// Get entry list from holder
 		if (!IsInstanceValid(EntryList))
 			throw new NullReferenceException(nameof(EntryList));
-
-		// Get pointers to additional children
-		EntryContent = GetNode<VBoxContainer>("%Content");
-
-		FileTitleName = GetNode<Label>("%FileTitle");
-		FileEntryName = GetNode<Label>("%FileEntry");
-		LanguagePicker = GetNode<LangPicker>("%LanguagePicker");
 
 		// Setup signals with header
 		var header = ProjectManager.SceneRoot.NodeHeader;
@@ -86,28 +102,18 @@ public partial class MsbtEditor : PanelContainer
 		if (File == null || Project == null)
 			throw new Exception("Cannot init MsbtEditor without File and Project");
 
+		// Point primary file to current language
+		File = FileList[CurrentLanguage];
+
 		// If there is already a selection in the entry list, copy down its name for later
 		string selectionName = null;
 
 		if (IsInstanceValid(EntryList.EntryListSelection))
 			selectionName = EntryList.EntryListSelection.Name;
 
-		// If the EntryList already has children, empty lists
-		if (EntryList.GetChildCount() > 0)
-		{
-			// Clear out entry list and content in case the editor is being reinitilized
-			foreach (var child in EntryList.GetChildren())
-			{
-				EntryList.RemoveChild(child);
-				child.QueueFree();
-			}
-
-			foreach (var child in EntryContent.GetChildren())
-			{
-				EntryContent.RemoveChild(child);
-				child.QueueFree();
-			}
-		}
+		// Clear out entry list and content in case the editor is being reinitilized
+		EntryList.QueueFreeAllChildren();
+		EntryContentHolder.QueueFreeAllChildren();
 
 		// Create entry list
 		if (EntryList is EntryListSimple && IsStageMessage())
@@ -118,7 +124,11 @@ public partial class MsbtEditor : PanelContainer
 		EntryList.CreateContent(File, out string[] labels);
 
 		// Create entry content
-		for (int i = 0; i < File.GetEntryCount(); i++) { CreateEntryContentEditor(i); }
+		for (int i = 0; i < File.GetEntryCount(); i++)
+		{
+			var editor = CreateEntryContentEditor(i);
+			EntryContentHolder.AddChild(editor, true);
+		}
 
 		// Select either the first label or selectionName
 		if (labels.Length > 0)
@@ -136,12 +146,22 @@ public partial class MsbtEditor : PanelContainer
 		FileTitleName.Text = File.Name;
 	}
 
+	private void SetupTranslationStateEnabled(string lang)
+	{
+		CurrentLanguage = lang;
+		InitEditor();
+	}
+	private void SetupTranslationStateDisabled()
+	{
+		CurrentLanguage = DefaultLanguage;
+		InitEditor();
+	}
+
 	public MsbtEntryEditor CreateEntryContentEditor(int i)
 	{
 		// Get access to the metadata accessor for the current language
-		var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-		if (metadataAccessor == null)
-			throw new Exception("Invalid metadata accessor!");
+		var metadataAccessor = ProjectManager.GetMSBTMetaHolder(CurrentLanguage)
+		?? throw new Exception("Invalid metadata accessor!");
 
 		// Get access to the requested entry and metadata
 		var entry = File.GetEntry(i);
@@ -153,10 +173,11 @@ public partial class MsbtEditor : PanelContainer
 			Name = File.GetEntryLabel(i),
 			Visible = false,
 			SizeFlagsHorizontal = SizeFlags.ExpandFill,
-			SizeFlagsVertical = SizeFlags.ExpandFill,
+			SizeFlagsVertical = SizeFlags.ExpandFill
 		};
 
-		EntryContent.AddChild(editor, true);
+		if (!IsDefaultLanguage())
+			editor.SetTranslationMode();
 
 		// Connect to signals
 		editor.Connect(MsbtEntryEditor.SignalName.EntryModified,
@@ -173,12 +194,12 @@ public partial class MsbtEditor : PanelContainer
 
 	#region Read and Write
 
-	public void OpenFile(SarcMsbpFile project, Dictionary<string, SarcMsbtFile> msbtList, string defaultLang)
+	public void OpenFile(SarcMsbpFile project, Dictionary<string, SarcMsbtFile> msbtList, string lang)
 	{
 		// Grab the default SarcMsbtFile using lang
-		if (!msbtList.TryGetValue(defaultLang, out SarcMsbtFile defaultMsbt))
+		if (!msbtList.TryGetValue(lang, out SarcMsbtFile defaultMsbt))
 		{
-			defaultLang = "USen";
+			lang = "USen";
 			if (!msbtList.TryGetValue("USen", out defaultMsbt))
 				throw new Exception("TextFiles doesn't have default language or USen!");
 		}
@@ -190,8 +211,8 @@ public partial class MsbtEditor : PanelContainer
 		var projConfig = ProjectManager.GetProject().Config.Data;
 
 		DefaultLanguage = projConfig.DefaultLanguage;
-		CurrentLanguage = defaultLang;
-		
+		CurrentLanguage = lang;
+
 		LanguagePicker.SetSelection(CurrentLanguage);
 		LanguagePicker.SetGameVersion(projConfig.Version);
 
@@ -259,7 +280,7 @@ public partial class MsbtEditor : PanelContainer
 				var entryDL = fileDL.GetEntry(entryLabel);
 				if (entryDL == null)
 					continue;
-				
+
 				if (entryDL.IsModified)
 				{
 					var newEntry = entryDL.CloneDeep();
@@ -279,7 +300,7 @@ public partial class MsbtEditor : PanelContainer
 
 		var metaAccess = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
 		metaAccess.SetLastModifiedTime(File);
-		
+
 		metaAccess.WriteFile();
 
 		// Reset flag
@@ -296,11 +317,9 @@ public partial class MsbtEditor : PanelContainer
 
 	public void OnEntryListSelection(string label)
 	{
-		var content = EntryContent.GetNode<MsbtEntryEditor>(label);
-		EntryContentSelection = content;
-
-		if (IsInstanceValid(content))
-			content.Show();
+		EntryContentSelection = EntryContentHolder.GetNodeOrNull<MsbtEntryEditor>(label);
+		if (IsInstanceValid(EntryContentSelection))
+			EntryContentSelection.Show();
 
 		// Update entry header
 		FileEntryName.Text = label;
@@ -312,7 +331,10 @@ public partial class MsbtEditor : PanelContainer
 			file.AddEntry(name);
 
 		EntryList.CreateEntryListButton(name, true);
+
+		// Create editable editor for current language
 		var editor = CreateEntryContentEditor(File.GetEntryIndex(name));
+		EntryContentHolder.AddChild(editor, true);
 
 		EntryList.OnEntrySelected(name, true);
 		EntryList.UpdateEntryCount();
@@ -358,21 +380,7 @@ public partial class MsbtEditor : PanelContainer
 
 	private void OnLanguagePickerSelectedLang(string lang, int idx)
 	{
-		if (!IsInsideTree() || !GetParent().IsNodeReady())
-			return;
-
-        // Save file before switching languages
-        _ = SaveFile(false);
-
-		// Update current language and reload editor
-		CurrentLanguage = lang;
-		var newTarget = FileList[CurrentLanguage];
-
-		if (newTarget == File)
-			return;
-
-		File = newTarget;
-		InitEditor();
+		SetTranslationModeState(lang);
 	}
 
 	#endregion
@@ -384,6 +392,7 @@ public partial class MsbtEditor : PanelContainer
 	#region Utilities
 
 	public bool IsStageMessage() { return File.Sarc.Name == "StageMessage.szs"; }
+	public bool IsDefaultLanguage() { return CurrentLanguage == DefaultLanguage; }
 
 	public void SetModified()
 	{
@@ -392,8 +401,49 @@ public partial class MsbtEditor : PanelContainer
 		// Append asterisk to file name
 		if (!FileTitleName.Text.EndsWith('*'))
 			FileTitleName.Text += '*';
-		
+
 		EmitSignal(SignalName.ContentModified, "");
+	}
+
+	public void SetTranslationModeState(string lang)
+	{
+		if (!IsInsideTree() || !GetParent().IsNodeReady())
+			return;
+
+		if (!IsModified)
+		{
+			SetTranslationModeStateCallback(lang, true);
+			return;
+		}
+
+		Parent.AppearUnsavedChangesDialog(out _, out _, UnsavedChangesLanguageChangePopup, new Action<bool>(
+			(b) => SetTranslationModeStateCallback(lang, b)
+		));
+	}
+	private async void SetTranslationModeStateCallback(string lang, bool isAcceptUnsaved)
+	{
+		if (!isAcceptUnsaved)
+		{
+			LanguagePicker.SetSelection(CurrentLanguage);
+			return;
+		}
+		
+		if (IsModified)
+			await SaveFile(false);
+
+		if (lang == DefaultLanguage)
+		{
+			if (IsDefaultLanguage())
+				return;
+
+			SetupTranslationStateDisabled();
+			return;
+		}
+
+		if (CurrentLanguage == lang)
+			return;
+
+		SetupTranslationStateEnabled(lang);
 	}
 
 	public void ForceResetModifiedFlag() { IsModified = false; }
@@ -408,12 +458,12 @@ public partial class MsbtEditor : PanelContainer
 	{
 		if (source == target)
 			return;
-		
+
 		foreach (var label in source.GetEntryLabels())
 		{
 			if (target.IsContainKey(label))
 				continue;
-			
+
 			target.AddEntry(label, source.GetEntry(label).CloneDeep());
 		}
 
@@ -421,7 +471,7 @@ public partial class MsbtEditor : PanelContainer
 		{
 			if (source.IsContainKey(label))
 				continue;
-			
+
 			target.RemoveEntry(label);
 		}
 	}

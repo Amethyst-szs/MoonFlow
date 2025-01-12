@@ -69,11 +69,7 @@ public partial class TabEvent : HSplitContainer
 		var arcList = arcHolder.Content;
 
 		// Clear current file list
-		foreach (var child in ArchiveHolder.GetChildren())
-		{
-			ArchiveHolder.RemoveChild(child);
-			child.QueueFree();
-		}
+		ArchiveHolder.QueueFreeAllChildren();
 
 		// Get list of files in sorted order
 		var list = arcList.Keys.ToList();

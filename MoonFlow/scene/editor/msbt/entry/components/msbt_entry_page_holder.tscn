@@ -10,12 +10,13 @@
 [sub_resource type="Theme" id="Theme_v2gng"]
 Button/constants/icon_max_width = 24
 
-[node name="MsbtEntryPageHolder" type="HBoxContainer"]
+[node name="MsbtEntryPageHolder" type="HBoxContainer" node_paths=PackedStringArray("ContainerSidebar")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 100.0
 grow_horizontal = 2
 script = ExtResource("1_ruo46")
+ContainerSidebar = NodePath("SidebarContent")
 
 [node name="SidebarContent" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -67,7 +68,7 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("5_fpfhs")
 icon_alignment = 1
 
-[connection signal="pressed" from="SidebarContent/Arrange/Button_OrganizeUp" to="." method="OnPressOrganize"]
-[connection signal="pressed" from="SidebarContent/Arrange/Button_OrganizeDown" to="." method="OnPressOrganize"]
+[connection signal="pressed" from="SidebarContent/Arrange/Button_OrganizeUp" to="." method="OnPressOrganize" binds= [-1]]
+[connection signal="pressed" from="SidebarContent/Arrange/Button_OrganizeDown" to="." method="OnPressOrganize" binds= [1]]
 [connection signal="pressed" from="SidebarContent/Extras/Button_Trash" to="." method="OnDeleteConfirmed"]
 [connection signal="pressed" from="SidebarContent/Extras/DebugOnly/Button_HashCopy" to="." method="OnDebugHashCopyPressed"]

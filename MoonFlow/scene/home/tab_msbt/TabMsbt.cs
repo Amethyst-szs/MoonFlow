@@ -37,11 +37,7 @@ public partial class TabMsbt : HSplitContainer
 
 	public override void _Ready()
 	{
-		foreach (var child in StageMessageVBox.GetChildren())
-		{
-			StageMessageVBox.RemoveChild(child);
-			child.QueueFree();
-		}
+		StageMessageVBox.QueueFreeAllChildren();
 
 		// Setup vbox buttons for system and layout
 		var archives = ProjectManager.GetMSBTArchives();
@@ -64,11 +60,7 @@ public partial class TabMsbt : HSplitContainer
 
 	private void SetupGenericVBox(VBoxContainer box, SarcFile file)
 	{
-		foreach (var child in box.GetChildren())
-		{
-			box.RemoveChild(child);
-			child.QueueFree();
-		}
+		box.QueueFreeAllChildren();
 
 		string[] keys = [.. file.Content.Keys];
 		Array.Sort(keys);

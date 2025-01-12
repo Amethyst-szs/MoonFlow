@@ -34,10 +34,19 @@ public partial class MsbtPageEditor : TextEdit
 
     public MsbtPageEditor Init(SarcMsbpFile project, MsbtPage page)
     {
+        // Ensure page is assigned to a value (can be passed as null)
+        bool isPagePassedAsNull = page == null;
+        page ??= [];
+        
         Project = project;
         Page = page;
 
         PrepareTextEdit();
+
+        // If page is passed as null, assign placeholder text
+        if (isPagePassedAsNull)
+            PlaceholderText = Tr("NullPage", "MSBT_PAGE_EDITOR");
+        
         return this;
     }
 

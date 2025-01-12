@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://buju72ubpa8et"]
+
+[ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="1_a0vyw"]
+
+[node name="Dialog_UnsavedChangesLanguageSwap" instance=ExtResource("1_a0vyw")]
+title = "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_TITLE"
+ok_button_text = "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_OK"
+dialog_text = "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_TEXT"
+cancel_button_text = "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_CANCEL"

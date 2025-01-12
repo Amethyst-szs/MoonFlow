@@ -280,24 +280,29 @@ public partial class AppScene : Control
 
 	#region Utilities
 
-	private void AppearUnsavedChangesDialog(out GodotObject signalParent, out string signal)
+	public void AppearUnsavedChangesDialog(out GodotObject signalParent, out string signal, PackedScene scene = null, Action<bool> action = null)
 	{
 		AppFocus();
 
-		var dialog = UnsavedChangesScene.Instantiate() as ConfirmationDialog;
+		scene ??= UnsavedChangesScene;
+		var dialog = scene.Instantiate() as ConfirmationDialog;
+		
 		AddChild(dialog);
 		dialog.Popup();
 
-		signalParent = dialog;
-		signal = "closed";
-		dialog.Connect(signal, Callable.From(new Action<bool>((b) =>
+		// Create a default action if passed as null
+		action ??= new Action<bool>((b) =>
 		{
 			if (!b)
 				return;
 
 			IsModified = false;
 			AppClose(true);
-		})));
+		});
+
+		signalParent = dialog;
+		signal = "closed";
+		dialog.Connect(signal, Callable.From(action));
 	}
 
 	public bool AppIsFocused() { return ProcessMode == ProcessModeEnum.Inherit && Visible; }

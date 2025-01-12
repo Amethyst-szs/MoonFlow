@@ -8,13 +8,11 @@ namespace MoonFlow.Scene.EditorMsbt;
 [ScenePath("res://scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn")]
 public partial class MsbtEntryPageHolder : HBoxContainer
 {
-	public MsbtPageEditor PageEditor = new()
-	{
-		SizeFlagsHorizontal = SizeFlags.ExpandFill,
-		SizeFlagsVertical = SizeFlags.ShrinkBegin,
-		CustomMinimumSize = new Vector2(0, 72),
-		ScrollFitContentHeight = true,
-	};
+	public MsbtPageEditor PageEditor { get; private set; }
+	public MsbtPageEditor PageSourcePreview { get; private set; }
+
+	[Export, ExportGroup("Internal References")]
+	private VBoxContainer ContainerSidebar;
 
 	[Signal]
 	public delegate void PageOrganizeEventHandler(MsbtPageEditor page, int offset);
@@ -25,8 +23,14 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	[Signal]
 	public delegate void DebugHashCopyEventHandler();
 
-	public MsbtEntryPageHolder Init(SarcMsbpFile project, MsbtPage page)
+	public MsbtEntryPageHolder Init(SarcMsbpFile project, MsbtPage page, MsbtPage pageSourcePreview)
 	{
+		// Create page editor (and optionally source preview)
+		PageEditor = CreatePageEditor();
+
+		if (page != pageSourcePreview)
+			PageSourcePreview = CreatePageEditor();
+
 		// Force page holder to take up all available horizontal space
 		SizeFlagsHorizontal = SizeFlags.ExpandFill;
 
@@ -35,11 +39,30 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 		AddChild(PageEditor);
 		MoveChild(PageEditor, 0);
 
+		// Setup source preview
+		if (IsInstanceValid(PageSourcePreview))
+		{
+			PageSourcePreview.Init(project, pageSourcePreview);
+			PageSourcePreview.Editable = false;
+			AddChild(PageSourcePreview);
+		}
+
 		// Connect to page editor signals
 		PageEditor.Connect(TextEdit.SignalName.TextChanged, Callable.From(OnPageModified));
 		PageEditor.Connect(MsbtPageEditor.SignalName.PageModified, Callable.From(OnPageModified));
 
 		return this;
+	}
+
+	public static MsbtPageEditor CreatePageEditor()
+	{
+		return new MsbtPageEditor()
+		{
+			SizeFlagsHorizontal = SizeFlags.ExpandFill,
+			SizeFlagsVertical = SizeFlags.ShrinkBegin,
+			CustomMinimumSize = new Vector2(0, 72),
+			ScrollFitContentHeight = true,
+		};
 	}
 
 	// ====================================================== //
@@ -66,21 +89,21 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 		EmitSignal(SignalName.DebugHashCopy);
 	}
 
-	public void HandleSyncToggled(bool isDisableSync)
-	{
-		PageEditor.Editable = isDisableSync;
-		SetupButtonActiveness(!isDisableSync);
-	}
-
 	// ====================================================== //
 	// ====================== Utilities ===================== //
 	// ====================================================== //
 
-	public void SetupButtonActiveness(bool isForceOff = false)
+	public void UpdateButtonActiveness(bool isDisableSync, bool isDefaultLang)
 	{
-		GetNode<Button>("%Button_OrganizeUp").Disabled = IsFirstPage() || isForceOff;
-		GetNode<Button>("%Button_OrganizeDown").Disabled = IsLastPage() || isForceOff;
-		GetNode<Button>("%Button_Trash").Disabled = isForceOff;
+		bool isDisable = !isDisableSync && !isDefaultLang;
+		PageEditor.Editable = !isDisable;
+
+		if (!IsInstanceValid(ContainerSidebar))
+			return;
+
+		GetNode<Button>("%Button_OrganizeUp").Disabled = IsFirstPage() || isDisable;
+		GetNode<Button>("%Button_OrganizeDown").Disabled = IsLastPage() || isDisable;
+		GetNode<Button>("%Button_Trash").Disabled = isDisable;
 	}
 
 	public bool IsFirstPage()

@@ -88,11 +88,7 @@ public partial class EventFlowApp : AppScene
         IsInitCompleted = false;
 
         // Destroy current contents of editor, if any exist
-        foreach (var child in GraphNodeHolder.GetChildren())
-        {
-            GraphNodeHolder.RemoveChild(child);
-            child.QueueFree();
-        }
+        GraphNodeHolder.QueueFreeAllChildren();
 
         await InitNodeList();
         InitEntryPointNodes();

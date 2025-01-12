@@ -73,11 +73,7 @@ public partial class WorldEditorApp : AppScene
 
 	private void SetupStageList()
 	{
-		foreach (var child in VBoxStageList.GetChildren())
-		{
-			VBoxStageList.RemoveChild(child);
-			child.QueueFree();
-		}
+		VBoxStageList.QueueFreeAllChildren();
 
 		var prevCategory = StageInfo.CatEnum.Unknown;
 		foreach (var stage in World.StageList)
@@ -103,11 +99,7 @@ public partial class WorldEditorApp : AppScene
 
 	private void SetupShineList()
 	{
-		foreach (var child in VBoxShineList.GetChildren())
-		{
-			VBoxShineList.RemoveChild(child);
-			child.QueueFree();
-		}
+		VBoxShineList.QueueFreeAllChildren();
 
 		foreach (var shine in World.ShineList)
 		{

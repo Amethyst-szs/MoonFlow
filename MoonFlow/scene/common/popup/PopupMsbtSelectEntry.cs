@@ -76,11 +76,7 @@ public partial class PopupMsbtSelectEntry : Window
 		LineSearch.GrabFocus();
 
 		// Clear result list content
-		foreach (var child in ResultList.GetChildren())
-		{
-			ResultList.RemoveChild(child);
-			child.QueueFree();
-		}
+		ResultList.QueueFreeAllChildren();
 
 		// Set window size
 		var size = GetTree().CurrentScene.GetWindow().Size;
@@ -101,11 +97,7 @@ public partial class PopupMsbtSelectEntry : Window
 		LabelInvalidRequest.Hide();
 
 		// Reset result list
-		foreach (var child in ResultList.GetChildren())
-		{
-			ResultList.RemoveChild(child);
-			child.QueueFree();
-		}
+		ResultList.QueueFreeAllChildren();
 
 		// Fetch search request
 		var txt = LineSearch.Text;

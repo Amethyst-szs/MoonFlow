@@ -22,15 +22,7 @@ public partial class EntryListStageMessage : EntryListBase
 
     public override void CreateContent(SarcMsbtFile file, out string[] labels)
     {
-        // If the node already contains content, remove and free all
-        if (GetChildCount() > 0)
-        {
-            foreach (var child in GetChildren())
-            {
-                RemoveChild(child);
-                child.QueueFree();
-            }
-        }
+        this.QueueFreeAllChildren();
 
         // Sort list of labels in alphabetical order
         labels = [.. file.GetEntryLabels()];

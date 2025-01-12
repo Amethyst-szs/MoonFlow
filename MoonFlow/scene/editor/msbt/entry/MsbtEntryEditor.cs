@@ -11,16 +11,20 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 {
 	private readonly MsbtEditor Parent = parent;
 	public readonly MsbtEntry Entry = entry;
+	public MsbtEntry EntrySourceLanguage { get; private set; }
 	public readonly ProjectLanguageFileEntryMeta Metadata = meta;
+
+	public bool IsTranslationMode { get; private set; } = false;
 
 	[Signal]
 	public delegate void EntryModifiedEventHandler(MsbtEntryEditor entry);
 
 	public override void _Ready()
 	{
-		// If the current language doesn't match the default language, create translation config
-		bool isDefaultLang = Parent.CurrentLanguage == Parent.DefaultLanguage;
-		if (!isDefaultLang)
+		this.QueueFreeAllChildren();
+
+		// If the current language doesn't match the default language, create translation config header
+		if (!Parent.IsDefaultLanguage())
 		{
 			var langConfig = SceneCreator<MsbtEntryTranslationConfig>.Create();
 			langConfig.SetupNode(Metadata);
@@ -31,12 +35,23 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 			AddChild(langConfig);
 		}
 
+		// Get access to the desired entry in the default language
+		EntrySourceLanguage = Parent.FileList[Parent.DefaultLanguage].GetEntry(Entry.Name);
+
 		// Setup pages and page separators
 		BuildSeparator(-1);
 		for (int i = 0; i < Entry.Pages.Count; i++)
 		{
-			var page = Entry.Pages[i];
+			// Access page from current language and default language
+			MsbtPage page = Entry.Pages[i];
+			MsbtPage pageSourcePreview = page;
 
+			if (EntrySourceLanguage.Pages.Count > i)
+				pageSourcePreview = EntrySourceLanguage.Pages[i];
+			else
+				pageSourcePreview = null;
+
+			// Setup page holder
 			var holder = SceneCreator<MsbtEntryPageHolder>.Create();
 
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageDelete,
@@ -47,19 +62,16 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 			holder.Connect(MsbtEntryPageHolder.SignalName.PageModified,
 				Callable.From(new Action<MsbtPageEditor>(OnModifiedPage)));
-			
+
 			holder.Connect(MsbtEntryPageHolder.SignalName.DebugHashCopy, Callable.From(OnDebugHashCopy));
 
-			AddChild(holder.Init(Parent.Project, page));
-
+			holder.Init(Parent.Project, page, pageSourcePreview);
+			AddChild(holder);
 			BuildSeparator(i);
 		}
 
 		// Complete setup
-		if (!isDefaultLang)
-			OnSyncToggled(Metadata.IsDisableSync);
-		else
-			UpdatePageOrderingButtons();
+		UpdatePageOrderingButtons();
 	}
 
 	// ====================================================== //
@@ -117,27 +129,37 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 	private void OnSyncToggled(bool isDisableSync)
 	{
+		// Set flags
+		Metadata.IsDisableSync = isDisableSync;
 		SetModified();
 
-		Metadata.IsDisableSync = isDisableSync;
-
-		foreach (var child in GetChildren())
+		// If enabling source syncing, reset the entry
+		if (!isDisableSync)
 		{
-			switch (child)
-			{
-				case MsbtEntryPageHolder:
-					((MsbtEntryPageHolder)child).HandleSyncToggled(isDisableSync);
-					continue;
-				case MsbtEntryPageSeparator:
-					((MsbtEntryPageSeparator)child).HandleSyncToggled(isDisableSync);
-					continue;
-			}
+			Metadata.IsMod = false;
+
+			Entry.Pages.Clear();
+			EntrySourceLanguage.Pages.ForEach(p => Entry.Pages.Add(p.Clone()));
+
+			_Ready();
 		}
+
+		// Update button states
+		UpdatePageOrderingButtons();
 	}
 
 	// ====================================================== //
 	// ====================== Utilities ===================== //
 	// ====================================================== //
+
+	public void SetModified()
+	{
+		Entry.SetModifiedFlag();
+		Metadata.IsMod = true;
+
+		EmitSignal(SignalName.EntryModified, this);
+	}
+	public void SetTranslationMode() { IsTranslationMode = true; }
 
 	private void BuildSeparator(int index)
 	{
@@ -151,20 +173,17 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 	private void UpdatePageOrderingButtons()
 	{
-		foreach (var node in GetChildren())
+		foreach (var child in GetChildren())
 		{
-			if (node.GetType() != typeof(MsbtEntryPageHolder))
-				continue;
-
-			((MsbtEntryPageHolder)node).SetupButtonActiveness();
+			switch (child)
+			{
+				case MsbtEntryPageHolder:
+					((MsbtEntryPageHolder)child).UpdateButtonActiveness(Metadata.IsDisableSync, Parent.IsDefaultLanguage());
+					continue;
+				case MsbtEntryPageSeparator:
+					((MsbtEntryPageSeparator)child).UpdateAddButtonState(Metadata.IsDisableSync, Parent.IsDefaultLanguage());
+					continue;
+			}
 		}
-	}
-
-	public void SetModified()
-	{
-		Entry.SetModifiedFlag();
-		Metadata.IsMod = true;
-		
-		EmitSignal(SignalName.EntryModified, this);
 	}
 }

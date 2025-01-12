@@ -17,11 +17,7 @@ public partial class WorldList : HBoxContainer
 			return;
 
 		// Delete old children
-		foreach (var child in GetChildren())
-		{
-			RemoveChild(child);
-			child.QueueFree();
-		}
+		this.QueueFreeAllChildren();
 
 		var db = ProjectManager.GetDB()
 		?? throw new NullReferenceException("No reference to project database!");

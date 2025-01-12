@@ -319,6 +319,10 @@ msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
 msgstr "Delete Selected File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
+msgid "Dedicated translation tab WIP!"
+msgstr ""
+
+#: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_DETAILS_FILE_SIZE"
 msgstr "File Size:"
 
@@ -3290,6 +3294,29 @@ msgstr "Enter a new Search Tag"
 #: scene/editor/event/meta/popup_event_metadata.tscn
 msgid "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
 msgstr "Search Tags:"
+
+#: scene/editor/msbt/page/text_placeholder_page_editor.tres
+msgctxt "MSBT_PAGE_EDITOR"
+msgid "NullPage"
+msgstr "- Page does not exist in source text -"
+
+#: scene/editor/msbt/components/dialog_language_change_unsaved.tscn
+msgid "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_TITLE"
+msgstr "Save to Change Languages?"
+
+#: scene/editor/msbt/components/dialog_language_change_unsaved.tscn
+msgid "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_OK"
+msgstr "Save"
+
+#: scene/editor/msbt/components/dialog_language_change_unsaved.tscn
+msgid "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_TEXT"
+msgstr ""
+"Changing languages will save the changes you've made to this file. Are you "
+"sure you'd like to save?"
+
+#: scene/editor/msbt/components/dialog_language_change_unsaved.tscn
+msgid "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_CANCEL"
+msgstr "Go back"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"

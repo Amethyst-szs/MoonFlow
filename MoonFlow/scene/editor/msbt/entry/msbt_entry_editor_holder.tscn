@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca4l4addi4i3d"]
+
+[sub_resource type="GDScript" id="GDScript_sw778"]
+script/source = "@tool
+extends SmoothScrollContainer
+
+func _on_child_visibility_changed() -> void:
+	if get_child_count() != 1:
+		push_error()
+	
+	visible = get_child(0).visible
+"
+
+[node name="List_ContentEditor" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+script = SubResource("GDScript_sw778")
+drag_with_mouse = false
+follow_focus_margin = 160
+allow_horizontal_scroll = false
+hide_scrollbar_over_time = true
+scrollbar_hide_time = 3.0
+force_vertical_scrolling = true
+
+[node name="Content" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="visibility_changed" from="Content" to="." method="_on_child_visibility_changed"]
