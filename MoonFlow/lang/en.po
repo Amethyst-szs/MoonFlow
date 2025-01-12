@@ -252,7 +252,7 @@ msgstr "Kingdom"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
-msgstr "All text file in your project's default language"
+msgstr "All text files in your project's default language"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_SUBTAB_SOURCE_TEXT"

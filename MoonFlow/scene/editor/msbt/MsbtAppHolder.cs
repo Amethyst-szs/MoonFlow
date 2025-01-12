@@ -51,16 +51,19 @@ public partial class MsbtAppHolder : AppScene
 		return;
 	}
 
-	public static MsbtAppHolder OpenApp(string archiveName, string key)
+	public static MsbtAppHolder OpenApp(string archiveName, string key, string lang = null)
 	{
+		// Create editor application
 		var editor = SceneCreator<MsbtAppHolder>.Create();
 		editor.SetUniqueIdentifier(archiveName + key);
 		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
 
+		// Access project and language code
 		var msbp = ProjectManager.GetMSBP();
-		var defaultLang = ProjectManager.GetProject().Config.Data.DefaultLanguage;
-		editor.SetupEditor(msbp, defaultLang, archiveName, key);
+		lang ??= ProjectManager.GetDefaultLang();
 
+		// Setup and return editor
+		editor.SetupEditor(msbp, lang, archiveName, key);
 		return editor;
 	}
 

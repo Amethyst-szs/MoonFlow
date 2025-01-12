@@ -2,7 +2,6 @@ class_name DropdownCheckbox
 extends CheckBox
 
 var _dropdown: Control = null
-
 @export var dropdown: Control:
 	get: 
 		return _dropdown
@@ -18,6 +17,7 @@ var _dropdown: Control = null
 
 func _ready() -> void:
 	toggled.connect(_on_toggled)
+	visibility_changed.connect(_on_visibility_changed)
 	_on_toggled(button_pressed)
 
 func _on_toggled(state: bool) -> void:
@@ -26,3 +26,7 @@ func _on_toggled(state: bool) -> void:
 	
 	if dropdown:
 		dropdown.visible = state
+
+func _on_visibility_changed() -> void:
+	if dropdown:
+		dropdown.visible = button_pressed && visible

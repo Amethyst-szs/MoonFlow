@@ -29,14 +29,9 @@ public partial class TabMsbt : HSplitContainer
 	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
 	[Export, ExportGroup("Internal References")]
-	private ScrollContainer FileListRoot = null;
-
+	private ScrollContainer FileListScroll = null;
 	[Export]
-	private VBoxContainer SystemMessageButtons = null;
-	[Export]
-	private VBoxContainer StageMessageVBox = null;
-	[Export]
-	private VBoxContainer LayoutMessageButtons = null;
+	private VBoxContainer FileListArchives = null;
 
 	[Export]
 	private Label TranslationLanguageWarning = null;
@@ -55,61 +50,76 @@ public partial class TabMsbt : HSplitContainer
 
 	public override void _Ready()
 	{
-		StageMessageVBox.QueueFreeAllChildren();
+		var archives = ProjectManager.GetMSBTArchives(GetActiveLanguage());
 
-		// Setup vbox buttons for system and layout
-		ShowDropdown(SystemMessageButtons);
-		ShowDropdown(LayoutMessageButtons);
+		// Clear archive list
+		FileListArchives.QueueFreeAllChildren();
 
-		var archives = ProjectManager.GetMSBTArchives();
-		SetupGenericVBox(SystemMessageButtons, archives.SystemMessage);
-		SetupGenericVBox(LayoutMessageButtons, archives.LayoutMessage);
+		// Setup archive menus
+		CreateArchiveDropdown(archives.SystemMessage);
+		CreateStageMessageDropdown(archives.StageMessage);
+		CreateArchiveDropdown(archives.LayoutMessage);
 
-		// Setup buttons for stage messages
-		ShowDropdown(StageMessageVBox);
-
-		var db = ProjectManager.GetProject().Database;
-		var stageFiles = archives.StageMessage.Content.Keys.ToList();
-
-		foreach (var world in db.WorldList)
-		{
-			var content = SetupWorldVBox(world, archives.StageMessage);
-			foreach (var item in content)
-				stageFiles.Remove(item);
-		}
-
-		SetupWorldVBoxWithoutWorld(stageFiles, archives.StageMessage);
-		HideDropdownIfEmpty(StageMessageVBox);
+		// Set initial selection
+		var first = FileListArchives.FindChildByType<Button>((node) => !node.HasMeta("dropdown_button"));
+		first?.EmitSignal(Button.SignalName.Pressed);
 	}
 
-	private void SetupGenericVBox(VBoxContainer box, SarcFile file)
+	private void CreateArchiveDropdown(SarcFile file)
 	{
-		box.QueueFreeAllChildren();
+		// Create container
+		var name = file.Name.RemoveFileExtension();
+		CreateDropdown(FileListArchives, name, out VBoxContainer box, out Button dropdown);
 
+		// Sort and add file keys as buttons
 		string[] keys = [.. file.Content.Keys];
 		Array.Sort(keys);
 
+		bool isAnyFilesAdded = false;
 		foreach (var key in keys)
-			CreateButton(file, key, box);
+			isAnyFilesAdded |= TryCreateButton(file, key, box);
 		
-		// If no buttons were created, hide the dropdown
-		HideDropdownIfEmpty(box);
-
-		if (file.Name == "SystemMessage.szs")
-			OnFilePressed(file, keys[0], box.GetChild(0) as Button);
+		if (!isAnyFilesAdded)
+		{
+			dropdown.QueueFree();
+			box.QueueFree();
+		}
 	}
 
-	private List<string> SetupWorldVBox(WorldInfo world, SarcFile arc)
+	private void CreateStageMessageDropdown(SarcFile file)
 	{
-		// Output stage name list
-		List<string> result = [];
+		// Create container
+		var arcName = file.Name.RemoveFileExtension();
+		CreateDropdown(FileListArchives, arcName, out VBoxContainer box, out Button dropdown);
 
-		// Create new container
-		var worldBoxMargin = new MarginContainer();
-		var worldBox = new VBoxContainer();
+		// Get lookup database
+		var db = ProjectManager.GetProject().Database;
 
-		// Fill container with buttons
+		// Attempt to create a dropdown container for each world
+		bool isAnyWorldHaveContent = false;
+
+		foreach (var world in db.WorldList)
+			isAnyWorldHaveContent |= TryCreateWorldDropdown(file, world, box);
+
+		// Create a container for every stage that doesn't an assigned world
+		isAnyWorldHaveContent |= TryCreateNoAssignedWorldDropdown(file, box);
+
+		// If absolutely no content was created, free container and dropdown
+		if (!isAnyWorldHaveContent)
+		{
+			dropdown.QueueFree();
+			box.QueueFree();
+		}
+	}
+
+	private bool TryCreateWorldDropdown(SarcFile arc, WorldInfo world, VBoxContainer parent)
+	{
+		// Create container
+		CreateDropdown(parent, world.Display, out VBoxContainer box, out Button dropdown);
+
+		// Fill container with file buttons
 		var prevCategory = StageInfo.CatEnum.MainStage;
+		bool isAnyFilesAdded = false;
 
 		foreach (var stage in world.StageList)
 		{
@@ -124,64 +134,73 @@ public partial class TabMsbt : HSplitContainer
 				prevCategory = stage.CategoryType;
 
 				if (!IsEnableTranslationFeatures)
-					worldBox.AddChild(new HSeparator());
+					box.AddChild(new HSeparator());
 			}
 
-			CreateButton(arc, key, worldBox, world);
-			result.Add(key);
+			isAnyFilesAdded |= TryCreateButton(arc, key, box, world);
 		}
 
-		// Create dropdown button
-		var dropdown = DropdownButton.New().As<Button>();
-		dropdown.Text = world.Display;
-		dropdown.Set("dropdown", worldBoxMargin);
+		if (!isAnyFilesAdded)
+		{
+			dropdown.QueueFree();
+			box.QueueFree();
+			return false;
+		}
 
-		// Add children
-		StageMessageVBox.AddChild(dropdown);
-		StageMessageVBox.AddChild(worldBoxMargin);
-		worldBoxMargin.AddChild(worldBox);
-
-		// If no buttons were created, hide the dropdown
-		HideDropdownIfEmpty(worldBox);
-
-		return result;
+		return true;
 	}
 
-	private void SetupWorldVBoxWithoutWorld(List<string> files, SarcFile arc)
+	private bool TryCreateNoAssignedWorldDropdown(SarcFile arc, VBoxContainer parent)
 	{
-		if (files.Count == 0)
-			return;
+		// Create container
+		CreateDropdown(parent, "Misc.", out VBoxContainer box, out Button dropdown);
 
-		// Create new container
-		var worldBoxMargin = new MarginContainer();
-		var worldBox = new VBoxContainer();
+		// Fill container with file buttons
+		var db = ProjectManager.GetDB();
+		bool isAnyFilesAdded = false;
 
-		// Fill container with buttons
-		foreach (var file in files)
-			CreateButton(arc, file, worldBox);
+		foreach (var file in arc.Content.Keys)
+		{
+			var world = db.GetWorldInfoByStageName(file.RemoveFileExtension());
+			if (world != null)
+				continue;
+			
+			isAnyFilesAdded |= TryCreateButton(arc, file, box);
+		}
 
-		// Create dropdown button
-		var dropdown = DropdownButton.New().As<Button>();
-		dropdown.Text = "Misc.";
-		dropdown.Set("dropdown", worldBoxMargin);
+		if (!isAnyFilesAdded)
+		{
+			dropdown.QueueFree();
+			box.QueueFree();
+			return false;
+		}
 
-		// Add children
-		StageMessageVBox.AddChild(dropdown);
-		StageMessageVBox.AddChild(worldBoxMargin);
-		worldBoxMargin.AddChild(worldBox);
-
-		// If no buttons were created, hide the dropdown
-		HideDropdownIfEmpty(worldBox);
+		return true;
 	}
 
-	private void CreateButton(SarcFile file, string key, Container box, WorldInfo world = null)
+	private void CreateDropdown(Control parent, string name, out VBoxContainer box, out Button dropdown)
+	{
+		var boxMargin = new MarginContainer();
+		box = new VBoxContainer();
+
+		boxMargin.AddChild(box);
+
+		dropdown = DropdownButton.New().As<Button>();
+		dropdown.Text = name;
+		dropdown.Set("dropdown", boxMargin);
+
+		parent.AddChild(dropdown);
+		parent.AddChild(boxMargin);
+	}
+
+	private bool TryCreateButton(SarcFile file, string key, Container box, WorldInfo world = null)
 	{
 		// Check if the default language's metadata has an epoch timestamp
 		var metaDefaultLang = ProjectManager.GetMSBTMetaHolder();
 		bool isDefaultLangAtEpoch = metaDefaultLang.IsLastModifiedTimeAtEpoch(file, key);
 
 		if (IsEnableTranslationFeatures && isDefaultLangAtEpoch)
-			return;
+			return false;
 
 		var button = DoublePressButton.New().As<Button>();
 		button.ToggleMode = true;
@@ -199,10 +218,10 @@ public partial class TabMsbt : HSplitContainer
 
 		// These signals are automatically disconnected on free by DoublePressButton gdscript code
 		button.Connect("pressed", Callable.From(new Action(() => OnFilePressed(file, key, button))));
-		button.Connect("double_pressed",
-			Callable.From(new Action(() => MsbtAppHolder.OpenApp(file.Name, key))));
+		button.Connect("double_pressed", Callable.From(OnFooterOpenFilePressed));
 
 		box.AddChild(button);
+		return true;
 	}
 
 	#endregion
@@ -212,9 +231,7 @@ public partial class TabMsbt : HSplitContainer
 	private void OnFilePressed(SarcFile archive, string key, Button button)
 	{
 		// Remove old selection
-		SystemMessageButtons.DeselectAllButtons();
-		LayoutMessageButtons.DeselectAllButtons();
-		StageMessageVBox.DeselectAllButtons();
+		FileListArchives.DeselectAllButtons();
 
 		// Get last modified time
 		var meta = ProjectManager.GetMSBTMetaHolder(GetActiveLanguage());
@@ -263,7 +280,7 @@ public partial class TabMsbt : HSplitContainer
 	private void OnFooterOpenFilePressed()
 	{
 		if (SelectedFile == null) return;
-		MsbtAppHolder.OpenApp(SelectedFile.Sarc.Name, SelectedFile.Name);
+		MsbtAppHolder.OpenApp(SelectedFile.Sarc.Name, SelectedFile.Name, GetActiveLanguage());
 	}
 
 	private void OnOpenPopupMenuRequested(string nodeName)
@@ -277,13 +294,15 @@ public partial class TabMsbt : HSplitContainer
 
 	private void OnLineSearchTextChanged(string txt)
 	{
-		HomeRoot.RecursiveFileSearch(FileListRoot, txt);
+		HomeRoot.RecursiveFileSearch(FileListScroll, txt);
 	}
 
 	private void OnEnableTranslationFeatures(bool enabled)
 	{
 		var isReloadInterface = enabled != IsEnableTranslationFeatures;
 		IsEnableTranslationFeatures = enabled;
+
+		EngineSettings.SetSetting("moonflow/localization/translation_features_tab", enabled);
 
 		UpdateTranslationWarning();
 
@@ -298,7 +317,10 @@ public partial class TabMsbt : HSplitContainer
 		UpdateTranslationWarning();
 
 		if (isReloadInterface)
+		{
+			EngineSettings.SetSetting("moonflow/localization/translation_language", lang);
 			ReloadInterface(true);
+		}
 	}
 
 	private static void OnOpenMsbpColorEditor()
@@ -326,18 +348,18 @@ public partial class TabMsbt : HSplitContainer
 	public void ReloadInterface(bool isRunReady)
 	{
 		var oldSelection = SelectedFile;
-		var oldScroll = FileListRoot.ScrollVertical;
+		var oldScroll = FileListScroll.ScrollVertical;
 
 		if (isRunReady)
 			_Ready();
 
-		FileListRoot.SetDeferred(ScrollContainer.PropertyName.ScrollVertical, oldScroll);
+		FileListScroll.SetDeferred(ScrollContainer.PropertyName.ScrollVertical, oldScroll);
 
 		if (oldSelection == null)
 			return;
 
 		var buttonName = oldSelection.Name.Replace('.', '_');
-		if (FileListRoot.FindChild(buttonName, true, false) is Button button)
+		if (FileListScroll.FindChild(buttonName, true, false) is Button button)
 			OnFilePressed(oldSelection.Sarc, oldSelection.Name, button);
 	}
 
@@ -353,27 +375,20 @@ public partial class TabMsbt : HSplitContainer
 		else button.SelfModulate = Colors.White;
 	}
 
-	private static void ShowDropdown(VBoxContainer box)
+	private async void HideDropdownIfEmpty(VBoxContainer box)
 	{
 		if (box.GetParent() is not MarginContainer parent)
 			throw new Exception("Invalid parent for box!");
-		
-		parent.Show();
-		return;
-	}
 
-	private void HideDropdownIfEmpty(VBoxContainer box)
-	{
-		if (box.GetParent() is not MarginContainer parent)
-			throw new Exception("Invalid parent for box!");
-		
-		if (box.GetChildCount() == 0 || (box == StageMessageVBox && !box.IsAnyChildVisible()))
+		if (box.GetChildCount() == 0)
 		{
-			parent.Hide();
-			if (parent.HasMeta("dropdown"))
-				parent.GetMeta("dropdown").As<Button>().Hide();
+			if (!parent.HasMeta("dropdown"))
+				return;
 			
-			return;
+			await ToSignal(Engine.GetMainLoop(), "process_frame");
+			
+			var dropdown = parent.GetMeta("dropdown").As<Button>();
+			dropdown.Hide();
 		}
 	}
 
@@ -385,7 +400,7 @@ public partial class TabMsbt : HSplitContainer
 		bool isWarn = IsEnableTranslationFeatures && lang == defaultLang;
 
 		TranslationLanguageWarning.Visible = isWarn;
-		FileListRoot.Visible = !isWarn;
+		FileListScroll.Visible = !isWarn;
 
 		return !isWarn;
 	}

@@ -245,3 +245,4 @@ wiki/local_source="res://docs/"
 wiki/is_use_local=true
 wiki/is_display_toggle_notice=true
 localization/translation_language="USen"
+localization/translation_features_tab=false

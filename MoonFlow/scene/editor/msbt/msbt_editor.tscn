@@ -177,7 +177,7 @@ text_overrun_behavior = 3
 [node name="FileTitle" type="Label" parent="MsbtEditor/Layout/Header"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 label_settings = SubResource("LabelSettings_iuuba")
 horizontal_alignment = 2
 vertical_alignment = 1

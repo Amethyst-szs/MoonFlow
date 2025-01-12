@@ -49,6 +49,9 @@ public partial class MainSceneRoot : Control
         var winSize = win.Size;
         const int winType = (int)Window.WindowInitialPosition.Absolute;
 
+        EngineSettings.SetSetting("display/window/size/mode", (int)win.Mode);
+        EngineSettings.SetSetting("display/window/size/initial_screen", win.CurrentScreen);
+
         if (win.Mode < Window.ModeEnum.Maximized)
         {
             EngineSettings.SetSetting("display/window/size/viewport_width", winSize.X);
@@ -64,8 +67,6 @@ public partial class MainSceneRoot : Control
             EngineSettings.RemoveSetting("display/window/size/initial_position");
         }
 
-        EngineSettings.SetSetting("display/window/size/mode", (int)win.Mode);
-        EngineSettings.SetSetting("display/window/size/initial_screen", win.CurrentScreen);
         EngineSettings.Save();
 
         // Terminate application

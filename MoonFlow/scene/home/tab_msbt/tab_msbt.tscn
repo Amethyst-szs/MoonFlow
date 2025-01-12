@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=50 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="1_8nwia"]
@@ -45,13 +45,6 @@ events = [SubResource("InputEventKey_n36k0")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
 font_color = Color(1, 0.563667, 0.23, 0.745098)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_7get7"]
-color = Color(1, 1, 1, 0.317647)
-
-[sub_resource type="Theme" id="Theme_oq1xr"]
-HSeparator/constants/separation = 4
-HSeparator/styles/separator = SubResource("StyleBoxLine_7get7")
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -114,7 +107,7 @@ font_color = Color(1, 1, 1, 0.87451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5v4w"]
 
-[node name="Text" type="HSplitContainer" node_paths=PackedStringArray("FileListRoot", "SystemMessageButtons", "StageMessageVBox", "LayoutMessageButtons", "TranslationLanguageWarning", "FileAccessor")]
+[node name="Text" type="HSplitContainer" node_paths=PackedStringArray("FileListScroll", "FileListArchives", "TranslationLanguageWarning", "FileAccessor")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -122,10 +115,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3jppe")
 script = ExtResource("2_ioahr")
-FileListRoot = NodePath("FileList/FileList/FileListContent")
-SystemMessageButtons = NodePath("FileList/FileList/FileListContent/VBox/System/SystemMessage_VBox")
-StageMessageVBox = NodePath("FileList/FileList/FileListContent/VBox/Stage/StageMessage_VBox")
-LayoutMessageButtons = NodePath("FileList/FileList/FileListContent/VBox/Layout/LayoutMessage_VBox")
+FileListScroll = NodePath("FileList/FileList/FileListContent")
+FileListArchives = NodePath("FileList/FileList/FileListContent/Content/VBox_Archives")
 TranslationLanguageWarning = NodePath("FileList/FileList/Label_TranslateDefaultWarning")
 FileAccessor = NodePath("TabMsbtFileAccessor")
 metadata/_tab_index = 0
@@ -195,63 +186,29 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent"]
+[node name="Content" type="VBoxContainer" parent="FileList/FileList/FileListContent"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Check_System" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-text = "HOME_TAB_TEXT_SYSTEM"
-script = ExtResource("1_8nwia")
-dropdown = NodePath("../System")
-
-[node name="System" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
+[node name="VBox_Archives" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content"]
 layout_mode = 2
 
-[node name="SystemMessage_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/System"]
-unique_name_in_owner = true
+[node name="VBox_Project" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content"]
 layout_mode = 2
 
-[node name="Check_Stage" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-text = "HOME_TAB_TEXT_STAGE"
-script = ExtResource("1_8nwia")
-dropdown = NodePath("../Stage")
-
-[node name="Stage" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
-layout_mode = 2
-theme = SubResource("Theme_oq1xr")
-
-[node name="StageMessage_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/Stage"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Check_Layout" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-text = "HOME_TAB_TEXT_LAYOUT"
-script = ExtResource("1_8nwia")
-dropdown = NodePath("../Layout")
-
-[node name="Layout" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
-layout_mode = 2
-
-[node name="LayoutMessage_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/Layout"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="NotInSearch_Check_MSBP" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="NotInSearch_Check_MSBP" type="CheckBox" parent="FileList/FileList/FileListContent/Content/VBox_Project" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_MSBP_TOOLS"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../NotInSearch_MSBP")
 
-[node name="NotInSearch_MSBP" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
+[node name="NotInSearch_MSBP" type="MarginContainer" parent="FileList/FileList/FileListContent/Content/VBox_Project"]
 layout_mode = 2
 
-[node name="MSBP_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/NotInSearch_MSBP"]
+[node name="MSBP_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP"]
 layout_mode = 2
 
-[node name="Button_MsbpColors" type="Button" parent="FileList/FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox"]
+[node name="Button_MsbpColors" type="Button" parent="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP/MSBP_VBox"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
@@ -328,13 +285,6 @@ layout_mode = 2
 layout_mode = 2
 text = "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
 label_settings = SubResource("LabelSettings_p586a")
-horizontal_alignment = 1
-
-[node name="Label_TEMP" type="Label" parent="FileList/FileList/Footer/VBox_TranslationPicker"]
-auto_translate_mode = 2
-layout_mode = 2
-text = "Translation management is currently WIP!"
-label_settings = SubResource("LabelSettings_dgqq0")
 horizontal_alignment = 1
 
 [node name="Option_Lang" type="OptionButton" parent="FileList/FileList/Footer/VBox_TranslationPicker"]
@@ -564,13 +514,15 @@ script = ExtResource("16_hrtuc")
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/Line_Search" method="emit_text"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="show"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/VBox_TranslationPicker" method="hide"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/FileListContent/Content/VBox_Project" method="show"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="." method="OnEnableTranslationFeatures" binds= [false]]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/Line_Search" method="emit_text"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="hide"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/VBox_TranslationPicker" method="show"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/FileListContent/Content/VBox_Project" method="hide"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="." method="OnEnableTranslationFeatures" binds= [true]]
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
-[connection signal="pressed" from="FileList/FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
+[connection signal="pressed" from="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut" to="TabMsbtFileAccessor" method="OnCutFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste" to="TabMsbtFileAccessor" method="OnPasteFile"]
