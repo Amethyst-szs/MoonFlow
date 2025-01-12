@@ -15,6 +15,9 @@ var _dropdown: Control = null
 
 @export var invert_result: bool = false
 
+func _enter_tree() -> void:
+	set_meta("dropdown_button", true)
+
 func _ready() -> void:
 	toggled.connect(_on_toggled)
 	visibility_changed.connect(_on_visibility_changed)
