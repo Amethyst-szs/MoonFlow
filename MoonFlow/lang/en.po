@@ -319,8 +319,8 @@ msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
 msgstr "Delete Selected File"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-msgid "Dedicated translation tab WIP!"
-msgstr ""
+msgid "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
+msgstr "Translation Language:"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_DETAILS_FILE_SIZE"

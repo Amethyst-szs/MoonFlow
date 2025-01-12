@@ -17,19 +17,21 @@ func _ready() -> void:
 	
 	if is_default_page:
 		_pressed()
+		pressed.emit()
 
 func _pressed() -> void:
-	for child in target.get_parent().get_children():
-		if filter_type == FilterType.CANVAS_ITEM && child is CanvasItem:
-			child.hide()
-			continue
+	if is_instance_valid(target):
+		for child in target.get_parent().get_children():
+			if filter_type == FilterType.CANVAS_ITEM && child is CanvasItem:
+				child.hide()
+				continue
+			
+			if filter_type == FilterType.VBOX_CONTAINER && child is VBoxContainer:
+				child.hide()
+				continue
 		
-		if filter_type == FilterType.VBOX_CONTAINER && child is VBoxContainer:
-			child.hide()
-			continue
+		target.show()
 	
 	for button in get_parent().get_children():
 		if button is Button:
 			button.set_pressed_no_signal(button == self)
-	
-	target.show()

@@ -12,6 +12,12 @@ public partial class LangPicker : OptionButton
 	private static readonly string[] LangList = ["CNzh", "EUde", "EUen", "EUes", "EUfr", "EUit", "EUnl", "EUru", "JPja", "KRko", "TWzh", "USen", "USes", "USfr"];
 	private const string DisplayNameContext = "PROJECT_LANGUAGE_CODE";
 
+	[Export(PropertyHint.Enum, "Default Language:0,Translation Language:1")]
+	private int StartingLanguage = 0;
+	
+	[Export]
+	private bool AutomaticallySetGameVersion = false;
+
 	[Signal]
 	public delegate void LangSelectedByEngineEventHandler(string lang, int idx);
 	[Signal]
@@ -24,10 +30,26 @@ public partial class LangPicker : OptionButton
 		foreach (var item in LangList)
 			AddItem(Tr(item, DisplayNameContext));
 
-		var lang = ProjectManager.GetProject()?.Config?.Data?.DefaultLanguage;
+		string lang = null;
+		if (IsStartingLanguageDefault())
+			lang = ProjectManager.GetProject()?.Config?.Data?.DefaultLanguage;
+		else if (IsStartingLanguageTranslation())
+			lang = EngineSettings.GetSetting<string>("moonflow/localization/translation_language", "USen");
+
 		if (lang != null)
 			SetSelection(lang);
+		
+		if (AutomaticallySetGameVersion)
+			SetGameVersion(ProjectManager.GetProjectVersion());
 	}
+
+	private void OnItemSelected(long index)
+	{
+		var lang = LangList[(int)index];
+		EmitSignal(SignalName.LangSelectedByUser, lang, (int)index);
+	}
+
+	#region Utility
 
 	public void SetSelection(string langCode)
 	{
@@ -41,6 +63,9 @@ public partial class LangPicker : OptionButton
 
 	public void SetGameVersion(RomfsVersion ver)
 	{
+		if (ver == RomfsVersion.INVALID_VERSION)
+			return;
+		
 		int korean = Array.FindIndex(LangList, s => s == "KRko");
 		if (korean == -1)
 			throw new Exception("Could not find index of korean language!");
@@ -51,9 +76,8 @@ public partial class LangPicker : OptionButton
 			SetSelection("USen");
 	}
 
-	private void OnItemSelected(long index)
-	{
-		var lang = LangList[(int)index];
-		EmitSignal(SignalName.LangSelectedByUser, lang, (int)index);
-	}
+	public bool IsStartingLanguageDefault() { return StartingLanguage == 0; }
+	public bool IsStartingLanguageTranslation() { return StartingLanguage == 1; }
+
+	#endregion
 }

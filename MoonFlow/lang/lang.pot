@@ -390,7 +390,7 @@ msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
-msgid "Dedicated translation tab WIP!"
+msgid "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
 msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn

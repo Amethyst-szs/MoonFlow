@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=52 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
 [ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="1_8nwia"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://scene/home/tab_msbt/TabMsbtFileAccessor.cs" id="15_3v0li"]
 [ext_resource type="Script" path="res://scene/app/components/dialog_center_text.gd" id="16_hrtuc"]
 [ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="16_ygdce"]
+[ext_resource type="Script" path="res://scene/common/option/LangPicker.cs" id="17_3lgct"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="19_v1srn"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_yed1p"]
@@ -94,6 +95,14 @@ action = &"ui_graph_delete"
 [sub_resource type="Shortcut" id="Shortcut_stxmf"]
 events = [SubResource("InputEventAction_0tmku")]
 
+[sub_resource type="LabelSettings" id="LabelSettings_p586a"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.745098)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
+font_size = 14
+font_color = Color(1, 0.563667, 0.23, 0.745098)
+
 [sub_resource type="LabelSettings" id="LabelSettings_7bmst"]
 font = ExtResource("9_pqb3l")
 font_size = 22
@@ -114,10 +123,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3jppe")
 script = ExtResource("2_ioahr")
-FileListRoot = NodePath("FileList/SubtabSource/FileListContent")
-SystemMessageButtons = NodePath("FileList/SubtabSource/FileListContent/VBox/System/SystemMessage_VBox")
-StageMessageVBox = NodePath("FileList/SubtabSource/FileListContent/VBox/Stage/StageMessage_VBox")
-LayoutMessageButtons = NodePath("FileList/SubtabSource/FileListContent/VBox/Layout/LayoutMessage_VBox")
+FileListRoot = NodePath("FileList/FileList/FileListContent")
+SystemMessageButtons = NodePath("FileList/FileList/FileListContent/VBox/System/SystemMessage_VBox")
+StageMessageVBox = NodePath("FileList/FileList/FileListContent/VBox/Stage/StageMessage_VBox")
+LayoutMessageButtons = NodePath("FileList/FileList/FileListContent/VBox/Layout/LayoutMessage_VBox")
 FileAccessor = NodePath("TabMsbtFileAccessor")
 metadata/_tab_index = 0
 
@@ -128,7 +137,7 @@ size_flags_horizontal = 3
 [node name="TabHeader" type="HBoxContainer" parent="FileList"]
 layout_mode = 2
 
-[node name="Button_Source" type="Button" parent="FileList/TabHeader" node_paths=PackedStringArray("target")]
+[node name="Button_Source" type="Button" parent="FileList/TabHeader"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
@@ -137,11 +146,10 @@ toggle_mode = true
 shortcut = SubResource("Shortcut_nccgk")
 text = "HOME_SUBTAB_SOURCE_TEXT"
 script = ExtResource("3_382sl")
-target = NodePath("../../SubtabSource")
 is_default_page = true
 filter_type = 1
 
-[node name="Button_Translation" type="Button" parent="FileList/TabHeader" node_paths=PackedStringArray("target")]
+[node name="Button_Translation" type="Button" parent="FileList/TabHeader"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "HOME_SUBTAB_TRANSLATION_TOOLTIP"
@@ -150,7 +158,6 @@ toggle_mode = true
 shortcut = SubResource("Shortcut_x11v8")
 text = "HOME_SUBTAB_TRANSLATION"
 script = ExtResource("3_382sl")
-target = NodePath("../../SubtabTranslation")
 filter_type = 1
 
 [node name="Line_Search" type="LineEdit" parent="FileList"]
@@ -168,76 +175,76 @@ layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = ExtResource("10_m4jr4")
 
-[node name="SubtabSource" type="VBoxContainer" parent="FileList"]
+[node name="FileList" type="VBoxContainer" parent="FileList"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="FileListContent" type="ScrollContainer" parent="FileList/SubtabSource"]
+[node name="FileListContent" type="ScrollContainer" parent="FileList/FileList"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBox" type="VBoxContainer" parent="FileList/SubtabSource/FileListContent"]
+[node name="VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Check_System" type="CheckBox" parent="FileList/SubtabSource/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="Check_System" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_SYSTEM"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../System")
 
-[node name="System" type="MarginContainer" parent="FileList/SubtabSource/FileListContent/VBox"]
+[node name="System" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
 layout_mode = 2
 
-[node name="SystemMessage_VBox" type="VBoxContainer" parent="FileList/SubtabSource/FileListContent/VBox/System"]
+[node name="SystemMessage_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/System"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Check_Stage" type="CheckBox" parent="FileList/SubtabSource/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="Check_Stage" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_STAGE"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../Stage")
 
-[node name="Stage" type="MarginContainer" parent="FileList/SubtabSource/FileListContent/VBox"]
+[node name="Stage" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
 layout_mode = 2
 theme = SubResource("Theme_oq1xr")
 
-[node name="StageMessage_VBox" type="VBoxContainer" parent="FileList/SubtabSource/FileListContent/VBox/Stage"]
+[node name="StageMessage_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/Stage"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Check_Layout" type="CheckBox" parent="FileList/SubtabSource/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="Check_Layout" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_LAYOUT"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../Layout")
 
-[node name="Layout" type="MarginContainer" parent="FileList/SubtabSource/FileListContent/VBox"]
+[node name="Layout" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
 layout_mode = 2
 
-[node name="LayoutMessage_VBox" type="VBoxContainer" parent="FileList/SubtabSource/FileListContent/VBox/Layout"]
+[node name="LayoutMessage_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/Layout"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="NotInSearch_Check_MSBP" type="CheckBox" parent="FileList/SubtabSource/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
+[node name="NotInSearch_Check_MSBP" type="CheckBox" parent="FileList/FileList/FileListContent/VBox" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 text = "HOME_TAB_TEXT_MSBP_TOOLS"
 script = ExtResource("1_8nwia")
 dropdown = NodePath("../NotInSearch_MSBP")
 
-[node name="NotInSearch_MSBP" type="MarginContainer" parent="FileList/SubtabSource/FileListContent/VBox"]
+[node name="NotInSearch_MSBP" type="MarginContainer" parent="FileList/FileList/FileListContent/VBox"]
 layout_mode = 2
 
-[node name="MSBP_VBox" type="VBoxContainer" parent="FileList/SubtabSource/FileListContent/VBox/NotInSearch_MSBP"]
+[node name="MSBP_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/VBox/NotInSearch_MSBP"]
 layout_mode = 2
 
-[node name="Button_MsbpColors" type="Button" parent="FileList/SubtabSource/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox"]
+[node name="Button_MsbpColors" type="Button" parent="FileList/FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
@@ -245,76 +252,92 @@ icon = ExtResource("6_pbk2q")
 alignment = 0
 icon_alignment = 2
 
-[node name="Footer" type="PanelContainer" parent="FileList/SubtabSource"]
+[node name="Footer" type="PanelContainer" parent="FileList/FileList"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("4_nlvsm")
 
-[node name="HBox" type="HBoxContainer" parent="FileList/SubtabSource/Footer"]
+[node name="HBox_SourceTextFooter" type="HBoxContainer" parent="FileList/FileList/Footer"]
 layout_mode = 2
 theme = SubResource("Theme_fwkao")
 alignment = 1
 
-[node name="Button_Copy" type="Button" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="Button_Copy" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_COPY_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_grteu")
 icon = ExtResource("9_a6hhu")
 
-[node name="Button_Cut" type="Button" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="Button_Cut" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_CUT_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_rank1")
 icon = ExtResource("10_k8i8t")
 
-[node name="Button_Paste" type="Button" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="Button_Paste" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_PASTE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_c6cgf")
 icon = ExtResource("10_mqrpi")
 
-[node name="Button_Duplicate" type="Button" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="Button_Duplicate" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_x2uvp")
 icon = ExtResource("6_puq1e")
 
-[node name="VSep1" type="VSeparator" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="VSep1" type="VSeparator" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
-[node name="Button_New" type="Button" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="Button_New" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_NEW_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("5_gi3dm")
 
-[node name="Button_Rename" type="Button" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="Button_Rename" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_RENAME_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_4accc")
 icon = ExtResource("13_cdee3")
 
-[node name="Button_Delete" type="Button" parent="FileList/SubtabSource/Footer/HBox"]
+[node name="Button_Delete" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DELETE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_stxmf")
 icon = ExtResource("8_n1hpl")
 
-[node name="SubtabTranslation" type="VBoxContainer" parent="FileList"]
+[node name="VBox_TranslationPicker" type="VBoxContainer" parent="FileList/FileList/Footer"]
+layout_mode = 2
+
+[node name="Label_Header" type="Label" parent="FileList/FileList/Footer/VBox_TranslationPicker"]
+layout_mode = 2
+text = "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
+label_settings = SubResource("LabelSettings_p586a")
+horizontal_alignment = 1
+
+[node name="Label_TEMP" type="Label" parent="FileList/FileList/Footer/VBox_TranslationPicker"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Translation management is currently WIP!"
+label_settings = SubResource("LabelSettings_dgqq0")
+horizontal_alignment = 1
+
+[node name="Option_Lang" type="OptionButton" parent="FileList/FileList/Footer/VBox_TranslationPicker"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="FileList/SubtabTranslation"]
-layout_mode = 2
-text = "Dedicated translation tab WIP!"
-horizontal_alignment = 1
+mouse_default_cursor_shape = 2
+alignment = 1
+script = ExtResource("17_3lgct")
+StartingLanguage = 1
+AutomaticallySetGameVersion = true
 
 [node name="Info" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -476,10 +499,10 @@ expand_icon = true
 
 [node name="TabMsbtFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
 script = ExtResource("15_3v0li")
-CopyButton = NodePath("../FileList/SubtabSource/Footer/HBox/Button_Copy")
-PasteButton = NodePath("../FileList/SubtabSource/Footer/HBox/Button_Paste")
-CutButton = NodePath("../FileList/SubtabSource/Footer/HBox/Button_Cut")
-DeleteButton = NodePath("../FileList/SubtabSource/Footer/HBox/Button_Delete")
+CopyButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy")
+PasteButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste")
+CutButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut")
+DeleteButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Delete")
 
 [node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="TabMsbtFileAccessor"]
 title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
@@ -531,15 +554,19 @@ dialog_autowrap = true
 cancel_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("16_hrtuc")
 
+[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="show"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/VBox_TranslationPicker" method="hide"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="hide"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/VBox_TranslationPicker" method="show"]
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
-[connection signal="pressed" from="FileList/SubtabSource/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
-[connection signal="pressed" from="FileList/SubtabSource/Footer/HBox/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
-[connection signal="pressed" from="FileList/SubtabSource/Footer/HBox/Button_Cut" to="TabMsbtFileAccessor" method="OnCutFile"]
-[connection signal="pressed" from="FileList/SubtabSource/Footer/HBox/Button_Paste" to="TabMsbtFileAccessor" method="OnPasteFile"]
-[connection signal="pressed" from="FileList/SubtabSource/Footer/HBox/Button_Duplicate" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_DuplicateMsbt"]]
-[connection signal="pressed" from="FileList/SubtabSource/Footer/HBox/Button_New" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_NewMsbt"]]
-[connection signal="pressed" from="FileList/SubtabSource/Footer/HBox/Button_Rename" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_RenameMsbt"]]
-[connection signal="pressed" from="FileList/SubtabSource/Footer/HBox/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
+[connection signal="pressed" from="FileList/FileList/FileListContent/VBox/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut" to="TabMsbtFileAccessor" method="OnCutFile"]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste" to="TabMsbtFileAccessor" method="OnPasteFile"]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Duplicate" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_DuplicateMsbt"]]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_New" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_NewMsbt"]]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Rename" to="." method="OnOpenPopupMenuRequested" binds= ["Popup_RenameMsbt"]]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
 [connection signal="pressed" from="Info/VBox/VBox_Stats/DebugHash/Content/Button_Copy" to="." method="OnCopyFileHashPressed"]
 [connection signal="pressed" from="Info/VBox/Footer/Button_Open" to="." method="OnFooterOpenFilePressed"]
 [connection signal="submitted" from="Popup_DuplicateMsbt" to="TabMsbtFileAccessor" method="OnDuplicateFile"]

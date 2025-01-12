@@ -244,3 +244,4 @@ wiki/remote_source="https://github.com/Amethyst-szs/MoonFlow/tree/stable/MoonFlo
 wiki/local_source="res://docs/"
 wiki/is_use_local=true
 wiki/is_display_toggle_notice=true
+localization/translation_language="USen"
