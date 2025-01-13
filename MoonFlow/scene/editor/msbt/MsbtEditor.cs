@@ -320,7 +320,7 @@ public partial class MsbtEditor : PanelContainer
 		var metaAccess = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
 
 		// If no entries in the file are modified, remove last modified time
-		if (!isAnyEntryModified)
+		if (!isAnyEntryModified && File.GetEntryCount() > 0)
 			metaAccess.RemoveLastModifiedTime(File);
 		else // Otherwise, update last modified time to now
 			metaAccess.SetLastModifiedTime(File);
