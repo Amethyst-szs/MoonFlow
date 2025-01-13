@@ -41,7 +41,7 @@ public static partial class Extension
     {
         foreach (var child in root.GetChildren())
         {
-            if (!condition.Invoke(child) && child is T type)
+            if (condition.Invoke(child) && child is T type)
                 return type;
 
             var result = FindChildByType<T>(child);
