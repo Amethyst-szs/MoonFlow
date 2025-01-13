@@ -3413,6 +3413,10 @@ msgstr ""
 "pirated content owned by Nintendo. If you want to donate\n"
 "to show appreciation, only do it if you really want to!"
 
+#: scene/version/version_tooltip.tscn
+msgid "VERSION_UPDATE_TOOLTIP_HEADER"
+msgstr "Update Available!"
+
 #~ msgid "EVENT_FLOW_APP_BUTTON_WIKI"
 #~ msgstr "Help Docs"
 

@@ -83,6 +83,7 @@
 # res://scene/common/wiki/scene/app_local_wiki_viewer.tscn
 # res://scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
 # res://lang/db/header_tooltip.tres
+# res://scene/version/version_tooltip.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -3386,4 +3387,8 @@ msgstr ""
 #: lang/db/header_tooltip.tres
 msgctxt "HEADER_TOOLTIP"
 msgid "HelpSupport"
+msgstr ""
+
+#: scene/version/version_tooltip.tscn
+msgid "VERSION_UPDATE_TOOLTIP_HEADER"
 msgstr ""

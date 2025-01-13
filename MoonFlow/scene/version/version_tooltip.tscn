@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://crj52wf2ja5b6"]
+
+[ext_resource type="Script" path="res://scene/version/version_tooltip.gd" id="3_koceu"]
+[ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="3_vt6ie"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_gl4oc"]
+
+[sub_resource type="FontVariation" id="FontVariation_4s2fr"]
+base_font = ExtResource("4_gl4oc")
+variation_transform = Transform2D(1, 0.15, 0, 1, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gksj3"]
+font = SubResource("FontVariation_4s2fr")
+font_size = 18
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vxrqi"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.780392)
+
+[node name="Layout" type="VBoxContainer"]
+offset_right = 394.0
+offset_bottom = 68.0
+theme_override_constants/separation = 8
+script = ExtResource("3_koceu")
+
+[node name="HBox_Header" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Texture_Icon" type="TextureRect" parent="HBox_Header"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3_vt6ie")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label_Header" type="Label" parent="HBox_Header"]
+layout_mode = 2
+text = "VERSION_UPDATE_TOOLTIP_HEADER"
+label_settings = SubResource("LabelSettings_gksj3")
+
+[node name="Rich_Info" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Label_TimestampFooter" type="Label" parent="."]
+auto_translate_mode = 2
+layout_mode = 2
+text = "timestamp"
+label_settings = SubResource("LabelSettings_vxrqi")
+horizontal_alignment = 1

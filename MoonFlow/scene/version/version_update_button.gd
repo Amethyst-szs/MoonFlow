@@ -22,6 +22,8 @@ func _ready():
 	# Request data
 	request.request(url, header, HTTPClient.METHOD_GET)
 
+#region API Response
+
 func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, body_b: PackedByteArray) -> void:
 	if response_code != 200:
 		print_v_error("Update check failed (%s)" % response_code)
@@ -63,7 +65,11 @@ func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, b
 	var remote_unix_local: int = remote_unix + timezone
 	var timestr := Time.get_datetime_string_from_unix_time(remote_unix_local, true)
 	
-	tooltip_text = "%s\n%s\n%s\n%s" % [tr(tooltip_text), update_name, update_tag, timestr]
+	tooltip_text = "%s;%s;%s" % [
+		update_name,
+		update_tag,
+		timestr
+	]
 	
 	pressed.connect(_on_updater_pressed.bind(update_url))
 	show()
@@ -80,8 +86,29 @@ func _get_api_request_url() -> String:
 	print_v("Checking for update at: " + path)
 	return path
 
+#endregion
+
+#region Custom Tooltip
+
+const tooltip_scene := preload("res://scene/version/version_tooltip.tscn")
+
+func _make_custom_tooltip(for_text: String) -> Control:
+	var txt := for_text.split(';', false)
+	if txt.size() != 3:
+		push_error("Invalid tooltip text!")
+	
+	var scene = tooltip_scene.instantiate()
+	scene.setup_labels(txt[0], txt[1], txt[2])
+	return scene
+
+#endregion
+
+#region Print Utility
+
 func print_v(msg: String) -> void:
 	print_rich("[right][color=GRAY][i] |> " + msg)
 
 func print_v_error(msg: String) -> void:
 	print_rich("[right][color=INDIAN_RED][i] |> " + msg)
+
+#endregion
