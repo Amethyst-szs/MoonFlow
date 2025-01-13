@@ -7,6 +7,3 @@
 script = ExtResource("2_m16ol")
 DefaultPortOutColor = Color(0.690196, 0.768627, 0.870588, 1)
 PortColorList = []
-
-[node name="VBox_DebugDisplay" parent="Content/Debug" index="0"]
-mouse_filter = 1
