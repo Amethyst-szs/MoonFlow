@@ -63,6 +63,7 @@ public partial class ProjectLanguageHolder
             var meta = Metadata.GetMetadata(projFile, entry);
 
             meta.IsMod = true;
+            meta.IsCustom = true;
         }
     }
     private void BuildMetadataTableEntry(SarcMsbtFile projFile, SarcMsbtFile romFile)
@@ -81,6 +82,7 @@ public partial class ProjectLanguageHolder
             {
                 isDif = true;
                 meta.IsMod = true;
+                meta.IsCustom = true;
                 continue;
             }
 
@@ -89,6 +91,7 @@ public partial class ProjectLanguageHolder
             {
                 isDif = true;
                 meta.IsMod = true;
+                meta.IsCustom = false;
             }
         }
 

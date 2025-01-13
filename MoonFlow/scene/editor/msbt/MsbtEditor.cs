@@ -122,7 +122,7 @@ public partial class MsbtEditor : PanelContainer
 			EntryListHolder.SetupList<EntryListSimple>();
 
 		EntryListHolder.UpdateToolButtonRestrictions();
-		
+
 		EntryList.CreateContent(File, out string[] labels);
 
 		// Create entry content
@@ -259,6 +259,8 @@ public partial class MsbtEditor : PanelContainer
 	{
 		// Get access to the default language's SarcMsbtFile
 		var fileDL = FileList[DefaultLanguage];
+		
+		bool isAnyEntryModified = false;
 
 		for (int i = 0; i < FileList.Count; i++)
 		{
@@ -270,6 +272,8 @@ public partial class MsbtEditor : PanelContainer
 				// Get entry and meta for this language
 				var entry = f.Value.GetEntry(entryLabel);
 				var meta = metaHolder.GetMetadata(f.Value, entry);
+
+				isAnyEntryModified |= f.Value == fileDL && meta.IsMod;
 
 				// If language syncing is disabled for this entry, continue
 				if (meta.IsDisableSync)
@@ -297,11 +301,16 @@ public partial class MsbtEditor : PanelContainer
 			display.UpdateProgress(i, FileList.Count + 1);
 		}
 
-		// Write metadata
 		display.UpdateProgress(FileList.Count, FileList.Count + 1);
 
+		// Update last modified time
 		var metaAccess = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
-		metaAccess.SetLastModifiedTime(File);
+
+		// If no entries in the file are modified, remove last modified time
+		if (!isAnyEntryModified)
+			metaAccess.RemoveLastModifiedTime(File);
+		else // Otherwise, update last modified time to now
+			metaAccess.SetLastModifiedTime(File);
 
 		metaAccess.WriteFile();
 
@@ -319,9 +328,13 @@ public partial class MsbtEditor : PanelContainer
 
 	public void OnEntryListSelection(string label)
 	{
+		// Fetch and display coresponding entry editor
 		EntryContentSelection = EntryContentHolder.GetNodeOrNull<MsbtEntryEditor>(label);
 		if (IsInstanceValid(EntryContentSelection))
 			EntryContentSelection.Show();
+
+		// Alert entry list holder of new selection
+		EntryListHolder.OnEntrySelectedOrModified(label);
 
 		// Update entry header
 		FileEntryName.Text = label;
@@ -329,12 +342,20 @@ public partial class MsbtEditor : PanelContainer
 
 	public void OnAddEntryNameSubmitted(string name)
 	{
+		// Update MSBT entry
 		foreach (var file in FileList.Values)
 			file.AddEntry(name);
 
+		// Create metadata
+		var metaH = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+		var meta = metaH.GetMetadata(File, name);
+
+		meta.IsMod = true;
+		meta.IsCustom = true;
+
+		// Create editor for current language
 		EntryList.CreateEntryListButton(name, true);
 
-		// Create editable editor for current language
 		var editor = CreateEntryContentEditor(File.GetEntryIndex(name));
 		EntryContentHolder.AddChild(editor, true);
 
@@ -366,6 +387,38 @@ public partial class MsbtEditor : PanelContainer
 		SetModified();
 	}
 
+	private void OnResetEntryToRom()
+	{
+		// Fetch rom msbt
+		var projArcs = ProjectManager.GetMSBTArchives(CurrentLanguage);
+		var romMsbt = projArcs.GetMsbtInRomfsAccessor(File);
+
+		if (romMsbt == null)
+			return;
+
+		// Lookup selected entry in both msbt files
+		var label = EntryList.EntryListSelection.Name;
+		if (!File.IsContainKey(label) || !romMsbt.IsContainKey(label))
+			return;
+
+		var projEntry = File.GetEntry(label);
+		var romEntry = romMsbt.GetEntry(label);
+
+		// Copy content from rom to project
+		projEntry.Pages.Clear();
+
+		foreach (var page in romEntry.Pages)
+			projEntry.Pages.Add(page.Clone());
+
+		// Wipe metadata
+		var metaH = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+		metaH.TryResetMetadata(File, label);
+
+		// Reload application
+		InitEditor();
+		SetModified();
+	}
+
 	private void OnEntryModified(MsbtEntryEditor entryEditor)
 	{
 		// Set flag
@@ -378,6 +431,8 @@ public partial class MsbtEditor : PanelContainer
 		// Alert other nodes of the content modification
 		var entryName = entryEditor.Entry.Name;
 		EmitSignal(SignalName.ContentModified, entryName);
+
+		EntryListHolder.OnEntrySelectedOrModified(entryName);
 	}
 
 	private void OnLanguagePickerSelectedLang(string lang, int idx)
@@ -429,7 +484,7 @@ public partial class MsbtEditor : PanelContainer
 			LanguagePicker.SetSelection(CurrentLanguage);
 			return;
 		}
-		
+
 		if (IsModified)
 			await SaveFile(false);
 

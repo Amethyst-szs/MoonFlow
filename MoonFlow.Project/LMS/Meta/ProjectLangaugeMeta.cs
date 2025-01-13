@@ -7,6 +7,7 @@ public class ProjectLanguageFileEntryMeta()
 {
     public bool IsMod = false;
     public bool IsDisableSync = false;
+    public bool IsCustom = false;
 
     public static readonly ProjectLanguageFileEntryMeta Default = new();
 
@@ -17,7 +18,7 @@ public class ProjectLanguageFileEntryMeta()
             return false;
 
         var o = (ProjectLanguageFileEntryMeta)obj;
-        return IsMod == o.IsMod && IsDisableSync == o.IsDisableSync;
+        return IsMod == o.IsMod && IsDisableSync == o.IsDisableSync && IsCustom == o.IsCustom;
     }
     public override int GetHashCode() { return base.GetHashCode(); }
 }

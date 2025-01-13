@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -12,7 +13,9 @@ public partial class EntryListHolder : VBoxContainer
 		= GD.Load<GDScript>("res://addons/SmoothScroll/SmoothScrollContainer.gd");
 
 	[Export]
-	public LineEdit SearchBoxLine { get; private set; } = null;
+	public LineEdit SearchBoxLine { get; private set; }
+	[Export]
+	public Button ButtonResetEntry { get; private set; }
 	[Export]
 	public Array<Button> ButtonListBlockedInTranslateMode { get; private set; } = [];
 
@@ -21,7 +24,7 @@ public partial class EntryListHolder : VBoxContainer
 	[Signal]
 	public delegate void DeleteEntryEventHandler();
 	[Signal]
-	public delegate void OpenHelpPageEventHandler();
+	public delegate void ResetEntryEventHandler();
 
 	public void SetupList<TList>() where TList : EntryListBase, new()
 	{
@@ -33,7 +36,7 @@ public partial class EntryListHolder : VBoxContainer
 		{
 			if (child is not ScrollContainer)
 				continue;
-			
+
 			RemoveChild(child);
 			child.QueueFree();
 		}
@@ -55,18 +58,18 @@ public partial class EntryListHolder : VBoxContainer
 		scroll.Set("allow_horizontal_scroll", false);
 		scroll.Set("force_vertical_scrolling", true);
 
-        // Create entry list
-        EntryList = new TList()
-        {
-            SizeFlagsHorizontal = SizeFlags.ExpandFill,
-            SizeFlagsVertical = SizeFlags.ExpandFill,
-            Editor = Editor
-        };
+		// Create entry list
+		EntryList = new TList()
+		{
+			SizeFlagsHorizontal = SizeFlags.ExpandFill,
+			SizeFlagsVertical = SizeFlags.ExpandFill,
+			Editor = Editor
+		};
 
-        // Attach to tree
+		// Attach to tree
 		AddChild(scroll);
 		MoveChild(scroll, 0);
-        scroll.AddChild(EntryList);
+		scroll.AddChild(EntryList);
 	}
 
 	public void UpdateToolButtonRestrictions()
@@ -75,12 +78,24 @@ public partial class EntryListHolder : VBoxContainer
 			button.Disabled = Editor.CurrentLanguage != Editor.DefaultLanguage;
 	}
 
-	private void UpdateSearch(string str)
+	#region Signals
+
+	public void OnEntrySelectedOrModified(string label)
+	{
+		// Fetch label metadata for current lang
+		var metaH = ProjectManager.GetMSBTMetaHolder(Editor.CurrentLanguage);
+		var meta = metaH.GetMetadata(Editor.File, label);
+
+		// Toggle button activeness based on data
+		ButtonResetEntry.Disabled = !meta.IsMod || meta.IsCustom;
+	}
+
+	private void OnUpdateSearch(string str)
 	{
 		EntryList.UpdateSearch(str);
 	}
 
-	private void RequestDeleteEntry()
+	private void OnRequestDeleteEntry()
 	{
 		var selection = EntryList.EntryListSelection;
 		if (!IsInstanceValid(selection))
@@ -88,4 +103,14 @@ public partial class EntryListHolder : VBoxContainer
 
 		EmitSignal(SignalName.DeleteEntry);
 	}
+	private void OnRequestResetEntry()
+	{
+		var selection = EntryList.EntryListSelection;
+		if (!IsInstanceValid(selection))
+			return;
+
+		EmitSignal(SignalName.ResetEntry);
+	}
+
+	#endregion
 }

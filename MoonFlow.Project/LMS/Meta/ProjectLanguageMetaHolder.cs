@@ -70,6 +70,20 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         return newMeta;
     }
 
+    public void TryResetMetadata(SarcMsbtFile file, MsbtEntry entry) { TryResetMetadata(file, entry.Name); }
+    public void TryResetMetadata(SarcMsbtFile file, string entry)
+    {
+        string hash = CalcHash(file.Sarc.Name, file.Name, entry);
+        TryResetMetadata(hash);
+    }
+    public void TryResetMetadata(string hash)
+    {
+        var meta = GetMetadata(hash);
+        meta.IsMod = false;
+        meta.IsDisableSync = false;
+        meta.IsCustom = false;
+    }
+
     public DateTime GetLastModifiedTime(SarcMsbtFile file)
     {
         return GetLastModifiedTime(file.Sarc, file.Name);
@@ -105,6 +119,16 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     {
         string hash = CalcHash(file.Name, key);
         Data.FileTable[hash] = DateTime.Now.ToFileTimeUtc();
+    }
+
+    public void RemoveLastModifiedTime(SarcMsbtFile file)
+    {
+        RemoveLastModifiedTime(file.Sarc, file.Name);
+    }
+    public void RemoveLastModifiedTime(SarcFile file, string key)
+    {
+        string hash = CalcHash(file.Name, key);
+        Data.FileTable[hash] = DateTime.UnixEpoch.ToFileTimeUtc();
     }
 
     #endregion
