@@ -48,9 +48,16 @@ public static class PathUtility
     }
 
     private static Data Instance = null;
+    private static bool IsInvalidInstanceData = false;
 
     private static string GetPath(string key)
     {
+        if (IsInvalidInstanceData)
+        {
+            Assert.Skip("No path provided for test requiring " + key);
+            return null;
+        }
+
         if (Instance == null)
             InstantiateData();
 
@@ -85,9 +92,13 @@ public static class PathUtility
         const string path = "../../../GamePaths.json";
         const string template = "../../../Resources/GamePathTemplate.json";
 
+        if (IsInvalidInstanceData)
+            return;
+
         // Attempt to access json
         if (!File.Exists(path))
         {
+            IsInvalidInstanceData = true;
             File.Copy(template, path);
 
             const string errStr = "\n\n - MISSING GAME PATHS - \n\n go to Nindot.Tests/GamePaths.json and add your game paths!";

@@ -11,10 +11,6 @@ var tools: Dictionary = {
 
 func _enter_tree():
 	# Setup export plugin
-	var n := "GitInfoSingletonRegisterUtility"
-	if !ProjectSettings.has_setting("autoload/" + n):
-		add_autoload_singleton(n, "res://addons/git_database/plugin/instance_register.gd")
-	
 	add_export_plugin(export_handler)
 	
 	# Setup tool menu
