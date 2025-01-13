@@ -10,10 +10,8 @@ public abstract partial class EntryListBase : VBoxContainer
 {
     public MsbtEditor Editor = null;
 
-    public Button EntryListSelection { get; private set; } = null;
+    public EntryLabelButton EntryListSelection { get; private set; } = null;
     public Label EntryCount { get; private set; } = null;
-
-    protected static readonly Texture2D ModifiedTexture = GD.Load<Texture2D>("res://asset/material/file/modify.svg");
 
     [Signal]
     public delegate void EntrySelectedEventHandler(string label);
@@ -31,7 +29,7 @@ public abstract partial class EntryListBase : VBoxContainer
             Callable.From(new Action<string>(OnContentModified)));
 
         // Connect parent to our signals
-        Connect(EntryListBase.SignalName.EntrySelected,
+        Connect(SignalName.EntrySelected,
             Callable.From(new Action<string>(Editor.OnEntryListSelection)));
     }
 
@@ -65,7 +63,7 @@ public abstract partial class EntryListBase : VBoxContainer
             return;
 
         // Open entry
-        var button = FindChild(label, true, false) as Button;
+        var button = FindChild(label, true, false) as EntryLabelButton;
         EntryListSelection = button;
 
         if (button == null)
@@ -148,9 +146,9 @@ public abstract partial class EntryListBase : VBoxContainer
 
     private static void ShowAllEntries(Node node)
     {
-        if (node.GetType() == typeof(Button))
+        if (node is EntryLabelButton button)
         {
-            (node as Button).Show();
+            button.Show();
             return;
         }
 
@@ -181,9 +179,9 @@ public abstract partial class EntryListBase : VBoxContainer
 
     private void UpdateSelectionToFirstVisibleItem(Node node)
     {
-        if (node.GetType() == typeof(Button) && (node as Button).Visible)
+        if (node is EntryLabelButton button && button.Visible)
         {
-            SetSelection(node.Name, false);
+            SetSelection(button.Name, false);
             return;
         }
 
@@ -249,16 +247,14 @@ public abstract partial class EntryListBase : VBoxContainer
         if (label == string.Empty)
             return;
 
-        var entryButton = FindChild(label, true, false) as Button;
-
-        if (entryButton.Icon != ModifiedTexture)
-            entryButton.Icon = ModifiedTexture;
+        var button = FindChild(label, true, false) as EntryLabelButton;
+        button.SetUnsavedState(true);
     }
 
     public static void ClearAllModifiedIcons(Node node)
     {
-        if (node.GetType() == typeof(Button) && !node.Name.ToString().EndsWith("_Dropdown"))
-            (node as Button).Icon = null;
+        if (node is EntryLabelButton button && !node.Name.ToString().EndsWith("_Dropdown"))
+            button.SetUnsavedState(false);
 
         foreach (var child in node.GetChildren())
             ClearAllModifiedIcons(child);

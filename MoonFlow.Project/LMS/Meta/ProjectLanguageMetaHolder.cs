@@ -52,7 +52,11 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
 
     public ProjectLanguageFileEntryMeta GetMetadata(SarcMsbtFile file, MsbtEntry entry)
     {
-        string hash = CalcHash(file.Sarc.Name, file.Name, entry.Name);
+        return GetMetadata(file, entry.Name);
+    }
+    public ProjectLanguageFileEntryMeta GetMetadata(SarcMsbtFile file, string entry)
+    {
+        string hash = CalcHash(file.Sarc.Name, file.Name, entry);
         return GetMetadata(hash);
     }
     public ProjectLanguageFileEntryMeta GetMetadata(string hash)

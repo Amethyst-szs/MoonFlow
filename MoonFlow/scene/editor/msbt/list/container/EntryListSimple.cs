@@ -3,6 +3,8 @@ using System;
 
 using Nindot.LMS.Msbt;
 
+using MoonFlow.Project;
+
 namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class EntryListSimple : EntryListBase
@@ -14,7 +16,7 @@ public partial class EntryListSimple : EntryListBase
         Array.Sort(labels, string.Compare);
 
         foreach (var key in labels)
-            CreateEntryListButton(key, key, this, false);
+            CreateEntryListButton(key);
     }
 
     public override void CreateEntryListButton(string key, bool isSort = false)
@@ -24,23 +26,17 @@ public partial class EntryListSimple : EntryListBase
 
     public override void CreateEntryListButton(string key, string label, Control container, bool isSort = false)
     {
-        // Instantiate button
-        var button = new Button
-        {
-            Name = key,
-            Text = label,
-            ToggleMode = true,
-            TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis,
+        // Get metadata
+        var metaH = ProjectManager.GetMSBTMetaHolder(Editor.CurrentLanguage);
+        var metaHSource = ProjectManager.GetMSBTMetaHolder(Editor.DefaultLanguage);
 
-            ExpandIcon = true,
-            IconAlignment = HorizontalAlignment.Right
-        };
+        var meta = metaH.GetMetadata(Editor.File, key);
+        var metaSource = metaHSource.GetMetadata(Editor.FileList[Editor.DefaultLanguage], key);
 
-        button.Connect(Button.SignalName.Pressed, Callable.From(() => OnEntrySelected(key)));
-        button.Connect(Button.SignalName.ButtonDown, Callable.From(() => OnEntrySelected(key)));
-        button.Connect(Button.SignalName.MouseEntered, Callable.From(() => OnEntryHovered(key)));
+        // Create button
+        var button = SceneCreator<EntryLabelButton>.Create();
+        button.SetupButton(this, key, label, meta, metaSource);
 
-        // Add child to container
         container.AddChild(button);
 
         if (!isSort)

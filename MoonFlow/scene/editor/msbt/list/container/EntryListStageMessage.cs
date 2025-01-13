@@ -1,9 +1,11 @@
+using System;
+using System.Linq;
 using Godot;
 using Godot.Collections;
-using System.Linq;
 
 using Nindot.LMS.Msbt;
-using System;
+
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -63,25 +65,18 @@ public partial class EntryListStageMessage : EntryListBase
             return;
         }
 
-        // Instantiate button
-        var button = new Button
-        {
-            Name = key,
-            Text = label,
-            ToggleMode = true,
-            TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis,
+        // Get metadata
+        var metaH = ProjectManager.GetMSBTMetaHolder(Editor.CurrentLanguage);
+        var metaHSource = ProjectManager.GetMSBTMetaHolder(Editor.DefaultLanguage);
 
-            ExpandIcon = true,
-            IconAlignment = HorizontalAlignment.Right,
-        };
+        var meta = metaH.GetMetadata(Editor.File, key);
+        var metaSource = metaHSource.GetMetadata(Editor.FileList[Editor.DefaultLanguage], key);
 
-        button.Connect(Button.SignalName.Pressed, Callable.From(() => OnEntrySelected(key)));
-        button.Connect(Button.SignalName.ButtonDown, Callable.From(() => OnEntrySelected(key)));
-        button.Connect(Button.SignalName.MouseEntered, Callable.From(() => OnEntryHovered(key)));
+        // Create button
+        var button = SceneCreator<EntryLabelButton>.Create();
+        button.SetupButton(this, key, label, meta, metaSource);
 
-        // Add child to container
         container.AddChild(button);
-        return;
     }
 
     public void CreateStageMessageContainers()

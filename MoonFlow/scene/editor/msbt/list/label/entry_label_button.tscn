@@ -1,0 +1,54 @@
+[gd_scene load_steps=13 format=3 uid="uid://bbovlwtl0g0pg"]
+
+[ext_resource type="Script" path="res://scene/editor/msbt/list/label/EntryLabelButton.cs" id="1_mbybi"]
+[ext_resource type="Texture2D" uid="uid://bcf0vbtvkcb6l" path="res://asset/material/file/none.svg" id="2_0mxtj"]
+[ext_resource type="Texture2D" uid="uid://cgtps2ds2pw72" path="res://asset/material/file/modify.svg" id="2_ggae6"]
+[ext_resource type="Script" path="res://scene/editor/msbt/list/label/EntryLabelButtonState.cs" id="2_ykqm8"]
+[ext_resource type="Texture2D" uid="uid://bk2pfw1btay2y" path="res://asset/material/file/content.svg" id="4_e8osq"]
+[ext_resource type="Texture2D" uid="uid://bvmbjlr5j6r5p" path="res://asset/material/file/translate_off.svg" id="5_dlnhu"]
+[ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="6_bfh61"]
+
+[sub_resource type="Resource" id="Resource_12i87"]
+script = ExtResource("2_ykqm8")
+Icon = ExtResource("2_0mxtj")
+TextBankKey = "None"
+Modulate = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="Resource" id="Resource_lgman"]
+script = ExtResource("2_ykqm8")
+Icon = ExtResource("2_ggae6")
+TextBankKey = "IconUnsaved"
+Modulate = Color(1, 0.918333, 0.65, 1)
+
+[sub_resource type="Resource" id="Resource_516x6"]
+script = ExtResource("2_ykqm8")
+Icon = ExtResource("4_e8osq")
+TextBankKey = "IconModified"
+Modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_4huo2"]
+script = ExtResource("2_ykqm8")
+Icon = ExtResource("6_bfh61")
+TextBankKey = "IconUnmodifiedInSourceLang"
+Modulate = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="Resource" id="Resource_3hegl"]
+script = ExtResource("2_ykqm8")
+Icon = ExtResource("5_dlnhu")
+TextBankKey = "IconUntranslated"
+Modulate = Color(1, 0.65, 0.65, 1)
+
+[node name="EntryLabelButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text_overrun_behavior = 3
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("1_mbybi")
+IconDefault = SubResource("Resource_12i87")
+IconUnsaved = SubResource("Resource_lgman")
+IconModified = SubResource("Resource_516x6")
+IconUnmodifiedInSourceLang = SubResource("Resource_4huo2")
+IconUntranslated = SubResource("Resource_3hegl")

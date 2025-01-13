@@ -270,17 +270,11 @@ msgstr "Translation"
 msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 msgstr "Search Files"
 
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn
-msgid "HOME_TAB_TEXT_SYSTEM"
-msgstr "System Text"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn
-msgid "HOME_TAB_TEXT_STAGE"
-msgstr "Stage Text"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_msbt/popup_msbt_create.tscn
-msgid "HOME_TAB_TEXT_LAYOUT"
-msgstr "Layout Text"
+#: scene/home/tab_msbt/tab_msbt.tscn
+msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
+msgstr ""
+"Cannot translate to the project's default language, change translation "
+"languages below."
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_MSBP_TOOLS"
@@ -1548,6 +1542,18 @@ msgstr "Quests"
 #: scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_SELECT_ARCHIVE"
 msgstr "Archive:"
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_TEXT_SYSTEM"
+msgstr "System Text"
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_TEXT_STAGE"
+msgstr "Stage Text"
+
+#: scene/home/tab_msbt/popup_msbt_create.tscn
+msgid "HOME_TAB_TEXT_LAYOUT"
+msgstr "Layout Text"
 
 #: scene/home/tab_msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_FILE_NAME_HEADER"
@@ -3317,6 +3323,31 @@ msgstr ""
 #: scene/editor/msbt/components/dialog_language_change_unsaved.tscn
 msgid "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_CANCEL"
 msgstr "Go back"
+
+#: scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
+msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
+msgid "None"
+msgstr "Unmodified Entry"
+
+#: scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
+msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
+msgid "IconUnsaved"
+msgstr "Unsaved Entry"
+
+#: scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
+msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
+msgid "IconModified"
+msgstr "Modified Entry"
+
+#: scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
+msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
+msgid "IconUnmodifiedInSourceLang"
+msgstr "Unmodified in Source Langauge"
+
+#: scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
+msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
+msgid "IconUntranslated"
+msgstr "Untranslated Entry"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
