@@ -274,7 +274,7 @@ msgstr "Search Files"
 msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
 msgstr ""
 "Cannot translate to the project's default language, change translation "
-"languages below."
+"language below!"
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_TAB_TEXT_MSBP_TOOLS"

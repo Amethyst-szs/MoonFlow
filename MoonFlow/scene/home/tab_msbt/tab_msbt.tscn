@@ -44,7 +44,7 @@ keycode = 50
 events = [SubResource("InputEventKey_n36k0")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
-font_color = Color(1, 0.563667, 0.23, 0.745098)
+font_color = Color(0.996078, 0.498039, 0.176471, 1)
 
 [sub_resource type="Theme" id="Theme_fwkao"]
 Button/constants/icon_max_width = 24
@@ -178,6 +178,7 @@ size_flags_vertical = 3
 text = "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
 label_settings = SubResource("LabelSettings_dgqq0")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="FileListContent" type="ScrollContainer" parent="FileList/FileList"]
 unique_name_in_owner = true
@@ -512,14 +513,14 @@ cancel_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("16_hrtuc")
 
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/Line_Search" method="emit_text"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/FileListContent/Content/VBox_Project" method="show"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="show"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/VBox_TranslationPicker" method="hide"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/FileListContent/Content/VBox_Project" method="show"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Source" to="." method="OnEnableTranslationFeatures" binds= [false]]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/Line_Search" method="emit_text"]
+[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/FileListContent/Content/VBox_Project" method="hide"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="hide"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/VBox_TranslationPicker" method="show"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/FileListContent/Content/VBox_Project" method="hide"]
 [connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="." method="OnEnableTranslationFeatures" binds= [true]]
 [connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
