@@ -43,7 +43,7 @@ public partial class ActionbarHelp : ActionbarItemBase
 		var scene = await GetScene();
 		var app = scene.GetActiveApp();
 
-		if (app == null)
+		if (app == null || app.WikiPage == null)
 			DefaultWikiPage.OpenWiki(GetTree());
 		
 		app.WikiPage.OpenWiki(GetTree());

@@ -121,6 +121,8 @@ public partial class MsbtEditor : PanelContainer
 		else if (EntryList is EntryListStageMessage && !IsStageMessage())
 			EntryListHolder.SetupList<EntryListSimple>();
 
+		EntryListHolder.UpdateToolButtonRestrictions();
+		
 		EntryList.CreateContent(File, out string[] labels);
 
 		// Create entry content

@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -7,11 +8,13 @@ public partial class EntryListHolder : VBoxContainer
 	public MsbtEditor Editor { get; private set; } = null;
 	public EntryListBase EntryList { get; private set; } = null;
 
-	[Export]
-	public LineEdit SearchBoxLine { get; private set; } = null;
-
 	private static readonly GDScript SmoothScroll
 		= GD.Load<GDScript>("res://addons/SmoothScroll/SmoothScrollContainer.gd");
+
+	[Export]
+	public LineEdit SearchBoxLine { get; private set; } = null;
+	[Export]
+	public Array<Button> ButtonListBlockedInTranslateMode { get; private set; } = [];
 
 	[Signal]
 	public delegate void CreateEntryEventHandler(string label);
@@ -64,6 +67,12 @@ public partial class EntryListHolder : VBoxContainer
 		AddChild(scroll);
 		MoveChild(scroll, 0);
         scroll.AddChild(EntryList);
+	}
+
+	public void UpdateToolButtonRestrictions()
+	{
+		foreach (var button in ButtonListBlockedInTranslateMode)
+			button.Disabled = Editor.CurrentLanguage != Editor.DefaultLanguage;
 	}
 
 	private void UpdateSearch(string str)

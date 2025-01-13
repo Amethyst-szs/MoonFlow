@@ -55,10 +55,7 @@ public partial class AppScene : Control
 	private PackedScene UnsavedChangesScene = null;
 
 	[Export, ExportGroup("Header Properties")]
-	public WikiAccessorResource WikiPage { get; private set; } = GD.Load(
-		"res://scene/common/wiki/paths/default.tres"
-	) as WikiAccessorResource;
-
+	public WikiAccessorResource WikiPage { get; private set; }
 	// ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
 	private bool _isModified = false;

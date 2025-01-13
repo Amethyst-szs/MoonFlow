@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=38 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
 [ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="2_7jypk"]
 [ext_resource type="Shader" path="res://asset/shader/graph/graph_background.gdshader" id="3_budwu"]
+[ext_resource type="Resource" uid="uid://o4ehsw6vvdii" path="res://scene/common/wiki/paths/event.tres" id="4_boih4"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/graph_background_rect.gd" id="4_e62qm"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/GraphCanvas.cs" id="5_5dp1p"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/scroll_navigation.gd" id="6_va4yh"]
@@ -21,10 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="19_74ak0"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="19_jis4j"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="20_x5ttv"]
-[ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="21_urv24"]
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="21_xbido"]
-[ext_resource type="Script" path="res://scene/common/wiki/access/WikiAccessorResource.cs" id="22_ad725"]
-[ext_resource type="Script" path="res://scene/common/wiki/access/WikiAccessButton.cs" id="22_qdlgd"]
 [ext_resource type="PackedScene" uid="uid://toha7mro71ue" path="res://scene/editor/event/meta/popup_event_metadata.tscn" id="25_puyck"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
@@ -63,11 +61,6 @@ action = &"ui_graph_delete"
 [sub_resource type="Shortcut" id="Shortcut_7271u"]
 events = [SubResource("InputEventAction_6oj6g")]
 
-[sub_resource type="Resource" id="Resource_ib0jw"]
-script = ExtResource("22_ad725")
-Path = "res://docs/events/basics_event_graph.md"
-LocalPath = "events/basics_event_graph.md"
-
 [sub_resource type="InputEventAction" id="InputEventAction_lu5vy"]
 action = &"ui_toggle_debug"
 
@@ -100,6 +93,7 @@ AppTaskbarTitle = "EventFlow"
 AppIcon = ExtResource("2_7jypk")
 AppFlags = 115
 UnsavedChangesScene = ExtResource("2_7ecjt")
+WikiPage = ExtResource("4_boih4")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -2
@@ -238,14 +232,7 @@ tooltip_text = "EVENT_FLOW_APP_BUTTON_DELETE_NODES"
 shortcut = SubResource("Shortcut_7271u")
 icon = ExtResource("19_74ak0")
 
-[node name="Button_Help" type="Button" parent="Header/UI/HBox_Tools"]
-layout_mode = 2
-tooltip_text = "EVENT_FLOW_APP_BUTTON_WIKI"
-icon = ExtResource("21_urv24")
-script = ExtResource("22_qdlgd")
-WikiTarget = SubResource("Resource_ib0jw")
-
-[node name="Button_DebugDataView" type="Button" parent="Header/UI"]
+[node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_Tools"]
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
@@ -285,7 +272,7 @@ visible = false
 [connection signal="pressed" from="Header/UI/HBox_ZoomControl/Button_ZoomIn" to="Graph/Graph_ScrollNavigation" method="_on_button_zoom_in_pressed"]
 [connection signal="pressed" from="Header/UI/HBox_Tools/Button_InjectNode" to="Graph" method="OpenInjectMenu"]
 [connection signal="pressed" from="Header/UI/HBox_Tools/Button_DeleteNodes" to="Graph" method="UnhandledInputDelete"]
-[connection signal="toggled" from="Header/UI/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]
+[connection signal="toggled" from="Header/UI/HBox_Tools/Button_DebugDataView" to="Graph" method="SetDebugDataViewState"]
 [connection signal="tree_entered" from="Header/UI/VBox_DebugTools" to="Header/UI/VBox_DebugTools" method="hide"]
 [connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Graph/NodeHolder" method="SelectById"]
 [connection signal="text_submitted" from="Header/UI/VBox_DebugTools/Line_SelectId" to="Header/UI/VBox_DebugTools/Line_SelectId" method="clear" unbinds=1]
