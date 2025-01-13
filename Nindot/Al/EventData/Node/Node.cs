@@ -220,7 +220,7 @@ public abstract class Node
             return false;
 
         // Ensure the edge index is below the max edge count
-        if (edgeIndex >= GetMaxOutgoingEdges())
+        if (edgeIndex >= GetMaxOutgoingEdges() && IsForceOutgoingEdgeCount())
             return false;
 
         CaseEventList.SetNextNodeForCase(next, edgeIndex);
