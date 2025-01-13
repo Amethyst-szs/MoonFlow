@@ -382,21 +382,38 @@ public partial class MsbtEditor : PanelContainer
 	{
 		if (!IsInstanceValid(EntryList.EntryListSelection) || !IsInstanceValid(EntryContentSelection))
 			return;
+		
+		// Fetch list of all labels
+		var labelList = File.GetEntryLabels().ToList();
+		labelList.Sort();
 
+		// Get currently selected entry and its index
 		string entry = EntryList.EntryListSelection.EntryLabel;
-		string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
 
+		// Get previous entry's name to be the new selection after delete
+		int entryIdx = labelList.IndexOf(entry);
+		string prevEntry = null;
+
+		if (labelList.Count > 1)
+		{
+			if (entryIdx > 0)
+				prevEntry = labelList[entryIdx - 1];
+			else
+				prevEntry = labelList[entryIdx + 1];
+		}
+
+		// Delete entry
 		foreach (var file in FileList.Values)
 			file.RemoveEntry(entry);
 
 		EntryList.EntryListSelection.QueueFree();
 		EntryContentSelection.QueueFree();
 
+		// Set selection to the new current entry
 		if (prevEntry != null && prevEntry != string.Empty)
 			EntryList.OnEntrySelected(prevEntry);
 
 		EntryList.UpdateEntryCount();
-
 		SetModified();
 	}
 
