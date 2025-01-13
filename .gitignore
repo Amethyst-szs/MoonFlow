@@ -17,6 +17,9 @@ Nindot.Tests/GamePaths.json
 # Editor-generated override.cfg
 MoonFlow/override.cfg
 
+# Editor-generated git repository database
+MoonFlow/addons/git_database/git.gd
+
 # User-specific files
 *.rsuser
 *.suo

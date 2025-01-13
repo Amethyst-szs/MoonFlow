@@ -18,7 +18,6 @@ AutoExportVersion/version_config_file="res://version/config.gd"
 
 config/name="MoonFlow"
 config/description="A Super Mario Odyssey project management & mod development tool"
-config/version="392.0"
 run/main_scene="res://scene/main/main.tscn"
 run/print_header=false
 config/auto_accept_quit=false
@@ -257,3 +256,4 @@ localization/translation_language="USen"
 localization/translation_features_tab=false
 wiki/home_repository="https://github.com/Amethyst-szs/MoonFlow"
 wiki/support_url="https://ko-fi.com/amethystszs"
+version/git_repo_database_path="res://addons/git_database/git.gd"

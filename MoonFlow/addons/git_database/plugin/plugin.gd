@@ -2,7 +2,6 @@
 extends EditorPlugin
 
 var export_handler := EditorExportPluginGitDatabase.new()
-var info_inst := GitInfo.new()
 
 var tools: Dictionary = {
 	"Git Database: Update DB": _manual_update,
@@ -12,6 +11,11 @@ var tools: Dictionary = {
 func _enter_tree():
 	# Setup export plugin
 	add_export_plugin(export_handler)
+	
+	# If the git DB file doesn't already exist locally, create it
+	var path := ProjectSettings.get_setting("moonflow/version/git_repo_database_path")
+	if !FileAccess.file_exists(path):
+		_manual_update()
 	
 	# Setup tool menu
 	for i in range(tools.size()):
@@ -24,6 +28,10 @@ func _exit_tree():
 	# Cleanup tool menu
 	for i in range(tools.size()):
 		remove_tool_menu_item(tools.keys()[i])
+
+func _build() -> bool:
+	_manual_update()
+	return true
 
 func _manual_update() -> void:
 	export_handler._export_begin([], true, "", 0)
