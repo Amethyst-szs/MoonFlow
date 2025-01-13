@@ -1374,6 +1374,26 @@ msgstr ""
 msgid "MSBT_SEARCH_ENTRIES"
 msgstr "Search Entries"
 
+#: scene/editor/msbt/list/entry_list_holder.tscn
+#| msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
+msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_ADD"
+msgstr "Add new Entries"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_TRASH"
+msgstr "Delete Selected Entry"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+#| msgid "EVENT_FLOW_APP_BUTTON_ZOOM_RESET"
+msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
+msgstr ""
+"Reset Selected Entry to default, unmodified state.\n"
+"Default state is pulled from your romfs dump directory."
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_SEARCH"
+msgstr "Search & Filters"
+
 #: scene/home/tab_world/tab_world.tscn
 msgid "HOME_TAB_WORLD_HEADER"
 msgstr "Select a Kingdom"
@@ -2538,10 +2558,6 @@ msgid "EVENT_FLOW_APP_BUTTON_DELETE_NODES"
 msgstr "Delete Nodes"
 
 #: scene/editor/event/event_flow_app.tscn
-msgid "EVENT_FLOW_APP_BUTTON_WIKI"
-msgstr "Help Docs"
-
-#: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
 msgstr "Debug Display"
 
@@ -3381,6 +3397,9 @@ msgstr ""
 "Nintendo, and does not encourage or distribute any\n"
 "pirated content owned by Nintendo. If you want to donate\n"
 "to show appreciation, only do it if you really want to!"
+
+#~ msgid "EVENT_FLOW_APP_BUTTON_WIKI"
+#~ msgstr "Help Docs"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
