@@ -3075,6 +3075,16 @@ msgctxt "INPUT_MAP"
 msgid "ui_app_nav_home"
 msgstr "Homepage"
 
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_help"
+msgstr "Help"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_reset_entry"
+msgstr "Reset Text Entry"
+
 #: scene/settings/engine/keybind/overlay_keybind_capture.tscn
 msgid "ENGINE_SETTINGS_APP_KEYBIND_PRESS_ANY_KEY_POPUP"
 msgstr "Press any Key..."

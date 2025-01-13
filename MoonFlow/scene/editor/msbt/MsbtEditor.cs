@@ -104,11 +104,11 @@ public partial class MsbtEditor : PanelContainer
 		// Ensure we have a valid pointer to the file and project
 		if (File == null || Project == null)
 			throw new Exception("Cannot init MsbtEditor without File and Project");
-		
+
 		// Show loading overlay if not already visible
 		if (!LoadingOverlay.Visible)
 			LoadingOverlay.Show();
-		
+
 		// Wait for a small amount of time to allow loading overlay to appear
 		var physicsTime = ProjectSettings.GetSetting("physics/common/physics_ticks_per_second", 60f).AsSingle();
 		await ToSignal(GetTree().CreateTimer(2f / physicsTime, true, true), Timer.SignalName.Timeout);
@@ -272,7 +272,7 @@ public partial class MsbtEditor : PanelContainer
 	{
 		// Get access to the default language's SarcMsbtFile
 		var fileDL = FileList[DefaultLanguage];
-		
+
 		bool isAnyEntryModified = false;
 
 		for (int i = 0; i < FileList.Count; i++)
@@ -382,7 +382,7 @@ public partial class MsbtEditor : PanelContainer
 	{
 		if (!IsInstanceValid(EntryList.EntryListSelection) || !IsInstanceValid(EntryContentSelection))
 			return;
-		
+
 		// Fetch list of all labels
 		var labelList = File.GetEntryLabels().ToList();
 		labelList.Sort();

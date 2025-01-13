@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ck2mpawvgk0li"]
+[gd_scene load_steps=20 format=3 uid="uid://ck2mpawvgk0li"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_e4ni0"]
 [ext_resource type="Script" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
@@ -23,6 +23,12 @@ action = &"msbt_delete_entry"
 
 [sub_resource type="Shortcut" id="Shortcut_sbvrw"]
 events = [SubResource("InputEventAction_ugheb")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_lf03p"]
+action = &"msbt_reset_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_1qw0l"]
+events = [SubResource("InputEventAction_lf03p")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_sr0fp"]
 action = &"ui_find"
@@ -104,6 +110,7 @@ icon = ExtResource("8_ykyf6")
 layout_mode = 2
 tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
 mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_1qw0l")
 icon = ExtResource("10_a60pi")
 
 [node name="Search" type="Button" parent="Controls/VBox/HBox"]
