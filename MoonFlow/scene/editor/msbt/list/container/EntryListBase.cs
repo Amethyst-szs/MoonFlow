@@ -63,7 +63,7 @@ public abstract partial class EntryListBase : VBoxContainer
             return;
 
         // Open entry
-        var button = FindChild(label, true, false) as EntryLabelButton;
+        var button = FindChild(label.ToNodeName(), true, false) as EntryLabelButton;
         EntryListSelection = button;
 
         if (button == null)
@@ -141,7 +141,7 @@ public abstract partial class EntryListBase : VBoxContainer
         if (EntryListSelection == null || !EntryListSelection.Visible)
             UpdateSelectionToFirstVisibleItem(this);
         else
-            SetSelection(EntryListSelection.Name, false);
+            SetSelection(EntryListSelection.EntryLabel, false);
     }
 
     private static void ShowAllEntries(Node node)
@@ -245,7 +245,7 @@ public abstract partial class EntryListBase : VBoxContainer
         if (label == string.Empty)
             return;
 
-        var button = FindChild(label, true, false) as EntryLabelButton;
+        var button = FindChild(label.ToNodeName(), true, false) as EntryLabelButton;
         button.SetUnsavedState(true);
     }
 

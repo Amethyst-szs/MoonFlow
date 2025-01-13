@@ -7,6 +7,8 @@ namespace MoonFlow.Scene.EditorMsbt;
 [ScenePath("res://scene/editor/msbt/list/label/entry_label_button.tscn")]
 public partial class EntryLabelButton : Button
 {
+	public string EntryLabel { get; private set; }
+
 	private ProjectLanguageFileEntryMeta EntryMeta;
 	private ProjectLanguageFileEntryMeta EntryMetaSourceLang;
 
@@ -15,6 +17,7 @@ public partial class EntryLabelButton : Button
 		EntryMeta = meta;
 		EntryMetaSourceLang = sourceLangMeta;
 
+		EntryLabel = key;
 		Name = key;
 		Text = label;
 

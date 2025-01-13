@@ -120,7 +120,7 @@ public partial class MsbtEditor : PanelContainer
 		string selectionName = null;
 
 		if (IsInstanceValid(EntryList.EntryListSelection))
-			selectionName = EntryList.EntryListSelection.Name;
+			selectionName = EntryList.EntryListSelection.EntryLabel;
 
 		// Clear out entry list and content in case the editor is being reinitilized
 		EntryList.QueueFreeAllChildren();
@@ -133,7 +133,6 @@ public partial class MsbtEditor : PanelContainer
 			EntryListHolder.SetupList<EntryListSimple>();
 
 		EntryListHolder.UpdateToolButtonRestrictions();
-
 		EntryList.CreateContent(File, out string[] labels);
 
 		// Create entry content
@@ -146,7 +145,7 @@ public partial class MsbtEditor : PanelContainer
 		// Select either the first label or selectionName
 		if (labels.Length > 0)
 		{
-			var firstItem = EntryList.FindChild(labels[0], true, false);
+			var firstItem = EntryList.FindChild(labels[0].ToNodeName(), true, false);
 			if (IsInstanceValid(firstItem))
 				selectionName ??= firstItem.Name;
 
@@ -343,7 +342,7 @@ public partial class MsbtEditor : PanelContainer
 	public void OnEntryListSelection(string label)
 	{
 		// Fetch and display coresponding entry editor
-		EntryContentSelection = EntryContentHolder.GetNodeOrNull<MsbtEntryEditor>(label);
+		EntryContentSelection = EntryContentHolder.GetNodeOrNull<MsbtEntryEditor>(label.ToNodeName());
 		if (IsInstanceValid(EntryContentSelection))
 			EntryContentSelection.Show();
 
@@ -384,7 +383,7 @@ public partial class MsbtEditor : PanelContainer
 		if (!IsInstanceValid(EntryList.EntryListSelection) || !IsInstanceValid(EntryContentSelection))
 			return;
 
-		string entry = EntryList.EntryListSelection.Name;
+		string entry = EntryList.EntryListSelection.EntryLabel;
 		string prevEntry = File.GetEntryLabel(File.GetEntryIndex(entry) - 1);
 
 		foreach (var file in FileList.Values)
@@ -411,7 +410,7 @@ public partial class MsbtEditor : PanelContainer
 			return;
 
 		// Lookup selected entry in both msbt files
-		var label = EntryList.EntryListSelection.Name;
+		var label = EntryList.EntryListSelection.EntryLabel;
 		if (!File.IsContainKey(label) || !romMsbt.IsContainKey(label))
 			return;
 

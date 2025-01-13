@@ -358,7 +358,7 @@ public partial class TabMsbt : HSplitContainer
 		if (oldSelection == null)
 			return;
 
-		var buttonName = oldSelection.Name.Replace('.', '_');
+		var buttonName = oldSelection.Name.ToNodeName();
 		if (FileListScroll.FindChild(buttonName, true, false) is Button button)
 			OnFilePressed(oldSelection.Sarc, oldSelection.Name, button);
 	}

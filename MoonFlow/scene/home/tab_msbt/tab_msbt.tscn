@@ -173,6 +173,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 8
 
 [node name="Label_TranslateDefaultWarning" type="Label" parent="FileList/FileList"]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_vertical = 3
 text = "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"

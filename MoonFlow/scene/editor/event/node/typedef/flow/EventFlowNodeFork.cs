@@ -35,10 +35,10 @@ public partial class EventFlowNodeFork : EventFlowNodeCommon
 
 		// Regenerate id list
 		var ids = Content.GetNextIds();
-		var list = ids.Select(s =>
+		var list = ids.Select(id =>
 		{
-			if (s == int.MinValue) return null;
-			return Application.GraphNodeHolder.FindChild(s.ToString(), true, false) as EventFlowNodeCommon;
+			if (id == int.MinValue) return null;
+			return Application.GraphNodeHolder.FindChild(id.ToString(), true, false) as EventFlowNodeCommon;
 		});
 			
 		SetupConnections(list.ToList());

@@ -162,10 +162,10 @@ public partial class EventFlowApp : AppScene
         if (idList.Length == 0)
             return;
 
-        var list = idList.Select(s =>
+        var list = idList.Select(id =>
         {
-            if (s == int.MinValue) return null;
-            return GraphNodeHolder.FindChild(s.ToString(), false, false) as EventFlowNodeCommon;
+            if (id == int.MinValue) return null;
+            return GraphNodeHolder.FindChild(id.ToString(), false, false) as EventFlowNodeCommon;
         });
 
         nodeEdit.SetupConnections(list.ToList());

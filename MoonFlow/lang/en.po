@@ -1358,12 +1358,12 @@ msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr "Cap"
 
 #: scene/editor/msbt/msbt_editor.tscn
-msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
-msgstr "Loading Text Editor..."
-
-#: scene/editor/msbt/msbt_editor.tscn
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH"
 msgstr "Refreshing Text Editor..."
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
+msgstr "Loading Text Editor..."
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
@@ -1374,9 +1374,8 @@ msgid "MSBT_INVALID_ENTRY_NAME_WARNING"
 msgstr ""
 "Entry name is invalid!\n"
 "- Name must be unique\n"
-"- Use only UTF8 characters\n"
-"- No spaces\n"
-"- Cannot be empty"
+"- Cannot be empty\n"
+"- Only use A-Z, 0-9, @, hyphens, and underscores"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_SEARCH_ENTRIES"

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text.RegularExpressions;
 using Godot;
 
 namespace MoonFlow.Scene.EditorMsbt;
@@ -7,6 +8,9 @@ public partial class NewEntryInputLine : LineEdit
 {
     private EntryListHolder Holder = null;
     private TextureRect InvalidWarning = null;
+
+    [GeneratedRegex(@"[^A-Za-z0-9@_-]")]
+	private static partial Regex InvalidInputTest();
 
     public override void _Ready()
     {
@@ -38,17 +42,11 @@ public partial class NewEntryInputLine : LineEdit
         if (name == string.Empty)
             return false;
 
-        if (name.Contains(' '))
+        var labels = GetEditor().File.GetEntryLabels().Select(s => s.ToNodeName());
+        if (labels.Contains(name.ToNodeName()))
             return false;
-
-        var editor = GetEditor();
-        if (editor.File.GetEntryLabels().Contains(name))
-            return false;
-
-        byte[] bytes = name.ToCharArray().Select(c => (byte)c).ToArray();
-        string decodedString = System.Text.Encoding.UTF8.GetString(bytes);
-
-        return name.Equals(decodedString);
+        
+        return !InvalidInputTest().IsMatch(name);
     }
 
     private MsbtEditor GetEditor()
