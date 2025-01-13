@@ -116,6 +116,9 @@ public partial class EntryListStageMessage : EntryListBase
             dropdown.CallDeferred("hide");
             margin.CallDeferred("hide");
         }
+
+        // Add separator between category headings and other entries
+        AddChild(new HSeparator());
     }
 
     private Control GetContainer(string key, out string label)

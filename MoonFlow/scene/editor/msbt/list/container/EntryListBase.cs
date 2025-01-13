@@ -163,15 +163,13 @@ public abstract partial class EntryListBase : VBoxContainer
     {
         var name = node.Name.ToString();
 
-        if (node.GetType() == typeof(Button) && !name.EndsWith("_Dropdown"))
+        if (node is EntryLabelButton button && !name.EndsWith("_Dropdown"))
         {
             var isMatch = name.Contains(EntrySearchString, StringComparison.OrdinalIgnoreCase);
-            (node as Button).Visible = isMatch;
+            button.Visible = isMatch;
+
             matchCount += isMatch ? 1 : 0;
         }
-
-        if (node.GetChildCount() == 0)
-            return;
 
         foreach (var child in node.GetChildren())
             UpdateEntryVisiblity(child, ref matchCount);
