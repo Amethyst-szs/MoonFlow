@@ -4,11 +4,12 @@ extends Object
 class_name EditorPluginGitInterface
 
 static func git_project_version_name() -> String:
-	var count := git_commit_count()
+	var count := git_commit_count_main_branch()
+	var ahead := git_commit_ahead_count()
 	var branch := git_branch_name()
 	var hash := git_commit_hash_short()
 	
-	return "b%d - %s (%s)" % [count, branch, hash]
+	return "%s b%d.%d (%s)" % [branch, count, ahead, hash]
 
 #region Branch Info
 
@@ -34,8 +35,9 @@ static func git_commit_hash_short() -> String:
 static func git_commit_count() -> int:
 	return int(_exe_rev_list(["--count", "HEAD"]))
 
-static func git_commit_count_stable() -> int:
-	return int(_exe_rev_list(["--count", "stable"]))
+static func git_commit_count_main_branch() -> int:
+	var branch: String = ProjectSettings.get_setting("moonflow/version/main_branch", "stable")
+	return int(_exe_rev_list(["--count", branch]))
 
 static func git_commit_ahead_count() -> int:
 	return int(_exe_rev_list(["--count", "HEAD", "^" + "stable"]))

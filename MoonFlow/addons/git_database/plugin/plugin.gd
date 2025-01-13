@@ -4,7 +4,7 @@ extends EditorPlugin
 var export_handler := EditorExportPluginGitDatabase.new()
 
 var tools: Dictionary = {
-	"Git Database: Update DB": _manual_update,
+	"Git Database: Update DB": _manual_update_forced,
 	"Git Database: Log Repo Info": EditorPluginGitInterface.log_all_info,
 }
 
@@ -35,3 +35,6 @@ func _build() -> bool:
 
 func _manual_update() -> void:
 	export_handler._export_begin([], true, "", 0)
+
+func _manual_update_forced() -> void:
+	export_handler._export_begin(["force"], true, "", 0)

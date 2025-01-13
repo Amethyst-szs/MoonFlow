@@ -17,7 +17,7 @@ func _export_begin(features: PackedStringArray, is_debug: bool, path: String, fl
 		var db = load(out_path)
 		stored_hash = db.get("commit_hash")
 	
-	if real_hash == stored_hash:
+	if real_hash == stored_hash && !features.has("force"):
 		return
 	
 	# Generate source code

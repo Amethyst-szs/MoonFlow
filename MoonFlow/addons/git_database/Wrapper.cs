@@ -16,8 +16,8 @@ public static class GitInfo
     public static string GitCommitHash() { return Data.Get("commit_hash").AsString(); }
     public static string GitCommitHashShort() { return Data.Get("commit_hash_short").AsString(); }
 
-    public static string GitCommitCount() { return Data.Get("commit_count").AsString(); }
-    public static string GitCommitCountStable() { return Data.Get("commit_count_stable").AsString(); }
-    public static string GitCommitAhead() { return Data.Get("commit_ahead").AsString(); }
-    public static string GitCommitUnixTime() { return Data.Get("commit_time_unix").AsString(); }
+    public static int GitCommitCount() { return Data.Get("commit_count").AsInt32(); }
+    public static int GitCommitCountMainBranch() { return Data.Get("commit_count_main_branch").AsInt32(); }
+    public static int GitCommitAhead() { return Data.Get("commit_ahead").AsInt32(); }
+    public static long GitCommitUnixTime() { return Data.Get("commit_time_unix").AsInt64(); }
 }
