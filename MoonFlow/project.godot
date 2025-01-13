@@ -34,7 +34,6 @@ config/icon="res://iconS.png"
 [autoload]
 
 AutoloadInit="*res://addons/AutoloadInit.cs"
-GitInfoSingletonRegisterUtility="*res://addons/git_database/plugin/instance_register.gd"
 EngineSettings="*res://scene/settings/engine/global/engine_setting_holder.gd"
 ScreenshotCapture="*res://scene/common/screenshot/screenshot_capture.gd"
 
