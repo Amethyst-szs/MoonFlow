@@ -62,6 +62,9 @@ public partial class MsbtAppHolder : AppScene
 		var msbp = ProjectManager.GetMSBP();
 		lang ??= ProjectManager.GetDefaultLang();
 
+		// Pause for the next process frame to allow screen redraw
+		editor.ToSignal(Engine.GetMainLoop(), "process_frame");
+
 		// Setup and return editor
 		editor.SetupEditor(msbp, lang, archiveName, key);
 		return editor;

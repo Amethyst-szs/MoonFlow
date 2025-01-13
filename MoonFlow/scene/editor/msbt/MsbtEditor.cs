@@ -63,6 +63,9 @@ public partial class MsbtEditor : PanelContainer
 	[Export]
 	private LangPicker LanguagePicker;
 
+	[Export]
+	private PanelContainer LoadingOverlay;
+
 	// ~~~~~~~~~~~~ Packed Scenes ~~~~~~~~~~~~ //
 
 	[Export, ExportGroup("Packed Scenes")]
@@ -96,11 +99,19 @@ public partial class MsbtEditor : PanelContainer
 		header.Connect(Header.SignalName.ButtonSave, Callable.From(new Action<bool>(SaveFileInternal)));
 	}
 
-	private void InitEditor()
+	private async Task InitEditor()
 	{
 		// Ensure we have a valid pointer to the file and project
 		if (File == null || Project == null)
 			throw new Exception("Cannot init MsbtEditor without File and Project");
+		
+		// Show loading overlay if not already visible
+		if (!LoadingOverlay.Visible)
+			LoadingOverlay.Show();
+		
+		// Wait for a small amount of time to allow loading overlay to appear
+		var physicsTime = ProjectSettings.GetSetting("physics/common/physics_ticks_per_second", 60f).AsSingle();
+		await ToSignal(GetTree().CreateTimer(2f / physicsTime, true, true), Timer.SignalName.Timeout);
 
 		// Point primary file to current language
 		File = FileList[CurrentLanguage];
@@ -146,17 +157,20 @@ public partial class MsbtEditor : PanelContainer
 
 		// Set file title
 		FileTitleName.Text = File.Name;
+
+		// Remove loading overlay
+		LoadingOverlay.Hide();
 	}
 
 	private void SetupTranslationStateEnabled(string lang)
 	{
 		CurrentLanguage = lang;
-		InitEditor();
+		_ = InitEditor();
 	}
 	private void SetupTranslationStateDisabled()
 	{
 		CurrentLanguage = DefaultLanguage;
-		InitEditor();
+		_ = InitEditor();
 	}
 
 	public MsbtEntryEditor CreateEntryContentEditor(int i)
@@ -222,7 +236,7 @@ public partial class MsbtEditor : PanelContainer
 		foreach (var target in FileList.Values)
 			FixMissingOrExtraEntryKeys(defaultMsbt, target);
 
-		InitEditor();
+		_ = InitEditor();
 	}
 
 	private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
@@ -387,7 +401,7 @@ public partial class MsbtEditor : PanelContainer
 		SetModified();
 	}
 
-	private void OnResetEntryToRom()
+	private async void OnResetEntryToRom()
 	{
 		// Fetch rom msbt
 		var projArcs = ProjectManager.GetMSBTArchives(CurrentLanguage);
@@ -415,7 +429,7 @@ public partial class MsbtEditor : PanelContainer
 		metaH.TryResetMetadata(File, label);
 
 		// Reload application
-		InitEditor();
+		await InitEditor();
 		SetModified();
 	}
 

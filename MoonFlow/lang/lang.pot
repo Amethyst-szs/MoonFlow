@@ -1417,6 +1417,14 @@ msgstr ""
 msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr ""
 
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
+msgstr ""
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH"
+msgstr ""
+
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr ""

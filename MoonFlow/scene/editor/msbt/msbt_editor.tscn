@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://bwicpcn2le56s"]
+[gd_scene load_steps=120 format=3 uid="uid://bwicpcn2le56s"]
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_celu7"]
 [ext_resource type="Script" path="res://scene/editor/msbt/MsbtAppHolder.cs" id="1_dt1us"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ck2mpawvgk0li" path="res://scene/editor/msbt/list/entry_list_holder.tscn" id="7_j5n3o"]
 [ext_resource type="PackedScene" uid="uid://buju72ubpa8et" path="res://scene/editor/msbt/components/dialog_language_change_unsaved.tscn" id="7_ln12s"]
 [ext_resource type="PackedScene" uid="uid://ca4l4addi4i3d" path="res://scene/editor/msbt/entry/msbt_entry_editor_holder.tscn" id="10_s74ru"]
+[ext_resource type="StyleBox" uid="uid://6q8316epejjf" path="res://asset/theme/msbt/stylebox/msbt_panel_main.tres" id="13_axxcs"]
+[ext_resource type="Texture2D" uid="uid://yqppuxa8m17p" path="res://asset/material/arrow/circle.svg" id="14_1j8gv"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="18_5a5n5"]
 [ext_resource type="Texture2D" uid="uid://dseo0q834pxjk" path="res://asset/nindot/lms/icon/DeviceFont_Album.png" id="19_exyks"]
 [ext_resource type="Texture2D" uid="uid://c6gwjf5hcj47b" path="res://asset/nindot/lms/icon/DeviceFont_ArrowRight.png" id="20_p0hw4"]
@@ -120,6 +122,25 @@ font = ExtResource("4_2flhd")
 [sub_resource type="LabelSettings" id="LabelSettings_iuuba"]
 font = ExtResource("4_2flhd")
 
+[sub_resource type="LabelSettings" id="LabelSettings_gjrbq"]
+font = ExtResource("4_2flhd")
+font_size = 21
+outline_size = 24
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_wlp6y"]
+script/source = "extends Label
+
+var refresh_key: String = tr(\"MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH\")
+
+func _enter_tree() -> void:
+	hidden.connect(_on_hide)
+
+func _on_hide() -> void:
+	text = refresh_key
+	hidden.disconnect(_on_hide)
+"
+
 [node name="AppHolder" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -137,7 +158,7 @@ AppFlags = 115
 UnsavedChangesScene = ExtResource("18_5a5n5")
 WikiPage = ExtResource("4_o5nhl")
 
-[node name="MsbtEditor" type="PanelContainer" parent="." node_paths=PackedStringArray("EntryListHolder", "EntryContentHolder", "FileTitleName", "FileEntryName", "LanguagePicker")]
+[node name="MsbtEditor" type="PanelContainer" parent="." node_paths=PackedStringArray("EntryListHolder", "EntryContentHolder", "FileTitleName", "FileEntryName", "LanguagePicker", "LoadingOverlay")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -155,6 +176,7 @@ EntryContentHolder = NodePath("Layout/Divider/List_ContentEditor/Content")
 FileTitleName = NodePath("Layout/Header/FileTitle")
 FileEntryName = NodePath("Layout/Header/FileEntry")
 LanguagePicker = NodePath("Layout/Header/LanguagePicker")
+LoadingOverlay = NodePath("Panel_LoadingOverlay")
 UnsavedChangesLanguageChangePopup = ExtResource("7_ln12s")
 
 [node name="Layout" type="VBoxContainer" parent="MsbtEditor"]
@@ -209,6 +231,41 @@ layout_mode = 2
 
 [node name="List_ContentEditor" parent="MsbtEditor/Layout/Divider" instance=ExtResource("10_s74ru")]
 layout_mode = 2
+
+[node name="Panel_LoadingOverlay" type="PanelContainer" parent="MsbtEditor"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.65098)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("13_axxcs")
+
+[node name="VBox" type="VBoxContainer" parent="MsbtEditor/Panel_LoadingOverlay"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Icon" type="Control" parent="MsbtEditor/Panel_LoadingOverlay/VBox"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Texture_Wait" type="TextureRect" parent="MsbtEditor/Panel_LoadingOverlay/VBox/Icon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("14_1j8gv")
+stretch_mode = 5
+
+[node name="Label_Refresh" type="Label" parent="MsbtEditor/Panel_LoadingOverlay/VBox"]
+layout_mode = 2
+text = "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
+label_settings = SubResource("LabelSettings_gjrbq")
+horizontal_alignment = 1
+script = SubResource("GDScript_wlp6y")
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("DeviceFont_Album", "DeviceFont_ArrowRight", "DeviceFont_ButtonA", "DeviceFont_ButtonB", "DeviceFont_ButtonCapture", "DeviceFont_ButtonDown", "DeviceFont_ButtonGroupBottom", "DeviceFont_ButtonGroupLeft", "DeviceFont_ButtonGroupRight", "DeviceFont_ButtonGroupUp", "DeviceFont_ButtonHome", "DeviceFont_ButtonL", "DeviceFont_ButtonLR", "DeviceFont_ButtonLeft", "DeviceFont_ButtonMinus", "DeviceFont_ButtonPlus", "DeviceFont_ButtonPower", "DeviceFont_ButtonR", "DeviceFont_ButtonRight", "DeviceFont_ButtonSL", "DeviceFont_ButtonSR", "DeviceFont_ButtonUp", "DeviceFont_ButtonX", "DeviceFont_ButtonY", "DeviceFont_ButtonZL", "DeviceFont_ButtonZR", "DeviceFont_JoyConBoth", "DeviceFont_JoyConRight", "DeviceFont_JoyConSingle", "DeviceFont_ProCon", "DeviceFont_Stick", "DeviceFont_StickL", "DeviceFont_StickLRR", "DeviceFont_StickPush", "DeviceFont_StickPushL", "DeviceFont_StickPushR", "DeviceFont_StickR", "DeviceFont_StickUD", "DeviceFont_StickUDL", "PictureFont_2E", "PictureFont_2F", "PictureFont_30", "PictureFont_31", "PictureFont_32", "PictureFont_33", "PictureFont_34", "PictureFont_35", "PictureFont_36", "PictureFont_37", "PictureFont_38", "PictureFont_39", "PictureFont_3A", "PictureFont_3B", "PictureFont_40", "PictureFont_41", "PictureFont_42", "PictureFont_43", "PictureFont_44", "PictureFont_45", "PictureFont_46", "PictureFont_47", "PictureFont_48", "PictureFont_49", "PictureFont_4A", "PictureFont_4B", "PictureFont_4C", "PictureFont_4D", "PictureFont_4E", "PictureFont_4F", "PictureFont_50", "PictureFont_51", "PictureFont_52", "PictureFont_53", "PictureFont_54", "PictureFont_55", "PictureFont_56", "PictureFont_57", "PictureFont_58", "PictureFont_59", "PictureFont_5A", "PictureFont_5B", "PictureFont_5C", "PictureFont_60", "PictureFont_61", "PictureFont_62", "PictureFont_63", "PictureFont_64", "PictureFont_65", "PictureFont_70", "PictureFont_71", "PictureFont_72", "PictureFont_73", "PictureFont_74", "PictureFont_75", "PictureFont_76", "PictureFont_77", "PictureFont_78", "PictureFont_79", "PictureFont_7A", "PictureFont_7B", "PictureFont_7C"), [ExtResource("19_exyks"), ExtResource("20_p0hw4"), ExtResource("21_nxf7i"), ExtResource("22_cf1mv"), ExtResource("23_wbkh0"), ExtResource("24_sqfub"), ExtResource("25_ujdsd"), ExtResource("26_ojg7u"), ExtResource("27_wpal8"), ExtResource("28_ljmjb"), ExtResource("29_x2x1e"), ExtResource("30_7jtbp"), ExtResource("31_54c6k"), ExtResource("32_kl5bb"), ExtResource("33_ok3s6"), ExtResource("34_hpqaf"), ExtResource("35_ivwq5"), ExtResource("36_0e753"), ExtResource("37_tqtob"), ExtResource("38_trgd1"), ExtResource("39_au4k1"), ExtResource("40_53k0y"), ExtResource("41_f4882"), ExtResource("42_35nxt"), ExtResource("43_slgt3"), ExtResource("44_fw6r8"), ExtResource("45_77eyi"), ExtResource("46_skikf"), ExtResource("47_lvwxl"), ExtResource("48_74u0q"), ExtResource("49_e40ei"), ExtResource("50_vf4uk"), ExtResource("51_t7yvg"), ExtResource("52_7mf0l"), ExtResource("53_aggsy"), ExtResource("54_1wnh8"), ExtResource("55_1xx8k"), ExtResource("56_0fd1d"), ExtResource("57_c2ixh"), ExtResource("58_k822t"), ExtResource("59_dys3v"), ExtResource("60_100up"), ExtResource("61_wwpfj"), ExtResource("62_wc0sn"), ExtResource("63_ohd1m"), ExtResource("64_coojp"), ExtResource("65_v70vv"), ExtResource("66_mrq5k"), ExtResource("67_d10af"), ExtResource("68_qv3t3"), ExtResource("69_r3wee"), ExtResource("70_ce640"), ExtResource("71_trgkv"), ExtResource("72_kpk5h"), ExtResource("73_hll21"), ExtResource("74_ca86l"), ExtResource("75_rtvyt"), ExtResource("76_v06hn"), ExtResource("77_rq4ea"), ExtResource("78_tiinl"), ExtResource("79_3c5g0"), ExtResource("80_jocre"), ExtResource("81_jnegv"), ExtResource("82_5ca3e"), ExtResource("83_k75v5"), ExtResource("84_s2vx2"), ExtResource("85_vb6vl"), ExtResource("86_m4qma"), ExtResource("87_124t0"), ExtResource("88_mgyw0"), ExtResource("89_tgsab"), ExtResource("90_wbspn"), ExtResource("91_ckkhq"), ExtResource("92_atpqj"), ExtResource("93_vc6cc"), ExtResource("94_hxl0g"), ExtResource("95_5byw1"), ExtResource("96_dtmfu"), ExtResource("97_pnqq2"), ExtResource("98_sjc4y"), ExtResource("99_omxsk"), ExtResource("100_fapn7"), ExtResource("101_liul0"), ExtResource("102_h0fkw"), ExtResource("103_xhr02"), ExtResource("104_blygd"), ExtResource("105_5tfhi"), ExtResource("106_6aluf"), ExtResource("107_bn4xs"), ExtResource("108_4bydu"), ExtResource("109_cti1g"), ExtResource("110_7uvw8"), ExtResource("111_kpski"), ExtResource("112_5xcwc"), ExtResource("113_jhq2x"), ExtResource("114_03tid"), ExtResource("115_eudix"), ExtResource("116_ik8r3"), ExtResource("117_cog0t"), ExtResource("118_oslgp"), ExtResource("119_ng3n4")]]

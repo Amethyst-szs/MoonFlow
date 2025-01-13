@@ -1357,6 +1357,14 @@ msgstr "Decap"
 msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr "Cap"
 
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
+msgstr "Loading Text Editor..."
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH"
+msgstr "Refreshing Text Editor..."
+
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr "Entry Name"
@@ -1375,7 +1383,6 @@ msgid "MSBT_SEARCH_ENTRIES"
 msgstr "Search Entries"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
-#| msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_ADD"
 msgstr "Add new Entries"
 
@@ -1384,7 +1391,6 @@ msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_TRASH"
 msgstr "Delete Selected Entry"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
-#| msgid "EVENT_FLOW_APP_BUTTON_ZOOM_RESET"
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
 msgstr ""
 "Reset Selected Entry to default, unmodified state.\n"
@@ -3406,9 +3412,6 @@ msgstr ""
 
 #~ msgid "HELP_DIALOG_CLOSE"
 #~ msgstr "Close"
-
-#~ msgid "MSBT_EDITOR_HELP_DIALOG_TEXT"
-#~ msgstr "Help Dialog"
 
 #~ msgid "PLACEHOLDER"
 #~ msgstr "Placeholder stuff :)"
