@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://dh6mt0raflri4"]
+
+[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_qq226"]
+
+[resource]
+script = ExtResource("1_qq226")
+context = "HEADER_TOOLTIP"
+keys = Array[String](["HelpSupport"])

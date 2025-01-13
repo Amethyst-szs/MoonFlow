@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=33 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
@@ -9,10 +9,20 @@
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="5_7wt0y"]
 [ext_resource type="Script" path="res://scene/main/header/ActionbarProject.cs" id="5_8pvlw"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
+[ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="6_736yk"]
 [ext_resource type="Script" path="res://scene/main/header/ActionbarDebug.cs" id="6_jwfa5"]
 [ext_resource type="Texture2D" uid="uid://bejy23w4qwuhn" path="res://asset/material/window/minimize.svg" id="7_3uat5"]
+[ext_resource type="Texture2D" uid="uid://ddbjk8qy03n3e" path="res://asset/material/window/setting.svg" id="7_lv0rq"]
+[ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="7_tq7ax"]
+[ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="8_0gxwu"]
+[ext_resource type="Script" path="res://scene/main/header/ActionbarHelp.cs" id="8_gmnrm"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
 [ext_resource type="PackedScene" uid="uid://qcjh1t51akmr" path="res://scene/front_door/front_door.tscn" id="9_1ew1g"]
+[ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="9_7fyri"]
+[ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="9_j4qfv"]
+[ext_resource type="Texture2D" uid="uid://b0tliqoouitvy" path="res://iconS.png" id="10_hatx7"]
+[ext_resource type="Texture2D" uid="uid://d31ycdn7h62g0" path="res://asset/engine/heart.svg" id="10_tnl5i"]
+[ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="11_1mgjq"]
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
 [ext_resource type="Script" path="res://scene/main/display_server_setup.gd" id="13_jlow7"]
 [ext_resource type="Script" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
@@ -94,7 +104,9 @@ auto_translate_mode = 1
 size = Vector2i(250, 100)
 item_count = 7
 item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
+item_0/icon = ExtResource("6_736yk")
 item_1/text = "MAIN_ACTIONBAR_FILE_SAVE_AS"
+item_1/icon = ExtResource("7_tq7ax")
 item_1/id = 1
 item_2/text = "MAIN_ACTIONBAR_FILE_SAVE_ALL"
 item_2/id = 2
@@ -102,10 +114,12 @@ item_3/id = 1000
 item_3/disabled = true
 item_3/separator = true
 item_4/text = "MAIN_ACTIONBAR_FILE_CLOSE"
+item_4/icon = ExtResource("8_nx1ih")
 item_4/id = 3
 item_5/id = 1001
 item_5/separator = true
 item_6/text = "MAIN_ACTIONBAR_QUIT_MOONFLOW"
+item_6/icon = ExtResource("9_7fyri")
 item_6/id = 42069
 script = ExtResource("5_2c21b")
 
@@ -114,13 +128,42 @@ auto_translate_mode = 1
 size = Vector2i(309, 100)
 item_count = 4
 item_0/text = "MAIN_ACTIONBAR_PROJECT_RELOAD"
+item_0/icon = ExtResource("11_1mgjq")
 item_1/text = "MAIN_ACTIONBAR_PROJECT_CLOSE"
+item_1/icon = ExtResource("8_nx1ih")
 item_1/id = 1
 item_2/id = 10000
 item_2/separator = true
 item_3/text = "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+item_3/icon = ExtResource("7_lv0rq")
 item_3/id = 2
 script = ExtResource("5_8pvlw")
+
+[node name="Help" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
+auto_translate_mode = 1
+transparent_bg = true
+size = Vector2i(309, 100)
+item_count = 8
+item_0/text = "MAIN_ACTIONBAR_HELP_CURRENT_APP"
+item_0/icon = ExtResource("8_0gxwu")
+item_1/id = 1000
+item_1/separator = true
+item_2/text = "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
+item_2/id = 1
+item_3/text = "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
+item_3/id = 2
+item_4/id = 1001
+item_4/separator = true
+item_5/text = "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
+item_5/icon = ExtResource("9_j4qfv")
+item_5/id = 3
+item_6/text = "MAIN_ACTIONBAR_HELP_CREDITS"
+item_6/icon = ExtResource("10_hatx7")
+item_6/id = 4
+item_7/text = "MAIN_ACTIONBAR_HELP_SUPPORT"
+item_7/icon = ExtResource("10_tnl5i")
+item_7/id = 5
+script = ExtResource("8_gmnrm")
 
 [node name="Debug" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1

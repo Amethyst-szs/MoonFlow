@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene load_steps=41 format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -23,8 +23,9 @@
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="20_x5ttv"]
 [ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="21_urv24"]
 [ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="21_xbido"]
-[ext_resource type="Script" path="res://scene/common/wiki/WikiAccessButton.cs" id="22_qdlgd"]
-[ext_resource type="PackedScene" uid="uid://toha7mro71ue" path="res://scene/editor/event/meta/editor/popup_event_metadata.tscn" id="25_puyck"]
+[ext_resource type="Script" path="res://scene/common/wiki/access/WikiAccessorResource.cs" id="22_ad725"]
+[ext_resource type="Script" path="res://scene/common/wiki/access/WikiAccessButton.cs" id="22_qdlgd"]
+[ext_resource type="PackedScene" uid="uid://toha7mro71ue" path="res://scene/editor/event/meta/popup_event_metadata.tscn" id="25_puyck"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
 shader = ExtResource("3_budwu")
@@ -61,6 +62,11 @@ action = &"ui_graph_delete"
 
 [sub_resource type="Shortcut" id="Shortcut_7271u"]
 events = [SubResource("InputEventAction_6oj6g")]
+
+[sub_resource type="Resource" id="Resource_ib0jw"]
+script = ExtResource("22_ad725")
+Path = "res://docs/events/basics_event_graph.md"
+LocalPath = "events/basics_event_graph.md"
 
 [sub_resource type="InputEventAction" id="InputEventAction_lu5vy"]
 action = &"ui_toggle_debug"
@@ -237,8 +243,7 @@ layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_WIKI"
 icon = ExtResource("21_urv24")
 script = ExtResource("22_qdlgd")
-WikiPath = "res://docs/events/basics_event_graph.md"
-WikiLocalPath = "events/basics_event_graph.md"
+WikiTarget = SubResource("Resource_ib0jw")
 
 [node name="Button_DebugDataView" type="Button" parent="Header/UI"]
 layout_mode = 2

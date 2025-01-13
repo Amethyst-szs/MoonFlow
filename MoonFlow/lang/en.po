@@ -2383,6 +2383,30 @@ msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr "Open MoonFlow Settings"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
+msgstr "Help Page"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
+msgstr "In-App Wiki"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
+msgstr "Online Wiki"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
+msgstr "GitHub Repository"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_CREDITS"
+msgstr "Credits & Contributions"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_SUPPORT"
+msgstr "Support Development"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
 msgstr "Debug Project"
 
@@ -3054,23 +3078,6 @@ msgstr "Text Editor"
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
 msgstr "Event Graph Editor"
 
-#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "LocalNotice"
-msgstr "In-app documentation"
-
-#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "UrlNotice"
-msgstr "Online documentation"
-
-#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "SettingNotice"
-msgstr ""
-"Toggle between local and browser\n"
-"documentation in settings"
-
 #: scene/app/components/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_TITLE"
 msgstr "Unsaved Changes!"
@@ -3086,14 +3093,6 @@ msgstr "This file has unsaved changes, are you sure you'd like to close?"
 #: scene/app/components/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
 msgstr "Go back!!"
-
-#: scene/common/wiki/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_BROWSE_HEADER"
-msgstr "Documents"
-
-#: scene/common/wiki/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_OPEN_IN_BROWSER"
-msgstr "Online Docs"
 
 #: scene/front_door/contributor/asset.tres
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GRAPHICS"
@@ -3348,6 +3347,40 @@ msgstr "Unmodified in Source Langauge"
 msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
 msgid "IconUntranslated"
 msgstr "Untranslated Entry"
+
+#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_BROWSE_HEADER"
+msgstr "Documents"
+
+#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_OPEN_IN_BROWSER"
+msgstr "Online Docs"
+
+#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "LocalNotice"
+msgstr "In-app documentation"
+
+#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "UrlNotice"
+msgstr "Online documentation"
+
+#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "SettingNotice"
+msgstr ""
+"Toggle between local and browser\n"
+"documentation in settings"
+
+#: lang/db/header_tooltip.tres
+msgctxt "HEADER_TOOLTIP"
+msgid "HelpSupport"
+msgstr ""
+"This project is not for profit, is not affiliated with\n"
+"Nintendo, and does not encourage or distribute any\n"
+"pirated content owned by Nintendo. If you want to donate\n"
+"to show appreciation, only do it if you really want to!"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"

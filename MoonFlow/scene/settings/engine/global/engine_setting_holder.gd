@@ -52,10 +52,16 @@ func get_wiki() -> String:
 	var is_local: bool = get_setting("moonflow/wiki/is_use_local", true)
 	
 	if is_local:
-		return get_setting("moonflow/wiki/local_source",
-			"res://docs/")
+		return get_wiki_local()
 	else:
-		return get_setting("moonflow/wiki/remote_source",
-			"https://github.com/Amethyst-szs/MoonFlow/tree/stable/docs/")
+		return get_wiki_remote()
+
+func get_wiki_local() -> String:
+	return get_setting("moonflow/wiki/local_source",
+		"res://docs/")
+
+func get_wiki_remote() -> String:
+	return get_setting("moonflow/wiki/remote_source",
+		"https://github.com/Amethyst-szs/MoonFlow/tree/stable/docs/")
 
 #endregion

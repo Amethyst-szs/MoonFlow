@@ -11,14 +11,14 @@ public static class EngineSettings
     {
         if (Engine.IsEditorHint())
             return ProjectSettings.GetSetting(key, def);
-        
+
         return Engine.GetSingleton(AutoloadName).Call("get_setting", [key, def]);
     }
     public static T GetSetting<[MustBeVariant] T>(string key, Variant def)
     {
         if (Engine.IsEditorHint())
             return ProjectSettings.GetSetting(key, def).As<T>();
-        
+
         var value = Engine.GetSingleton(AutoloadName).Call("get_setting", [key, def]);
         return value.As<T>();
     }
@@ -48,8 +48,18 @@ public static class EngineSettings
     {
         if (Engine.IsEditorHint())
             return ProjectSettings.GetSetting("moonflow/wiki/local_source").AsString();
-        
+
         return Engine.GetSingleton(AutoloadName).Call("get_wiki").AsString();
+    }
+    public static string GetWikiLocal()
+    {
+        if (Engine.IsEditorHint()) return "";
+        return Engine.GetSingleton(AutoloadName).Call("get_wiki_local").AsString();
+    }
+    public static string GetWikiRemote()
+    {
+        if (Engine.IsEditorHint()) return "";
+        return Engine.GetSingleton(AutoloadName).Call("get_wiki_remote").AsString();
     }
 
     #endregion

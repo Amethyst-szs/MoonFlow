@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace MoonFlow.Scene;
 
-[ScenePath("res://scene/common/wiki/app_local_wiki_viewer.tscn")]
+[ScenePath("res://scene/common/wiki/scene/app_local_wiki_viewer.tscn")]
 [Icon("res://asset/app/icon/wiki.png")]
 public partial class AppLocalWikiViewer : AppScene
 {

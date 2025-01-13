@@ -90,6 +90,7 @@ MenuButton/styles/hover = ExtResource("3_ff0pw")
 MenuButton/styles/hover_pressed = ExtResource("4_usreh")
 MenuButton/styles/normal = ExtResource("5_jc6nw")
 MenuButton/styles/pressed = ExtResource("6_t6ubk")
+PopupMenu/constants/icon_max_width = 18
 PopupMenu/constants/v_separation = 14
 PopupMenu/fonts/font = ExtResource("1_l1jp4")
 PopupMenu/styles/hover = ExtResource("3_ff0pw")

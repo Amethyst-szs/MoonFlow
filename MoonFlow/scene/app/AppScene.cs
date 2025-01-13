@@ -13,7 +13,7 @@ public partial class AppScene : Control
 
 	// ~~~~~~~~~~~~~~~ Exports ~~~~~~~~~~~~~~~ //
 
-	[Export]
+	[Export, ExportGroup("Display")]
 	public string AppName { get; private set; } = "Application";
 
 	private string _appTaskbarTitle = "Application";
@@ -48,11 +48,16 @@ public partial class AppScene : Control
 		IsAllowUnsavedChanges = 1 << 6,
 	}
 
-	[Export(PropertyHint.Flags)]
+	[Export(PropertyHint.Flags), ExportGroup("Flags")]
 	public AppFlagEnum AppFlags = AppFlagEnum.IsAllowUserClose;
 
-	[Export]
+	[Export, ExportGroup("Packed Scene")]
 	private PackedScene UnsavedChangesScene = null;
+
+	[Export, ExportGroup("Header Properties")]
+	public WikiAccessorResource WikiPage { get; private set; } = GD.Load(
+		"res://scene/common/wiki/paths/default.tres"
+	) as WikiAccessorResource;
 
 	// ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
@@ -286,7 +291,7 @@ public partial class AppScene : Control
 
 		scene ??= UnsavedChangesScene;
 		var dialog = scene.Instantiate() as ConfirmationDialog;
-		
+
 		AddChild(dialog);
 		dialog.Popup();
 

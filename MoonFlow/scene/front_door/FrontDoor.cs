@@ -64,6 +64,7 @@ public partial class FrontDoor : AppScene
 	private void OpenContributorPage()
 	{
 		var app = SceneCreator<FrontDoorContributorApp>.Create();
+		app.SetUniqueIdentifier();
 		Scene.NodeApps.AddChild(app);
 	}
 

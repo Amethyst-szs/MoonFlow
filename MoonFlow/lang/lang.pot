@@ -66,9 +66,7 @@
 # res://addons/podb/input_map.tres
 # res://scene/settings/engine/keybind/overlay_keybind_capture.tscn
 # res://scene/settings/engine/page/keybind.tscn
-# res://scene/common/wiki/wiki_button_tooltip_text_bank.tres
 # res://scene/app/components/dialog_unsaved_changes.tscn
-# res://scene/common/wiki/app_local_wiki_viewer.tscn
 # res://scene/front_door/contributor/asset.tres
 # res://scene/front_door/contributor/dev-csharp.tres
 # res://scene/front_door/contributor/dev-gdscript.tres
@@ -82,6 +80,9 @@
 # res://scene/editor/msbt/page/text_placeholder_page_editor.tres
 # res://scene/editor/msbt/components/dialog_language_change_unsaved.tscn
 # res://scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
+# res://scene/common/wiki/scene/app_local_wiki_viewer.tscn
+# res://scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
+# res://lang/db/header_tooltip.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2423,6 +2424,30 @@ msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_CREDITS"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_HELP_SUPPORT"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
 msgstr ""
 
@@ -3037,21 +3062,6 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
 msgstr ""
 
-#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "LocalNotice"
-msgstr ""
-
-#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "UrlNotice"
-msgstr ""
-
-#: scene/common/wiki/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "SettingNotice"
-msgstr ""
-
 #: scene/app/components/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_TITLE"
 msgstr ""
@@ -3066,14 +3076,6 @@ msgstr ""
 
 #: scene/app/components/dialog_unsaved_changes.tscn
 msgid "UNSAVED_CHANGES_DIALOG_CANCEL"
-msgstr ""
-
-#: scene/common/wiki/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_BROWSE_HEADER"
-msgstr ""
-
-#: scene/common/wiki/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_OPEN_IN_BROWSER"
 msgstr ""
 
 #: scene/front_door/contributor/asset.tres
@@ -3326,4 +3328,32 @@ msgstr ""
 #: scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
 msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
 msgid "IconUntranslated"
+msgstr ""
+
+#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_BROWSE_HEADER"
+msgstr ""
+
+#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_OPEN_IN_BROWSER"
+msgstr ""
+
+#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "LocalNotice"
+msgstr ""
+
+#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "UrlNotice"
+msgstr ""
+
+#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "SettingNotice"
+msgstr ""
+
+#: lang/db/header_tooltip.tres
+msgctxt "HEADER_TOOLTIP"
+msgid "HelpSupport"
 msgstr ""
