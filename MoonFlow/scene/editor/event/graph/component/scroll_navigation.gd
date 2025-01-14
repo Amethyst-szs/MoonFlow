@@ -1,7 +1,7 @@
 extends Node
 
-@export var zoom_min: float = 0.2
-@export var zoom_max: float = 3.0
+@export var zoom_min: float = 0.0
+@export var zoom_max: float = 0.0
 @export var ui_bar_holder: EventFlowGraphScrollNavigationBars
 @export var cursor_icon: Texture2D
 
@@ -31,7 +31,7 @@ func _input(event: InputEvent) -> void:
 			return
 		
 		if is_drag:
-			_handle_screen_movement(event.relative * pan_factor * 2)
+			_handle_screen_movement(event.relative * pan_factor)
 			_handle_mouse_wrap()
 			get_viewport().set_input_as_handled()
 			return
@@ -71,7 +71,8 @@ func _handle_mouse_wrap() -> void:
 	is_warp_cursor = true
 
 func _handle_screen_movement(offset: Vector2) -> void:
-	parent.offset += offset / (parent.scale * 2.25)
+	parent.offset += offset
+	
 	_clamp_offset_within_bounds()
 	_update_position_for_scroll_navigation_ui()
 

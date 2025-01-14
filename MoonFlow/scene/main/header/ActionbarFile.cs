@@ -33,6 +33,9 @@ public partial class ActionbarFile : ActionbarItemBase
     {
         base.AppFocusChanged();
 
+		// Save As has not been implemented fully yet
+		SetItemDisabled(GetItemIndex((int)MenuIds.FILE_SAVE_AS), true);
+
 		var scene = await GetScene();
 		var app = scene.GetActiveApp() ;
 		bool isAllowUserClose = app.IsAppAllowUserToClose();

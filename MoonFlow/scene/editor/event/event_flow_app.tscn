@@ -116,6 +116,8 @@ script = ExtResource("5_5dp1p")
 
 [node name="Graph_ScrollNavigation" type="Node" parent="Graph" node_paths=PackedStringArray("ui_bar_holder")]
 script = ExtResource("6_va4yh")
+zoom_min = 0.05
+zoom_max = 3.0
 ui_bar_holder = NodePath("../../ScollNavigationBars")
 cursor_icon = ExtResource("8_70kp1")
 

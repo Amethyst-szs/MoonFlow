@@ -20,7 +20,7 @@ func _ready() -> void:
 func _on_line_new_entry_text_submitted(new_text: String) -> void:
 	await get_tree().create_timer(0.1).timeout
 	
-	var scroll: SmoothScrollContainer = get_parent().get_child(0) as SmoothScrollContainer
+	var scroll := get_parent().get_child(0) as SmoothScrollContainer
 	
 	var new_child: Control = scroll.find_child(new_text, true, false)
 	if !new_child:
