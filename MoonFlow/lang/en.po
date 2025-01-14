@@ -2538,6 +2538,14 @@ msgstr ""
 msgid "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
 msgstr "Search"
 
+#: scene/editor/event/inject/popup_inject_graph_node.tscn
+msgid "EVENT_FLOW_GRAPH_INJECT_BLOCK_TOOLTIP"
+msgstr "Organize nodes into a named & colored group box"
+
+#: scene/editor/event/inject/popup_inject_graph_node.tscn
+msgid "EVENT_FLOW_GRAPH_INJECT_BLOCK"
+msgstr "Add Group"
+
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 msgstr "Step-by-Step Debugger Active (F3)"
@@ -3416,6 +3424,29 @@ msgstr ""
 #: scene/version/version_tooltip.tscn
 msgid "VERSION_UPDATE_TOOLTIP_HEADER"
 msgstr "Update Available!"
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_PANEL_HEADER_TOOLTIP"
+msgstr ""
+"Click + Drag label to move group\n"
+"Click + Drag bottom-right corner to resize\n"
+"Ctrl + Click to rename, recolor, or delete group"
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_NAME_INPUT_PLACEHOLDER"
+msgstr "Group Name"
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_HUE_SLIDER_HEADER"
+msgstr "Hue:"
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_HIDE_CONFIG_EDIT_TOOLTIP"
+msgstr "Hide Group Config"
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_DELETE_TOOLTIP"
+msgstr "Delete Group"
 
 #~ msgid "EVENT_FLOW_APP_BUTTON_WIKI"
 #~ msgstr "Help Docs"

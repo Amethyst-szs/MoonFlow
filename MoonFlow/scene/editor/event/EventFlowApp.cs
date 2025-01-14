@@ -36,6 +36,8 @@ public partial class EventFlowApp : AppScene
     [Export]
     public NodeHolder GraphNodeHolder { get; private set; } = null;
     [Export]
+    public Node2D GraphBlockHolder { get; private set; } = null;
+    [Export]
     public PopupEventMetadata PopupMetadata { get; private set; } = null;
 
     // ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
@@ -59,21 +61,21 @@ public partial class EventFlowApp : AppScene
         var scene = ProjectManager.SceneRoot;
         if (scene.HasNode(PopupInjectGraphNode.DefaultNodeName))
             return;
-        
+
         var popup = SceneCreator<PopupInjectGraphNode>.Create();
         popup.Name = PopupInjectGraphNode.DefaultNodeName;
         scene.AddChild(popup);
     }
 
     public static EventFlowApp OpenApp(SarcFile arc, string key)
-	{
-		var editor = SceneCreator<EventFlowApp>.Create();
-		editor.SetUniqueIdentifier(arc.Name + key);
-		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
+    {
+        var editor = SceneCreator<EventFlowApp>.Create();
+        editor.SetUniqueIdentifier(arc.Name + key);
+        ProjectManager.SceneRoot.NodeApps.AddChild(editor);
 
         editor.OpenFile(arc, key);
-		return editor;
-	}
+        return editor;
+    }
 
     protected override void AppInit()
     {
@@ -92,6 +94,9 @@ public partial class EventFlowApp : AppScene
 
         await InitNodeList();
         InitEntryPointNodes();
+
+        // Create metadata-only block objects
+        InitBlockList();
 
         // If this is the first opening of this file, auto-arrange all nodes
         if (Metadata.IsFirstOpen)
@@ -193,6 +198,12 @@ public partial class EventFlowApp : AppScene
         return entryEdit;
     }
 
+    private void InitBlockList()
+    {
+        foreach (var block in Metadata.Blocks.Keys)
+            CreateBlock(block);
+    }
+
     #endregion
 
     #region Read & Write
@@ -218,7 +229,7 @@ public partial class EventFlowApp : AppScene
     {
         if (!AppIsFocused() && isRequireFocus)
             return;
-        
+
         GD.Print("\n - Saving ", Graph.Name);
         var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveEventFlowGraph);
 
@@ -271,10 +282,23 @@ public partial class EventFlowApp : AppScene
         return entry;
     }
 
+    public EventBlockPanel CreateBlock() { return CreateBlock(Metadata.CreateBlockId()); }
+    public EventBlockPanel CreateBlock(string id)
+    {
+        var block = SceneCreator<EventBlockPanel>.Create();
+        block.InitPanel(Metadata, id);
+        GraphBlockHolder.AddChild(block);
+
+        block.Connect(EventBlockPanel.SignalName.BlockModified, Callable.From(OnFileModified));
+
+        OnFileModified();
+        return block;
+    }
+
     public override string GetUniqueIdentifier(string input)
-	{
-		return "EVENTFLOW_" + input;
-	}
+    {
+        return "EVENTFLOW_" + input;
+    }
 
     #endregion
 

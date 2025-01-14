@@ -1,0 +1,165 @@
+[gd_scene load_steps=16 format=3 uid="uid://blugxxp7lqdgk"]
+
+[ext_resource type="StyleBox" uid="uid://dp38srcrqw4m5" path="res://asset/theme/event/block/stylebox/event_block_panel.tres" id="1_3xoh6"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_snx6g"]
+[ext_resource type="StyleBox" uid="uid://us7xmlios5el" path="res://asset/theme/event/block/stylebox/event_block_panel_frame.tres" id="2_cnavi"]
+[ext_resource type="Script" path="res://scene/editor/event/block/EventBlockPanel.cs" id="3_udgrr"]
+[ext_resource type="StyleBox" uid="uid://dwq5iuwp7koqq" path="res://asset/theme/event/block/stylebox/event_block_panel_grabber.tres" id="4_2ev53"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_31qkk"]
+[ext_resource type="Script" path="res://scene/editor/event/block/label_drag_input.gd" id="4_s4em3"]
+[ext_resource type="Script" path="res://scene/editor/event/block/panel_grab.gd" id="5_warwq"]
+[ext_resource type="Script" path="res://scene/editor/event/block/label_holder_window_track.gd" id="7_1nimg"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="9_kv3ps"]
+[ext_resource type="Texture2D" uid="uid://c4jxkit4m4lf0" path="res://asset/material/status/visible_off.svg" id="10_momqm"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="11_o5bhx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41qmw"]
+blend_mode = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0iy0"]
+font = ExtResource("4_31qkk")
+font_size = 19
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y8b7l"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.784314)
+
+[node name="EventBlockPanel" type="PanelContainer" node_paths=PackedStringArray("LabelHeader", "LineLabelEditor", "SliderHue")]
+self_modulate = Color(1, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_41qmw")
+custom_minimum_size = Vector2(192, 192)
+offset_right = 192.0
+offset_bottom = 192.0
+mouse_filter = 2
+theme = ExtResource("1_snx6g")
+theme_override_styles/panel = ExtResource("1_3xoh6")
+script = ExtResource("3_udgrr")
+LabelHeader = NodePath("Header/Header_DragParent/VBox_Content/Label_BlockName")
+LineLabelEditor = NodePath("Header/Header_DragParent/VBox_Content/VBox_Edit/Line_BlockName")
+SliderHue = NodePath("Header/Header_DragParent/VBox_Content/VBox_Edit/Slider_Hue")
+
+[node name="Panel_Frame" type="PanelContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_cnavi")
+
+[node name="CornerGrabber" type="Control" parent="."]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel_Grab" type="PanelContainer" parent="CornerGrabber"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -28.0
+offset_right = -1.52588e-05
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.785398
+pivot_offset = Vector2(0, 24)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_default_cursor_shape = 12
+theme_override_styles/panel = ExtResource("4_2ev53")
+script = ExtResource("5_warwq")
+
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header_DragParent" type="Control" parent="Header"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+
+[node name="VBox_Content" type="VBoxContainer" parent="Header/Header_DragParent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_1nimg")
+
+[node name="Label_BlockName" type="Label" parent="Header/Header_DragParent/VBox_Content"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "EVENT_GRAPH_EDITOR_BLOCK_PANEL_HEADER_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 6
+label_settings = SubResource("LabelSettings_j0iy0")
+script = ExtResource("4_s4em3")
+
+[node name="VBox_Edit" type="VBoxContainer" parent="Header/Header_DragParent/VBox_Content"]
+visible = false
+layout_mode = 2
+theme = ExtResource("9_kv3ps")
+
+[node name="Line_BlockName" type="LineEdit" parent="Header/Header_DragParent/VBox_Content/VBox_Edit"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+placeholder_text = "EVENT_GRAPH_EDITOR_BLOCK_NAME_INPUT_PLACEHOLDER"
+max_length = 24
+context_menu_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="HSep" type="HSeparator" parent="Header/Header_DragParent/VBox_Content/VBox_Edit"]
+self_modulate = Color(1, 1, 1, 0.266667)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label_HueSliderHeader" type="Label" parent="Header/Header_DragParent/VBox_Content/VBox_Edit"]
+layout_mode = 2
+text = "EVENT_GRAPH_EDITOR_HUE_SLIDER_HEADER"
+label_settings = SubResource("LabelSettings_y8b7l")
+text_overrun_behavior = 1
+
+[node name="Slider_Hue" type="HSlider" parent="Header/Header_DragParent/VBox_Content/VBox_Edit"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="HSep2" type="HSeparator" parent="Header/Header_DragParent/VBox_Content/VBox_Edit"]
+self_modulate = Color(1, 1, 1, 0.266667)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBox_Menu" type="HBoxContainer" parent="Header/Header_DragParent/VBox_Content/VBox_Edit"]
+layout_mode = 2
+
+[node name="Button_Hide" type="Button" parent="Header/Header_DragParent/VBox_Content/VBox_Edit/HBox_Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "EVENT_GRAPH_EDITOR_BLOCK_HIDE_CONFIG_EDIT_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 18
+icon = ExtResource("10_momqm")
+icon_alignment = 1
+
+[node name="Button_Delete" type="Button" parent="Header/Header_DragParent/VBox_Content/VBox_Edit/HBox_Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "EVENT_GRAPH_EDITOR_BLOCK_DELETE_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 18
+icon = ExtResource("11_o5bhx")
+icon_alignment = 1
+
+[connection signal="resized" from="." to="." method="OnBlockMovedOrResized"]
+[connection signal="node_edit_page_opened" from="Header/Header_DragParent/VBox_Content/Label_BlockName" to="." method="OnEditMenuOpened"]
+[connection signal="node_edit_page_opened" from="Header/Header_DragParent/VBox_Content/Label_BlockName" to="Header/Header_DragParent/VBox_Content/Label_BlockName" method="hide"]
+[connection signal="node_edit_page_opened" from="Header/Header_DragParent/VBox_Content/Label_BlockName" to="Header/Header_DragParent/VBox_Content/VBox_Edit" method="show"]
+[connection signal="node_edit_page_opened" from="Header/Header_DragParent/VBox_Content/Label_BlockName" to="Header/Header_DragParent/VBox_Content/VBox_Edit/Line_BlockName" method="call_deferred" binds= ["grab_focus"]]
+[connection signal="node_moved" from="Header/Header_DragParent/VBox_Content/Label_BlockName" to="." method="OnBlockMovedOrResized"]
+[connection signal="tree_entered" from="Header/Header_DragParent/VBox_Content/VBox_Edit" to="Header/Header_DragParent/VBox_Content/VBox_Edit" method="hide"]
+[connection signal="text_changed" from="Header/Header_DragParent/VBox_Content/VBox_Edit/Line_BlockName" to="." method="OnLineEditLabelChanged"]
+[connection signal="value_changed" from="Header/Header_DragParent/VBox_Content/VBox_Edit/Slider_Hue" to="." method="OnColorHueChanged"]
+[connection signal="pressed" from="Header/Header_DragParent/VBox_Content/VBox_Edit/HBox_Menu/Button_Hide" to="Header/Header_DragParent/VBox_Content/Label_BlockName" method="show"]
+[connection signal="pressed" from="Header/Header_DragParent/VBox_Content/VBox_Edit/HBox_Menu/Button_Hide" to="Header/Header_DragParent/VBox_Content/VBox_Edit" method="hide"]
+[connection signal="pressed" from="Header/Header_DragParent/VBox_Content/VBox_Edit/HBox_Menu/Button_Delete" to="." method="OnBlockDeleteRequested"]

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://bajosqw3blmjp"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://bajosqw3blmjp"]
 
 [ext_resource type="StyleBox" uid="uid://cmd8hoxpk31yy" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_focus.tres" id="1_0sh3g"]
 [ext_resource type="StyleBox" uid="uid://dms4run2dqecx" path="res://asset/theme/event/graph/stylebox/graph_ui_header_button_normal.tres" id="1_8rb24"]
@@ -14,6 +14,7 @@
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="8_c7r35"]
 [ext_resource type="StyleBox" uid="uid://xfsagg4wksso" path="res://asset/theme/common/stylebox/common_scroll_grabber_pressed.tres" id="8_ctrbu"]
 [ext_resource type="StyleBox" uid="uid://cpp1piqp2d0yp" path="res://asset/theme/event/graph/stylebox/graph_ui_scroll_v_scroll.tres" id="14_j3i4a"]
+[ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="14_o0ckw"]
 [ext_resource type="StyleBox" uid="uid://d0tr8ol4qgmas" path="res://asset/theme/event/graph/stylebox/graph_ui_scroll_v_scroll_focus.tres" id="15_7f0fg"]
 
 [resource]
@@ -33,6 +34,8 @@ MarginContainer/constants/margin_top = 12
 PopupMenu/fonts/font = ExtResource("6_ycw51")
 PopupMenu/styles/hover = ExtResource("7_cu1ey")
 PopupMenu/styles/panel = ExtResource("8_c7r35")
+TooltipLabel/fonts/font = ExtResource("6_ycw51")
+TooltipPanel/styles/panel = ExtResource("14_o0ckw")
 VScrollBar/styles/grabber = ExtResource("6_jnxdi")
 VScrollBar/styles/grabber_highlight = ExtResource("7_ypogx")
 VScrollBar/styles/grabber_pressed = ExtResource("8_ctrbu")

@@ -6,6 +6,7 @@ class_name EventFlowGraphScrollNavigationBars
 
 @export var graph: CanvasLayer
 @export var node_holder: Node2D
+@export var block_holder: Node2D
 
 var node_extent_rect := Rect2()
 var graph_scale := Vector2.ONE
@@ -49,6 +50,10 @@ func _calculate_extents(ignore_rate_limit: bool = false) -> void:
 	for node in node_holder.get_children():
 		if node.has_method("GetRect"):
 			rect = rect.merge(node.call("GetRect"))
+	
+	for block in block_holder.get_children():
+		if block.has_method("get_rect"):
+			rect = rect.merge(block.get_rect())
 	
 	# Add margin to rect
 	rect = rect.grow(60.0)

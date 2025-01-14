@@ -84,6 +84,7 @@
 # res://scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
 # res://lang/db/header_tooltip.tres
 # res://scene/version/version_tooltip.tscn
+# res://scene/editor/event/block/event_block_panel.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2568,6 +2569,14 @@ msgstr ""
 msgid "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
 msgstr ""
 
+#: scene/editor/event/inject/popup_inject_graph_node.tscn
+msgid "EVENT_FLOW_GRAPH_INJECT_BLOCK_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/inject/popup_inject_graph_node.tscn
+msgid "EVENT_FLOW_GRAPH_INJECT_BLOCK"
+msgstr ""
+
 #: scene/editor/event/event_flow_app.tscn
 msgid "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 msgstr ""
@@ -3391,4 +3400,24 @@ msgstr ""
 
 #: scene/version/version_tooltip.tscn
 msgid "VERSION_UPDATE_TOOLTIP_HEADER"
+msgstr ""
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_PANEL_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_NAME_INPUT_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_HUE_SLIDER_HEADER"
+msgstr ""
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_HIDE_CONFIG_EDIT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/event/block/event_block_panel.tscn
+msgid "EVENT_GRAPH_EDITOR_BLOCK_DELETE_TOOLTIP"
 msgstr ""

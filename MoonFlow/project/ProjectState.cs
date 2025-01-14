@@ -43,6 +43,9 @@ public class ProjectState(string path, ProjectConfig config)
         // transation and improves the user experience a bit!
         await Task.Delay(200);
 
+        // Update MoonFlow.Project globals
+        Global.SetDebugMetadataFileOutput(Config.Data.IsDebugProject);
+
         // Attempt to init project contents
         try
         {

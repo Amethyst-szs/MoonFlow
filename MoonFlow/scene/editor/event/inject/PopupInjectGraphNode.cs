@@ -183,6 +183,20 @@ public partial class PopupInjectGraphNode : Popup
 		ContainerFav.FindChild(name, false, false).QueueFree();
 	}
 
+	public void OnInjectNewBlock()
+	{
+		var block = Context.CreateBlock();
+
+		// Place block on mouse cursor
+		block.SetPosition(Context.GraphCanvas.InjectNodePosition);
+		block.OnBlockMovedOrResized();
+
+		// Assign random color
+		block.OnColorHueChanged((float)GD.RandRange(0f, 1f));
+
+		Hide();
+    }
+
 	#endregion
 
 	#region Utilities

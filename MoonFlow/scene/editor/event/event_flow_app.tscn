@@ -75,7 +75,7 @@ func _ready():
 		queue_free()
 "
 
-[node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder", "PopupMetadata")]
+[node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder", "GraphBlockHolder", "PopupMetadata")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,6 +87,7 @@ script = ExtResource("1_rd7f7")
 GraphCanvas = NodePath("Graph")
 BackgroundCanvas = NodePath("Background")
 GraphNodeHolder = NodePath("Graph/NodeHolder")
+GraphBlockHolder = NodePath("Graph/BlocksHolder")
 PopupMetadata = NodePath("Popup_NodeMetadataEditor")
 AppName = "EventFlowGraphApp"
 AppTaskbarTitle = "EventFlow"
@@ -137,10 +138,12 @@ shape = NodePath("Area_Shape")
 shape = SubResource("RectangleShape2D_v3jgl")
 debug_color = Color(0, 0.595, 0.7, 0.513726)
 
+[node name="BlocksHolder" type="Node2D" parent="Graph"]
+
 [node name="NodeHolder" type="Node2D" parent="Graph"]
 script = ExtResource("8_je2jj")
 
-[node name="ScollNavigationBars" type="Control" parent="." node_paths=PackedStringArray("graph", "node_holder")]
+[node name="ScollNavigationBars" type="Control" parent="." node_paths=PackedStringArray("graph", "node_holder", "block_holder")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,6 +155,8 @@ theme = ExtResource("9_1hwnx")
 script = ExtResource("12_kgg6l")
 graph = NodePath("../Graph")
 node_holder = NodePath("../Graph/NodeHolder")
+block_holder = NodePath("../Graph/BlocksHolder")
+metadata/_edit_lock_ = true
 
 [node name="HScroll" type="HScrollBar" parent="ScollNavigationBars"]
 layout_mode = 1
