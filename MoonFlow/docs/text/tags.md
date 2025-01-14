@@ -9,11 +9,9 @@ MoonFlow introduces support for creating and modifying text tags. Behind the sce
 ## What are Tags?
 Tags, in the broad sense, are a way to format text in some specific way. For some simple examples, take markdown tags, like *\*italics\** by surrounding your text in asterisks, a common feature in many applications like Discord. This concept extends to more complex tagging systems like HTML: `<script> console.log("Hello World!); </script>`
 
-The MSBT tag system works quite differently than these prior examples. For more information on the technical specifics on what these tags are, [look here](technical.md). Super Mario Odyssey is even more unique in this regard, implementing lots of custom tags and also not implementing quite a few common standards for the format.
+The MSBT tag system works quite differently than these prior examples. Super Mario Odyssey is even more unique in this regard, implementing lots of custom tags, and also not implementing quite a few common standards for the format. For more information on the technical specifics on what these tags are, [look here](technical.md).
 
-Super Mario Odyssey's tags do *not* require closing markers. Each tag is entirely self-contained, and can contain any data. Most tags do some form of text formatting, but there are lots of special tags for controlling dialogue printing, playing sounds, and more.
-
-In the context of MoonFlow, tags can mostly be handled the same way you do text. They can be copied, pasted, undone, redone, and more. One thing you *cannot* do is copy a tag and then paste it into a different text editor. These tags aren't text, after all!
+Super Mario Odyssey's tags do *not* require closing markers. Each tag is entirely self-contained, and can contain any data. Most tags do some form of text formatting, but there are lots of special tags for controlling dialogue printing, playing sounds, and more. In the context of MoonFlow, tags can be handled the same way you do text. They can be copied, pasted, undone, redone, and everything else you'd normally do with text. One thing you *cannot* do is copy a tag and then paste it into a different text editor. These tags aren't text, after all!
 
 So, what tags are there? And once we know what tags there are, how do we use them?
 
@@ -38,7 +36,7 @@ So, what tags are there? And once we know what tags there are, how do we use the
 
 [^1]: [Furigana](https://en.wikipedia.org/wiki/Furigana) is a Japanese reading aid which adds additional kana to indicate pronunciation
 [^2]: The grammar tag is not fully understood, mostly but not exclusively appears in Korean
-[^3]: Dynamic controller icons will change and adapt based on what controller the player is using (Joy-Con, Pro-Con, Single Joy-Con, etc..)
+[^3]: Dynamic controller icons will change and adapt based on what controller the player is using (Joy-Con, Pro-Con, Single Joy-Con, etc.)
 [^4]: Replacement format tags require additional exefs code
 
 ## Wheel
