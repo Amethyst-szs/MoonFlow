@@ -79,14 +79,14 @@ func _handle_screen_movement(offset: Vector2) -> void:
 func _handle_wheel_up() -> void:
 	zoom_pivot = get_viewport().get_mouse_position()
 	
-	var factor := zoom_factor
+	var factor := zoom_factor * parent.scale.x
 	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
 	_handle_zoom(new_scale)
 
 func _handle_wheel_down() -> void:
 	zoom_pivot = get_viewport().get_mouse_position()
 	
-	var factor := -zoom_factor
+	var factor := -zoom_factor * parent.scale.x
 	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
 	_handle_zoom(new_scale)
 

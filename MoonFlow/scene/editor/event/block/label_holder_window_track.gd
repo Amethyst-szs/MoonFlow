@@ -27,6 +27,9 @@ func _process(_delta: float) -> void:
 	
 	_update_x(-root_screen_pos.x)
 	_update_y(-root_screen_pos.y)
+	
+	# Update label scale to match inverse canvas scale
+	scale = Vector2.ONE / canvas.scale
 
 func _update_x(screen: float) -> void:
 	if screen < 0:
