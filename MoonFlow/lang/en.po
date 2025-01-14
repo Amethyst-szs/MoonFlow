@@ -227,7 +227,7 @@ msgstr "This folder already contains a project!"
 
 #: scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC"
-msgstr "Sync With Default Language"
+msgstr "Sync with Default Language"
 
 #: scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
@@ -1392,7 +1392,7 @@ msgstr "Delete Selected Entry"
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
 msgstr ""
-"Reset Selected Entry to default, unmodified state.\n"
+"Reset selected entry for this language to default, unmodified state.\n"
 "Default state is pulled from your romfs dump directory."
 
 #: scene/editor/msbt/list/entry_list_holder.tscn

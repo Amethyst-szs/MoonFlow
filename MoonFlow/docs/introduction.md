@@ -49,7 +49,7 @@ This is where you select which version of the game you want to base your project
 
 [^4]: If more updates are released in the future, MoonFlow plans to support them (within reason). Kiosk Demo and Tencent builds are not supported at this time, but may be in the future.
 
-#### Default Language
+#### Language
 The default language is the language your project will be developed on. Changing this later can be difficult, so make sure to pick the language that fits your project the best! All text changes made to this language will be copied to all other languages during development (until a manual translation is provided).
 
 ## Conclusion
