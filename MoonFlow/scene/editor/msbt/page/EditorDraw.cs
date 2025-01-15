@@ -81,7 +81,7 @@ public partial class MsbtPageEditor : TextEdit
         string textureName;
 
         if (tag is not MsbtTagElementProjectTag)
-            textureName = tag.GetTextureName((int)ProjectManager.GetProjectVersion());
+            textureName = tag.GetTextureName((int)ProjectManager.GetRomfsVersion());
         else
         {
             textureName = tag.GetTextureName(0);

@@ -20,7 +20,7 @@ public partial class ProjectLanguageHolder
 
     public ProjectIconResolver ProjectIconResolver { get; private set; } = null;
 
-    public ProjectLanguageMetaHolder Metadata { get; private set; } = null;
+    public ProjectLanguageMetaFile Metadata { get; private set; } = null;
 
     public ProjectLanguageHolder(string projectPath, string lang)
     {
@@ -76,7 +76,7 @@ public partial class ProjectLanguageHolder
 
         ProjectIconResolver = ProjectIconResolver.FromPadStyleAndPadPair([.. byteStyle], [.. bytePair]);
     }
-    
+
     #region Utility
 
     public void WriteArchives()
@@ -85,7 +85,7 @@ public partial class ProjectLanguageHolder
         StageMessage.WriteArchive();
         LayoutMessage.WriteArchive();
     }
-    
+
 
     public SarcFile GetArchiveByFileName(string name, bool throwOnInvalid = true)
     {
@@ -107,21 +107,21 @@ public partial class ProjectLanguageHolder
     {
         if (source.Sarc != SystemMessage && source.Sarc != StageMessage && source.Sarc != LayoutMessage)
             throw new Exception("Invalid projectSarc!");
-        
+
         // Access sarc from romfs accessor
         if (!RomfsAccessor.TryGetRomfsDirectory(out string romDir))
             throw new Exception("RomfsAccessor is not ready!");
-        
+
         var path = romDir + LocalPath + source.Sarc.Name;
         if (!File.Exists(path))
             throw new FileNotFoundException("Could not find " + path);
-        
+
         var sarc = SarcFile.FromFilePath(path);
 
         // Attempt to get corresponding msbt file
         if (!sarc.Content.ContainsKey(source.Name))
             return null;
-        
+
         var romMsbt = sarc.GetFileMSBT(source.Name, new MsbtElementFactoryProjectSmo());
         return romMsbt;
     }

@@ -8,9 +8,9 @@ public partial class MsbtEntryTranslationConfig : PanelContainer
 	[Signal]
 	public delegate void SyncToggledEventHandler(bool isDisableSync);
 
-	public void SetupNode(ProjectLanguageFileEntryMeta meta)
+	public void SetupNode(ProjectLanguageMetaBucketEntry meta)
 	{
-		SetButtonState(meta.IsDisableSync);
+		SetButtonState(meta.OffSync);
 	}
 
 	private void OnTranslationSyncToggled(bool isDisableSync)

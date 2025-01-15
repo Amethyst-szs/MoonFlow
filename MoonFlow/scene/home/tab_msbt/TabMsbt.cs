@@ -78,7 +78,7 @@ public partial class TabMsbt : HSplitContainer
 		bool isAnyFilesAdded = false;
 		foreach (var key in keys)
 			isAnyFilesAdded |= TryCreateButton(file, key, box);
-		
+
 		if (!isAnyFilesAdded)
 		{
 			dropdown.QueueFree();
@@ -164,7 +164,7 @@ public partial class TabMsbt : HSplitContainer
 			var world = db.GetWorldInfoByStageName(file.RemoveFileExtension());
 			if (world != null)
 				continue;
-			
+
 			isAnyFilesAdded |= TryCreateButton(arc, file, box);
 		}
 
@@ -335,7 +335,7 @@ public partial class TabMsbt : HSplitContainer
 		if (SelectedFile == null)
 			return;
 
-		var hash = ProjectLanguageMetaHolder.CalcHash(SelectedFile.Sarc.Name, SelectedFile.Name);
+		var hash = ProjectLanguageMetaFile.CalcHash(SelectedFile.Sarc.Name, SelectedFile.Name);
 		DisplayServer.ClipboardSet(hash);
 
 		GD.Print(hash + " added to system clipboard!");
@@ -384,9 +384,9 @@ public partial class TabMsbt : HSplitContainer
 		{
 			if (!parent.HasMeta("dropdown"))
 				return;
-			
+
 			await ToSignal(Engine.GetMainLoop(), "process_frame");
-			
+
 			var dropdown = parent.GetMeta("dropdown").As<Button>();
 			dropdown.Hide();
 		}

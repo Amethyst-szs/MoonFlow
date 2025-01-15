@@ -269,7 +269,7 @@ public partial class TabEvent : HSplitContainer
 		if (SelectedArchive == null || SelectedEvent == null)
 			return;
 
-		var hash = GraphMetaHolder.CalcNameHash(SelectedArchive.Name, SelectedEvent);
+		var hash = GraphMetadataFile.CalcNameHash(SelectedArchive.Name, SelectedEvent);
 		DisplayServer.ClipboardSet(hash);
 
 		GD.Print(hash + " added to system clipboard!");

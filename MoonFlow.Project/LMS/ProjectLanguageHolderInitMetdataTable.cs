@@ -15,7 +15,7 @@ public partial class ProjectLanguageHolder
     {
         if (Path == null || LocalPath == null)
             return;
-        
+
         BuildMetadataTableArchive(SystemMessage);
         BuildMetadataTableArchive(StageMessage);
         BuildMetadataTableArchive(LayoutMessage);
@@ -31,7 +31,7 @@ public partial class ProjectLanguageHolder
         var romFilePath = romfs + LocalPath + file.Name;
         if (!File.Exists(romFilePath))
             throw new RomfsAccessException("Romfs does not contain " + romFilePath);
-        
+
         var romFile = SarcFile.FromFilePath(romFilePath);
 
         // Loop through each msbt in project's file
@@ -62,8 +62,8 @@ public partial class ProjectLanguageHolder
             var entry = projFile.GetEntry(label);
             var meta = Metadata.GetMetadata(projFile, entry);
 
-            meta.IsMod = true;
-            meta.IsCustom = true;
+            meta.Mod = true;
+            meta.Custom = true;
         }
     }
     private void BuildMetadataTableEntry(SarcMsbtFile projFile, SarcMsbtFile romFile)
@@ -76,13 +76,13 @@ public partial class ProjectLanguageHolder
             // Access project entry and metadata
             MsbtEntry projEntry = projFile.GetEntry(label);
             var meta = Metadata.GetMetadata(projFile, projEntry);
-            
+
             // If the rom file doesn't contain this entry, mark modified
             if (!romFile.IsContainKey(label))
             {
                 isDif = true;
-                meta.IsMod = true;
-                meta.IsCustom = true;
+                meta.Mod = true;
+                meta.Custom = true;
                 continue;
             }
 
@@ -90,8 +90,8 @@ public partial class ProjectLanguageHolder
             if (!projEntry.Equals(romEntry))
             {
                 isDif = true;
-                meta.IsMod = true;
-                meta.IsCustom = false;
+                meta.Mod = true;
+                meta.Custom = false;
             }
         }
 
@@ -99,7 +99,7 @@ public partial class ProjectLanguageHolder
         foreach (var label in romFile.GetEntryLabels())
             if (!projFile.IsContainKey(label))
                 isDif = true;
-        
+
         // If modified, set the last modified timestamp
         if (isDif)
             Metadata.SetLastModifiedTime(projFile);

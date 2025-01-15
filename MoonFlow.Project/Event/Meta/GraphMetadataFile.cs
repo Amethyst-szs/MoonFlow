@@ -8,16 +8,17 @@ using Nindot.Al.EventFlow;
 
 namespace MoonFlow.Project;
 
-public class GraphMetaHolder : ProjectConfigFileBase
+public class GraphMetadataFile : ProjectFileFormatBase
 {
-    public GraphMetadata Data { get; private set; } = new();
+    public GraphMetaBucketCommon Data { get; private set; } = new();
+    
     private const string PathBase = "EventData/.graph/";
     public const string EmbedGraphPath = "res://scene/editor/event/meta/embed/";
 
-    public GraphMetaHolder(string path) : base(path) { }
-    public GraphMetaHolder(byte[] data) : base(data) { }
+    public GraphMetadataFile(string path) : base(path) { }
+    public GraphMetadataFile(byte[] data) : base(data) { }
 
-    public static GraphMetaHolder Create(SarcEventFlowGraph graph, string projectPath)
+    public static GraphMetadataFile Create(SarcEventFlowGraph graph, string projectPath)
     {
         var path = projectPath + PathBase;
         Directory.CreateDirectory(path);
@@ -26,13 +27,13 @@ public class GraphMetaHolder : ProjectConfigFileBase
 
         // If file already exists, continue with standard constructor
         if (File.Exists(path + fileName))
-            return new GraphMetaHolder(path + fileName);
+            return new GraphMetadataFile(path + fileName);
 
         // Otherwise, lookup file in the embeded mfgraph directory
         if (Godot.FileAccess.FileExists(EmbedGraphPath + fileName))
         {
             var data = Godot.FileAccess.GetFileAsBytes(EmbedGraphPath + fileName);
-            var holder = new GraphMetaHolder(data)
+            var holder = new GraphMetadataFile(data)
             {
                 Path = path + fileName,
             };
@@ -41,12 +42,12 @@ public class GraphMetaHolder : ProjectConfigFileBase
         }
 
         // If all else fails, return a default meta holder
-        return new GraphMetaHolder(path + fileName);
+        return new GraphMetadataFile(path + fileName);
     }
 
     protected override void Init(string json)
     {
-        Data = JsonSerializer.Deserialize<GraphMetadata>(json, JsonConfig);
+        Data = JsonSerializer.Deserialize<GraphMetaBucketCommon>(json, JsonConfig);
     }
 
     protected override bool TryGetWriteData(out object data)
@@ -62,7 +63,7 @@ public class GraphMetaHolder : ProjectConfigFileBase
         byte[] hashValue = MD5.HashData(input);
         return BitConverter.ToString(hashValue).Replace("-", string.Empty) + ".mfgraph";
     }
-    
+
     public static string GetPath(string archive, string file, string projectPath)
     {
         var path = projectPath + PathBase;

@@ -22,7 +22,7 @@ public partial class MfgraphResource() : Resource()
 
     public void InitResource(string path)
     {
-        var data = new GraphMetaHolder(path).Data;
+        var data = new GraphMetadataFile(path).Data;
 
         HashName = path.Split(['/', '\\']).Last();
         ArchiveName = data.ArchiveName;
@@ -30,7 +30,7 @@ public partial class MfgraphResource() : Resource()
 
         foreach (var node in data.Nodes)
             Nodes.Add(node.Key, node.Value.Comment);
-        
+
         foreach (var enter in data.EntryPoints)
             EntryPoints.Add(enter.Key);
     }

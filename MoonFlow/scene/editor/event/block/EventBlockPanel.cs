@@ -9,8 +9,8 @@ namespace MoonFlow.Scene.EditorEvent;
 public partial class EventBlockPanel : PanelContainer
 {
 	private string Id;
-	private GraphMetadata GraphMeta;
-	public BlockMetadata BlockMeta { get; private set; }
+	private GraphMetaBucketCommon GraphMeta;
+	public GraphMetaBucketBlock BlockMeta { get; private set; }
 
 	[Export, ExportGroup("Internal Referneces")]
 	private Label LabelHeader;
@@ -22,7 +22,7 @@ public partial class EventBlockPanel : PanelContainer
 	[Signal]
 	public delegate void BlockModifiedEventHandler();
 
-	public void InitPanel(GraphMetadata meta, string id)
+	public void InitPanel(GraphMetaBucketCommon meta, string id)
 	{
 		Id = id;
 		GraphMeta = meta;
@@ -64,7 +64,7 @@ public partial class EventBlockPanel : PanelContainer
 	{
 		if (BlockMeta == null)
 			return;
-		
+
 		// Update modulation
 		var col = SelfModulate;
 		col.H = hue;
@@ -83,7 +83,7 @@ public partial class EventBlockPanel : PanelContainer
 	{
 		if (BlockMeta == null)
 			return;
-		
+
 		LabelHeader.Text = txt;
 		BlockMeta.Label = txt;
 
@@ -95,7 +95,7 @@ public partial class EventBlockPanel : PanelContainer
 		LineLabelEditor.CaretColumn = LineLabelEditor.Text.Length;
 		EngineSettings.SetSetting("moonflow/event_graph/hide_block_tooltip", true);
 	}
-	
+
 	private void OnBlockDeleteRequested()
 	{
 		GraphMeta.Blocks.Remove(Id);

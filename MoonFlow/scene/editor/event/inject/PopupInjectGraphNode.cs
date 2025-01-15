@@ -34,7 +34,7 @@ public partial class PopupInjectGraphNode : Popup
 	{
 		// Initilize all favorite options
 		var config = ProjectManager.GetProject().Config;
-		foreach (var fav in config.Data.EventFlowGraphPins)
+		foreach (var fav in config.GetEventGraphPinned())
 		{
 			var button = new NodeInjectButton();
 			button.SetupButton(this, fav);
@@ -153,10 +153,10 @@ public partial class PopupInjectGraphNode : Popup
 	{
 		// Update pin list
 		var config = ProjectManager.GetProject().Config;
-		if (config.Data.EventFlowGraphPins.Contains(name))
+		if (config.IsEventGraphNodePinned(name))
 			return;
 
-		config.Data.EventFlowGraphPins.Add(name);
+		config.AddEventGraphPin(name);
 		config.WriteFile();
 
 		// Create new pin button in favorite container
@@ -168,10 +168,10 @@ public partial class PopupInjectGraphNode : Popup
 	{
 		// Update pin list
 		var config = ProjectManager.GetProject().Config;
-		if (!config.Data.EventFlowGraphPins.Contains(name))
+		if (!config.IsEventGraphNodePinned(name))
 			return;
 
-		config.Data.EventFlowGraphPins.Remove(name);
+		config.RemoveEventGraphPin(name);
 		config.WriteFile();
 
 		EmitSignal(SignalName.PinRemovedCommon, name);

@@ -15,18 +15,22 @@ public static partial class ProjectManager
     {
         if (!OS.IsDebugBuild()) return false;
         if (Project == null) return false;
-        return Project.Config.Data.IsDebugProject;
+        return Project.Config.IsDebug();
     }
-    
+
     public static ProjectState GetProject() { return Project; }
-    public static RomfsVersion GetProjectVersion()
+    public static RomfsVersion GetRomfsVersion()
     {
         if (Project == null) return RomfsVersion.INVALID_VERSION;
-        return Project.Config.Data.Version;
+        return Project.Config.GetRomfsVersion();
     }
     public static string GetPath() { return Project?.Path; }
-    public static string GetDefaultLang() { return Project?.Config?.Data?.DefaultLanguage; }
-    
+    public static string GetDefaultLang()
+    {
+        if (Project == null) return null;
+        return Project.Config.GetDefaultLanguage();
+    }
+
 
     public static ProjectMsbpHolder GetMSBPHolder() { return Project?.MsgStudioProject; }
     public static SarcMsbpFile GetMSBP() { return Project?.MsgStudioProject?.Project; }
@@ -34,11 +38,11 @@ public static partial class ProjectManager
     public static ProjectMessageStudioText GetMSBT() { return Project?.MsgStudioText; }
     public static ProjectLanguageHolder GetMSBTArchives() { return Project?.MsgStudioText?.DefaultLanguage; }
     public static ProjectLanguageHolder GetMSBTArchives(string lang) { return Project?.MsgStudioText[lang]; }
-    public static ProjectLanguageMetaHolder GetMSBTMetaHolder()
+    public static ProjectLanguageMetaFile GetMSBTMetaHolder()
     {
-        return GetMSBTMetaHolder(Project?.Config?.Data?.DefaultLanguage);
+        return GetMSBTMetaHolder(Project.Config.GetDefaultLanguage());
     }
-    public static ProjectLanguageMetaHolder GetMSBTMetaHolder(string lang)
+    public static ProjectLanguageMetaFile GetMSBTMetaHolder(string lang)
     {
         if (Project == null || Project.MsgStudioText == null || lang == null)
             return null;

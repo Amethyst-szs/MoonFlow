@@ -21,7 +21,7 @@ public partial class EventFlowNodeBase : Node2D
 
 	public Graph Graph { get; protected set; } = null;
 	public EventFlowApp Application { get; protected set; } = null;
-	public NodeMetadata Metadata { get; protected set; } = null;
+	public GraphMetaBucketNode Metadata { get; protected set; } = null;
 
 	// ~~~~~~~~~~~~ Editor Config ~~~~~~~~~~~~ //
 
@@ -135,7 +135,7 @@ public partial class EventFlowNodeBase : Node2D
 	public virtual void SetupConnections(List<EventFlowNodeCommon> list) { }
 	protected virtual void InitParamEditor() { }
 
-	public virtual bool InitContentMetadata(GraphMetadata holder, NodeMetadata data)
+	public virtual bool InitContentMetadata(GraphMetaBucketCommon holder, GraphMetaBucketNode data)
 	{
 		bool isNull = data == null;
 		if (isNull)

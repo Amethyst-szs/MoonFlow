@@ -24,8 +24,8 @@ public partial class EventFlowApp : AppScene
     // ~~~~~~~~~~~ Event Flow Graph ~~~~~~~~~~ //
 
     public SarcEventFlowGraph Graph { get; private set; } = null;
-    public GraphMetaHolder MetadataHolder { get; private set; } = null;
-    public GraphMetadata Metadata { get { return MetadataHolder.Data; } }
+    public GraphMetadataFile MetadataHolder { get; private set; } = null;
+    public GraphMetaBucketCommon Metadata { get { return MetadataHolder.Data; } }
 
     // ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
@@ -149,7 +149,7 @@ public partial class EventFlowApp : AppScene
         nodeEdit.InitContent(node, Graph);
 
         // Setup metadata access (Node position, comments, and other additional info)
-        Metadata.Nodes.TryGetValue(node.Id, out NodeMetadata data);
+        Metadata.Nodes.TryGetValue(node.Id, out GraphMetaBucketNode data);
         nodeEdit.InitContentMetadata(Metadata, data);
 
         return nodeEdit;
@@ -192,7 +192,7 @@ public partial class EventFlowApp : AppScene
         entryEdit.InitContent(entry.Key, Graph, target);
 
         // Setup metadata access (Node position, comments, and other additional info)
-        Metadata.EntryPoints.TryGetValue(entry.Key, out NodeMetadata data);
+        Metadata.EntryPoints.TryGetValue(entry.Key, out GraphMetaBucketNode data);
         entryEdit.InitContentMetadata(Metadata, data);
 
         return entryEdit;
@@ -213,7 +213,7 @@ public partial class EventFlowApp : AppScene
         IsInitCompleted = false;
 
         Graph = sarc.GetFileEventFlow(name, new ProjectSmoEventFlowFactory());
-        MetadataHolder = GraphMetaHolder.Create(Graph, ProjectManager.GetPath());
+        MetadataHolder = GraphMetadataFile.Create(Graph, ProjectManager.GetPath());
 
         Metadata.ArchiveName = sarc.Name;
         Metadata.FileName = name;

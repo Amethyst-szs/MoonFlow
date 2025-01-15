@@ -180,7 +180,11 @@ public static class RomfsAccessor
 
     public static bool TrySetGameVersion(RomfsVersion version)
     {
-        if (!VersionDirectories.TryGetValue(version, out string path)) return false;
+        if (version == RomfsVersion.INVALID_VERSION)
+            return false;
+        
+        if (!VersionDirectories.TryGetValue(version, out string path))
+            return false;
 
         // Ensure new directory is valid
         bool isValid = ValidateAndUpdatePath(ref path, out version);

@@ -95,7 +95,7 @@ public class ProjectEventDataArchiveHolder
 
         if (!graph.WriteBytes(out byte[] file))
             throw new EventFlowException("Failed to generate new graph");
-        
+
         // Add data into selected archive
         arc.Content.Add(newName, file);
         arc.WriteArchive();
@@ -107,7 +107,7 @@ public class ProjectEventDataArchiveHolder
         var sourcePath = source.FilePath;
         if (source.Source == EventDataArchive.ArchiveSource.ROMFS)
             sourcePath = GetRomfsPathEquivalent(source.FilePath);
-        
+
         if (!File.Exists(sourcePath))
             return false;
 
@@ -120,8 +120,8 @@ public class ProjectEventDataArchiveHolder
         // Attempt to copy each byml's mfgraph metadata file
         foreach (var file in source.Content)
         {
-            var metaSource = GraphMetaHolder.GetPath(source.Name, file.Key, projectPath);
-            var metaTarget = GraphMetaHolder.GetPath(target, file.Key, projectPath);
+            var metaSource = GraphMetadataFile.GetPath(source.Name, file.Key, projectPath);
+            var metaTarget = GraphMetadataFile.GetPath(target, file.Key, projectPath);
 
             if (File.Exists(metaSource))
                 File.Copy(metaSource, metaTarget, true);
@@ -139,29 +139,29 @@ public class ProjectEventDataArchiveHolder
         // Duplicate byml in archive
         if (arcTarget.Content.ContainsKey(target) || !arcSource.Content.ContainsKey(source))
             return false;
-        
+
         var value = arcSource.Content[source];
         arcTarget.Content[target] = value.ToArray();
-        
+
         arcTarget.WriteArchive();
 
         // Duplicate mfgraph file
-        var sourceHash = GraphMetaHolder.CalcNameHash(arcSource.Name, source);
-        var sourceMetaPath = GraphMetaHolder.GetPath(arcSource.Name, source, projectPath);
-        
-        var sourceMeta = new GraphMetaHolder(sourceMetaPath);
+        var sourceHash = GraphMetadataFile.CalcNameHash(arcSource.Name, source);
+        var sourceMetaPath = GraphMetadataFile.GetPath(arcSource.Name, source, projectPath);
+
+        var sourceMeta = new GraphMetadataFile(sourceMetaPath);
         if (!sourceMeta.IsReadFromDisk)
         {
             // If there isn't a local metadata file, attempt to copy from embeds
-            var embed = GraphMetaHolder.EmbedGraphPath + sourceHash;
+            var embed = GraphMetadataFile.EmbedGraphPath + sourceHash;
             if (!Godot.FileAccess.FileExists(embed))
                 return true;
-            
+
             var data = Godot.FileAccess.GetFileAsBytes(embed);
-            sourceMeta = new GraphMetaHolder(data);
+            sourceMeta = new GraphMetadataFile(data);
         }
 
-        var targetMetaPath = GraphMetaHolder.GetPath(arcTarget.Name, target, projectPath);
+        var targetMetaPath = GraphMetadataFile.GetPath(arcTarget.Name, target, projectPath);
 
         sourceMeta.Data.ArchiveName = arcTarget.Name;
         sourceMeta.Data.FileName = target;
@@ -186,7 +186,7 @@ public class ProjectEventDataArchiveHolder
         // Delete all mfgraph metadata files linked to archive
         foreach (var file in arc.Content.Keys)
         {
-            var path = GraphMetaHolder.GetPath(arc.Name, file, projectPath);
+            var path = GraphMetadataFile.GetPath(arc.Name, file, projectPath);
             if (File.Exists(path))
                 File.Delete(path);
         }
@@ -214,7 +214,7 @@ public class ProjectEventDataArchiveHolder
         if (!arc.Content.ContainsKey(key))
             throw new FileNotFoundException("Event isn't present in provided archive!");
 
-        var hashPath = GraphMetaHolder.GetPath(arc.Name, key, projectPath);
+        var hashPath = GraphMetadataFile.GetPath(arc.Name, key, projectPath);
         if (File.Exists(hashPath))
             File.Delete(hashPath);
 
@@ -230,7 +230,7 @@ public class ProjectEventDataArchiveHolder
     {
         if (!file.EndsWith(".szs"))
             return;
-        
+
         var sarc = EventDataArchive.FromFilePath(dir + file, type);
         Content[file] = sarc;
 

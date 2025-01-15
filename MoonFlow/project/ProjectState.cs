@@ -7,6 +7,7 @@ using MoonFlow.Scene.Main;
 
 using MoonFlow.Project.Database;
 using MoonFlow.Project.Cache;
+using MoonFlow.Addons;
 
 namespace MoonFlow.Project;
 
@@ -44,19 +45,19 @@ public class ProjectState(string path, ProjectConfig config)
         await Task.Delay(200);
 
         // Update MoonFlow.Project globals
-        Global.SetDebugMetadataFileOutput(Config.Data.IsDebugProject);
+        Global.SetDebugMetadataFileOutput(Config.IsDebug());
 
         // Attempt to init project contents
         try
         {
-            InitProjectContent(scene, loadScreen);
+            InitProjectContent(loadScreen);
         }
         catch(Exception e)
         {
             loadScreen.LoadingException(e);
         }
     }
-    private void InitProjectContent(MainSceneRoot scene, ProjectLoading loadScreen)
+    private void InitProjectContent(ProjectLoading loadScreen)
     {
         // Setup MSBP holder
         loadScreen.LoadingUpdateProgress("LOAD_MSBP");
@@ -64,7 +65,7 @@ public class ProjectState(string path, ProjectConfig config)
 
         // Preload archives for default language
         loadScreen.LoadingUpdateProgress("LOAD_MSBT");
-        MsgStudioText = new(Path, Config.Data.DefaultLanguage);
+        MsgStudioText = new(Path, Config.GetDefaultLanguage());
 
         var defaultLanguageArcs = MsgStudioText.DefaultLanguage;
 
@@ -82,12 +83,15 @@ public class ProjectState(string path, ProjectConfig config)
         // Prepare event data archive cache
         EventArcHolder = new(Path, loadScreen);
 
+        // Update the project's target engine version
+        Config.SetEngineTarget(GitInfo.GitVersionName(), GitInfo.GitCommitHash(), GitInfo.GitCommitUnixTime());
+
         // Complete Initilization
-        if (Config.Data.IsFirstBoot)
+        if (Config.IsFirstBoot())
         {
             InitProjectFirstOpen(loadScreen);
 
-            Config.Data.IsFirstBoot = false;
+            Config.ClearFirstBootFlag();
             Config.WriteFile();
         }
 
@@ -129,7 +133,7 @@ public class ProjectState(string path, ProjectConfig config)
 
     public ProjectLanguageHolder GetMsbtArchives()
     {
-        return GetMsbtArchives(Config.Data.DefaultLanguage);
+        return GetMsbtArchives(Config.GetDefaultLanguage());
     }
 
     public ProjectLanguageHolder GetMsbtArchives(string lang)

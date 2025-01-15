@@ -44,24 +44,22 @@ public partial class ActionbarDebug : ActionbarItemBase
 	private void OnAboutToAppear()
 	{
 		var idx = GetItemIndex((int)MenuIds.TOGGLE_PROJECT_IS_DEBUG);
-		var isDebug = ProjectManager.GetProject()?.Config?.Data?.IsDebugProject;
 
 		SetItemAsCheckable(idx, true);
-		if (isDebug != null)
-			SetItemChecked(idx, (bool)isDebug);
+		SetItemChecked(idx, ProjectManager.IsProjectDebug());
 	}
 
 	private async void OnToggleProjectIsDebug()
 	{
 		// Update config
 		var config = ProjectManager.GetProject().Config;
-		config.Data.IsDebugProject = !config.Data.IsDebugProject;
+		config.SetDebugState(!config.IsDebug());
 
 		config.WriteFile();
 
 		// Update checkbox
 		var idx = GetItemIndex((int)MenuIds.TOGGLE_PROJECT_IS_DEBUG);
-		SetItemChecked(idx, config.Data.IsDebugProject);
+		SetItemChecked(idx, config.IsDebug());
 
 		// Reload project
 		var isValidReload = await ProjectManager.SceneRoot.TryCloseAllApps();

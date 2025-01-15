@@ -1,28 +1,35 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Godot;
 
 namespace MoonFlow.Project;
 
-public class GraphMetadata
+public class GraphMetaBucketCommon : IProjectFileFormatDataRoot
 {
+    [JsonInclude]
     public string ArchiveName = "";
+    [JsonInclude]
     public string FileName = "";
 
+    [JsonInclude]
     public bool IsFirstOpen = true;
 
-    public Dictionary<int, NodeMetadata> Nodes = [];
-    public Dictionary<string, NodeMetadata> EntryPoints = [];
+    [JsonInclude]
+    public Dictionary<int, GraphMetaBucketNode> Nodes = [];
+    [JsonInclude]
+    public Dictionary<string, GraphMetaBucketNode> EntryPoints = [];
 
-    public Dictionary<string, BlockMetadata> Blocks = [];
+    [JsonInclude]
+    public Dictionary<string, GraphMetaBucketBlock> Blocks = [];
 
     #region Utility (Node)
 
-    public NodeMetadata RenameNode(int oldId, int newId)
+    public GraphMetaBucketNode RenameNode(int oldId, int newId)
     {
-        if (!Nodes.TryGetValue(oldId, out NodeMetadata instance))
+        if (!Nodes.TryGetValue(oldId, out GraphMetaBucketNode instance))
         {
-            var n = new NodeMetadata();
+            var n = new GraphMetaBucketNode();
             Nodes.Add(newId, n);
             return n;
         }
@@ -32,11 +39,11 @@ public class GraphMetadata
 
         return instance;
     }
-    public NodeMetadata RenameEntryPoint(string oldName, string newName)
+    public GraphMetaBucketNode RenameEntryPoint(string oldName, string newName)
     {
-        if (!EntryPoints.TryGetValue(oldName, out NodeMetadata instance))
+        if (!EntryPoints.TryGetValue(oldName, out GraphMetaBucketNode instance))
         {
-            var n = new NodeMetadata();
+            var n = new GraphMetaBucketNode();
             EntryPoints.Add(newName, n);
             return n;
         }
@@ -56,7 +63,6 @@ public class GraphMetadata
         while (true)
         {
             var id = Guid.NewGuid().ToString().Left(6).ToUpper();
-            GD.Print(id);
 
             if (Blocks.ContainsKey(id))
                 continue;
@@ -65,12 +71,12 @@ public class GraphMetadata
         }
     }
 
-    public BlockMetadata GetBlockMetadata(string id)
+    public GraphMetaBucketBlock GetBlockMetadata(string id)
     {
-        if (Blocks.TryGetValue(id, out BlockMetadata block))
+        if (Blocks.TryGetValue(id, out GraphMetaBucketBlock block))
             return block;
 
-        var newBlock = new BlockMetadata();
+        var newBlock = new GraphMetaBucketBlock();
         Blocks.Add(id, newBlock);
         return newBlock;
     }

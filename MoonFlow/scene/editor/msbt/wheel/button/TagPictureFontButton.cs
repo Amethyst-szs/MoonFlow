@@ -43,7 +43,7 @@ public partial class TagPictureFontButton : TagInsertButtonBase
         if (proj == null)
             return;
 
-        var ver = (int)proj.Config.Data.Version;
+        var ver = (int)ProjectManager.GetRomfsVersion();
         if (VersionRequirement == 1 && ver >= (int)RomfsVersion.v120)
             QueueDeleteButton();
 

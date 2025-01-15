@@ -189,7 +189,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 			popup.Connect(PopupMenu.SignalName.IdPressed, call);
 	}
 
-	public override bool InitContentMetadata(GraphMetadata holder, NodeMetadata data)
+	public override bool InitContentMetadata(GraphMetaBucketCommon holder, GraphMetaBucketNode data)
 	{
 		if (!base.InitContentMetadata(holder, data))
 		{
@@ -289,13 +289,13 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 	private void OnMetadataEditRequest() { EmitSignal(SignalName.MetadataEditRequest, this); }
 
-    #endregion
+	#endregion
 
-    #region Utility
+	#region Utility
 
-    public override void SetNodeColor()
-    {
-        base.SetNodeColor();
+	public override void SetNodeColor()
+	{
+		base.SetNodeColor();
 
 		if (!Metadata.IsOverrideColor)
 		{
@@ -304,13 +304,13 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 			var color = MetaDefaultColorLookupTable.Lookup(category);
 			RootPanel.SelfModulate = color;
 		}
-    }
+	}
 
-    #endregion
+	#endregion
 
-    #region Debug
+	#region Debug
 
-    protected override void DrawDebugLabel()
+	protected override void DrawDebugLabel()
 	{
 		if (DebugDataDisplay == null)
 			return;

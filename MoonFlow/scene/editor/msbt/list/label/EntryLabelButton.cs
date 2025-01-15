@@ -9,10 +9,10 @@ public partial class EntryLabelButton : Button
 {
 	public string EntryLabel { get; private set; }
 
-	private ProjectLanguageFileEntryMeta EntryMeta;
-	private ProjectLanguageFileEntryMeta EntryMetaSourceLang;
+	private ProjectLanguageMetaBucketEntry EntryMeta;
+	private ProjectLanguageMetaBucketEntry EntryMetaSourceLang;
 
-	public void SetupButton(EntryListBase parent, string key, string label, ProjectLanguageFileEntryMeta meta, ProjectLanguageFileEntryMeta sourceLangMeta)
+	public void SetupButton(EntryListBase parent, string key, string label, ProjectLanguageMetaBucketEntry meta, ProjectLanguageMetaBucketEntry sourceLangMeta)
 	{
 		EntryMeta = meta;
 		EntryMetaSourceLang = sourceLangMeta;
@@ -61,19 +61,19 @@ public partial class EntryLabelButton : Button
 		if (EntryMeta == null || EntryMetaSourceLang == null)
 			throw new NullReferenceException("Missing metadata access!");
 
-		if (EntryMeta.IsMod)
+		if (EntryMeta.Mod)
 		{
 			IconModified.SetButtonToState(this);
 			return;
 		}
 
-		if (EntryMeta != EntryMetaSourceLang && EntryMetaSourceLang.IsMod)
+		if (EntryMeta != EntryMetaSourceLang && EntryMetaSourceLang.Mod)
 		{
 			IconUntranslated.SetButtonToState(this);
 			return;
 		}
 
-		if (EntryMeta != EntryMetaSourceLang && !EntryMetaSourceLang.IsMod)
+		if (EntryMeta != EntryMetaSourceLang && !EntryMetaSourceLang.Mod)
 		{
 			IconUnmodifiedInSourceLang.SetButtonToState(this);
 			return;

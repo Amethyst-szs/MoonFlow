@@ -7,20 +7,21 @@ using System.Linq;
 using Nindot;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
+using Godot;
 
 namespace MoonFlow.Project;
 
-public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path)
+public class ProjectLanguageMetaFile(string path) : ProjectFileFormatBase(path)
 {
     // ====================================================== //
     // ==================== Initilization =================== //
     // ====================================================== //
 
-    private ProjectLanguageMetaData Data = new();
+    private ProjectLanguageMetaBucketCommon Data = new();
 
     protected override void Init(string json)
     {
-        Data = JsonSerializer.Deserialize<ProjectLanguageMetaData>(json, JsonConfig);
+        Data = JsonSerializer.Deserialize<ProjectLanguageMetaBucketCommon>(json, JsonConfig);
     }
     protected override bool TryGetWriteData(out dynamic data)
     {
@@ -38,7 +39,7 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         var timeC = Data.FileTable.ToDictionary(entry => entry.Key, entry => entry.Value);
         foreach (var item in timeC)
         {
-            if (item.Value == DateTime.UnixEpoch.ToFileTimeUtc())
+            if (item.Value.UnixTime == DateTime.UnixEpoch.ToFileTimeUtc())
                 timeC.Remove(item.Key);
         }
 
@@ -50,21 +51,21 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
 
     #region Public Utility
 
-    public ProjectLanguageFileEntryMeta GetMetadata(SarcMsbtFile file, MsbtEntry entry)
+    public ProjectLanguageMetaBucketEntry GetMetadata(SarcMsbtFile file, MsbtEntry entry)
     {
         return GetMetadata(file, entry.Name);
     }
-    public ProjectLanguageFileEntryMeta GetMetadata(SarcMsbtFile file, string entry)
+    public ProjectLanguageMetaBucketEntry GetMetadata(SarcMsbtFile file, string entry)
     {
         string hash = CalcHash(file.Sarc.Name, file.Name, entry);
         return GetMetadata(hash);
     }
-    public ProjectLanguageFileEntryMeta GetMetadata(string hash)
+    public ProjectLanguageMetaBucketEntry GetMetadata(string hash)
     {
-        if (Data.EntryTable.TryGetValue(hash, out ProjectLanguageFileEntryMeta value))
+        if (Data.EntryTable.TryGetValue(hash, out ProjectLanguageMetaBucketEntry value))
             return value;
 
-        var newMeta = new ProjectLanguageFileEntryMeta();
+        var newMeta = new ProjectLanguageMetaBucketEntry();
         Data.EntryTable.Add(hash, newMeta);
 
         return newMeta;
@@ -79,9 +80,20 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     public void TryResetMetadata(string hash)
     {
         var meta = GetMetadata(hash);
-        meta.IsMod = false;
-        meta.IsDisableSync = false;
-        meta.IsCustom = false;
+        meta.Mod = false;
+        meta.OffSync = false;
+        meta.Custom = false;
+    }
+
+    public ProjectLanguageMetaBucketMsbtFile GetMsbtFileMetadata(string hash)
+    {
+        if (Data.FileTable.TryGetValue(hash, out ProjectLanguageMetaBucketMsbtFile value))
+            return value;
+        
+        var newMeta = new ProjectLanguageMetaBucketMsbtFile();
+        Data.FileTable.Add(hash, newMeta);
+
+        return newMeta;
     }
 
     public DateTime GetLastModifiedTime(SarcMsbtFile file)
@@ -91,14 +103,12 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     public DateTime GetLastModifiedTime(SarcFile file, string key)
     {
         string hash = CalcHash(file.Name, key);
-
-        if (Data.FileTable.TryGetValue(hash, out long value))
-            return DateTime.FromFileTime(value);
-
-        var newMeta = DateTime.UnixEpoch.ToFileTimeUtc();
-        Data.FileTable.Add(hash, newMeta);
-
-        return DateTime.FromFileTime(newMeta);
+        return GetLastModifiedTime(hash);
+    }
+    public DateTime GetLastModifiedTime(string hash)
+    {
+        var meta = GetMsbtFileMetadata(hash);
+        return DateTime.FromFileTime(meta.UnixTime);
     }
 
     public bool IsLastModifiedTimeAtEpoch(SarcMsbtFile file)
@@ -118,7 +128,9 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     public void SetLastModifiedTime(SarcFile file, string key)
     {
         string hash = CalcHash(file.Name, key);
-        Data.FileTable[hash] = DateTime.Now.ToFileTimeUtc();
+        var entry = GetMsbtFileMetadata(hash);
+
+        entry.UnixTime = DateTime.Now.ToFileTimeUtc();
     }
 
     public void RemoveLastModifiedTime(SarcMsbtFile file)
@@ -128,7 +140,9 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
     public void RemoveLastModifiedTime(SarcFile file, string key)
     {
         string hash = CalcHash(file.Name, key);
-        Data.FileTable[hash] = DateTime.UnixEpoch.ToFileTimeUtc();
+        var entry = GetMsbtFileMetadata(hash);
+
+        entry.UnixTime = DateTime.UnixEpoch.ToFileTimeUtc();
     }
 
     #endregion
@@ -141,10 +155,12 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         var sourceHash = CalcHash(sourceArc.Name, sourceEntry);
         var targetHash = CalcHash(newArc, newName);
 
-        if (Data.FileTable.TryGetValue(sourceHash, out _))
+        if (Data.FileTable.ContainsKey(sourceHash))
         {
-            long value = DateTime.Now.ToFileTimeUtc();
-            Data.FileTable[targetHash] = value;
+            var target = GetMsbtFileMetadata(targetHash);
+
+            long time = DateTime.Now.ToFileTimeUtc();
+            target.UnixTime = time;
         }
 
         // Move EntryTable contents
@@ -189,14 +205,14 @@ public class ProjectLanguageMetaHolder(string path) : ProjectConfigFileBase(path
         var input = Encoding.UTF8.GetBytes(archive + file + entry + "SALT_4mAn0Lq");
         byte[] hashValue = MD5.HashData(input);
 
-        return BitConverter.ToString(hashValue).Replace("-", string.Empty);
+        return BitConverter.ToString(hashValue).Replace("-", string.Empty).Left(16);
     }
     public static string CalcHash(string archive, string file)
     {
         var input = Encoding.UTF8.GetBytes(archive + file + "SALT_6zAmnOB");
         byte[] hashValue = MD5.HashData(input);
 
-        return BitConverter.ToString(hashValue).Replace("-", string.Empty);
+        return BitConverter.ToString(hashValue).Replace("-", string.Empty).Left(16);
     }
 
     #endregion

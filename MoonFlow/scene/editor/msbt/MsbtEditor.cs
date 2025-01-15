@@ -223,13 +223,11 @@ public partial class MsbtEditor : PanelContainer
 		File = defaultMsbt;
 		FileList = msbtList;
 
-		var projConfig = ProjectManager.GetProject().Config.Data;
-
-		DefaultLanguage = projConfig.DefaultLanguage;
+		DefaultLanguage = ProjectManager.GetDefaultLang();
 		CurrentLanguage = lang;
 
 		LanguagePicker.SetSelection(CurrentLanguage);
-		LanguagePicker.SetGameVersion(projConfig.Version);
+		LanguagePicker.SetGameVersion(ProjectManager.GetRomfsVersion());
 
 		// If any language is missing entry keys, add them
 		foreach (var target in FileList.Values)
@@ -286,10 +284,10 @@ public partial class MsbtEditor : PanelContainer
 				var entry = f.Value.GetEntry(entryLabel);
 				var meta = metaHolder.GetMetadata(f.Value, entry);
 
-				isAnyEntryModified |= f.Value == fileDL && meta.IsMod;
+				isAnyEntryModified |= f.Value == fileDL && meta.Mod;
 
 				// If language syncing is disabled for this entry, continue
-				if (meta.IsDisableSync)
+				if (meta.OffSync)
 				{
 					entry.ResetModifiedFlag();
 					continue;
@@ -363,8 +361,8 @@ public partial class MsbtEditor : PanelContainer
 		var metaH = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
 		var meta = metaH.GetMetadata(File, name);
 
-		meta.IsMod = true;
-		meta.IsCustom = true;
+		meta.Mod = true;
+		meta.Custom = true;
 
 		// Create editor for current language
 		EntryList.CreateEntryListButton(name, true);

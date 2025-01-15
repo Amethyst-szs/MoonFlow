@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 using static Nindot.RomfsPathUtility;
+using static MoonFlow.Project.Global;
 
 using MoonFlow.Project;
 
@@ -9,12 +10,11 @@ namespace MoonFlow.Scene;
 
 public partial class LangPicker : OptionButton
 {
-	private static readonly string[] LangList = ["CNzh", "EUde", "EUen", "EUes", "EUfr", "EUit", "EUnl", "EUru", "JPja", "KRko", "TWzh", "USen", "USes", "USfr"];
 	private const string DisplayNameContext = "PROJECT_LANGUAGE_CODE";
 
 	[Export(PropertyHint.Enum, "Default Language:0,Translation Language:1")]
 	private int StartingLanguage = 0;
-	
+
 	[Export]
 	private bool AutomaticallySetGameVersion = false;
 
@@ -27,25 +27,25 @@ public partial class LangPicker : OptionButton
 	{
 		ItemSelected += OnItemSelected;
 
-		foreach (var item in LangList)
+		foreach (var item in ProjectLanguageList)
 			AddItem(Tr(item, DisplayNameContext));
 
 		string lang = null;
 		if (IsStartingLanguageDefault())
-			lang = ProjectManager.GetProject()?.Config?.Data?.DefaultLanguage;
+			lang = ProjectManager.GetDefaultLang();
 		else if (IsStartingLanguageTranslation())
 			lang = EngineSettings.GetSetting<string>("moonflow/localization/translation_language", "USen");
 
 		if (lang != null)
 			SetSelection(lang);
-		
+
 		if (AutomaticallySetGameVersion)
-			SetGameVersion(ProjectManager.GetProjectVersion());
+			SetGameVersion(ProjectManager.GetRomfsVersion());
 	}
 
 	private void OnItemSelected(long index)
 	{
-		var lang = LangList[(int)index];
+		var lang = ProjectLanguageList[(int)index];
 		EmitSignal(SignalName.LangSelectedByUser, lang, (int)index);
 	}
 
@@ -53,7 +53,7 @@ public partial class LangPicker : OptionButton
 
 	public void SetSelection(string langCode)
 	{
-		int idx = Array.FindIndex(LangList, s => s == langCode);
+		int idx = Array.FindIndex(ProjectLanguageList, s => s == langCode);
 		if (idx == -1)
 			throw new Exception("Unknown language code " + langCode);
 
@@ -65,8 +65,8 @@ public partial class LangPicker : OptionButton
 	{
 		if (ver == RomfsVersion.INVALID_VERSION)
 			return;
-		
-		int korean = Array.FindIndex(LangList, s => s == "KRko");
+
+		int korean = Array.FindIndex(ProjectLanguageList, s => s == "KRko");
 		if (korean == -1)
 			throw new Exception("Could not find index of korean language!");
 

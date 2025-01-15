@@ -23,7 +23,7 @@ public partial class NumberTime : TagEditSceneWithText
 		option.Selected = Tag.GetTagName() - (ushort)TagNameNumber.Date;
 
 		// If project is before version 1.2.0, remove EU options in menu
-		var ver = ProjectManager.GetProjectVersion();
+		var ver = ProjectManager.GetRomfsVersion();
 		if (ver >= RomfsVersion.v120)
 			return;
 

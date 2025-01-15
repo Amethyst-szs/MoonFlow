@@ -7,12 +7,12 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, ProjectLanguageFileEntryMeta meta) : VBoxContainer
+public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, ProjectLanguageMetaBucketEntry meta) : VBoxContainer
 {
 	private readonly MsbtEditor Parent = parent;
 	public readonly MsbtEntry Entry = entry;
 	public MsbtEntry EntrySourceLanguage { get; private set; }
-	public readonly ProjectLanguageFileEntryMeta Metadata = meta;
+	public readonly ProjectLanguageMetaBucketEntry Metadata = meta;
 
 	public bool IsTranslationMode { get; private set; } = false;
 
@@ -121,7 +121,7 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 	private void OnDebugHashCopy()
 	{
-		var hash = ProjectLanguageMetaHolder.CalcHash(Parent.File.Sarc.Name, Parent.File.Name, Entry.Name);
+		var hash = ProjectLanguageMetaFile.CalcHash(Parent.File.Sarc.Name, Parent.File.Name, Entry.Name);
 		DisplayServer.ClipboardSet(hash);
 
 		GD.Print(hash + " added to system clipboard!");
@@ -130,13 +130,13 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 	private void OnSyncToggled(bool isDisableSync)
 	{
 		// Set flags
-		Metadata.IsDisableSync = isDisableSync;
+		Metadata.OffSync = isDisableSync;
 		SetModified();
 
 		// If enabling source syncing, reset the entry
 		if (!isDisableSync)
 		{
-			Metadata.IsMod = false;
+			Metadata.Mod = false;
 
 			Entry.Pages.Clear();
 			EntrySourceLanguage.Pages.ForEach(p => Entry.Pages.Add(p.Clone()));
@@ -155,7 +155,7 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 	public void SetModified()
 	{
 		Entry.SetModifiedFlag();
-		Metadata.IsMod = true;
+		Metadata.Mod = true;
 
 		EmitSignal(SignalName.EntryModified, this);
 	}
@@ -178,10 +178,10 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 			switch (child)
 			{
 				case MsbtEntryPageHolder:
-					((MsbtEntryPageHolder)child).UpdateButtonActiveness(Metadata.IsDisableSync, Parent.IsDefaultLanguage());
+					((MsbtEntryPageHolder)child).UpdateButtonActiveness(Metadata.OffSync, Parent.IsDefaultLanguage());
 					continue;
 				case MsbtEntryPageSeparator:
-					((MsbtEntryPageSeparator)child).UpdateAddButtonState(Metadata.IsDisableSync, Parent.IsDefaultLanguage());
+					((MsbtEntryPageSeparator)child).UpdateAddButtonState(Metadata.OffSync, Parent.IsDefaultLanguage());
 					continue;
 			}
 		}

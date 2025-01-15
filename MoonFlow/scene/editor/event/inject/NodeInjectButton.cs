@@ -68,14 +68,14 @@ public partial class NodeInjectButton : Button
 		SelfModulate = color.Lightened(0.15F);
 
 		var config = ProjectManager.GetProject().Config;
-		if (config.Data.EventFlowGraphPins.Contains(name))
+		if (config.IsEventGraphNodePinned(name))
 		{
 			_isPin = true;
 			Icon = PinIcon;
 		}
 
 		// Disable if name is part of the version exclusivity table and project is earlier than that version
-		var ver = config.Data.Version;
+		var ver = config.GetRomfsVersion();
 		var nodeVer = MetaVersionExclusivityTable.Lookup(name);
 		if (ver < nodeVer)
 		{

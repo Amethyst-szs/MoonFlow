@@ -61,7 +61,7 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		throw new NotImplementedException("Not compatible with EventFlowEntryPoint");
 	}
 
-	public override bool InitContentMetadata(GraphMetadata holder, NodeMetadata data)
+	public override bool InitContentMetadata(GraphMetaBucketCommon holder, GraphMetaBucketNode data)
 	{
 		if (!base.InitContentMetadata(holder, data))
 		{

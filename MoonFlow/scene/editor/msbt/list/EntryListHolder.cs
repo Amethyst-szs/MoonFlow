@@ -87,7 +87,7 @@ public partial class EntryListHolder : VBoxContainer
 		var meta = metaH.GetMetadata(Editor.File, label);
 
 		// Toggle button activeness based on data
-		ButtonResetEntry.Disabled = !meta.IsMod || meta.IsCustom;
+		ButtonResetEntry.Disabled = !meta.Mod || meta.Custom;
 	}
 
 	private void OnUpdateSearch(string str)

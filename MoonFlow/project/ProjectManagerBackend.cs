@@ -8,6 +8,7 @@ using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Scene;
 using MoonFlow.Scene.Main;
+using MoonFlow.Addons;
 
 namespace MoonFlow.Project;
 
@@ -48,10 +49,7 @@ public static partial class ProjectManager
         var config = new ProjectConfig(projectFilePath);
 
         // Swap active RomfsAccessor to match this project (and error if no valid accessor exists)
-        if (!Enum.IsDefined(config.Data.Version))
-            return ProjectManagerResult.INVALID_PROJECT_FILE;
-
-        version = config.Data.Version;
+        version = config.GetRomfsVersion();
         if (!RomfsAccessor.TrySetGameVersion(version))
             return ProjectManagerResult.ROMFS_MISSING_PATH_FOR_PROJECT_VERSION;
 
@@ -86,6 +84,10 @@ public static partial class ProjectManager
 
         // Create project config from init info
         var config = new ProjectConfig(projectFilePath, initInfo);
+        config.SetEngineTarget(GitInfo.GitVersionName(), GitInfo.GitCommitHash(), GitInfo.GitCommitUnixTime());
+        
+        config.WriteFile();
+
         return ProjectManagerResult.OK;
     }
 
