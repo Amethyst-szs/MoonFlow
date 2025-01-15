@@ -125,6 +125,11 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 
 		LabelTextSource.Modulate = Colors.LightSkyBlue;
 		LabelTextSource.Text = msg.LabelName;
+		LabelTextSource.TooltipText = string.Format("{0}/{1}/{2}",
+			msg.MessageArchive,
+			msg.MessageFile,
+			msg.LabelName
+		);
 
 		// Setup preview box
 		var holder = ProjectManager.GetMSBTArchives();

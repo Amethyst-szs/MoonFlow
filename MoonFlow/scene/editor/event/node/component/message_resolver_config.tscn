@@ -20,6 +20,8 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_jci63")
 
 [node name="Label_TargetSource" type="Label" parent="."]
 layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 16
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
 label_settings = SubResource("LabelSettings_1fgse")
 
