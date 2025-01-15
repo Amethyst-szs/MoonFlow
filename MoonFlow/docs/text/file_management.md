@@ -15,7 +15,7 @@ You can also switch the text file manager into translation mode, which is detail
 ## StageMessage
 The Stage Message archive / folder is special, as seen from the fact that each file shares a name with a stage and the app sorts each text file into kingdoms! This isn't just a quality-of-life feature either, the game assigns each text file in this folder to a specific kingdom through the [MSBP Database](technical.md#CTI1). Because of this, you are *not* allowed to freely create files here.
 
-In order to create a new **MSBT** text file in this archive, you'll need to first assign your desired stage name to a kingdom over in the [Kingdom Editor](../kingdoms/basics_kingdoms.md). Once your stage name is assigned to *one* kingdom, you can then create the corresponding text file in the Stage Message archive if desired.
+In order to create a new **MSBT** text file in this archive, you'll need to first assign your desired stage name to a kingdom over in the [Kingdom Editor](basics_kingdom_editor.md). Once your stage name is assigned to *one* kingdom, you can then create the corresponding text file in the Stage Message archive if desired.
 
 ## Further Reading
 For the average user, this is the extent of the required knowledge on the file management system. However, under the hood there is a lot going on including managing over a dozen different languages and the project database. Read more about the details of what MoonFlow is actually doing in the [technical breakdown](technical.md).

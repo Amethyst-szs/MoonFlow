@@ -17,7 +17,7 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 - [Introduction, Installation, and Setup](introduction.md)
 * [Text Editor](text/basics_text_editor.md)
 * [Event Graph Editor](events/basics_event_graph.md)
-* [Kingdom Editor](kingdoms/basics_kingdoms.md)
+* [Kingdom Editor](basics_kingdom_editor.md)
 
 ### File Editors
 ##### Text Editor
@@ -29,7 +29,7 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 ##### Event Graph Editor
 - [Basics](events/basics_event_graph.md)
 ##### Kingdom Editor
-- [Basics](kingdoms/basics_kingdoms.md)
+- [Basics](basics_kingdom_editor.md)
 
 ### Contributing
 Coming soon!

@@ -2850,8 +2850,9 @@ msgstr "Cancel"
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
 msgstr ""
-"Which stage is this moon collected in? Also used\n"
-"as the source file for the moon's display name."
+"Used as the source for the Power Moon's display name.\n"
+"Almost always the same as the stage the moon is collected in,\n"
+"but not always (ex. Hint Arts)"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_HEADER"
