@@ -62,6 +62,12 @@ public partial class ProjectConfig : ProjectFileFormatBase
         hash = Data.Target.CommitHash;
         time = DateTime.FromFileTimeUtc(Data.Target.UnixTime);
     }
+    public void GetEngineTarget(out string name, out string hash, out long time)
+    {
+        name = Data.Target.Name;
+        hash = Data.Target.CommitHash;
+        time = Data.Target.UnixTime;
+    }
 
     #endregion
 

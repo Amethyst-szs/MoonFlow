@@ -47,6 +47,19 @@ public class ProjectState(string path, ProjectConfig config)
         // Update MoonFlow.Project globals
         Global.SetDebugMetadataFileOutput(Config.IsDebug());
 
+        // Check if the application is an incompatible version for the project
+        if (!Config.IsEngineTargetOk(GitInfo.GitCommitHash()))
+        {
+            var appBuildTime = GitInfo.GitCommitUnixTime();
+            Config.GetEngineTarget(out string name, out string hash, out long time);
+
+            if (appBuildTime < time)
+            {
+                loadScreen.LoadingStopDueToOutdatedApplication(name, hash, time);
+                return;
+            }
+        }
+
         // Attempt to init project contents
         try
         {

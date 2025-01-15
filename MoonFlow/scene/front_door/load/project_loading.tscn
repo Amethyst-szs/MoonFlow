@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cio2gvsywxhso"]
+[gd_scene load_steps=20 format=3 uid="uid://cio2gvsywxhso"]
 
 [ext_resource type="Script" path="res://scene/front_door/load/ProjectLoading.cs" id="1_jo062"]
 [ext_resource type="Texture2D" uid="uid://cntrievg5fk50" path="res://asset/app/icon/front_door_loading.png" id="2_py8o7"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_mwncf"]
 [ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/moonflow_status_icon.tscn" id="7_4pbl6"]
 [ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="7_io7id"]
+[ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="8_8nh1l"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_480l8"]
 [ext_resource type="Texture2D" uid="uid://8lrc2fwgcutm" path="res://asset/material/file/paste.svg" id="8_o626k"]
 [ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="8_tu3pa"]
@@ -38,6 +39,22 @@ func _process(delta: float) -> void:
 		visible_characters = text.length() - 3
 "
 
+[sub_resource type="LabelSettings" id="LabelSettings_hdk0y"]
+font = ExtResource("6_mwncf")
+font_size = 20
+
+[sub_resource type="GDScript" id="GDScript_v6bhj"]
+script/source = "extends Button
+
+func _pressed() -> void:
+	var path: String = ProjectSettings.get_setting(\"moonflow/version/repo_releases_url\", \"https://github.com/Amethyst-szs/MoonFlow/releases\")
+	OS.shell_open(path)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_exrgr"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.8)
+
 [sub_resource type="LabelSettings" id="LabelSettings_qjn8m"]
 font = ExtResource("6_mwncf")
 font_size = 20
@@ -47,7 +64,7 @@ font_color = Color(1, 0.21, 0.21, 1)
 font_size = 13
 font_color = Color(1, 0.62, 0.62, 1)
 
-[node name="ProjectLoading" type="Control" node_paths=PackedStringArray("LabelProgress", "ContainerStatus", "IconStatus", "ContainerException", "LabelException")]
+[node name="ProjectLoading" type="Control" node_paths=PackedStringArray("LabelProgress", "IconStatus", "ContainerStatus", "Containers", "ContainerOutdated", "LabelOutdatedLocal", "LabelOutdatedRemote", "ContainerUpgrade", "ContainerException", "LabelException")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,8 +73,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jo062")
 LabelProgress = NodePath("Content/Scroll/VBox/VBox_Status/Progress/Label_ProgressTask")
-ContainerStatus = NodePath("Content/Scroll/VBox/VBox_Status")
 IconStatus = NodePath("Content/Scroll/VBox/StatusIcon")
+ContainerStatus = NodePath("Content/Scroll/VBox/VBox_Status")
+Containers = [NodePath("Content/Scroll/VBox/VBox_Status"), NodePath("Content/Scroll/VBox/VBox_Outdated"), NodePath("Content/Scroll/VBox/VBox_Upgrade"), NodePath("Content/Scroll/VBox/VBox_Exception")]
+ContainerOutdated = NodePath("Content/Scroll/VBox/VBox_Outdated")
+LabelOutdatedLocal = NodePath("Content/Scroll/VBox/VBox_Outdated/Grid_Details/Rich_Local")
+LabelOutdatedRemote = NodePath("Content/Scroll/VBox/VBox_Outdated/Grid_Details/Rich_Remote")
+ContainerUpgrade = NodePath("Content/Scroll/VBox/VBox_Upgrade")
 ContainerException = NodePath("Content/Scroll/VBox/VBox_Exception")
 LabelException = NodePath("Content/Scroll/VBox/VBox_Exception/Label_Exception")
 AppName = "ProjectLoading"
@@ -118,7 +140,7 @@ size_flags_vertical = 1
 theme = ExtResource("7_io7id")
 show_percentage = false
 indeterminate = true
-editor_preview_indeterminate = true
+editor_preview_indeterminate = false
 
 [node name="Label_ProgressTask" type="Label" parent="Content/Scroll/VBox/VBox_Status/Progress"]
 unique_name_in_owner = true
@@ -131,6 +153,90 @@ grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+
+[node name="VBox_Outdated" type="VBoxContainer" parent="Content/Scroll/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label_OutdatedHeader" type="Label" parent="Content/Scroll/VBox/VBox_Outdated"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "LOADING_OUTDATED_MOONFLOW_APPLICATION_HEADER"
+label_settings = SubResource("LabelSettings_hdk0y")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_OutdatedDescription" type="Label" parent="Content/Scroll/VBox/VBox_Outdated"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "LOADING_OUTDATED_MOONFLOW_APPLICATION_DESCRIPTION"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Outdated"]
+layout_mode = 2
+
+[node name="HBox_Options" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Outdated"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Button_Accept" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOADING_OUTDATED_ACCEPT"
+icon = ExtResource("8_480l8")
+icon_alignment = 2
+
+[node name="Button_GitHub" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOADING_OUTDATED_DOWNLOAD"
+icon = ExtResource("8_8nh1l")
+icon_alignment = 2
+script = SubResource("GDScript_v6bhj")
+
+[node name="Grid_Details" type="GridContainer" parent="Content/Scroll/VBox/VBox_Outdated"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="Label_LocalHeader" type="Label" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOADING_OUTDATED_LOCAL_INFO_HEADER"
+label_settings = SubResource("LabelSettings_exrgr")
+horizontal_alignment = 2
+
+[node name="Rich_Local" type="RichTextLabel" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/normal_font_size = 14
+fit_content = true
+scroll_active = false
+meta_underlined = false
+hint_underlined = false
+
+[node name="Label_RemoteHeader" type="Label" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOADING_OUTDATED_REMOTE_INFO_HEADER"
+label_settings = SubResource("LabelSettings_exrgr")
+horizontal_alignment = 2
+
+[node name="Rich_Remote" type="RichTextLabel" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/normal_font_size = 14
+fit_content = true
+scroll_active = false
+meta_underlined = false
+hint_underlined = false
+
+[node name="VBox_Upgrade" type="VBoxContainer" parent="Content/Scroll/VBox"]
+layout_mode = 2
 
 [node name="VBox_Exception" type="VBoxContainer" parent="Content/Scroll/VBox"]
 unique_name_in_owner = true
@@ -183,5 +289,6 @@ autowrap_mode = 3
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("home"), [ExtResource("8_tu3pa")]]
 
-[connection signal="pressed" from="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder/Button_Accept" to="." method="OnButtonExceptionQuitPressed"]
+[connection signal="pressed" from="Content/Scroll/VBox/VBox_Outdated/HBox_Options/Button_Accept" to="." method="OnButtonGoToFrontDoorPressed"]
+[connection signal="pressed" from="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder/Button_Accept" to="." method="OnButtonGoToFrontDoorPressed"]
 [connection signal="pressed" from="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder/Button_CopyLog" to="." method="OnButtonExceptionCopyLogPressed"]

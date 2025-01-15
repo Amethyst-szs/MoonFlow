@@ -259,6 +259,30 @@ msgid "LOADING..."
 msgstr ""
 
 #: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_MOONFLOW_APPLICATION_HEADER"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_MOONFLOW_APPLICATION_DESCRIPTION"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_ACCEPT"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_DOWNLOAD"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_LOCAL_INFO_HEADER"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_REMOTE_INFO_HEADER"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_EXCEPTION_HEADER"
 msgstr ""
 

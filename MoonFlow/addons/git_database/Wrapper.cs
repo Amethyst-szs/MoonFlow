@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace MoonFlow.Addons;
@@ -20,4 +21,9 @@ public static class GitInfo
     public static int GitCommitCountMainBranch() { return Data.Get("commit_count_main_branch").AsInt32(); }
     public static int GitCommitAhead() { return Data.Get("commit_ahead").AsInt32(); }
     public static long GitCommitUnixTime() { return Data.Get("commit_time_unix").AsInt64(); }
+    public static DateTime GitCommitTime()
+    {
+        long time = GitCommitUnixTime();
+        return time.UnixToDateTime();
+    }
 }

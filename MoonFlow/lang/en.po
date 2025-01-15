@@ -189,6 +189,33 @@ msgid "LOADING..."
 msgstr "Loading..."
 
 #: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_MOONFLOW_APPLICATION_HEADER"
+msgstr "MoonFlow is Outdated!"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_MOONFLOW_APPLICATION_DESCRIPTION"
+msgstr ""
+"Uh-oh, looks like this project requires a newer version of MoonFlow than the "
+"one you're running! To open this project, download a newer version of the "
+"application."
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_ACCEPT"
+msgstr "Got it"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_DOWNLOAD"
+msgstr "Official Releases"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_LOCAL_INFO_HEADER"
+msgstr "You're running:"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_REMOTE_INFO_HEADER"
+msgstr "Project requires at least:"
+
+#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_EXCEPTION_HEADER"
 msgstr "Something went Wrong!"
 
