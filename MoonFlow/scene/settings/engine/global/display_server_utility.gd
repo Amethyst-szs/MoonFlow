@@ -2,7 +2,6 @@ extends Node
 
 func _ready() -> void:
 	set_minimum_size()
-	set_default_window_title()
 
 static func reset_display_server() -> void:
 	# Reset display server mode
@@ -22,7 +21,3 @@ static func reset_display_server() -> void:
 
 static func set_minimum_size() -> void:
 	DisplayServer.window_set_min_size(Vector2i(799, 527))
-
-static func set_default_window_title() -> void:
-	var n: String = ProjectSettings.get_setting("application/config/name", "MoonFlow")
-	DisplayServer.window_set_title(n)

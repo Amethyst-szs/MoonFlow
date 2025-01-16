@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
-
+using MoonFlow.Addons;
 using MoonFlow.Project;
 using MoonFlow.Scene.Main;
 
@@ -139,61 +139,61 @@ public static class AppSceneServer
 
     public static void FocusApp(AppScene app)
     {
-		// Set which app is being focused (usually "this" unless special window flags say otherwise)
-		var focusingApp = app;
+        // Set which app is being focused (usually "this" unless special window flags say otherwise)
+        var focusingApp = app;
 
-		var activeApp = GetActiveApp();
-		if (GodotObject.IsInstanceValid(activeApp) && !activeApp.IsQueuedForDeletion())
-		{
-			// If the active app is exclusive and this app isn't, don't let the focused app change
-			if (activeApp.IsAppExclusive() && !app.IsAppExclusive())
-				focusingApp = activeApp;
+        var activeApp = GetActiveApp();
+        if (GodotObject.IsInstanceValid(activeApp) && !activeApp.IsQueuedForDeletion())
+        {
+            // If the active app is exclusive and this app isn't, don't let the focused app change
+            if (activeApp.IsAppExclusive() && !app.IsAppExclusive())
+                focusingApp = activeApp;
 
-			// If they are both exclusive, pick item with higher index
-			else if (activeApp.IsAppExclusive() && app.IsAppExclusive())
-			{
-				if (activeApp.GetIndex() > focusingApp.GetIndex())
-					focusingApp = activeApp;
-			}
-		}
+            // If they are both exclusive, pick item with higher index
+            else if (activeApp.IsAppExclusive() && app.IsAppExclusive())
+            {
+                if (activeApp.GetIndex() > focusingApp.GetIndex())
+                    focusingApp = activeApp;
+            }
+        }
 
-		// Select this app's taskbar button
+        // Select this app's taskbar button
         var scene = ProjectManager.SceneRoot;
-		foreach (var node in scene.NodeTaskbar.GetChildren())
-		{
-			if (node.GetType() != typeof(TaskbarButton))
-				continue;
+        foreach (var node in scene.NodeTaskbar.GetChildren())
+        {
+            if (node.GetType() != typeof(TaskbarButton))
+                continue;
 
-			var button = (TaskbarButton)node;
+            var button = (TaskbarButton)node;
 
-			if (button.App != focusingApp)
-				button.ButtonPressed = false;
-			else
-				button.ButtonPressed = true;
-		}
+            if (button.App != focusingApp)
+                button.ButtonPressed = false;
+            else
+                button.ButtonPressed = true;
+        }
 
-		// Show only this app's visibility
-		foreach (var node in GetApps())
-		{
-			var control = (Control)node;
+        // Show only this app's visibility
+        foreach (var node in GetApps())
+        {
+            var control = (Control)node;
 
-			if (control != focusingApp)
-			{
-				control.Hide();
-				control.ProcessMode = Node.ProcessModeEnum.Disabled;
-			}
-			else
-			{
-				control.Show();
-				control.ProcessMode = Node.ProcessModeEnum.Inherit;
-			}
-		}
+            if (control != focusingApp)
+            {
+                control.Hide();
+                control.ProcessMode = Node.ProcessModeEnum.Disabled;
+            }
+            else
+            {
+                control.Show();
+                control.ProcessMode = Node.ProcessModeEnum.Inherit;
+            }
+        }
 
-		focusingApp.EmitSignal(AppScene.SignalName.AppFocused);
+        focusingApp.EmitSignal(AppScene.SignalName.AppFocused);
 
-		// Update header
-		scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();
-		scene.NodeHeader.EmitSignal(Header.SignalName.AppFocused);
+        // Update header
+        scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();
+        scene.NodeHeader.EmitSignal(Header.SignalName.AppFocused);
     }
 
     #endregion
@@ -253,9 +253,22 @@ public static class AppSceneServer
     {
         if (app != GetActiveApp())
             return;
-        
+
         var prefix = ProjectSettings.GetSetting("application/config/name", "MoonFlow").AsString();
-        DisplayServer.WindowSetTitle(string.Format("{0} - {1}", prefix, app.AppTaskbarTitle));
+        var debug = OS.IsDebugBuild() ? " DEBUG" : "";
+
+        var version = string.Format("{0} b{1}.{2}",
+            GitInfo.GitBranch(),
+            GitInfo.GitCommitCountMainBranch(),
+            GitInfo.GitCommitAhead()
+        );
+
+        DisplayServer.WindowSetTitle(string.Format("{0} - {1}  [{2}{3}]",
+            prefix,
+            app.AppTaskbarTitle,
+            version,
+            debug
+        ));
     }
     private static void OnAppExited(AppScene app)
     {

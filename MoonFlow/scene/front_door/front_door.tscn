@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=38 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -8,14 +8,14 @@
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="5_a75k4"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="6_clkik"]
 [ext_resource type="Script" path="res://scene/front_door/ui/front_door_background_animator.gd" id="6_cmu6i"]
-[ext_resource type="Script" path="res://scene/front_door/quickbar_error_label.gd" id="9_mpvuk"]
+[ext_resource type="Script" path="res://scene/front_door/ui/quickbar_error_label.gd" id="9_mpvuk"]
 [ext_resource type="Texture2D" uid="uid://c8c0n0e4fw7mk" path="res://asset/material/file/open_new.svg" id="10_rxr5w"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="10_sqwg3"]
 [ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="11_ajwfd"]
 [ext_resource type="PackedScene" uid="uid://dwpxrep18y4wy" path="res://scene/front_door/dot/playable.tscn" id="11_h3uc8"]
 [ext_resource type="Texture2D" uid="uid://dj4axx0d5mbe4" path="res://asset/material/file/recent.svg" id="11_t4cui"]
 [ext_resource type="PackedScene" uid="uid://cio2gvsywxhso" path="res://scene/front_door/load/project_loading.tscn" id="12_my55f"]
-[ext_resource type="Script" path="res://scene/front_door/menu_recent.gd" id="12_uh126"]
+[ext_resource type="Script" path="res://scene/front_door/ui/menu_recent.gd" id="12_uh126"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="13_npgqm"]
 [ext_resource type="Script" path="res://scene/front_door/ui/new_project_panel.gd" id="14_4g88j"]
 [ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="14_mr0wr"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="17_wxtt3"]
 [ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="17_yn102"]
 [ext_resource type="Resource" uid="uid://jvfra3r2fdpd" path="res://scene/common/wiki/paths/default.tres" id="24_pm7wk"]
+[ext_resource type="Script" path="res://scene/front_door/ui/debug_info_display.tres.gd" id="26_d4gfb"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="26_es3an"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kq5y5"]
 shader = ExtResource("3_etpfy")
@@ -67,35 +69,8 @@ func _item_selected(index: int) -> void:
 	id_pressed.emit(get_item_id(index))
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_8xr1l"]
-line_spacing = 0.0
-font_size = 11
-font_color = Color(0.8, 0.8, 0.8, 0.607843)
-
-[sub_resource type="GDScript" id="GDScript_fdlxl"]
-script/source = "extends Label
-
-func _ready() -> void:
-	var n: String = ProjectSettings.get_setting(\"application/config/name\", \"MoonFlow\")
-	
-	# Calculate commit date
-	var timezone: int = Time.get_time_zone_from_system().bias * 60
-	var unix_l: int = GitInfo.commit_time_unix + timezone
-	var time: String = Time.get_date_string_from_unix_time(unix_l)
-	
-	# Setup git info
-	var out: String = \"\"
-	out += \"%s\\n%s\\n%s\\n\\n\" % [time, GitInfo.author, GitInfo.version_name]
-	
-	# Setup compile info
-	out += \"%s (%s)\" % [n, DisplayServer.get_name()]
-	if OS.is_debug_build(): out += \" DEBUG\"
-	
-	out += \"\\n%s (%s)\" % [Engine.get_version_info()[\"string\"], Engine.get_architecture_name()]
-	
-	# Write text to label
-	text = out
-"
+[sub_resource type="FontVariation" id="FontVariation_fyywr"]
+variation_transform = Transform2D(1, 0.1, 0, 1, 0, 0)
 
 [node name="FrontDoor" type="Control"]
 layout_mode = 3
@@ -384,25 +359,29 @@ mouse_filter = 1
 
 [node name="DotPlayable" parent="DotPlayable" instance=ExtResource("11_h3uc8")]
 
-[node name="Label_Debug" type="Label" parent="."]
+[node name="Label_Debug" type="RichTextLabel" parent="."]
+self_modulate = Color(1, 1, 1, 0.447059)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
+anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -16.0
 offset_right = -16.0
-offset_bottom = -8.0
+offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 10
-label_settings = SubResource("LabelSettings_8xr1l")
-horizontal_alignment = 2
-vertical_alignment = 2
-script = SubResource("GDScript_fdlxl")
+theme = ExtResource("26_es3an")
+theme_override_constants/line_separation = 0
+theme_override_fonts/normal_font = SubResource("FontVariation_fyywr")
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+fit_content = true
+hint_underlined = false
+script = ExtResource("26_d4gfb")
 
 [node name="Dialog_NewProject" type="FileDialog" parent="."]
 auto_translate_mode = 1
