@@ -41,12 +41,14 @@ corner_detail = 1
 script/source = "extends PanelContainer
 
 func _ready():
+	child_exiting_tree.connect(_on_child_free)
+	
 	show()
 	
 	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, \"self_modulate\", Color.TRANSPARENT, 0.5)
-	
-	await tween.finished
+	tween.tween_property(self, \"self_modulate\", Color.TRANSPARENT, 0.66)
+
+func _on_child_free(_node: Node) -> void:
 	queue_free()
 "
 
@@ -57,8 +59,14 @@ script/source = "extends TextureRect
 func _ready():
 	pivot_offset = size / 2
 	
-	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, \"scale\", Vector2.ZERO, 0.5)
+	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	tween.set_parallel()
+	
+	tween.tween_property(self, \"scale\", Vector2.ZERO, 0.8)
+	tween.tween_property(self, \"rotation\", PI / 4, 0.8)
+	
+	await tween.finished
+	queue_free()
 "
 
 [node name="Main" type="Control"]
@@ -210,6 +218,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="TaskbarPanel" type="PanelContainer" parent="Content"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme = ExtResource("6_2jriu")
 
@@ -232,7 +241,6 @@ mouse_filter = 2
 script = ExtResource("14_dvyda")
 
 [node name="BootAnimation" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
