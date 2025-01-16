@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ohejqlocv041"
-path="res://.godot/imported/n4.png-2a46929772f4eaef55d630b060ed6459.ctex"
+uid="uid://brc0py7381xsw"
+path="res://.godot/imported/n3_ex1.png-5d5025730d5b4354975af23a5f51ae5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://docs/asset/event_node/n4.png"
-dest_files=["res://.godot/imported/n4.png-2a46929772f4eaef55d630b060ed6459.ctex"]
+source_file="res://docs/asset/n3_ex1.png"
+dest_files=["res://.godot/imported/n3_ex1.png-5d5025730d5b4354975af23a5f51ae5e.ctex"]
 
 [params]
 

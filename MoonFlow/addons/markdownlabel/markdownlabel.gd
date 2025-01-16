@@ -481,7 +481,8 @@ func _process_image_syntax(line: String) -> String:
 				url = url.rstrip(" ").trim_suffix(title_result.get_string()).rstrip(" ")
 			url = _escape_chars(url)
 			
-			var img_path := "docs/" + url.trim_prefix("MoonFlow")
+			var parts := url.split('/')
+			var img_path := "res://docs/asset/" + parts[parts.size() - 1]
 			processed_line = processed_line.erase(_start, _end - _start).insert(_start, "[img]%s[/img]" % img_path)
 			
 			if title_result and title:
