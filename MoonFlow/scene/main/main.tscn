@@ -1,6 +1,5 @@
-[gd_scene load_steps=33 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=32 format=3 uid="uid://38ktfo0b5x45"]
 
-[ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="1_jewxx"]
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
 [ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
@@ -24,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://d31ycdn7h62g0" path="res://asset/engine/heart.svg" id="10_tnl5i"]
 [ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="11_1mgjq"]
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
-[ext_resource type="Script" path="res://scene/main/display_server_setup.gd" id="13_jlow7"]
+[ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="13_jlow7"]
 [ext_resource type="Script" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlewa"]
@@ -71,7 +70,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_jewxx")
+script = ExtResource("13_jlow7")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -255,9 +254,6 @@ size_flags_vertical = 4
 texture = ExtResource("11_kyve8")
 stretch_mode = 5
 script = SubResource("GDScript_vdahq")
-
-[node name="DisplayServerSetup" type="Node" parent="."]
-script = ExtResource("13_jlow7")
 
 [connection signal="MoonFlowCloseRequest" from="Content/Header/Content/Actionbar/File" to="." method="OnWindowCloseRequest"]
 [connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="FocusFirstApp"]

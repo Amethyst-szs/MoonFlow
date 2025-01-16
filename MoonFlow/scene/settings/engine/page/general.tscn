@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=13 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_rui4d"]
 [ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_ihk7t"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_8w1c2"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="4_4lk4x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2x6cb"]
 font = ExtResource("1_1hk75")
@@ -157,6 +158,19 @@ label_settings = SubResource("LabelSettings_2x6cb")
 [node name="HSep" type="HSeparator" parent="VBox_Visual"]
 layout_mode = 2
 theme_override_constants/separation = 24
+
+[node name="Button_ResetDisplayServer" type="Button" parent="VBox_Visual"]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_RESET_DISPLAY_SERVER_DEFAULT_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_4lk4x")
+text = "ENGINE_SETTINGS_PAGE_RESET_DISPLAY_SERVER_DEFAULT"
+alignment = 0
+
+[node name="HSep_Spacer4" type="HSeparator" parent="VBox_Visual"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
 [node name="Label_UiScaleHeader" type="Label" parent="VBox_Visual"]
 layout_mode = 2

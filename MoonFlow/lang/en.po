@@ -208,14 +208,6 @@ msgid "LOADING_OUTDATED_DOWNLOAD"
 msgstr "Official Releases"
 
 #: scene/front_door/load/project_loading.tscn
-msgid "LOADING_OUTDATED_LOCAL_INFO_HEADER"
-msgstr "You're running:"
-
-#: scene/front_door/load/project_loading.tscn
-msgid "LOADING_OUTDATED_REMOTE_INFO_HEADER"
-msgstr "Project uses:"
-
-#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_HEADER"
 msgstr "Upgrade Project?"
 
@@ -249,6 +241,14 @@ msgstr "Okay :("
 #: scene/front_door/load/project_loading.tscn
 msgid "LOADING_EXCEPTION_COPY_LOG_TO_CLIPBOARD"
 msgstr "Copy Log to Clipboard"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_LOCAL_INFO_HEADER"
+msgstr "You're running:"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_REMOTE_INFO_HEADER"
+msgstr "Project uses:"
 
 #: scene/front_door/quickbar_error_label.gd
 msgctxt "FRONT_DOOR_OPEN_ERROR"
@@ -2698,6 +2698,16 @@ msgstr "Open Documentation in App"
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_HEADER"
 msgstr "Visuals"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_RESET_DISPLAY_SERVER_DEFAULT_TOOLTIP"
+msgstr ""
+"Reset the application window's position, size, and mode\n"
+"to default values"
+
+#: scene/settings/engine/page/general.tscn
+msgid "ENGINE_SETTINGS_PAGE_RESET_DISPLAY_SERVER_DEFAULT"
+msgstr "Reset Window to Defaults"
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_UI_SCALE_HEADER"

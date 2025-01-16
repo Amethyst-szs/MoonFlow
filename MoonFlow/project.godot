@@ -32,6 +32,7 @@ config/icon="res://iconS.png"
 
 [autoload]
 
+DisplayServerUtility="*res://scene/settings/engine/global/display_server_utility.gd"
 AutoloadInit="*res://addons/AutoloadInit.cs"
 EngineSettings="*res://scene/settings/engine/global/engine_setting_holder.gd"
 ScreenshotCapture="*res://scene/common/screenshot/screenshot_capture.gd"
