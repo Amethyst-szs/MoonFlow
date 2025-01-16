@@ -167,66 +167,7 @@ public partial class AppScene : Control
 
 	public virtual string GetUniqueIdentifier(string input) { return AppName + input; }
 	public void SetUniqueIdentifier(string input = "") { AppUniqueIdentifier = GetUniqueIdentifier(input); }
-
-	public virtual void AppFocus()
-	{
-		if (!IsInstanceValid(Scene)) return;
-
-		// Set which app is being focused (usually "this" unless special window flags say otherwise)
-		var focusingApp = this;
-
-		var activeApp = AppSceneServer.GetActiveApp();
-		if (IsInstanceValid(activeApp) && !activeApp.IsQueuedForDeletion())
-		{
-			// If the active app is exclusive and this app isn't, don't let the focused app change
-			if (activeApp.IsAppExclusive() && !IsAppExclusive())
-				focusingApp = activeApp;
-
-			// If they are both exclusive, pick item with higher index
-			else if (activeApp.IsAppExclusive() && IsAppExclusive())
-			{
-				if (activeApp.GetIndex() > focusingApp.GetIndex())
-					focusingApp = activeApp;
-			}
-		}
-
-		// Select this app's taskbar button
-		foreach (var node in Scene.NodeTaskbar.GetChildren())
-		{
-			if (node.GetType() != typeof(TaskbarButton))
-				continue;
-
-			var button = (TaskbarButton)node;
-
-			if (button.App != focusingApp)
-				button.ButtonPressed = false;
-			else
-				button.ButtonPressed = true;
-		}
-
-		// Show only this app's visibility
-		foreach (var node in AppSceneServer.GetApps())
-		{
-			var control = (Control)node;
-
-			if (control != focusingApp)
-			{
-				control.Hide();
-				control.ProcessMode = ProcessModeEnum.Disabled;
-			}
-			else
-			{
-				control.Show();
-				control.ProcessMode = ProcessModeEnum.Inherit;
-			}
-		}
-
-		focusingApp.EmitSignal(SignalName.AppFocused);
-
-		// Update header
-		Scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();
-		Scene.NodeHeader.EmitSignal(Header.SignalName.AppFocused);
-	}
+	public void AppFocus() { AppSceneServer.FocusApp(this); }
 
 	public virtual SignalAwaiter AppClose(bool isEndExclusive = false)
 	{
