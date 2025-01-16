@@ -30,6 +30,8 @@ public partial class AppScene : Control
 				TaskbarButton.Text = _appTaskbarTitle;
 				TaskbarButton.TooltipText = _appTaskbarTitle;
 			}
+
+			EmitSignal(SignalName.AppTitleChanged);
 		}
 	}
 
@@ -88,6 +90,8 @@ public partial class AppScene : Control
 	public delegate void ModifyStateUpdateEventHandler(bool isModified);
 	[Signal]
 	public delegate void AppFocusedEventHandler();
+	[Signal]
+	public delegate void AppTitleChangedEventHandler();
 
 	#endregion
 

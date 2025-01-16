@@ -86,6 +86,7 @@ public static class AppSceneServer
         AppRoot.AddChild(app);
 
         app.Connect(AppScene.SignalName.AppFocused, Callable.From(() => OnAppFocused(app)));
+        app.Connect(AppScene.SignalName.AppTitleChanged, Callable.From(() => OnAppTitleChanged(app)));
         app.Connect(AppScene.SignalName.TreeExited, Callable.From(() => OnAppExited(app)));
 
         AppList.Add(app);
@@ -105,6 +106,11 @@ public static class AppSceneServer
         app.CallDeferred(AppScene.MethodName.Connect,
             AppScene.SignalName.AppFocused,
             Callable.From(() => OnAppFocused(app))
+        );
+
+        app.CallDeferred(AppScene.MethodName.Connect,
+            AppScene.SignalName.AppTitleChanged,
+            Callable.From(() => OnAppTitleChanged(app))
         );
 
         app.CallDeferred(AppScene.MethodName.Connect,
@@ -241,6 +247,15 @@ public static class AppSceneServer
 
     private static void OnAppFocused(AppScene app)
     {
+        OnAppTitleChanged(app);
+    }
+    private static void OnAppTitleChanged(AppScene app)
+    {
+        if (app != GetActiveApp())
+            return;
+        
+        var prefix = ProjectSettings.GetSetting("application/config/name", "MoonFlow").AsString();
+        DisplayServer.WindowSetTitle(string.Format("{0} - {1}", prefix, app.AppTaskbarTitle));
     }
     private static void OnAppExited(AppScene app)
     {
