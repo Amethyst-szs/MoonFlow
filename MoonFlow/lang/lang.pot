@@ -283,6 +283,26 @@ msgid "LOADING_OUTDATED_REMOTE_INFO_HEADER"
 msgstr ""
 
 #: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_HEADER"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_DESCRIPTION"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_ALWAYS"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_ONCE"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_CANCEL"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_EXCEPTION_HEADER"
 msgstr ""
 

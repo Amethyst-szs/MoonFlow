@@ -42,8 +42,9 @@ public partial class ProjectConfig : ProjectFileFormatBase
 
     public RomfsVersion GetRomfsVersion() { return Data.Version; }
     public string GetDefaultLanguage() { return Data.DefaultLanguage; }
-    public bool IsFirstBoot() { return Data.IsFirstBoot; }
-    public bool IsDebug() { return Data.IsDebugProject; }
+    public bool IsFirstBoot() { return Data.Flags.FirstBoot; }
+    public bool IsDebug() { return Data.Flags.DebugProject; }
+    public bool IsAlwaysUpgrade() { return Data.Flags.AlwaysUpgrade; }
 
     // ~~~~~~~~~~~~~ Event Graph ~~~~~~~~~~~~~ //
 
@@ -73,8 +74,9 @@ public partial class ProjectConfig : ProjectFileFormatBase
 
     #region Write Utility
 
-    public void ClearFirstBootFlag() { Data.IsFirstBoot = false; }
-    public void SetDebugState(bool isDebug) { Data.IsDebugProject = isDebug; }
+    public void ClearFirstBootFlag() { Data.Flags.FirstBoot = false; }
+    public void SetAlwaysAcceptUpgradeFlag() { Data.Flags.AlwaysUpgrade = true; }
+    public void SetDebugState(bool isDebug) { Data.Flags.DebugProject = isDebug; }
 
     public void AddEventGraphPin(string pin)
     {

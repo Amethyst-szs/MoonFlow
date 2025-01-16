@@ -20,6 +20,7 @@ public class ProjectState(string path, ProjectConfig config)
 
     // Status
     private bool IsInitComplete = false;
+    private bool IsWaitingForUpgradeAcceptance = false;
 
     // Project Components
     public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
@@ -35,14 +36,21 @@ public class ProjectState(string path, ProjectConfig config)
         // Close all applications if open and open the project loading screen
         scene.CallDeferred("ForceCloseAllApps");
 
+        Config.GetEngineTarget(out string name, out string hash, out long time);
+
         var loadScreen = SceneCreator<ProjectLoading>.Create();
-        loadScreen.LoadingStart(StartupTask);
+        loadScreen.LoadingStart(StartupTask, name, hash, time);
         scene.NodeApps.CallDeferred("add_child", loadScreen);
 
         // Wait 200 milliseconds to allow loading screen to appear
         // This isn't nessecary for the code to function, but allows the end-user time to process the scene
         // transation and improves the user experience a bit!
         await Task.Delay(200);
+
+        // Log application and project version
+        GD.Print("\n - Starting project initilization...");
+        GD.PrintRich("[i]   Local: " + GitInfo.GitVersionName());
+        GD.PrintRich("[i]   Project: " + name + '\n');
 
         // Update MoonFlow.Project globals
         Global.SetDebugMetadataFileOutput(Config.IsDebug());
@@ -51,25 +59,66 @@ public class ProjectState(string path, ProjectConfig config)
         if (!Config.IsEngineTargetOk(GitInfo.GitCommitHash()))
         {
             var appBuildTime = GitInfo.GitCommitUnixTime();
-            Config.GetEngineTarget(out string name, out string hash, out long time);
 
+            // If the project's app compile time is later than our own, display outdated message
             if (appBuildTime < time)
             {
-                loadScreen.LoadingStopDueToOutdatedApplication(name, hash, time);
+                GD.Print("Project load aborted due to outdated application!");
+                loadScreen.LoadingStopDueToOutdatedApplication();
+                return;
+            }
+
+            // If we are ahead of the project's app compile time, display upgrade message
+            if (appBuildTime > time && !Config.IsAlwaysUpgrade())
+            {
+                GD.Print("Project uses an older version of MoonFlow, awaiting upgrade acceptance...");
+
+                IsWaitingForUpgradeAcceptance = true;
+                loadScreen.LoadingPauseForUpgradeRequest();
                 return;
             }
         }
 
-        // Attempt to init project contents
+        InitProjectHandler(loadScreen);
+    }
+
+    public void InitProjectAfterDecideUpgrade(ProjectLoading loadScreen)
+    {
+        if (!IsWaitingForUpgradeAcceptance)
+            throw new Exception("Method can only be called during upgrade acceptance period");
+        
+        IsWaitingForUpgradeAcceptance = false;
+
+        if (!loadScreen.IsAcceptUpgrade)
+        {
+            GD.Print("Upgrade rejected, aborting project init");
+            ProjectManager.CloseProject();
+            return;
+        }
+
+        GD.Print("Upgrade accepted");
+
+        if (loadScreen.IsAcceptUpgradeAlways)
+        {
+            GD.Print("Project will now automatically upgrade version");
+            Config.SetAlwaysAcceptUpgradeFlag();
+        }
+
+        StartupTask.ContinueWith((_) => InitProjectHandler(loadScreen));
+    }
+
+    private void InitProjectHandler(ProjectLoading loadScreen)
+    {
         try
         {
             InitProjectContent(loadScreen);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             loadScreen.LoadingException(e);
         }
     }
+
     private void InitProjectContent(ProjectLoading loadScreen)
     {
         // Setup MSBP holder
@@ -97,7 +146,13 @@ public class ProjectState(string path, ProjectConfig config)
         EventArcHolder = new(Path, loadScreen);
 
         // Update the project's target engine version
-        Config.SetEngineTarget(GitInfo.GitVersionName(), GitInfo.GitCommitHash(), GitInfo.GitCommitUnixTime());
+        var gitHash = GitInfo.GitCommitHash();
+
+        if (!Config.IsEngineTargetOk(gitHash))
+        {
+            Config.SetEngineTarget(GitInfo.GitVersionName(), gitHash, GitInfo.GitCommitUnixTime());
+            Config.WriteFile();
+        }
 
         // Complete Initilization
         if (Config.IsFirstBoot())

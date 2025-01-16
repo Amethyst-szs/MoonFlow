@@ -39,26 +39,12 @@ internal class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
         }
     }
 
-    private bool _isFirstBoot = true;
-    [JsonInclude]
-    internal bool IsFirstBoot
-    {
-        get { return _isFirstBoot; }
-        set { _isFirstBoot = value; }
-    }
-
-    private bool _isDebugProject = false;
-    [JsonInclude]
-    internal bool IsDebugProject
-    {
-        get { return _isDebugProject; }
-        set { _isDebugProject = value; }
-    }
-
     #endregion
 
     #region Buckets
 
+    [JsonInclude]
+    internal ProjectConfigBucketFlags Flags = new();
     [JsonInclude]
     internal ProjectConfigBucketEngineTarget Target = new();
     [JsonInclude]

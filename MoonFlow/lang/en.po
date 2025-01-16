@@ -213,7 +213,30 @@ msgstr "You're running:"
 
 #: scene/front_door/load/project_loading.tscn
 msgid "LOADING_OUTDATED_REMOTE_INFO_HEADER"
-msgstr "Project requires at least:"
+msgstr "Project uses:"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_HEADER"
+msgstr "Upgrade Project?"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_DESCRIPTION"
+msgstr ""
+"This project was last opened on an older version of MoonFlow! Would you like "
+"to upgrade the project to use this version of MoonFlow instead? Make sure to "
+"back up your work before upgrading in case of any unexpected issues."
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_ALWAYS"
+msgstr "Always upgrade"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_ONCE"
+msgstr "Just this once"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_UPGRADE_CANCEL"
+msgstr "Cancel"
 
 #: scene/front_door/load/project_loading.tscn
 msgid "LOADING_EXCEPTION_HEADER"

@@ -25,15 +25,21 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 	[Export]
 	private Godot.Collections.Array<VBoxContainer> Containers = [];
 
-	[Export, ExportSubgroup("Outdated Application")]
-	private VBoxContainer ContainerOutdated = null;
+	[Export, ExportSubgroup("Project Version Info")]
+	private GridContainer GridVersionDetails = null;
 	[Export]
 	private RichTextLabel LabelOutdatedLocal = null;
 	[Export]
 	private RichTextLabel LabelOutdatedRemote = null;
 
+	[Export, ExportSubgroup("Outdated Application")]
+	private VBoxContainer ContainerOutdated = null;
+
 	[Export, ExportSubgroup("Upgrade Required")]
 	private VBoxContainer ContainerUpgrade = null;
+
+	public bool IsAcceptUpgrade { get; private set; } = false;
+	public bool IsAcceptUpgradeAlways { get; private set; } = false;
 
 	[Export, ExportSubgroup("Init Exception")]
 	private VBoxContainer ContainerException = null;
@@ -46,9 +52,34 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 		SetVisibleContainer(ContainerStatus);
 	}
 
-	public void LoadingStart(Task task)
+	public void LoadingStart(Task task, string remoteName, string remoteHash, long remoteTimeU)
 	{
 		LoadingTask = task;
+
+		// Setup rich text labels
+		const string template = "[hint={2}]{0}\n[i]({1})";
+
+		// Local version
+		var localName = GitInfo.GitVersionName();
+		if (localName.Contains('('))
+			localName = localName.Left(localName.Find('('));
+
+		var localHash = GitInfo.GitCommitHash();
+		var localTime = GitInfo.GitCommitTime();
+
+		LabelOutdatedLocal.CallDeferred(RichTextLabel.MethodName.AppendText,
+			string.Format(template, localName, localTime.ToShortDateString(), localHash)
+		);
+
+		// Project version
+		if (remoteName.Contains('('))
+			remoteName = remoteName.Left(remoteName.Find('('));
+
+		var remoteTime = remoteTimeU.UnixToDateTime();
+
+		LabelOutdatedRemote.CallDeferred(RichTextLabel.MethodName.AppendText,
+			string.Format(template, remoteName, remoteTime.ToShortDateString(), remoteHash)
+		);
 	}
 
 	public void LoadingUpdateProgress(string key)
@@ -74,52 +105,61 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 		AppClose(true);
 	}
 
-	private void OnButtonGoToFrontDoorPressed()
-	{
-		AppClose(true);
+	private static void OnButtonGoToFrontDoorPressed() { ProjectManager.CloseProject(); }
 
-		var frontDoor = SceneCreator<FrontDoor>.Create();
-		Scene.NodeApps.AddChild(frontDoor);
+	#region Outdated
+
+	public void LoadingStopDueToOutdatedApplication()
+	{
+		// Update containers
+		IconStatus.SetDeferred(MoonFlowStatusIcon.PropertyName.AnimationState,
+			(int)MoonFlowStatusIcon.AnimationStates.IDLE
+		);
+		SetVisibleContainer(ContainerOutdated);
 	}
+
+	#endregion
 
 	#region Upgrade
 
-	public void LoadingStopDueToOutdatedApplication(string remoteName, string remoteHash, long remoteTimeU)
-	{
-		// Update containers
-		IconStatus.AnimationState = MoonFlowStatusIcon.AnimationStates.IDLE;
-		SetVisibleContainer(ContainerOutdated);
-
-		// Setup rich text labels
-		const string template = "[hint={2}]{0}\n[i]({1})";
-
-		// Local version
-		var localName = GitInfo.GitVersionName();
-		if (localName.Contains('('))
-			localName = localName.Left(localName.Find('('));
-		
-		var localHash = GitInfo.GitCommitHash();
-		var localTime = GitInfo.GitCommitTime();
-
-		LabelOutdatedLocal.CallDeferred(RichTextLabel.MethodName.AppendText,
-			string.Format(template, localName, localTime.ToShortDateString(), localHash)
-		);
-
-		// Project version
-		if (remoteName.Contains('('))
-			remoteName = remoteName.Left(remoteName.Find('('));
-		
-		var remoteTime = remoteTimeU.UnixToDateTime();
-
-		LabelOutdatedRemote.CallDeferred(RichTextLabel.MethodName.AppendText,
-			string.Format(template, remoteName, remoteTime.ToShortDateString(), remoteHash)
-		);
-	}
-
 	public void LoadingPauseForUpgradeRequest()
 	{
-		IconStatus.AnimationState = MoonFlowStatusIcon.AnimationStates.ACTIVE;
+		IconStatus.SetDeferred(MoonFlowStatusIcon.PropertyName.AnimationState,
+			(int)MoonFlowStatusIcon.AnimationStates.ACTIVE
+		);
 		SetVisibleContainer(ContainerUpgrade);
+	}
+
+	public void OnUpgradeDecisionCancelAndGoFrontDoor()
+	{
+		IsAcceptUpgrade = false;
+		IsAcceptUpgradeAlways = false;
+
+		ProjectManager.GetProject().InitProjectAfterDecideUpgrade(this);
+	}
+	public void OnUpgradeDecisionAcceptOnce()
+	{
+		IsAcceptUpgrade = true;
+		IsAcceptUpgradeAlways = false;
+
+		IconStatus.SetDeferred(MoonFlowStatusIcon.PropertyName.AnimationState,
+			(int)MoonFlowStatusIcon.AnimationStates.SPINNING
+		);
+		SetVisibleContainer(ContainerStatus);
+
+		ProjectManager.GetProject().InitProjectAfterDecideUpgrade(this);
+	}
+	public void OnUpgradeDecisionAcceptAlways()
+	{
+		IsAcceptUpgrade = true;
+		IsAcceptUpgradeAlways = true;
+
+		IconStatus.SetDeferred(MoonFlowStatusIcon.PropertyName.AnimationState,
+			(int)MoonFlowStatusIcon.AnimationStates.SPINNING
+		);
+		SetVisibleContainer(ContainerStatus);
+
+		ProjectManager.GetProject().InitProjectAfterDecideUpgrade(this);
 	}
 
 	#endregion
@@ -136,7 +176,10 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 	{
 		TaskException = e;
 
-		IconStatus.AnimationState = MoonFlowStatusIcon.AnimationStates.IDLE;
+		IconStatus.SetDeferred(MoonFlowStatusIcon.PropertyName.AnimationState,
+			(int)MoonFlowStatusIcon.AnimationStates.IDLE
+		);
+
 		SetVisibleContainer(ContainerException);
 
 		if (e != null)
@@ -165,6 +208,11 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 			if (box != container) box.CallDeferred(MethodName.Hide);
 
 		container.CallDeferred(MethodName.Show);
+
+		// Update version detail grid visiblity
+		GridVersionDetails.CallDeferred(MethodName.SetVisible,
+			container == ContainerOutdated || container == ContainerUpgrade
+		);
 	}
 
 	#endregion

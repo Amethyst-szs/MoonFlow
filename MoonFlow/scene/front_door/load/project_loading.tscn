@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cio2gvsywxhso"]
+[gd_scene load_steps=23 format=3 uid="uid://cio2gvsywxhso"]
 
 [ext_resource type="Script" path="res://scene/front_door/load/ProjectLoading.cs" id="1_jo062"]
 [ext_resource type="Texture2D" uid="uid://cntrievg5fk50" path="res://asset/app/icon/front_door_loading.png" id="2_py8o7"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_480l8"]
 [ext_resource type="Texture2D" uid="uid://8lrc2fwgcutm" path="res://asset/material/file/paste.svg" id="8_o626k"]
 [ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="8_tu3pa"]
+[ext_resource type="Texture2D" uid="uid://dklnltxsfaufc" path="res://asset/material/arrow/double_up.svg" id="10_02wsd"]
+[ext_resource type="Texture2D" uid="uid://b8myj5gou5squ" path="res://asset/material/user/exit.svg" id="10_hlmkx"]
+[ext_resource type="Texture2D" uid="uid://br38w7ae4sf6a" path="res://asset/material/arrow/up.svg" id="11_dctwd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6jlb"]
 
@@ -51,10 +54,6 @@ func _pressed() -> void:
 	OS.shell_open(path)
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_exrgr"]
-font_size = 14
-font_color = Color(1, 1, 1, 0.8)
-
 [sub_resource type="LabelSettings" id="LabelSettings_qjn8m"]
 font = ExtResource("6_mwncf")
 font_size = 20
@@ -64,7 +63,11 @@ font_color = Color(1, 0.21, 0.21, 1)
 font_size = 13
 font_color = Color(1, 0.62, 0.62, 1)
 
-[node name="ProjectLoading" type="Control" node_paths=PackedStringArray("LabelProgress", "IconStatus", "ContainerStatus", "Containers", "ContainerOutdated", "LabelOutdatedLocal", "LabelOutdatedRemote", "ContainerUpgrade", "ContainerException", "LabelException")]
+[sub_resource type="LabelSettings" id="LabelSettings_exrgr"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.8)
+
+[node name="ProjectLoading" type="Control" node_paths=PackedStringArray("LabelProgress", "IconStatus", "ContainerStatus", "Containers", "GridVersionDetails", "LabelOutdatedLocal", "LabelOutdatedRemote", "ContainerOutdated", "ContainerUpgrade", "ContainerException", "LabelException")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,9 +79,10 @@ LabelProgress = NodePath("Content/Scroll/VBox/VBox_Status/Progress/Label_Progres
 IconStatus = NodePath("Content/Scroll/VBox/StatusIcon")
 ContainerStatus = NodePath("Content/Scroll/VBox/VBox_Status")
 Containers = [NodePath("Content/Scroll/VBox/VBox_Status"), NodePath("Content/Scroll/VBox/VBox_Outdated"), NodePath("Content/Scroll/VBox/VBox_Upgrade"), NodePath("Content/Scroll/VBox/VBox_Exception")]
+GridVersionDetails = NodePath("Content/Scroll/VBox/Grid_Details")
+LabelOutdatedLocal = NodePath("Content/Scroll/VBox/Grid_Details/Rich_Local")
+LabelOutdatedRemote = NodePath("Content/Scroll/VBox/Grid_Details/Rich_Remote")
 ContainerOutdated = NodePath("Content/Scroll/VBox/VBox_Outdated")
-LabelOutdatedLocal = NodePath("Content/Scroll/VBox/VBox_Outdated/Grid_Details/Rich_Local")
-LabelOutdatedRemote = NodePath("Content/Scroll/VBox/VBox_Outdated/Grid_Details/Rich_Remote")
 ContainerUpgrade = NodePath("Content/Scroll/VBox/VBox_Upgrade")
 ContainerException = NodePath("Content/Scroll/VBox/VBox_Exception")
 LabelException = NodePath("Content/Scroll/VBox/VBox_Exception/Label_Exception")
@@ -105,7 +109,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_y6jlb")
 horizontal_scroll_mode = 0
 
 [node name="VBox" type="VBoxContainer" parent="Content/Scroll"]
-custom_minimum_size = Vector2(480, 0)
+custom_minimum_size = Vector2(740, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -183,6 +187,7 @@ theme_override_constants/separation = 12
 [node name="Button_Accept" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "LOADING_OUTDATED_ACCEPT"
 icon = ExtResource("8_480l8")
 icon_alignment = 2
@@ -190,56 +195,66 @@ icon_alignment = 2
 [node name="Button_GitHub" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "LOADING_OUTDATED_DOWNLOAD"
 icon = ExtResource("8_8nh1l")
 icon_alignment = 2
 script = SubResource("GDScript_v6bhj")
 
-[node name="Grid_Details" type="GridContainer" parent="Content/Scroll/VBox/VBox_Outdated"]
-layout_mode = 2
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 6
-columns = 2
-
-[node name="Label_LocalHeader" type="Label" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "LOADING_OUTDATED_LOCAL_INFO_HEADER"
-label_settings = SubResource("LabelSettings_exrgr")
-horizontal_alignment = 2
-
-[node name="Rich_Local" type="RichTextLabel" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/normal_font_size = 14
-fit_content = true
-scroll_active = false
-meta_underlined = false
-hint_underlined = false
-
-[node name="Label_RemoteHeader" type="Label" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "LOADING_OUTDATED_REMOTE_INFO_HEADER"
-label_settings = SubResource("LabelSettings_exrgr")
-horizontal_alignment = 2
-
-[node name="Rich_Remote" type="RichTextLabel" parent="Content/Scroll/VBox/VBox_Outdated/Grid_Details"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/normal_font_size = 14
-fit_content = true
-scroll_active = false
-meta_underlined = false
-hint_underlined = false
-
 [node name="VBox_Upgrade" type="VBoxContainer" parent="Content/Scroll/VBox"]
 layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label_UpgradeHeader" type="Label" parent="Content/Scroll/VBox/VBox_Upgrade"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "LOADING_UPGRADE_PROJECT_CONFIRMATION_HEADER"
+label_settings = SubResource("LabelSettings_hdk0y")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_UpgradeDescription" type="Label" parent="Content/Scroll/VBox/VBox_Upgrade"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "LOADING_UPGRADE_PROJECT_CONFIRMATION_DESCRIPTION"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Upgrade"]
+layout_mode = 2
+
+[node name="HBox_Options" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Upgrade"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Button_Always" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "LOADING_UPGRADE_ALWAYS"
+icon = ExtResource("10_02wsd")
+text_overrun_behavior = 1
+icon_alignment = 2
+
+[node name="Button_Once" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "LOADING_UPGRADE_ONCE"
+icon = ExtResource("11_dctwd")
+text_overrun_behavior = 1
+icon_alignment = 2
+
+[node name="Button_Cancel" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "LOADING_UPGRADE_CANCEL"
+icon = ExtResource("10_hlmkx")
+text_overrun_behavior = 1
+icon_alignment = 2
 
 [node name="VBox_Exception" type="VBoxContainer" parent="Content/Scroll/VBox"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(612, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -286,9 +301,52 @@ layout_mode = 2
 label_settings = SubResource("LabelSettings_5rl7s")
 autowrap_mode = 3
 
+[node name="Grid_Details" type="GridContainer" parent="Content/Scroll/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="Label_LocalHeader" type="Label" parent="Content/Scroll/VBox/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOADING_OUTDATED_LOCAL_INFO_HEADER"
+label_settings = SubResource("LabelSettings_exrgr")
+horizontal_alignment = 2
+
+[node name="Rich_Local" type="RichTextLabel" parent="Content/Scroll/VBox/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/normal_font_size = 14
+fit_content = true
+scroll_active = false
+meta_underlined = false
+hint_underlined = false
+
+[node name="Label_RemoteHeader" type="Label" parent="Content/Scroll/VBox/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOADING_OUTDATED_REMOTE_INFO_HEADER"
+label_settings = SubResource("LabelSettings_exrgr")
+horizontal_alignment = 2
+
+[node name="Rich_Remote" type="RichTextLabel" parent="Content/Scroll/VBox/Grid_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/normal_font_size = 14
+fit_content = true
+scroll_active = false
+meta_underlined = false
+hint_underlined = false
+
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("home"), [ExtResource("8_tu3pa")]]
 
 [connection signal="pressed" from="Content/Scroll/VBox/VBox_Outdated/HBox_Options/Button_Accept" to="." method="OnButtonGoToFrontDoorPressed"]
+[connection signal="pressed" from="Content/Scroll/VBox/VBox_Upgrade/HBox_Options/Button_Always" to="." method="OnUpgradeDecisionAcceptAlways"]
+[connection signal="pressed" from="Content/Scroll/VBox/VBox_Upgrade/HBox_Options/Button_Once" to="." method="OnUpgradeDecisionAcceptOnce"]
+[connection signal="pressed" from="Content/Scroll/VBox/VBox_Upgrade/HBox_Options/Button_Cancel" to="." method="OnUpgradeDecisionCancelAndGoFrontDoor"]
 [connection signal="pressed" from="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder/Button_Accept" to="." method="OnButtonGoToFrontDoorPressed"]
 [connection signal="pressed" from="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder/Button_CopyLog" to="." method="OnButtonExceptionCopyLogPressed"]
