@@ -57,8 +57,8 @@ public partial class Taskbar : Control
 
         UpdateDisplay();
 
-        // If no app is currently selected, select this new app
-        AppSceneServer.GetActiveApp()?.AppFocus();
+        // Connect to focus signal
+        app.Connect(AppScene.SignalName.AppFocused, Callable.From(() => OnAppFocused(app)));
 
         return true;
     }
@@ -114,6 +114,17 @@ public partial class Taskbar : Control
             tween.TweenProperty(node, "position:x", buttonWidth * i, 0.25);
             tween.TweenProperty(node, "size:x", buttonWidth, 0.25);
             tween.TweenProperty(node, "custom_minimum_size:x", buttonWidth, 0.25);
+        }
+    }
+
+    private void OnAppFocused(AppScene app)
+    {
+        var isDisable = app.IsAppExclusive();
+
+        foreach (var child in GetChildren())
+        {
+            if (child is TaskbarButton button)
+                button.Disabled = isDisable;
         }
     }
 

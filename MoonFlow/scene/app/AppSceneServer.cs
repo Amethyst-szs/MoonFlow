@@ -14,7 +14,7 @@ public static class AppSceneServer
     #region Init
 
     private static Control AppRoot;
-    private static List<AppScene> AppList = [];
+    private readonly static List<AppScene> AppList = [];
 
     public static void Init(Control appRoot)
     {
@@ -263,7 +263,7 @@ public static class AppSceneServer
             GitInfo.GitCommitAhead()
         );
 
-        DisplayServer.WindowSetTitle(string.Format("{0} - {1}  [{2}{3}]",
+        DisplayServer.WindowSetTitle(string.Format("{0}: {1}   -   [{2}{3}]",
             prefix,
             app.AppTaskbarTitle,
             version,
