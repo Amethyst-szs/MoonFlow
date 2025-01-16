@@ -48,25 +48,9 @@ public partial class FrontDoor : AppScene
 			ForceOpenRomfsAccessorApp();
 	}
 
-	private void OpenEngineSettingsApp()
-	{
-		var app = SceneCreator<EngineSettingsApp>.Create();
-		app.SetUniqueIdentifier();
-		Scene.NodeApps.AddChild(app);
-	}
-
-	private void ForceOpenRomfsAccessorApp()
-	{
-		var app = SceneCreator<RomfsAccessorConfigApp>.Create();
-		Scene.NodeApps.AddChild(app);
-	}
-
-	private void OpenContributorPage()
-	{
-		var app = SceneCreator<FrontDoorContributorApp>.Create();
-		app.SetUniqueIdentifier();
-		Scene.NodeApps.AddChild(app);
-	}
+	private static void OpenEngineSettingsApp() { AppSceneServer.CreateApp<EngineSettingsApp>(); }
+	private static void ForceOpenRomfsAccessorApp() { AppSceneServer.CreateApp<RomfsAccessorConfigApp>(); }
+	private static void OpenContributorPage() { AppSceneServer.CreateApp<FrontDoorContributorApp>(); }
 
 	// ====================================================== //
 	// ==================== Signal Events =================== //

@@ -131,8 +131,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 			return;
 
 		// Lookup msbt editor application
-		var scene = ProjectManager.SceneRoot;
-		var apps = scene.GetApps<MsbtAppHolder>();
+		var apps = AppSceneServer.GetApps<MsbtAppHolder>();
 
 		MsbtAppHolder app = null;
 		var targetIdentifier = MsbtAppHolder.GetUniqueIdentifier(msbtHolder.Name, file);

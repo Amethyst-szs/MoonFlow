@@ -69,7 +69,7 @@ public partial class TaskbarButton : Button
 	private void TryCloseApp()
 	{
 		// If the active app is exclusive (and this isn't the active app), ignore
-		var activeApp = App.Scene.GetActiveApp();
+		var activeApp = AppSceneServer.GetActiveApp();
 		if (activeApp != App && activeApp.IsAppExclusive())
 		{
 			SetPressedNoSignal(false);

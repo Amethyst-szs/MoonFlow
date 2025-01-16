@@ -57,17 +57,8 @@ public partial class Taskbar : Control
 
         UpdateDisplay();
 
-        // Get access to the main
-        var treeRoot = GetTree().CurrentScene;
-
-        if (treeRoot.GetType() != typeof(MainSceneRoot))
-            throw new Exception("Cannot initilize taskbar item outside of MainScene!");
-
-        var scene = (MainSceneRoot)treeRoot;
-
         // If no app is currently selected, select this new app
-        if (scene.GetActiveApp() == null)
-            app.AppFocus();
+        AppSceneServer.GetActiveApp()?.AppFocus();
 
         return true;
     }
@@ -142,7 +133,7 @@ public partial class Taskbar : Control
 
     private void TryNavTaskbarByOffset(int offset)
     {
-        var active = Parent.GetActiveApp();
+        var active = AppSceneServer.GetActiveApp();
         if (active == null || active.IsAppExclusive()) return;
 
         var idx = active.GetIndex() + offset;
@@ -153,10 +144,10 @@ public partial class Taskbar : Control
 
     private void TryNavTaskbarHome()
     {
-        var active = Parent.GetActiveApp();
+        var active = AppSceneServer.GetActiveApp();
         if (active == null || active.IsAppExclusive()) return;
 
-        var home = Parent.GetApp<HomeRoot>();
+        var home = AppSceneServer.GetApp<HomeRoot>();
         if (home == null) return;
 
         TrySelectAppByIndex(home.GetIndex());

@@ -16,7 +16,7 @@ public partial class ActionbarFile : ActionbarItemBase
 	}
 
 	[Signal]
-    public delegate void MoonFlowCloseRequestEventHandler();
+	public delegate void MoonFlowCloseRequestEventHandler();
 
 	public override void _Ready()
 	{
@@ -29,15 +29,14 @@ public partial class ActionbarFile : ActionbarItemBase
 		AssignFunction((int)MenuIds.CLOSE_MOONFLOW, OnMoonFlowApplicationClose);
 	}
 
-    protected async override void AppFocusChanged()
-    {
-        base.AppFocusChanged();
+	protected override void AppFocusChanged()
+	{
+		base.AppFocusChanged();
 
 		// Save As has not been implemented fully yet
 		SetItemDisabled(GetItemIndex((int)MenuIds.FILE_SAVE_AS), true);
 
-		var scene = await GetScene();
-		var app = scene.GetActiveApp() ;
+		var app = AppSceneServer.GetActiveApp();
 		bool isAllowUserClose = app.IsAppAllowUserToClose();
 
 		Header.ButtonAppClose.Visible = isAllowUserClose;
@@ -45,14 +44,14 @@ public partial class ActionbarFile : ActionbarItemBase
 
 		if (app is not HomeRoot)
 			return;
-		
+
 		for (var i = 0; i < ItemCount; i++)
 			SetItemDisabled(i, true);
-		
-		SetItemDisabled(GetItemIndex((int)MenuIds.CLOSE_MOONFLOW), false);
-    }
 
-    private void OnFileSave()
+		SetItemDisabled(GetItemIndex((int)MenuIds.CLOSE_MOONFLOW), false);
+	}
+
+	private void OnFileSave()
 	{
 		Header.EmitSignal(Header.SignalName.ButtonSave, true);
 	}
@@ -62,22 +61,20 @@ public partial class ActionbarFile : ActionbarItemBase
 	}
 	private async void OnFileSaveAll()
 	{
-		var scene = await GetScene();
-		foreach (var app in scene.GetApps())
+		foreach (var app in AppSceneServer.GetApps())
 		{
 			if (!IsInstanceValid(app))
 				continue;
-			
+
 			if (!app.IsAppAllowUnsavedChanges())
 				continue;
-			
+
 			await app.SaveFile(false);
 		}
 	}
-	private async void OnFileClose()
+	private void OnFileClose()
 	{
-        var scene = await GetScene();
-		scene.CloseActiveApp();
+		AppSceneServer.CloseActiveApp();
 	}
 
 	private void OnMoonFlowApplicationClose()

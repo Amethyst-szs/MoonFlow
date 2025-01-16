@@ -28,7 +28,7 @@ public partial class WikiAccessorResource : Resource
     [Export]
     public string LocalPath { get; private set; } = "";
 
-    public void OpenWiki(SceneTree tree)
+    public void OpenWiki()
     {
         var wiki = EngineSettings.GetWiki();
         if (wiki.StartsWith("https://"))
@@ -37,11 +37,11 @@ public partial class WikiAccessorResource : Resource
             return;
         }
 
-        OpenWikiLocal(tree, wiki);
+        OpenWikiLocal(wiki);
     }
 
-    public void OpenWikiLocal(SceneTree tree) { OpenWikiLocal(tree, EngineSettings.GetWikiLocal()); }
-    public void OpenWikiLocal(SceneTree tree, string wiki)
+    public void OpenWikiLocal() { OpenWikiLocal(EngineSettings.GetWikiLocal()); }
+    public void OpenWikiLocal(string wiki)
     {
         if (!wiki.StartsWith("res://"))
         {
@@ -49,19 +49,8 @@ public partial class WikiAccessorResource : Resource
             return;
         }
 
-        var app = SceneCreator<AppLocalWikiViewer>.Create();
-
-        var scene = tree.CurrentScene;
-        if (scene is not MainSceneRoot sceneRoot)
-        {
-            GD.PushError("Cannot open documentation without scene root");
-            app.QueueFree();
-            return;
-        }
-
+        var app = AppSceneServer.CreateApp<AppLocalWikiViewer>(wiki + LocalPath);
         app.SetResource(wiki + LocalPath, LocalPath);
-        sceneRoot.NodeApps.AddChild(app);
-
         app.SetupWikiApp();
     }
 

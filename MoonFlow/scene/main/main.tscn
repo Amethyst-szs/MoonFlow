@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=31 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="8_0gxwu"]
 [ext_resource type="Script" path="res://scene/main/header/ActionbarHelp.cs" id="8_gmnrm"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
-[ext_resource type="PackedScene" uid="uid://qcjh1t51akmr" path="res://scene/front_door/front_door.tscn" id="9_1ew1g"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="9_7fyri"]
 [ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="9_j4qfv"]
 [ext_resource type="Texture2D" uid="uid://b0tliqoouitvy" path="res://iconS.png" id="10_hatx7"]
@@ -209,9 +208,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-
-[node name="FrontDoor" parent="Content/Apps" instance=ExtResource("9_1ew1g")]
-layout_mode = 1
 
 [node name="TaskbarPanel" type="PanelContainer" parent="Content"]
 layout_mode = 2

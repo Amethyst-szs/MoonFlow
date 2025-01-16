@@ -22,7 +22,6 @@ public partial class AppLocalWikiViewer : AppScene
 	{
 		AppTaskbarTitle = localPath.Split(['/', '\\']).Last();
 		FilePath = resPath;
-		SetUniqueIdentifier(resPath);
 	}
 
 	private void OnFileSelected(string path, bool isUpdateTree)

@@ -31,16 +31,15 @@ public class ProjectState(string path, ProjectConfig config)
 
     public ProjectDatabaseHolder Database { get; private set; } = null;
 
-    public async void InitProject(MainSceneRoot scene)
+    public async void InitProject()
     {
         // Close all applications if open and open the project loading screen
-        scene.CallDeferred("ForceCloseAllApps");
+        AppSceneServer.ForceCloseAllAppsDeferred();
 
         Config.GetEngineTarget(out string name, out string hash, out long time);
 
-        var loadScreen = SceneCreator<ProjectLoading>.Create();
+        var loadScreen = AppSceneServer.CreateAppDeferred<ProjectLoading>();
         loadScreen.LoadingStart(StartupTask, name, hash, time);
-        scene.NodeApps.CallDeferred("add_child", loadScreen);
 
         // Wait 200 milliseconds to allow loading screen to appear
         // This isn't nessecary for the code to function, but allows the end-user time to process the scene

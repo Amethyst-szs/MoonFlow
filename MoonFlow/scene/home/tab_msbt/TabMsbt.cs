@@ -323,12 +323,7 @@ public partial class TabMsbt : HSplitContainer
 		}
 	}
 
-	private static void OnOpenMsbpColorEditor()
-	{
-		var app = SceneCreator<MsbpColorEditor>.Create();
-		app.SetUniqueIdentifier();
-		ProjectManager.SceneRoot.NodeApps.AddChild(app);
-	}
+	private static void OnOpenMsbpColorEditor() { AppSceneServer.CreateApp<MsbpColorEditor>(); }
 
 	private void OnCopyFileHashPressed()
 	{

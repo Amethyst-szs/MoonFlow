@@ -24,6 +24,9 @@ public partial class MainSceneRoot : Control
         // Add self-reference to ProjectManager
         ProjectManager.SceneRoot = this;
         TreeExiting += OnTreeExiting;
+
+        // Add app holder control reference to app server
+        AppSceneServer.Init(NodeApps);
     }
 
     public override void _Notification(int what)
@@ -34,13 +37,13 @@ public partial class MainSceneRoot : Control
 
     private static void OnTreeExiting()
     {
-        // Remove node reference in project manager
         ProjectManager.SceneRoot = null;
+        AppSceneServer.Destroy();
     }
 
     private async void OnWindowCloseRequest()
     {
-        var isValidClose = await TryCloseAllApps();
+        var isValidClose = await AppSceneServer.TryCloseAllApps();
         if (!isValidClose)
             return;
         
@@ -71,86 +74,5 @@ public partial class MainSceneRoot : Control
 
         // Terminate application
         GetTree().Quit(0);
-    }
-
-    // ====================================================== //
-    // ==================== App Utilities =================== //
-    // ====================================================== //
-
-    public IEnumerable<AppScene> GetApps()
-    {
-        return NodeApps.GetChildren().Cast<AppScene>();
-    }
-
-    public IEnumerable<T> GetApps<T>() where T : AppScene
-    {
-        return NodeApps.GetChildren().Where(n => n is T).Cast<T>();
-    }
-
-    public AppScene GetApp<T>()
-    {
-        foreach (var app in GetApps())
-        {
-            if (app.GetType() == typeof(T))
-                return app;
-        }
-
-        return null;
-    }
-
-    public AppScene GetActiveApp()
-    {
-        foreach (var app in GetApps())
-        {
-            if (app.Visible)
-                return app;
-        }
-
-        return null;
-    }
-
-    public void CloseActiveApp()
-    {
-        var app = GetActiveApp();
-        if (app == null || !app.IsAppAllowUserToClose())
-            return;
-
-        app.AppClose(true);
-    }
-    public void ForceCloseAllApps()
-    {
-        foreach (var app in GetApps())
-            app.AppClose(true);
-    }
-    public async Task<bool> TryCloseAllApps()
-    {
-        var process_frame = ToSignal(Engine.GetMainLoop(), "process_frame");
-
-        // Attempt to close all applications
-        foreach (var app in GetApps())
-        {
-            app.AppFocus();
-            await process_frame;
-
-            var closeResult = await app.TryCloseFromTreeQuit();
-            if (!closeResult)
-            {
-                GD.Print("App closing cancelled because " + app.AppName + " refused!");
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public void FocusFirstApp()
-    {
-        var app = GetApps().First();
-        var activeApp = GetActiveApp();
-
-        if (app == activeApp || activeApp.IsAppExclusive())
-            return;
-
-        app.AppFocus();
     }
 }

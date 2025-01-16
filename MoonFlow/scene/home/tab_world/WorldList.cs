@@ -62,10 +62,7 @@ public partial class WorldList : HBoxContainer
 		var world = (ProjectManager.GetDB()?.GetWorldByName(worldName))
 		?? throw new Exception("Could not get reference to world!");
 		
-        var editor = SceneCreator<WorldEditorApp>.Create();
-		editor.SetUniqueIdentifier(world.WorldName);
-		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
-
+        var editor = AppSceneServer.CreateApp<WorldEditorApp>(world.WorldName);
 		editor.OpenWorld(world);
 	}
 

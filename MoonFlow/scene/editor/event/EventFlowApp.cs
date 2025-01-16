@@ -69,11 +69,9 @@ public partial class EventFlowApp : AppScene
 
     public static EventFlowApp OpenApp(SarcFile arc, string key)
     {
-        var editor = SceneCreator<EventFlowApp>.Create();
-        editor.SetUniqueIdentifier(arc.Name + key);
-        ProjectManager.SceneRoot.NodeApps.AddChild(editor);
-
+        var editor = AppSceneServer.CreateApp<EventFlowApp>(arc.Name + key);
         editor.OpenFile(arc, key);
+        
         return editor;
     }
 

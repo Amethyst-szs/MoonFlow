@@ -38,24 +38,21 @@ public partial class ActionbarHelp : ActionbarItemBase
 		SetItemTooltip(GetItemIndex((int)MenuIds.HELP_SUPPORT), Tr("HelpSupport", "HEADER_TOOLTIP"));
 	}
 
-    private async void OnHelpCurrentApp()
+	private void OnHelpCurrentApp()
 	{
-		var scene = await GetScene();
-		var app = scene.GetActiveApp();
+		var app = AppSceneServer.GetActiveApp();
 
 		if (app == null || app.WikiPage == null)
-			DefaultWikiPage.OpenWiki(GetTree());
-		
-		app.WikiPage.OpenWiki(GetTree());
+		{
+			DefaultWikiPage.OpenWiki();
+			return;
+		}
+
+		app.WikiPage.OpenWiki();
 	}
-    private void OnHelpHomeLocal()
-	{
-		DefaultWikiPage.OpenWikiLocal(GetTree());
-	}
-    private void OnHelpHomeRemote()
-	{
-		DefaultWikiPage.OpenWikiRemote();
-	}
+
+	private void OnHelpHomeLocal() { DefaultWikiPage.OpenWikiLocal(); }
+	private void OnHelpHomeRemote() { DefaultWikiPage.OpenWikiRemote(); }
 
 	private void OnHelpOpenGitHubRepo()
 	{
@@ -64,14 +61,8 @@ public partial class ActionbarHelp : ActionbarItemBase
 
 		OS.ShellOpen(path);
 	}
-	private async void OnHelpCreditPage()
-	{
-		var scene = await GetScene();
 
-		var app = SceneCreator<FrontDoorContributorApp>.Create();
-		app.SetUniqueIdentifier();
-		scene.NodeApps.AddChild(app);
-	}
+	private void OnHelpCreditPage() { AppSceneServer.CreateApp<FrontDoorContributorApp>(); }
 	private void OnHelpSupportPage()
 	{
 		var path = EngineSettings.GetSetting<string>("moonflow/wiki/support_url", "");

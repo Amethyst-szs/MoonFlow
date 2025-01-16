@@ -22,29 +22,24 @@ public partial class ActionbarProject : ActionbarItemBase
 		AssignFunction((int)MenuIds.OPEN_ENGINE_SETTINGS, OnEngineSettingsPressed);
 	}
 
-    private async void OnProjectReloadPressed()
+	private async void OnProjectReloadPressed()
 	{
-		var isValidReload = await ProjectManager.SceneRoot.TryCloseAllApps();
+		var isValidReload = await AppSceneServer.TryCloseAllApps();
 		if (!isValidReload)
 			return;
-		
+
 		var path = ProjectManager.GetProject().Path;
 		ProjectManager.TryOpenProject(path, out _);
 	}
 
 	private async void OnProjectClosePressed()
 	{
-		var isValidClose = await ProjectManager.SceneRoot.TryCloseAllApps();
+		var isValidClose = await AppSceneServer.TryCloseAllApps();
 		if (!isValidClose)
 			return;
-		
+
 		ProjectManager.CloseProject();
 	}
 
-	private void OnEngineSettingsPressed()
-	{
-		var app = SceneCreator<EngineSettingsApp>.Create();
-		app.SetUniqueIdentifier();
-		ProjectManager.SceneRoot.NodeApps.AddChild(app);
-	}
+	private static void OnEngineSettingsPressed() { AppSceneServer.CreateApp<EngineSettingsApp>(); }
 }

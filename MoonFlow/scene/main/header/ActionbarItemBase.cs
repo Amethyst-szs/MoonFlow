@@ -60,7 +60,7 @@ public abstract partial class ActionbarItemBase : PopupMenu
 		SetItemShortcut(idx, shortcut);
 	}
 
-    protected async Task<MainSceneRoot> GetScene()
+    private async Task<MainSceneRoot> GetScene()
     {
         var sceneBase = GetTree().CurrentScene;
         if (sceneBase.GetType() != typeof(MainSceneRoot))

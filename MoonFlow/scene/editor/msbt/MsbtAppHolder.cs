@@ -54,9 +54,7 @@ public partial class MsbtAppHolder : AppScene
 	public static MsbtAppHolder OpenApp(string archiveName, string key, string lang = null)
 	{
 		// Create editor application
-		var editor = SceneCreator<MsbtAppHolder>.Create();
-		editor.SetUniqueIdentifier(archiveName + key);
-		ProjectManager.SceneRoot.NodeApps.AddChild(editor);
+		var editor = AppSceneServer.CreateApp<MsbtAppHolder>(archiveName + key);
 
 		// Access project and language code
 		var msbp = ProjectManager.GetMSBP();

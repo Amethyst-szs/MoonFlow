@@ -25,7 +25,7 @@ public partial class WikiAccessButton : Button
 		VisibilityChanged += SetupTooltipText;
 	}
 
-	public override void _Pressed() { WikiTarget.OpenWiki(GetTree()); }
+	public override void _Pressed() { WikiTarget.OpenWiki(); }
 
 	#region Utility
 

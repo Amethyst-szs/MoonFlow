@@ -62,24 +62,16 @@ public partial class ActionbarDebug : ActionbarItemBase
 		SetItemChecked(idx, config.IsDebug());
 
 		// Reload project
-		var isValidReload = await ProjectManager.SceneRoot.TryCloseAllApps();
+		var isValidReload = await AppSceneServer.TryCloseAllApps();
 		if (!isValidReload)
 			return;
-		
+
 		var path = ProjectManager.GetProject().Path;
 		ProjectManager.TryOpenProject(path, out _);
 	}
 
-	private void OnPressedOpenMstxtViewer()
-	{
-		var mstxt = SceneCreator<MstxtViewerApp>.Create();
-		ProjectManager.SceneRoot.NodeApps.AddChild(mstxt);
-	}
-	private void OnPressedOpenMsbpTggViewer()
-	{
-		var msbpTgg = SceneCreator<MsbpTggViewerApp>.Create();
-		ProjectManager.SceneRoot.NodeApps.AddChild(msbpTgg);
-	}
+	private static void OnPressedOpenMstxtViewer() { AppSceneServer.CreateApp<MstxtViewerApp>(); }
+	private static void OnPressedOpenMsbpTggViewer() { AppSceneServer.CreateApp<MsbpTggViewerApp>(); }
 	private void OnPressedOpenMsbtEntryLookup()
 	{
 		var popup = SceneCreator<PopupMsbtSelectEntry>.Create();

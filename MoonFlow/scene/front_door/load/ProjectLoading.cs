@@ -98,11 +98,8 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 		LoadingUpdateProgress("END");
 
 		// Open home page application
-		var app = SceneCreator<HomeRoot>.Create();
-		Scene.NodeApps.CallDeferred("add_child", app);
-
-		// Close the loading screen application
-		AppClose(true);
+		AppSceneServer.CreateAppDeferred<HomeRoot>();
+		CallDeferred(AppScene.MethodName.AppCloseForce);
 	}
 
 	private static void OnButtonGoToFrontDoorPressed() { ProjectManager.CloseProject(); }

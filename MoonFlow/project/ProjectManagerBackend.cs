@@ -56,7 +56,7 @@ public static partial class ProjectManager
         // Initilize project
         Project = new(path, config);
 
-        Task task = new(() => Project.InitProject(SceneRoot));
+        Task task = new(() => Project.InitProject());
         Project.StartupTask = task;
         task.Start();
 
@@ -102,9 +102,8 @@ public static partial class ProjectManager
 
         Project = null;
 
-        SceneRoot.ForceCloseAllApps();
-        var frontDoor = SceneCreator<FrontDoor>.Create();
-        SceneRoot.NodeApps.AddChild(frontDoor);
+        AppSceneServer.ForceCloseAllApps();
+        AppSceneServer.CreateApp<FrontDoor>();
     }
 
     public static bool IsValidOpenOrCreate(ref string path)

@@ -145,7 +145,7 @@ public partial class AppScene : Control
 
 		if (IsAppExclusive() || IsAppFocusOnOpen())
 		{
-			AppFocus();
+			CallDeferred(MethodName.AppFocus);
 		}
 		else
 		{
@@ -175,7 +175,7 @@ public partial class AppScene : Control
 		// Set which app is being focused (usually "this" unless special window flags say otherwise)
 		var focusingApp = this;
 
-		var activeApp = Scene.GetActiveApp();
+		var activeApp = AppSceneServer.GetActiveApp();
 		if (IsInstanceValid(activeApp) && !activeApp.IsQueuedForDeletion())
 		{
 			// If the active app is exclusive and this app isn't, don't let the focused app change
@@ -205,7 +205,7 @@ public partial class AppScene : Control
 		}
 
 		// Show only this app's visibility
-		foreach (var node in Scene.GetApps())
+		foreach (var node in AppSceneServer.GetApps())
 		{
 			var control = (Control)node;
 
@@ -255,6 +255,8 @@ public partial class AppScene : Control
 		return null;
 	}
 
+	public void AppCloseForce() { AppClose(true); }
+
 	public virtual async Task<bool> TryCloseFromTreeQuit()
 	{
 		var result = AppClose(true);
@@ -262,11 +264,6 @@ public partial class AppScene : Control
 			await result;
 
 		return !IsModified;
-	}
-
-	public void AppCloseForce()
-	{
-		AppClose(true);
 	}
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
