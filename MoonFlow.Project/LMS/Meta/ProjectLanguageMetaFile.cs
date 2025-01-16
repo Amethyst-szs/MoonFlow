@@ -11,18 +11,8 @@ using Godot;
 
 namespace MoonFlow.Project;
 
-public class ProjectLanguageMetaFile(string path) : ProjectFileFormatBase(path)
+public class ProjectLanguageMetaFile(string path) : ProjectFileFormatBase<ProjectLanguageMetaBucketCommon>("LANG", path)
 {
-    // ====================================================== //
-    // ==================== Initilization =================== //
-    // ====================================================== //
-
-    private ProjectLanguageMetaBucketCommon Data = new();
-
-    protected override void Init(string json)
-    {
-        Data = JsonSerializer.Deserialize<ProjectLanguageMetaBucketCommon>(json, JsonConfig);
-    }
     protected override bool TryGetWriteData(out dynamic data)
     {
         data = Data.Copy();

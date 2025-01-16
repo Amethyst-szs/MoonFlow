@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace MoonFlow.Project;
 
-internal class ProjectLanguageMetaBucketCommon : IProjectFileFormatDataRoot
+public class ProjectLanguageMetaBucketCommon : IProjectFileFormatDataRoot
 {
     private Dictionary<string, ProjectLanguageMetaBucketEntry> _entryTable = [];
     [JsonInclude]

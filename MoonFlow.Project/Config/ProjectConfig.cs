@@ -7,14 +7,10 @@ using static Nindot.RomfsPathUtility;
 
 namespace MoonFlow.Project;
 
-public partial class ProjectConfig : ProjectFileFormatBase
+public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
 {
-    private ProjectConfigBucketCommon Data = new();
-
-    #region Initilization
-
-    public ProjectConfig(string path) : base(path) { }
-    public ProjectConfig(string path, ProjectInitInfo initInfo)
+    public ProjectConfig(string path) : base("PROJ", path) { }
+    public ProjectConfig(string path, ProjectInitInfo initInfo) : base("PROJ")
     {
         Path = path;
 
@@ -23,18 +19,11 @@ public partial class ProjectConfig : ProjectFileFormatBase
         Data.DefaultLanguage = initInfo.DefaultLanguage;
     }
 
-    protected override void Init(string json)
-    {
-        Data = JsonSerializer.Deserialize<ProjectConfigBucketCommon>(json, JsonConfig);
-    }
-
     protected override bool TryGetWriteData(out object data)
     {
         data = Data;
         return true;
     }
-
-    #endregion
 
     #region Access Utility
 

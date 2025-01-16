@@ -8,15 +8,13 @@ using Nindot.Al.EventFlow;
 
 namespace MoonFlow.Project;
 
-public class GraphMetadataFile : ProjectFileFormatBase
+public class GraphMetadataFile : ProjectFileFormatBase<GraphMetaBucketCommon>
 {
-    public GraphMetaBucketCommon Data { get; private set; } = new();
-    
     private const string PathBase = "EventData/.graph/";
     public const string EmbedGraphPath = "res://scene/editor/event/meta/embed/";
 
-    public GraphMetadataFile(string path) : base(path) { }
-    public GraphMetadataFile(byte[] data) : base(data) { }
+    public GraphMetadataFile(string path) : base("GRPH", path) { }
+    public GraphMetadataFile(byte[] data) : base("GRPH", data) { }
 
     public static GraphMetadataFile Create(SarcEventFlowGraph graph, string projectPath)
     {
@@ -43,11 +41,6 @@ public class GraphMetadataFile : ProjectFileFormatBase
 
         // If all else fails, return a default meta holder
         return new GraphMetadataFile(path + fileName);
-    }
-
-    protected override void Init(string json)
-    {
-        Data = JsonSerializer.Deserialize<GraphMetaBucketCommon>(json, JsonConfig);
     }
 
     protected override bool TryGetWriteData(out object data)

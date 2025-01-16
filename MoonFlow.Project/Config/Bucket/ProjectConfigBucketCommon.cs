@@ -6,7 +6,7 @@ using static Nindot.RomfsPathUtility;
 
 namespace MoonFlow.Project;
 
-internal class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
+public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
 {
     #region Common
 
