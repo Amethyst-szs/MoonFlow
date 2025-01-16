@@ -152,7 +152,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 			// If the pre-existing msbt app lookup failed, create a new editor app
 			if (app == null)
 			{
-				editor = MsbtAppHolder.OpenAppWithSearch(msbtHolder.Name, file, label);
+				editor = await MsbtAppHolder.OpenAppWithSearch(msbtHolder.Name, file, label);
 				editor.Editor.SetSelection(label);
 				return;
 			}
@@ -165,11 +165,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 		}
 
 		// If the label doesn't already exist, we'll need to create it
-		if (app == null)
-		{
-			app = MsbtAppHolder.OpenApp(msbtHolder.Name, file);
-			await ToSignal(Engine.GetMainLoop(), "process_frame");
-		}
+		app ??= await MsbtAppHolder.OpenApp(msbtHolder.Name, file);
 
 		app.Editor.OnAddEntryNameSubmitted(label);
 		app.Editor.UpdateEntrySearch(label);

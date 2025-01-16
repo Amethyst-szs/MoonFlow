@@ -128,7 +128,7 @@ public static class AppSceneServer
         if (app == activeApp || activeApp.IsAppExclusive())
             return;
 
-        app.AppFocus();
+        FocusApp(app);
     }
 
     public static void FocusApp(AppScene app)

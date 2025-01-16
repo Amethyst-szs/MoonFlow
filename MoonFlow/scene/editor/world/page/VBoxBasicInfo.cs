@@ -46,14 +46,14 @@ public partial class VBoxBasicInfo : InfoBoxBase
 		EmitSignal(SignalName.ModifiedWorldInfo);
 	}
 
-	private void OnOpenMSBTPressed()
+	private async void OnOpenMSBTPressed()
 	{
 		var s = Info.WorldName;
 		
-		var editor = MsbtAppHolder.OpenAppWithSearch("SystemMessage.szs", "StageMap.msbt", s);
+		var editor = await MsbtAppHolder.OpenAppWithSearch("SystemMessage.szs", "StageMap.msbt", s);
 		editor.Editor.SetSelection("WorldName_" + s);
 
-		editor = MsbtAppHolder.OpenAppWithSearch("SystemMessage.szs", "StageName.msbt", s);
+		editor = await MsbtAppHolder.OpenAppWithSearch("SystemMessage.szs", "StageName.msbt", s);
 		editor.Editor.SetSelection("WorldName_" + s);
 	}
 

@@ -277,10 +277,10 @@ public partial class TabMsbt : HSplitContainer
 		GetNode<Label>("%Label_Usage").Text = usage;
 	}
 
-	private void OnFooterOpenFilePressed()
+	private async void OnFooterOpenFilePressed()
 	{
 		if (SelectedFile == null) return;
-		MsbtAppHolder.OpenApp(SelectedFile.Sarc.Name, SelectedFile.Name, GetActiveLanguage());
+		await MsbtAppHolder.OpenApp(SelectedFile.Sarc.Name, SelectedFile.Name, GetActiveLanguage());
 	}
 
 	private void OnOpenPopupMenuRequested(string nodeName)

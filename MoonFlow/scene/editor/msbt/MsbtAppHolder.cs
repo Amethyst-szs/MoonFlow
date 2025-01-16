@@ -51,7 +51,7 @@ public partial class MsbtAppHolder : AppScene
 		return;
 	}
 
-	public static MsbtAppHolder OpenApp(string archiveName, string key, string lang = null)
+	public static async Task<MsbtAppHolder> OpenApp(string archiveName, string key, string lang = null)
 	{
 		// Create editor application
 		var editor = AppSceneServer.CreateApp<MsbtAppHolder>(archiveName + key);
@@ -61,16 +61,16 @@ public partial class MsbtAppHolder : AppScene
 		lang ??= ProjectManager.GetDefaultLang();
 
 		// Pause for the next process frame to allow screen redraw
-		editor.ToSignal(Engine.GetMainLoop(), "process_frame");
+		await editor.ToSignal(Engine.GetMainLoop(), "process_frame");
 
 		// Setup and return editor
 		editor.SetupEditor(msbp, lang, archiveName, key);
 		return editor;
 	}
 
-	public static MsbtAppHolder OpenAppWithSearch(string archiveName, string key, string search)
+	public static async Task<MsbtAppHolder> OpenAppWithSearch(string archiveName, string key, string search)
 	{
-		var editor = OpenApp(archiveName, key);
+		var editor = await OpenApp(archiveName, key);
 		editor.Editor.UpdateEntrySearch(search);
 		return editor;
 	}
