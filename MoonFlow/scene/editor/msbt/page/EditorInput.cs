@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 using Nindot.LMS.Msbt.TagLib;
@@ -7,6 +8,10 @@ namespace MoonFlow.Scene.EditorMsbt;
 
 public partial class MsbtPageEditor : TextEdit
 {
+    private static readonly char[] BackspaceWordSeparators = [
+        ' ','.',',','?','!','_','-'
+    ];
+
     public override void _GuiInput(InputEvent @event)
     {
         if (@event.GetType() == typeof(InputEventMouseButton))
@@ -29,6 +34,13 @@ public partial class MsbtPageEditor : TextEdit
         if (input.IsActionPressed("ui_text_newline", true))
         {
             _HandleUnicodeInput(Convert.ToChar('\n'), -1);
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+
+        if (input.IsActionPressed("ui_text_backspace_word", true) || input.IsActionPressed("ui_text_delete_word", true))
+        {
+            DeleteWord();
             GetViewport().SetInputAsHandled();
             return;
         }
@@ -143,6 +155,33 @@ public partial class MsbtPageEditor : TextEdit
     }
 
     public void DeleteViaContextMenu() { if (HasSelection()) _Backspace(-1); }
+    public void DeleteWord()
+    {
+        if (HasSelection())
+        {
+            _Backspace(-1);
+            return;
+        }
+
+        bool isQueueBreak = false;
+        bool isCaretInvalid() => Text.Length == 0 || GetCharIndex(0) == 0;
+
+        do
+        {
+            if (isCaretInvalid()) break;
+            _Backspace(-1);
+
+            if (isCaretInvalid() || isQueueBreak) break;
+
+            var c = Text[GetCharIndex(0) - 1];
+            if (c == '⸺') // Tag symbol (Two-em dash)
+                break;
+            
+            if (BackspaceWordSeparators.Contains(c))
+                isQueueBreak = true;
+        }
+        while (true);
+    }
     public override void _Backspace(int caretIndex)
     {
         if (caretIndex == -1) caretIndex = 0;
@@ -168,6 +207,9 @@ public partial class MsbtPageEditor : TextEdit
         int line = GetCaretLine(caretIndex);
         int col = GetCaretColumn(caretIndex) - 1;
         int charIdx = GetCharIndex(line, col);
+
+        if (Text.Length == 0 || charIdx < 0)
+            return;
 
         Page.Backspace(charIdx);
 
