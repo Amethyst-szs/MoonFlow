@@ -218,7 +218,6 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="TaskbarPanel" type="PanelContainer" parent="Content"]
-custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme = ExtResource("6_2jriu")
 
@@ -241,6 +240,7 @@ mouse_filter = 2
 script = ExtResource("14_dvyda")
 
 [node name="BootAnimation" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

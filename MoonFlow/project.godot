@@ -8,18 +8,13 @@
 
 config_version=5
 
-[addons]
-
-AutoExportVersion/version_store_location=0
-AutoExportVersion/version_file_path="res://version/data.gd"
-AutoExportVersion/version_config_file="res://version/config.gd"
-
 [application]
 
 config/name="MoonFlow"
 config/description="A Super Mario Odyssey project management & mod development tool"
 run/main_scene="res://scene/main/main.tscn"
 run/print_header=false
+config/project_settings_override="user://common.cfg"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
@@ -261,3 +256,4 @@ version/git_repo_database_path="res://addons/git_database/git.gd"
 version/main_branch="stable"
 event_graph/hide_block_tooltip=false
 version/repo_releases_url="https://github.com/Amethyst-szs/MoonFlow/releases"
+guide/first_boot=false

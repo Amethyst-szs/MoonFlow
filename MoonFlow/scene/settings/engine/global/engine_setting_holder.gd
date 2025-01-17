@@ -2,7 +2,10 @@ extends Node
 
 var cfg := ConfigFile.new()
 
-const path: String = "res://override.cfg"
+static var path: String = ProjectSettings.get_setting(
+	"application/config/project_settings_override",
+	"res://override.cfg"
+)
 
 func _enter_tree() -> void:
 	Engine.register_singleton("EngineSettingsCSharp", self)
