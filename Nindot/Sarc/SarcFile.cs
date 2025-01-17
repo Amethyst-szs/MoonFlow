@@ -1,8 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 
-using CsYaz0;
-
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 using Nindot.Byml;
@@ -11,6 +9,8 @@ using System.IO;
 using Nindot.LMS.Msbp;
 using System.Linq;
 using System.Collections.Generic;
+
+using Module.RiiStudioSzs;
 
 namespace Nindot;
 
@@ -54,7 +54,7 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
         byte[] file;
 
         // Decompress file using Yaz0, and return early if this fails
-        try { file = Yaz0.Decompress(fileCompressed); }
+        try { file = Szs.Decode(fileCompressed); }
         catch { throw new SarcFileException("Yaz0 decompress failed!"); }
 
         // Convert this decompressed file into a sarc object, and return a failure if empty
@@ -68,9 +68,9 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
         MemoryStream stream = new();
         sarcBase.Write(stream);
 
-        var fileCompressed = Yaz0.Compress(stream.ToArray());
+        var fileCompressed = Szs.Encode(stream.ToArray());
 
-        try { File.WriteAllBytes(path, fileCompressed.ToArray()); }
+        try { File.WriteAllBytes(path, [.. fileCompressed]); }
         catch (Exception e) { return e; }
 
         return null;

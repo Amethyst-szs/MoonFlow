@@ -6,9 +6,9 @@
 
 [sub_resource type="Resource" id="Resource_hvqrg"]
 script = ExtResource("2_lax34")
-author = "EPD-Libraries"
-name = "CsYaz0"
-url = "https://github.com/EPD-Libraries/cs-yaz0"
+author = "riidefi"
+name = "RiiStudio/szs (Bindings)"
+url = "https://github.com/riidefi/RiiStudio"
 
 [sub_resource type="Resource" id="Resource_ve3wk"]
 script = ExtResource("2_lax34")

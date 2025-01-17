@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 
-using Nindot;
+using Module.RiiStudioSzs;
 
-using CsYaz0;
+using Nindot;
 
 namespace MoonFlow.Project;
 
@@ -27,7 +27,7 @@ public class EventDataArchive(SarcLibrary.Sarc file, string filePath) : SarcFile
         byte[] file;
 
         // Decompress file using Yaz0, and return early if this fails
-        try { file = Yaz0.Decompress(fileCompressed); }
+        try { file = Szs.Decode(fileCompressed); }
         catch { throw new SarcFileException("Yaz0 decompress failed!"); }
 
         // Convert this decompressed file into a sarc object, and return a failure if empty

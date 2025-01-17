@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Godot.Extension\Godot.Extension.csproj" />
+    <ProjectReference Include="..\Module\RiiStudioSzs\Module.RiiStudioSzs.csproj" />
     <ProjectReference Include="..\Nindot\Nindot.csproj" />
   </ItemGroup>
   <ItemGroup>

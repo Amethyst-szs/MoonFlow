@@ -4,8 +4,9 @@ using System.Text.Json;
 using System.Linq;
 using Godot;
 
-using CsYaz0;
 using System;
+
+using Module.RiiStudioSzs;
 
 namespace MoonFlow.Project;
 
@@ -81,7 +82,7 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
         if (Encoding.UTF8.GetString(buffer.AsSpan()[..MagicLength]) != MagicSignature)
             throw new Exception("Invalid file magic signature!");
 
-        buffer = Yaz0.Decompress(buffer.AsSpan()[MagicLength..]);
+        buffer = Szs.Decode(buffer[MagicLength..]);
 
         Data = JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(buffer), JsonConfig);
         IsReadFromDisk = true;
@@ -105,7 +106,7 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
 
         // Create bytecode version of magic signature and compress data
         var sig = Encoding.UTF8.GetBytes(MagicSignature);
-        var dataCompressed = Yaz0.Compress(bytes).ToArray();
+        var dataCompressed = Szs.Encode(bytes).ToArray();
         
         // Write signature and compressed data to file
         var output = sig.Concat(dataCompressed).ToArray();

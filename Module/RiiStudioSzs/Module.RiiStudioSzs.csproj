@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RepositoryUrl>https://github.com/riidefi/RiiStudio/tree/master</RepositoryUrl>
+    <NoWarn>IDE1006,IDE0130</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="szs.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
