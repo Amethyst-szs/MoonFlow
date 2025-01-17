@@ -136,6 +136,9 @@ public partial class WorldEditorApp : AppScene
 		await run.Task;
 		await ToSignal(Engine.GetMainLoop(), "process_frame");
 
+		if (!DisplayServer.WindowIsFocused())
+            DisplayServer.WindowRequestAttention();
+
 		if (run.Task.Exception == null)
 			GD.Print("Saved ", World.WorldName);
 		else

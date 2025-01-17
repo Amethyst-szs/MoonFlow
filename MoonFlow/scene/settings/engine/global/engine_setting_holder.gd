@@ -10,10 +10,13 @@ func _enter_tree() -> void:
 	if FileAccess.file_exists(path):
 		cfg.load(path)
 	
+	# Setup translation server
 	TranslationServer.set_locale(get_setting("moonflow/general/locale", "en"))
 
 func _exit_tree() -> void:
 	save()
+
+#region Accessor
 
 func get_setting(key: String, default: Variant) -> Variant:
 	var lookup := key.split('/', true, 1)
@@ -21,6 +24,10 @@ func get_setting(key: String, default: Variant) -> Variant:
 		return cfg.get_value(lookup[0], lookup[1], default)
 	
 	return ProjectSettings.get_setting(key, default)
+
+func has_setting(key: String) -> bool:
+	var lookup := key.split('/', true, 1)
+	return cfg.has_section_key(lookup[0], lookup[1])
 
 func set_setting(key: String, value: Variant) -> void:
 	var cfg_access := key.split('/', true, 1)
@@ -36,6 +43,8 @@ func remove_setting(key: String) -> void:
 
 func save() -> void:
 	cfg.save(path)
+
+#endregion
 
 #region Signals
 

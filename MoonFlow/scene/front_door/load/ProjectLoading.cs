@@ -97,6 +97,10 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 	{
 		LoadingUpdateProgress("END");
 
+		// Push attention to display server
+		if (!DisplayServer.WindowIsFocused())
+            DisplayServer.WindowRequestAttention();
+
 		// Open home page application
 		AppSceneServer.CreateAppDeferred<HomeRoot>();
 		CallDeferred(AppScene.MethodName.AppCloseForce);
