@@ -7,6 +7,7 @@
 //
 
 using System.Collections;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -68,27 +69,15 @@ public static class Szs
     MK8 = szs_native.RiiszsEncodeAlgo.MK8,
   }
 
-  private static bool IsValidWorkingDirectory = false;
-
   public static void InitWorkingDirectory()
   {
-    if (IsValidWorkingDirectory) return;
-
     var cur = Directory.GetCurrentDirectory();
     var target = cur + '/' + szs_native.DllName;
     if (File.Exists(target))
-    {
-      IsValidWorkingDirectory = true;
       return;
-    }
-
-    // Attempt to navigate into .godot build path
-    target = cur + "/.godot/mono/temp/bin/Debug/";
-    if (!File.Exists(target + szs_native.DllName))
-      throw new DllNotFoundException("Could not find " + target);
-
-    Directory.SetCurrentDirectory(target);
-    IsValidWorkingDirectory = true;
+    
+    // Change working directory to executing dlls
+    Directory.SetCurrentDirectory(AppContext.BaseDirectory);
   }
 
   public static bool IsCompressed(byte[] data)

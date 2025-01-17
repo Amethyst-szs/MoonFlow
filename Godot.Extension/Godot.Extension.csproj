@@ -6,7 +6,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <NoWarn>IDE0130,IDE0160</NoWarn> <!-- Disable namespace folder structure matching -->
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Nindot\Nindot.csproj" />
-  </ItemGroup>
 </Project>

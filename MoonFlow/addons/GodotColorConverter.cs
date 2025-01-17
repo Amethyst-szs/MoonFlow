@@ -3,7 +3,7 @@ using Godot;
 
 using Nindot.LMS.Msbp;
 
-namespace Godot.Extension;
+namespace MoonFlow.Addons;
 
 public static partial class Extension
 {

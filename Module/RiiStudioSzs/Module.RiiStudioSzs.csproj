@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <RepositoryUrl>https://github.com/riidefi/RiiStudio/tree/master</RepositoryUrl>
-    <NoWarn>IDE1006,IDE0130</NoWarn>
+    <NoWarn>IDE1006,IDE0130,CS8785</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

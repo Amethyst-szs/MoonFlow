@@ -5,6 +5,7 @@ using Godot;
 using MoonFlow.Project;
 using MoonFlow.Async;
 using MoonFlow.Scene.Main;
+using MoonFlow.Addons;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
