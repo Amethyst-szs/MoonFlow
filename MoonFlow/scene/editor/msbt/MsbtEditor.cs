@@ -236,40 +236,8 @@ public partial class MsbtEditor : PanelContainer
 		_ = InitEditor();
 	}
 
-	private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
-	public async Task SaveFile(bool isRequireFocus)
-	{
-		// Ensure app is focused
-		var parent = GetParent() as MsbtAppHolder;
-		if (!parent.AppIsFocused() && isRequireFocus)
-			return;
-
-		GD.Print("\n - Saving ", File.Name);
-
-		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbtArchives);
-
-		await run.Task;
-		await ToSignal(Engine.GetMainLoop(), "process_frame");
-
-		if (!DisplayServer.WindowIsFocused())
-            DisplayServer.WindowRequestAttention();
-
-		if (run.Task.Exception == null)
-			GD.Print("Saved ", File.Name);
-		else
-			GD.Print("Saving failed for ", File.Name);
-
-		// Remove the modified icon from all entry buttons in editor
-		EntryListBase.ClearAllModifiedIcons(EntryList);
-
-		// Remove appended modified icon in title
-		FileTitleName.Text = FileTitleName.Text.TrimSuffix("*");
-
-		// Update label cache in background
-		ProjectManager.UpdateMsbtLabelCache();
-	}
-
-	public void TaskRunWriteFile(AsyncDisplay display)
+	private async void SaveFileInternal(bool isRequireFocus) { await Parent.AppSaveContent(isRequireFocus); }
+	public void SaveFile(AsyncDisplay display)
 	{
 		// Get access to the default language's SarcMsbtFile
 		var fileDL = FileList[DefaultLanguage];
@@ -330,6 +298,15 @@ public partial class MsbtEditor : PanelContainer
 
 		// Reset flag
 		ForceResetModifiedFlag();
+
+		// Remove the modified icon from all entry buttons in editor
+		EntryListBase.ClearAllModifiedIcons(EntryList);
+
+		// Remove appended modified icon in title
+		FileTitleName.SetDeferred(Label.PropertyName.Text, FileTitleName.Text.TrimSuffix("*"));
+
+		// Update label cache in background
+		ProjectManager.UpdateMsbtLabelCache();
 	}
 
 	#endregion
@@ -517,7 +494,7 @@ public partial class MsbtEditor : PanelContainer
 		}
 
 		if (IsModified)
-			await SaveFile(false);
+			await Parent.AppSaveContent(false);
 
 		if (lang == DefaultLanguage)
 		{

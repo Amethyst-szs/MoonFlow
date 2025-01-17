@@ -8,6 +8,7 @@ using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Project;
+using MoonFlow.Async;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -37,10 +38,10 @@ public partial class MsbtAppHolder : AppScene
 		foreach (var txtLang in txtHolder)
 		{
 			var archive = txtLang.Value.GetArchiveByFileName(archiveName);
-			
+
 			if (!archive.Content.ContainsKey(key))
 				archive.Content.Add(key, fallback.ToArray());
-			
+
 			var msbt = archive.GetFileMSBT(key, new MsbtElementFactoryProjectSmo());
 			TextFiles.Add(txtLang.Key, msbt);
 		}
@@ -75,21 +76,13 @@ public partial class MsbtAppHolder : AppScene
 		return editor;
 	}
 
-    public override async Task SaveFile(bool isRequireFocus)
+    protected override void TaskWriteAppSaveContent(AsyncDisplay display)
     {
-        await Editor.SaveFile(isRequireFocus);
+		Editor.SaveFile(display);
     }
 
-    public override string GetUniqueIdentifier(string input)
-	{
-		return "MSBT_" + input;
-	}
-
-	public static string GetUniqueIdentifier(string archive, string file)
-	{
-		return "MSBT_" + archive + file;
-	}
-
+    public override string GetUniqueIdentifier(string input) { return "MSBT_" + input; }
+	public static string GetUniqueIdentifier(string archive, string file) { return "MSBT_" + archive + file; }
 	private void OnSignalContentModified() { IsModified = true; }
 	private void OnSignalContentNotModified() { IsModified = false; }
 }

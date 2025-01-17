@@ -1,8 +1,9 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 using MoonFlow.Scene.Main;
-using System.Threading.Tasks;
+using MoonFlow.Async;
 
 namespace MoonFlow.Scene;
 
@@ -53,11 +54,15 @@ public partial class AppScene : Control
 	[Export(PropertyHint.Flags), ExportGroup("Flags")]
 	public AppFlagEnum AppFlags = AppFlagEnum.IsAllowUserClose;
 
+	[Export]
+	private AsyncDisplay.Type AppContentSaveType = AsyncDisplay.Type.FileWrite;
+
 	[Export, ExportGroup("Packed Scene")]
 	private PackedScene UnsavedChangesScene = null;
 
 	[Export, ExportGroup("Header Properties")]
 	public WikiAccessorResource WikiPage { get; private set; }
+
 	// ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
 	private bool _isModified = false;
@@ -211,14 +216,33 @@ public partial class AppScene : Control
 		return !IsModified;
 	}
 
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+	#endregion
 
-	public async virtual Task SaveFile(bool isRequireFocus)
+	#region Content Saving
+
+	public async Task AppSaveContent(bool isRequireFocus)
 	{
-		throw new NotImplementedException();
+		if (!IsAppAllowUnsavedChanges())
+			return;
+		
+		if (!AppIsFocused() && isRequireFocus)
+            return;
+		
+		var run = AsyncRunner.Run(TaskWriteAppSaveContent, AppContentSaveType);
+		
+		await run.Task;
+        await ToSignal(Engine.GetMainLoop(), "process_frame");
+
+        if (!DisplayServer.WindowIsFocused())
+            DisplayServer.WindowRequestAttention();
+
+        if (run.Task.Exception == null)
+            GD.Print("Saved content for " + AppTaskbarTitle);
+        else
+            GD.PrintErr("Saving encountered exception for " + AppTaskbarTitle);
 	}
 
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+	protected virtual void TaskWriteAppSaveContent(AsyncDisplay display) { throw new NotImplementedException(); }
 
 	#endregion
 

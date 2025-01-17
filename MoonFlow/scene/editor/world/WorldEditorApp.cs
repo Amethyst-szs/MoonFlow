@@ -123,29 +123,8 @@ public partial class WorldEditorApp : AppScene
 
 	#region Saving
 
-	private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
-	public override async Task SaveFile(bool isRequireFocus)
-	{
-		if (!AppIsFocused() && isRequireFocus)
-			return;
-
-		GD.Print("\n - Saving ", World.WorldName);
-
-		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveWorldArchives);
-
-		await run.Task;
-		await ToSignal(Engine.GetMainLoop(), "process_frame");
-
-		if (!DisplayServer.WindowIsFocused())
-            DisplayServer.WindowRequestAttention();
-
-		if (run.Task.Exception == null)
-			GD.Print("Saved ", World.WorldName);
-		else
-			GD.Print("Saving failed for ", World.WorldName);
-	}
-
-	public void TaskRunWriteFile(AsyncDisplay display)
+	private async void SaveFileInternal(bool isRequireFocus) { await AppSaveContent(isRequireFocus); }
+	protected override void TaskWriteAppSaveContent(AsyncDisplay display)
 	{
 		// Calculate total tasks
 		int totalTasks =
@@ -188,7 +167,7 @@ public partial class WorldEditorApp : AppScene
 
 		if (isValid || str == string.Empty)
 			return;
-		
+
 		LabelNewStageError.Text = Tr("WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR") + " " + errorSource;
 	}
 
@@ -202,12 +181,12 @@ public partial class WorldEditorApp : AppScene
 		if (!IsNewStageNameValid(out _))
 			return;
 
-        // Create new StageInfo
-        var info = new StageInfo
-        {
-            name = NewStageName,
+		// Create new StageInfo
+		var info = new StageInfo
+		{
+			name = NewStageName,
 			CategoryType = NewStageCategory,
-        };
+		};
 
 		World.StageList.Add(info);
 		ProjectDatabaseHolder.SortWorldStagesByType(World.StageList);
@@ -215,18 +194,18 @@ public partial class WorldEditorApp : AppScene
 		// Reload scene
 		OnWorldInfoModify();
 		SetupStageList();
-    }
+	}
 
 	private void OnShineListChildOrderChanged()
 	{
 		if (IsRunningInit)
 			return;
-		
+
 		foreach (var child in VBoxShineList.GetChildren())
 		{
 			if (child is not WorldShineEditorHolder editor)
 				continue;
-			
+
 			editor.UpdateShineIndex();
 		}
 	}
@@ -259,7 +238,7 @@ public partial class WorldEditorApp : AppScene
 			errorSource = "empty";
 			return false;
 		}
-		
+
 		// Check if this world already has this name
 		if (World.StageList.Any((s) => s.name == NewStageName))
 		{

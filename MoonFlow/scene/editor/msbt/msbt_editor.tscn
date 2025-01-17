@@ -155,6 +155,7 @@ AppName = "MsbtEditor"
 AppTaskbarTitle = "Text Editor"
 AppIcon = ExtResource("2_2nd54")
 AppFlags = 115
+AppContentSaveType = 4100063999
 UnsavedChangesScene = ExtResource("18_5a5n5")
 WikiPage = ExtResource("4_o5nhl")
 

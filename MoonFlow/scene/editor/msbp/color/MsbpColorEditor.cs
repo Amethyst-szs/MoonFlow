@@ -58,30 +58,10 @@ public partial class MsbpColorEditor : AppScene
 
 	#region Save
 
-	private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
-	public override async Task SaveFile(bool isRequireFocus)
+	private async void SaveFileInternal(bool isRequireFocus) { await AppSaveContent(isRequireFocus); }
+	protected override void TaskWriteAppSaveContent(AsyncDisplay display)
 	{
-		if (!AppIsFocused() && isRequireFocus)
-			return;
-
-		GD.Print("\n - Saving MSBP");
-
-		var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveMsbp);
-
-		await run.Task;
-		await ToSignal(Engine.GetMainLoop(), "process_frame");
-
-		if (!DisplayServer.WindowIsFocused())
-            DisplayServer.WindowRequestAttention();
-
-		if (run.Task.Exception == null)
-			GD.Print("Saved MSBP");
-		else
-			GD.Print("Saving failed for MSBP");
-	}
-
-	public void TaskRunWriteFile(AsyncDisplay display)
-	{
+		// Write ProjectData archive to disk
 		display.UpdateProgress(0, 1);
 		ProjectManager.GetMSBP().WriteArchive();
 

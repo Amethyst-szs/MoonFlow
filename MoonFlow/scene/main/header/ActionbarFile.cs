@@ -69,7 +69,7 @@ public partial class ActionbarFile : ActionbarItemBase
 			if (!app.IsAppAllowUnsavedChanges())
 				continue;
 
-			await app.SaveFile(false);
+			await app.AppSaveContent(false);
 		}
 	}
 	private void OnFileClose()

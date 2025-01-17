@@ -60,6 +60,7 @@ AppName = "MsbpColorEditor"
 AppTaskbarTitle = "Project Colors"
 AppIcon = ExtResource("2_ktat6")
 AppFlags = 115
+AppContentSaveType = 4100064255
 UnsavedChangesScene = ExtResource("3_5s4ya")
 
 [node name="Content" type="PanelContainer" parent="."]

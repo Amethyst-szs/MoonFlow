@@ -93,6 +93,7 @@ AppName = "EventFlowGraphApp"
 AppTaskbarTitle = "EventFlow"
 AppIcon = ExtResource("2_7jypk")
 AppFlags = 115
+AppContentSaveType = 4100129791
 UnsavedChangesScene = ExtResource("2_7ecjt")
 WikiPage = ExtResource("4_boih4")
 

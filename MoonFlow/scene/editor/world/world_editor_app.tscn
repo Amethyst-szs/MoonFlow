@@ -51,6 +51,7 @@ AppName = "WorldEditor"
 AppTaskbarTitle = "Kingdom"
 AppIcon = ExtResource("2_bf7ob")
 AppFlags = 115
+AppContentSaveType = 4100129535
 UnsavedChangesScene = ExtResource("2_55xy6")
 WikiPage = ExtResource("5_pcgds")
 

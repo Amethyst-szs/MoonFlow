@@ -71,7 +71,7 @@ public partial class EventFlowApp : AppScene
     {
         var editor = AppSceneServer.CreateApp<EventFlowApp>(arc.Name + key);
         editor.OpenFile(arc, key);
-        
+
         return editor;
     }
 
@@ -222,28 +222,8 @@ public partial class EventFlowApp : AppScene
         InitEditor();
     }
 
-    private async void SaveFileInternal(bool isRequireFocus) { await SaveFile(isRequireFocus); }
-    public override async Task SaveFile(bool isRequireFocus)
-    {
-        if (!AppIsFocused() && isRequireFocus)
-            return;
-
-        GD.Print("\n - Saving ", Graph.Name);
-        var run = AsyncRunner.Run(TaskRunWriteFile, AsyncDisplay.Type.SaveEventFlowGraph);
-
-        await run.Task;
-        await ToSignal(Engine.GetMainLoop(), "process_frame");
-
-        if (!DisplayServer.WindowIsFocused())
-            DisplayServer.WindowRequestAttention();
-
-        if (run.Task.Exception == null)
-            GD.Print("Saved ", Graph.Name);
-        else
-            GD.Print("Saving failed for ", Graph.Name);
-    }
-
-    public void TaskRunWriteFile(AsyncDisplay display)
+    private async void SaveFileInternal(bool isRequireFocus) { await AppSaveContent(isRequireFocus); }
+    protected override void TaskWriteAppSaveContent(AsyncDisplay display)
     {
         // Write graph event data
         display.UpdateProgress(0, 2);
