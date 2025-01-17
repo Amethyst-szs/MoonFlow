@@ -40,6 +40,8 @@ AppName = "Home"
 AppTaskbarTitle = "Home"
 AppIcon = ExtResource("2_k2opa")
 AppFlags = 22
+AppGuideId = "home"
+AppGuideScene = "res://scene/home/guide/home_guide.tscn"
 
 [node name="Content" type="PanelContainer" parent="."]
 layout_mode = 1

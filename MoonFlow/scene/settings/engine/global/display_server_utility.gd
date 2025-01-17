@@ -10,8 +10,8 @@ static func reset_display_server() -> void:
 	# Reset window position and size
 	var win: Window = Engine.get_main_loop().current_scene.get_window()
 	
-	var x: int = ProjectSettings.get_setting("display/window/size/viewport_width", 1152)
-	var y: int = ProjectSettings.get_setting("display/window/size/viewport_height", 648)
+	const x: int = 1152
+	const y: int = 648
 	win.size = Vector2i(x, y)
 	
 	win.move_to_center()

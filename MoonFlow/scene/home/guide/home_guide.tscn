@@ -1,0 +1,472 @@
+[gd_scene load_steps=16 format=3 uid="uid://bjboo8fvgax0p"]
+
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_wi62w"]
+[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="2_4sul0"]
+[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/moonflow_status_icon.tscn" id="3_42cjf"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_vl4t5"]
+[ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="5_kphpc"]
+[ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="5_yiclq"]
+[ext_resource type="Script" path="res://scene/home/guide/button_close.gd" id="6_0iqa5"]
+[ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="6_a3oo3"]
+[ext_resource type="Script" path="res://scene/home/guide/button_wiki.gd" id="8_yl8no"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b3bgr"]
+font = ExtResource("4_vl4t5")
+font_size = 24
+font_color = Color(1, 0.737255, 0.258824, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_brdma"]
+font = ExtResource("4_vl4t5")
+font_size = 14
+font_color = Color(1, 0.564706, 0.172549, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nhilp"]
+
+[sub_resource type="Animation" id="Animation_2oyri"]
+resource_name = "appear"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Center/Content/Layout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Center/Content/Layout/Control_Icon/Texture_Icon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [-2.14501, 0.0, 0.0698132, -0.0349066, 0.00698132, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Center/Content/Layout/Control_Icon/Texture_Icon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(256, 30), Vector2(256, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Center/Content/Layout/Control_Icon/Texture_Icon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(0.33, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Center/Content/Layout/Label_HomeGuideHeader:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7, 1),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Center/Content/Layout/Label_HomeGuideSubheader:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.8, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Center/Content/Layout/HSep:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Center/Content/Layout/Label_HomeGuideDesc:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.1, 1.8),
+"transitions": PackedFloat32Array(0.33, 1),
+"update": 0,
+"values": [-0.0174533, 0.0174533]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.1, 1.8),
+"transitions": PackedFloat32Array(0.33, 1),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.1, 1.8),
+"transitions": PackedFloat32Array(0.33, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.1, 1.8),
+"transitions": PackedFloat32Array(0.33, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1uim4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Center/Content/Layout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Center/Content/Layout/Control_Icon/Texture_Icon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Center/Content/Layout/Control_Icon/Texture_Icon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Center/Content/Layout/Control_Icon/Texture_Icon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Center/Content/Layout/Label_HomeGuideHeader:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Center/Content/Layout/Label_HomeGuideSubheader:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Center/Content/Layout/HSep:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Center/Content/Layout/Label_HomeGuideDesc:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Center/Content/Layout/Control_Options/HBox_Options:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81rj1"]
+_data = {
+"RESET": SubResource("Animation_1uim4"),
+"appear": SubResource("Animation_2oyri")
+}
+
+[node name="HomeGuide" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0.945098)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wi62w")
+theme_override_styles/panel = ExtResource("2_4sul0")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="Content" type="Control" parent="Center"]
+layout_mode = 2
+
+[node name="Layout" type="VBoxContainer" parent="Center/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -156.5
+offset_right = 320.0
+offset_bottom = 156.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Control_Icon" type="Control" parent="Center/Content/Layout"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="Texture_Icon" parent="Center/Content/Layout/Control_Icon" instance=ExtResource("3_42cjf")]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 6
+size_flags_vertical = 4
+AnimationState = 1
+
+[node name="Label_HomeGuideHeader" type="Label" parent="Center/Content/Layout"]
+layout_mode = 2
+text = "HOME_GUIDE_POPUP_HEADER"
+label_settings = SubResource("LabelSettings_b3bgr")
+horizontal_alignment = 1
+
+[node name="Label_HomeGuideSubheader" type="Label" parent="Center/Content/Layout"]
+layout_mode = 2
+text = "HOME_GUIDE_POPUP_SUBHEADER_TAGLINE"
+label_settings = SubResource("LabelSettings_brdma")
+horizontal_alignment = 1
+
+[node name="HSep" type="HSeparator" parent="Center/Content/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label_HomeGuideDesc" type="Label" parent="Center/Content/Layout"]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+text = "HOME_GUIDE_POPUP_DESCRIPTION_INFO"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSep_Invis" type="HSeparator" parent="Center/Content/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nhilp")
+
+[node name="Control_Options" type="Control" parent="Center/Content/Layout"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("5_kphpc")
+
+[node name="HBox_Options" type="HBoxContainer" parent="Center/Content/Layout/Control_Options"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+pivot_offset = Vector2(320, 0)
+theme_override_constants/separation = 16
+
+[node name="Root_Close" type="Control" parent="Center/Content/Layout/Control_Options/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_Close" type="Button" parent="Center/Content/Layout/Control_Options/HBox_Options/Root_Close"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_vl4t5")
+text = "HOME_GUIDE_POPUP_BUTTON_CLOSE"
+icon = ExtResource("5_yiclq")
+text_overrun_behavior = 1
+icon_alignment = 2
+script = ExtResource("6_0iqa5")
+
+[node name="Root_Wiki" type="Control" parent="Center/Content/Layout/Control_Options/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_Wiki" type="Button" parent="Center/Content/Layout/Control_Options/HBox_Options/Root_Wiki"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_vl4t5")
+text = "HOME_GUIDE_POPUP_BUTTON_WIKI"
+icon = ExtResource("6_a3oo3")
+text_overrun_behavior = 1
+icon_alignment = 2
+script = ExtResource("8_yl8no")
+
+[node name="Appear" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_81rj1")
+}
+autoplay = "appear"

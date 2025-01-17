@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene load_steps=14 format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_rui4d"]
@@ -37,6 +37,15 @@ func _on_item_selected(idx: int) -> void:
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8tvi"]
+
+[sub_resource type="GDScript" id="GDScript_sropi"]
+script/source = "extends Button
+
+const util := preload(\"res://scene/settings/engine/global/display_server_utility.gd\")
+
+func _pressed() -> void:
+	util.reset_display_server()
+"
 
 [sub_resource type="GDScript" id="GDScript_7klgf"]
 script/source = "extends \"res://scene/settings/engine/common/common_engine_setting_slide_float.gd\"
@@ -166,6 +175,7 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_4lk4x")
 text = "ENGINE_SETTINGS_PAGE_RESET_DISPLAY_SERVER_DEFAULT"
 alignment = 0
+script = SubResource("GDScript_sropi")
 
 [node name="HSep_Spacer4" type="HSeparator" parent="VBox_Visual"]
 layout_mode = 2

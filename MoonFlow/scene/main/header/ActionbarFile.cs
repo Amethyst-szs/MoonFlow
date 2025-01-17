@@ -37,6 +37,9 @@ public partial class ActionbarFile : ActionbarItemBase
 		SetItemDisabled(GetItemIndex((int)MenuIds.FILE_SAVE_AS), true);
 
 		var app = AppSceneServer.GetActiveApp();
+		if (app == null)
+			return;
+		
 		bool isAllowUserClose = app.IsAppAllowUserToClose();
 
 		Header.ButtonAppClose.Visible = isAllowUserClose;

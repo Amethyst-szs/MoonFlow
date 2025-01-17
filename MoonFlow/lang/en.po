@@ -250,31 +250,6 @@ msgstr "You're running:"
 msgid "LOADING_OUTDATED_REMOTE_INFO_HEADER"
 msgstr "Project uses:"
 
-#: scene/front_door/quickbar_error_label.gd
-msgctxt "FRONT_DOOR_OPEN_ERROR"
-msgid "INVALID_PATH"
-msgstr "Invalid path for project!"
-
-#: scene/front_door/quickbar_error_label.gd
-msgctxt "FRONT_DOOR_OPEN_ERROR"
-msgid "NO_PROJECT_FILE"
-msgstr "Check you picked the right folder, or create a new project!"
-
-#: scene/front_door/quickbar_error_label.gd
-msgctxt "FRONT_DOOR_OPEN_ERROR"
-msgid "INVALID_PROJECT_FILE"
-msgstr "A project does exist here, but it seems invalid!"
-
-#: scene/front_door/quickbar_error_label.gd
-msgctxt "FRONT_DOOR_OPEN_ERROR"
-msgid "ROMFS_MISSING_PATH_FOR_PROJECT_VERSION"
-msgstr "This project requires a romfs path for "
-
-#: scene/front_door/quickbar_error_label.gd
-msgctxt "FRONT_DOOR_OPEN_ERROR"
-msgid "PROJECT_FILE_ALREADY_EXISTS"
-msgstr "This folder already contains a project!"
-
 #: scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC"
 msgstr "Sync with Default Language"
@@ -3509,8 +3484,55 @@ msgstr "Hide Group Config"
 msgid "EVENT_GRAPH_EDITOR_BLOCK_DELETE_TOOLTIP"
 msgstr "Delete Group"
 
-#~ msgid "EVENT_FLOW_APP_BUTTON_WIKI"
-#~ msgstr "Help Docs"
+#: scene/home/guide/home_guide.tscn
+msgid "HOME_GUIDE_POPUP_HEADER"
+msgstr "Welcome to MoonFlow"
+
+#: scene/home/guide/home_guide.tscn
+msgid "HOME_GUIDE_POPUP_SUBHEADER_TAGLINE"
+msgstr "Get with the Flow"
+
+#: scene/home/guide/home_guide.tscn
+msgid "HOME_GUIDE_POPUP_DESCRIPTION_INFO"
+msgstr ""
+"Looks like this is your first project, welcome! If you get stuck at any "
+"point, you can access the wiki both in-app and online through the help menu "
+"at the top.\n"
+"\n"
+"Happy modding, take care and good luck!"
+
+#: scene/home/guide/home_guide.tscn
+msgid "HOME_GUIDE_POPUP_BUTTON_CLOSE"
+msgstr "Onward!"
+
+#: scene/home/guide/home_guide.tscn
+msgid "HOME_GUIDE_POPUP_BUTTON_WIKI"
+msgstr "Open Wiki"
+
+#: scene/front_door/ui/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "INVALID_PATH"
+msgstr "Invalid path for project!"
+
+#: scene/front_door/ui/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "NO_PROJECT_FILE"
+msgstr "Check you picked the right folder, or create a new project!"
+
+#: scene/front_door/ui/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "INVALID_PROJECT_FILE"
+msgstr "A project does exist here, but it seems invalid!"
+
+#: scene/front_door/ui/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "ROMFS_MISSING_PATH_FOR_PROJECT_VERSION"
+msgstr "This project requires a romfs path for "
+
+#: scene/front_door/ui/quickbar_error_label.gd
+msgctxt "FRONT_DOOR_OPEN_ERROR"
+msgid "PROJECT_FILE_ALREADY_EXISTS"
+msgstr "This folder already contains a project!"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"

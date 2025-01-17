@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using MoonFlow.Scene.Main;
 using MoonFlow.Async;
+using System.IO;
 
 namespace MoonFlow.Scene;
 
@@ -12,7 +13,7 @@ public partial class AppScene : Control
 {
 	#region Properties
 
-	// ~~~~~~~~~~~~~~~ Exports ~~~~~~~~~~~~~~~ //
+	// ~~~~~~~~~~~ Display Exports ~~~~~~~~~~~ //
 
 	[Export, ExportGroup("Display")]
 	public string AppName { get; private set; } = "Application";
@@ -39,6 +40,8 @@ public partial class AppScene : Control
 	[Export]
 	public Texture2D AppIcon { get; private set; } = GD.Load<Texture2D>("res://iconS.png");
 
+	// ~~~~~~~~~~~~~ Flag Exports ~~~~~~~~~~~~ //
+
 	[Flags]
 	public enum AppFlagEnum
 	{
@@ -57,11 +60,22 @@ public partial class AppScene : Control
 	[Export]
 	private AsyncDisplay.Type AppContentSaveType = AsyncDisplay.Type.FileWrite;
 
+	// ~~~~~~~~~ Packed Scene Exports ~~~~~~~~ //
+
 	[Export, ExportGroup("Packed Scene")]
 	private PackedScene UnsavedChangesScene = null;
 
+	// ~~~~~~~~ Header Config Exports ~~~~~~~~ //
+
 	[Export, ExportGroup("Header Properties")]
 	public WikiAccessorResource WikiPage { get; private set; }
+
+	// ~~~~~~~~~~~~ Guide Exports ~~~~~~~~~~~~ //
+
+	[Export, ExportGroup("Guidance")]
+	public string AppGuideId = null;
+	[Export(PropertyHint.File, "*.tscn")]
+	public string AppGuideScene = null;
 
 	// ~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~ //
 
@@ -164,6 +178,25 @@ public partial class AppScene : Control
 
 		// Run optional virtual app init function
 		AppInit();
+
+		// If this app has a guidance system, setup guide scene if needed
+		if (AppGuideId != null && AppGuideScene != null)
+		{
+			var setting = "moonflow/guide/" + AppGuideId;
+
+			// Ensure guide scene is valid
+			if (!ResourceLoader.Exists(AppGuideScene))
+				throw new FileNotFoundException("Could not find " + AppGuideScene);
+
+			if (!EngineSettings.GetSetting<bool>(setting, false))
+			{
+				EngineSettings.SetSetting(setting, true);
+
+				var content = GD.Load<PackedScene>(AppGuideScene);
+				var guide = content.Instantiate();
+				AddChild(guide);
+			}
+		}
 
 		GD.Print(string.Format("Opened App: {0} ({1})", AppName, GetType().Name));
 	}
