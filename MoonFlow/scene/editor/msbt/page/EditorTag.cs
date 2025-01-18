@@ -51,9 +51,7 @@ public partial class MsbtPageEditor : TextEdit
     private void InsertTag(TagWheelTagResult result)
     {
         HandleTagInput(result.Tag, 0);
-
-        var pos = (Vector2I)GetCaretDrawPos();
-        TryOpenTagEdit(result.Tag, pos);
+        TryOpenTagEditAfterWheelInsert(result.Tag);
     }
     private void InsertTagList(Array<TagWheelTagResult> result)
     {
@@ -61,12 +59,7 @@ public partial class MsbtPageEditor : TextEdit
             HandleTagInput(tag.Tag, 0);
         
         if (result.Count == 1)
-        {
-            var tag = result[0].Tag;
-            var pos = (Vector2I)GetCaretDrawPos();
-
-            TryOpenTagEdit(tag, pos);
-        }
+            TryOpenTagEditAfterWheelInsert(result[0].Tag);
     }
 
     private void EndTagInsertMenu()
@@ -94,6 +87,15 @@ public partial class MsbtPageEditor : TextEdit
         menu.TreeExiting += EndTagInsertMenu;
         menu.Connect(TagSubmenuBase.SignalName.AddTag,
             Callable.From(new Action<Array<TagWheelTagResult>>(InsertTagList)));
+    }
+
+    private void TryOpenTagEditAfterWheelInsert(MsbtTagElement tag)
+    {
+        if (Input.IsKeyLabelPressed(Key.Ctrl) || Input.IsKeyLabelPressed(Key.Shift))
+            return;
+
+        var pos = (Vector2I)GetCaretDrawPos();
+        TryOpenTagEdit(tag, pos);
     }
 
     // ====================================================== //
