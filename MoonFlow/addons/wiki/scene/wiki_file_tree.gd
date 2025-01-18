@@ -1,50 +1,37 @@
 @tool
 extends Tree
 
+const table := preload("res://addons/wiki/plugin/table.json").data
+
 signal file_selected(path: String)
 
 func _ready() -> void:
 	var root := create_item()
-	var root_path: String
-	
-	if Engine.is_editor_hint():
-		root_path = ProjectSettings.get_setting("moonflow/wiki/local_source")
-	else:
-		root_path = EngineSettings.get_setting("moonflow/wiki/local_source", "res://docs/")
-	
-	_generate_folder(root, root_path)
+	_generate_folder(root, "res://docs/", table)
 
-func _generate_folder(root: TreeItem, path: String) -> void:
-	var subdirs = DirAccess.get_directories_at(path)
-	var files = DirAccess.get_files_at(path)
+func _generate_folder(root: TreeItem, path: String, data: Dictionary) -> void:
+	# Attempt to add file list
+	if data.has("__"):
+		for file in data["__"]:
+			var item := create_item(root)
+			item.set_metadata(0, path + file)
+			
+			var txt: String = file.trim_suffix(".md").capitalize()
+			item.set_text(0, txt)
 	
-	for file in files:
-		var item := create_item(root)
-		item.set_metadata(0, path + file)
+	# Add all subdirectories
+	for dir in data.keys():
+		if dir == "__": continue
 		
-		var txt := file.trim_suffix(".md").capitalize()
-		item.set_text(0, txt)
-	
-	for subdir in subdirs:
-		var target: String = path + subdir + '/'
-		var f_list := DirAccess.get_files_at(target)
-		
-		var f_count: int = 0
-		var d_count := DirAccess.get_directories_at(target).size()
-		
-		for i in range(f_list.size()):
-			if f_list[i].ends_with(".md"): f_count += 1
-		
-		if f_count == 0 && d_count == 0:
-			continue
+		var target: String = path + dir + '/'
 		
 		var folder := create_item(root)
-		folder.set_text(0, subdir.capitalize())
+		folder.set_text(0, dir.capitalize())
 		folder.set_metadata(0, "__FOLDER__")
 		folder.set_custom_font_size(0, 18)
 		folder.collapsed = true
 		
-		_generate_folder(folder, target)
+		_generate_folder(folder, target, data[dir])
 
 func _on_item_selected():
 	var sel := get_selected()
@@ -54,10 +41,6 @@ func _on_item_selected():
 		allow_reselect = false
 		sel.collapsed = !sel.collapsed
 		allow_reselect = true
-		return
-	
-	if !FileAccess.file_exists(meta):
-		push_warning("Requested documentation file doesn't exist!")
 		return
 	
 	file_selected.emit(meta)

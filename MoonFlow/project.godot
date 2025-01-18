@@ -252,7 +252,6 @@ localization/translation_language="USen"
 localization/translation_features_tab=false
 wiki/home_repository="https://github.com/Amethyst-szs/MoonFlow"
 wiki/support_url="https://ko-fi.com/amethystszs"
-version/git_repo_database_path="res://addons/git_database/git.gd"
 version/main_branch="stable"
 event_graph/hide_block_tooltip=false
 version/repo_releases_url="https://github.com/Amethyst-szs/MoonFlow/releases"

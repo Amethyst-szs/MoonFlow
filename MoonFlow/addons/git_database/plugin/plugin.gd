@@ -13,8 +13,7 @@ func _enter_tree():
 	add_export_plugin(export_handler)
 	
 	# If the git DB file doesn't already exist locally, create it
-	var path := ProjectSettings.get_setting("moonflow/version/git_repo_database_path")
-	if !FileAccess.file_exists(path):
+	if !FileAccess.file_exists("res://addons/git_database/git.gd"):
 		_manual_update()
 	
 	# Setup tool menu

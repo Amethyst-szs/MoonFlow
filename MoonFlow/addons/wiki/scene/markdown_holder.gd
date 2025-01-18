@@ -21,10 +21,6 @@ func setup_app(path: String) -> void:
 	if resource_path != path:
 		resource_path = path
 	
-	if !FileAccess.file_exists(path):
-		push_warning("Documentation file doesn't exist! ", path)
-		return
-	
 	display_file(path)
 	
 	if !unhandled_link_clicked.is_connected(_on_meta):

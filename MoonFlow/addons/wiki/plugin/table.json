@@ -1,0 +1,27 @@
+{
+	"__": [
+		"front_door.md",
+		"introduction.md"
+	],
+	"events": {
+		"__": [
+			"basics_event_graph.md"
+		]
+	},
+	"kingdoms": {
+		"__": [
+			"basics_kingdom_editor.md",
+			"moon_list.md",
+			"stage_list.md"
+		]
+	},
+	"text": {
+		"__": [
+			"basics_text_editor.md",
+			"file_management.md",
+			"tags.md",
+			"technical.md",
+			"translations.md"
+		]
+	}
+}

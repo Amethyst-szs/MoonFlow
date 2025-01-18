@@ -42,7 +42,7 @@ void fragment() {
         COLOR = texture(TEXTURE, spherical_uv);
 		NORMAL_MAP = texture(normal, spherical_uv).rgb;
 		NORMAL_MAP_DEPTH = NORMAL_MAP.r;
-		
+
 		// Apply as glow on screen texture
 		vec4 screen = texture(screen_texture, SCREEN_UV);
 		COLOR = soft_light(screen, COLOR);

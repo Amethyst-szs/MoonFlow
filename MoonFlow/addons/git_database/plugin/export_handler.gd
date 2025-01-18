@@ -6,15 +6,12 @@ func _get_name() -> String:
 	return "Export Plugin - Git Database"
 
 func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> void:
-	# Get file generation path
-	var out_path := ProjectSettings.get_setting("moonflow/version/git_repo_database_path")
-	
 	# Check if an update to the file is required
 	var real_hash := EditorPluginGitInterface.git_commit_hash()
 	
 	var stored_hash := ""
-	if FileAccess.file_exists(out_path):
-		var db = load(out_path)
+	if FileAccess.file_exists("res://addons/git_database/git.gd"):
+		var db = load("res://addons/git_database/git.gd")
 		stored_hash = db.get("commit_hash")
 	
 	if real_hash == stored_hash && !features.has("force"):
@@ -38,8 +35,9 @@ func _export_begin(features: PackedStringArray, is_debug: bool, path: String, fl
 	# Create gdscript file
 	var script := GDScript.new()
 	script.source_code = source
+	script.resource_path = "res://addons/git_database/git.gd"
 	
-	ResourceSaver.save(script, out_path)
+	ResourceSaver.save(script)
 	
 	# Cleanup
 	interface_inst.free()
