@@ -51,11 +51,22 @@ public partial class MsbtPageEditor : TextEdit
     private void InsertTag(TagWheelTagResult result)
     {
         HandleTagInput(result.Tag, 0);
+
+        var pos = (Vector2I)GetCaretDrawPos();
+        TryOpenTagEdit(result.Tag, pos);
     }
     private void InsertTagList(Array<TagWheelTagResult> result)
     {
         foreach (var tag in result)
             HandleTagInput(tag.Tag, 0);
+        
+        if (result.Count == 1)
+        {
+            var tag = result[0].Tag;
+            var pos = (Vector2I)GetCaretDrawPos();
+
+            TryOpenTagEdit(tag, pos);
+        }
     }
 
     private void EndTagInsertMenu()
@@ -101,6 +112,13 @@ public partial class MsbtPageEditor : TextEdit
                 return false;
         }
 
+        return TryOpenTagEdit(tag, spawnPosition);
+    }
+    private bool TryOpenTagEdit(MsbtTagElement tag, Vector2I spawnPosition)
+    {
+        // Add height of caret to spawn position's y component
+        spawnPosition.Y += GetLineHeight() * 2;
+
         // Create scene and add to root
         var scene = TagEditFactory.Create(tag);
         if (scene == null)
@@ -130,6 +148,9 @@ public partial class MsbtPageEditor : TextEdit
     private MsbtTagElement TagEditGetTargetElement(int charIdx)
     {
         if (charIdx < 0)
+            return null;
+        
+        if (charIdx >= Text.Length)
             return null;
 
         int elementIdx = Page.CalcElementIdxAtCharPos(charIdx);
