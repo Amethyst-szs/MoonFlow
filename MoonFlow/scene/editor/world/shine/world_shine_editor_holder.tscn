@@ -35,7 +35,7 @@ func _ready() -> void:
 	custom_arrow_step = -1
 "
 
-[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("Editor", "LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "SpinIndex")]
+[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "SpinIndex", "ButtonDropdown", "ContentContainer")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 57.0
@@ -43,7 +43,6 @@ grow_horizontal = 2
 theme = ExtResource("1_edytr")
 theme_override_styles/panel = ExtResource("1_vequ3")
 script = ExtResource("3_nii6g")
-Editor = NodePath("Content/ContentEditor")
 LabelShineName = NodePath("Content/Layout/VBox_InfoDisplay/Rich_Name")
 LabelStageName = NodePath("Content/Layout/VBox_InfoDisplay/Label_Stage")
 IconType = NodePath("Content/Layout/Texture_TypeIcon")
@@ -51,6 +50,9 @@ IconGrand = NodePath("Content/Layout/Texture_GrandIcon")
 ButtonCreateDisplayName = NodePath("Content/Layout/Button_CreateDisplayName")
 ButtonOpenDisplayName = NodePath("Content/Layout/Button_OpenDisplayName")
 SpinIndex = NodePath("Content/Layout/Spin_Index")
+ButtonDropdown = NodePath("Content/Layout/Check_Expand")
+ContentContainer = NodePath("Content")
+DropdownContentScene = ExtResource("10_ncq3p")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -59,14 +61,13 @@ theme = ExtResource("4_j7oie")
 [node name="Layout" type="HBoxContainer" parent="Content"]
 layout_mode = 2
 
-[node name="Check_Expand" type="CheckBox" parent="Content/Layout" node_paths=PackedStringArray("dropdown")]
+[node name="Check_Expand" type="CheckBox" parent="Content/Layout"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_408cb")
 script = ExtResource("1_yop2g")
-dropdown = NodePath("../../ContentEditor")
 
 [node name="VBox_InfoDisplay" type="VBoxContainer" parent="Content/Layout"]
 layout_mode = 2
@@ -154,10 +155,6 @@ alignment = 1
 select_all_on_focus = true
 script = SubResource("GDScript_i7wnd")
 
-[node name="ContentEditor" parent="Content" instance=ExtResource("10_ncq3p")]
-visible = false
-layout_mode = 2
-
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
 title = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_TITLE"
@@ -169,6 +166,7 @@ dialog_autowrap = true
 cancel_button_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("14_h4xx8")
 
+[connection signal="toggled" from="Content/Layout/Check_Expand" to="." method="OnContentDropdownToggled"]
 [connection signal="pressed" from="Content/Layout/Button_CreateDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="pressed" from="Content/Layout/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]

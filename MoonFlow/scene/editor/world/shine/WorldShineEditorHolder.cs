@@ -17,26 +17,32 @@ public partial class WorldShineEditorHolder : PanelContainer
 	public ShineInfo Shine { get; private set; } = null;
 
 	private ScrollContainer ParentScroll;
+	private WorldShineEditor Editor;
 
 	[Export, ExportGroup("Internal References")]
-	private WorldShineEditor Editor;
-	[Export]
 	private RichTextLabel LabelShineName;
 	[Export]
 	private Label LabelStageName;
-
-	[Export]
+	
+	[Export, ExportSubgroup("Icon Displays")]
 	private TextureRect IconType;
 	[Export]
 	private TextureRect IconGrand;
 
-	[Export]
+	[Export, ExportSubgroup("Display Name Buttons")]
 	private Button ButtonCreateDisplayName;
 	[Export]
 	private Button ButtonOpenDisplayName;
 
-	[Export]
+	[Export, ExportSubgroup("Index Modification")]
 	private SpinBox SpinIndex;
+
+	[Export, ExportSubgroup("Content Editor")]
+	private Button ButtonDropdown;
+	[Export]
+	private VBoxContainer ContentContainer;
+	[Export]
+	private PackedScene DropdownContentScene;
 
 	[Signal]
 	public delegate void ContentModifiedEventHandler();
@@ -51,9 +57,6 @@ public partial class WorldShineEditorHolder : PanelContainer
 	public override void _Ready()
 	{
 		ParentScroll = this.FindParentByType<ScrollContainer>();
-
-		Editor.Connect(WorldShineEditor.SignalName.ContentModified, Callable.From(OnEditorModifiedContent));
-		Editor.Connect(SignalName.VisibilityChanged, Callable.From(OnVisibilityChanged));
 	}
 
 	public void SetupShineEditor(WorldInfo world, ShineInfo shine, MsbtEntry displayName, int idx)
@@ -97,9 +100,6 @@ public partial class WorldShineEditorHolder : PanelContainer
 		SpinIndex.MinValue = 0;
 		SpinIndex.MaxValue = world.ShineList.Count - 1;
 		SpinIndex.SetValueNoSignal(idx);
-
-		// Setup editor
-		Editor.InitEditor(world, shine);
 	}
 
 	#region Signals
@@ -190,6 +190,22 @@ public partial class WorldShineEditorHolder : PanelContainer
 		UpdateDisplayName(display?.GetRawText());
 	}
 
+	private void OnContentDropdownToggled(bool isOpen)
+	{
+		if (Editor != null || !isOpen)
+			return;
+		
+		Editor = DropdownContentScene.Instantiate<WorldShineEditor>();
+		Editor.InitEditor(World, Shine);
+
+		ContentContainer.AddChild(Editor);
+
+		Editor.Connect(WorldShineEditor.SignalName.ContentModified, Callable.From(OnEditorModifiedContent));
+		Editor.Connect(SignalName.VisibilityChanged, Callable.From(OnVisibilityChanged));
+
+		ButtonDropdown.Set("dropdown", Editor);
+	}
+
 	#endregion
 
 	#region Utility
@@ -225,7 +241,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 	}
 	public void UpdateShineUniqueness()
 	{
-		Editor.UpdateUniquenessWarnings();
+		Editor?.UpdateUniquenessWarnings();
 	}
 
 	#endregion
