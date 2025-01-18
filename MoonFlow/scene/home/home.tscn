@@ -1,32 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=23 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="3_1qod8"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="4_bfnf5"]
 [ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tab_msbt/tab_msbt.tscn" id="4_o0ymp"]
+[ext_resource type="StyleBox" uid="uid://binjmxbf7rse2" path="res://asset/theme/home/stylebox/home_tab_container_bar_background_panel.tres" id="5_cea5w"]
+[ext_resource type="Theme" uid="uid://c22jcvgv3n3qw" path="res://asset/theme/home/home_list_tabs.tres" id="5_l84xa"]
 [ext_resource type="PackedScene" uid="uid://bwicpcn2le56s" path="res://scene/editor/msbt/msbt_editor.tscn" id="6_bc8ek"]
 [ext_resource type="PackedScene" uid="uid://cei1tg8ys1x2u" path="res://scene/home/tab_world/tab_world.tscn" id="6_ps61c"]
+[ext_resource type="Script" path="res://scene/common/button/exclusive_category_button.gd" id="7_5wvs6"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_52bqg"]
+[ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="8_41cm4"]
+[ext_resource type="StyleBox" uid="uid://bs2v8yiuqopt8" path="res://asset/theme/home/stylebox/home_tab_background_panel.tres" id="8_y8tkp"]
 [ext_resource type="PackedScene" uid="uid://djaf0d3bxuxkh" path="res://scene/home/tab_event/tab_event.tscn" id="9_l2bha"]
+[ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="10_2icam"]
+[ext_resource type="Texture2D" uid="uid://c0beoybdkplbi" path="res://asset/app/icon/world.png" id="11_t88ee"]
 
-[sub_resource type="GDScript" id="GDScript_d4dbm"]
-script/source = "extends TabContainer
+[sub_resource type="InputEventKey" id="InputEventKey_qcbp3"]
+device = -1
+command_or_control_autoremap = true
+keycode = 49
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if !event.pressed || !event.is_command_or_control_pressed():
-		return
-	
-	var value = (event as InputEventKey).keycode
-	if value < KEY_1  || value > KEY_9:
-		return
-	
-	var tab = value - 49
-	if tab < 0 || tab >= get_tab_count():
-		return
-	
-	current_tab = tab
-	get_viewport().set_input_as_handled()
-"
+[sub_resource type="Shortcut" id="Shortcut_j72cj"]
+events = [SubResource("InputEventKey_qcbp3")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_8co0p"]
+device = -1
+command_or_control_autoremap = true
+keycode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_iv1pd"]
+events = [SubResource("InputEventKey_8co0p")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_k4ff6"]
+device = -1
+command_or_control_autoremap = true
+keycode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_go1wc"]
+events = [SubResource("InputEventKey_k4ff6")]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -55,29 +68,83 @@ theme_override_styles/panel = ExtResource("4_bfnf5")
 
 [node name="VBox" type="VBoxContainer" parent="Content"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Tab" type="TabContainer" parent="Content/VBox"]
+[node name="Panel_TabList" type="PanelContainer" parent="Content/VBox"]
+layout_mode = 2
+theme = ExtResource("5_l84xa")
+theme_override_styles/panel = ExtResource("5_cea5w")
+
+[node name="Scroll" type="ScrollContainer" parent="Content/VBox/Panel_TabList"]
+layout_mode = 2
+vertical_scroll_mode = 0
+script = ExtResource("7_52bqg")
+allow_overdragging = false
+drag_with_touch = false
+allow_vertical_scroll = false
+force_horizontal_scrolling = true
+
+[node name="HBox" type="HBoxContainer" parent="Content/VBox/Panel_TabList/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Button_TabText" type="Button" parent="Content/VBox/Panel_TabList/Scroll/HBox" node_paths=PackedStringArray("target")]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_j72cj")
+text = "HOME_TAB_TEXT"
+icon = ExtResource("8_41cm4")
+icon_alignment = 2
+script = ExtResource("7_5wvs6")
+target = NodePath("../../../../Panel_Content/HOME_TAB_TEXT")
+is_default_page = true
+
+[node name="Button_TabEvent" type="Button" parent="Content/VBox/Panel_TabList/Scroll/HBox" node_paths=PackedStringArray("target")]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_iv1pd")
+text = "HOME_TAB_EVENT"
+icon = ExtResource("10_2icam")
+icon_alignment = 2
+script = ExtResource("7_5wvs6")
+target = NodePath("../../../../Panel_Content/HOME_TAB_EVENT")
+
+[node name="Button_TabWorld" type="Button" parent="Content/VBox/Panel_TabList/Scroll/HBox" node_paths=PackedStringArray("target")]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_go1wc")
+text = "HOME_TAB_WORLD"
+icon = ExtResource("11_t88ee")
+icon_alignment = 2
+script = ExtResource("7_5wvs6")
+target = NodePath("../../../../Panel_Content/HOME_TAB_WORLD")
+
+[node name="Panel_Content" type="PanelContainer" parent="Content/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-tab_alignment = 1
-current_tab = 0
-script = SubResource("GDScript_d4dbm")
+theme_override_styles/panel = ExtResource("8_y8tkp")
 
-[node name="HOME_TAB_TEXT" parent="Content/VBox/Tab" instance=ExtResource("4_o0ymp")]
+[node name="HOME_TAB_TEXT" parent="Content/VBox/Panel_Content" instance=ExtResource("4_o0ymp")]
 layout_mode = 2
 
-[node name="HOME_TAB_EVENT" parent="Content/VBox/Tab" instance=ExtResource("9_l2bha")]
+[node name="HOME_TAB_EVENT" parent="Content/VBox/Panel_Content" instance=ExtResource("9_l2bha")]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
 
-[node name="HOME_TAB_WORLD" parent="Content/VBox/Tab" instance=ExtResource("6_ps61c")]
+[node name="HOME_TAB_WORLD" parent="Content/VBox/Panel_Content" instance=ExtResource("6_ps61c")]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("app_msbt_editor"), [ExtResource("6_bc8ek")]]
 
-[connection signal="AppFocused" from="." to="Content/VBox/Tab/HOME_TAB_EVENT" method="GenerateFileList"]
-[connection signal="AppFocused" from="." to="Content/VBox/Tab/HOME_TAB_TEXT" method="ReloadInterface" binds= [false]]
+[connection signal="AppFocused" from="." to="Content/VBox/Panel_Content/HOME_TAB_EVENT" method="GenerateFileList"]
+[connection signal="AppFocused" from="." to="Content/VBox/Panel_Content/HOME_TAB_TEXT" method="ReloadInterface" binds= [false]]

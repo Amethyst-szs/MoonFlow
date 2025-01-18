@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c22jcvgv3n3qw"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_egkub"]
+[ext_resource type="StyleBox" uid="uid://bomiwbeifql63" path="res://asset/theme/home/stylebox/home_tab_button_unselected.tres" id="1_hdmp1"]
+[ext_resource type="StyleBox" uid="uid://dwt2fn0qqwydm" path="res://asset/theme/home/stylebox/home_tab_button_disabled.tres" id="2_u3t4c"]
+[ext_resource type="StyleBox" uid="uid://b05defux4r3bw" path="res://asset/theme/home/stylebox/home_tab_button_focus.tres" id="3_87xju"]
+[ext_resource type="StyleBox" uid="uid://b3lh17fgxyphl" path="res://asset/theme/home/stylebox/home_tab_button_hover.tres" id="4_c8mou"]
+[ext_resource type="StyleBox" uid="uid://ebv5kn5klsso" path="res://asset/theme/home/stylebox/home_tab_button_selected.tres" id="5_ygu1r"]
+
+[resource]
+Button/constants/h_separation = 6
+Button/constants/icon_max_width = 26
+Button/font_sizes/font_size = 19
+Button/fonts/font = ExtResource("1_egkub")
+Button/styles/disabled = ExtResource("2_u3t4c")
+Button/styles/focus = ExtResource("3_87xju")
+Button/styles/hover = ExtResource("4_c8mou")
+Button/styles/hover_pressed = ExtResource("5_ygu1r")
+Button/styles/normal = ExtResource("1_hdmp1")
+Button/styles/pressed = ExtResource("5_ygu1r")
