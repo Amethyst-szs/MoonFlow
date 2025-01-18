@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
 [ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="2_7jypk"]
 [ext_resource type="Shader" path="res://asset/shader/graph/graph_background.gdshader" id="3_budwu"]
-[ext_resource type="Resource" uid="uid://o4ehsw6vvdii" path="res://scene/common/wiki/paths/event.tres" id="4_boih4"]
+[ext_resource type="Resource" uid="uid://o4ehsw6vvdii" path="res://addons/wiki/paths/event.tres" id="4_boih4"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/graph_background_rect.gd" id="4_e62qm"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/GraphCanvas.cs" id="5_5dp1p"]
 [ext_resource type="Script" path="res://scene/editor/event/graph/component/scroll_navigation.gd" id="6_va4yh"]

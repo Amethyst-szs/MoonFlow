@@ -20,7 +20,7 @@ public partial class ActionbarHelp : ActionbarItemBase
 	}
 
 	private WikiAccessorResource DefaultWikiPage = GD.Load<WikiAccessorResource>(
-		"res://scene/common/wiki/paths/default.tres"
+		"res://addons/wiki/paths/default.tres"
 	);
 
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WikiAccessorResource" load_steps=2 format=3 uid="uid://ohtd8ro6uvsm"]
 
-[ext_resource type="Script" path="res://scene/common/wiki/access/WikiAccessorResource.cs" id="1_xnttu"]
+[ext_resource type="Script" path="res://addons/wiki/access/WikiAccessorResource.cs" id="1_xnttu"]
 
 [resource]
 script = ExtResource("1_xnttu")

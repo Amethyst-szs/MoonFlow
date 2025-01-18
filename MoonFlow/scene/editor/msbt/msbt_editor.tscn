@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="2_2nd54"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="3_52h4d"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_2flhd"]
-[ext_resource type="Resource" uid="uid://dnsmt70q0h71r" path="res://scene/common/wiki/paths/msbt.tres" id="4_o5nhl"]
+[ext_resource type="Resource" uid="uid://dnsmt70q0h71r" path="res://addons/wiki/paths/msbt.tres" id="4_o5nhl"]
 [ext_resource type="Script" path="res://scene/common/option/LangPicker.cs" id="5_qoe03"]
 [ext_resource type="PackedScene" uid="uid://ck2mpawvgk0li" path="res://scene/editor/msbt/list/entry_list_holder.tscn" id="7_j5n3o"]
 [ext_resource type="PackedScene" uid="uid://buju72ubpa8et" path="res://scene/editor/msbt/components/dialog_language_change_unsaved.tscn" id="7_ln12s"]
