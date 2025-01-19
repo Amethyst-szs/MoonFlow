@@ -3,20 +3,14 @@ extends MenuButton
 var history: PackedStringArray = []
 
 const max_list_size: int = 8
-const max_str_len: int = 32
-const path: String = "user://proj.history"
+const max_str_len: int = 42
+
+const setting_key: String = "moonflow/general/proj_history"
 
 signal open_recent_project(proj_path: String)
 
 func _ready() -> void:
-	# Read history file if it exists
-	if !FileAccess.file_exists(path):
-		hide()
-		return
-	
-	var file := FileAccess.get_file_as_string(path)
-	history = file.split("\n", false)
-	
+	history = EngineSettings.get_setting(setting_key, [])
 	if history.is_empty():
 		hide()
 		return
@@ -27,7 +21,6 @@ func _ready() -> void:
 	
 	# Connect to events
 	get_popup().index_pressed.connect(_on_item_selected)
-	
 	_init_button_options()
 
 func _init_button_options() -> void:
@@ -52,7 +45,6 @@ func _on_item_selected(idx: int) -> void:
 		return
 	
 	var sel: String = history[idx]
-	
 	history.remove_at(idx)
 	
 	open_recent_project.emit(sel)
@@ -73,30 +65,16 @@ func _on_front_door_open_project(target: String) -> void:
 	if history.size() > max_list_size:
 		history.slice(0, max_list_size)
 	
-	var outstr: String = ""
-	for item in history:
-		outstr += item + '\n'
-	
-	var file := FileAccess.open(path, FileAccess.WRITE)
-	if file == null:
-		push_error(FileAccess.get_open_error())
-		return
-	
-	file.store_string(outstr)
-	file.close()
+	EngineSettings.set_setting(setting_key, history)
+	EngineSettings.save()
 
 func _on_front_door_open_project_failed(target: String) -> void:
 	_on_front_door_open_project(target)
 	_init_button_options()
 
 func _clear_recent_history() -> void:
-	var file := FileAccess.open(path, FileAccess.WRITE)
-	if file == null:
-		push_error(FileAccess.get_open_error())
-		return
-	
-	file.store_string("")
-	file.close()
-	
 	history.clear()
+	EngineSettings.set_setting(setting_key, history)
+	EngineSettings.save()
+	
 	hide()
