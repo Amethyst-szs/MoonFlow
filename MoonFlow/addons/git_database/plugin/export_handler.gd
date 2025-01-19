@@ -35,9 +35,8 @@ func _export_begin(features: PackedStringArray, is_debug: bool, path: String, fl
 	# Create gdscript file
 	var script := GDScript.new()
 	script.source_code = source
-	script.resource_path = "res://addons/git_database/git.gd"
 	
-	ResourceSaver.save(script)
+	ResourceSaver.save(script, "res://addons/git_database/git.gd", ResourceSaver.FLAG_CHANGE_PATH)
 	
 	# Cleanup
 	interface_inst.free()
