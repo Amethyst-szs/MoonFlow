@@ -163,19 +163,15 @@ public static class RomfsAccessor
         var verName = Enum.GetName(version);
 
         var config = new ConfigFile();
+        
+        // In the event of a load failure, create a default target
         if (config.Load(ConfigDirectory) != Error.Ok)
-        {
-            // In the event of a load failure, create a default state
-            config.SetValue("path", verName, directory);
             config.SetValue("target", "ver", verName);
-            config.Save(ConfigDirectory);
-            return;
-        }
 
         config.SetValue("path", verName, directory);
         config.Save(ConfigDirectory);
 
-        GD.Print(string.Format("Assigned path for {0} to {1}", Enum.GetName(ActiveVersion), directory));
+        GD.Print(string.Format("Assigned path for {0} to {1}", verName, directory));
     }
 
     public static bool TrySetGameVersion(RomfsVersion version)
@@ -220,6 +216,17 @@ public static class RomfsAccessor
         }
 
         VersionDirectories.Remove(version);
+
+        // Update configuration file on disk
+        var verName = Enum.GetName(version);
+
+        var config = new ConfigFile();
+        config.Load(ConfigDirectory);
+        
+        config.EraseSectionKey("path", verName);
+        config.Save(ConfigDirectory);
+
+        GD.Print(string.Format("Removed path for {0}", verName));
     }
 }
 
