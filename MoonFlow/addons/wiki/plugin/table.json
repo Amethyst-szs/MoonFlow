@@ -5,13 +5,10 @@
 	],
 	"events": {
 		"__": [
-			"basics_event_graph.md"
-		],
-		"dialog": {
-			"__": [
-				"balloons.md"
-			]
-		}
+			"basics_event_graph.md",
+			"organization.md",
+			"user_data.md"
+		]
 	},
 	"kingdoms": {
 		"__": [

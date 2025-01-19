@@ -97,4 +97,7 @@ And last but not least, we have a jump entry node! This will instantly warp the 
 ## What next?
 There is a whole world to explore with the event graph editor, with a whopping 102 different nodes implemented by Nintendo, and now MoonFlow as well. Play around with it, have some fun, and study the base game's charts to learn all the neat tricks you can pull off in such a simple system.
 
-More info for specific nodes and advanced behavior can be found in this documentation folder.
+More info for specific nodes and advanced behavior can be found in this documentation folder, or in the list below.
+
+- [Organization Tips](organization.md)
+- [Adding User Data to Nodes](user_data.md)

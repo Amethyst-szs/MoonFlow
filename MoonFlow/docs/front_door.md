@@ -28,6 +28,8 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 * [Technical Details & Design Philosophy](technical.md)
 ##### Event Graph Editor
 - [Basics](events/basics_event_graph.md)
+- [Organization Tips](organization.md)
+- [Adding User Data to Nodes](user_data.md)
 ##### Kingdom Editor
 - [Basics](kingdoms/basics_kingdom_editor.md)
 - [Power Moon List](kingdoms/moon_list.md)

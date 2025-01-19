@@ -169,21 +169,25 @@ theme_override_constants/separation = 12
 [node name="Button_Settings" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
+mouse_default_cursor_shape = 2
 icon = ExtResource("17_yn102")
 
 [node name="Button_RomfsConfig" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
+mouse_default_cursor_shape = 2
 icon = ExtResource("10_sqwg3")
 
 [node name="Button_Contributors" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
+mouse_default_cursor_shape = 2
 icon = ExtResource("14_mr0wr")
 
 [node name="Button_Update" type="Button" parent="Content/Quickbar_Content/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
+mouse_default_cursor_shape = 2
 icon = ExtResource("15_h6jnw")
 script = ExtResource("16_8ntwn")
 
@@ -335,6 +339,7 @@ self_modulate = Color(1, 1, 1, 0.929412)
 layout_mode = 2
 size_flags_vertical = 8
 tooltip_text = "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
+mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 28
 theme_override_font_sizes/font_size = 14
 text = "FRONT_DOOR_WIKI_ACCESS_BUTTON"
