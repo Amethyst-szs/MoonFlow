@@ -35,7 +35,7 @@ func _ready() -> void:
 	custom_arrow_step = -1
 "
 
-[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "SpinIndex", "ButtonDropdown", "ContentContainer")]
+[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "SpinIndex", "ButtonDropdown", "ContentContainer", "DialogConfirmDelete")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 57.0
@@ -53,6 +53,7 @@ SpinIndex = NodePath("Content/Layout/Spin_Index")
 ButtonDropdown = NodePath("Content/Layout/Check_Expand")
 ContentContainer = NodePath("Content")
 DropdownContentScene = ExtResource("10_ncq3p")
+DialogConfirmDelete = NodePath("Dialog_ConfirmDelete")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -169,6 +170,6 @@ script = ExtResource("14_h4xx8")
 [connection signal="toggled" from="Content/Layout/Check_Expand" to="." method="OnContentDropdownToggled"]
 [connection signal="pressed" from="Content/Layout/Button_CreateDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
-[connection signal="pressed" from="Content/Layout/Button_Delete" to="Dialog_ConfirmDelete" method="popup"]
+[connection signal="pressed" from="Content/Layout/Button_Delete" to="." method="OnRequestDeleteShine"]
 [connection signal="value_changed" from="Content/Layout/Spin_Index" to="." method="OnSpinIndexValueSet"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteShine"]

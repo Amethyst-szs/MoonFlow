@@ -44,6 +44,9 @@ public partial class WorldShineEditorHolder : PanelContainer
 	[Export]
 	private PackedScene DropdownContentScene;
 
+	[Export, ExportSubgroup("Popups")]
+	private ConfirmationDialog DialogConfirmDelete;
+
 	[Signal]
 	public delegate void ContentModifiedEventHandler();
 
@@ -170,6 +173,17 @@ public partial class WorldShineEditorHolder : PanelContainer
 		app.Editor.OnAddEntryNameSubmitted(label);
 		app.Editor.UpdateEntrySearch(label);
 		app.AppFocus();
+	}
+
+	private void OnRequestDeleteShine()
+	{
+		if (Input.IsKeyLabelPressed(Key.Ctrl) || Input.IsKeyLabelPressed(Key.Meta))
+		{
+			OnDeleteShine();
+			return;
+		}
+
+		DialogConfirmDelete.Popup();
 	}
 
 	private void OnDeleteShine()

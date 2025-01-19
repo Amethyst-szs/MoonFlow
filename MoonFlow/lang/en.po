@@ -2884,7 +2884,9 @@ msgstr "Confirm"
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DESCRIPTION"
 msgstr ""
-"Just checking, you sure you want to remove this power moon from the list?"
+"Just checking, you sure you want to remove this power moon from the list? If "
+"you want to skip this dialog in the future, hold ctrl while pressing the "
+"delete button."
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
