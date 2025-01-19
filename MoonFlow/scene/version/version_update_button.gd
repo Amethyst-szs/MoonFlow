@@ -1,12 +1,26 @@
 extends Button
 
+static var is_update_checked: bool = false
+static var is_update_available: bool = false
+static var update_url: String = ""
+static var update_name: String = ""
+static var update_tag: String = ""
+static var update_unix: int
+
 const setting_group: String = "moonflow/version/update_"
 const api_token_path: String = "user://git_api_token"
 
 func _ready():
+	var request: HTTPRequest = $HTTPRequest
 	hide()
 	
-	var request: HTTPRequest = $HTTPRequest
+	# If update already checked, skip HTTP request
+	if is_update_checked:
+		request.queue_free()
+		if is_update_available:
+			_appear_update_button()
+		
+		return
 	
 	# Get HTTP request url and api headers
 	var url := _get_api_request_url()
@@ -25,6 +39,8 @@ func _ready():
 #region API Response
 
 func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, body_b: PackedByteArray) -> void:
+	is_update_checked = true
+	
 	if response_code != 200:
 		print_v_error("Update check failed (%s)" % response_code)
 		return
@@ -35,9 +51,9 @@ func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, b
 		return
 	
 	# Get information about the release
-	var update_url = body.get("html_url")
-	var update_name = body.get("name")
-	var update_tag = body.get("tag_name")
+	update_url = body.get("html_url")
+	update_name = body.get("name")
+	update_tag = body.get("tag_name")
 	
 	if update_url == null || update_name == null || update_tag == null:
 		print_v_error("Failed to read values from update API")
@@ -49,20 +65,23 @@ func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, b
 		return
 	
 	# Get the remote unix time and comapre it to local
-	var remote_unix := int(Time.get_unix_time_from_datetime_string(unix_str))
-	if GitInfo.commit_time_unix > remote_unix:
+	update_unix = int(Time.get_unix_time_from_datetime_string(unix_str))
+	if GitInfo.commit_time_unix > update_unix:
 		print_v("Most recent release is behind current build, ignoring updater")
 		return
 	
-	if GitInfo.commit_time_unix == remote_unix:
+	if GitInfo.commit_time_unix == update_unix:
 		print_v("No updates available")
 		return
 	
-	# New update available, setup button
 	print_v("Update available: " + update_tag)
+	_appear_update_button()
+
+func _appear_update_button() -> void:
+	is_update_available = true
 	
 	var timezone: int = Time.get_time_zone_from_system().bias * 60
-	var remote_unix_local: int = remote_unix + timezone
+	var remote_unix_local: int = update_unix + timezone
 	var timestr := Time.get_datetime_string_from_unix_time(remote_unix_local, true)
 	
 	tooltip_text = "%s;%s;%s" % [
