@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcb23wjw20ifi"]
+[gd_scene load_steps=17 format=3 uid="uid://bcb23wjw20ifi"]
 
 [ext_resource type="Script" path="res://scene/settings/romfs/RomfsAccessorConfigApp.cs" id="1_r13aa"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="2_6p26v"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_etysk"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_7fipc"]
 [ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="5_mwvld"]
+[ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="6_amnps"]
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_li4wf"]
 [ext_resource type="Texture2D" uid="uid://c8c0n0e4fw7mk" path="res://asset/material/file/open_new.svg" id="6_q5662"]
 [ext_resource type="PackedScene" uid="uid://cdgrcigpyveoj" path="res://scene/settings/romfs/path_display.tscn" id="7_x1uik"]
@@ -129,6 +130,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
+theme = ExtResource("6_amnps")
 text = "ROMFS_CONFIG_ADD_PATH"
 icon = ExtResource("6_q5662")
 icon_alignment = 2
@@ -139,6 +141,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
+theme = ExtResource("6_amnps")
 text = "ROMFS_CONFIG_SAVE_AND_QUIT"
 icon = ExtResource("5_mwvld")
 icon_alignment = 2

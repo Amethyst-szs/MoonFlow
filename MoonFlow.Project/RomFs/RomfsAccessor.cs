@@ -16,7 +16,7 @@ public static class RomfsAccessor
 
     public static Dictionary<RomfsVersion, string> VersionDirectories { get; private set; } = [];
 
-    private const string ConfigDirectory = "user://romfs_config.ini";
+    private const string ConfigDirectory = "user://romfs.cfg";
 
     // ====================================================== //
     // ================== Common Utilities ================== //
