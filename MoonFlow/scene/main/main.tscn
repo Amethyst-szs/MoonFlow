@@ -260,5 +260,5 @@ stretch_mode = 5
 script = SubResource("GDScript_vdahq")
 
 [connection signal="MoonFlowCloseRequest" from="Content/Header/Content/Actionbar/File" to="." method="OnWindowCloseRequest"]
-[connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="FocusFirstApp"]
-[connection signal="pressed" from="Content/Header/Content/Button_Close" to="." method="CloseActiveApp"]
+[connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="OnAppSceneServerWrapperFocusFirst"]
+[connection signal="pressed" from="Content/Header/Content/Button_Close" to="." method="OnAppSceneServerWrapperCloseActive"]

@@ -35,6 +35,8 @@ public partial class MainSceneRoot : Control
             OnWindowCloseRequest();
     }
 
+    #region Signals
+
     private static void OnTreeExiting()
     {
         ProjectManager.SceneRoot = null;
@@ -75,4 +77,9 @@ public partial class MainSceneRoot : Control
         // Terminate application
         GetTree().Quit(0);
     }
+
+    private static void OnAppSceneServerWrapperCloseActive() { AppSceneServer.CloseActiveApp(); }
+    private static void OnAppSceneServerWrapperFocusFirst() { AppSceneServer.FocusFirstApp(); }
+
+    #endregion
 }
