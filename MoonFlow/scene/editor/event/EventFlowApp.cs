@@ -12,6 +12,7 @@ using MoonFlow.Async;
 using MoonFlow.Scene.Main;
 using MoonFlow.Project;
 using System.Collections.Generic;
+using MoonFlow.Project.FTP;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -223,7 +224,7 @@ public partial class EventFlowApp : AppScene
     }
 
     private async void SaveFileInternal(bool isRequireFocus) { await AppSaveContent(isRequireFocus); }
-    protected override void TaskWriteAppSaveContent(AsyncDisplay display)
+    protected override async void TaskWriteAppSaveContent(AsyncDisplay display)
     {
         // Write graph event data
         display.UpdateProgress(0, 2);
@@ -236,6 +237,13 @@ public partial class EventFlowApp : AppScene
         // Reset flag
         display.UpdateProgress(2, 2);
         IsModified = false;
+
+        // DEBUG: Upload with FTP test
+        var request = new ProjectFtpConnectionRequest("192.168.0.6", 5000, "crafty", "boss");
+        await ProjectFtpClient.Connect(request);
+
+        ProjectFtpClient.SetupProjectPath(ProjectManager.GetPath());
+        ProjectFtpClient.UploadSarc(Graph.Sarc, (obj, progress) => GD.Print(progress.Progress));
     }
 
     #endregion
