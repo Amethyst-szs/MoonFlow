@@ -29,7 +29,9 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 ##### Event Graph Editor
 - [Basics](events/basics_event_graph.md)
 ##### Kingdom Editor
-- [Basics](basics_kingdom_editor.md)
+- [Basics](kingdoms/basics_kingdom_editor.md)
+- [Power Moon List](kingdoms/moon_list.md)
+- [Stage List](kingdoms/stage_list.md)
 
 ### Contributing
 Coming soon!

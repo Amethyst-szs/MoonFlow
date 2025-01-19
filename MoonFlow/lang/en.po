@@ -2141,7 +2141,7 @@ msgstr "Rotate Glydon"
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "MessageBalloon"
-msgstr "Spawn Dialogue/Text Balloon"
+msgstr "Dialogue Balloon"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"

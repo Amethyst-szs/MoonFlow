@@ -6,7 +6,12 @@
 	"events": {
 		"__": [
 			"basics_event_graph.md"
-		]
+		],
+		"dialog": {
+			"__": [
+				"balloons.md"
+			]
+		}
 	},
 	"kingdoms": {
 		"__": [
