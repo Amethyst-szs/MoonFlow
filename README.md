@@ -42,7 +42,7 @@ On top of that, this editor introduces the Tag Wheel! With the press of a button
 ### Kingdom Editor
 The Odyssey globe screen has been recreated on your desktop. Pick a destination in this dynamic menu capable of expanding to more than 17 kingdoms and get customizing!
 
-> *Adding additional kingdoms requires exefs patching and additional tools, [reference guide here](https://github.com/octember8/SMO-Kingdom-18/blob/main/Kingdom%2018%20Implementation%20Guide.md)*
+> *Adding additional kingdoms requires exefs patching and additional tools, read more in the world editor documentation
 
 ![Preview showing the kingdom selection menu](.github/asset/home_world.png)
 <sup>Picture depicting the application's kingdom selection menu</sup>
