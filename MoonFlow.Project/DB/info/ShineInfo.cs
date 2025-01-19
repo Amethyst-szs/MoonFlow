@@ -26,6 +26,8 @@ public class ShineInfo
 
     public Vector3 Trans = Vector3.Zero;
 
+    public ShineInfo() {}
+
     public MsbtEntry LookupDisplayName(SarcFile stageMessage)
     {
         if (stageMessage == null || !stageMessage.Content.ContainsKey(StageName + ".msbt"))

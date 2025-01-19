@@ -1460,6 +1460,14 @@ msgstr "Submit"
 msgid "WORLD_EDITOR_TAB_SHINE"
 msgstr "Moons"
 
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW_TOOLTIP"
+msgstr "Append a new Power Moon to the end of the list"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW"
+msgstr "New Power Moon"
+
 #: scene/editor/world/page/vbox_basic_info.tscn
 msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
 msgstr "Home Stage Name"
@@ -3423,31 +3431,6 @@ msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
 msgid "IconUntranslated"
 msgstr "Untranslated Entry"
 
-#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_BROWSE_HEADER"
-msgstr "Documents"
-
-#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_OPEN_IN_BROWSER"
-msgstr "Online Docs"
-
-#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "LocalNotice"
-msgstr "In-app documentation"
-
-#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "UrlNotice"
-msgstr "Online documentation"
-
-#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "SettingNotice"
-msgstr ""
-"Toggle between local and browser\n"
-"documentation in settings"
-
 #: lang/db/header_tooltip.tres
 msgctxt "HEADER_TOOLTIP"
 msgid "HelpSupport"
@@ -3533,6 +3516,31 @@ msgstr "This project requires a romfs path for "
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "PROJECT_FILE_ALREADY_EXISTS"
 msgstr "This folder already contains a project!"
+
+#: addons/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_BROWSE_HEADER"
+msgstr "Documents"
+
+#: addons/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_OPEN_IN_BROWSER"
+msgstr "Online Docs"
+
+#: addons/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "LocalNotice"
+msgstr "In-app documentation"
+
+#: addons/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "UrlNotice"
+msgstr "Online documentation"
+
+#: addons/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "SettingNotice"
+msgstr ""
+"Toggle between local and browser\n"
+"documentation in settings"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"

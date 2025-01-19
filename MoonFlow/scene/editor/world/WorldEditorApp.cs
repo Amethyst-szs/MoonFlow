@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Nindot;
 using Nindot.LMS.Msbt;
 
 using MoonFlow.Project.Database;
@@ -101,19 +102,22 @@ public partial class WorldEditorApp : AppScene
 	{
 		VBoxShineList.QueueFreeAllChildren();
 
+		var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage
+		?? throw new NullReferenceException("Could not get StageMessage!");
+
 		foreach (var shine in World.ShineList)
-		{
-			var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage
-			?? throw new NullReferenceException("Could not get StageMessage!");
+			SetupShineEditorContainer(shine, stageMessage);
+	}
 
-			MsbtEntry shineDisplay = shine.LookupDisplayName(stageMessage);
+	private void SetupShineEditorContainer(ShineInfo shine, SarcFile stageMessage)
+	{
+		MsbtEntry shineDisplay = shine.LookupDisplayName(stageMessage);
 
-			var scene = SceneCreator<WorldShineEditorHolder>.Create();
-			VBoxShineList.AddChild(scene);
+		var scene = SceneCreator<WorldShineEditorHolder>.Create();
+		VBoxShineList.AddChild(scene);
 
-			scene.SetupShineEditor(World, shine, shineDisplay, World.ShineList.IndexOf(shine));
-			scene.Connect(WorldShineEditorHolder.SignalName.ContentModified, Callable.From(OnShineListModify));
-		}
+		scene.SetupShineEditor(World, shine, shineDisplay, World.ShineList.IndexOf(shine));
+		scene.Connect(WorldShineEditorHolder.SignalName.ContentModified, Callable.From(OnShineListModify));
 	}
 
 	public override string GetUniqueIdentifier(string input)
@@ -208,6 +212,40 @@ public partial class WorldEditorApp : AppScene
 
 			editor.UpdateShineIndex();
 		}
+	}
+
+	private void OnAddNewShine()
+	{
+		var db = ProjectManager.GetDB()
+		?? throw new NullReferenceException("Could not get DB!");
+
+		var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage
+		?? throw new NullReferenceException("Could not get StageMessage!");
+
+		// Create shine info
+		var info = new ShineInfo()
+		{
+			StageName = World.Name,
+			ScenarioName = "",
+			ObjId = "obj0",
+
+			MainScenarioNo = -1,
+			ProgressBitFlag = 32767, // 0111-1111-1111-1111
+
+			IsAchievement = false,
+			IsGrand = false,
+			IsMoonRock = false,
+			Trans = System.Numerics.Vector3.Zero,
+		};
+
+		info.ReassignUID(db);
+		info.ReassignHintId(World);
+
+		// Add to world
+		World.ShineList.Add(info);
+
+		// Create new editor container
+		SetupShineEditorContainer(info, stageMessage);
 	}
 
 	private void OnModify() { IsModified = true; }

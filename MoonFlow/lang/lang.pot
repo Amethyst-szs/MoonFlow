@@ -79,13 +79,13 @@
 # res://scene/editor/msbt/page/text_placeholder_page_editor.tres
 # res://scene/editor/msbt/components/dialog_language_change_unsaved.tscn
 # res://scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
-# res://scene/common/wiki/scene/app_local_wiki_viewer.tscn
-# res://scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
 # res://lang/db/header_tooltip.tres
 # res://scene/version/version_tooltip.tscn
 # res://scene/editor/event/block/event_block_panel.tscn
 # res://scene/home/guide/home_guide.tscn
 # res://scene/front_door/ui/quickbar_error_label.gd
+# res://addons/wiki/scene/app_local_wiki_viewer.tscn
+# res://addons/wiki/scene/wiki_button_tooltip_text_bank.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1509,6 +1509,14 @@ msgstr ""
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_TAB_SHINE"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW"
 msgstr ""
 
 #: scene/editor/world/page/vbox_basic_info.tscn
@@ -3398,29 +3406,6 @@ msgctxt "MSBT_ENTRY_LABEL_BUTTON_TOOLTIP"
 msgid "IconUntranslated"
 msgstr ""
 
-#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_BROWSE_HEADER"
-msgstr ""
-
-#: scene/common/wiki/scene/app_local_wiki_viewer.tscn
-msgid "WIKI_APP_OPEN_IN_BROWSER"
-msgstr ""
-
-#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "LocalNotice"
-msgstr ""
-
-#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "UrlNotice"
-msgstr ""
-
-#: scene/common/wiki/scene/wiki_button_tooltip_text_bank.tres
-msgctxt "WIKI_BUTTON_TOOLTIP"
-msgid "SettingNotice"
-msgstr ""
-
 #: lang/db/header_tooltip.tres
 msgctxt "HEADER_TOOLTIP"
 msgid "HelpSupport"
@@ -3493,4 +3478,27 @@ msgstr ""
 #: scene/front_door/ui/quickbar_error_label.gd
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "PROJECT_FILE_ALREADY_EXISTS"
+msgstr ""
+
+#: addons/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_BROWSE_HEADER"
+msgstr ""
+
+#: addons/wiki/scene/app_local_wiki_viewer.tscn
+msgid "WIKI_APP_OPEN_IN_BROWSER"
+msgstr ""
+
+#: addons/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "LocalNotice"
+msgstr ""
+
+#: addons/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "UrlNotice"
+msgstr ""
+
+#: addons/wiki/scene/wiki_button_tooltip_text_bank.tres
+msgctxt "WIKI_BUTTON_TOOLTIP"
+msgid "SettingNotice"
 msgstr ""
