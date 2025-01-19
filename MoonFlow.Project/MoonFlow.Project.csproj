@@ -10,4 +10,7 @@
     <ProjectReference Include="..\Godot.Extension\Godot.Extension.csproj" />
     <ProjectReference Include="..\Nindot\Nindot.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentFTP" Version="52.0.0" />
+  </ItemGroup>
 </Project>
