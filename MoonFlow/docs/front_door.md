@@ -28,6 +28,7 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 * [Technical Details & Design Philosophy](technical.md)
 ##### Event Graph Editor
 - [Basics](events/basics_event_graph.md)
+- [Creating new Nodes](node_creation.md)
 - [Organization Tips](organization.md)
 - [Adding User Data to Nodes](user_data.md)
 ##### Kingdom Editor
@@ -36,4 +37,4 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 - [Stage List](kingdoms/stage_list.md)
 
 ### Contributing
-Coming soon!
+- [Repository Outline](contributing/repo_outline.md)

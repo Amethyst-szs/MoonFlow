@@ -3,9 +3,15 @@
 		"front_door.md",
 		"introduction.md"
 	],
+	"contributing": {
+		"__": [
+			"repo_outline.md"
+		]
+	},
 	"events": {
 		"__": [
 			"basics_event_graph.md",
+			"node_creation.md",
 			"organization.md",
 			"user_data.md"
 		]

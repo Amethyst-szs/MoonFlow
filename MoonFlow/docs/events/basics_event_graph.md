@@ -24,7 +24,7 @@ Each graph file contains a canvas full of nodes. Before modifying the graph in a
 
 - **Left-Click on Nodes**: Interact with nodes
 - **Left-Click Drag on Empty Space**: Create selection box to multiselect multiple nodes
-- **Right-Click**: Open menu to insert new nodes
+- **Right-Click**: Open menu to [insert new nodes](node_creation.md)
 
 There are other important hotkeys and tools, but this is enough to get moving!
 
@@ -99,5 +99,6 @@ There is a whole world to explore with the event graph editor, with a whopping 1
 
 More info for specific nodes and advanced behavior can be found in this documentation folder, or in the list below.
 
+- [Creating new Nodes](node_creation.md)
 - [Organization Tips](organization.md)
 - [Adding User Data to Nodes](user_data.md)
