@@ -37,6 +37,13 @@ public partial class WorldShineEditor : MarginContainer
 	[Export]
 	private VBoxContainer ScenarioBitFlags;
 
+	[Export]
+	private SpinBox SpinTranslationX;
+	[Export]
+	private SpinBox SpinTranslationY;
+	[Export]
+	private SpinBox SpinTranslationZ;
+
 	[Signal]
 	public delegate void ContentModifiedEventHandler();
 
@@ -63,6 +70,10 @@ public partial class WorldShineEditor : MarginContainer
 		BitFlagButtonHolder.SetPrimaryBit(QuestBitFlags, shine.MainScenarioNo);
 		BitFlagButtonHolder.ConnectPrimaryBitChanged(QuestBitFlags,
 			new Action<int>(OnQuestIdModified));
+		
+		SpinTranslationX.SetValueNoSignal(Shine.Trans.X);
+		SpinTranslationY.SetValueNoSignal(Shine.Trans.Y);
+		SpinTranslationZ.SetValueNoSignal(Shine.Trans.Z);
 	}
 
 	#region Signals
@@ -140,6 +151,22 @@ public partial class WorldShineEditor : MarginContainer
 	private void OnQuestIdModified(int idx)
 	{
 		Shine.MainScenarioNo = idx;
+		EmitSignal(SignalName.ContentModified);
+	}
+
+	private void OnTranslationXModified(float value)
+	{
+		Shine.Trans.X = value;
+		EmitSignal(SignalName.ContentModified);
+	}
+	private void OnTranslationYModified(float value)
+	{
+		Shine.Trans.Y = value;
+		EmitSignal(SignalName.ContentModified);
+	}
+	private void OnTranslationZModified(float value)
+	{
+		Shine.Trans.Z = value;
 		EmitSignal(SignalName.ContentModified);
 	}
 

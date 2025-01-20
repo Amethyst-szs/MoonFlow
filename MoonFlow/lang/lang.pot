@@ -1492,6 +1492,10 @@ msgid "WORLD_EDITOR_TAB_STAGE"
 msgstr ""
 
 #: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE"
+msgstr ""
+
+#: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
 msgstr ""
 
@@ -1505,10 +1509,6 @@ msgstr ""
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
-msgstr ""
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_TAB_SHINE"
 msgstr ""
 
 #: scene/editor/world/world_editor_app.tscn
@@ -2972,6 +2972,14 @@ msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES"
 msgstr ""
 
 #: addons/podb/input_map.tres

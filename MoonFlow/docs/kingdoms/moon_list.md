@@ -37,3 +37,5 @@ This bitfield allows you to set which scenario IDs the Power Moon is collectable
 
 ### Translation
 Position of the Shine object in 3D space. Position can be copied from EditorCore, in-game, or any other interface that uses real coordinates. This does *not* include Moonlight/Spotlight due to using fake simplified coordinates.
+
+This position is only used for rendering the icon on the kingdom's map screen, in respect to the world's projection matrix.

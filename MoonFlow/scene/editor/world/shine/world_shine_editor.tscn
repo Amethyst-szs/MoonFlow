@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://2g01fvaywdt" path="res://asset/nindot/lms/icon/PictureFont_31.png" id="11_8gd1o"]
 [ext_resource type="Texture2D" uid="uid://y2to817674x2" path="res://asset/nindot/lms/icon/PictureFont_4A.png" id="11_afu5f"]
 
-[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "QuestBitFlags", "ScenarioBitFlags")]
+[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "QuestBitFlags", "ScenarioBitFlags", "SpinTranslationX", "SpinTranslationY", "SpinTranslationZ")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 121.0
@@ -37,6 +37,9 @@ ButtonTypeMoonRock = NodePath("Content/Grid_UniqueHintType/HBox_Type/Check_Rock"
 ButtonTypeAchievement = NodePath("Content/Grid_UniqueHintType/HBox_Type/Check_Achievement")
 QuestBitFlags = NodePath("Content/Grid_QuestScenario/QuestBitFlags")
 ScenarioBitFlags = NodePath("Content/Grid_QuestScenario/ScenarioBitFlags")
+SpinTranslationX = NodePath("Content/VBox_Trans/HBox_Values/Spin_X")
+SpinTranslationY = NodePath("Content/VBox_Trans/HBox_Values/Spin_Y")
+SpinTranslationZ = NodePath("Content/VBox_Trans/HBox_Values/Spin_Z")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -289,6 +292,71 @@ layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = ExtResource("6_diffx")
 
+[node name="VBox_Trans" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Label_TransHead" type="Label" parent="Content/VBox_Trans"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HBox_Values" type="HBoxContainer" parent="Content/VBox_Trans"]
+layout_mode = 2
+
+[node name="Spin_X" type="SpinBox" parent="Content/VBox_Trans/HBox_Values"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1e+06
+max_value = 1e+06
+step = 0.1
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+suffix = "X"
+custom_arrow_step = 100.0
+
+[node name="Spin_Y" type="SpinBox" parent="Content/VBox_Trans/HBox_Values"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1e+06
+max_value = 1e+06
+step = 0.1
+value = 5.82077e-05
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+suffix = "Y"
+custom_arrow_step = 100.0
+
+[node name="Spin_Z" type="SpinBox" parent="Content/VBox_Trans/HBox_Values"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1e+06
+max_value = 1e+06
+step = 0.1
+value = 5.82077e-05
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+suffix = "Z"
+custom_arrow_step = 100.0
+
+[node name="HSep_Spacer4" type="HSeparator" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = ExtResource("6_diffx")
+
 [connection signal="StageSelected" from="Content/Grid_NameId/Option_StageName" to="." method="OnShineStageNameChanged"]
 [connection signal="text_validated" from="Content/Grid_NameId/Line_ObjId" to="." method="OnLineObjectIdModified"]
 [connection signal="mouse_entered" from="Content/Grid_UniqueHintType/HBox_UniqueId/Spin_UniqueId" to="." method="UpdateUniquenessWarnings"]
@@ -304,3 +372,6 @@ theme_override_styles/separator = ExtResource("6_diffx")
 [connection signal="toggled" from="Content/Grid_UniqueHintType/HBox_Type/Check_Multi" to="." method="OnTypeGrandToggled"]
 [connection signal="toggled" from="Content/Grid_UniqueHintType/HBox_Type/Check_Rock" to="." method="OnTypeMoonRockToggled"]
 [connection signal="toggled" from="Content/Grid_UniqueHintType/HBox_Type/Check_Achievement" to="." method="OnTypeAchievementToggled"]
+[connection signal="value_changed" from="Content/VBox_Trans/HBox_Values/Spin_X" to="." method="OnTranslationXModified"]
+[connection signal="value_changed" from="Content/VBox_Trans/HBox_Values/Spin_Y" to="." method="OnTranslationYModified"]
+[connection signal="value_changed" from="Content/VBox_Trans/HBox_Values/Spin_Z" to="." method="OnTranslationZModified"]

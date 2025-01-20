@@ -197,8 +197,9 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 	private void OnVisibilityChanged()
 	{
-		var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage
-		?? throw new NullReferenceException("Could not get StageMessage!");
+		var stageMessage = ProjectManager.GetMSBTArchives()?.StageMessage;
+		if (stageMessage == null)
+			return;
 
 		var display = Shine.LookupDisplayName(stageMessage);
 		UpdateDisplayName(display?.GetRawText());

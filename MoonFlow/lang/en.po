@@ -1441,6 +1441,10 @@ msgid "WORLD_EDITOR_TAB_STAGE"
 msgstr "Stages"
 
 #: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE"
+msgstr "Moons"
+
+#: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
 msgstr "Name already claimed by:"
 
@@ -1455,10 +1459,6 @@ msgstr "Select stage type"
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
 msgstr "Submit"
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_TAB_SHINE"
-msgstr "Moons"
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW_TOOLTIP"
@@ -2999,6 +2999,17 @@ msgstr "Which scenarios can this Power Moon collected in?"
 msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
 msgstr "Valid Scenarios:"
 
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
+msgstr ""
+"Where in the world is this moon located? This value is\n"
+"only used to render the moon's icon on the kingdom map,\n"
+"in respect to the world projection matrix."
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES"
+msgstr "Map Position:"
+
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"
 msgid "ui_add_tag"
@@ -3552,9 +3563,6 @@ msgstr ""
 
 #~ msgid "PLACEHOLDER"
 #~ msgstr "Placeholder stuff :)"
-
-#~ msgid "WORLD_EDITOR_SHINE_EDITOR_MAIN_SCENARIO_HEADER"
-#~ msgstr "Story Scenario:"
 
 #~ msgid "HOME_TAB_OPEN_FILE_TOOLTIP"
 #~ msgstr "Open File"
