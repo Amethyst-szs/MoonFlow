@@ -6,9 +6,9 @@
 
 [sub_resource type="Resource" id="Resource_hvqrg"]
 script = ExtResource("2_lax34")
-author = "riidefi"
-name = "RiiStudio/szs (Bindings)"
-url = "https://github.com/riidefi/RiiStudio"
+author = "Venomalia"
+name = "AuroraLib.Compression"
+url = "https://github.com/Venomalia/AuroraLib.Compression"
 
 [sub_resource type="Resource" id="Resource_ve3wk"]
 script = ExtResource("2_lax34")
