@@ -12,10 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonFlow.Project", "MoonFlo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Godot.Extension", "Godot.Extension\Godot.Extension.csproj", "{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{F7A3AD01-B328-4470-9D94-712C2A2349FD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module.RiiStudioSzs", "Module\RiiStudioSzs\Module.RiiStudioSzs.csproj", "{162432B9-5A15-47B2-9DA9-7F1713B1AACE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,17 +49,8 @@ Global
 		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-		{162432B9-5A15-47B2-9DA9-7F1713B1AACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{162432B9-5A15-47B2-9DA9-7F1713B1AACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{162432B9-5A15-47B2-9DA9-7F1713B1AACE}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{162432B9-5A15-47B2-9DA9-7F1713B1AACE}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{162432B9-5A15-47B2-9DA9-7F1713B1AACE}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
-		{162432B9-5A15-47B2-9DA9-7F1713B1AACE}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{162432B9-5A15-47B2-9DA9-7F1713B1AACE} = {F7A3AD01-B328-4470-9D94-712C2A2349FD}
 	EndGlobalSection
 EndGlobal

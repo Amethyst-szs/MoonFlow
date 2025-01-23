@@ -6,7 +6,8 @@ using Godot;
 
 using System;
 
-using Module.RiiStudioSzs;
+using AuroraLib.Compression.Algorithms;
+using Nindot;
 
 namespace MoonFlow.Project;
 
@@ -82,7 +83,7 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
         if (Encoding.UTF8.GetString(buffer.AsSpan()[..MagicLength]) != MagicSignature)
             throw new Exception("Invalid file magic signature!");
 
-        buffer = Szs.Decode(buffer[MagicLength..]);
+        buffer = NindotYaz0.Decompress(buffer[MagicLength..]);
 
         Data = JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(buffer), JsonConfig);
         IsReadFromDisk = true;
@@ -106,10 +107,10 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
 
         // Create bytecode version of magic signature and compress data
         var sig = Encoding.UTF8.GetBytes(MagicSignature);
-        var dataCompressed = Szs.Encode(bytes).ToArray();
+        var compressionResult = NindotYaz0.Compress(bytes);
         
         // Write signature and compressed data to file
-        var output = sig.Concat(dataCompressed).ToArray();
+        var output = sig.Concat(compressionResult).ToArray();
         File.WriteAllBytes(Path, output);
 
         if (!DebugConfigOutput)

@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-using Module.RiiStudioSzs;
+using AuroraLib.Compression.Algorithms;
 
 using static Nindot.Tests.PathUtility;
 
@@ -15,14 +15,14 @@ public class SarcYaz0
     public static void DecodeYaz0()
     {
         var data = File.ReadAllBytes(ResDirectory + "Example.szs");
-        Szs.Decode(data);
+        NindotYaz0.Decompress(data);
     }
 
     [Fact]
     public static void EncodeYaz0()
     {
         var source = "Hello world, I am example text for the yaz0 compression algo!";
-        Szs.Encode(Encoding.UTF8.GetBytes(source));
+        NindotYaz0.Compress(Encoding.UTF8.GetBytes(source));
     }
 
     [Fact]
@@ -37,5 +37,18 @@ public class SarcYaz0
         // Ensure txt validity
         var data = Encoding.UTF8.GetString(file.Content.Values.ElementAt(0));
         Assert.Equal("Hello World!", data);
+    }
+
+    [Fact]
+    public static void WriteSarc()
+    {
+        SarcFile file = SarcFile.FromFilePath(ResDirectory + "Example.szs");
+        var data = file.GetBytes();
+        
+        SarcFile reparse = SarcFile.FromBytes(data, "");
+
+        Assert.Equal(file.Content.Count, reparse.Content.Count);
+        Assert.Equal(file.Content.Keys.ElementAt(0), file.Content.Keys.ElementAt(0));
+        Assert.Equal(file.Content.Values.ElementAt(0), file.Content.Values.ElementAt(0));
     }
 }

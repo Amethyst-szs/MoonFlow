@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-using Module.RiiStudioSzs;
+using AuroraLib.Compression.Algorithms;
 
 using Nindot;
 
@@ -27,7 +27,7 @@ public class EventDataArchive(SarcLibrary.Sarc file, string filePath) : SarcFile
         byte[] file;
 
         // Decompress file using Yaz0, and return early if this fails
-        try { file = Szs.Decode(fileCompressed); }
+        try { file = NindotYaz0.Decompress(fileCompressed); }
         catch { throw new SarcFileException("Yaz0 decompress failed!"); }
 
         // Convert this decompressed file into a sarc object, and return a failure if empty

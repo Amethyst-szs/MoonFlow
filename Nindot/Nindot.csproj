@@ -9,11 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Nindot.BymlLibrary" Version="1.0.5" />
+    <PackageReference Include="AuroraLib.Compression" Version="1.4.0" />
     <PackageReference Include="SarcLibrary" Version="3.2.0" />
     <PackageReference Include="YamlDotNet" Version="16.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Module\RiiStudioSzs\Module.RiiStudioSzs.csproj" />
   </ItemGroup>
 </Project>
