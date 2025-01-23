@@ -31,6 +31,8 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
 
     public RomfsVersion GetRomfsVersion() { return Data.Version; }
     public string GetDefaultLanguage() { return Data.DefaultLanguage; }
+    public string GetSignature() { return Data.Signature; }
+
     public bool IsFirstBoot() { return Data.Flags.FirstBoot; }
     public bool IsDebug() { return Data.Flags.DebugProject; }
     public bool IsAlwaysUpgrade() { return Data.Flags.AlwaysUpgrade; }
@@ -66,6 +68,7 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public void ClearFirstBootFlag() { Data.Flags.FirstBoot = false; }
     public void SetAlwaysAcceptUpgradeFlag() { Data.Flags.AlwaysUpgrade = true; }
     public void SetDebugState(bool isDebug) { Data.Flags.DebugProject = isDebug; }
+    public void EnsureSignature() { _ = Data.Signature; } // The signature's get method generates a sig if not present
 
     public void AddEventGraphPin(string pin)
     {

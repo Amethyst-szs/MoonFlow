@@ -39,6 +39,19 @@ public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
         }
     }
 
+    private string _signature = string.Empty;
+    [JsonInclude]
+    internal string Signature
+    {
+        get
+        {
+            if (_signature == string.Empty)
+                _signature = Guid.NewGuid().ToString();
+            
+            return _signature;
+        }
+    }
+
     #endregion
 
     #region Buckets

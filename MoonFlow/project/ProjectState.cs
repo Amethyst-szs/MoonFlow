@@ -149,6 +149,7 @@ public class ProjectState(string path, ProjectConfig config)
 
         if (!Config.IsEngineTargetOk(gitHash))
         {
+            Config.EnsureSignature();
             Config.SetEngineTarget(GitInfo.GitVersionName(), gitHash, GitInfo.GitCommitUnixTime());
             Config.WriteFile();
         }
@@ -158,6 +159,7 @@ public class ProjectState(string path, ProjectConfig config)
         {
             InitProjectFirstOpen(loadScreen);
 
+            Config.EnsureSignature();
             Config.ClearFirstBootFlag();
             Config.WriteFile();
         }
