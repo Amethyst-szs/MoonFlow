@@ -47,9 +47,10 @@ public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
         {
             if (_signature == string.Empty)
                 _signature = Guid.NewGuid().ToString();
-            
+
             return _signature;
         }
+        set => _signature = value;
     }
 
     #endregion
