@@ -6,7 +6,6 @@ using Godot;
 
 using System;
 
-using AuroraLib.Compression.Algorithms;
 using Nindot;
 
 namespace MoonFlow.Project;
@@ -98,6 +97,9 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
 
     public bool WriteFile()
     {
+        if (Path == null || Path == string.Empty)
+            return false;
+        
         if (!TryGetWriteData(out object data))
             return false;
 

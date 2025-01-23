@@ -10,6 +10,7 @@ namespace MoonFlow.Project;
 public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
 {
     public ProjectConfig(string path) : base("PROJ", path) { }
+    public ProjectConfig(byte[] data) : base("PROJ", data) { }
     public ProjectConfig(string path, ProjectInitInfo initInfo) : base("PROJ")
     {
         Path = path;
