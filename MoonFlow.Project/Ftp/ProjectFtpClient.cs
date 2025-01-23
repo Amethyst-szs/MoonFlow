@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Godot.Extension;
 
 using Nindot;
 
@@ -12,33 +13,44 @@ namespace MoonFlow.Project.FTP;
 public static class ProjectFtpClient
 {
     private static AsyncFtpClient Client = null;
+    public readonly static ProjectFtpCredentialStore CredentialStore = new();
     private static string ProjectPath = null;
 
     public static readonly ProjectFtpTargettingConfig Target = new();
 
     #region Connection
 
-    public static async Task Connect(ProjectFtpConnectionRequest request)
+    [StartupTask]
+    public static async Task<bool> TryConnect()
     {
         if (Client != null && Client.IsConnected)
-            return;
+            Disconnect();
+
+        if (CredentialStore.Host == string.Empty)
+            return false;
 
         Client ??= new AsyncFtpClient();
-        Client.Host = request.Hostname;
-        Client.Port = request.Port;
-        Client.Credentials.UserName = request.Username;
-        Client.Credentials.Password = request.Password;
+        Client.Host = CredentialStore.Host;
+        Client.Port = CredentialStore.Port;
+        Client.Credentials.UserName = CredentialStore.User;
+        Client.Credentials.Password = CredentialStore.Pass;
 
-        await Client.Connect();
+        try { await Client.Connect(); }
+        catch
+        {
+            Client.Dispose();
+            Client = null;
+            return false;
+        }
 
         if (await Client.IsStillConnected())
         {
-            Console.WriteLine("FTP: Connected");
-            return;
+            GD.Print("FTP: Connected");
+            return true;
         }
 
-        Console.WriteLine("FTP: Connection failed");
-        return;
+        GD.Print("FTP: Connection failed");
+        return false;
     }
 
     public static void Disconnect()
@@ -49,7 +61,7 @@ public static class ProjectFtpClient
         Client.Dispose();
         Client = null;
 
-        Console.WriteLine("FTP: Disconnected");
+        GD.Print("FTP: Disconnected");
     }
 
     public static void SetupProjectPath(string path) { ProjectPath = path; }
@@ -77,7 +89,7 @@ public static class ProjectFtpClient
         // Resolve target directory
         if (ProjectPath == null || ProjectPath == string.Empty)
             throw new NullReferenceException("No project path defined!");
-        
+
         if (!file.FilePath.StartsWith(ProjectPath))
             throw new Exception("SarcFile is not contained within project!");
 
