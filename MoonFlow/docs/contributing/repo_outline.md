@@ -23,6 +23,3 @@ A test library for the `Nindot` project. These tests can be run locally (with ad
 
 ## Godot.Extension
 A side-library built as a dependency for `MoonFlow`, featuring little more than extension methods for the `GodotSharp` classes and nodes.
-
-## Modules
-The modules directory contains any extra projects pulled from other open source projects that cannot be acquired through a nuget package, like [RiiStudio](https://github.com/riidefi/RiiStudio)'s [yaz0](http://www.amnoid.de/gc/yaz0.txt) library.
