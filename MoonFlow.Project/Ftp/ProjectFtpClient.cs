@@ -18,16 +18,29 @@ public static class ProjectFtpClient
 
     public static readonly ProjectFtpTargettingConfig Target = new();
 
+    private static IProjectFtpStatusIndicator StatusIndicator = null;
+
     #region Connection
 
-    [StartupTask]
+    public static void Init(IProjectFtpStatusIndicator statusIndicator)
+    {
+        StatusIndicator = statusIndicator;
+        _ = TryConnect();
+    }
+
     public static async Task<bool> TryConnect()
     {
+        if (StatusIndicator == null)
+            throw new NullReferenceException("Don't try to connect before Init function is called!");
+        
         if (Client != null && Client.IsConnected)
             Disconnect();
 
         if (CredentialStore.Host == string.Empty)
+        {
+            StatusIndicator.SetStatusDisabled();
             return false;
+        }
 
         Client ??= new AsyncFtpClient();
         Client.Host = CredentialStore.Host;
@@ -35,9 +48,12 @@ public static class ProjectFtpClient
         Client.Credentials.UserName = CredentialStore.User;
         Client.Credentials.Password = CredentialStore.Pass;
 
+        StatusIndicator.SetStatusConnecting();
+
         try { await Client.Connect(); }
         catch
         {
+            StatusIndicator.SetStatusDisconnected();
             Client.Dispose();
             Client = null;
             return false;
@@ -45,10 +61,12 @@ public static class ProjectFtpClient
 
         if (await Client.IsStillConnected())
         {
+            StatusIndicator.SetStatusConnected();
             GD.Print("FTP: Connected");
             return true;
         }
 
+        StatusIndicator.SetStatusDisconnected();
         GD.Print("FTP: Connection failed");
         return false;
     }
@@ -60,6 +78,8 @@ public static class ProjectFtpClient
 
         Client.Dispose();
         Client = null;
+
+        StatusIndicator?.SetStatusDisconnected();
 
         GD.Print("FTP: Disconnected");
     }

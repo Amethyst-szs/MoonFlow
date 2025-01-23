@@ -3833,6 +3833,31 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_CANCEL"
 msgstr "Cancel"
 
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "active"
+msgstr "Transferring Files to FTP server..."
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "try_connect"
+msgstr "Connecting to FTP server..."
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "connect"
+msgstr "Connected to FTP server"
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "disconnect"
+msgstr "No connection to FTP Server"
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "off"
+msgstr "FTP Disabled"
+
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
 
