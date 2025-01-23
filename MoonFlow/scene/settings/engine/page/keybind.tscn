@@ -15,6 +15,7 @@ text = "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
 
 [node name="UiHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_52kpr")
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
 flat = true
@@ -55,6 +56,7 @@ theme_override_constants/separation = 24
 
 [node name="FileManageHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_52kpr")
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_FILE_MANAGE"
 flat = true
@@ -87,6 +89,7 @@ theme_override_constants/separation = 24
 
 [node name="ProjectHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_52kpr")
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
 flat = true
@@ -111,6 +114,7 @@ theme_override_constants/separation = 24
 
 [node name="MsbtHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_52kpr")
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
 flat = true
@@ -151,6 +155,7 @@ theme_override_constants/separation = 24
 
 [node name="EventHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_52kpr")
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
 flat = true

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://ckhnom32otq5x"]
+
+[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_h1vc2"]
+
+[resource]
+script = ExtResource("1_h1vc2")
+context = "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+keys = Array[String](["OK", "Disconnected", "Pending", "Failed", "Invalid", "ButtonInitial", "ButtonRetry", "ButtonUpdate"])
