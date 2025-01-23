@@ -1,20 +1,20 @@
-[gd_scene load_steps=31 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=32 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
 [ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
 [ext_resource type="Script" path="res://scene/main/header/Header.cs" id="4_kq4x0"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarFile.cs" id="5_2c21b"]
+[ext_resource type="Script" path="res://scene/main/header/actionbar/ActionbarFile.cs" id="5_2c21b"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="5_7wt0y"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarProject.cs" id="5_8pvlw"]
+[ext_resource type="Script" path="res://scene/main/header/actionbar/ActionbarProject.cs" id="5_8pvlw"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
 [ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="6_736yk"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarDebug.cs" id="6_jwfa5"]
+[ext_resource type="Script" path="res://scene/main/header/actionbar/ActionbarDebug.cs" id="6_jwfa5"]
 [ext_resource type="Texture2D" uid="uid://bejy23w4qwuhn" path="res://asset/material/window/minimize.svg" id="7_3uat5"]
 [ext_resource type="Texture2D" uid="uid://ddbjk8qy03n3e" path="res://asset/material/window/setting.svg" id="7_lv0rq"]
 [ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="7_tq7ax"]
 [ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="8_0gxwu"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarHelp.cs" id="8_gmnrm"]
+[ext_resource type="Script" path="res://scene/main/header/actionbar/ActionbarHelp.cs" id="8_gmnrm"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="9_7fyri"]
 [ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="9_j4qfv"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
 [ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="13_jlow7"]
 [ext_resource type="Script" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
+[ext_resource type="PackedScene" uid="uid://djdy8pajcdhin" path="res://scene/main/header/ftp/ftp_status_indicator.tscn" id="20_gtms6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlewa"]
 
@@ -89,7 +90,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Header" type="PanelContainer" parent="Content" node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose")]
+[node name="Header" type="PanelContainer" parent="Content" node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose", "FtpStatusIndicator")]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
@@ -97,6 +98,7 @@ theme_override_styles/panel = ExtResource("3_gs3nu")
 script = ExtResource("4_kq4x0")
 ButtonAppMinimize = NodePath("Content/Button_Mini")
 ButtonAppClose = NodePath("Content/Button_Close")
+FtpStatusIndicator = NodePath("Content/HBox_FTP")
 
 [node name="Content" type="HBoxContainer" parent="Content/Header"]
 layout_mode = 2
@@ -200,6 +202,9 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_hlewa")
 
+[node name="HBox_FTP" parent="Content/Header/Content" instance=ExtResource("20_gtms6")]
+layout_mode = 2
+
 [node name="Button_Mini" type="Button" parent="Content/Header/Content"]
 layout_mode = 2
 tooltip_text = "MAIN_HEADER_MINIMIZE_CURRENT_APP"
@@ -259,6 +264,5 @@ texture = ExtResource("11_kyve8")
 stretch_mode = 5
 script = SubResource("GDScript_vdahq")
 
-[connection signal="MoonFlowCloseRequest" from="Content/Header/Content/Actionbar/File" to="." method="OnWindowCloseRequest"]
 [connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="OnAppSceneServerWrapperFocusFirst"]
 [connection signal="pressed" from="Content/Header/Content/Button_Close" to="." method="OnAppSceneServerWrapperCloseActive"]

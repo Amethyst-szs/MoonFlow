@@ -4,6 +4,7 @@ using System.Linq;
 
 using MoonFlow.Project;
 using System.Threading.Tasks;
+using MoonFlow.Project.FTP;
 
 namespace MoonFlow.Scene.Main;
 
@@ -21,7 +22,10 @@ public partial class MainSceneRoot : Control
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
         NodeAlerts = GetNode<VBoxContainer>("%Alert");
 
-        // Add self-reference to ProjectManager
+        // Initilize the ftp client now that we have access to header
+        ProjectFtpClient.Init(NodeHeader.FtpStatusIndicator);
+
+        // Add self-reference to ProjectManager, should never be removed
         ProjectManager.SceneRoot = this;
         TreeExiting += OnTreeExiting;
 
