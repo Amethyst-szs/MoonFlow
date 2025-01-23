@@ -2488,6 +2488,11 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 msgstr "Event Graph"
 
 #: scene/settings/engine/engine_settings_app.tscn
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_FTP"
+msgstr "FTP Syncing"
+
+#: scene/settings/engine/engine_settings_app.tscn
 #: scene/settings/engine/page/keybind.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
 msgstr "Keybinds"
@@ -3696,6 +3701,137 @@ msgstr "Finalizing update..."
 #: scene/version/notify/version_tooltip.tscn
 msgid "VERSION_UPDATE_TOOLTIP_HEADER"
 msgstr "Update Available!"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "OK"
+msgstr "Connected"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Disconnected"
+msgstr "No connection"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Pending"
+msgstr "Attempting to connect..."
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Failed"
+msgstr "Connection failed"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Invalid"
+msgstr "Invalid connection"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonInitial"
+msgstr "Connect"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonRetry"
+msgstr "Retry Connection"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonUpdate"
+msgstr "Update Connection"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_HEADER"
+msgstr "Login Information"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_SUBHEADER_SETUP_GUIDE"
+msgstr "Not sure what this is or need help setting it up? Click here!"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_HEADER_TOOLTIP"
+msgstr ""
+"Either the web domain (www.example.com)\n"
+"or IP address (192.168.0.0)\n"
+"\n"
+"The target must be running an FTP server"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_HEADER"
+msgstr "Domain / IP Address"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PORT_HEADER_TOOLTIP"
+msgstr "What port is the FTP server running on"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PORT_HEADER"
+msgstr "Port"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_SECRET_TOGGLE_TOOLTIP"
+msgstr "Toggle visibility of domain text"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_PLACEHOLDER_TEXT"
+msgstr "192.168.0.0"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PORT_PLACEHOLDER_TEXT"
+msgstr "5000"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_USERNAME_HEADER_TOOLTIP"
+msgstr "Username required to authenticate with the server"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_USERNAME_HEADER"
+msgstr "Username"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_HEADER_TOOLTIP"
+msgstr "Password to log in as the requested user"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_HEADER"
+msgstr "Password"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_USERNAME_PLACEHOLDER_TEXT"
+msgstr "moon"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_PLACEHOLDER_TEXT"
+msgstr "flow"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_BUTTON_CONNECT"
+msgstr "Connect"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_BUTTON_CLEAR_ALL_CREDENTIALS"
+msgstr "Reset all Login Information"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_TITLE"
+msgstr "Confirm Reset"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_OK"
+msgstr "Confirm"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_BODY_TEXT"
+msgstr ""
+"Are you sure you want to remove all provided login credentials? This will "
+"disconnect you from any FTP servers and require re-inputting all information "
+"before connecting again."
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_CANCEL"
+msgstr "Cancel"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"

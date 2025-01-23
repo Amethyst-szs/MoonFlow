@@ -1,0 +1,221 @@
+[gd_scene load_steps=14 format=3 uid="uid://c2mm35p8l18fm"]
+
+[ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_n0qym"]
+[ext_resource type="Script" path="res://scene/settings/engine/ftp/FtpServerConnectionConfig.cs" id="2_de7cm"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_fqh3h"]
+[ext_resource type="Texture2D" uid="uid://oddo0qvixg5i" path="res://asset/material/status/visible.svg" id="3_pr0xe"]
+[ext_resource type="Script" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="3_qng21"]
+[ext_resource type="Texture2D" uid="uid://c4jxkit4m4lf0" path="res://asset/material/status/visible_off.svg" id="4_id4sb"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="7_2me3j"]
+[ext_resource type="Texture2D" uid="uid://pbdj60mov224" path="res://asset/material/ftp/login.svg" id="7_e4xbd"]
+[ext_resource type="Script" path="res://scene/app/components/dialog_center_text.gd" id="7_wjgw2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2x6cb"]
+font = ExtResource("2_fqh3h")
+font_size = 19
+
+[sub_resource type="LabelSettings" id="LabelSettings_f3hh4"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.823529)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8tvi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pb1ad"]
+font = ExtResource("2_fqh3h")
+font_size = 18
+font_color = Color(1, 1, 1, 0.870588)
+
+[node name="Page_FTP" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+
+[node name="Header" parent="." instance=ExtResource("1_n0qym")]
+layout_mode = 2
+
+[node name="Label_Head" parent="Header/Layout" index="0"]
+text = "ENGINE_SETTINGS_APP_CATEGORY_FTP"
+
+[node name="VBox_Connection" type="VBoxContainer" parent="." node_paths=PackedStringArray("LineDomain", "LinePort", "LineUser", "LinePass", "LabelConnectStatus", "ButtonConnect", "ButtonResetCredentials")]
+layout_mode = 2
+script = ExtResource("2_de7cm")
+LineDomain = NodePath("Grid_Domain/HBox_Domain/Line_Domain")
+LinePort = NodePath("Grid_Domain/Line_Port")
+LineUser = NodePath("Grid_Credentials/Line_User")
+LinePass = NodePath("Grid_Credentials/Line_Pass")
+LabelConnectStatus = NodePath("Label_Status")
+ButtonConnect = NodePath("VBox_Button/Button_Connect")
+ButtonResetCredentials = NodePath("VBox_Button/Button_ClearAll")
+
+[node name="Label_ConnectionHeader" type="Label" parent="VBox_Connection"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_HEADER"
+label_settings = SubResource("LabelSettings_2x6cb")
+
+[node name="Label_ConnectionGuide" type="Label" parent="VBox_Connection"]
+custom_minimum_size = Vector2(323, 0)
+layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+text = "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_SUBHEADER_SETUP_GUIDE"
+label_settings = SubResource("LabelSettings_f3hh4")
+autowrap_mode = 3
+
+[node name="HSep" type="HSeparator" parent="VBox_Connection"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Grid_Domain" type="GridContainer" parent="VBox_Connection"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="Label_Domain" type="Label" parent="VBox_Connection/Grid_Domain"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_HEADER_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Label_Port" type="Label" parent="VBox_Connection/Grid_Domain"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ENGINE_SETTINGS_PAGE_FTP_PORT_HEADER_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "ENGINE_SETTINGS_PAGE_FTP_PORT_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="HBox_Domain" type="HBoxContainer" parent="VBox_Connection/Grid_Domain"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_Visible" type="CheckBox" parent="VBox_Connection/Grid_Domain/HBox_Domain"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_SECRET_TOGGLE_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 24
+theme_override_icons/checked = ExtResource("4_id4sb")
+theme_override_icons/unchecked = ExtResource("3_pr0xe")
+button_pressed = true
+
+[node name="Line_Domain" type="LineEdit" parent="VBox_Connection/Grid_Domain/HBox_Domain"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_PLACEHOLDER_TEXT"
+alignment = 1
+max_length = 64
+context_menu_enabled = false
+secret = true
+
+[node name="Line_Port" type="LineEdit" parent="VBox_Connection/Grid_Domain"]
+layout_mode = 2
+placeholder_text = "ENGINE_SETTINGS_PAGE_FTP_PORT_PLACEHOLDER_TEXT"
+alignment = 1
+max_length = 5
+context_menu_enabled = false
+virtual_keyboard_type = 2
+script = ExtResource("3_qng21")
+regex_string = "[0-9]"
+
+[node name="Grid_Credentials" type="GridContainer" parent="VBox_Connection"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="Label_User" type="Label" parent="VBox_Connection/Grid_Credentials"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ENGINE_SETTINGS_PAGE_FTP_USERNAME_HEADER_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "ENGINE_SETTINGS_PAGE_FTP_USERNAME_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Label_Pass" type="Label" parent="VBox_Connection/Grid_Credentials"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_HEADER_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Line_User" type="LineEdit" parent="VBox_Connection/Grid_Credentials"]
+layout_mode = 2
+placeholder_text = "ENGINE_SETTINGS_PAGE_FTP_USERNAME_PLACEHOLDER_TEXT"
+alignment = 1
+max_length = 64
+context_menu_enabled = false
+
+[node name="Line_Pass" type="LineEdit" parent="VBox_Connection/Grid_Credentials"]
+layout_mode = 2
+placeholder_text = "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_PLACEHOLDER_TEXT"
+alignment = 1
+max_length = 64
+context_menu_enabled = false
+secret = true
+
+[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Connection"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
+
+[node name="Label_Status" type="Label" parent="VBox_Connection"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "status"
+label_settings = SubResource("LabelSettings_pb1ad")
+horizontal_alignment = 1
+
+[node name="VBox_Button" type="VBoxContainer" parent="VBox_Connection"]
+layout_mode = 2
+
+[node name="Button_Connect" type="Button" parent="VBox_Connection/VBox_Button"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 32
+text = "ENGINE_SETTINGS_PAGE_FTP_BUTTON_CONNECT"
+icon = ExtResource("7_e4xbd")
+icon_alignment = 2
+
+[node name="Button_ClearAll" type="Button" parent="VBox_Connection/VBox_Button"]
+self_modulate = Color(1, 0.5, 0.5, 1)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 32
+text = "ENGINE_SETTINGS_PAGE_FTP_BUTTON_CLEAR_ALL_CREDENTIALS"
+icon = ExtResource("7_2me3j")
+icon_alignment = 2
+
+[node name="Dialog_ClearAllCred" type="ConfirmationDialog" parent="."]
+title = "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_TITLE"
+initial_position = 1
+size = Vector2i(836, 100)
+ok_button_text = "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_OK"
+dialog_text = "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_BODY_TEXT"
+dialog_autowrap = true
+cancel_button_text = "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_CANCEL"
+script = ExtResource("7_wjgw2")
+
+[connection signal="toggled" from="VBox_Connection/Grid_Domain/HBox_Domain/Button_Visible" to="VBox_Connection/Grid_Domain/HBox_Domain/Line_Domain" method="set_secret"]
+[connection signal="text_changed" from="VBox_Connection/Grid_Domain/HBox_Domain/Line_Domain" to="VBox_Connection" method="OnSetDomain"]
+[connection signal="text_validated" from="VBox_Connection/Grid_Domain/Line_Port" to="VBox_Connection" method="OnSetPort"]
+[connection signal="text_changed" from="VBox_Connection/Grid_Credentials/Line_User" to="VBox_Connection" method="OnSetUser"]
+[connection signal="text_changed" from="VBox_Connection/Grid_Credentials/Line_Pass" to="VBox_Connection" method="OnSetPass"]
+[connection signal="pressed" from="VBox_Connection/VBox_Button/Button_Connect" to="VBox_Connection" method="OnPressedConnect"]
+[connection signal="pressed" from="VBox_Connection/VBox_Button/Button_ClearAll" to="Dialog_ClearAllCred" method="popup"]
+[connection signal="confirmed" from="Dialog_ClearAllCred" to="VBox_Connection" method="OnPressedClearAllCredentials"]
+
+[editable path="Header"]
