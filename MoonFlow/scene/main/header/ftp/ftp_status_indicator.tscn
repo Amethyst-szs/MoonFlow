@@ -1,0 +1,264 @@
+[gd_scene load_steps=10 format=3 uid="uid://djdy8pajcdhin"]
+
+[ext_resource type="Script" path="res://scene/main/header/ftp/FtpStatusIndicator.cs" id="1_mnlig"]
+[ext_resource type="Texture2D" uid="uid://bcf0vbtvkcb6l" path="res://asset/material/file/none.svg" id="2_mlyxi"]
+
+[sub_resource type="Animation" id="Animation_f7sy1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconHolder/Texture_Status:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconHolder/Texture_Status:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8.5)]
+}
+
+[sub_resource type="Animation" id="Animation_fveka"]
+resource_name = "active"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconHolder/Texture_Status:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconHolder/Texture_Status:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(2.5, 0.3, 2.5),
+"update": 0,
+"values": [Vector2(0, -8.5), Vector2(0, -4), Vector2(0, -8.5)]
+}
+
+[sub_resource type="Animation" id="Animation_i4bfc"]
+resource_name = "connect"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconHolder/Texture_Status:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconHolder/Texture_Status:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(2.5, 0.3, 2.5, 0.33, 1),
+"update": 0,
+"values": [Vector2(0, -8.5), Vector2(0, -4), Vector2(0, -8.5), Vector2(0, -4), Vector2(0, -8.5)]
+}
+
+[sub_resource type="Animation" id="Animation_2hjc8"]
+resource_name = "disconnect"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconHolder/Texture_Status:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconHolder/Texture_Status:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(2.5, 0.3, 2.5, 0.33, 1),
+"update": 0,
+"values": [Vector2(0, -8.5), Vector2(0, -4), Vector2(0, -8.5), Vector2(0, -4), Vector2(0, -8.5)]
+}
+
+[sub_resource type="Animation" id="Animation_t5lce"]
+resource_name = "off"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u4pq6"]
+resource_name = "try_connect"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconHolder/Texture_Status:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 0.784314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconHolder/Texture_Status:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(2.5, 0.3, 2.5),
+"update": 0,
+"values": [Vector2(0, -8.5), Vector2(0, -4), Vector2(0, -8.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l5ird"]
+_data = {
+"RESET": SubResource("Animation_f7sy1"),
+"active": SubResource("Animation_fveka"),
+"connect": SubResource("Animation_i4bfc"),
+"disconnect": SubResource("Animation_2hjc8"),
+"off": SubResource("Animation_t5lce"),
+"try_connect": SubResource("Animation_u4pq6")
+}
+
+[node name="FtpStatusIndicator" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 17)
+offset_right = 17.0
+offset_bottom = 17.0
+mouse_filter = 0
+script = ExtResource("1_mnlig")
+
+[node name="IconHolder" type="Control" parent="."]
+custom_minimum_size = Vector2(17, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Texture_Status" type="TextureRect" parent="IconHolder"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -8.5
+offset_right = 17.0
+offset_bottom = 8.5
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(8.5, 8.5)
+texture = ExtResource("2_mlyxi")
+expand_mode = 3
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l5ird")
+}
+autoplay = "off"

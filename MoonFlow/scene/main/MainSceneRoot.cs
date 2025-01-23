@@ -4,6 +4,7 @@ using System.Linq;
 
 using MoonFlow.Project;
 using System.Threading.Tasks;
+using MoonFlow.Project.FTP;
 
 namespace MoonFlow.Scene.Main;
 
@@ -23,6 +24,9 @@ public partial class MainSceneRoot : Control
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
         NodeAlerts = GetNode<VBoxContainer>("%Alert");
 
+        // Initilize the ftp client now that we have access to header
+        ProjectFtpClient.Init(NodeHeader.FtpStatusIndicator);
+        
         ProjectManager.SceneRoot = this;
         AppSceneServer.Init(NodeApps);
     }

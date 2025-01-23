@@ -8,6 +8,9 @@ public partial class Header : PanelContainer
 	public Button ButtonAppMinimize;
 	[Export]
 	public Button ButtonAppClose;
+	
+	[Export]
+	public FtpStatusIndicator FtpStatusIndicator;
 
 	[Signal]
 	public delegate void AppFocusedEventHandler();
