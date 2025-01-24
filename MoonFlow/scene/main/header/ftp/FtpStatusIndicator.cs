@@ -33,7 +33,7 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 
 	private async void UpdateStatus(string anim, CursorShape shape)
 	{
-		await ToSignal(Engine.GetMainLoop(), "process_frame");
+		await Extension.WaitProcessFrame(this);
 		
 		if (Animation.CurrentAnimation != anim)
 			Animation.Play(anim);
