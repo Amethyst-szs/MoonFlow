@@ -9,6 +9,8 @@ internal interface IProjectFtpQueueItem
     public Task<bool> Process();
 
     public string GetPath();
+    public void SetPath(string path);
+    
     public EventHandler<FtpProgress> GetCallback();
 
     public bool IsUnique(IProjectFtpQueueItem comparison);

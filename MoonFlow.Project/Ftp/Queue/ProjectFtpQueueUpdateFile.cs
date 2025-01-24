@@ -1,9 +1,10 @@
 using System;
+using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 using Godot;
 
 using FluentFTP;
-using System.Linq;
 
 namespace MoonFlow.Project.FTP;
 
@@ -34,6 +35,13 @@ internal struct ProjectFtpQueueUpdateFile(string path, bool isCompare = false, E
             }
         }
 
+        // Ensure the file isn't being reserved by any other process
+        if (!await TryWaitForFileAccess(Path))
+        {
+            GD.Print("FTP: Skipping " + Path.Split(['/', '\\']).Last(), " due to being inaccessible by this process");
+            return false;
+        }
+
         // Create callback holder and await upload completion
         var prog = ProjectFtpClient.TryCreateProgressCallbackHolder(Callback);
         await ProjectFtpClient.Client.UploadFile(Path, remote, FtpRemoteExists.Overwrite, true, FtpVerify.Retry, prog);
@@ -43,9 +51,39 @@ internal struct ProjectFtpQueueUpdateFile(string path, bool isCompare = false, E
     }
 
     public readonly string GetPath() => Path;
+    public void SetPath(string path) => Path = path;
+    
     public readonly EventHandler<FtpProgress> GetCallback() => Callback;
     public readonly bool IsUnique(IProjectFtpQueueItem comparison)
     {
         return GetType() != comparison.GetType() || Path != comparison.GetPath();
     }
+
+    #region Utilities
+
+    private static async Task<bool> TryWaitForFileAccess(string path, int maxAttempts = 8)
+    {
+        var info = new FileInfo(path);
+        var attempts = 0;
+
+        while (attempts < maxAttempts)
+        {
+            try
+            {
+                using FileStream stream = info.Open(FileMode.Open, System.IO.FileAccess.Read, FileShare.None);
+                stream.Close();
+            }
+            catch (IOException)
+            {
+                attempts++;
+                await Task.Delay(200);
+            }
+
+            break;
+        }
+
+        return attempts < maxAttempts;
+    }
+
+    #endregion
 }

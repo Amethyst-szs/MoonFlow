@@ -120,6 +120,37 @@ public static partial class ProjectFtpClient
         TryStartupQueue();
     }
 
+    public static void RenameFile(string oldPath, string newPath)
+    {
+        var item = new ProjectFtpQueueRenameFile(oldPath, newPath);
+        if (IsQueueItemAlreadyExist(item))
+            return;
+
+        RemoteQueue.Enqueue(item);
+        TryStartupQueue();
+    }
+    public static void RenameDirectory(string oldPath, string newPath)
+    {
+        var item = new ProjectFtpQueueRenameDirectory(oldPath, newPath);
+        if (IsQueueItemAlreadyExist(item))
+            return;
+
+        RemoteQueue.Enqueue(item);
+        TryStartupQueue();
+    }
+
+    internal static void PushToQueue<T>(string path) where T : IProjectFtpQueueItem, new()
+    {
+        var item = new T();
+        item.SetPath(path);
+
+        if (IsQueueItemAlreadyExist(item))
+            return;
+
+        RemoteQueue.Enqueue(item);
+        TryStartupQueue();
+    }
+
     #endregion
 
     #region Utility
