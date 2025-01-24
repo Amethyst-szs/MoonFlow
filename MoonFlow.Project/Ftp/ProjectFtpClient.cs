@@ -12,10 +12,11 @@ namespace MoonFlow.Project.FTP;
 
 public static partial class ProjectFtpClient
 {
-    public static AsyncFtpClient Client { get; private set; } = null;
+    internal static AsyncFtpClient Client { get; private set; } = null;
     public readonly static ProjectFtpCredentialStore CredentialStore = new();
 
-    private static string ProjectPath = null;
+    private readonly static ProjectDirectoryLocalWatcher Project = new();
+    private static string ProjectPath { get => Project?.Path; }
 
     public static IProjectFtpStatusIndicator StatusIndicator { get; private set; } = null;
 
@@ -105,20 +106,25 @@ public static partial class ProjectFtpClient
 
     #region Server Access
 
-    public static void UploadFile(string path, EventHandler<FtpProgress> callback = null)
-    {
-        PushQueue(path, callback);
-    }
     public static void UploadFile(SarcFile sarc, EventHandler<FtpProgress> callback = null)
     {
-        PushQueue(sarc.FilePath, callback);
+        UploadFile(sarc.FilePath, callback);
+    }
+    public static void UploadFile(string path, EventHandler<FtpProgress> callback = null)
+    {
+        var item = new ProjectFtpQueueUpdateFile(path, false, callback);
+        if (IsQueueItemAlreadyExist(item))
+            return;
+
+        RemoteQueue.Enqueue(item);
+        TryStartupQueue();
     }
 
     #endregion
 
     #region Utility
 
-    public static void UpdateLocalProjectDirectory(string path) => ProjectPath = path;
+    public static void UpdateLocalProjectDirectory(string path) => Project.AttachToProject(path);
     public static async Task UpdateWorkingDirectory()
     {
         if (Client == null || !Client.IsAuthenticated)
@@ -132,7 +138,15 @@ public static partial class ProjectFtpClient
         await Client.SetWorkingDirectory(dir);
     }
 
-    private static Progress<FtpProgress> TryCreateProgressCallbackHolder(EventHandler<FtpProgress> callback)
+    internal static string CalcServerPathFromProjectPath(string path)
+    {
+        if (!path.StartsWith(ProjectPath))
+            throw new Exception("Cannot upload file that is not contained within project!");
+
+        return CredentialStore.TargetDirectory + path.TrimPrefix(ProjectPath);
+    }
+
+    internal static Progress<FtpProgress> TryCreateProgressCallbackHolder(EventHandler<FtpProgress> callback)
     {
         Progress<FtpProgress> callbackHolder = new();
 
