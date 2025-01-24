@@ -1,7 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://djdy8pajcdhin"]
+[gd_scene load_steps=15 format=3 uid="uid://djdy8pajcdhin"]
 
 [ext_resource type="Script" path="res://scene/main/header/ftp/FtpStatusIndicator.cs" id="1_mnlig"]
+[ext_resource type="Shader" path="res://asset/shader/common/color_invert_mono.gdshader" id="2_hq0tr"]
 [ext_resource type="Texture2D" uid="uid://bcf0vbtvkcb6l" path="res://asset/material/file/none.svg" id="2_mlyxi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mslfu"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_top = 2
+border_color = Color(1, 1, 1, 0.223529)
+border_blend = true
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_be3v7"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37nxb"]
+shader = ExtResource("2_hq0tr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nli0"]
+font_size = 12
 
 [sub_resource type="Animation" id="Animation_f7sy1"]
 length = 0.001
@@ -230,12 +252,39 @@ _data = {
 "try_connect": SubResource("Animation_u4pq6")
 }
 
-[node name="FtpStatusIndicator" type="HBoxContainer"]
+[node name="FtpStatusIndicator" type="HBoxContainer" node_paths=PackedStringArray("Animation", "ProgressBar", "ProgressLabel")]
 custom_minimum_size = Vector2(0, 17)
 offset_right = 17.0
 offset_bottom = 17.0
 mouse_filter = 0
 script = ExtResource("1_mnlig")
+Animation = NodePath("Animation")
+ProgressBar = NodePath("Progress")
+ProgressLabel = NodePath("Progress/Label_Progress")
+
+[node name="Progress" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 1
+mouse_default_cursor_shape = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_mslfu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_be3v7")
+show_percentage = false
+indeterminate = true
+editor_preview_indeterminate = true
+
+[node name="Label_Progress" type="Label" parent="Progress"]
+material = SubResource("ShaderMaterial_37nxb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_7nli0")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
 
 [node name="IconHolder" type="Control" parent="."]
 custom_minimum_size = Vector2(17, 0)
@@ -262,3 +311,5 @@ libraries = {
 "": SubResource("AnimationLibrary_l5ird")
 }
 autoplay = "off"
+
+[connection signal="tree_entered" from="Progress" to="Progress" method="hide"]

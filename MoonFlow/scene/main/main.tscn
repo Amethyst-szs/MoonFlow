@@ -204,6 +204,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_hlewa")
 
 [node name="HBox_FTP" parent="Content/Header/Content" instance=ExtResource("20_gtms6")]
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Button_Mini" type="Button" parent="Content/Header/Content"]
 layout_mode = 2

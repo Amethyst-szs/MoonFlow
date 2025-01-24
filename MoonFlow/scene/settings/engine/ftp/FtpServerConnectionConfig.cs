@@ -105,6 +105,8 @@ public partial class FtpServerConnectionConfig : VBoxContainer
 		if (ProjectFtpClient.IsConnected())
 			ProjectFtpClient.Disconnect();
 		
+		ProjectFtpClient.StatusIndicator.SetStatusDisabled();
+		
 		ButtonConnect.Text = Tr("ButtonInitial", StatusContext);
 		ButtonResetCredentials.Hide();
 

@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Godot;
-using Godot.Extension;
 
 using Nindot;
 
@@ -10,15 +10,14 @@ using FluentFTP;
 
 namespace MoonFlow.Project.FTP;
 
-public static class ProjectFtpClient
+public static partial class ProjectFtpClient
 {
-    private static AsyncFtpClient Client = null;
+    public static AsyncFtpClient Client { get; private set; } = null;
     public readonly static ProjectFtpCredentialStore CredentialStore = new();
+
     private static string ProjectPath = null;
 
-    public static readonly ProjectFtpTargettingConfig Target = new();
-
-    private static IProjectFtpStatusIndicator StatusIndicator = null;
+    public static IProjectFtpStatusIndicator StatusIndicator { get; private set; } = null;
 
     #region Connection
 
@@ -32,12 +31,13 @@ public static class ProjectFtpClient
     {
         if (StatusIndicator == null)
             throw new NullReferenceException("Don't try to connect before Init function is called!");
-        
+
         if (Client != null && Client.IsConnected)
             Disconnect();
 
         if (CredentialStore.Host == string.Empty)
         {
+            StatusIndicator.EmitEventDisconnected();
             StatusIndicator.SetStatusDisabled();
             return false;
         }
@@ -51,22 +51,27 @@ public static class ProjectFtpClient
         StatusIndicator.SetStatusConnecting();
 
         try { await Client.Connect(); }
-        catch
-        {
-            StatusIndicator.SetStatusDisconnected();
-            Client.Dispose();
-            Client = null;
-            return false;
-        }
+        catch { return OnConnectionFailure(); }
 
-        if (await Client.IsStillConnected())
-        {
-            StatusIndicator.SetStatusConnected();
-            GD.Print("FTP: Connected");
-            return true;
-        }
+        if (!await Client.IsStillConnected())
+            return OnConnectionFailure();
+
+        await UpdateWorkingDirectory();
+
+        StatusIndicator.SetStatusConnected();
+        StatusIndicator.EmitEventConnected();
+
+        GD.Print("FTP: Connected");
+        return true;
+    }
+    private static bool OnConnectionFailure()
+    {
+        Client?.Dispose();
+        Client = null;
 
         StatusIndicator.SetStatusDisconnected();
+        StatusIndicator.EmitEventDisconnected();
+
         GD.Print("FTP: Connection failed");
         return false;
     }
@@ -80,11 +85,10 @@ public static class ProjectFtpClient
         Client = null;
 
         StatusIndicator?.SetStatusDisconnected();
+        StatusIndicator?.EmitEventDisconnected();
 
         GD.Print("FTP: Disconnected");
     }
-
-    public static void SetupProjectPath(string path) { ProjectPath = path; }
 
     public static bool IsConnected()
     {
@@ -99,32 +103,46 @@ public static class ProjectFtpClient
 
     #endregion
 
-    #region Upload
+    #region Server Access
 
-    public static void UploadSarc(SarcFile file, EventHandler<FtpProgress> callback = null)
+    public static void UploadFile(string path, EventHandler<FtpProgress> callback = null)
     {
-        // Convert sarc file into bytes
-        var data = file.GetBytes();
+        PushQueue(path, callback);
+    }
+    public static void UploadFile(SarcFile sarc, EventHandler<FtpProgress> callback = null)
+    {
+        PushQueue(sarc.FilePath, callback);
+    }
 
-        // Resolve target directory
-        if (ProjectPath == null || ProjectPath == string.Empty)
-            throw new NullReferenceException("No project path defined!");
+    #endregion
 
-        if (!file.FilePath.StartsWith(ProjectPath))
-            throw new Exception("SarcFile is not contained within project!");
+    #region Utility
 
-        string remotePath = Target.GetTarget() + file.FilePath.TrimPrefix(ProjectPath);
+    public static void UpdateLocalProjectDirectory(string path) => ProjectPath = path;
+    public static async Task UpdateWorkingDirectory()
+    {
+        if (Client == null || !Client.IsAuthenticated)
+            return;
 
-        // Create callback holder if requested
-        Progress<FtpProgress> callbackHolder = null;
-        if (callback != null)
+        var dir = CredentialStore.TargetDirectory;
+
+        if (!await Client.DirectoryExists(dir))
+            await Client.CreateDirectory(dir);
+
+        await Client.SetWorkingDirectory(dir);
+    }
+
+    private static Progress<FtpProgress> TryCreateProgressCallbackHolder(EventHandler<FtpProgress> callback)
+    {
+        Progress<FtpProgress> callbackHolder = new();
+
+        callbackHolder.ProgressChanged += (obj, prog) =>
         {
-            callbackHolder = new();
-            callbackHolder.ProgressChanged += callback;
-        }
+            StatusIndicator?.OnProgressUpdate(prog);
+            callback?.Invoke(obj, prog);
+        };
 
-        // Queue upload
-        Client.UploadBytes(data, remotePath, FtpRemoteExists.Overwrite, true, callbackHolder);
+        return callbackHolder;
     }
 
     #endregion
