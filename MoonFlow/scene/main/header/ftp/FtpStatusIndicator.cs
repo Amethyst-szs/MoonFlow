@@ -36,10 +36,10 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 		await Extension.WaitProcessFrame(this);
 		
 		if (Animation.CurrentAnimation != anim)
-			Animation.Play(anim);
+			Animation.CallDeferred(AnimationPlayer.MethodName.Play, anim);
 		
-		TooltipText = Tr(anim, TooltipContext);
-		MouseDefaultCursorShape = shape;
+		SetDeferred(PropertyName.TooltipText, Tr(anim, TooltipContext));
+		SetDeferred(PropertyName.MouseDefaultCursorShape, (int)shape);
 	}
 
 	#endregion
