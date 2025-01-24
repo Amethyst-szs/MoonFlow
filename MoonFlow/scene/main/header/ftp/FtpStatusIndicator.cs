@@ -5,6 +5,8 @@ using MoonFlow.Project;
 
 using FluentFTP;
 using MoonFlow.Project.FTP;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.Main;
 
@@ -29,8 +31,10 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 
 	public void SetStatusDisabled() => UpdateStatus("off", CursorShape.Help);
 
-	private void UpdateStatus(string anim, CursorShape shape)
+	private async void UpdateStatus(string anim, CursorShape shape)
 	{
+		await ToSignal(Engine.GetMainLoop(), "process_frame");
+		
 		if (Animation.CurrentAnimation != anim)
 			Animation.Play(anim);
 		

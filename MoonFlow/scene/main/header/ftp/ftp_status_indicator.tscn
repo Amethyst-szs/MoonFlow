@@ -263,6 +263,7 @@ ProgressBar = NodePath("Progress")
 ProgressLabel = NodePath("Progress/Label_Progress")
 
 [node name="Progress" type="ProgressBar" parent="."]
+visible = false
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -271,7 +272,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_mslfu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_be3v7")
 show_percentage = false
 indeterminate = true
-editor_preview_indeterminate = true
+editor_preview_indeterminate = false
 
 [node name="Label_Progress" type="Label" parent="Progress"]
 material = SubResource("ShaderMaterial_37nxb")
