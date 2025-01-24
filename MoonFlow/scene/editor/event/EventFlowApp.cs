@@ -116,13 +116,13 @@ public partial class EventFlowApp : AppScene
         foreach (var node in Graph.Nodes.Values)
             InitNode(node, factory);
 
-        await ToSignal(Engine.GetMainLoop(), "process_frame");
+        await Extension.WaitProcessFrame(this);
 
         // Setup node port connections
         foreach (var n in GraphNodeHolder.GetChildren())
             InitNodeConnections(n);
 
-        await ToSignal(Engine.GetMainLoop(), "process_frame");
+        await Extension.WaitProcessFrame(this);
     }
 
     private void InitEntryPointNodes()

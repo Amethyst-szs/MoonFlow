@@ -251,7 +251,7 @@ public abstract partial class EntryListBase : VBoxContainer
 
     public static async void ClearAllModifiedIcons(Node node)
     {
-        await node.ToSignal(Engine.GetMainLoop(), "process_frame");
+        await Extension.WaitProcessFrame(node);
         ClearAllModifiedIconsRecursive(node);
     }
     private static void ClearAllModifiedIconsRecursive(Node node)
@@ -265,7 +265,7 @@ public abstract partial class EntryListBase : VBoxContainer
 
     public async void SetSelection(string str, bool isGrabFocus = true)
     {
-        await ToSignal(Engine.GetMainLoop(), "process_frame");
+        await Extension.WaitProcessFrame(this);
         OnEntrySelected(str, isGrabFocus);
     }
 

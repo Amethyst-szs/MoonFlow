@@ -62,7 +62,7 @@ public partial class MsbtAppHolder : AppScene
 		lang ??= ProjectManager.GetDefaultLang();
 
 		// Pause for the next process frame to allow screen redraw
-		await editor.ToSignal(Engine.GetMainLoop(), "process_frame");
+		await Extension.WaitProcessFrame(editor);
 
 		// Setup and return editor
 		editor.SetupEditor(msbp, lang, archiveName, key);

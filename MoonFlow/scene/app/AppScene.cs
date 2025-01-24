@@ -264,7 +264,7 @@ public partial class AppScene : Control
 		var run = AsyncRunner.Run(TaskWriteAppSaveContent, AppContentSaveType);
 		
 		await run.Task;
-        await ToSignal(Engine.GetMainLoop(), "process_frame");
+        await Extension.WaitProcessFrame(this);
 
         if (!DisplayServer.WindowIsFocused())
             DisplayServer.WindowRequestAttention();

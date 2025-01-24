@@ -58,7 +58,7 @@ public partial class AsyncDisplay : Control
 
     private async void OnTaskFinished()
     {
-        await ToSignal(Engine.GetMainLoop(), "process_frame");
+        await Extension.WaitProcessFrame(this);
 
         var tween = CreateTween().SetTrans(Tween.TransitionType.Cubic);
         tween.TweenProperty(this, "modulate", new Color(0), 0.75);

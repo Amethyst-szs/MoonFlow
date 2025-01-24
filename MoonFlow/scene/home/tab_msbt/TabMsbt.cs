@@ -380,7 +380,7 @@ public partial class TabMsbt : HSplitContainer
 			if (!parent.HasMeta("dropdown"))
 				return;
 
-			await ToSignal(Engine.GetMainLoop(), "process_frame");
+			await Extension.WaitProcessFrame(this);
 
 			var dropdown = parent.GetMeta("dropdown").As<Button>();
 			dropdown.Hide();

@@ -269,7 +269,7 @@ public partial class EventFlowNodeBase : Node2D
 
 	private async void OnNodeResized()
 	{
-		await ToSignal(Engine.GetMainLoop(), "process_frame");
+		await Extension.WaitProcessFrame(this);
 		EmitSignal(SignalName.NodeMoved);
 	}
 

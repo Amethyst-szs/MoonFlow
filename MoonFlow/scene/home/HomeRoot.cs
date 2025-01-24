@@ -68,7 +68,7 @@ public partial class HomeRoot : AppScene
 
 	public static async void SetVisibleIfAnyChildVisible<T>(Control root)
 	{
-		await root.ToSignal(Engine.GetMainLoop(), "process_frame");
+		await Extension.WaitProcessFrame(root);
 		root.Visible = IsAnyChildVisible<T>(root);
 	}
 
