@@ -48,7 +48,7 @@ internal class ProjectDirectoryLocalWatcher
     {
         if (e.ChangeType != WatcherChangeTypes.Changed) return;
 
-        if (OS.IsDebugBuild())
+        if (DebugFsFtpLogging)
             GD.PrintRich("[i] ⒡ Change ~ " + e.Name);
         
         if ((File.GetAttributes(e.FullPath) & FileAttributes.Directory) == 0)
@@ -57,7 +57,7 @@ internal class ProjectDirectoryLocalWatcher
     }
     private void OnCreated(object sender, FileSystemEventArgs e)
     {
-        if (OS.IsDebugBuild())
+        if (DebugFsFtpLogging)
             GD.PrintRich("[i] ⒡ Create + " + e.Name);
 
         if ((File.GetAttributes(e.FullPath) & FileAttributes.Directory) != 0)
@@ -67,14 +67,14 @@ internal class ProjectDirectoryLocalWatcher
     }
     private void OnDeleted(object sender, FileSystemEventArgs e)
     {
-        if (OS.IsDebugBuild())
+        if (DebugFsFtpLogging)
             GD.PrintRich("[i] ⒡ Delete - " + e.Name);
 
         ProjectFtpClient.PushToQueue<ProjectFtpQueueDelete>(e.FullPath);
     }
     private void OnRenamed(object sender, RenamedEventArgs e)
     {
-        if (OS.IsDebugBuild())
+        if (DebugFsFtpLogging)
             GD.PrintRich("[i] ⒡ Rename : " + e.OldName + " -> " + e.Name);
 
         if ((File.GetAttributes(e.FullPath) & FileAttributes.Directory) != 0)

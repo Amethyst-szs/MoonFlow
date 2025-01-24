@@ -20,13 +20,15 @@ internal struct ProjectFtpQueueRenameDirectory(string oldPath, string newPath) :
 
         if (!await ProjectFtpClient.Client.DirectoryExists(remoteOld))
             return false;
-        
+
         if (await ProjectFtpClient.Client.DirectoryExists(remoteNew))
             return false;
 
         await ProjectFtpClient.Client.Rename(remoteOld, remoteNew);
 
-        GD.Print("FTP: Renamed directory " + NewPath.Split(['/', '\\']).Last());
+        if (DebugFsFtpLogging)
+            GD.Print("FTP: Renamed directory " + NewPath.Split(['/', '\\']).Last());
+
         return true;
     }
 
