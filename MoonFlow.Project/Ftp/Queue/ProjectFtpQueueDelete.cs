@@ -19,7 +19,9 @@ internal struct ProjectFtpQueueDelete(string path) : IProjectFtpQueueItem
         {
             await ProjectFtpClient.Client.DeleteFile(remote);
 
-            GD.Print("FTP: Deleted file " + Path.Split(['/', '\\']).Last());
+            if (DebugFsFtpLogging)
+                GD.Print("FTP: Deleted file " + Path.Split(['/', '\\']).Last());
+
             return true;
         }
 
@@ -27,7 +29,9 @@ internal struct ProjectFtpQueueDelete(string path) : IProjectFtpQueueItem
         {
             await ProjectFtpClient.Client.DeleteDirectory(remote);
 
-            GD.Print("FTP: Deleted directory " + Path.Split(['/', '\\']).Last());
+            if (DebugFsFtpLogging)
+                GD.Print("FTP: Deleted directory " + Path.Split(['/', '\\']).Last());
+
             return true;
         }
 

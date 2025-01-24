@@ -2331,6 +2331,10 @@ msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
 msgstr "Debug Project"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
+msgstr "Log FS -> FTP Events"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
 msgstr "Open MSBP MSTXT viewer"
 

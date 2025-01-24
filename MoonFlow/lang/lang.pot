@@ -92,8 +92,8 @@
 # res://scene/version/notify/version_tooltip.tscn
 # res://scene/settings/engine/ftp/ftp_connection_status_message_text.tres
 # res://scene/settings/engine/page/ftp.tscn
-# res://scene/main/header/ftp/ftp_status.tscn
 # res://scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+# res://scene/main/header/ftp/ftp_status_indicator.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2371,6 +2371,10 @@ msgstr ""
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
 msgstr ""
 
 #: scene/main/main.tscn

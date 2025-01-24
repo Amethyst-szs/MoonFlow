@@ -46,13 +46,15 @@ internal struct ProjectFtpQueueUpdateFile(string path, bool isCompare = false, E
         var prog = ProjectFtpClient.TryCreateProgressCallbackHolder(Callback);
         await ProjectFtpClient.Client.UploadFile(Path, remote, FtpRemoteExists.Overwrite, true, FtpVerify.Retry, prog);
 
-        GD.Print("FTP: Uploaded " + Path.Split(['/', '\\']).Last());
+        if (DebugFsFtpLogging)
+            GD.Print("FTP: Uploaded " + Path.Split(['/', '\\']).Last());
+
         return true;
     }
 
     public readonly string GetPath() => Path;
     public void SetPath(string path) => Path = path;
-    
+
     public readonly EventHandler<FtpProgress> GetCallback() => Callback;
     public readonly bool IsUnique(IProjectFtpQueueItem comparison)
     {

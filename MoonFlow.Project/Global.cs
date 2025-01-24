@@ -13,11 +13,9 @@ public static class Global
     #region Configuration
 
     public static bool DebugConfigOutput { get; private set; } = false;
+    public static bool DebugFsFtpLogging { get; set; } = false;
 
-    public static void SetDebugMetadataFileOutput(bool enabled)
-    {
-        DebugConfigOutput = enabled;
-    }
+    public static void SetDebugMetadataFileOutput(bool enabled) => DebugConfigOutput = enabled;
 
     #endregion
 }

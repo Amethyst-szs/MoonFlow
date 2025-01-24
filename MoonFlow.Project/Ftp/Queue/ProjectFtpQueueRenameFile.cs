@@ -20,13 +20,15 @@ internal struct ProjectFtpQueueRenameFile(string oldPath, string newPath) : IPro
 
         if (!await ProjectFtpClient.Client.FileExists(remoteOld))
             return false;
-        
+
         if (await ProjectFtpClient.Client.FileExists(remoteNew))
             return false;
 
         await ProjectFtpClient.Client.Rename(remoteOld, remoteNew);
 
-        GD.Print("FTP: Renamed file " + NewPath.Split(['/', '\\']).Last());
+        if (DebugFsFtpLogging)
+            GD.Print("FTP: Renamed file " + NewPath.Split(['/', '\\']).Last());
+
         return true;
     }
 
