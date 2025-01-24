@@ -8,6 +8,7 @@ using MoonFlow.Scene.Main;
 using MoonFlow.Project.Database;
 using MoonFlow.Project.Cache;
 using MoonFlow.Addons;
+using MoonFlow.Project.FTP;
 
 namespace MoonFlow.Project;
 
@@ -40,6 +41,9 @@ public class ProjectState(string path, ProjectConfig config)
 
         var loadScreen = AppSceneServer.CreateAppDeferred<ProjectLoading>();
         loadScreen.LoadingStart(StartupTask, name, hash, time);
+
+        // Publish project's path to the FTP client here to ensure future file transfers can be sourced correctly
+        ProjectFtpClient.UpdateLocalProjectDirectory(Path);
 
         // Wait 200 milliseconds to allow loading screen to appear
         // This isn't nessecary for the code to function, but allows the end-user time to process the scene
