@@ -14,6 +14,11 @@ public partial class ProjectFtpCredentialStore : ConfigFile
         get { return GetValue(SectionServer, "port", 5000).AsInt32(); }
         set { SetValue(SectionServer, "port", value); }
     }
+    public string TargetDirectory
+    {
+        get { return GetValue(SectionServer, "remote_target", TargetPresetAtmosphere).AsString(); }
+        set { SetValue(SectionServer, "remote_target", value); }
+    }
 
     public string User
     {
@@ -32,4 +37,17 @@ public partial class ProjectFtpCredentialStore : ConfigFile
 
     public ProjectFtpCredentialStore() => Load(StorePath);
     public void Save() => Save(StorePath);
+
+    #region Target Presets
+
+    public const string TargetPresetAtmosphere = "/atmosphere/contents/0100000000010000/romfs/";
+    public const string TargetPresetLunaKit = "/LunaKit/";
+    public const string TargetPresetQuickMoon = "/switch/qm/";
+
+    public void SetTarget(string path) { TargetDirectory = path; }
+    public void SetTargetAtmosphere() { TargetDirectory = TargetPresetAtmosphere; }
+    public void SetTargetLunaKit() { TargetDirectory = TargetPresetLunaKit; }
+    public void SetTargetQuickMoon() { TargetDirectory = TargetPresetQuickMoon; }
+
+    #endregion
 }
