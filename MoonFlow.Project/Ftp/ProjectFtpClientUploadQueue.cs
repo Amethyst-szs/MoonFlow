@@ -7,6 +7,7 @@ using Godot;
 using Nindot;
 
 using FluentFTP;
+using Godot.Extension;
 
 namespace MoonFlow.Project.FTP;
 
@@ -42,11 +43,7 @@ public static partial class ProjectFtpClient
     }
     private static async Task TaskRunnerQueueEnded(Task task)
     {
-        // Lil' bit of black magic, creates an empty godot object and uses it to align
-        // execution with the process frame
-        var processAlignment = new GodotObject();
-        await processAlignment.ToSignal(Engine.GetMainLoop(), "process_frame");
-        processAlignment.Free();
+        await Extension.WaitProcessFrame();
 
         // Finalize the completion of the queue
         IsQueueActive = false;
