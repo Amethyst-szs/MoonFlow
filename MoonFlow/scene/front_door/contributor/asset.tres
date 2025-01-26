@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="ContributorList" load_steps=5 format=3 uid="uid://d3bthfk36lc5q"]
+[gd_resource type="Resource" script_class="ContributorList" load_steps=6 format=3 uid="uid://d3bthfk36lc5q"]
 
 [ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_jqn4u"]
 [ext_resource type="Resource" uid="uid://bfuv7msa5dlny" path="res://scene/front_door/contributor/profile/amethyst_szs.tres" id="2_ii4dx"]
 [ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_list.gd" id="3_o28cj"]
+
+[sub_resource type="Resource" id="Resource_48sn5"]
+script = ExtResource("1_jqn4u")
+name = "Material Icons"
+url = "https://fonts.google.com/icons"
 
 [sub_resource type="Resource" id="Resource_md6bh"]
 script = ExtResource("1_jqn4u")
@@ -13,4 +18,4 @@ url = "https://www.svgrepo.com/"
 script = ExtResource("3_o28cj")
 list_name = "FRONT_DOOR_CONTRIBUTOR_HEADER_GRAPHICS"
 list_color = Color(0.84, 0.4116, 0.4116, 1)
-list = Array[ExtResource("1_jqn4u")]([ExtResource("2_ii4dx"), SubResource("Resource_md6bh"), SubResource("Resource_md6bh")])
+list = Array[ExtResource("1_jqn4u")]([ExtResource("2_ii4dx"), SubResource("Resource_48sn5"), SubResource("Resource_md6bh")])
