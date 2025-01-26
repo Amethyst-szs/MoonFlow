@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxhe1o2jtilpi"]
+
+[ext_resource type="Script" path="res://scene/front_door/load/exception/MsbtEntryParserExceptionInfoScene.cs" id="1_emaij"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="2_hfmr7"]
+
+[node name="MsbtEntryParserException" type="VBoxContainer" node_paths=PackedStringArray("LabelSourceFile", "LabelSourceEntry")]
+visible = false
+script = ExtResource("1_emaij")
+LabelSourceFile = NodePath("Grid_Source/Label_File")
+LabelSourceEntry = NodePath("Grid_Source/Label_Entry")
+
+[node name="Label_Explain" type="Label" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_EXPLANATION"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSep0" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = ExtResource("2_hfmr7")
+
+[node name="Grid_Source" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Label_FileHeader" type="Label" parent="Grid_Source"]
+layout_mode = 2
+text = "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_FILE_SOURCE_HEADER"
+horizontal_alignment = 2
+
+[node name="Label_File" type="Label" parent="Grid_Source"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "placeholder"
+
+[node name="Label_EntryHeader" type="Label" parent="Grid_Source"]
+layout_mode = 2
+text = "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_ENTRY_SOURCE_HEADER"
+horizontal_alignment = 2
+
+[node name="Label_Entry" type="Label" parent="Grid_Source"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "placeholder"
+
+[connection signal="tree_entered" from="." to="." method="hide"]

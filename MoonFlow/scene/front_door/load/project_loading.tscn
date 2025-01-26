@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cio2gvsywxhso"]
+[gd_scene load_steps=24 format=3 uid="uid://cio2gvsywxhso"]
 
 [ext_resource type="Script" path="res://scene/front_door/load/ProjectLoading.cs" id="1_jo062"]
 [ext_resource type="Texture2D" uid="uid://cntrievg5fk50" path="res://asset/app/icon/front_door_loading.png" id="2_py8o7"]
 [ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="4_gajvy"]
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="5_ysjnh"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_mwncf"]
-[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/moonflow_status_icon.tscn" id="7_4pbl6"]
+[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/component/moonflow_status_icon.tscn" id="7_4pbl6"]
 [ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="7_io7id"]
 [ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="8_8nh1l"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_480l8"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dklnltxsfaufc" path="res://asset/material/arrow/double_up.svg" id="10_02wsd"]
 [ext_resource type="Texture2D" uid="uid://b8myj5gou5squ" path="res://asset/material/user/exit.svg" id="10_hlmkx"]
 [ext_resource type="Texture2D" uid="uid://br38w7ae4sf6a" path="res://asset/material/arrow/up.svg" id="11_dctwd"]
+[ext_resource type="PackedScene" uid="uid://dxhe1o2jtilpi" path="res://scene/front_door/load/exception/msbt_entry_parser_exception.tscn" id="13_c0yfp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6jlb"]
 
@@ -67,7 +68,7 @@ font_color = Color(1, 0.62, 0.62, 1)
 font_size = 14
 font_color = Color(1, 1, 1, 0.8)
 
-[node name="ProjectLoading" type="Control" node_paths=PackedStringArray("LabelProgress", "IconStatus", "ContainerStatus", "Containers", "GridVersionDetails", "LabelOutdatedLocal", "LabelOutdatedRemote", "ContainerOutdated", "ContainerUpgrade", "ContainerException", "LabelException")]
+[node name="ProjectLoading" type="Control" node_paths=PackedStringArray("LabelProgress", "IconStatus", "ContainerStatus", "Containers", "GridVersionDetails", "LabelOutdatedLocal", "LabelOutdatedRemote", "ContainerOutdated", "ContainerUpgrade", "ContainerException", "LabelException", "MsbtEntryParserInfoScene")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,6 +87,7 @@ ContainerOutdated = NodePath("Content/Scroll/VBox/VBox_Outdated")
 ContainerUpgrade = NodePath("Content/Scroll/VBox/VBox_Upgrade")
 ContainerException = NodePath("Content/Scroll/VBox/VBox_Exception")
 LabelException = NodePath("Content/Scroll/VBox/VBox_Exception/Label_Exception")
+MsbtEntryParserInfoScene = NodePath("Content/Scroll/VBox/VBox_Exception/MsbtEntryParserException")
 AppName = "ProjectLoading"
 AppTaskbarTitle = "Loading"
 AppIcon = ExtResource("2_py8o7")
@@ -159,6 +161,7 @@ vertical_alignment = 1
 text_overrun_behavior = 3
 
 [node name="VBox_Outdated" type="VBoxContainer" parent="Content/Scroll/VBox"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -202,6 +205,7 @@ icon_alignment = 2
 script = SubResource("GDScript_v6bhj")
 
 [node name="VBox_Upgrade" type="VBoxContainer" parent="Content/Scroll/VBox"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -272,6 +276,9 @@ script = SubResource("GDScript_aq741")
 modulate = Color(1, 0.05, 0.05, 1)
 layout_mode = 2
 
+[node name="MsbtEntryParserException" parent="Content/Scroll/VBox/VBox_Exception" instance=ExtResource("13_c0yfp")]
+layout_mode = 2
+
 [node name="HBox_ButtonHolder" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Exception"]
 layout_mode = 2
 theme_override_constants/separation = 12
@@ -302,6 +309,7 @@ label_settings = SubResource("LabelSettings_5rl7s")
 autowrap_mode = 3
 
 [node name="Grid_Details" type="GridContainer" parent="Content/Scroll/VBox"]
+visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 6

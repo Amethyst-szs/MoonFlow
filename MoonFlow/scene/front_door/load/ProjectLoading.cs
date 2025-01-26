@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
+using Nindot.LMS.Msbt;
+
 using MoonFlow.Scene.Home;
 using MoonFlow.Scene.Main;
 using MoonFlow.Project;
@@ -45,6 +47,8 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 	private VBoxContainer ContainerException = null;
 	[Export]
 	private Label LabelException = null;
+	[Export]
+	private MsbtEntryParserExceptionInfoScene MsbtEntryParserInfoScene = null;
 
 	public override void _Ready()
 	{
@@ -185,6 +189,14 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 
 		if (e != null)
 			LabelException.CallDeferred("set", ["text", GetExceptionAsString(e)]);
+		
+		if (e is MsbtEntryParserException parserException)
+			LoadingExceptionFromMsbtParser(parserException);
+	}
+
+	private void LoadingExceptionFromMsbtParser(MsbtEntryParserException e)
+	{
+		MsbtEntryParserInfoScene.AppearInfo(e);
 	}
 
 	private void OnButtonExceptionCopyLogPressed()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_wi62w"]
 [ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="2_4sul0"]
-[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/moonflow_status_icon.tscn" id="3_42cjf"]
+[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/component/moonflow_status_icon.tscn" id="3_42cjf"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_vl4t5"]
 [ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="5_kphpc"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="5_yiclq"]

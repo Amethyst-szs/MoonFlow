@@ -163,6 +163,10 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
             {
                 file = MsbtFile.FromBytes([.. data.Value], data.Key, new MsbtElementFactoryProjectSmo());
             }
+            catch (MsbtEntryParserException)
+            {
+                throw;
+            }
             catch
             {
                 GD.PushWarning("Failed to read cache for ", data.Key);

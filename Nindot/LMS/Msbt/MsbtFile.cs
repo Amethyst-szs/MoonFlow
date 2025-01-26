@@ -47,7 +47,15 @@ public partial class MsbtFile(MsbtElementFactory factory, byte[] data, string na
             if (BlockStyleIndex.IsValid())
                 styleIdx = BlockStyleIndex.StyleIndexList[(int)label.ItemIndex];
 
-            Content.Add(label.Label, new MsbtEntry(Factory, label.Label, txtData, styleIdx));
+            try
+            {
+                var entry = new MsbtEntry(Factory, label.Label, txtData, styleIdx);
+                Content.Add(label.Label, entry);
+            }
+            catch (Exception e)
+            {
+                throw new MsbtEntryParserException(e, Name, label.Label);
+            }
         }
     }
 
@@ -80,3 +88,8 @@ public partial class MsbtFile(MsbtElementFactory factory, byte[] data, string na
 }
 
 public class MsbtException(string error) : Exception(error);
+public class MsbtEntryParserException(Exception source, string file, string entry) : AggregateException(source)
+{
+    public readonly string File = file;
+    public readonly string Entry = entry;
+}

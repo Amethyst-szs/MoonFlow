@@ -1683,66 +1683,6 @@ msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveEventFlowGraph"
 msgstr "Saving Event Graph..."
 
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "START"
-msgstr "Getting Started"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBP"
-msgstr "Loading Message Studio Project"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBT"
-msgstr "Loading Text Archives"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST"
-msgstr "Loading Kingdom Info"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
-msgstr "Loading Kingdom Names"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_SHINE_INFO"
-msgstr "Loading Power Moons"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_ITEM_LIST"
-msgstr "Loading World Items"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_COIN_COLLECT_NUM"
-msgstr "Loading Purple Coin Info"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_LABEL_CACHE"
-msgstr "Loading Label Cache"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_EVENT_DATA"
-msgstr "Loading Event Data"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_FIRST_BOOT_METADATA_BUILDER"
-msgstr "First Launch Setup"
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "END"
-msgstr "Success!"
-
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "ActionLoop"
@@ -3554,6 +3494,88 @@ msgid "SettingNotice"
 msgstr ""
 "Toggle between local and browser\n"
 "documentation in settings"
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_EXPLANATION"
+msgstr ""
+"Uh oh, looks like you have some corrupted data! To be more specific, one of "
+"your MSBT files has a corrupt tag header, resulting in it being impossible "
+"to correctly parse.\n"
+"\n"
+"If you're creating a new project from scratch, this likely means your romfs "
+"dump is invalid or otherwise corrupted, try re-dumping your game files! If "
+"you're creating a new MoonFlow project on top of previously modded files, "
+"it's likely these modded files are invalid in some way.\n"
+"\n"
+"Below is exactly which file's entry threw the exception:"
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_FILE_SOURCE_HEADER"
+msgstr "File:"
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_ENTRY_SOURCE_HEADER"
+msgstr "Entry:"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "START"
+msgstr "Getting Started"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBP"
+msgstr "Loading Message Studio Project"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBT"
+msgstr "Loading Text Archives"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST"
+msgstr "Loading Kingdom Info"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
+msgstr "Loading Kingdom Names"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_SHINE_INFO"
+msgstr "Loading Power Moons"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_ITEM_LIST"
+msgstr "Loading World Items"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_COIN_COLLECT_NUM"
+msgstr "Loading Purple Coin Info"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_LABEL_CACHE"
+msgstr "Loading Label Cache"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_EVENT_DATA"
+msgstr "Loading Event Data"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_FIRST_BOOT_METADATA_BUILDER"
+msgstr "First Launch Setup"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "END"
+msgstr "Success!"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"

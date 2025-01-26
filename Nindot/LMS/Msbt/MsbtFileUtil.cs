@@ -36,8 +36,18 @@ public partial class MsbtFile : FileBase
     {
         MsbtFile file;
 
-        try { file = new(factory, data, name); }
-        catch { throw new MsbtException("Failed to parse MsbtFile"); }
+        try
+        {
+            file = new(factory, data, name);
+        }
+        catch (MsbtEntryParserException)
+        {
+            throw;
+        }
+        catch
+        {
+            throw new MsbtException("Failed to parse MsbtFile");
+        }
 
         return file;
     }

@@ -38,7 +38,6 @@
 # res://scene/home/tab_msbt/popup_msbt_create.tscn
 # res://scene/home/tab_msbt/popup_msbt_create.gd
 # res://async/async_text.tres
-# res://scene/front_door/load/loading_message_text.tres
 # res://scene/editor/event/node/node_type_name_text.tres
 # res://scene/editor/event/node/typedef/talk/talk.tscn
 # res://scene/common/popup/popup_msbt_select_entry.tscn
@@ -86,6 +85,8 @@
 # res://scene/front_door/ui/quickbar_error_label.gd
 # res://addons/wiki/scene/app_local_wiki_viewer.tscn
 # res://addons/wiki/scene/wiki_button_tooltip_text_bank.tres
+# res://scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+# res://scene/front_door/load/component/loading_message_text.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1732,66 +1733,6 @@ msgstr ""
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveEventFlowGraph"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "START"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBP"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_MSBT"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_SHINE_INFO"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_ITEM_LIST"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_COIN_COLLECT_NUM"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_LABEL_CACHE"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_EVENT_DATA"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "LOAD_FIRST_BOOT_METADATA_BUILDER"
-msgstr ""
-
-#: scene/front_door/load/loading_message_text.tres
-msgctxt "PROJECT_LOADING"
-msgid "END"
 msgstr ""
 
 #: scene/editor/event/node/node_type_name_text.tres
@@ -3509,4 +3450,76 @@ msgstr ""
 #: addons/wiki/scene/wiki_button_tooltip_text_bank.tres
 msgctxt "WIKI_BUTTON_TOOLTIP"
 msgid "SettingNotice"
+msgstr ""
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_EXPLANATION"
+msgstr ""
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_FILE_SOURCE_HEADER"
+msgstr ""
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_ENTRY_SOURCE_HEADER"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "START"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBP"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBT"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_SHINE_INFO"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_ITEM_LIST"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_COIN_COLLECT_NUM"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_LABEL_CACHE"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_EVENT_DATA"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_FIRST_BOOT_METADATA_BUILDER"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "END"
 msgstr ""
