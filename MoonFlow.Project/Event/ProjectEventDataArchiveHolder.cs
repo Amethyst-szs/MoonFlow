@@ -154,10 +154,12 @@ public class ProjectEventDataArchiveHolder
         {
             // If there isn't a local metadata file, attempt to copy from embeds
             var embed = GraphMetadataFile.EmbedGraphPath + sourceHash;
-            if (!Godot.FileAccess.FileExists(embed))
+            if (!ResourceLoader.Exists(embed))
                 return true;
 
-            var data = Godot.FileAccess.GetFileAsBytes(embed);
+            var item = ResourceLoader.Load(embed) as IGraphMetadataResource;
+            var data = item.GetRawData();
+
             sourceMeta = new GraphMetadataFile(data);
         }
 

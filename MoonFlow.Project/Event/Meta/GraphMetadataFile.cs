@@ -28,9 +28,12 @@ public class GraphMetadataFile : ProjectFileFormatBase<GraphMetaBucketCommon>
             return new GraphMetadataFile(path + fileName);
 
         // Otherwise, lookup file in the embeded mfgraph directory
-        if (Godot.FileAccess.FileExists(EmbedGraphPath + fileName))
+        var embedPath = EmbedGraphPath + fileName;
+        if (Godot.ResourceLoader.Exists(embedPath))
         {
-            var data = Godot.FileAccess.GetFileAsBytes(EmbedGraphPath + fileName);
+            var item = Godot.ResourceLoader.Load(embedPath) as IGraphMetadataResource;
+            
+            var data = item.GetRawData();
             var holder = new GraphMetadataFile(data)
             {
                 Path = path + fileName,

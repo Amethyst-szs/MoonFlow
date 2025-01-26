@@ -7,7 +7,7 @@ using MoonFlow.Project;
 namespace MoonFlow.Addons;
 
 [GlobalClass, Tool]
-public partial class MfgraphResource() : Resource()
+public partial class MfgraphResource() : Resource(), IGraphMetadataResource
 {
     [Export]
     public string ArchiveName = "";
@@ -20,8 +20,15 @@ public partial class MfgraphResource() : Resource()
     [Export]
     public Array EntryPoints = [];
 
+    [Export]
+    private byte[] RawData = [];
+    public byte[] GetRawData() => RawData;
+
     public void InitResource(string path)
     {
+        if (Engine.IsEditorHint())
+            RawData = FileAccess.GetFileAsBytes(path);
+
         var data = new GraphMetadataFile(path).Data;
 
         HashName = path.Split(['/', '\\']).Last();
