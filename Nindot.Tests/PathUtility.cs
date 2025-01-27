@@ -99,7 +99,7 @@ public static class PathUtility
         if (!File.Exists(path))
         {
             IsInvalidInstanceData = true;
-            File.Copy(template, path);
+            File.Copy(template, path, true);
 
             const string errStr = "\n\n - MISSING GAME PATHS - \n\n go to Nindot.Tests/GamePaths.json and add your game paths!";
             Console.Write(errStr);
