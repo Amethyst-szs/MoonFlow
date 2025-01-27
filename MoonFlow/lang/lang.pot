@@ -348,6 +348,10 @@ msgstr ""
 msgid "HOME_TAB_WORLD"
 msgstr ""
 
+#: scene/home/home.tscn
+msgid "HOME_TAB_FTP"
+msgstr ""
+
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
 msgstr ""

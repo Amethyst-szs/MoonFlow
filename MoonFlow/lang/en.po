@@ -285,6 +285,10 @@ msgstr "Events"
 msgid "HOME_TAB_WORLD"
 msgstr "Kingdom"
 
+#: scene/home/home.tscn
+msgid "HOME_TAB_FTP"
+msgstr "FTP"
+
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
 msgstr "All text files in your project's default language"
