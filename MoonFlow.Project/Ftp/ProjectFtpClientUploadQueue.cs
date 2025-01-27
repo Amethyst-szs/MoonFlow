@@ -62,6 +62,8 @@ public static partial class ProjectFtpClient
 
     #region Utility
 
+    public static bool IsTransferQueueActive() => IsQueueActive;
+
     private static bool IsQueueItemAlreadyExist(IProjectFtpQueueItem item)
     {
         if (RemoteCurrent != null && !item.IsUnique(RemoteCurrent))
