@@ -2,6 +2,7 @@ extends Button
 class_name ExclusiveCategoryButton
 
 @export var target: Control
+@export var parent_override: Control
 @export var is_default_page: bool = false
 
 enum FilterType
@@ -13,6 +14,9 @@ enum FilterType
 @export var filter_type := FilterType.CANVAS_ITEM
 
 func _ready() -> void:
+	if parent_override == null:
+		parent_override = get_parent()
+	
 	toggle_mode = true
 	
 	if is_default_page:
@@ -32,6 +36,12 @@ func _pressed() -> void:
 		
 		target.show()
 	
-	for button in get_parent().get_children():
-		if button is Button:
-			button.set_pressed_no_signal(button == self)
+	_update_button_states(parent_override)
+
+func _update_button_states(node: Node) -> void:
+	for child in node.get_children():
+		if child is Button:
+			child.set_pressed_no_signal(child == self)
+		
+		if child.get_child_count() > 0:
+			_update_button_states(child)
