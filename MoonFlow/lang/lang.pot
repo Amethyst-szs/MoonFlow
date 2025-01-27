@@ -87,10 +87,10 @@
 # res://addons/wiki/scene/wiki_button_tooltip_text_bank.tres
 # res://scene/front_door/load/exception/msbt_entry_parser_exception.tscn
 # res://scene/front_door/load/component/loading_message_text.tres
-# res://scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-# res://scene/settings/engine/page/ftp.tscn
 # res://scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 # res://scene/main/header/ftp/ftp_status_indicator.tscn
+# res://scene/settings/engine/page/ftp.tscn
+# res://scene/settings/engine/ftp/ftp_connection_status_message_text.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -3473,6 +3473,78 @@ msgctxt "WIKI_BUTTON_TOOLTIP"
 msgid "SettingNotice"
 msgstr ""
 
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_EXPLANATION"
+msgstr ""
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_FILE_SOURCE_HEADER"
+msgstr ""
+
+#: scene/front_door/load/exception/msbt_entry_parser_exception.tscn
+msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_ENTRY_SOURCE_HEADER"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "START"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBP"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_MSBT"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_WORLD_LIST_DISPLAY_NAMES"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_SHINE_INFO"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_ITEM_LIST"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_COIN_COLLECT_NUM"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_LABEL_CACHE"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_EVENT_DATA"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "LOAD_FIRST_BOOT_METADATA_BUILDER"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
+msgid "END"
+msgstr ""
+
 #: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
 msgid "active"
@@ -3496,4 +3568,128 @@ msgstr ""
 #: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
 msgid "off"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_SUBHEADER_SETUP_GUIDE"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PORT_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PORT_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_SECRET_TOGGLE_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DOMAIN_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PORT_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_USERNAME_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_USERNAME_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_USERNAME_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_PASSWORD_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_BUTTON_CONNECT"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_BUTTON_CLEAR_ALL_CREDENTIALS"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_TITLE"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_OK"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_BODY_TEXT"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_CANCEL"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "OK"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Disconnected"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Pending"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Failed"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Invalid"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonInitial"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonRetry"
+msgstr ""
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonUpdate"
 msgstr ""

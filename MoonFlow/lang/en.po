@@ -3596,45 +3596,30 @@ msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr "Success!"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "OK"
-msgstr "Connected"
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "active"
+msgstr "Transferring Files to FTP server..."
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Disconnected"
-msgstr "No connection"
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "try_connect"
+msgstr "Connecting to FTP server..."
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Pending"
-msgstr "Attempting to connect..."
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "connect"
+msgstr "Connected to FTP server"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Failed"
-msgstr "Connection failed"
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "disconnect"
+msgstr "No connection to FTP Server"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Invalid"
-msgstr "Invalid connection"
-
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "ButtonInitial"
-msgstr "Connect"
-
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "ButtonRetry"
-msgstr "Retry Connection"
-
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "ButtonUpdate"
-msgstr "Update Connection"
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "off"
+msgstr "FTP Disabled"
 
 #: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_HEADER"
@@ -3727,30 +3712,45 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_CANCEL"
 msgstr "Cancel"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "active"
-msgstr "Transferring Files to FTP server..."
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "OK"
+msgstr "Connected"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "try_connect"
-msgstr "Connecting to FTP server..."
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Disconnected"
+msgstr "No connection"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "connect"
-msgstr "Connected to FTP server"
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Pending"
+msgstr "Attempting to connect..."
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "disconnect"
-msgstr "No connection to FTP Server"
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Failed"
+msgstr "Connection failed"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "off"
-msgstr "FTP Disabled"
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Invalid"
+msgstr "Invalid connection"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonInitial"
+msgstr "Connect"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonRetry"
+msgstr "Retry Connection"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonUpdate"
+msgstr "Update Connection"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
