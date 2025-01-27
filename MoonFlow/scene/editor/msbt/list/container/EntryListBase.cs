@@ -197,15 +197,21 @@ public abstract partial class EntryListBase : VBoxContainer
             if (child.GetType() != typeof(MarginContainer))
                 continue;
 
+            // Attempt to find dropdown button connected to this margin
             var margin = child as MarginContainer;
-            margin.Hide();
-
             if (!margin.HasMeta("dropdown"))
                 continue;
 
+            // Update visibility on dropdown button
             var dropdown = margin.GetMeta("dropdown").As<Button>();
-            dropdown.ButtonPressed = false;
             dropdown.Visible = IsDropdownMenuVisibleChildren(margin);
+
+            // If the dropdown button got hidden, hide the container as well
+            if (!dropdown.Visible)
+            {
+                margin.Hide();
+                dropdown.ButtonPressed = false;
+            }
         }
     }
 
