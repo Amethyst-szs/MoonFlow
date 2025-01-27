@@ -19,6 +19,7 @@ public static partial class ProjectFtpClient
     private static string ProjectPath { get => Project?.Path; }
 
     public static IProjectFtpStatusIndicator StatusIndicator { get; private set; } = null;
+    private static bool IsAttemptingConnection = false;
 
     #region Connection
 
@@ -26,6 +27,9 @@ public static partial class ProjectFtpClient
     {
         StatusIndicator = statusIndicator;
         _ = TryConnect();
+
+        // Startup connection ping thread
+        TaskServerPingLoop();
     }
 
     public static async Task<bool> TryConnect()
@@ -51,7 +55,11 @@ public static partial class ProjectFtpClient
 
         StatusIndicator.SetStatusConnecting();
 
-        try { await Client.Connect(); }
+        try
+        {
+            IsAttemptingConnection = true;
+            await Client.Connect();
+        }
         catch { return OnConnectionFailure(); }
 
         if (!await Client.IsStillConnected())
@@ -62,11 +70,15 @@ public static partial class ProjectFtpClient
         StatusIndicator.SetStatusConnected();
         StatusIndicator.EmitEventConnected();
 
+        IsAttemptingConnection = false;
+
         GD.Print("FTP: Connected");
         return true;
     }
     private static bool OnConnectionFailure()
     {
+        IsAttemptingConnection = false;
+
         Client?.Dispose();
         Client = null;
 
@@ -88,18 +100,18 @@ public static partial class ProjectFtpClient
         StatusIndicator?.SetStatusDisconnected();
         StatusIndicator?.EmitEventDisconnected();
 
+        IsAttemptingConnection = false;
+
         GD.Print("FTP: Disconnected");
     }
 
-    public static bool IsConnected()
+    private static async void TaskServerPingLoop()
     {
-        if (Client == null) return false;
-        return Client.IsAuthenticated;
-    }
-    public static async Task<bool> IsConnectedStill()
-    {
-        if (Client == null) return false;
-        return await Client.IsStillConnected();
+        // If client is supposedly connected but fails the IsStillConnected check, disconnect from server
+        if (Client != null && !IsAttemptingConnection && !await Client.IsStillConnected())
+            Disconnect();
+
+        _ = Task.Delay(15000).ContinueWith((task) => TaskServerPingLoop());
     }
 
     #endregion
@@ -154,6 +166,19 @@ public static partial class ProjectFtpClient
     #endregion
 
     #region Utility
+
+    public static bool IsAttemptingServerConnect() => IsAttemptingConnection;
+
+    public static bool IsConnected()
+    {
+        if (Client == null) return false;
+        return Client.IsAuthenticated;
+    }
+    public static async Task<bool> IsConnectedStill()
+    {
+        if (Client == null) return false;
+        return await Client.IsStillConnected();
+    }
 
     public static void UpdateLocalProjectDirectory(string path) => Project.AttachToProject(path);
     public static async Task UpdateWorkingDirectory()
