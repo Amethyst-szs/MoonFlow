@@ -19,25 +19,25 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 	[Export]
 	private Label ProgressLabel;
 
-    #region Display
+	#region Display
 
-    private const string TooltipContext = "FTP_STATUS_INDICATOR_TOOLTIP";
+	private const string TooltipContext = "FTP_STATUS_INDICATOR_TOOLTIP";
 
-	public void SetStatusActive() => UpdateStatus("active", CursorShape.Busy);
-	public void SetStatusConnecting() => UpdateStatus("try_connect", CursorShape.Busy);
+	public void SetStatusActive(bool isForce = false) => UpdateStatus("active", CursorShape.Busy, isForce);
+	public void SetStatusConnecting(bool isForce = false) => UpdateStatus("try_connect", CursorShape.Busy, isForce);
 
-	public void SetStatusConnected() => UpdateStatus("connect", CursorShape.Arrow);
-	public void SetStatusDisconnected() => UpdateStatus("disconnect", CursorShape.Forbidden);
+	public void SetStatusConnected(bool isForce = false) => UpdateStatus("connect", CursorShape.Arrow, isForce);
+	public void SetStatusDisconnected(bool isForce = false) => UpdateStatus("disconnect", CursorShape.Forbidden, isForce);
 
-	public void SetStatusDisabled() => UpdateStatus("off", CursorShape.Help);
+	public void SetStatusDisabled(bool isForce = false) => UpdateStatus("off", CursorShape.Help, isForce);
 
-	private async void UpdateStatus(string anim, CursorShape shape)
+	private async void UpdateStatus(string anim, CursorShape shape, bool isForce)
 	{
 		await Extension.WaitProcessFrame(this);
-		
-		if (Animation.CurrentAnimation != anim)
+
+		if (Animation.CurrentAnimation != anim || isForce)
 			Animation.CallDeferred(AnimationPlayer.MethodName.Play, anim);
-		
+
 		SetDeferred(PropertyName.TooltipText, Tr(anim, TooltipContext));
 		SetDeferred(PropertyName.MouseDefaultCursorShape, (int)shape);
 	}
@@ -65,17 +65,38 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 
 	#endregion
 
+	#region Input
+
+	public override async void _GuiInput(InputEvent @event)
+	{
+		if (@event is not InputEventMouseButton mouse || !mouse.Pressed)
+			return;
+
+		bool isCon = await ProjectFtpClient.IsConnectedStill();
+
+		if (isCon && !ProjectFtpClient.IsTransferQueueActive())
+		{
+			SetStatusConnected(true);
+			return;
+		}
+
+		if (!isCon && !ProjectFtpClient.IsAttemptingServerConnect())
+			_ = ProjectFtpClient.TryConnect();
+	}
+
+	#endregion
+
 	#region Signals
 
 	[Signal]
-    public delegate void FtpServerConnectedEventHandler();
+	public delegate void FtpServerConnectedEventHandler();
 	[Signal]
-    public delegate void FtpServerDisconnectedEventHandler();
+	public delegate void FtpServerDisconnectedEventHandler();
 
 	public void AttachEventConnected(Action func) => Connect(SignalName.FtpServerConnected, Callable.From(func));
-    public void AttachEventDisconnected(Action func) => Connect(SignalName.FtpServerDisconnected, Callable.From(func));
-    public void DetachEventConnected(Action func) => Disconnect(SignalName.FtpServerConnected, Callable.From(func));
-    public void DetachEventDisconnected(Action func) => Disconnect(SignalName.FtpServerDisconnected, Callable.From(func));
+	public void AttachEventDisconnected(Action func) => Connect(SignalName.FtpServerDisconnected, Callable.From(func));
+	public void DetachEventConnected(Action func) => Disconnect(SignalName.FtpServerConnected, Callable.From(func));
+	public void DetachEventDisconnected(Action func) => Disconnect(SignalName.FtpServerDisconnected, Callable.From(func));
 
 	public void EmitEventConnected() => EmitSignal(SignalName.FtpServerConnected);
 	public void EmitEventDisconnected() => EmitSignal(SignalName.FtpServerDisconnected);

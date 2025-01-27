@@ -9,11 +9,11 @@ public interface IProjectFtpStatusIndicator
 {
     #region Status
 
-    public void SetStatusActive();
-    public void SetStatusConnecting();
-    public void SetStatusConnected();
-    public void SetStatusDisconnected();
-    public void SetStatusDisabled();
+    public void SetStatusActive(bool isForce = false);
+    public void SetStatusConnecting(bool isForce = false);
+    public void SetStatusConnected(bool isForce = false);
+    public void SetStatusDisconnected(bool isForce = false);
+    public void SetStatusDisabled(bool isForce = false);
 
     #endregion
 
