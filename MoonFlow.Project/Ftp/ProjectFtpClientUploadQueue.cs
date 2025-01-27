@@ -20,7 +20,14 @@ public static partial class ProjectFtpClient
 
     private static void TryStartupQueue()
     {
-        if (IsQueueActive || RemoteQueue.Count == 0) return;
+        if (Client == null || IsQueueActive || RemoteQueue.Count == 0) return;
+
+        // Reattempt queue startup after a short delay if connection and authentication aren't complete
+        if (!Client.IsAuthenticated)
+        {
+            Task.Delay(1000).ContinueWith((task) => TryStartupQueue());
+            return;
+        }
 
         IsQueueActive = true;
         StatusIndicator?.SetStatusActive();
@@ -62,7 +69,7 @@ public static partial class ProjectFtpClient
 
         if (RemoteQueue.Any((compare) => !item.IsUnique(compare)))
             return true;
-        
+
         return false;
     }
 
