@@ -3706,45 +3706,223 @@ msgstr "Finalizing update..."
 msgid "VERSION_UPDATE_TOOLTIP_HEADER"
 msgstr "Update Available!"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "OK"
-msgstr "Connected"
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_HEADER_DOWNLOAD_PROGRESS"
+msgstr "Downloading Update..."
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Disconnected"
-msgstr "No connection"
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_HEADER_EXTRACT_PROGRESS"
+msgstr "Extracting Files..."
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Pending"
-msgstr "Attempting to connect..."
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_FAILED_HEADER"
+msgstr "Failed to Update!"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Failed"
-msgstr "Connection failed"
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_FAILED_EXTRACT_INFO"
+msgstr ""
+"Failed to extract downloaded archive. Try again, download the latest release "
+"manually, or report this as a bug on the repository!"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "Invalid"
-msgstr "Invalid connection"
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
+msgstr "Return to Home Page"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "ButtonInitial"
-msgstr "Connect"
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_RELEASES_WEBPAGE"
+msgstr "Download Manually"
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "ButtonRetry"
-msgstr "Retry Connection"
+#: scene/version/replace_old/replace_old_version_app.tscn
+msgid "REPLACE_OLD_VERSION_APP_HEADER"
+msgstr "Finalizing update..."
 
-#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
-msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
-msgid "ButtonUpdate"
-msgstr "Update Connection"
+#: scene/version/notify/version_tooltip.tscn
+msgid "VERSION_UPDATE_TOOLTIP_HEADER"
+msgstr "Update Available!"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME_TOOLTIP"
+msgstr ""
+"Internal name of the world's main stage file. This should\n"
+"always be the same as the stage of type \"Main Stage\"\n"
+"in the stages tab."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
+msgstr "Home Stage Name"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_DISPLAY_NAME_TOOLTIP"
+msgstr ""
+"Display name is language dependent, and can be edited\n"
+"through the text editor."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_DISPLAY_NAME"
+msgstr "Display Name"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_HOME_STAGE_NAME"
+msgstr "MyWorldHomeStage"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
+msgstr "Open Relevant MSBTs"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_SHINE_TYPE_TOOLTIP"
+msgstr ""
+"Changing the color or shape of a kingdom's Power Moons\n"
+"will not always update all graphics in game due to some\n"
+"elements being hardcoded. This mainly effects\n"
+"physical Shine models and checkpoint flags."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
+msgstr "Power Moon Color"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE_TOOLTIP"
+msgstr ""
+"This value cannot be edited! Without additional patching\n"
+"editing this value can cause game crashes."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
+msgstr "Purple Coin Type"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_0"
+msgstr "Common"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_1"
+msgstr "Brown"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_2"
+msgstr "Blue"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_3"
+msgstr "Red"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_4"
+msgstr "Orange"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_5"
+msgstr "Green"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_6"
+msgstr "Cyan"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_7"
+msgstr "Pink"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_8"
+msgstr "Purple"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_9"
+msgstr "Light Goldenrod"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_STAR"
+msgstr "Power Star"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_CUSTOM"
+msgstr "Custom ID"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_COIN_COLLECT_TYPE"
+msgstr "ID"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT_TOOLTIP"
+msgstr ""
+"Total quantity of purple coin collectables. Base game only\n"
+"uses 0, 50, and 100, but any value is valid."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
+msgstr "Purple Coin Total Count"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT_TOOLTIP"
+msgstr ""
+"Total amount of scenario variants the stage has.\n"
+"(max of 15)"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
+msgstr "Total Scenarios"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE_TOOLTIP"
+msgstr "Scenario used after all story objectives completed."
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
+msgstr "World Peace Scenario"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME_TOOLTIP"
+msgstr ""
+"Scenario used once all local story objectives are finished\n"
+"and the finale has been completed in Moon Kingdom."
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
+msgstr "Post-game Scenario"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK_TOOLTIP"
+msgstr ""
+"Scenario used after breaking the Moon Rock and spawning\n"
+"additional collectables and sub areas."
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
+msgstr "Post-Moon Rock Scenario"
+
+#: scene/editor/world/general/tab_general.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
+msgstr "Kingdom Info:"
+
+#: scene/editor/world/general/tab_general.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+msgstr "Scenario Info:"
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "active"
+msgstr "Transferring Files to FTP server..."
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "try_connect"
+msgstr "Connecting to FTP server..."
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "connect"
+msgstr "Connected to FTP server"
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "disconnect"
+msgstr "No connection to FTP Server"
+
+#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
+msgid "off"
+msgstr "FTP Disabled"
 
 #: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_HEADER"
@@ -3837,30 +4015,45 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_CANCEL"
 msgstr "Cancel"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "active"
-msgstr "Transferring Files to FTP server..."
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "OK"
+msgstr "Connected"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "try_connect"
-msgstr "Connecting to FTP server..."
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Disconnected"
+msgstr "No connection"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "connect"
-msgstr "Connected to FTP server"
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Pending"
+msgstr "Attempting to connect..."
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "disconnect"
-msgstr "No connection to FTP Server"
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Failed"
+msgstr "Connection failed"
 
-#: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
-msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
-msgid "off"
-msgstr "FTP Disabled"
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "Invalid"
+msgstr "Invalid connection"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonInitial"
+msgstr "Connect"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonRetry"
+msgstr "Retry Connection"
+
+#: scene/settings/engine/ftp/ftp_connection_status_message_text.tres
+msgctxt "ENGINE_SETTINGS_FTP_CONNECTION_STATUS"
+msgid "ButtonUpdate"
+msgstr "Update Connection"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
