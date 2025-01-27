@@ -98,8 +98,8 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 	public void DetachEventConnected(Action func) => Disconnect(SignalName.FtpServerConnected, Callable.From(func));
 	public void DetachEventDisconnected(Action func) => Disconnect(SignalName.FtpServerDisconnected, Callable.From(func));
 
-	public void EmitEventConnected() => EmitSignal(SignalName.FtpServerConnected);
-	public void EmitEventDisconnected() => EmitSignal(SignalName.FtpServerDisconnected);
+	public void EmitEventConnected() => CallThreadSafe(MethodName.EmitSignal, SignalName.FtpServerConnected);
+	public void EmitEventDisconnected() => CallThreadSafe(MethodName.EmitSignal, SignalName.FtpServerDisconnected);
 
 	#endregion
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=28 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://djaf0d3bxuxkh" path="res://scene/home/tab_event/tab_event.tscn" id="9_l2bha"]
 [ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="10_2icam"]
 [ext_resource type="Texture2D" uid="uid://c0beoybdkplbi" path="res://asset/app/icon/world.png" id="11_t88ee"]
+[ext_resource type="Script" path="res://scene/home/ButtonHolderTabFtp.cs" id="12_nms5l"]
+[ext_resource type="Texture2D" uid="uid://dcdtmucjrmujn" path="res://asset/app/icon/ftp.png" id="13_ai7r7"]
+[ext_resource type="PackedScene" uid="uid://cwmgatrqsxv3y" path="res://scene/home/tab_ftp/tab_ftp.tscn" id="18_g3ec3"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_qcbp3"]
 device = -1
@@ -40,6 +43,14 @@ keycode = 51
 
 [sub_resource type="Shortcut" id="Shortcut_go1wc"]
 events = [SubResource("InputEventKey_k4ff6")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_m2ekr"]
+device = -1
+command_or_control_autoremap = true
+keycode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_gc34o"]
+events = [SubResource("InputEventKey_m2ekr")]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -130,6 +141,24 @@ icon_alignment = 2
 script = ExtResource("7_5wvs6")
 target = NodePath("../../../../Panel_Content/HOME_TAB_WORLD")
 
+[node name="ButtonHolderTabFtp" type="HBoxContainer" parent="Content/VBox/Panel_TabList/Scroll/HBox"]
+layout_mode = 2
+script = ExtResource("12_nms5l")
+
+[node name="Button_TabFtp" type="Button" parent="Content/VBox/Panel_TabList/Scroll/HBox/ButtonHolderTabFtp" node_paths=PackedStringArray("target", "parent_override")]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+toggle_mode = true
+action_mode = 0
+shortcut = SubResource("Shortcut_gc34o")
+text = "HOME_TAB_FTP"
+icon = ExtResource("13_ai7r7")
+icon_alignment = 2
+script = ExtResource("7_5wvs6")
+target = NodePath("../../../../../Panel_Content/HOME_TAB_FTP")
+parent_override = NodePath("../..")
+
 [node name="Panel_Content" type="PanelContainer" parent="Content/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -144,6 +173,9 @@ layout_mode = 2
 
 [node name="HOME_TAB_WORLD" parent="Content/VBox/Panel_Content" instance=ExtResource("6_ps61c")]
 visible = false
+layout_mode = 2
+
+[node name="HOME_TAB_FTP" parent="Content/VBox/Panel_Content" instance=ExtResource("18_g3ec3")]
 layout_mode = 2
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]

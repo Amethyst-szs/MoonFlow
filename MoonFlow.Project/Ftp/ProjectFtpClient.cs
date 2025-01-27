@@ -108,7 +108,7 @@ public static partial class ProjectFtpClient
     private static async void TaskServerPingLoop()
     {
         // If client is supposedly connected but fails the IsStillConnected check, disconnect from server
-        if (Client != null && !IsAttemptingConnection && !await Client.IsStillConnected())
+        if (Client != null && !IsAttemptingConnection && !IsQueueActive && !await Client.IsStillConnected())
             Disconnect();
 
         _ = Task.Delay(15000).ContinueWith((task) => TaskServerPingLoop());
