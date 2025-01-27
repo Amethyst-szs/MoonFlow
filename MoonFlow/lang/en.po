@@ -3917,7 +3917,12 @@ msgstr "Connected to FTP server"
 #: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
 msgid "disconnect"
-msgstr "No connection to FTP Server"
+msgstr ""
+"No connection to FTP Server!\n"
+"Click here to try and reconnect.\n"
+"\n"
+"Go to the settings page to\n"
+"change your connection info."
 
 #: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
