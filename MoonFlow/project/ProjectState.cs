@@ -20,7 +20,7 @@ public class ProjectState(string path, ProjectConfig config)
 
     // Status
     private bool IsInitComplete = false;
-    private bool IsWaitingForUpgradeAcceptance = false;
+    private bool IsWaitingForAcceptance = false;
 
     // Project Components
     public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
@@ -55,6 +55,8 @@ public class ProjectState(string path, ProjectConfig config)
         Global.SetDebugMetadataFileOutput(Config.IsDebug());
 
         // Check if the application is an incompatible version for the project
+        IsWaitingForAcceptance = false;
+        
         if (!Config.IsEngineTargetOk(GitInfo.GitCommitHash()))
         {
             var appBuildTime = GitInfo.GitCommitUnixTime();
@@ -63,6 +65,7 @@ public class ProjectState(string path, ProjectConfig config)
             if (appBuildTime < time)
             {
                 GD.Print("Project load aborted due to outdated application!");
+                IsWaitingForAcceptance = true;
                 loadScreen.LoadingStopDueToOutdatedApplication();
                 return;
             }
@@ -72,7 +75,7 @@ public class ProjectState(string path, ProjectConfig config)
             {
                 GD.Print("Project uses an older version of MoonFlow, awaiting upgrade acceptance...");
 
-                IsWaitingForUpgradeAcceptance = true;
+                IsWaitingForAcceptance = true;
                 loadScreen.LoadingPauseForUpgradeRequest();
                 return;
             }
@@ -81,12 +84,12 @@ public class ProjectState(string path, ProjectConfig config)
         InitProjectHandler(loadScreen);
     }
 
-    public void InitProjectAfterDecideUpgrade(ProjectLoading loadScreen)
+    public void InitProjectAfterDecide(ProjectLoading loadScreen)
     {
-        if (!IsWaitingForUpgradeAcceptance)
+        if (!IsWaitingForAcceptance)
             throw new Exception("Method can only be called during upgrade acceptance period");
-        
-        IsWaitingForUpgradeAcceptance = false;
+
+        IsWaitingForAcceptance = false;
 
         if (!loadScreen.IsAcceptUpgrade)
         {

@@ -277,6 +277,14 @@ msgid "LOADING_OUTDATED_DOWNLOAD"
 msgstr ""
 
 #: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_FORCE_OPEN_ANYWAY_TOOLTIP"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_FORCE_OPEN_ANYWAY"
+msgstr ""
+
+#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_HEADER"
 msgstr ""
 

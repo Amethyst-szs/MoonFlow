@@ -103,7 +103,7 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 
 		// Push attention to display server
 		if (!DisplayServer.WindowIsFocused())
-            DisplayServer.WindowRequestAttention();
+			DisplayServer.WindowRequestAttention();
 
 		// Open home page application
 		AppSceneServer.CreateAppDeferred<HomeRoot>();
@@ -140,7 +140,7 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 		IsAcceptUpgrade = false;
 		IsAcceptUpgradeAlways = false;
 
-		ProjectManager.GetProject().InitProjectAfterDecideUpgrade(this);
+		ProjectManager.GetProject().InitProjectAfterDecide(this);
 	}
 	public void OnUpgradeDecisionAcceptOnce()
 	{
@@ -152,7 +152,7 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 		);
 		SetVisibleContainer(ContainerStatus);
 
-		ProjectManager.GetProject().InitProjectAfterDecideUpgrade(this);
+		ProjectManager.GetProject().InitProjectAfterDecide(this);
 	}
 	public void OnUpgradeDecisionAcceptAlways()
 	{
@@ -164,7 +164,7 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 		);
 		SetVisibleContainer(ContainerStatus);
 
-		ProjectManager.GetProject().InitProjectAfterDecideUpgrade(this);
+		ProjectManager.GetProject().InitProjectAfterDecide(this);
 	}
 
 	#endregion
@@ -189,7 +189,7 @@ public partial class ProjectLoading : AppScene, IProjectLoadingScene
 
 		if (e != null)
 			LabelException.CallDeferred("set", ["text", GetExceptionAsString(e)]);
-		
+
 		if (e is MsbtEntryParserException parserException)
 			LoadingExceptionFromMsbtParser(parserException);
 	}

@@ -208,6 +208,16 @@ msgid "LOADING_OUTDATED_DOWNLOAD"
 msgstr "Official Releases"
 
 #: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_FORCE_OPEN_ANYWAY_TOOLTIP"
+msgstr ""
+"WARNING - This is not recommended unless you\n"
+"know what you are doing!"
+
+#: scene/front_door/load/project_loading.tscn
+msgid "LOADING_OUTDATED_FORCE_OPEN_ANYWAY"
+msgstr "Open project anyways"
+
+#: scene/front_door/load/project_loading.tscn
 msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_HEADER"
 msgstr "Upgrade Project?"
 
