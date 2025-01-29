@@ -2096,17 +2096,17 @@ msgstr "Dialogue Balloon"
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "MessageTalk"
-msgstr "Dialouge"
+msgstr "Dialogue"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "MessageTalkSpecialPurpose"
-msgstr "Dialouge (Special Purpose)"
+msgstr "Dialogue (Special Purpose)"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
 msgid "NextTalkMessage"
-msgstr "Next Dialouge Message"
+msgstr "Next Dialogue Message"
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
@@ -3201,7 +3201,7 @@ msgstr "Camera"
 #: lang/db/event_category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"
 msgid "DIALOUGE"
-msgstr "Dialouge"
+msgstr "Dialogue"
 
 #: lang/db/event_category_table_translation_text.tres
 msgctxt "GRAPH_NODE_CATEGORY_TABLE"
