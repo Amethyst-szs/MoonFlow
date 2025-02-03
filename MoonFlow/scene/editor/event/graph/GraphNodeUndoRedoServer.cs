@@ -29,17 +29,17 @@ public class GraphNodeUndoRedoServer
 
     public void RegisterEntry()
     {
-        GD.Print("Entry register placeholder");
+        // GD.Print("Entry register placeholder");
     }
 
     public void Undo()
     {
-        GD.Print("Undo placeholder");
+        // GD.Print("Undo placeholder");
     }
 
     public void Redo()
     {
-        GD.Print("Redo placeholder");
+        // GD.Print("Redo placeholder");
     }
 
     #endregion
