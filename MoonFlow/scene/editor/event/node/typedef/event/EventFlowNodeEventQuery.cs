@@ -1,22 +1,33 @@
 using Godot;
-using System.Linq;
+using System;
 
 using Nindot.Al.EventFlow;
-using Nindot.Al.EventFlow.Smo;
+using System.Linq;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[GlobalClass]
-[ScenePath("res://scene/editor/event/node/typedef/fork/fork.tscn")]
-public partial class EventFlowNodeFork : EventFlowNodeCommon
+public partial class EventFlowNodeEventQuery : EventFlowNodeCommon
 {
-	private NodeFork ForkNode;
-
     public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
     {
         base.InitContent(content, graph);
+    }
 
-		ForkNode = content as NodeFork;
+    protected override PortOut CreatePortOut()
+    {
+        var port = base.CreatePortOut();
+
+		if (PortOutList.GetChildCount() <= 2)
+		{
+			if (port.Index == 0) port.TooltipText = port.Index.ToString() + " / false";
+			else port.TooltipText = port.Index.ToString() + " / true";
+		}
+		else
+		{
+			port.TooltipText = port.Index.ToString();
+		}
+
+		return port;
     }
 
     private void OnButtonPressedRemovePort()
@@ -27,34 +38,24 @@ public partial class EventFlowNodeFork : EventFlowNodeCommon
 		
 		// Remove connection from last port
 		var lastPort = PortOutList.GetChildren().Last() as PortOut;
+		var portIdx = lastPort.Index;
+
 		lastPort.Connection = null;
-
-		ForkNode.NextIdList.RemoveAt(lastPort.Index);
-
 		lastPort.QueueFree();
 
-		// Regenerate id list
-		var ids = Content.GetNextIds();
-		var list = ids.Select(id =>
-		{
-			if (id == int.MinValue) return null;
-			return Application.GraphNodeHolder.FindChild(id.ToString(), true, false) as EventFlowNodeCommon;
-		});
-			
-		SetupConnections([.. list]);
-		SetNodeModified();
+		Content.CaseEventList.CaseList.RemoveAt(portIdx);
 
-		DrawDebugLabel();
+		GenerateIdList();
 	}
 
 	private void OnButtonPressedAddPort()
 	{
-		ForkNode.NextIdList.Add(int.MinValue);
+		CreatePortOut();
+		GenerateIdList();
+	}
 
-		// Create new port
-		var port = CreatePortOut();
-
-		// Regenerate id list
+	private void GenerateIdList()
+	{
 		var ids = Content.GetNextIds();
 		var list = ids.Select(s =>
 		{

@@ -18,6 +18,8 @@ public static class EventFlowNodeFactory
         { typeof(NodeMessageTalk), "talk/talk.tscn" },
         { typeof(NodeSelectChoice), "talk/choice.tscn" },
         { typeof(NodeSelectYesNo), "talk/choice_bool.tscn" },
+
+        { typeof(NodeEventQuery), "event/event_query.tscn" },
     };
 
     private const string PathBase = "res://scene/editor/event/node/typedef/";

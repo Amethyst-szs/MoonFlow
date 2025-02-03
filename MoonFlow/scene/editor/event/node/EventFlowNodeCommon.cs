@@ -95,7 +95,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		if (list.Count > Connections.Length)
 			Array.Resize(ref Connections, list.Count);
 
-		for (int i = 0; i < list.Count; i++)
+		for (int i = 0; i < Math.Min(list.Count, PortOutList.GetChildCount()); i++)
 		{
 			if (list[i] == null)
 				continue;
@@ -204,9 +204,14 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 	{
 		var port = base.CreatePortOut();
 
-		if (Content.GetMaxOutgoingEdges() > 1)
-			port.PortColor = PortColorList[port.Index];
+		if ((Content.GetMaxOutgoingEdges() > 1 || !Content.IsForceOutgoingEdgeCount()) && PortColorList.Count > 0)
+		{
+			var idx = Math.Min(port.Index, PortColorList.Count - 1);
+			port.PortColor = PortColorList[idx];
+		}
 
+		// Ensure connection array has enough space for this port
+		Array.Resize(ref Connections, Math.Max(port.Index + 1, Connections.Length));
 		return port;
 	}
 

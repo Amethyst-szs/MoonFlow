@@ -245,7 +245,7 @@ public abstract class Node
         }
 
         // Ensure the edge index is below the max edge count
-        if (edgeIndex >= GetMaxOutgoingEdges())
+        if (edgeIndex >= GetMaxOutgoingEdges() && IsForceOutgoingEdgeCount())
             return;
 
         CaseEventList.RemoveNextNodeForCase(edgeIndex);

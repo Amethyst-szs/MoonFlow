@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg3w54l45qnm0"]
+
+[ext_resource type="PackedScene" uid="uid://byyiu2khxy0tv" path="res://scene/editor/event/node/typedef/flow/fork.tscn" id="1_x7l24"]
+[ext_resource type="Script" path="res://scene/editor/event/node/typedef/event/EventFlowNodeEventQuery.cs" id="2_dohh4"]
+
+[node name="EventFlowNodeEventQuery" instance=ExtResource("1_x7l24")]
+script = ExtResource("2_dohh4")
+DefaultPortOutColor = Color(0.470588, 0.733333, 1, 1)
+PortColorList = [Color(1, 0.47, 0.47, 1), Color(1, 0.735, 0.47, 1), Color(1, 1, 0.47, 1), Color(0.735, 1, 0.47, 1), Color(0.47, 1, 0.735, 1), Color(0.47, 0.735, 1, 1), Color(0.47, 0.47, 1, 1), Color(1, 0.47, 1, 1)]
