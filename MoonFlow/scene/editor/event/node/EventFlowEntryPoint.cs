@@ -102,6 +102,10 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 			Connection?.PortIn.RemoveIncoming(port);
 		}
 
+		// Delete content and godot object
+		Graph.EntryPoints.Remove(Name);
+		Application.Metadata.EntryPoints.Remove(Name);
+
 		// Loop through graph, removing self from jump nodes
 		foreach (var node in Application.GraphNodeHolder.GetChildren())
 		{
@@ -112,11 +116,6 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		}
 
 		SetNodeModified();
-
-		// Delete content and godot object
-		Graph.EntryPoints.Remove(Name);
-		Application.Metadata.EntryPoints.Remove(Name);
-
 		QueueFree();
 	}
 

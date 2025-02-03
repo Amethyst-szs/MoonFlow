@@ -50,9 +50,7 @@ public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 		if (NodeJump.JumpEntryName != name)
 			return;
 
-		JumpList.Select(-1);
-		OnEntryPointJumpTargetSelected(-1);
-
+		OnEntryPointListModified("", "");
 		SetNodeModified();
 	}
 
@@ -89,15 +87,18 @@ public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 
 	private void OnEntryPointJumpTargetSelected(int idx)
 	{
+		if (idx >= Graph.EntryPoints.Count)
+			idx = Graph.EntryPoints.Count - 1;
+		
 		if (idx == -1)
 		{
 			NodeJump.JumpEntryName = "__NULL__";
+			SetNodeModified();
 			return;
 		}
 
 		var name = Graph.EntryPoints.Keys.ElementAt(idx);
 		NodeJump.JumpEntryName = name;
-
 		SetNodeModified();
 	}
 
