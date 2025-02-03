@@ -32,6 +32,15 @@ public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 		// Connect to event from application
 		Application.Connect(EventFlowApp.SignalName.EntryPointListModified,
 			Callable.From(new Action<string, string>(OnEntryPointListModified)));
+		
+		// Assign default selection
+		SetupSelection();
+	}
+
+	public void SetupSelection()
+	{
+		string n = NodeJump.JumpEntryName;
+		OnEntryPointListModified(n, n);
 	}
 
 	#region Signals
@@ -43,14 +52,17 @@ public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 
 		JumpList.Select(-1);
 		OnEntryPointJumpTargetSelected(-1);
+
+		SetNodeModified();
 	}
 
 	private void OnEntryPointListModified(string oldName, string name)
 	{
-		JumpList.Clear();
-
+		var oldIdx = JumpList.Selected;
 		var newIdx = -1;
 
+		// Regenerate dropdown menu contents
+		JumpList.Clear();
 		for (var i = 0; i < Graph.EntryPoints.Count; i++)
 		{
 			var point = Graph.EntryPoints.ElementAt(i).Key;
@@ -60,8 +72,19 @@ public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 				newIdx = i;
 		}
 
+		if (oldName == string.Empty && name == string.Empty)
+		{
+			JumpList.Selected = oldIdx;
+			OnEntryPointJumpTargetSelected(oldIdx);
+			return;
+		}
+
 		if (oldName == NodeJump.JumpEntryName && newIdx != -1)
-			JumpList.Select(newIdx);
+		{
+			JumpList.Selected = newIdx;
+			OnEntryPointJumpTargetSelected(newIdx);
+			return;
+		}
 	}
 
 	private void OnEntryPointJumpTargetSelected(int idx)
@@ -74,6 +97,8 @@ public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 
 		var name = Graph.EntryPoints.Keys.ElementAt(idx);
 		NodeJump.JumpEntryName = name;
+
+		SetNodeModified();
 	}
 
 	#endregion
