@@ -31,5 +31,9 @@ func _on_toggled(state: bool) -> void:
 		dropdown.visible = state
 
 func _on_visibility_changed() -> void:
+	var result := button_pressed && visible
+	if invert_result:
+		result = !result
+	
 	if dropdown:
-		dropdown.visible = button_pressed && visible
+		dropdown.visible = result
