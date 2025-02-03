@@ -30,7 +30,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_eioh2")
 placeholder_text = "EVENT_FLOW_NODE_NAME_EDIT_PLACEHOLDER"
-max_length = 64
+max_length = 128
 expand_to_text_length = true
 context_menu_enabled = false
 
