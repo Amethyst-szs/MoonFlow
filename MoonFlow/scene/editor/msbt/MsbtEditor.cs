@@ -266,7 +266,7 @@ public partial class MsbtEditor : PanelContainer
 
 				// If the default language entry was modified, replace this language's entry
 				var entryDL = fileDL.GetEntry(entryLabel);
-				if (entryDL == null)
+				if (entryDL == null || entryDL == entry)
 					continue;
 
 				if (entryDL.IsModified)
