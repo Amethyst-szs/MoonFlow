@@ -300,7 +300,7 @@ public partial class MsbtEditor : PanelContainer
 		ForceResetModifiedFlag();
 
 		// Remove the modified icon from all entry buttons in editor
-		EntryListBase.ClearAllModifiedIcons(EntryList);
+		EntryList.CallDeferred(EntryListBase.MethodName.ClearAllModifiedIcons, EntryList);
 
 		// Remove appended modified icon in title
 		FileTitleName.SetDeferred(Label.PropertyName.Text, FileTitleName.Text.TrimSuffix("*"));

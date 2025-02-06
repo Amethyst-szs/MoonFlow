@@ -255,12 +255,7 @@ public abstract partial class EntryListBase : VBoxContainer
         button.SetUnsavedState(true);
     }
 
-    public static async void ClearAllModifiedIcons(Node node)
-    {
-        await Extension.WaitProcessFrame(node);
-        ClearAllModifiedIconsRecursive(node);
-    }
-    private static void ClearAllModifiedIconsRecursive(Node node)
+    private static void ClearAllModifiedIcons(Node node)
     {
         if (node is EntryLabelButton button && !node.Name.ToString().EndsWith("_Dropdown"))
             button.SetUnsavedState(false);
