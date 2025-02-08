@@ -5,6 +5,7 @@ using System.Linq;
 using Nindot.Al.EventFlow.Smo;
 
 using MoonFlow.Project;
+using MoonFlow.Scene.EditorMsbt;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -12,13 +13,17 @@ namespace MoonFlow.Scene.EditorEvent;
 public partial class PopupInjectGraphNode : Popup
 {
 	public EventFlowApp Context { get; private set; } = null;
+	public const string DefaultNodeName = "PopupInjectGraphNodeInstance";
+
+	private static string SearchLast = "";
 
 	[Export, ExportGroup("Internal References")]
 	private VBoxContainer ContainerRoot;
 	[Export]
 	private VBoxContainer ContainerFav;
+	[Export]
+	private LineEdit LineSearch;
 
-	public const string DefaultNodeName = "PopupInjectGraphNodeInstance";
 	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
 
 	[Signal]
@@ -92,12 +97,25 @@ public partial class PopupInjectGraphNode : Popup
 
 		Position = (Vector2I)Context.GetGlobalMousePosition();
 		Popup();
+		SetupSearchUsingLastInstance();
 	}
 
 	public void SetupWithContextCentered(EventFlowApp context)
 	{
 		Context = context;
 		PopupCentered();
+		SetupSearchUsingLastInstance();
+	}
+
+	private void SetupSearchUsingLastInstance()
+	{
+		if (SearchLast == string.Empty)
+			return;
+		
+		LineSearch.Text = SearchLast;
+		LineSearch.CaretColumn = SearchLast.Length;
+
+		OnSearchUpdated(SearchLast);
 	}
 
 	#endregion
@@ -106,6 +124,8 @@ public partial class PopupInjectGraphNode : Popup
 
 	private void OnSearchUpdated(string txt)
 	{
+		SearchLast = txt;
+
 		if (txt == string.Empty)
 		{
 			ShowAllButtons(ContainerRoot);

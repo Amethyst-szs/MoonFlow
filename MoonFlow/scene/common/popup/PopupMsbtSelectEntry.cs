@@ -32,6 +32,7 @@ public partial class PopupMsbtSelectEntry : Window
 	private Label LabelTooManyResults;
 
 	private Timer InputTimer;
+	private static string SearchLast = "";
 
 	[Signal]
 	public delegate void ItemSelectedEventHandler(string arc, string file, string label);
@@ -53,6 +54,8 @@ public partial class PopupMsbtSelectEntry : Window
 		LabelNoResults.Hide();
 		LabelTooManyResults.Hide();
 		LabelInvalidRequest.Show();
+
+		SetupSearchBoxFromSearchLast();
 	}
 
 	public override void _Input(InputEvent @event)
@@ -65,6 +68,16 @@ public partial class PopupMsbtSelectEntry : Window
 	{
 		if (what == NotificationWMCloseRequest)
 			QueueFree();
+	}
+
+	private void SetupSearchBoxFromSearchLast()
+	{
+		if (SearchLast == string.Empty)
+			return;
+		
+		LineSearch.SetDeferred(LineEdit.PropertyName.Text, SearchLast);
+		LineSearch.SetDeferred(LineEdit.PropertyName.CaretColumn, SearchLast.Length);
+		CallDeferred(MethodName.OnInputTimerTimeout);
 	}
 
 	#region Signals
@@ -101,6 +114,7 @@ public partial class PopupMsbtSelectEntry : Window
 
 		// Fetch search request
 		var txt = LineSearch.Text;
+		SearchLast = txt;
 
 		if (txt == string.Empty && !IsDisplayWithoutSearch)
 		{

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bsrqtic8ahapp" path="res://asset/material/graph/block.svg" id="5_72po0"]
 [ext_resource type="Script" path="res://scene/editor/event/inject/NodeInjectLineSearch.cs" id="5_p7pnm"]
 
-[node name="PopupInjectGraphNode" type="Popup" node_paths=PackedStringArray("ContainerRoot", "ContainerFav")]
+[node name="PopupInjectGraphNode" type="Popup" node_paths=PackedStringArray("ContainerRoot", "ContainerFav", "LineSearch")]
 disable_3d = true
 size = Vector2i(390, 432)
 visible = true
@@ -17,6 +17,7 @@ theme = ExtResource("1_pt7cc")
 script = ExtResource("1_0ams4")
 ContainerRoot = NodePath("Panel/Scroll/Content")
 ContainerFav = NodePath("Panel/Scroll/Content/VBox_Favorite")
+LineSearch = NodePath("Panel/Scroll/Content/Line_Search")
 
 [node name="Panel" type="PanelContainer" parent="."]
 anchors_preset = 15
