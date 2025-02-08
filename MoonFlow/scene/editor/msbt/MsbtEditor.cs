@@ -350,7 +350,7 @@ public partial class MsbtEditor : PanelContainer
 		var editor = CreateEntryContentEditor(File.GetEntryIndex(name));
 		EntryContentHolder.AddChild(editor, true);
 
-		EntryList.OnEntrySelected(name, true);
+		EntryList.OnEntrySelected(name, false);
 		EntryList.UpdateEntryCount();
 
 		editor.SetModified();
