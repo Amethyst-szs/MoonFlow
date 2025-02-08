@@ -186,10 +186,11 @@ layout_mode = 2
 [node name="Header" type="HBoxContainer" parent="MsbtEditor/Layout"]
 clip_contents = true
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 16
 
 [node name="Start" type="VSeparator" parent="MsbtEditor/Layout/Header"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="FileEntry" type="Label" parent="MsbtEditor/Layout/Header"]
 unique_name_in_owner = true
@@ -202,14 +203,13 @@ text_overrun_behavior = 3
 [node name="FileTitle" type="Label" parent="MsbtEditor/Layout/Header"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
 label_settings = SubResource("LabelSettings_iuuba")
 horizontal_alignment = 2
 vertical_alignment = 1
-text_overrun_behavior = 3
 
 [node name="End" type="VSeparator" parent="MsbtEditor/Layout/Header"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="LanguagePicker" type="OptionButton" parent="MsbtEditor/Layout/Header"]
 unique_name_in_owner = true
