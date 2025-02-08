@@ -54,16 +54,18 @@ public partial class MsbtPageEditor : TextEdit
     {
         // Setup default properties
         AutowrapMode = TextServer.AutowrapMode.WordSmart;
-        DragAndDropSelectionEnabled = false;
-        MiddleMousePasteEnabled = false;
         WrapMode = LineWrappingMode.Boundary;
         ClipContents = false;
         ClipChildren = ClipChildrenMode.Disabled;
 
-        // Setup syntax highlighter
+        DragAndDropSelectionEnabled = false;
+        MiddleMousePasteEnabled = false;
+
+        UseCustomWordSeparators = true;
+        CustomWordSeparators = "⸺"; // Invisible symbol marking tag objects
+
         SyntaxHighlighter = new SyntaxHighlighterMsbtPage();
 
-        // Disable right click context menu
         ContextMenuEnabled = false;
 
         // Setup text string to match page elements
