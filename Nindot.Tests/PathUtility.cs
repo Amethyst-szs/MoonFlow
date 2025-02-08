@@ -90,7 +90,6 @@ public static class PathUtility
     private static void InstantiateData()
     {
         const string path = "../../../GamePaths.json";
-        const string template = "../../../Resources/GamePathTemplate.json";
 
         if (IsInvalidInstanceData)
             return;
@@ -99,9 +98,7 @@ public static class PathUtility
         if (!File.Exists(path))
         {
             IsInvalidInstanceData = true;
-            File.Copy(template, path, true);
-
-            const string errStr = "\n\n - MISSING GAME PATHS - \n\n go to Nindot.Tests/GamePaths.json and add your game paths!";
+            const string errStr = "\n\n - MISSING GAME PATHS - \n\n copy \"Nindot.Tests/Resources/GamePathTemplate.json\" to \"Nindot.Tests/GamePaths.json\" and add your game paths!";
             Console.Write(errStr);
             Assert.Skip(errStr);
             return;
