@@ -183,6 +183,10 @@ func _gui_input(event: InputEvent) -> void:
 	v_scrollbar_dragging = get_v_scroll_bar().has_focus() # != pressed => TODO
 	h_scrollbar_dragging = get_h_scroll_bar().has_focus()
 	
+	var scroll_speed: float = speed
+	if event.is_command_or_control_pressed():
+		scroll_speed *= 4.0
+	
 	if event is InputEventMouseButton:
 		match event.button_index:
 			MOUSE_BUTTON_WHEEL_DOWN:
@@ -190,10 +194,10 @@ func _gui_input(event: InputEvent) -> void:
 					last_scroll_type = SCROLL_TYPE.WHEEL
 					if event.shift_pressed or force_horizontal_scrolling:
 						if should_scroll_horizontal():
-							velocity.x -= speed
+							velocity.x -= scroll_speed
 					else:
 						if should_scroll_vertical():
-							velocity.y -= speed
+							velocity.y -= scroll_speed
 					friction = friction_scroll
 					damping = damping_scroll
 			MOUSE_BUTTON_WHEEL_UP:
@@ -201,10 +205,10 @@ func _gui_input(event: InputEvent) -> void:
 					last_scroll_type = SCROLL_TYPE.WHEEL
 					if event.shift_pressed or force_horizontal_scrolling:
 						if should_scroll_horizontal():
-							velocity.x += speed
+							velocity.x += scroll_speed
 					else:
 						if should_scroll_vertical():
-							velocity.y += speed
+							velocity.y += scroll_speed
 					friction = friction_scroll
 					damping = damping_scroll
 			MOUSE_BUTTON_WHEEL_LEFT:
@@ -212,10 +216,10 @@ func _gui_input(event: InputEvent) -> void:
 					last_scroll_type = SCROLL_TYPE.WHEEL
 					if event.shift_pressed or force_vertical_scrolling:
 						if should_scroll_vertical():
-							velocity.y -= speed
+							velocity.y -= scroll_speed
 					else:
 						if should_scroll_horizontal():
-							velocity.x += speed
+							velocity.x += scroll_speed
 					friction = friction_scroll
 					damping = damping_scroll
 			MOUSE_BUTTON_WHEEL_RIGHT:
@@ -223,10 +227,10 @@ func _gui_input(event: InputEvent) -> void:
 					last_scroll_type = SCROLL_TYPE.WHEEL
 					if event.shift_pressed or force_vertical_scrolling:
 						if should_scroll_vertical():
-							velocity.y += speed
+							velocity.y += scroll_speed
 					else:
 						if should_scroll_horizontal():
-							velocity.x -= speed
+							velocity.x -= scroll_speed
 					friction = friction_scroll
 					damping = damping_scroll
 			MOUSE_BUTTON_LEFT:
@@ -254,9 +258,9 @@ func _gui_input(event: InputEvent) -> void:
 	
 	if event is InputEventPanGesture:
 		if should_scroll_horizontal():
-			velocity.x = -event.delta.x * speed
+			velocity.x = -event.delta.x * scroll_speed
 		if should_scroll_vertical():
-			velocity.y = -event.delta.y * speed
+			velocity.y = -event.delta.y * scroll_speed
 	
 	if event is InputEventScreenTouch:
 		if event.pressed:
