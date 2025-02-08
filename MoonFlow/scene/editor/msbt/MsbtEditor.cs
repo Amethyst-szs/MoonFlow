@@ -46,7 +46,7 @@ public partial class MsbtEditor : PanelContainer
 
 	private MsbtAppHolder Parent = null;
 
-	[Export, ExportGroup("Internal References")]
+	[Export, ExportGroup("Internal References"), ExportSubgroup("Content")]
 	private EntryListHolder EntryListHolder = null;
 	private EntryListBase EntryList
 	{
@@ -56,15 +56,18 @@ public partial class MsbtEditor : PanelContainer
 	[Export]
 	public VBoxContainer EntryContentHolder { get; private set; }
 
-	[Export]
+	[Export, ExportSubgroup("Header")]
 	private Label FileTitleName;
 	[Export]
 	private Label FileEntryName;
 	[Export]
 	private LangPicker LanguagePicker;
 
-	[Export]
+	[Export, ExportSubgroup("Loading")]
 	private PanelContainer LoadingOverlay;
+
+	[Export, ExportSubgroup("Alt Code Handling")]
+	public MsbtEditorAltCode AltCodeHandler;
 
 	// ~~~~~~~~~~~~ Packed Scenes ~~~~~~~~~~~~ //
 
@@ -316,6 +319,12 @@ public partial class MsbtEditor : PanelContainer
 	// ====================================================== //
 
 	#region Signals
+
+	private void OnVisibilityChanged()
+	{
+		if (IsVisibleInTree()) AltCodeHandler.ProcessMode = ProcessModeEnum.Always;
+		else AltCodeHandler.ProcessMode = ProcessModeEnum.Disabled;
+	}
 
 	public void OnEntryListSelection(string label)
 	{
