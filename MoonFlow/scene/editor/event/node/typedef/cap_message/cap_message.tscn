@@ -16,6 +16,17 @@ ButtonMessageRefresh = NodePath("Content/Display/MessageResolverConfig/HBox_Prev
 layout_mode = 2
 theme = ExtResource("4_wku4m")
 
+[node name="VBox_Tools" parent="Content/Display/MessageResolverConfig/HBox_Preview" index="1"]
+visible = false
+
+[node name="Button_Edit" parent="Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools" index="0"]
+visible = false
+disabled = true
+
+[node name="Button_Refresh" parent="Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools" index="1"]
+visible = false
+disabled = true
+
 [connection signal="pressed" from="Content/Display/MessageResolverConfig/Button_SelectSource" to="." method="OnSelectNewTextSource"]
 
 [editable path="Content/Display/MessageResolverConfig"]
