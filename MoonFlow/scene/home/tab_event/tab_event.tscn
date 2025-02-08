@@ -1,10 +1,11 @@
-[gd_scene load_steps=47 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=48 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="3_pgcah"]
 [ext_resource type="Script" path="res://scene/common/line_edit/search_line_edit.gd" id="4_blotm"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_kcoe0"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_1278q"]
 [ext_resource type="Texture2D" uid="uid://0qfv1wl6bwps" path="res://asset/material/file/duplicate.svg" id="6_tkrku"]
 [ext_resource type="Texture2D" uid="uid://b2akcps2lmaw3" path="res://asset/material/file/sync.svg" id="6_xkxyy"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="7_hy22n"]
@@ -133,6 +134,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
+horizontal_scroll_mode = 0
+script = ExtResource("5_1278q")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
 
 [node name="VBox_ArchiveHolder" type="VBoxContainer" parent="FileList/Content"]
 layout_mode = 2
