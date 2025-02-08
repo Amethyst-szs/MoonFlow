@@ -4,12 +4,20 @@ using System;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 using System.Linq;
+using Godot;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
 public static class MsbtClipboardServer
 {
     private static List<MsbtBaseElement> Clipboard = [];
+    private static string ClipboardSystem = null;
+
+    [StartupTask]
+    public static void InitClipboardServer()
+    {
+        ClipboardSystem = DisplayServer.ClipboardGet();
+    }
 
     public static void Copy(MsbtPage page, int start, int end)
     {
@@ -50,11 +58,40 @@ public static class MsbtClipboardServer
             elementIdx++;
         }
 
+        // Push a tagless version of the text to the system clipboard
+        string taglessText = "";
+        foreach (var item in Clipboard)
+        {
+            if (item.IsText())
+                taglessText += item.GetText();
+        }
+
+        DisplayServer.ClipboardSet(taglessText);
+
+        // Copy information about the system clipboard to determine which clipboard to use when pasting later
+        ClipboardSystem = taglessText;
+
         return;
     }
 
     public static void Paste(MsbtPage page, int charIdx)
     {
+        List<MsbtBaseElement> pasteContent = [];
+
+        // Access system clipboard to determine which clipboard to use
+        string sysClipboard = GetSystemClipboardWithoutCarriage();
+
+        if (Clipboard.Count == 0 || ClipboardSystem != sysClipboard)
+        {
+            // Create a single text element when using system clipboard
+            pasteContent.Add(new MsbtTextElement(sysClipboard));
+        }
+        else
+        {
+            // Use server's internal element clipboard when using internal clipboard
+            pasteContent = Clipboard.Copy();
+        }
+
         // Get the element index targetted by the charIdx
         int localPosition = charIdx;
         int elementIdx = page.CalcElementIdxAtCharPos(ref localPosition);
@@ -82,7 +119,7 @@ public static class MsbtClipboardServer
             }
 
             // Insert all data from clipboard
-            foreach (var item in Clipboard)
+            foreach (var item in pasteContent)
             {
                 page.Insert(elementIdx, item.Clone());
                 elementIdx++;
@@ -101,7 +138,7 @@ public static class MsbtClipboardServer
         if (curElement == page.Last() && localPosition > 0)
             elementIdx++;
 
-        foreach (var item in Clipboard)
+        foreach (var item in pasteContent)
         {
             page.Insert(elementIdx, item.Clone());
             elementIdx++;
@@ -117,6 +154,12 @@ public static class MsbtClipboardServer
 
     public static string GetClipboardAsString()
     {
+        // Access system clipboard to determine which clipboard to use
+        string sysClipboard = GetSystemClipboardWithoutCarriage();
+        if (Clipboard.Count == 0 || ClipboardSystem != sysClipboard)
+            return sysClipboard;
+
+        // Otherwise use internal clipboard server which can contain tag elements
         string str = "";
 
         foreach (var item in Clipboard)
@@ -128,5 +171,10 @@ public static class MsbtClipboardServer
         }
 
         return str;
+    }
+
+    private static string GetSystemClipboardWithoutCarriage()
+    {
+        return DisplayServer.ClipboardGet().Replace("\r", "");
     }
 }
