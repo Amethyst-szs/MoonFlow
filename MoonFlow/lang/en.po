@@ -1400,6 +1400,10 @@ msgstr "Refreshing Text Editor..."
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
 msgstr "Loading Text Editor..."
 
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
+msgstr "Alt-Code preview:"
+
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr "Entry Name"
@@ -3003,6 +3007,11 @@ msgstr "Help"
 msgctxt "INPUT_MAP"
 msgid "msbt_reset_entry"
 msgstr "Reset Text Entry"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_graph_select_all"
+msgstr "Select All"
 
 #: scene/settings/engine/keybind/overlay_keybind_capture.tscn
 msgid "ENGINE_SETTINGS_APP_KEYBIND_PRESS_ANY_KEY_POPUP"

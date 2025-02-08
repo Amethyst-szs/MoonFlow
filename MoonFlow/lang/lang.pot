@@ -1457,6 +1457,10 @@ msgstr ""
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
 msgstr ""
 
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
+msgstr ""
+
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr ""
@@ -2974,6 +2978,11 @@ msgstr ""
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"
 msgid "msbt_reset_entry"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "ui_graph_select_all"
 msgstr ""
 
 #: scene/settings/engine/keybind/overlay_keybind_capture.tscn

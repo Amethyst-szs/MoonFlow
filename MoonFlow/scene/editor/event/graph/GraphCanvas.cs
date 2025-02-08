@@ -51,6 +51,7 @@ public partial class GraphCanvas : CanvasLayer
         if (@event.IsActionPressed("ui_graph_delete", false, true)) UnhandledInputDelete();
         if (@event.IsActionPressed("ui_undo", false, true)) UnhandledInputUndo();
         if (@event.IsActionPressed("ui_redo", false, true)) UnhandledInputRedo();
+        if (@event.IsActionPressed("ui_graph_select_all", false, true)) UnhandledInputSelectAll();
     }
 
     private void UnhandledInputCopy()
@@ -92,6 +93,11 @@ public partial class GraphCanvas : CanvasLayer
     private void UnhandledInputRedo()
     {
         UndoRedoServer.Redo();
+        GetViewport().SetInputAsHandled();
+    }
+    private void UnhandledInputSelectAll()
+    {
+        SelectAllNodes();
         GetViewport().SetInputAsHandled();
     }
 

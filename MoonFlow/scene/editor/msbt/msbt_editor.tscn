@@ -296,7 +296,7 @@ mouse_filter = 2
 
 [node name="Label_AltPreview" type="Label" parent="MsbtEditor/Panel_AltCode/Content"]
 layout_mode = 2
-text = "Alt Code Preview:"
+text = "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
 label_settings = SubResource("LabelSettings_1sfq3")
 horizontal_alignment = 2
 
