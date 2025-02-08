@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjlli76vhlpfg"]
+[gd_scene load_steps=6 format=3 uid="uid://cjlli76vhlpfg"]
 
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="1_ec2eu"]
+[ext_resource type="Script" path="res://scene/editor/msbt/page/MsbtPageEditor.cs" id="2_tas66"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jci63"]
 
@@ -49,3 +50,4 @@ layout_mode = 2
 placeholder_text = "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
 editable = false
 wrap_mode = 1
+script = ExtResource("2_tas66")

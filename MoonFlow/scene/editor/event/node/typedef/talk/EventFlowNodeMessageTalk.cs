@@ -2,6 +2,7 @@ using System;
 using Godot;
 
 using MoonFlow.Project;
+using MoonFlow.Scene.EditorMsbt;
 
 using Nindot;
 using Nindot.Al.EventFlow;
@@ -14,7 +15,7 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 	[Export, ExportGroup("Internal References")]
 	private CheckBox ButtonIsMapUnit;
 	[Export]
-	protected TextEdit TextMessagePreview;
+	protected MsbtPageEditor TextMessagePreview;
 	[Export]
 	protected Label LabelTextSource;
 
@@ -136,8 +137,20 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 		SarcFile arc = holder.GetArchiveByFileName(msg.MessageArchive);
 		var msbt = arc.GetFileMSBT(msg.MessageFile + ".msbt", new MsbtElementFactoryProjectSmo());
 
-		var txt = msbt.GetEntry(msg.LabelName);
-		TextMessagePreview.Text = txt.GetRawText(true);
+		var entry = msbt.GetEntry(msg.LabelName);
+
+		switch(entry.Pages.Count)
+		{
+			case 0:
+				TextMessagePreview.Text = "";
+				break;
+			case 1:
+				TextMessagePreview.Init(null, entry.Pages[0]);
+				break;
+			default:
+				TextMessagePreview.Init(null, entry.Pages[0]);
+				break;
+		}
 	}
 
 	protected bool IsSupportMapUnit()

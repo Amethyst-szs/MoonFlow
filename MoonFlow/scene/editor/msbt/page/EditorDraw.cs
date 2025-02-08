@@ -17,6 +17,9 @@ public partial class MsbtPageEditor : TextEdit
 
     public override void _Draw()
     {
+        if (Page == null)
+            return;
+        
         foreach (var item in Page)
         {
             if (item.IsText())

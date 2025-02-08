@@ -77,15 +77,26 @@ public partial class EventFlowNodeCapMessage : EventFlowNodeMessageTalk
 		SarcFile arc = holder.GetArchiveByFileName(arcName);
 		var msbt = arc.GetFileMSBT(file + ".msbt", new MsbtElementFactoryProjectSmo());
 
-		var txt = msbt.GetEntry(msg.LabelName);
-		if (txt == null)
+		var entry = msbt.GetEntry(msg.LabelName);
+		if (entry == null)
 		{
 			LabelTextSource.Modulate = Colors.Crimson;
 			LabelTextSource.Text = Tr("EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER");
 			return;
 		}
 
-		TextMessagePreview.Text = txt.GetRawText(true);
+		switch(entry.Pages.Count)
+		{
+			case 0:
+				TextMessagePreview.Text = "";
+				break;
+			case 1:
+				TextMessagePreview.Init(null, entry.Pages[0]);
+				break;
+			default:
+				TextMessagePreview.Init(null, entry.Pages[0]);
+				break;
+		}
 	}
 
 	protected override bool IsContainMessageResolver()
