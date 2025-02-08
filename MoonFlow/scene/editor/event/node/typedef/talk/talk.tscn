@@ -7,11 +7,13 @@
 [ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="4_hvfgh"]
 [ext_resource type="PackedScene" uid="uid://cjlli76vhlpfg" path="res://scene/editor/event/node/component/message_resolver_config.tscn" id="6_5jgdp"]
 
-[node name="EventFlowNodeMessageTalk" node_paths=PackedStringArray("ButtonIsMapUnit", "TextMessagePreview", "LabelTextSource") instance=ExtResource("1_uo123")]
+[node name="EventFlowNodeMessageTalk" node_paths=PackedStringArray("ButtonIsMapUnit", "TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh") instance=ExtResource("1_uo123")]
 script = ExtResource("2_qf2as")
 ButtonIsMapUnit = NodePath("Content/Display/TalkText/Check_IsMapUnit")
-TextMessagePreview = NodePath("Content/Display/TalkText/MessageResolverConfig/Text_Preview")
+TextMessagePreview = NodePath("Content/Display/TalkText/MessageResolverConfig/HBox_Preview/Text_Preview")
 LabelTextSource = NodePath("Content/Display/TalkText/MessageResolverConfig/Label_TargetSource")
+ButtonMessageEdit = NodePath("Content/Display/TalkText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Edit")
+ButtonMessageRefresh = NodePath("Content/Display/TalkText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Refresh")
 
 [node name="TalkText" type="VBoxContainer" parent="Content/Display" index="2"]
 layout_mode = 2
@@ -37,5 +39,7 @@ theme_override_constants/separation = 32
 
 [connection signal="toggled" from="Content/Display/TalkText/Check_IsMapUnit" to="." method="OnMapUnitToggled"]
 [connection signal="pressed" from="Content/Display/TalkText/MessageResolverConfig/Button_SelectSource" to="." method="OnSelectNewTextSource"]
+[connection signal="pressed" from="Content/Display/TalkText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Edit" to="." method="OnTextPreviewEditCurrent"]
+[connection signal="pressed" from="Content/Display/TalkText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Refresh" to="." method="OnTextPreviewRefreshCurrent"]
 
 [editable path="Content/Display/TalkText/MessageResolverConfig"]

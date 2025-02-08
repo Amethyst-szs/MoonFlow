@@ -9,7 +9,7 @@ using MoonFlow.Scene.Main;
 
 namespace MoonFlow.Scene;
 
-public static class AppSceneServer
+public static partial class AppSceneServer
 {
     #region Init
 

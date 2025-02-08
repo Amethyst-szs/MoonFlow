@@ -14,10 +14,15 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 {
 	[Export, ExportGroup("Internal References")]
 	private CheckBox ButtonIsMapUnit;
-	[Export]
+
+	[Export, ExportSubgroup("Preview Tools")]
 	protected MsbtPageEditor TextMessagePreview;
 	[Export]
 	protected Label LabelTextSource;
+	[Export]
+	protected Button ButtonMessageEdit;
+	[Export]
+	protected Button ButtonMessageRefresh;
 
 	public override void InitContent(Nindot.Al.EventFlow.Node content, Graph graph)
 	{
@@ -106,6 +111,21 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 		SetNodeModified();
 	}
 
+	protected void OnTextPreviewEditCurrent()
+	{
+		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))
+			return;
+		
+		if (!IsContainMessageResolver())
+			return;
+		
+		_ = AppSceneServer.CreateOrOpenMsbtLabel(msg);
+	}
+	protected void OnTextPreviewRefreshCurrent()
+	{
+		SetLabelDisplayTextSource();
+	}
+
 	#endregion
 
 	#region Utilities
@@ -121,6 +141,9 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 		{
 			LabelTextSource.Modulate = Colors.Crimson;
 			LabelTextSource.Text = Tr("EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER");
+
+			ButtonMessageEdit.Disabled = true;
+			ButtonMessageRefresh.Disabled = true;
 			return;
 		}
 
@@ -151,6 +174,9 @@ public partial class EventFlowNodeMessageTalk : EventFlowNodeCommon
 				TextMessagePreview.Init(null, entry.Pages[0]);
 				break;
 		}
+
+		ButtonMessageEdit.Disabled = false;
+		ButtonMessageRefresh.Disabled = false;
 	}
 
 	protected bool IsSupportMapUnit()

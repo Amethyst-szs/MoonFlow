@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjlli76vhlpfg"]
+[gd_scene load_steps=8 format=3 uid="uid://cjlli76vhlpfg"]
 
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="1_ec2eu"]
 [ext_resource type="Script" path="res://scene/editor/msbt/page/MsbtPageEditor.cs" id="2_tas66"]
+[ext_resource type="Texture2D" uid="uid://bw6q6mibncpgu" path="res://asset/material/graph/edit.svg" id="3_g835t"]
+[ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="4_o01mf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jci63"]
 
@@ -44,10 +46,33 @@ layout_mode = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
 label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="Text_Preview" type="TextEdit" parent="."]
-custom_minimum_size = Vector2(300, 128)
+[node name="HBox_Preview" type="HBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="Text_Preview" type="TextEdit" parent="HBox_Preview"]
+custom_minimum_size = Vector2(260, 128)
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
 editable = false
 wrap_mode = 1
 script = ExtResource("2_tas66")
+
+[node name="VBox_Tools" type="VBoxContainer" parent="HBox_Preview"]
+layout_mode = 2
+
+[node name="Button_Edit" type="Button" parent="HBox_Preview/VBox_Tools"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_EDIT_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 24
+icon = ExtResource("3_g835t")
+
+[node name="Button_Refresh" type="Button" parent="HBox_Preview/VBox_Tools"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_REFRESH_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 24
+icon = ExtResource("4_o01mf")

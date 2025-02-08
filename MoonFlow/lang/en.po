@@ -2262,6 +2262,14 @@ msgstr "Change Text Source"
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
 msgstr "Preview:"
 
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_EDIT_TOOLTIP"
+msgstr "Open the text editor to view/modify text"
+
+#: scene/editor/event/node/component/message_resolver_config.tscn
+msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_REFRESH_TOOLTIP"
+msgstr "Refresh the text preview"
+
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_FILE_SAVE"
 msgstr "Save"

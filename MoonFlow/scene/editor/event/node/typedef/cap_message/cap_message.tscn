@@ -5,10 +5,12 @@
 [ext_resource type="Script" path="res://scene/editor/event/node/typedef/cap_message/EventFlowNodeCapMessage.cs" id="2_ji33a"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="4_wku4m"]
 
-[node name="EventFlowNodeCapMessage" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource") instance=ExtResource("1_4wkdy")]
+[node name="EventFlowNodeCapMessage" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh") instance=ExtResource("1_4wkdy")]
 script = ExtResource("2_ji33a")
-TextMessagePreview = NodePath("Content/Display/MessageResolverConfig/Text_Preview")
+TextMessagePreview = NodePath("Content/Display/MessageResolverConfig/HBox_Preview/Text_Preview")
 LabelTextSource = NodePath("Content/Display/MessageResolverConfig/Label_TargetSource")
+ButtonMessageEdit = NodePath("Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Edit")
+ButtonMessageRefresh = NodePath("Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Refresh")
 
 [node name="MessageResolverConfig" parent="Content/Display" index="2" instance=ExtResource("2_1tl62")]
 layout_mode = 2

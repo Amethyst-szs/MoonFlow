@@ -120,59 +120,12 @@ public partial class WorldShineEditorHolder : PanelContainer
 		EmitSignal(SignalName.ContentModified);
 	}
 
-	private async void OnOpenDisplayNameMsbt()
+	private void OnOpenDisplayNameMsbt()
 	{
-		// Access msbt holder
-		var msbtHolder = ProjectManager.GetMSBTArchives()?.StageMessage
-		?? throw new NullReferenceException("Could not access msbt archives!");
-
-		// If msbt holder doesn't contain msbt file, cancel
 		var file = Shine.StageName + ".msbt";
 		var label = "ScenarioName_" + Shine.ObjId;
-
-		if (!msbtHolder.Content.ContainsKey(file))
-			return;
-
-		// Lookup msbt editor application
-		var apps = AppSceneServer.GetApps<MsbtAppHolder>();
-
-		MsbtAppHolder app = null;
-		var targetIdentifier = MsbtAppHolder.GetUniqueIdentifier(msbtHolder.Name, file);
-
-		foreach (var candidate in apps)
-		{
-			if (candidate.AppUniqueIdentifier != targetIdentifier)
-				continue;
-
-			app = candidate;
-			break;
-		}
-
-		// Check if the requested shine label exists
-		MsbtAppHolder editor;
-		if (msbtHolder.GetFileMSBT(file, new MsbtElementFactory()).IsContainKey(label))
-		{
-			// If the pre-existing msbt app lookup failed, create a new editor app
-			if (app == null)
-			{
-				editor = await MsbtAppHolder.OpenAppWithSearch(msbtHolder.Name, file, label);
-				editor.Editor.SetSelection(label);
-				return;
-			}
-
-			app.Editor.UpdateEntrySearch(label);
-			app.Editor.SetSelection(label);
-			app.AppFocus();
-
-			return;
-		}
-
-		// If the label doesn't already exist, we'll need to create it
-		app ??= await MsbtAppHolder.OpenApp(msbtHolder.Name, file);
-
-		app.Editor.OnAddEntryNameSubmitted(label);
-		app.Editor.UpdateEntrySearch(label);
-		app.AppFocus();
+		
+		_ = AppSceneServer.CreateOrOpenShineNameMsbt(file, label);
 	}
 
 	private void OnRequestDeleteShine()

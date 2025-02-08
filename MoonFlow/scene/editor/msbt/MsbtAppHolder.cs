@@ -72,6 +72,9 @@ public partial class MsbtAppHolder : AppScene
 	public static async Task<MsbtAppHolder> OpenAppWithSearch(string archiveName, string key, string search)
 	{
 		var editor = await OpenApp(archiveName, key);
+
+		await editor.ToSignal(editor.GetTree().CreateTimer(0.2), Timer.SignalName.Timeout);
+
 		editor.Editor.UpdateEntrySearch(search);
 		return editor;
 	}
