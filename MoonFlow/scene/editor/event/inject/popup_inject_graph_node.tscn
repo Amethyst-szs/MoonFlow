@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bovx285ki32a6"]
+[gd_scene load_steps=9 format=3 uid="uid://bovx285ki32a6"]
 
 [ext_resource type="Script" path="res://scene/editor/event/inject/PopupInjectGraphNode.cs" id="1_0ams4"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_pt7cc"]
 [ext_resource type="StyleBox" uid="uid://ddq0lrvtrq2pr" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_panel.tres" id="3_1vumm"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_him4f"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="4_ok1qq"]
 [ext_resource type="Theme" uid="uid://bfe7r5pai77uy" path="res://asset/theme/event/inject/node_inject_popup.tres" id="4_v8di6"]
 [ext_resource type="Texture2D" uid="uid://bsrqtic8ahapp" path="res://asset/material/graph/block.svg" id="5_72po0"]
@@ -30,6 +31,10 @@ custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
+script = ExtResource("4_him4f")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
 
 [node name="Content" type="VBoxContainer" parent="Panel/Scroll"]
 layout_mode = 2
@@ -40,6 +45,7 @@ theme = ExtResource("4_v8di6")
 [node name="Line_Search" type="LineEdit" parent="Panel/Scroll/Content"]
 custom_minimum_size = Vector2(344, 0)
 layout_mode = 2
+mouse_filter = 1
 placeholder_text = "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
 right_icon = ExtResource("4_ok1qq")
 script = ExtResource("5_p7pnm")
@@ -52,6 +58,7 @@ theme = ExtResource("1_pt7cc")
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "EVENT_FLOW_GRAPH_INJECT_BLOCK_TOOLTIP"
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 24
 text = "EVENT_FLOW_GRAPH_INJECT_BLOCK"
@@ -63,6 +70,7 @@ layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Panel/Scroll/Content"]
 layout_mode = 2
+mouse_filter = 1
 
 [connection signal="text_changed" from="Panel/Scroll/Content/Line_Search" to="." method="OnSearchUpdated"]
 [connection signal="pressed" from="Panel/Scroll/Content/HBox_Special/Button_CreateBlock" to="." method="OnInjectNewBlock"]

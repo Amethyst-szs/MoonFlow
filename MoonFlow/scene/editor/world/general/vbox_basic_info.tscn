@@ -1,9 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://n5fe7jd6mwy4"]
 
-[ext_resource type="Script" path="res://scene/editor/world/page/VBoxBasicInfo.cs" id="1_6umq7"]
+[ext_resource type="Script" path="res://scene/editor/world/general/VBoxBasicInfo.cs" id="1_6umq7"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="1_f7kr0"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="2_cmkam"]
 [ext_resource type="Texture2D" uid="uid://dddqmafw50701" path="res://asset/nindot/lms/icon/PictureFont_71.png" id="3_gqqq6"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="3_j4lju"]
 [ext_resource type="Texture2D" uid="uid://qsmvjsetmlcv" path="res://asset/nindot/lms/icon/PictureFont_72.png" id="4_8mqpp"]
 [ext_resource type="Texture2D" uid="uid://bb75cipsbn72b" path="res://asset/nindot/lms/icon/PictureFont_73.png" id="5_55v12"]
 [ext_resource type="Texture2D" uid="uid://oam6cv6pr0ax" path="res://asset/nindot/lms/icon/PictureFont_74.png" id="6_5pt0o"]
@@ -21,58 +22,87 @@
 font_size = 14
 font_color = Color(1, 1, 1, 0.705882)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqfn8"]
-
 [node name="VBox_Basic" type="VBoxContainer" node_paths=PackedStringArray("LineHomeStage", "OptionShineType", "CustomShineType", "OptionCoinType", "CustomCoinType", "CountCoinCollect")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 462.0
+grow_horizontal = 2
 theme_override_constants/separation = 8
 script = ExtResource("1_6umq7")
-LineHomeStage = NodePath("Line_Home")
-OptionShineType = NodePath("Option_ShineType")
-CustomShineType = NodePath("Spin_ShineTypeCustom")
-OptionCoinType = NodePath("Option_CoinType")
-CustomCoinType = NodePath("Line_CoinTypeCustom")
+LineHomeStage = NodePath("Grid_Name/Line_Home")
+OptionShineType = NodePath("Grid_Collectable/Option_ShineType")
+CustomShineType = NodePath("Grid_Collectable/Spin_ShineTypeCustom")
+OptionCoinType = NodePath("Grid_Collectable/Option_CoinType")
+CustomCoinType = NodePath("Grid_Collectable/Line_CoinTypeCustom")
 CountCoinCollect = NodePath("Spin_CoinCount")
 
-[node name="Label_Home" type="Label" parent="."]
+[node name="Grid_Name" type="GridContainer" parent="."]
 layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Label_Home" type="Label" parent="Grid_Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_HOME_STAGE_NAME_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
 label_settings = SubResource("LabelSettings_rf715")
 
-[node name="Line_Home" type="LineEdit" parent="."]
+[node name="Label_Name" type="Label" parent="Grid_Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_DISPLAY_NAME_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_HEADER_DISPLAY_NAME"
+label_settings = SubResource("LabelSettings_rf715")
+
+[node name="Line_Home" type="LineEdit" parent="Grid_Name"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "WORLD_EDITOR_PLACEHOLDER_HOME_STAGE_NAME"
 max_length = 64
-editable = false
 clear_button_enabled = true
 
-[node name="HSep0" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_iqfn8")
-
-[node name="Label_Name" type="Label" parent="."]
-layout_mode = 2
-text = "WORLD_EDITOR_HEADER_DISPLAY_NAME"
-label_settings = SubResource("LabelSettings_rf715")
-
-[node name="Button_Name" type="Button" parent="."]
+[node name="Button_Name" type="Button" parent="Grid_Name"]
 layout_mode = 2
 text = "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
 icon = ExtResource("1_f7kr0")
 alignment = 0
 
-[node name="HSep1" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_iqfn8")
+theme_override_constants/separation = 16
+theme_override_styles/separator = ExtResource("3_j4lju")
 
-[node name="Label_ShineType" type="Label" parent="."]
+[node name="Grid_Collectable" type="GridContainer" parent="."]
 layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Label_ShineType" type="Label" parent="Grid_Collectable"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_SHINE_TYPE_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_SHINE_TYPE"
 label_settings = SubResource("LabelSettings_rf715")
 
-[node name="Option_ShineType" type="OptionButton" parent="."]
+[node name="Label_CoinType" type="Label" parent="Grid_Collectable"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
+label_settings = SubResource("LabelSettings_rf715")
+
+[node name="Option_ShineType" type="OptionButton" parent="Grid_Collectable"]
 layout_mode = 2
 selected = 0
 item_count = 12
@@ -113,35 +143,27 @@ popup/item_11/icon = ExtResource("13_lncdy")
 popup/item_11/id = 11
 script = ExtResource("14_3cd80")
 
-[node name="Spin_ShineTypeCustom" type="SpinBox" parent="."]
-layout_mode = 2
-min_value = -1.0
-max_value = 9.0
-rounded = true
-allow_greater = true
-update_on_text_changed = true
-prefix = "ID:"
-
-[node name="HSep2" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_iqfn8")
-
-[node name="Label_CoinType" type="Label" parent="."]
-layout_mode = 2
-text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
-label_settings = SubResource("LabelSettings_rf715")
-
-[node name="Option_CoinType" type="OptionButton" parent="." node_paths=PackedStringArray("CustomInput")]
+[node name="Option_CoinType" type="OptionButton" parent="Grid_Collectable" node_paths=PackedStringArray("CustomInput")]
 layout_mode = 2
 disabled = true
 script = ExtResource("16_3xsaf")
 CustomInput = NodePath("../Line_CoinTypeCustom")
 
-[node name="Line_CoinTypeCustom" type="LineEdit" parent="."]
+[node name="Spin_ShineTypeCustom" type="SpinBox" parent="Grid_Collectable"]
+layout_mode = 2
+min_value = -1.0
+max_value = 9.0
+rounded = true
+allow_greater = true
+alignment = 1
+update_on_text_changed = true
+prefix = "ID:"
+
+[node name="Line_CoinTypeCustom" type="LineEdit" parent="Grid_Collectable"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "WORLD_EDITOR_PLACEHOLDER_COIN_COLLECT_TYPE"
+alignment = 1
 max_length = 1
 editable = false
 context_menu_enabled = false
@@ -151,28 +173,33 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 draw_control_chars = true
 
-[node name="HSep3" type="HSeparator" parent="."]
+[node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_iqfn8")
+theme_override_constants/separation = 16
+theme_override_styles/separator = ExtResource("3_j4lju")
 
 [node name="Label_CoinCount" type="Label" parent="."]
 layout_mode = 2
+tooltip_text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
 label_settings = SubResource("LabelSettings_rf715")
+horizontal_alignment = 1
 
 [node name="Spin_CoinCount" type="SpinBox" parent="."]
 layout_mode = 2
 rounded = true
 allow_greater = true
+alignment = 1
 update_on_text_changed = true
 
-[connection signal="text_changed" from="Line_Home" to="." method="OnHomeStageNameModified"]
-[connection signal="pressed" from="Button_Name" to="." method="OnOpenMSBTPressed"]
-[connection signal="item_selected" from="Option_ShineType" to="Option_ShineType" method="_on_item_selected"]
-[connection signal="shine_type_id" from="Option_ShineType" to="." method="OnSetShineTypeID"]
-[connection signal="value_changed" from="Spin_ShineTypeCustom" to="." method="OnSetShineTypeID"]
-[connection signal="CoinCollectSelected" from="Option_CoinType" to="." method="OnSetCoinTypeID"]
-[connection signal="item_selected" from="Option_CoinType" to="Option_CoinType" method="OnSelection"]
-[connection signal="text_changed" from="Line_CoinTypeCustom" to="." method="OnSetCoinTypeID"]
+[connection signal="text_changed" from="Grid_Name/Line_Home" to="." method="OnHomeStageNameModified"]
+[connection signal="pressed" from="Grid_Name/Button_Name" to="." method="OnOpenMSBTPressed"]
+[connection signal="item_selected" from="Grid_Collectable/Option_ShineType" to="Grid_Collectable/Option_ShineType" method="_on_item_selected"]
+[connection signal="shine_type_id" from="Grid_Collectable/Option_ShineType" to="." method="OnSetShineTypeID"]
+[connection signal="CoinCollectSelected" from="Grid_Collectable/Option_CoinType" to="." method="OnSetCoinTypeID"]
+[connection signal="item_selected" from="Grid_Collectable/Option_CoinType" to="Grid_Collectable/Option_CoinType" method="OnSelection"]
+[connection signal="value_changed" from="Grid_Collectable/Spin_ShineTypeCustom" to="." method="OnSetShineTypeID"]
+[connection signal="text_changed" from="Grid_Collectable/Line_CoinTypeCustom" to="." method="OnSetCoinTypeID"]
 [connection signal="value_changed" from="Spin_CoinCount" to="." method="OnSetCoinCount"]

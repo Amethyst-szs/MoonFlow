@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw73bpafji461"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_bsrvh"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_tb6a7"]
+[ext_resource type="PackedScene" uid="uid://n5fe7jd6mwy4" path="res://scene/editor/world/general/vbox_basic_info.tscn" id="2_wwaj3"]
+[ext_resource type="PackedScene" uid="uid://clhy3h8j6kcm" path="res://scene/editor/world/general/vbox_scenario_info.tscn" id="3_ht8qo"]
+
+[sub_resource type="FontVariation" id="FontVariation_qc5c5"]
+base_font = ExtResource("1_bsrvh")
+variation_transform = Transform2D(1, 0.15, 0, 1, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a80xt"]
+font = SubResource("FontVariation_qc5c5")
+font_size = 20
+font_color = Color(0.99, 0.79992, 0.2772, 0.858824)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_irpy7"]
+
+[node name="WorldEditorTabGeneral" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+script = ExtResource("1_tb6a7")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Label_Basic" type="Label" parent="VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
+label_settings = SubResource("LabelSettings_a80xt")
+horizontal_alignment = 1
+
+[node name="HSep_Basic" type="HSeparator" parent="VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBox_Basic" parent="VBox" instance=ExtResource("2_wwaj3")]
+layout_mode = 2
+
+[node name="HSep_Empty0" type="HSeparator" parent="VBox"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_irpy7")
+
+[node name="Label_Scenario" type="Label" parent="VBox"]
+layout_mode = 2
+mouse_filter = 1
+text = "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+label_settings = SubResource("LabelSettings_a80xt")
+horizontal_alignment = 1
+
+[node name="HSep_Scenario" type="HSeparator" parent="VBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBox_Scenario" parent="VBox" instance=ExtResource("3_ht8qo")]
+layout_mode = 2

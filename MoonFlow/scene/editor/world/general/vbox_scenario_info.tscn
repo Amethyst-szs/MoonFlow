@@ -1,0 +1,100 @@
+[gd_scene load_steps=3 format=3 uid="uid://clhy3h8j6kcm"]
+
+[ext_resource type="Script" path="res://scene/editor/world/general/VBoxScenarioInfo.cs" id="1_yrngu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rf715"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.705882)
+
+[node name="VBox_Scenario" type="VBoxContainer" node_paths=PackedStringArray("SpinCount", "SpinWorldPeace", "SpinPostgame", "SpinMoonRock")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 126.0
+grow_horizontal = 2
+script = ExtResource("1_yrngu")
+SpinCount = NodePath("Content/Spin_Count")
+SpinWorldPeace = NodePath("Content/Spin_WorldPeace")
+SpinPostgame = NodePath("Content/Spin_Postgame")
+SpinMoonRock = NodePath("Content/Spin_MoonRock")
+
+[node name="Content" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Label_Count" type="Label" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_COUNT_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
+label_settings = SubResource("LabelSettings_rf715")
+horizontal_alignment = 1
+
+[node name="Label_WorldPeace" type="Label" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
+label_settings = SubResource("LabelSettings_rf715")
+horizontal_alignment = 1
+
+[node name="Spin_Count" type="SpinBox" parent="Content"]
+layout_mode = 2
+min_value = 1.0
+max_value = 15.0
+value = 1.0
+rounded = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="Spin_WorldPeace" type="SpinBox" parent="Content"]
+layout_mode = 2
+min_value = 1.0
+max_value = 15.0
+value = 1.0
+rounded = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="Label_Postgame" type="Label" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
+label_settings = SubResource("LabelSettings_rf715")
+horizontal_alignment = 1
+
+[node name="Label_MoonRock" type="Label" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
+label_settings = SubResource("LabelSettings_rf715")
+horizontal_alignment = 1
+
+[node name="Spin_Postgame" type="SpinBox" parent="Content"]
+layout_mode = 2
+min_value = 1.0
+max_value = 15.0
+value = 1.0
+rounded = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="Spin_MoonRock" type="SpinBox" parent="Content"]
+layout_mode = 2
+min_value = 1.0
+max_value = 15.0
+value = 1.0
+rounded = true
+alignment = 1
+update_on_text_changed = true

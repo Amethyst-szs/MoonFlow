@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://h84sss0s2x5b"]
+[gd_scene load_steps=10 format=3 uid="uid://h84sss0s2x5b"]
 
 [ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_xmmk2"]
 [ext_resource type="Script" path="res://scene/common/popup/PopupMsbtSelectEntry.cs" id="2_a2ipd"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="2_ac1cj"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="2_osma2"]
 [ext_resource type="StyleBox" uid="uid://diowequepd8ed" path="res://asset/theme/common/stylebox/common_accept_dialog_panel.tres" id="3_pqj6m"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="6_4mm28"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3drgo"]
 
@@ -74,6 +75,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r06ms")
 horizontal_scroll_mode = 0
+script = ExtResource("6_4mm28")
+drag_with_mouse = false
+follow_focus_margin = 40
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
 
 [node name="VBox_Results" type="VBoxContainer" parent="Content/VBox/Scroll_Results"]
 layout_mode = 2

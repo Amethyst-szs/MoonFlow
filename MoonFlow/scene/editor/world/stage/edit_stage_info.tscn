@@ -15,6 +15,12 @@ script = ExtResource("1_s33pu")
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="Button_Trash" type="Button" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+icon = ExtResource("1_qmc67")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -33,11 +39,5 @@ size_flags_horizontal = 0
 tooltip_text = "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
 script = ExtResource("1_xpqoc")
 
-[node name="Button_Trash" type="Button" parent="HBox"]
-layout_mode = 2
-size_flags_horizontal = 8
-mouse_default_cursor_shape = 2
-icon = ExtResource("1_qmc67")
-
-[connection signal="item_selected" from="HBox/VBoxContainer/Option_Type" to="." method="OnTypeChanged"]
 [connection signal="pressed" from="HBox/Button_Trash" to="." method="OnDeleteRequest"]
+[connection signal="item_selected" from="HBox/VBoxContainer/Option_Type" to="." method="OnTypeChanged"]

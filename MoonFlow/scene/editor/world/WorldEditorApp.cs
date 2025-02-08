@@ -17,7 +17,12 @@ namespace MoonFlow.Scene.EditorWorld;
 [ScenePath("res://scene/editor/world/world_editor_app.tscn"), Icon("res://asset/app/icon/world.png")]
 public partial class WorldEditorApp : AppScene
 {
+	[Export, ExportGroup("Internal References"), ExportSubgroup("Header")]
+	private Label LabelHeaderWorldName;
 	[Export]
+	private Label LabelHeaderInternalName;
+
+	[Export, ExportGroup("Internal References"), ExportSubgroup("Tabs")]
 	private Array<InfoBoxBase> InfoBoxList = [];
 	[Export]
 	private VBoxContainer VBoxStageList;
@@ -44,11 +49,14 @@ public partial class WorldEditorApp : AppScene
 	{
 		// Setup basic app info
 		IsRunningInit = true;
-
 		World = world;
 		AppTaskbarTitle = world.Display;
 
 		LabelNewStageError.Hide();
+
+		// Setup header labels
+		LabelHeaderWorldName.Text = world.Display;
+		LabelHeaderInternalName.Text = world.WorldName;
 
 		// Initilize info boxes
 		foreach (var box in InfoBoxList)

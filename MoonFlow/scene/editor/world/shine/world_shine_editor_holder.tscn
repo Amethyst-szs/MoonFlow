@@ -62,10 +62,25 @@ theme = ExtResource("4_j7oie")
 [node name="Layout" type="HBoxContainer" parent="Content"]
 layout_mode = 2
 
+[node name="Button_CreateDisplayName" type="Button" parent="Content/Layout"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_CREATE"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 20
+icon = ExtResource("10_61kdi")
+
+[node name="Button_OpenDisplayName" type="Button" parent="Content/Layout"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 20
+icon = ExtResource("11_b6myh")
+
 [node name="Check_Expand" type="CheckBox" parent="Content/Layout"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_OPEN_SHINE_CONTENT_DROPDOWN_TOOLTIP"
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_408cb")
 script = ExtResource("1_yop2g")
@@ -125,20 +140,6 @@ text = "3"
 label_settings = SubResource("LabelSettings_q0u7j")
 horizontal_alignment = 1
 
-[node name="Button_CreateDisplayName" type="Button" parent="Content/Layout"]
-layout_mode = 2
-tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_CREATE"
-mouse_default_cursor_shape = 2
-theme_override_constants/icon_max_width = 20
-icon = ExtResource("10_61kdi")
-
-[node name="Button_OpenDisplayName" type="Button" parent="Content/Layout"]
-layout_mode = 2
-tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
-mouse_default_cursor_shape = 2
-theme_override_constants/icon_max_width = 20
-icon = ExtResource("11_b6myh")
-
 [node name="Button_Delete" type="Button" parent="Content/Layout"]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
@@ -167,9 +168,9 @@ dialog_autowrap = true
 cancel_button_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("14_h4xx8")
 
-[connection signal="toggled" from="Content/Layout/Check_Expand" to="." method="OnContentDropdownToggled"]
 [connection signal="pressed" from="Content/Layout/Button_CreateDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
+[connection signal="toggled" from="Content/Layout/Check_Expand" to="." method="OnContentDropdownToggled"]
 [connection signal="pressed" from="Content/Layout/Button_Delete" to="." method="OnRequestDeleteShine"]
 [connection signal="value_changed" from="Content/Layout/Spin_Index" to="." method="OnSpinIndexValueSet"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteShine"]

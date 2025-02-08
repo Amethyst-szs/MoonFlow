@@ -1439,20 +1439,24 @@ msgid "HOME_TAB_WORLD_HEADER"
 msgstr "Select a Kingdom"
 
 #: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
-msgstr "Kingdom Info:"
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
-msgstr "Scenario Info:"
+msgid "WORLD_EDITOR_TAB_SHINE"
+msgstr "Moons"
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_TAB_STAGE"
 msgstr "Stages"
 
 #: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_TAB_SHINE"
-msgstr "Moons"
+msgid "WORLD_EDITOR_TAB_GENERAL"
+msgstr "Misc."
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW_TOOLTIP"
+msgstr "Append a new Power Moon to the end of the list"
+
+#: scene/editor/world/world_editor_app.tscn
+msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW"
+msgstr "New Power Moon"
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
@@ -1469,110 +1473,6 @@ msgstr "Select stage type"
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
 msgstr "Submit"
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW_TOOLTIP"
-msgstr "Append a new Power Moon to the end of the list"
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW"
-msgstr "New Power Moon"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
-msgstr "Home Stage Name"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_PLACEHOLDER_HOME_STAGE_NAME"
-msgstr "MyWorldHomeStage"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_HEADER_DISPLAY_NAME"
-msgstr "Display Name"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
-msgstr "Open Relevant MSBTs"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
-msgstr "Power Moon Color"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_0"
-msgstr "Common"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_1"
-msgstr "Brown"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_2"
-msgstr "Blue"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_3"
-msgstr "Red"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_4"
-msgstr "Orange"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_5"
-msgstr "Green"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_6"
-msgstr "Cyan"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_7"
-msgstr "Pink"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_8"
-msgstr "Purple"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_9"
-msgstr "Light Goldenrod"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_STAR"
-msgstr "Power Star"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_CUSTOM"
-msgstr "Custom ID"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
-msgstr "Purple Coin Type"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_PLACEHOLDER_COIN_COLLECT_TYPE"
-msgstr "ID"
-
-#: scene/editor/world/page/vbox_basic_info.tscn
-msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
-msgstr "Purple Coin Total Count"
-
-#: scene/editor/world/page/vbox_scenario_info.tscn
-msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
-msgstr "Total Scenarios"
-
-#: scene/editor/world/page/vbox_scenario_info.tscn
-msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
-msgstr "World Peace Scenario"
-
-#: scene/editor/world/page/vbox_scenario_info.tscn
-msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
-msgstr "Post-game Scenario"
-
-#: scene/editor/world/page/vbox_scenario_info.tscn
-msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
-msgstr "Post-Moon Rock Scenario"
 
 #: scene/front_door/contributor/scene/credit.tscn
 msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
@@ -2808,16 +2708,20 @@ msgid "EVENT_ARCHIVE_EMPTY"
 msgstr "This archive is empty!"
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_ICON_GRAND_TOOLTIP"
-msgstr "Multi-Moon"
-
-#: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_CREATE"
 msgstr "Create a Display Name"
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
 msgstr "Edit the Display Name"
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPEN_SHINE_CONTENT_DROPDOWN_TOOLTIP"
+msgstr "Show more properties..."
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_ICON_GRAND_TOOLTIP"
+msgstr "Multi-Moon"
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
@@ -3586,6 +3490,165 @@ msgstr "First Launch Setup"
 msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr "Success!"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME_TOOLTIP"
+msgstr ""
+"Internal name of the world's main stage file. This should\n"
+"always be the same as the stage of type \"Main Stage\"\n"
+"in the stages tab."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
+msgstr "Home Stage Name"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_DISPLAY_NAME_TOOLTIP"
+msgstr ""
+"Display name is language dependent, and can be edited\n"
+"through the text editor."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_DISPLAY_NAME"
+msgstr "Display Name"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_HOME_STAGE_NAME"
+msgstr "MyWorldHomeStage"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
+msgstr "Open Relevant MSBTs"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_SHINE_TYPE_TOOLTIP"
+msgstr ""
+"Changing the color or shape of a kingdom's Power Moons\n"
+"will not always update all graphics in game due to some\n"
+"elements being hardcoded. This mainly effects\n"
+"physical Shine models and checkpoint flags."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_SHINE_TYPE"
+msgstr "Power Moon Color"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE_TOOLTIP"
+msgstr ""
+"This value cannot be edited! Without additional patching\n"
+"editing this value can cause game crashes."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
+msgstr "Purple Coin Type"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_0"
+msgstr "Common"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_1"
+msgstr "Brown"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_2"
+msgstr "Blue"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_3"
+msgstr "Red"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_4"
+msgstr "Orange"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_5"
+msgstr "Green"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_6"
+msgstr "Cyan"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_7"
+msgstr "Pink"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_8"
+msgstr "Purple"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_9"
+msgstr "Light Goldenrod"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_STAR"
+msgstr "Power Star"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_SHINE_TYPE_SPECIAL_CUSTOM"
+msgstr "Custom ID"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_PLACEHOLDER_COIN_COLLECT_TYPE"
+msgstr "ID"
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT_TOOLTIP"
+msgstr ""
+"Total quantity of purple coin collectables. Base game only\n"
+"uses 0, 50, and 100, but any value is valid."
+
+#: scene/editor/world/general/vbox_basic_info.tscn
+msgid "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
+msgstr "Purple Coin Total Count"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT_TOOLTIP"
+msgstr ""
+"Total amount of scenario variants the stage has.\n"
+"(max of 15)"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
+msgstr "Total Scenarios"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE_TOOLTIP"
+msgstr "Scenario used after all story objectives completed."
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
+msgstr "World Peace Scenario"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME_TOOLTIP"
+msgstr ""
+"Scenario used once all local story objectives are finished\n"
+"and the finale has been completed in Moon Kingdom."
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
+msgstr "Post-game Scenario"
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK_TOOLTIP"
+msgstr ""
+"Scenario used after breaking the Moon Rock and spawning\n"
+"additional collectables and sub areas."
+
+#: scene/editor/world/general/vbox_scenario_info.tscn
+msgid "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
+msgstr "Post-Moon Rock Scenario"
+
+#: scene/editor/world/general/tab_general.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
+msgstr "Kingdom Info:"
+
+#: scene/editor/world/general/tab_general.tscn
+msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+msgstr "Scenario Info:"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"
