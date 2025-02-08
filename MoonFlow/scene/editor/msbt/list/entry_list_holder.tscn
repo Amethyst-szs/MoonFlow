@@ -36,10 +36,11 @@ action = &"ui_find"
 [sub_resource type="Shortcut" id="Shortcut_7w4d7"]
 events = [SubResource("InputEventAction_sr0fp")]
 
-[node name="EntryListHolder" type="VBoxContainer" node_paths=PackedStringArray("SearchBoxLine", "ButtonResetEntry", "ButtonListBlockedInTranslateMode")]
+[node name="EntryListHolder" type="VBoxContainer" node_paths=PackedStringArray("AddBoxLine", "SearchBoxLine", "ButtonResetEntry", "ButtonListBlockedInTranslateMode")]
 size_flags_horizontal = 3
 theme = ExtResource("1_e4ni0")
 script = ExtResource("1_q1mta")
+AddBoxLine = NodePath("Controls/VBox/HBox_AddEntry/Line_EntryName")
 SearchBoxLine = NodePath("Controls/VBox/Line_Search")
 ButtonResetEntry = NodePath("Controls/VBox/HBox/Reset")
 ButtonListBlockedInTranslateMode = [NodePath("Controls/VBox/HBox/Add"), NodePath("Controls/VBox/HBox/Trash")]
@@ -135,6 +136,7 @@ autowrap_mode = 3
 [connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameSubmitted"]
 [connection signal="pressed" from="Controls/VBox/HBox_AddEntry/Button_Add" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnEntrySubmitButtonPressed"]
 [connection signal="text_changed" from="Controls/VBox/Line_Search" to="." method="OnUpdateSearch"]
+[connection signal="toggled" from="Controls/VBox/HBox/Add" to="." method="OnToggleAddEntryLineEdit"]
 [connection signal="toggled" from="Controls/VBox/HBox/Add" to="Controls" method="_on_add_toggled"]
 [connection signal="pressed" from="Controls/VBox/HBox/Trash" to="." method="OnRequestDeleteEntry"]
 [connection signal="pressed" from="Controls/VBox/HBox/Reset" to="." method="OnRequestResetEntry"]

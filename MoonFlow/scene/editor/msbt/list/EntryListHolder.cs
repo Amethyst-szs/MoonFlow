@@ -13,6 +13,8 @@ public partial class EntryListHolder : VBoxContainer
 		= GD.Load<GDScript>("res://addons/SmoothScroll/SmoothScrollContainer.gd");
 
 	[Export]
+	public LineEdit AddBoxLine { get; private set; }
+	[Export]
 	public LineEdit SearchBoxLine { get; private set; }
 	[Export]
 	public Button ButtonResetEntry { get; private set; }
@@ -88,6 +90,18 @@ public partial class EntryListHolder : VBoxContainer
 
 		// Toggle button activeness based on data
 		ButtonResetEntry.Disabled = !meta.Mod || meta.Custom;
+	}
+
+	private void OnToggleAddEntryLineEdit(bool state)
+	{
+		if (!state || AddBoxLine.Text != string.Empty)
+			return;
+		
+		var defaultContent = Editor.EntryContentSelection?.Name;
+		if (defaultContent == null)
+			return;
+
+		AddBoxLine.Text = defaultContent;
 	}
 
 	private void OnUpdateSearch(string str)

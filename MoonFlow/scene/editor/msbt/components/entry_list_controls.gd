@@ -34,6 +34,7 @@ func _on_add_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		hbox_add_entry.show()
 		line_add_entry.grab_focus()
+		line_add_entry.caret_column = line_add_entry.text.length()
 
 func _on_search_toggled(toggled_on: bool) -> void:
 	_hide_control_inputs(button_search, toggled_on)
