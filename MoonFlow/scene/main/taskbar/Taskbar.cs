@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 using MoonFlow.Scene.Home;
+using System.Collections.Generic;
 
 namespace MoonFlow.Scene.Main;
 
@@ -10,6 +11,11 @@ public partial class Taskbar : Control
     #region Init & App Init
 
     private MainSceneRoot Parent;
+
+    private readonly List<AppScene> FocusHistory = [];
+    private int FocusHistoryPosition = 0;
+    private const int FocusHistoryMaxSize = 20;
+    private bool IsFocusHistoryEditable = true;
 
     public override void _Ready()
     {
@@ -23,6 +29,13 @@ public partial class Taskbar : Control
 
     public bool TryAddApplication(AppScene app)
     {
+        // Reset focus history position
+        while (FocusHistoryPosition > 0)
+        {
+            FocusHistory.RemoveAt(FocusHistory.Count - FocusHistoryPosition);
+            FocusHistoryPosition--;
+        }
+
         // Ensure app isn't already open
         if (app.IsAppOnlyOneInstance())
         {
@@ -59,6 +72,7 @@ public partial class Taskbar : Control
 
         // Connect to focus signal
         app.Connect(AppScene.SignalName.AppFocused, Callable.From(() => OnAppFocused(app)));
+        app.Connect(AppScene.SignalName.TreeExiting, Callable.From(() => OnAppExiting(app)));
 
         return true;
     }
@@ -66,6 +80,39 @@ public partial class Taskbar : Control
     #endregion
 
     #region Input
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is not InputEventMouseButton button || !button.IsPressed())
+            return;
+        
+        bool isChangeFocus = false;
+        switch(button.ButtonIndex)
+        {
+            case MouseButton.Xbutton1:
+                isChangeFocus = true;
+                FocusHistoryPosition = Math.Clamp(FocusHistoryPosition + 1, 0, FocusHistory.Count - 1);
+                break;
+            case MouseButton.Xbutton2:
+                isChangeFocus = true;
+                FocusHistoryPosition = Math.Clamp(FocusHistoryPosition - 1, 0, FocusHistory.Count - 1);
+                break;
+        }
+
+        if (!isChangeFocus)
+            return;
+        
+        GetViewport().SetInputAsHandled();
+        
+        var app = FocusHistory[FocusHistory.Count - 1 - FocusHistoryPosition];
+
+        if (app != AppSceneServer.GetActiveApp())
+        {
+            IsFocusHistoryEditable = false;
+            app.AppFocus();
+            IsFocusHistoryEditable = true;
+        }
+    }
 
     public override void _UnhandledKeyInput(InputEvent @event)
     {
@@ -119,13 +166,32 @@ public partial class Taskbar : Control
 
     private void OnAppFocused(AppScene app)
     {
+        // Update taskbar button activeness
         var isDisable = app.IsAppExclusive();
-
         foreach (var child in GetChildren())
         {
             if (child is TaskbarButton button)
                 button.Disabled = isDisable;
         }
+
+        // Update focus history
+        if ((FocusHistory.Count > 0 && FocusHistory.Last() == app) || !IsFocusHistoryEditable)
+            return;
+        
+        while (FocusHistoryPosition > 0)
+        {
+            FocusHistory.RemoveAt(FocusHistory.Count - FocusHistoryPosition);
+            FocusHistoryPosition--;
+        }
+        
+        FocusHistory.Add(app);
+        if (FocusHistory.Count > FocusHistoryMaxSize)
+            FocusHistory.RemoveAt(0);
+    }
+
+    private void OnAppExiting(AppScene app)
+    {
+        FocusHistory.RemoveAll(a => a == app);
     }
 
     #endregion
