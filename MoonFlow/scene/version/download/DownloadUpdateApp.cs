@@ -103,7 +103,7 @@ public partial class DownloadUpdateApp : AppScene
 		ZipFile.ExtractToDirectory(zipPath, outPath);
 	}
 
-	private async void OnExtractComplete(Task task)
+	private void OnExtractComplete(Task task)
 	{
 		if (task != null && task.Exception != null)
 		{
