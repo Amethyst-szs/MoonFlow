@@ -148,3 +148,5 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="Content/VBox/VBox_Error"]
 layout_mode = 2
 text = "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
+
+[connection signal="pressed" from="Content/VBox/VBox_Error/Button" to="." method="OnAcceptFailureScreen"]
