@@ -16,16 +16,14 @@ public partial class MainSceneRoot : Control
 
     public override void _Ready()
     {
+        TreeExiting += OnTreeExiting;
+
         NodeHeader = GetNode<Header>("%Header");
         NodeApps = GetNode<Control>("%Apps");
         NodeTaskbar = GetNode<Taskbar>("%Taskbar");
         NodeAlerts = GetNode<VBoxContainer>("%Alert");
 
-        // Add self-reference to ProjectManager
         ProjectManager.SceneRoot = this;
-        TreeExiting += OnTreeExiting;
-
-        // Add app holder control reference to app server
         AppSceneServer.Init(NodeApps);
     }
 

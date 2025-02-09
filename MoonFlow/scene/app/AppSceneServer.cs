@@ -22,8 +22,20 @@ public static partial class AppSceneServer
             throw new Exception("AppSceneServer already has reference to app root");
 
         AppRoot = appRoot;
+        
+        // Create initial app using command line arguments
+        var args = Cmdline.GetArgs();
+        args.TryGetValue("--launchmode", out string mode);
 
-        CreateApp<FrontDoor>();
+        switch(mode)
+        {
+            case "appless": // Prevent launching any default application
+                GD.Print("Launched in appless mode");
+                break;
+            default: // Standard behavior, showing project selection homescreen
+                CreateApp<FrontDoor>();
+                break;
+        }
     }
 
     public static void Destroy()

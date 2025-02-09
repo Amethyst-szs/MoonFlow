@@ -37,6 +37,10 @@ ScreenshotCapture="*res://scene/common/screenshot/screenshot_capture.gd"
 project/assembly_name="MoonFlow"
 project/solution_directory="res://../"
 
+[editor]
+
+run/main_run_args="-- --launchmode=default"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/git_database/plugin.cfg", "res://addons/markdownlabel/plugin.cfg", "res://addons/mfgraph_resource/plugin.cfg", "res://addons/podb/plugin.cfg", "res://addons/wiki/plugin.cfg")

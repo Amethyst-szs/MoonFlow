@@ -3,12 +3,15 @@ extends Button
 static var is_update_checked: bool = false
 static var is_update_available: bool = false
 static var update_url: String = ""
+static var update_asset_download_url: String = ""
 static var update_name: String = ""
 static var update_tag: String = ""
 static var update_unix: int
 
 const setting_group: String = "moonflow/version/update_"
 const api_token_path: String = "user://git_api_token"
+
+signal launch_update(download_url: String)
 
 func _ready():
 	var request: HTTPRequest = $HTTPRequest
@@ -66,13 +69,31 @@ func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, b
 	
 	# Get the remote unix time and comapre it to local
 	update_unix = int(Time.get_unix_time_from_datetime_string(unix_str))
-	if GitInfo.commit_time_unix > update_unix:
-		print_v("Most recent release is behind current build, ignoring updater")
-		return
 	
-	if GitInfo.commit_time_unix == update_unix:
-		print_v("No updates available")
-		return
+	if !OS.get_cmdline_user_args().has("--ignore_update_timestamp"):
+		if GitInfo.commit_time_unix > update_unix:
+			print_v("Most recent release is behind current build, ignoring updater")
+			return
+		
+		if GitInfo.commit_time_unix == update_unix:
+			print_v("No updates available")
+			return
+	
+	# Attempt to find the correct asset package for local machine
+	var target_asset_name: String = _get_target_asset_name()
+	var target_arch_name: String = _get_target_asset_name()
+	
+	if target_asset_name != "":
+		var asset_list: Array = body.get("assets")
+		
+		for asset in asset_list:
+			if !asset.has("name"): continue
+			
+			var asset_name: String = asset.get("name") as String
+			if !asset_name.contains(target_asset_name): continue
+			if !asset_name.contains(target_arch_name): continue
+			
+			update_asset_download_url = asset.get("browser_download_url")
 	
 	print_v("Update available: " + update_tag)
 	_appear_update_button()
@@ -94,7 +115,12 @@ func _appear_update_button() -> void:
 	show()
 
 func _on_updater_pressed(url: String) -> void:
-	OS.shell_open(url)
+	if update_asset_download_url == "":
+		OS.shell_open(url)
+		return
+	
+	print_v("Launching update utility: " + update_asset_download_url)
+	launch_update.emit(update_asset_download_url)
 
 func _get_api_request_url() -> String:
 	var domain: String = ProjectSettings.get_setting(setting_group + "domain_api", "")
@@ -129,5 +155,20 @@ func print_v(msg: String) -> void:
 
 func print_v_error(msg: String) -> void:
 	print_rich("[right][color=INDIAN_RED][i] |> " + msg)
+
+#endregion
+
+#region Utility
+
+func _get_target_asset_name() -> String:
+	var server := DisplayServer.get_name()
+	
+	if server == "Windows": return "win"
+	if server == "X11" || server == "Wayland": return "linux"
+	
+	return ""
+
+func _get_target_asset_architecture() -> String:
+	return Engine.get_architecture_name()
 
 #endregion
