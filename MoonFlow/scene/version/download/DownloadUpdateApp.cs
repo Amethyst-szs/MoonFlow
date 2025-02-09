@@ -165,9 +165,7 @@ public partial class DownloadUpdateApp : AppScene
 
 		// Launch new process and terminate self
 		OS.CreateProcess(exePath, [.. args]);
-
-		await Extension.WaitProcessFrame();
-		GetTree().Quit();
+		GetTree().CallDeferred(SceneTree.MethodName.Quit);
 	}
 
 	#endregion

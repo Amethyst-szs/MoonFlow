@@ -22,7 +22,7 @@ public partial class ReplaceOldVersionApp : AppScene
 	{
 		base._Ready();
 
-		await ToSignal(GetTree().CreateTimer(2.0), Timer.SignalName.Timeout);
+		await ToSignal(GetTree().CreateTimer(3.0), Timer.SignalName.Timeout);
 
 		// Get paths from command line arguments
 		var args = Cmdline.GetArgs();
