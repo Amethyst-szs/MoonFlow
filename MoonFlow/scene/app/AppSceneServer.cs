@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Godot;
 using MoonFlow.Addons;
 using MoonFlow.Project;
+using MoonFlow.Scene.Dev;
 using MoonFlow.Scene.Main;
 
 namespace MoonFlow.Scene;
@@ -20,6 +21,7 @@ public static partial class AppSceneServer
     public const string CmdlineArgValueLaunchmodeAppless = "appless";
     public const string CmdlineArgValueLaunchmodeUpdateReplaceOld = "update_replace";
     public const string CmdlineArgValueLaunchmodeUpdateCleanup = "update_cleanup";
+    public const string CmdlineArgValueLaunchmodeUpdateDebug = "update_debug";
 
     public static void Init(Control appRoot)
     {
@@ -43,6 +45,9 @@ public static partial class AppSceneServer
             case CmdlineArgValueLaunchmodeUpdateCleanup: // Remove temporary update files and continue as normal
                 DownloadUpdateApp.CleanupTemporaryUpdateFiles();
                 CreateApp<FrontDoor>();
+                break;
+            case CmdlineArgValueLaunchmodeUpdateDebug: // Provides tools for debugging the auto-update system
+                CreateApp<UpdaterDebug>();
                 break;
             default: // Standard behavior, showing project selection homescreen
                 CreateApp<FrontDoor>();

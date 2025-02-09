@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://ri6l1jqtmyk7"]
+
+[ext_resource type="Script" path="res://scene/dev/updater/UpdaterDebug.cs" id="1_lp2ou"]
+[ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="2_r4y6a"]
+[ext_resource type="Script" path="res://scene/version/notify/version_update_button.gd" id="3_esqf1"]
+
+[node name="UpdaterDebugApp" type="Control"]
+auto_translate_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lp2ou")
+AppName = "UpdaterDebugApp"
+AppTaskbarTitle = "Updater Debug"
+AppFlags = 42
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Scroll_Display" type="ScrollContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="List" type="VBoxContainer" parent="Margin/Scroll_Display"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button_Official" type="Button" parent="Margin/Scroll_Display/List"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+text = "Release Notification Button"
+icon = ExtResource("2_r4y6a")
+alignment = 0
+script = ExtResource("3_esqf1")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Margin/Scroll_Display/List/Button_Official"]
+use_threads = true
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Scroll_Display/List"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Line_URL" type="LineEdit" parent="Margin/Scroll_Display/List"]
+layout_mode = 2
+placeholder_text = "URL"
+
+[node name="Button_DownloadByUrl" type="Button" parent="Margin/Scroll_Display/List"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Download from URL"
+alignment = 0
+
+[connection signal="launch_update" from="Margin/Scroll_Display/List/Button_Official" to="." method="OnLauncherUpdaterOfficial"]
+[connection signal="request_completed" from="Margin/Scroll_Display/List/Button_Official/HTTPRequest" to="Margin/Scroll_Display/List/Button_Official" method="_on_request_completed"]
+[connection signal="text_changed" from="Margin/Scroll_Display/List/Line_URL" to="." method="OnTargetUrlChange"]
+[connection signal="pressed" from="Margin/Scroll_Display/List/Button_DownloadByUrl" to="." method="OnLaunchUpdater"]
