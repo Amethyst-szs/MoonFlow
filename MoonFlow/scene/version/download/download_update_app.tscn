@@ -1,12 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://c06qrr7k28ena"]
+[gd_scene load_steps=16 format=3 uid="uid://c06qrr7k28ena"]
 
 [ext_resource type="Script" path="res://scene/version/download/DownloadUpdateApp.cs" id="1_33jf8"]
 [ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="1_hjsav"]
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="2_rjhkt"]
 [ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="3_4qt2b"]
+[ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="3_twj5p"]
 [ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/component/moonflow_status_icon.tscn" id="4_gcxw3"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_ywebm"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="7_05vxy"]
+[ext_resource type="PackedScene" uid="uid://dwpxrep18y4wy" path="res://scene/front_door/dot/playable.tscn" id="8_5vt1d"]
+[ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="9_bmugd"]
+[ext_resource type="Script" path="res://scene/version/notify/open_repo_releases_webpage_button.gd" id="10_eji8g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_741w2"]
 font = ExtResource("6_ywebm")
@@ -45,7 +49,7 @@ func _process(delta: float) -> void:
 		visible_characters = text.length() - 3
 "
 
-[node name="DownloadUpdateApp" type="Control" node_paths=PackedStringArray("ContainerDownload", "ProgressDownload", "LabelProgressDownload", "ContainerExtract", "ContainerFailure", "LabelFailInfo")]
+[node name="DownloadUpdateApp" type="Control" node_paths=PackedStringArray("ContainerDownload", "ProgressDownload", "LabelProgressDownload", "ContainerExtract", "ContainerFailure", "LabelFailInfo", "LabelFailExtract")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,8 +64,10 @@ LabelProgressDownload = NodePath("Content/VBox/VBox_Download/Label_ByteProg")
 ContainerExtract = NodePath("Content/VBox/VBox_Extract")
 ContainerFailure = NodePath("Content/VBox/VBox_Error")
 LabelFailInfo = NodePath("Content/VBox/VBox_Error/Label_FailInfo")
+LabelFailExtract = NodePath("Content/VBox/VBox_Error/Label_ExtractFail")
 AppName = "UpdateDownloadApp"
 AppTaskbarTitle = "Update"
+AppIcon = ExtResource("3_twj5p")
 AppFlags = 42
 
 [node name="Content" type="PanelContainer" parent="."]
@@ -89,6 +95,7 @@ size_flags_vertical = 4
 
 [node name="VBox_Download" type="VBoxContainer" parent="Content/VBox"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="Label_DownloadHeader" type="Label" parent="Content/VBox/VBox_Download"]
 layout_mode = 2
@@ -112,6 +119,7 @@ horizontal_alignment = 1
 
 [node name="VBox_Extract" type="VBoxContainer" parent="Content/VBox"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="Label_ExtractHeader" type="Label" parent="Content/VBox/VBox_Extract"]
 layout_mode = 2
@@ -130,6 +138,7 @@ editor_preview_indeterminate = false
 
 [node name="VBox_Error" type="VBoxContainer" parent="Content/VBox"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="Label_FailHead" type="Label" parent="Content/VBox/VBox_Error"]
 layout_mode = 2
@@ -139,14 +148,61 @@ horizontal_alignment = 1
 visible_characters_behavior = 1
 script = SubResource("GDScript_02rkp")
 
+[node name="HSeparator_Error" type="HSeparator" parent="Content/VBox/VBox_Error"]
+modulate = Color(1, 0.05, 0.05, 1)
+layout_mode = 2
+
+[node name="Label_ExtractFail" type="Label" parent="Content/VBox/VBox_Error"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "DOWNLOAD_UPDATE_APP_FAILED_EXTRACT_INFO"
+label_settings = SubResource("LabelSettings_rs0dg")
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [node name="Label_FailInfo" type="Label" parent="Content/VBox/VBox_Error"]
 auto_translate_mode = 2
 layout_mode = 2
 label_settings = SubResource("LabelSettings_rs0dg")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Content/VBox/VBox_Error"]
+[node name="HBox_Options" type="HBoxContainer" parent="Content/VBox/VBox_Error"]
 layout_mode = 2
-text = "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
+theme_override_constants/separation = 12
 
-[connection signal="pressed" from="Content/VBox/VBox_Error/Button" to="." method="OnAcceptFailureScreen"]
+[node name="Button_Accept" type="Button" parent="Content/VBox/VBox_Error/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
+icon = ExtResource("9_bmugd")
+icon_alignment = 2
+
+[node name="Button_GitHub" type="Button" parent="Content/VBox/VBox_Error/HBox_Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "DOWNLOAD_UPDATE_APP_RELEASES_WEBPAGE"
+icon = ExtResource("3_twj5p")
+icon_alignment = 2
+script = ExtResource("10_eji8g")
+
+[node name="DotPlayable" type="Control" parent="."]
+z_index = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+mouse_filter = 1
+
+[node name="DotPlayable" parent="DotPlayable" instance=ExtResource("8_5vt1d")]
+appear_delay_sec = 1.0
+
+[connection signal="pressed" from="Content/VBox/VBox_Error/HBox_Options/Button_Accept" to="." method="OnAcceptFailureScreen"]

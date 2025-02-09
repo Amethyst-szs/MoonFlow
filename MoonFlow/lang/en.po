@@ -3676,8 +3676,18 @@ msgid "DOWNLOAD_UPDATE_APP_FAILED_HEADER"
 msgstr "Failed to Update!"
 
 #: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_FAILED_EXTRACT_INFO"
+msgstr ""
+"Failed to extract downloaded archive. Try again, download the latest release "
+"manually, or report this as a bug on the repository!"
+
+#: scene/version/download/download_update_app.tscn
 msgid "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
 msgstr "Return to Home Page"
+
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_RELEASES_WEBPAGE"
+msgstr "Download Manually"
 
 #: scene/version/replace_old/replace_old_version_app.tscn
 msgid "REPLACE_OLD_VERSION_APP_HEADER"

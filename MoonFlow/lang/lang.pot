@@ -3605,7 +3605,15 @@ msgid "DOWNLOAD_UPDATE_APP_FAILED_HEADER"
 msgstr ""
 
 #: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_FAILED_EXTRACT_INFO"
+msgstr ""
+
+#: scene/version/download/download_update_app.tscn
 msgid "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
+msgstr ""
+
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_RELEASES_WEBPAGE"
 msgstr ""
 
 #: scene/version/replace_old/replace_old_version_app.tscn

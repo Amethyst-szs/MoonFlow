@@ -7,7 +7,7 @@ using Godot;
 
 namespace MoonFlow.Scene;
 
-[ScenePath("res://scene/version/download/download_update_app.tscn"), Icon("res://iconS.png")]
+[ScenePath("res://scene/version/download/download_update_app.tscn"), Icon("res://asset/app/icon/update.png")]
 public partial class DownloadUpdateApp : AppScene
 {
 	public const string DownloadTempFile = "working.zip";
@@ -48,7 +48,7 @@ public partial class DownloadUpdateApp : AppScene
 		if (responseCode != 200)
 		{
 			GD.Print("Update failed with HTTP response code: " + responseCode);
-			OnFailure(responseCode);
+			OnFailure(false, responseCode);
 			return;
 		}
 
@@ -93,7 +93,7 @@ public partial class DownloadUpdateApp : AppScene
 	{
 		if (task != null && task.Exception != null)
 		{
-			OnFailure();
+			OnFailure(true);
 			return;
 		}
 
@@ -102,13 +102,31 @@ public partial class DownloadUpdateApp : AppScene
 		if (!executablePath.EndsWith('/')) executablePath += '/';
 
 		var executableName = OS.GetExecutablePath().GetFile();
-		if (executableName.Contains("godot", StringComparison.OrdinalIgnoreCase))
-			throw new Exception("Cannot continue with auto-update process from Godot Editor instance");
+
+		try
+		{
+			if (executableName.Contains("godot", StringComparison.OrdinalIgnoreCase))
+				throw new Exception("Cannot continue with auto-update process from Godot Editor instance");
+		}
+		catch
+		{
+			OnFailure(true);
+			return;
+		}
 
 		// Ensure extracted directory has a launchable MoonFlow executable
 		var exePath = GetUserDir() + ExtractionPath + executableName;
-		if (!File.Exists(exePath))
-			throw new FileNotFoundException("Could not locate " + exePath);
+
+		try
+		{
+			if (!File.Exists(exePath))
+				throw new FileNotFoundException("Could not locate " + exePath);
+		}
+		catch
+		{
+			OnFailure(true);
+			return;
+		}
 
 		// Create argument list
 		List<string> args = ["--"];
@@ -146,14 +164,17 @@ public partial class DownloadUpdateApp : AppScene
 	private VBoxContainer ContainerFailure;
 	[Export]
 	private Label LabelFailInfo;
+	[Export]
+	private Label LabelFailExtract;
 
-	private void OnFailure(long httpCode = -1)
+	private void OnFailure(bool isExtractFail, long httpCode = -1)
 	{
 		SetVisibleContainer(ContainerFailure);
-		LabelFailInfo.Text = "HTTP code: " + httpCode;
 
-		if (httpCode == -1)
-			LabelFailInfo.Hide();
+		LabelFailInfo.SetDeferred(Label.PropertyName.Text, "HTTP code: " + httpCode);
+		if (httpCode == -1) LabelFailInfo.CallDeferred(MethodName.Hide);
+
+		LabelFailExtract.SetDeferred(PropertyName.Visible, isExtractFail);
 	}
 
 	private void OnAcceptFailureScreen()
@@ -183,11 +204,11 @@ public partial class DownloadUpdateApp : AppScene
 
 	private void SetVisibleContainer(Control container)
 	{
-		ContainerDownload.Hide();
-		ContainerExtract.Hide();
-		ContainerFailure.Hide();
+		ContainerDownload.CallDeferred(MethodName.Hide);
+		ContainerExtract.CallDeferred(MethodName.Hide);
+		ContainerFailure.CallDeferred(MethodName.Hide);
 
-		container.Show();
+		container.CallDeferred(MethodName.Show);
 	}
 
 	#endregion

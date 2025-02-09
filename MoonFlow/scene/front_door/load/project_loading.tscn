@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dklnltxsfaufc" path="res://asset/material/arrow/double_up.svg" id="10_02wsd"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="10_g0nbr"]
 [ext_resource type="Texture2D" uid="uid://b8myj5gou5squ" path="res://asset/material/user/exit.svg" id="10_hlmkx"]
+[ext_resource type="Script" path="res://scene/version/notify/open_repo_releases_webpage_button.gd" id="10_qjasc"]
 [ext_resource type="Texture2D" uid="uid://br38w7ae4sf6a" path="res://asset/material/arrow/up.svg" id="11_dctwd"]
 [ext_resource type="PackedScene" uid="uid://dxhe1o2jtilpi" path="res://scene/front_door/load/exception/msbt_entry_parser_exception.tscn" id="13_c0yfp"]
 
@@ -47,14 +48,6 @@ func _process(delta: float) -> void:
 [sub_resource type="LabelSettings" id="LabelSettings_hdk0y"]
 font = ExtResource("6_mwncf")
 font_size = 20
-
-[sub_resource type="GDScript" id="GDScript_v6bhj"]
-script/source = "extends Button
-
-func _pressed() -> void:
-	var path: String = ProjectSettings.get_setting(\"moonflow/version/repo_releases_url\", \"https://github.com/Amethyst-szs/MoonFlow/releases\")
-	OS.shell_open(path)
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_qjn8m"]
 font = ExtResource("6_mwncf")
@@ -202,7 +195,7 @@ mouse_default_cursor_shape = 2
 text = "LOADING_OUTDATED_DOWNLOAD"
 icon = ExtResource("8_8nh1l")
 icon_alignment = 2
-script = SubResource("GDScript_v6bhj")
+script = ExtResource("10_qjasc")
 
 [node name="Button_ForceContinue" type="Button" parent="Content/Scroll/VBox/VBox_Outdated"]
 layout_mode = 2

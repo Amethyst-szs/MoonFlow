@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://k324j6rro3rn"]
+[gd_scene load_steps=9 format=3 uid="uid://k324j6rro3rn"]
 
 [ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="1_xniuo"]
 [ext_resource type="Script" path="res://scene/version/replace_old/ReplaceOldVersionApp.cs" id="2_iwhn0"]
 [ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="3_84u4v"]
+[ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="3_rhbc4"]
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="4_b46yb"]
 [ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/component/moonflow_status_icon.tscn" id="5_562c0"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_fui5k"]
@@ -24,6 +25,7 @@ theme = ExtResource("1_xniuo")
 script = ExtResource("2_iwhn0")
 AppName = "ReplaceOldVersionApp"
 AppTaskbarTitle = "Working..."
+AppIcon = ExtResource("3_rhbc4")
 AppFlags = 42
 
 [node name="Content" type="PanelContainer" parent="."]
