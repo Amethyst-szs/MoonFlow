@@ -151,4 +151,12 @@ public partial class FrontDoor : AppScene
 
 		OnDialogOpenProjectPathSelected(InitInfo.Path);
 	}
+
+	private void OnLaunchApplicationUpdater(string url, int byteSize)
+	{
+		var app = AppSceneServer.CreateApp<DownloadUpdateApp>(url);
+		app.InitUpdate(url, byteSize);
+
+		AppCloseForce();
+	}
 }

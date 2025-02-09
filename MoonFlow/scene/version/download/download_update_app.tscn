@@ -1,0 +1,150 @@
+[gd_scene load_steps=12 format=3 uid="uid://c06qrr7k28ena"]
+
+[ext_resource type="Script" path="res://scene/version/download/DownloadUpdateApp.cs" id="1_33jf8"]
+[ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="1_hjsav"]
+[ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="2_rjhkt"]
+[ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="3_4qt2b"]
+[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/component/moonflow_status_icon.tscn" id="4_gcxw3"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_ywebm"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="7_05vxy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_741w2"]
+font = ExtResource("6_ywebm")
+font_size = 19
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rs0dg"]
+font = ExtResource("7_05vxy")
+font_size = 14
+font_color = Color(1, 1, 1, 0.784314)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pw0w1"]
+font = ExtResource("6_ywebm")
+font_size = 20
+font_color = Color(1, 0.21, 0.21, 1)
+
+[sub_resource type="GDScript" id="GDScript_02rkp"]
+script/source = "extends Label
+
+var time: float = 0.0
+
+func _ready() -> void:
+	visible_characters = text.length() - 3
+
+func _process(delta: float) -> void:
+	time += delta
+	
+	if (time > 0.4):
+		time -= 0.4
+	else:
+		return
+	
+	visible_characters += 1
+	if visible_characters > text.length():
+		visible_characters = text.length() - 3
+"
+
+[node name="DownloadUpdateApp" type="Control" node_paths=PackedStringArray("ContainerDownload", "ProgressDownload", "LabelProgressDownload", "ContainerExtract", "ContainerFailure", "LabelFailInfo")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hjsav")
+script = ExtResource("1_33jf8")
+ContainerDownload = NodePath("Content/VBox/VBox_Download")
+ProgressDownload = NodePath("Content/VBox/VBox_Download/Progress_Download")
+LabelProgressDownload = NodePath("Content/VBox/VBox_Download/Label_ByteProg")
+ContainerExtract = NodePath("Content/VBox/VBox_Extract")
+ContainerFailure = NodePath("Content/VBox/VBox_Error")
+LabelFailInfo = NodePath("Content/VBox/VBox_Error/Label_FailInfo")
+AppName = "UpdateDownloadApp"
+AppTaskbarTitle = "Update"
+AppFlags = 42
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4qt2b")
+theme_override_styles/panel = ExtResource("2_rjhkt")
+
+[node name="VBox" type="VBoxContainer" parent="Content"]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="StatusIcon" parent="Content/VBox" instance=ExtResource("4_gcxw3")]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="VBox_Download" type="VBoxContainer" parent="Content/VBox"]
+layout_mode = 2
+
+[node name="Label_DownloadHeader" type="Label" parent="Content/VBox/VBox_Download"]
+layout_mode = 2
+text = "DOWNLOAD_UPDATE_APP_HEADER_DOWNLOAD_PROGRESS"
+label_settings = SubResource("LabelSettings_741w2")
+horizontal_alignment = 1
+
+[node name="HSep" type="HSeparator" parent="Content/VBox/VBox_Download"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Progress_Download" type="ProgressBar" parent="Content/VBox/VBox_Download"]
+layout_mode = 2
+
+[node name="Label_ByteProg" type="Label" parent="Content/VBox/VBox_Download"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "0.00mb/0.00mb"
+label_settings = SubResource("LabelSettings_rs0dg")
+horizontal_alignment = 1
+
+[node name="VBox_Extract" type="VBoxContainer" parent="Content/VBox"]
+layout_mode = 2
+
+[node name="Label_ExtractHeader" type="Label" parent="Content/VBox/VBox_Extract"]
+layout_mode = 2
+text = "DOWNLOAD_UPDATE_APP_HEADER_EXTRACT_PROGRESS"
+label_settings = SubResource("LabelSettings_741w2")
+horizontal_alignment = 1
+
+[node name="HSep" type="HSeparator" parent="Content/VBox/VBox_Extract"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Progress_Extract" type="ProgressBar" parent="Content/VBox/VBox_Extract"]
+layout_mode = 2
+indeterminate = true
+editor_preview_indeterminate = false
+
+[node name="VBox_Error" type="VBoxContainer" parent="Content/VBox"]
+layout_mode = 2
+
+[node name="Label_FailHead" type="Label" parent="Content/VBox/VBox_Error"]
+layout_mode = 2
+text = "DOWNLOAD_UPDATE_APP_FAILED_HEADER"
+label_settings = SubResource("LabelSettings_pw0w1")
+horizontal_alignment = 1
+visible_characters_behavior = 1
+script = SubResource("GDScript_02rkp")
+
+[node name="Label_FailInfo" type="Label" parent="Content/VBox/VBox_Error"]
+auto_translate_mode = 2
+layout_mode = 2
+label_settings = SubResource("LabelSettings_rs0dg")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Content/VBox/VBox_Error"]
+layout_mode = 2
+text = "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"

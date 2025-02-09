@@ -16,6 +16,11 @@ public static partial class AppSceneServer
     private static Control AppRoot;
     private readonly static List<AppScene> AppList = [];
 
+    public const string CmdlineArgKeyLaunchmode = "--launchmode";
+    public const string CmdlineArgValueLaunchmodeAppless = "appless";
+    public const string CmdlineArgValueLaunchmodeUpdateReplaceOld = "update_replace";
+    public const string CmdlineArgValueLaunchmodeUpdateCleanup = "update_cleanup";
+
     public static void Init(Control appRoot)
     {
         if (AppRoot != null)
@@ -25,12 +30,19 @@ public static partial class AppSceneServer
         
         // Create initial app using command line arguments
         var args = Cmdline.GetArgs();
-        args.TryGetValue("--launchmode", out string mode);
+        args.TryGetValue(CmdlineArgKeyLaunchmode, out string mode);
 
         switch(mode)
         {
-            case "appless": // Prevent launching any default application
+            case CmdlineArgValueLaunchmodeAppless: // Prevent launching any default application
                 GD.Print("Launched in appless mode");
+                break;
+            case CmdlineArgValueLaunchmodeUpdateReplaceOld: // Used to replace old installation during autoupdate process
+                CreateApp<ReplaceOldVersionApp>();
+                break;
+            case CmdlineArgValueLaunchmodeUpdateCleanup: // Remove temporary update files and continue as normal
+                DownloadUpdateApp.CleanupTemporaryUpdateFiles();
+                CreateApp<FrontDoor>();
                 break;
             default: // Standard behavior, showing project selection homescreen
                 CreateApp<FrontDoor>();

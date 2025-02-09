@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://k324j6rro3rn"]
+
+[ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="1_xniuo"]
+[ext_resource type="Script" path="res://scene/version/replace_old/ReplaceOldVersionApp.cs" id="2_iwhn0"]
+[ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="3_84u4v"]
+[ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="4_b46yb"]
+[ext_resource type="PackedScene" uid="uid://b55745yahneej" path="res://scene/front_door/load/component/moonflow_status_icon.tscn" id="5_562c0"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_fui5k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pg3et"]
+font = ExtResource("6_fui5k")
+font_size = 19
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ReplaceOldVersionApp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xniuo")
+script = ExtResource("2_iwhn0")
+AppName = "ReplaceOldVersionApp"
+AppTaskbarTitle = "Working..."
+AppFlags = 42
+
+[node name="Content" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_84u4v")
+theme_override_styles/panel = ExtResource("4_b46yb")
+
+[node name="VBox" type="VBoxContainer" parent="Content"]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="StatusIcon" parent="Content/VBox" instance=ExtResource("5_562c0")]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Label_WorkingHeader" type="Label" parent="Content/VBox"]
+layout_mode = 2
+text = "REPLACE_OLD_VERSION_APP_HEADER"
+label_settings = SubResource("LabelSettings_pg3et")
+horizontal_alignment = 1

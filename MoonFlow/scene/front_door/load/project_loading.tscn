@@ -273,7 +273,6 @@ text_overrun_behavior = 1
 icon_alignment = 2
 
 [node name="VBox_Exception" type="VBoxContainer" parent="Content/Scroll/VBox"]
-visible = false
 custom_minimum_size = Vector2(612, 0)
 layout_mode = 2
 size_flags_horizontal = 3

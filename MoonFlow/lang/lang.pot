@@ -77,7 +77,6 @@
 # res://scene/editor/msbt/components/dialog_language_change_unsaved.tscn
 # res://scene/editor/msbt/list/label/entry_label_button_tooltip_text.tres
 # res://lang/db/header_tooltip.tres
-# res://scene/version/version_tooltip.tscn
 # res://scene/editor/event/block/event_block_panel.tscn
 # res://scene/home/guide/home_guide.tscn
 # res://scene/front_door/ui/quickbar_error_label.gd
@@ -88,6 +87,9 @@
 # res://scene/editor/world/general/vbox_basic_info.tscn
 # res://scene/editor/world/general/vbox_scenario_info.tscn
 # res://scene/editor/world/general/tab_general.tscn
+# res://scene/version/download/download_update_app.tscn
+# res://scene/version/replace_old/replace_old_version_app.tscn
+# res://scene/version/notify/version_tooltip.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -3290,10 +3292,6 @@ msgctxt "HEADER_TOOLTIP"
 msgid "HelpSupport"
 msgstr ""
 
-#: scene/version/version_tooltip.tscn
-msgid "VERSION_UPDATE_TOOLTIP_HEADER"
-msgstr ""
-
 #: scene/editor/event/block/event_block_panel.tscn
 msgid "EVENT_GRAPH_EDITOR_BLOCK_PANEL_HEADER_TOOLTIP"
 msgstr ""
@@ -3592,4 +3590,28 @@ msgstr ""
 
 #: scene/editor/world/general/tab_general.tscn
 msgid "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
+msgstr ""
+
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_HEADER_DOWNLOAD_PROGRESS"
+msgstr ""
+
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_HEADER_EXTRACT_PROGRESS"
+msgstr ""
+
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_FAILED_HEADER"
+msgstr ""
+
+#: scene/version/download/download_update_app.tscn
+msgid "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
+msgstr ""
+
+#: scene/version/replace_old/replace_old_version_app.tscn
+msgid "REPLACE_OLD_VERSION_APP_HEADER"
+msgstr ""
+
+#: scene/version/notify/version_tooltip.tscn
+msgid "VERSION_UPDATE_TOOLTIP_HEADER"
 msgstr ""

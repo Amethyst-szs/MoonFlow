@@ -3,15 +3,17 @@ extends Button
 static var is_update_checked: bool = false
 static var is_update_available: bool = false
 static var update_url: String = ""
-static var update_asset_download_url: String = ""
 static var update_name: String = ""
 static var update_tag: String = ""
 static var update_unix: int
 
+static var update_asset_download_url: String = ""
+static var update_asset_size: int = -1
+
 const setting_group: String = "moonflow/version/update_"
 const api_token_path: String = "user://git_api_token"
 
-signal launch_update(download_url: String)
+signal launch_update(download_url: String, byte_size: int)
 
 func _ready():
 	var request: HTTPRequest = $HTTPRequest
@@ -94,6 +96,7 @@ func _on_request_completed(_r: int, response_code: int, _h: PackedStringArray, b
 			if !asset_name.contains(target_arch_name): continue
 			
 			update_asset_download_url = asset.get("browser_download_url")
+			update_asset_size = asset.get("size") as int
 	
 	print_v("Update available: " + update_tag)
 	_appear_update_button()
@@ -120,7 +123,7 @@ func _on_updater_pressed(url: String) -> void:
 		return
 	
 	print_v("Launching update utility: " + update_asset_download_url)
-	launch_update.emit(update_asset_download_url)
+	launch_update.emit(update_asset_download_url, update_asset_size)
 
 func _get_api_request_url() -> String:
 	var domain: String = ProjectSettings.get_setting(setting_group + "domain_api", "")
@@ -135,7 +138,7 @@ func _get_api_request_url() -> String:
 
 #region Custom Tooltip
 
-const tooltip_scene := preload("res://scene/version/version_tooltip.tscn")
+const tooltip_scene := preload("res://scene/version/notify/version_tooltip.tscn")
 
 func _make_custom_tooltip(for_text: String) -> Control:
 	var txt := for_text.split(';', false)
