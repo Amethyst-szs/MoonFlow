@@ -13,6 +13,11 @@ public partial class ReplaceOldVersionApp : AppScene
 	public const string CmdlineArgKeyTempDirectory = "--local_temp_dir";
 	public const string CmdlineArgKeyTargetDirectory = "--target_dir";
 
+	public override Task<bool> TryCloseFromTreeQuit()
+	{
+		return Task.FromResult(false);
+	}
+
 	public override async void _Ready()
 	{
 		base._Ready();

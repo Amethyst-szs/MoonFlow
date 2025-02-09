@@ -15,6 +15,11 @@ public partial class DownloadUpdateApp : AppScene
 
 	public const string ExtractionPath = "extract_temp/";
 
+	public override Task<bool> TryCloseFromTreeQuit()
+	{
+		return Task.FromResult(!IsExtraction);
+	}
+
 	#region Download Process
 
 	[Export, ExportGroup("Internal References"), ExportSubgroup("Download Process")]
@@ -37,7 +42,12 @@ public partial class DownloadUpdateApp : AppScene
 		AddChild(DownloadRequest);
 
 		DownloadRequest.RequestCompleted += OnDownloadRequestComplete;
-		DownloadRequest.Request(url);
+
+		if (DownloadRequest.Request(url) != Error.Ok)
+		{
+			OnFailure(true);
+			return;
+		}
 	}
 
 	private void OnDownloadRequestComplete(long result, long responseCode, string[] headers, byte[] body)
@@ -62,8 +72,12 @@ public partial class DownloadUpdateApp : AppScene
 	[Export, ExportGroup("Internal References"), ExportSubgroup("Extraction")]
 	private VBoxContainer ContainerExtract;
 
+	private bool IsExtraction = false;
+
 	private void BeginExtraction()
 	{
+		IsExtraction = true;
+
 		if (!Godot.FileAccess.FileExists(DownloadTempTarget))
 			throw new FileNotFoundException("Download completed successfully but no destination file!");
 
