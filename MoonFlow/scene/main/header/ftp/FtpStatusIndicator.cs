@@ -35,6 +35,8 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 	{
 		await Extension.WaitProcessFrame(this);
 
+		ProgressBar.SetDeferred(PropertyName.Visible, anim == "active");
+
 		if (Animation.CurrentAnimation != anim || isForce)
 			Animation.CallDeferred(AnimationPlayer.MethodName.Play, anim);
 
@@ -48,9 +50,6 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 
 	public void OnProgressUpdate(FtpProgress data)
 	{
-		bool isInProgress = data.Progress != 100F;
-		ProgressBar.SetDeferred(PropertyName.Visible, isInProgress);
-
 		// A value of -1 on progress indicates an indeterminate transfer
 		ProgressBar.SetDeferred(ProgressBar.PropertyName.Indeterminate, data.Progress == -1F);
 

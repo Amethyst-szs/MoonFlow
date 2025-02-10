@@ -168,7 +168,6 @@ public static partial class ProjectFtpClient
     #region Utility
 
     public static bool IsAttemptingServerConnect() => IsAttemptingConnection;
-
     public static bool IsConnected()
     {
         if (Client == null) return false;
