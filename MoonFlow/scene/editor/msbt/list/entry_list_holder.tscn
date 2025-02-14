@@ -66,7 +66,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "MSBT_ENTRY_NAME"
-max_length = 64
+max_length = 128
 clear_button_enabled = true
 script = ExtResource("4_furja")
 
@@ -84,7 +84,7 @@ stretch_mode = 5
 [node name="Line_Search" type="LineEdit" parent="Controls/VBox"]
 layout_mode = 2
 placeholder_text = "MSBT_SEARCH_ENTRIES"
-max_length = 22
+max_length = 128
 right_icon = ExtResource("7_rbj4v")
 
 [node name="HBox" type="HBoxContainer" parent="Controls/VBox"]
