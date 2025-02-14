@@ -12,10 +12,12 @@
 font_size = 11
 font_color = Color(1, 1, 1, 0.827451)
 
-[node name="EventFlowNodeMessageBalloon" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "MessageResolverConfig", "OptionBalloon", "OptionSource", "IsMultiDivide") instance=ExtResource("1_rdu8i")]
+[node name="EventFlowNodeMessageBalloon" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh", "MessageResolverConfig", "OptionBalloon", "OptionSource", "IsMultiDivide") instance=ExtResource("1_rdu8i")]
 script = ExtResource("2_tsyva")
 TextMessagePreview = NodePath("Content/Display/BalloonText/MessageResolverConfig/HBox_Preview/Text_Preview")
 LabelTextSource = NodePath("Content/Display/BalloonText/MessageResolverConfig/Label_TargetSource")
+ButtonMessageEdit = NodePath("Content/Display/BalloonText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Edit")
+ButtonMessageRefresh = NodePath("Content/Display/BalloonText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Refresh")
 MessageResolverConfig = NodePath("Content/Display/BalloonText/MessageResolverConfig")
 OptionBalloon = NodePath("Content/Display/BalloonText/Option_BalloonType")
 OptionSource = NodePath("Content/Display/BalloonText/Option_SourceType")
@@ -74,5 +76,7 @@ theme_override_constants/separation = 32
 [connection signal="OptionSelected" from="Content/Display/BalloonText/Option_SourceType" to="." method="OnBalloonTypeOrSourceModified"]
 [connection signal="toggled" from="Content/Display/BalloonText/Check_IsMultiDevide" to="." method="OnToggleMultiDivide"]
 [connection signal="pressed" from="Content/Display/BalloonText/MessageResolverConfig/Button_SelectSource" to="." method="OnSelectNewTextSource"]
+[connection signal="pressed" from="Content/Display/BalloonText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Edit" to="." method="OnTextPreviewEditCurrent"]
+[connection signal="pressed" from="Content/Display/BalloonText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Refresh" to="." method="OnTextPreviewRefreshCurrent"]
 
 [editable path="Content/Display/BalloonText/MessageResolverConfig"]

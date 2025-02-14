@@ -4,6 +4,7 @@ using System.Linq;
 using Godot;
 
 using MoonFlow.Project;
+using MoonFlow.Scene.EditorMsbt;
 using MoonFlow.Scene.EditorWorld;
 
 using Nindot;
@@ -15,9 +16,13 @@ namespace MoonFlow.Scene.EditorEvent;
 public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 {
 	[Export, ExportGroup("Internal References")]
-	private TextEdit TextMessagePreview;
+	private MsbtPageEditor TextMessagePreview;
 	[Export]
 	private Label LabelTextSource;
+	[Export]
+	protected Button ButtonMessageEdit;
+	[Export]
+	protected Button ButtonMessageRefresh;
 
 	[Export]
 	private VBoxContainer MessageResolverConfig;
@@ -161,6 +166,21 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		SetNodeModified();
 	}
 
+	protected void OnTextPreviewEditCurrent()
+	{
+		if (!Content.TryGetParam("Text", out NodeMessageResolverData msg))
+			return;
+
+		if (!IsContainMessageResolver())
+			return;
+
+		_ = AppSceneServer.CreateOrOpenMsbtLabel(msg);
+	}
+	protected void OnTextPreviewRefreshCurrent()
+	{
+		SetLabelDisplayTextSource();
+	}
+
 	#endregion
 
 	#region Utilities
@@ -210,6 +230,9 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		{
 			LabelTextSource.Modulate = Colors.Crimson;
 			LabelTextSource.Text = Tr("EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER");
+
+			ButtonMessageEdit.Disabled = true;
+			ButtonMessageRefresh.Disabled = true;
 			return;
 		}
 
@@ -226,8 +249,23 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		SarcFile arc = holder.GetArchiveByFileName(msg.MessageArchive);
 		var msbt = arc.GetFileMSBT(msg.MessageFile + ".msbt", new MsbtElementFactoryProjectSmo());
 
-		var txt = msbt.GetEntry(msg.LabelName);
-		TextMessagePreview.Text = txt.GetRawText(true);
+		var entry = msbt.GetEntry(msg.LabelName);
+
+		switch(entry.Pages.Count)
+		{
+			case 0:
+				TextMessagePreview.Text = "";
+				break;
+			case 1:
+				TextMessagePreview.Init(null, entry.Pages[0]);
+				break;
+			default:
+				TextMessagePreview.Init(null, entry.Pages[0]);
+				break;
+		}
+
+		ButtonMessageEdit.Disabled = false;
+		ButtonMessageRefresh.Disabled = false;
 	}
 
 	private bool IsSupportMessageResolver()
