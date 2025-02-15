@@ -135,10 +135,18 @@ public class BymlFileAccess
                 return;
             }
 
+            // Fixes bug with locales that use commas as a decimal place separator
+            if (type == typeof(float) || type == typeof(double))
+            {
+                string str = value.ToString().Replace(',', '.');
+                emitter.Emit(new Scalar("⌂♯" + Table[type], null, str, ScalarStyle.Any, true, false));
+                return;
+            }
+
             emitter.Emit(new Scalar("⌂♯" + Table[type], null, value.ToString(), ScalarStyle.Any, true, false));
         }
 
-        private void WriteYamlVec3(IEmitter emitter, Vector3 value, ObjectSerializer serializer)
+        private static void WriteYamlVec3(IEmitter emitter, Vector3 value, ObjectSerializer serializer)
         {
             emitter.Emit(new MappingStart());
 
