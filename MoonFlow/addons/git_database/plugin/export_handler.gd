@@ -7,15 +7,20 @@ func _get_name() -> String:
 
 func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> void:
 	# Check if an update to the file is required
-	var real_hash := EditorPluginGitInterface.git_commit_hash()
-	
-	var stored_hash := ""
-	if FileAccess.file_exists("res://addons/git_database/git.gd"):
-		var db = load("res://addons/git_database/git.gd")
-		stored_hash = db.get("commit_hash")
-	
-	if real_hash == stored_hash && !features.has("force"):
-		return
+	if !features.has("force"):
+		var real_hash := EditorPluginGitInterface.git_commit_hash()
+		var real_branch := EditorPluginGitInterface.git_branch_name()
+		
+		var stored_hash := ""
+		var stored_branch := ""
+		
+		if FileAccess.file_exists("res://addons/git_database/git.gd"):
+			var db = load("res://addons/git_database/git.gd")
+			stored_hash = db.get("commit_hash")
+			stored_branch = db.get("branch")
+		
+		if (real_hash == stored_hash && real_branch == stored_branch):
+			return
 	
 	# Generate source code
 	var source: String = FileAccess.get_file_as_string("res://addons/git_database/template/template_gd.txt")
