@@ -38,7 +38,12 @@ public partial class DownloadUpdateApp : AppScene
 		DownloadByteSize = byteSize;
 
 		// Create http request godot object
-		DownloadRequest = new HttpRequest { DownloadFile = DownloadTempTarget };
+		DownloadRequest = new HttpRequest
+		{
+			DownloadFile = DownloadTempTarget,
+			UseThreads = true,
+		};
+		
 		AddChild(DownloadRequest);
 
 		DownloadRequest.RequestCompleted += OnDownloadRequestComplete;
