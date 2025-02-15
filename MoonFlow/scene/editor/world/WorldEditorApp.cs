@@ -139,31 +139,47 @@ public partial class WorldEditorApp : AppScene
 	protected override void TaskWriteAppSaveContent(AsyncDisplay display)
 	{
 		// Calculate total tasks
+		int progressTask = -1;
 		int totalTasks =
 			(IsWorldInfoModified ? 1 : 0) +
 			(IsShineListModified ? 1 : 0) +
 			(IsItemInfoModified ? 1 : 0);
 
-		display.UpdateProgress(0, totalTasks);
+		IncrementTaskProgress(display, ref progressTask, totalTasks);
 
 		// Access project DB
 		var db = ProjectManager.GetProject().Database;
 
 		// Write each file in DB if needed
 		if (IsWorldInfoModified)
+		{
 			db.WriteWorldList();
+			IncrementTaskProgress(display, ref progressTask, totalTasks);
+		}
 
 		if (IsShineListModified)
+		{
 			db.WriteShineInfo(World.WorldName);
+			IncrementTaskProgress(display, ref progressTask, totalTasks);
+		}
 
 		if (IsItemInfoModified)
+		{
 			db.WriteWorldItemList();
+			IncrementTaskProgress(display, ref progressTask, totalTasks);
+		}
 
 		// Reset flags
 		IsModified = false;
 		IsWorldInfoModified = false;
 		IsShineListModified = false;
 		IsItemInfoModified = false;
+	}
+
+	private static void IncrementTaskProgress(AsyncDisplay display, ref int progress, int max)
+	{
+		progress++;
+		display.UpdateProgress(progress, max);
 	}
 
 	#endregion
