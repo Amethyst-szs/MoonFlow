@@ -131,34 +131,41 @@ public class BymlFileAccess
         {
             if (type == typeof(Vector3))
             {
-                WriteYamlVec3(emitter, (Vector3)value, serializer);
+                WriteYamlVec3(emitter, (Vector3)value);
                 return;
             }
 
             // Fixes bug with locales that use commas as a decimal place separator
-            if (type == typeof(float) || type == typeof(double))
+            if (type == typeof(float))
             {
-                string str = value.ToString().Replace(',', '.');
-                emitter.Emit(new Scalar("⌂♯" + Table[type], null, str, ScalarStyle.Any, true, false));
+                emitter.Emit(new Scalar("⌂♯" + Table[type], null, ToStringNoLocale((float)value), ScalarStyle.Any, true, false));
+                return;
+            }
+            if (type == typeof(double))
+            {
+                emitter.Emit(new Scalar("⌂♯" + Table[type], null, ToStringNoLocale((double)value), ScalarStyle.Any, true, false));
                 return;
             }
 
             emitter.Emit(new Scalar("⌂♯" + Table[type], null, value.ToString(), ScalarStyle.Any, true, false));
         }
 
-        private static void WriteYamlVec3(IEmitter emitter, Vector3 value, ObjectSerializer serializer)
+        private static void WriteYamlVec3(IEmitter emitter, Vector3 value)
         {
             emitter.Emit(new MappingStart());
 
             emitter.Emit(new Scalar("X"));
-            emitter.Emit(new Scalar("⌂♯" + "!f", null, value.X.ToString(), ScalarStyle.Any, true, false));
+            emitter.Emit(new Scalar("⌂♯" + "!f", null, ToStringNoLocale(value.X), ScalarStyle.Any, true, false));
             emitter.Emit(new Scalar("Y"));
-            emitter.Emit(new Scalar("⌂♯" + "!f", null, value.Y.ToString(), ScalarStyle.Any, true, false));
+            emitter.Emit(new Scalar("⌂♯" + "!f", null, ToStringNoLocale(value.Y), ScalarStyle.Any, true, false));
             emitter.Emit(new Scalar("Z"));
-            emitter.Emit(new Scalar("⌂♯" + "!f", null, value.Z.ToString(), ScalarStyle.Any, true, false));
+            emitter.Emit(new Scalar("⌂♯" + "!f", null, ToStringNoLocale(value.Z), ScalarStyle.Any, true, false));
 
             emitter.Emit(new MappingEnd());
         }
+
+        private static string ToStringNoLocale(float value) => value.ToString().Replace(',', '.');
+        private static string ToStringNoLocale(double value) => value.ToString().Replace(',', '.');
     }
 
     #endregion
