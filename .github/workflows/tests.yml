@@ -3,8 +3,8 @@ on:
   push:
     branches:
     - stable
-  
   pull_request:
+  workflow_dispatch:
 
 jobs:
   tests:
