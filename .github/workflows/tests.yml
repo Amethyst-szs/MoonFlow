@@ -27,6 +27,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: Checkout
+      
+      - name: Checkout Submodules
+        shell: bash
+        run: |
+          auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+          git submodule sync --recursive
+          git -c "http.extraheader=$auth_header" -c protocol.version=3 submodule update --init --force --recursive --depth=1
 
       - uses: actions/setup-dotnet@v3
         name: Setup .NET SDK
