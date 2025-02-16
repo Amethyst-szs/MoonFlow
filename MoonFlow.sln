@@ -12,6 +12,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonFlow.Project", "MoonFlo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Godot.Extension", "Godot.Extension\Godot.Extension.csproj", "{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{76912820-8F5A-4BC8-A4BF-0E9B6CE488E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BfresLibrary", "BfresLibrary", "{FF2DBDC8-616A-4A80-90C6-67744A4E4F86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BfresLibrary", "Module\BfresLibrary\BfresLibrary\BfresLibrary.csproj", "{C48886AD-95F5-46A8-BB28-AFDFA1456809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,8 +55,18 @@ Global
 		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{A265A9B4-BD23-4E67-999E-DEB3AA0A48CA}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{C48886AD-95F5-46A8-BB28-AFDFA1456809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C48886AD-95F5-46A8-BB28-AFDFA1456809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C48886AD-95F5-46A8-BB28-AFDFA1456809}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C48886AD-95F5-46A8-BB28-AFDFA1456809}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{C48886AD-95F5-46A8-BB28-AFDFA1456809}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{C48886AD-95F5-46A8-BB28-AFDFA1456809}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FF2DBDC8-616A-4A80-90C6-67744A4E4F86} = {76912820-8F5A-4BC8-A4BF-0E9B6CE488E6}
+		{C48886AD-95F5-46A8-BB28-AFDFA1456809} = {FF2DBDC8-616A-4A80-90C6-67744A4E4F86}
 	EndGlobalSection
 EndGlobal

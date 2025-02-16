@@ -6,9 +6,23 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Godot.Extension\Godot.Extension.csproj" />
+    <ProjectReference Include="..\Module\BfresLibrary\BfresLibrary\BfresLibrary.csproj" />
     <ProjectReference Include="..\MoonFlow.Project\MoonFlow.Project.csproj" />
     <ProjectReference Include="..\Nindot\Nindot.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Syroot.BinaryData">
+      <HintPath>..\Module\BfresLibrary\Libraries\Syroot.BinaryData.dll</HintPath>
+    </Reference>
+    <Reference Include="Syroot.Maths">
+      <HintPath>..\Module\BfresLibrary\Libraries\Syroot.Maths.dll</HintPath>
+    </Reference>
+    <Reference Include="Syroot.NintenTools.NSW.Bntx">
+      <HintPath>..\Module\BfresLibrary\Libraries\Syroot.NintenTools.NSW.Bntx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="ByteSize" Version="2.1.2" />
   </ItemGroup>
