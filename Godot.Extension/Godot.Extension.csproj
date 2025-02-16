@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Module\BfresLibrary\BfresLibrary\BfresLibrary.csproj" />
+    <ProjectReference Include="..\Nindot\Nindot.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Syroot.BinaryData">
       <HintPath>..\Module\BfresLibrary\Libraries\Syroot.BinaryData.dll</HintPath>
     </Reference>
