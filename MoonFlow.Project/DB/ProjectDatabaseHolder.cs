@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using Godot;
+using Godot.Extension.Resources;
 
 using Nindot;
 using Nindot.Byml;
@@ -82,6 +84,13 @@ public class ProjectDatabaseHolder
 
             world.CoinCollectInfo = info;
         }
+
+        // Load Map2d archive and matrix list
+        GD.Print("Opening Texture2dMap.szs");
+        loadScreen.LoadingUpdateProgress("LOAD_MAP_2D");
+        SetupAllMap2dHolders();
+
+        return;
     }
 
     private void SetupWorldDisplayNames()
@@ -107,6 +116,34 @@ public class ProjectDatabaseHolder
     {
         byte[] bytes = [.. ArchiveWorldList.Content[CollectCoinCountInfo.BymlPath]];
         return BymlFileAccess.ParseBytes<List<CollectCoinCountInfo>>(bytes);
+    }
+
+    private void SetupAllMap2dHolders()
+    {
+        // Fetch map archive from project or romfs accessor
+        string filePath = Path + Map2dHolder.ArchivePathSuffix;
+        SarcFile archive;
+
+        if (File.Exists(filePath))
+        {
+            archive = SarcFile.FromFilePath(filePath);
+        }
+        else
+        {
+            if (!RomfsAccessor.TryGetRomfsDirectory(out string romDir))
+                throw new Exception("RomfsAccessor could not return directory");
+
+            archive = SarcFile.FromFilePath(romDir + Map2dHolder.ArchivePathSuffix);
+        }
+
+        if (archive == null)
+            throw new NullReferenceException("Map archive is null!");
+
+        var bfres = BfresResource.FromSarcFile(archive);
+
+        // Create a new Map2d holder for each registered world
+        foreach (var world in WorldList)
+            world.MapInfo = new Map2dHolder(world, archive, bfres);
     }
 
     #endregion

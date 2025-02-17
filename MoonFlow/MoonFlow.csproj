@@ -12,18 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Syroot.BinaryData">
-      <HintPath>..\Module\BfresLibrary\Libraries\Syroot.BinaryData.dll</HintPath>
-    </Reference>
-    <Reference Include="Syroot.Maths">
-      <HintPath>..\Module\BfresLibrary\Libraries\Syroot.Maths.dll</HintPath>
-    </Reference>
-    <Reference Include="Syroot.NintenTools.NSW.Bntx">
-      <HintPath>..\Module\BfresLibrary\Libraries\Syroot.NintenTools.NSW.Bntx.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ByteSize" Version="2.1.2" />
   </ItemGroup>
 </Project>
