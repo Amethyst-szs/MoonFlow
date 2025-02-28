@@ -3,6 +3,7 @@ using System;
 
 using MoonFlow.Project;
 using MoonFlow.Project.Database;
+using System.Numerics;
 
 namespace MoonFlow.Scene.Dev;
 
@@ -16,6 +17,8 @@ public partial class Map2dViewer : AppScene
 
 	private WorldInfo World;
 	private int Scenario = -1;
+
+	private static readonly Texture2D MapIcon = GD.Load<Texture2D>("res://asset/nindot/lms/icon/PictureFont_70.png");
 
 	public override void _Ready()
 	{
@@ -39,6 +42,29 @@ public partial class Map2dViewer : AppScene
 		
 		var map = world.MapInfo.GetMap(Scenario);
 		TextureMap.Texture = ImageTexture.CreateFromImage(map.Texture);
+
+		foreach (var child in TextureMap.GetChildren())
+			child.QueueFree();
+
+		foreach (var shine in world.ShineList)
+		{
+			var t = shine.Trans;
+			var m = map.CalcMapTrans(t, new System.Numerics.Vector2(TextureMap.Size.X, TextureMap.Size.Y));
+
+            var ico = new TextureRect
+            {
+                Texture = MapIcon,
+				ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+				CustomMinimumSize = new Godot.Vector2(16, 16),
+				TooltipText = shine.LookupDisplayName(ProjectManager.GetMSBTArchives()?.StageMessage)?.GetRawText() + "\n" + t.ToString() + "\n" + m.ToString(),
+            };
+
+            TextureMap.AddChild(ico);
+			ico.Position = new Godot.Vector2(m.X, m.Y);
+		}
+
+		// var result = map.CalcMapTrans(new System.Numerics.Vector3(5710.0f, 5124.0f, -2510.0f));
+		// GD.Print(result);
 	}
 
 	private void OnScenarioPicked(int scenario)

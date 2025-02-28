@@ -1,11 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Numerics;
 using Godot;
 using Godot.Extension.Resources;
-using MoonFlow.Project.Database;
+
 using Nindot;
+using Nindot.Byml;
+
+using Syroot.Maths;
+
+using MoonFlow.Project.Database;
 
 namespace MoonFlow.Project;
 
@@ -42,6 +47,17 @@ public class Map2dHolder
                 ScenarioOverrides[int.Parse(suffix)] = map;
             
             // Load byml and handle matrix generation
+            var byml = sarc.GetFileBYML(fileName);
+
+            if (byml.TryGetValue(out List<object> proj, "ProjMatrix"))
+                map.ProjMatrix = ImportMatrix4x4Data(proj.Cast<float>());
+
+            if (byml.TryGetValue(out List<object> view, "ViewMatrix"))
+                map.ViewMatrix = ImportMatrix4x3Data(view.Cast<float>());
+
+            if (byml.TryGetValue(out List<object> viewproj, "ViewProjMatrix"))
+                map.ViewProjMatrix = ImportMatrix4x4Data(viewproj.Cast<float>());
+
             continue;
         }
     }
@@ -54,4 +70,49 @@ public class Map2dHolder
         
         return Default;
     }
+
+    #region Utility
+
+    private static Matrix4x4 ImportMatrix4x4Data(IEnumerable<float> data)
+    {
+        if (data.Count() < (4 * 4))
+            throw new Exception("Not enough data to build matrix!");
+
+        var matrix = new Matrix4x4();
+        int offset = 0;
+
+        for (int row = 0; row < 4; row++)
+        {
+            for (int col = 0; col < 4; col++)
+            {
+                matrix[row, col] = data.ElementAt(offset);
+                offset++;
+            }
+        }
+
+        return matrix;
+    }
+
+    private static Matrix4x3 ImportMatrix4x3Data(IEnumerable<float> data)
+    {
+        if (data.Count() < (3 * 4))
+            throw new Exception("Not enough data to build matrix!");
+
+        var matrix = new Matrix4x3();
+        int offset = 0;
+
+        for (int row = 0; row < 4; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                matrix[row, col] = data.ElementAt(offset);
+                offset++;
+            }
+        }
+
+        return matrix;
+    }
+
+
+    #endregion
 }

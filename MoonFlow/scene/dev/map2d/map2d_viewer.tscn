@@ -12,41 +12,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ouuxb")
-ContainerMapList = NodePath("Margin/Content/MapList/Scroll_List/List")
-TextureMap = NodePath("Margin/Content/Texture_Map")
+ContainerMapList = NodePath("Margin/MapList/Scroll_List/List")
+TextureMap = NodePath("MapHolder/Texture_Map")
 AppName = "Map2dViewer"
 AppTaskbarTitle = "Debug Map2d"
 AppFlags = 35
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="MapHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -702.0
+offset_top = -306.0
+offset_bottom = 306.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Texture_Map" type="TextureRect" parent="MapHolder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 293.0
+grow_vertical = 2
 theme_override_constants/margin_left = 18
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 18
 
-[node name="Content" type="HSplitContainer" parent="Margin"]
-layout_mode = 2
-
-[node name="MapList" type="VBoxContainer" parent="Margin/Content"]
+[node name="MapList" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Scroll_List" type="ScrollContainer" parent="Margin/Content/MapList"]
+[node name="Scroll_List" type="ScrollContainer" parent="Margin/MapList"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="List" type="VBoxContainer" parent="Margin/Content/MapList/Scroll_List"]
+[node name="List" type="VBoxContainer" parent="Margin/MapList/Scroll_List"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BitFlagButtonHolder" type="VBoxContainer" parent="Margin/Content/MapList"]
+[node name="BitFlagButtonHolder" type="VBoxContainer" parent="Margin/MapList"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("2_xkyrl")
@@ -56,10 +77,4 @@ allow_primary_bit_selection = true
 total_bits = 15
 rows = 2
 
-[node name="Texture_Map" type="TextureRect" parent="Margin/Content"]
-layout_mode = 2
-size_flags_horizontal = 3
-expand_mode = 3
-stretch_mode = 5
-
-[connection signal="primary_bit_changed" from="Margin/Content/MapList/BitFlagButtonHolder" to="." method="OnScenarioPicked"]
+[connection signal="primary_bit_changed" from="Margin/MapList/BitFlagButtonHolder" to="." method="OnScenarioPicked"]
