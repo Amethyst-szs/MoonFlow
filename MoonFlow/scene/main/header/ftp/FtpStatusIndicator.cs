@@ -40,7 +40,7 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 		if (Animation.CurrentAnimation != anim || isForce)
 			Animation.CallDeferred(AnimationPlayer.MethodName.Play, anim);
 
-		SetDeferred(PropertyName.TooltipText, Tr(anim, TooltipContext));
+		SetDeferred(PropertyName.TooltipText, TranslationServer.Translate(anim, TooltipContext));
 		SetDeferred(PropertyName.MouseDefaultCursorShape, (int)shape);
 	}
 
