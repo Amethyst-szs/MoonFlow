@@ -17,6 +17,7 @@ public partial class Map2dViewer : AppScene
 
 	private WorldInfo World;
 	private int Scenario = -1;
+	private float mSizeMultiply = 1.0f;
 
 	private static readonly Texture2D MapIcon = GD.Load<Texture2D>("res://asset/nindot/lms/icon/PictureFont_70.png");
 
@@ -48,8 +49,10 @@ public partial class Map2dViewer : AppScene
 
 		foreach (var shine in world.ShineList)
 		{
+			var size = new System.Numerics.Vector2(TextureMap.Size.X, TextureMap.Size.Y) * mSizeMultiply;
+
 			var t = shine.Trans;
-			var m = map.CalcMapTrans(t, new System.Numerics.Vector2(TextureMap.Size.X, TextureMap.Size.Y));
+			var m = map.CalcMapTrans(t, size);
 
             var ico = new TextureRect
             {
@@ -60,7 +63,7 @@ public partial class Map2dViewer : AppScene
             };
 
             TextureMap.AddChild(ico);
-			ico.Position = new Godot.Vector2(m.X, m.Y);
+			ico.Position = new Godot.Vector2(m.X, m.Y) - (new Godot.Vector2(TextureMap.Size.X, TextureMap.Size.Y) * ((mSizeMultiply - 1.0f) / 2.0f));
 		}
 
 		// var result = map.CalcMapTrans(new System.Numerics.Vector3(5710.0f, 5124.0f, -2510.0f));
@@ -74,6 +77,12 @@ public partial class Map2dViewer : AppScene
 		if (World == null)
 			return;
 		
+		OnWorldPicked(World);
+	}
+
+	private void OnScreenSizeSliderChanged(float value)
+	{
+		mSizeMultiply = value / 100.0f;
 		OnWorldPicked(World);
 	}
 }
