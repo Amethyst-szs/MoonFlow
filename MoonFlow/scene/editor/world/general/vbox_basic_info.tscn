@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://n5fe7jd6mwy4"]
 
-[ext_resource type="Script" path="res://scene/editor/world/general/VBoxBasicInfo.cs" id="1_6umq7"]
+[ext_resource type="Script" uid="uid://bfvrmkotopss6" path="res://scene/editor/world/general/VBoxBasicInfo.cs" id="1_6umq7"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="1_f7kr0"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="2_cmkam"]
 [ext_resource type="Texture2D" uid="uid://dddqmafw50701" path="res://asset/nindot/lms/icon/PictureFont_71.png" id="3_gqqq6"]
@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://b2sff0mn8jsqh" path="res://asset/nindot/lms/icon/PictureFont_79.png" id="11_nj6op"]
 [ext_resource type="Texture2D" uid="uid://jclki1rwlli5" path="res://asset/nindot/lms/icon/PictureFont_35.png" id="12_y523v"]
 [ext_resource type="Texture2D" uid="uid://dy8w3qmlmm5li" path="res://asset/material/arrow/double_right.svg" id="13_lncdy"]
-[ext_resource type="Script" path="res://scene/editor/world/ui_script/option_shine_type.gd" id="14_3cd80"]
-[ext_resource type="Script" path="res://scene/editor/world/ui_script/OptionCoinType.cs" id="16_3xsaf"]
+[ext_resource type="Script" uid="uid://bq6uw68kso4o2" path="res://scene/editor/world/ui_script/option_shine_type.gd" id="14_3cd80"]
+[ext_resource type="Script" uid="uid://b14j77aa3c48m" path="res://scene/editor/world/ui_script/OptionCoinType.cs" id="16_3xsaf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rf715"]
 font_size = 14

@@ -2,9 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_2xewp"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_8d0hg"]
-[ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_rm84r"]
+[ext_resource type="Script" uid="uid://ddjtqhdysil2g" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_rm84r"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_l4qnn"]
-[ext_resource type="Script" path="res://scene/settings/engine/common/common_engine_setting_slide_float.gd" id="3_oinyb"]
+[ext_resource type="Script" uid="uid://c7d6t4txld2aw" path="res://scene/settings/engine/common/common_engine_setting_slide_float.gd" id="3_oinyb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g3f1a"]
 font = ExtResource("1_2xewp")

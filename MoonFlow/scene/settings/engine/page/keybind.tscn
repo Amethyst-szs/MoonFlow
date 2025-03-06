@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_tikfe"]
 [ext_resource type="PackedScene" uid="uid://7rqudtj0ycdw" path="res://scene/settings/engine/keybind/panel_keybind_editor.tscn" id="2_6ag4b"]
 [ext_resource type="Theme" uid="uid://c3l6daeypmnf7" path="res://asset/theme/settings/engine_keybind/dropdown_button_engine_settings_keybinds.tres" id="2_52kpr"]
-[ext_resource type="Script" path="res://scene/common/button/dropdown_checkbox.gd" id="4_htspl"]
+[ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="4_htspl"]
 
 [node name="Page_Keybind" type="VBoxContainer"]
 

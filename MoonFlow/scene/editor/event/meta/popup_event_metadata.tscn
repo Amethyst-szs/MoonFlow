@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://toha7mro71ue"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_41gk0"]
-[ext_resource type="Script" path="res://scene/editor/event/meta/PopupEventMetadata.cs" id="2_f0xbx"]
+[ext_resource type="Script" uid="uid://c4qukmbqv7qkn" path="res://scene/editor/event/meta/PopupEventMetadata.cs" id="2_f0xbx"]
 [ext_resource type="StyleBox" uid="uid://diowequepd8ed" path="res://asset/theme/common/stylebox/common_accept_dialog_panel.tres" id="2_q77dw"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="4_wmope"]
 [ext_resource type="Theme" uid="uid://bgm7xdd8rieur" path="res://asset/theme/common/app_color_swatch_button.tres" id="5_8xer2"]
-[ext_resource type="Shader" path="res://asset/shader/common/color_invert_mono.gdshader" id="6_8ry4n"]
+[ext_resource type="Shader" uid="uid://3cxnqpc3grs6" path="res://asset/shader/common/color_invert_mono.gdshader" id="6_8ry4n"]
 [ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="7_hi7yl"]
 [ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="8_4w7f2"]
 [ext_resource type="Theme" uid="uid://bv475afvceima" path="res://asset/theme/msbp/color/msbp_color_editor.tres" id="8_ghj5s"]

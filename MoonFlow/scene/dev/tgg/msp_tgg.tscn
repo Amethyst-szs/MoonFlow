@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2tdru5hgbfl3"]
 
-[ext_resource type="Script" path="res://scene/dev/tgg/MsbpTggViewerApp.cs" id="1_u736k"]
-[ext_resource type="Script" path="res://scene/dev/tgg/MsbpListTgg.cs" id="3_bgrs3"]
+[ext_resource type="Script" uid="uid://bthjeyg1gn1wd" path="res://scene/dev/tgg/MsbpTggViewerApp.cs" id="1_u736k"]
+[ext_resource type="Script" uid="uid://c4vqsxa03v2hy" path="res://scene/dev/tgg/MsbpListTgg.cs" id="3_bgrs3"]
 
 [node name="MsbpTggViewerApp" type="Control"]
 layout_mode = 3

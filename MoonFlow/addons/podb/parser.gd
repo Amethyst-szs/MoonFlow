@@ -1,23 +1,27 @@
 @tool
 extends EditorTranslationParserPlugin
 
-func _parse_file(path: String, msgids: Array[String], msgids_context_plural: Array[Array]) -> void:
+func _parse_file(path: String) -> Array[PackedStringArray]:
+	var ret: Array[PackedStringArray] = []
+	
 	var res: Resource = load(path)
 	if not res:
-		return
+		return ret
 
 	if res is TranslationBank:
-		_parse_type_translation_bank(res, msgids_context_plural)
+		_parse_type_translation_bank(res, ret)
 	
 	if res is ContributorList:
-		_parse_type_contributor_list(res, msgids)
+		_parse_type_contributor_list(res, ret)
+	
+	return ret
 
-func _parse_type_translation_bank(res: TranslationBank, msgids_context_plural: Array[Array]) -> void:
+func _parse_type_translation_bank(res: TranslationBank, ret: Array[PackedStringArray]) -> void:
 	for str in res.keys:
-		msgids_context_plural.append([str, res.context, ""])
+		ret.append(PackedStringArray([str, res.context, ""]))
 
-func _parse_type_contributor_list(res: ContributorList, msgids: Array[String]) -> void:
-	msgids.append(res.list_name)
+func _parse_type_contributor_list(res: ContributorList, ret: Array[PackedStringArray]) -> void:
+	ret.append(PackedStringArray([res.list_name]))
 
 func _get_recognized_extensions() -> PackedStringArray:
 	return ["tres"]

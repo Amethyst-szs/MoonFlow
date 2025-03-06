@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_sidgt"]
 [ext_resource type="StyleBox" uid="uid://dak24dp23r57" path="res://asset/theme/msbt/stylebox/msbt_panel_entry_config.tres" id="2_tlalt"]
-[ext_resource type="Script" path="res://scene/editor/msbt/entry/components/MsbtEntryTranslationConfig.cs" id="3_yy5ux"]
+[ext_resource type="Script" uid="uid://c4gg6pf13oaax" path="res://scene/editor/msbt/entry/components/MsbtEntryTranslationConfig.cs" id="3_yy5ux"]
 [ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="3_yycty"]
 
 [node name="MsbtEntryTranslationConfig" type="PanelContainer"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://ck2mpawvgk0li"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_e4ni0"]
-[ext_resource type="Script" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
+[ext_resource type="Script" uid="uid://c7ysxyd835hdj" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="2_mottg"]
-[ext_resource type="Script" path="res://scene/editor/msbt/components/entry_list_controls.gd" id="3_tx1js"]
-[ext_resource type="Script" path="res://scene/editor/msbt/list/NewEntryInputLine.cs" id="4_furja"]
+[ext_resource type="Script" uid="uid://csqwnu4t1ipys" path="res://scene/editor/msbt/components/entry_list_controls.gd" id="3_tx1js"]
+[ext_resource type="Script" uid="uid://s8vblhk8w5mn" path="res://scene/editor/msbt/list/NewEntryInputLine.cs" id="4_furja"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_d8emi"]
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_xpdvg"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="7_rbj4v"]

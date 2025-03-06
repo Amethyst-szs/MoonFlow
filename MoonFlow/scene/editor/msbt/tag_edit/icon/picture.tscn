@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3ju7rgnjdjui"]
 
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/icon/Picture.cs" id="1_a8otb"]
+[ext_resource type="Script" uid="uid://cx6r5tc0blghe" path="res://scene/editor/msbt/tag_edit/icon/Picture.cs" id="1_a8otb"]
 
 [node name="Picture" type="Window"]
 visible = false

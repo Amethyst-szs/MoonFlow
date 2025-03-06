@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b4kgsdkia0bx8"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_dj8ql"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/eui/Wait.cs" id="2_5oqox"]
+[ext_resource type="Script" uid="uid://rqlc3r3ute7" path="res://scene/editor/msbt/tag_edit/eui/Wait.cs" id="2_5oqox"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b4jkt"]
 font_color = Color(1, 1, 1, 0.639216)

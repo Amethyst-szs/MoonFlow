@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cu2v3vjprl6i2"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_rkd5o"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/system/FontSize.cs" id="2_sgsg7"]
+[ext_resource type="Script" uid="uid://chsug3ji7p87f" path="res://scene/editor/msbt/tag_edit/system/FontSize.cs" id="2_sgsg7"]
 [ext_resource type="Texture2D" uid="uid://q5tstg63k1y8" path="res://asset/material/file/subtract.svg" id="3_xixsk"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="4_bvqny"]
 

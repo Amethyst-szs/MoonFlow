@@ -1,3 +1,4 @@
+@tool
 extends "res://scene/app/components/dialog_center_text.gd"
 
 signal closed(is_accept: bool)

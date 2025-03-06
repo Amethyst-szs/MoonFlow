@@ -2,19 +2,19 @@
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
-[ext_resource type="Script" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
-[ext_resource type="Script" path="res://scene/main/header/Header.cs" id="4_kq4x0"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarFile.cs" id="5_2c21b"]
+[ext_resource type="Script" uid="uid://d1h7xrch8saeh" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
+[ext_resource type="Script" uid="uid://c6ok0ombsc0os" path="res://scene/main/header/Header.cs" id="4_kq4x0"]
+[ext_resource type="Script" uid="uid://4s8wl7bqgvqn" path="res://scene/main/header/ActionbarFile.cs" id="5_2c21b"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="5_7wt0y"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarProject.cs" id="5_8pvlw"]
+[ext_resource type="Script" uid="uid://d17orf7k0k5o4" path="res://scene/main/header/ActionbarProject.cs" id="5_8pvlw"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
 [ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="6_736yk"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarDebug.cs" id="6_jwfa5"]
+[ext_resource type="Script" uid="uid://d2klt2rxbkrmh" path="res://scene/main/header/ActionbarDebug.cs" id="6_jwfa5"]
 [ext_resource type="Texture2D" uid="uid://bejy23w4qwuhn" path="res://asset/material/window/minimize.svg" id="7_3uat5"]
 [ext_resource type="Texture2D" uid="uid://ddbjk8qy03n3e" path="res://asset/material/window/setting.svg" id="7_lv0rq"]
 [ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="7_tq7ax"]
 [ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="8_0gxwu"]
-[ext_resource type="Script" path="res://scene/main/header/ActionbarHelp.cs" id="8_gmnrm"]
+[ext_resource type="Script" uid="uid://dahguyo1gny32" path="res://scene/main/header/ActionbarHelp.cs" id="8_gmnrm"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="9_7fyri"]
 [ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="9_j4qfv"]
@@ -22,8 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://d31ycdn7h62g0" path="res://asset/engine/heart.svg" id="10_tnl5i"]
 [ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="11_1mgjq"]
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
-[ext_resource type="Script" path="res://scene/main/MainSceneRoot.cs" id="13_jlow7"]
-[ext_resource type="Script" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
+[ext_resource type="Script" uid="uid://cv78a218kummk" path="res://scene/main/MainSceneRoot.cs" id="13_jlow7"]
+[ext_resource type="Script" uid="uid://bhs0e83p6wbaj" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlewa"]
 
@@ -111,6 +111,7 @@ size = Vector2i(250, 100)
 item_count = 7
 item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
 item_0/icon = ExtResource("6_736yk")
+item_0/id = 0
 item_1/text = "MAIN_ACTIONBAR_FILE_SAVE_AS"
 item_1/icon = ExtResource("7_tq7ax")
 item_1/id = 1
@@ -135,6 +136,7 @@ size = Vector2i(309, 100)
 item_count = 4
 item_0/text = "MAIN_ACTIONBAR_PROJECT_RELOAD"
 item_0/icon = ExtResource("11_1mgjq")
+item_0/id = 0
 item_1/text = "MAIN_ACTIONBAR_PROJECT_CLOSE"
 item_1/icon = ExtResource("8_nx1ih")
 item_1/id = 1
@@ -147,11 +149,11 @@ script = ExtResource("5_8pvlw")
 
 [node name="Help" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
-transparent_bg = true
 size = Vector2i(309, 100)
 item_count = 8
 item_0/text = "MAIN_ACTIONBAR_HELP_CURRENT_APP"
 item_0/icon = ExtResource("8_0gxwu")
+item_0/id = 0
 item_1/id = 1000
 item_1/separator = true
 item_2/text = "MAIN_ACTIONBAR_HELP_HOME_LOCAL"

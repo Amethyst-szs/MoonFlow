@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://bbovlwtl0g0pg"]
 
-[ext_resource type="Script" path="res://scene/editor/msbt/list/label/EntryLabelButton.cs" id="1_mbybi"]
+[ext_resource type="Script" uid="uid://caqsietrg4n04" path="res://scene/editor/msbt/list/label/EntryLabelButton.cs" id="1_mbybi"]
 [ext_resource type="Texture2D" uid="uid://bcf0vbtvkcb6l" path="res://asset/material/file/none.svg" id="2_0mxtj"]
 [ext_resource type="Texture2D" uid="uid://cgtps2ds2pw72" path="res://asset/material/file/modify.svg" id="2_ggae6"]
-[ext_resource type="Script" path="res://scene/editor/msbt/list/label/EntryLabelButtonState.cs" id="2_ykqm8"]
+[ext_resource type="Script" uid="uid://5yk0f3wesb4p" path="res://scene/editor/msbt/list/label/EntryLabelButtonState.cs" id="2_ykqm8"]
 [ext_resource type="Texture2D" uid="uid://bk2pfw1btay2y" path="res://asset/material/file/content.svg" id="4_e8osq"]
 [ext_resource type="Texture2D" uid="uid://bvmbjlr5j6r5p" path="res://asset/material/file/translate_off.svg" id="5_dlnhu"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="6_bfh61"]

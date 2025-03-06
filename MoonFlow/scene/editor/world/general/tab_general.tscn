@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cw73bpafji461"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_bsrvh"]
-[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_tb6a7"]
+[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_tb6a7"]
 [ext_resource type="PackedScene" uid="uid://n5fe7jd6mwy4" path="res://scene/editor/world/general/vbox_basic_info.tscn" id="2_wwaj3"]
 [ext_resource type="PackedScene" uid="uid://clhy3h8j6kcm" path="res://scene/editor/world/general/vbox_scenario_info.tscn" id="3_ht8qo"]
 

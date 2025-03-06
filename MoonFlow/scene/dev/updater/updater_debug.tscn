@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ri6l1jqtmyk7"]
 
-[ext_resource type="Script" path="res://scene/dev/updater/UpdaterDebug.cs" id="1_lp2ou"]
+[ext_resource type="Script" uid="uid://bne5ovt884rql" path="res://scene/dev/updater/UpdaterDebug.cs" id="1_lp2ou"]
 [ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="2_r4y6a"]
-[ext_resource type="Script" path="res://scene/version/notify/version_update_button.gd" id="3_esqf1"]
+[ext_resource type="Script" uid="uid://catu7mjgh76ca" path="res://scene/version/notify/version_update_button.gd" id="3_esqf1"]
 
 [node name="UpdaterDebugApp" type="Control"]
 auto_translate_mode = 2

@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://0cdy5iuxlvqd"]
 
 [ext_resource type="Theme" uid="uid://rub3asjuwm5w" path="res://asset/theme/event/node/event_node.tres" id="1_dkxm3"]
-[ext_resource type="Script" path="res://scene/editor/event/node/EventFlowNodeBase.cs" id="1_f1ryd"]
+[ext_resource type="Script" uid="uid://clcb7rnpd0wrj" path="res://scene/editor/event/node/EventFlowNodeBase.cs" id="1_f1ryd"]
 [ext_resource type="PackedScene" uid="uid://bhc8hqjw7nqek" path="res://scene/editor/event/node/port/port_in.tscn" id="3_xs8rq"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="4_pe2ue"]
-[ext_resource type="Script" path="res://scene/editor/event/node/component/port_list_out.gd" id="4_x5hdg"]
-[ext_resource type="Script" path="res://scene/editor/event/node/component/area_drag_collider.gd" id="5_ey2sh"]
+[ext_resource type="Script" uid="uid://cxpeay1o5hebf" path="res://scene/editor/event/node/component/port_list_out.gd" id="4_x5hdg"]
+[ext_resource type="Script" uid="uid://ghjchfahd25" path="res://scene/editor/event/node/component/area_drag_collider.gd" id="5_ey2sh"]
 [ext_resource type="StyleBox" uid="uid://dor0dac83hoqe" path="res://asset/theme/event/node/stylebox/event_node_selection_panel.tres" id="5_vyepf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h5ieb"]

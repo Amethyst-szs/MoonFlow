@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmmv03064jqhv"]
 
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/icon/Device.cs" id="1_pl4p0"]
+[ext_resource type="Script" uid="uid://xhgcakjwrh36" path="res://scene/editor/msbt/tag_edit/icon/Device.cs" id="1_pl4p0"]
 
 [node name="Device" type="Window"]
 visible = false

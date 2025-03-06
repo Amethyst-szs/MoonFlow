@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ContributorList" load_steps=7 format=3 uid="uid://bppx546ttcmj6"]
 
-[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_0o60r"]
-[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_module.gd" id="2_np0f6"]
-[ext_resource type="Script" path="res://scene/front_door/contributor/define/contribute_list.gd" id="3_ryslk"]
+[ext_resource type="Script" uid="uid://cdy54g12vpoj4" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_0o60r"]
+[ext_resource type="Script" uid="uid://b102i6hkufqou" path="res://scene/front_door/contributor/define/contribute_module.gd" id="2_np0f6"]
+[ext_resource type="Script" uid="uid://cl3hejrv1dgl4" path="res://scene/front_door/contributor/define/contribute_list.gd" id="3_ryslk"]
 
 [sub_resource type="Resource" id="Resource_3bmkw"]
 script = ExtResource("2_np0f6")

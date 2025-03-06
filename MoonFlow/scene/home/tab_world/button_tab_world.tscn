@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c53j1q8gs0b1g"]
 
 [ext_resource type="Theme" uid="uid://pv7wa46kuqjf" path="res://asset/theme/home/home_tab_world.tres" id="1_ai0eq"]
-[ext_resource type="Script" path="res://scene/home/tab_world/button_tab_world.gd" id="2_ntstj"]
+[ext_resource type="Script" uid="uid://tdiawqq31tuf" path="res://scene/home/tab_world/button_tab_world.gd" id="2_ntstj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5qxx"]
 bg_color = Color(1, 1, 1, 1)

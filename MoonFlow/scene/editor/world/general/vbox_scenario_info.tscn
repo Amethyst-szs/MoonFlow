@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://clhy3h8j6kcm"]
 
-[ext_resource type="Script" path="res://scene/editor/world/general/VBoxScenarioInfo.cs" id="1_yrngu"]
+[ext_resource type="Script" uid="uid://dv3dklptgfjot" path="res://scene/editor/world/general/VBoxScenarioInfo.cs" id="1_yrngu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rf715"]
 font_size = 14

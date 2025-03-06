@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dr4mm65m1ls4x"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_w51ye"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/eui/Speed.cs" id="2_ugtaw"]
+[ext_resource type="Script" uid="uid://dfq031824p2v3" path="res://scene/editor/msbt/tag_edit/eui/Speed.cs" id="2_ugtaw"]
 [ext_resource type="Texture2D" uid="uid://och8rs2fu0jw" path="res://asset/material/arrow/left.svg" id="3_smblw"]
 [ext_resource type="Texture2D" uid="uid://bxdtn8valrbqg" path="res://asset/material/arrow/right.svg" id="4_h41jn"]
 [ext_resource type="Texture2D" uid="uid://dy8w3qmlmm5li" path="res://asset/material/arrow/double_right.svg" id="5_kw3dj"]

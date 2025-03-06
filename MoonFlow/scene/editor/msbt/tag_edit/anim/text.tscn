@@ -2,16 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_paddo"]
 [ext_resource type="Texture2D" uid="uid://byr4ud7aq84bw" path="res://asset/nindot/lms/icon/TextAnim_Tremble.png" id="2_faf3o"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/anim/Text.cs" id="2_vfe8d"]
+[ext_resource type="Script" uid="uid://cocetvpcda6ot" path="res://scene/editor/msbt/tag_edit/anim/Text.cs" id="2_vfe8d"]
 [ext_resource type="Texture2D" uid="uid://cugtagxn8odvb" path="res://asset/nindot/lms/icon/TextAnim_Shake.png" id="3_dbm32"]
 [ext_resource type="Texture2D" uid="uid://bqq23lp3pujw0" path="res://asset/nindot/lms/icon/TextAnim_Wave.png" id="4_8b8of"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/anim/preview_tremble.gd" id="4_qmw64"]
+[ext_resource type="Script" uid="uid://bj4a11wnlwlir" path="res://scene/editor/msbt/tag_edit/anim/preview_tremble.gd" id="4_qmw64"]
 [ext_resource type="Texture2D" uid="uid://dkpoj2op08l5n" path="res://asset/nindot/lms/icon/TextAnim_Scream.png" id="5_7olld"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/anim/string_prefixer.gd" id="5_utoxu"]
+[ext_resource type="Script" uid="uid://bg7bwq1sb0u32" path="res://scene/editor/msbt/tag_edit/anim/string_prefixer.gd" id="5_utoxu"]
 [ext_resource type="Texture2D" uid="uid://c7roq64y0rvls" path="res://asset/nindot/lms/icon/TextAnim_Beat.png" id="6_rbhum"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/anim/preview_shake.gd" id="7_xgjs3"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/anim/preview_scream.gd" id="10_sd506"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/anim/preview_beat.gd" id="12_1yoay"]
+[ext_resource type="Script" uid="uid://cb5bjr7djcs6d" path="res://scene/editor/msbt/tag_edit/anim/preview_shake.gd" id="7_xgjs3"]
+[ext_resource type="Script" uid="uid://2kqakxttbncf" path="res://scene/editor/msbt/tag_edit/anim/preview_scream.gd" id="10_sd506"]
+[ext_resource type="Script" uid="uid://ckjbjpqwxbpbt" path="res://scene/editor/msbt/tag_edit/anim/preview_beat.gd" id="12_1yoay"]
 
 [sub_resource type="Theme" id="Theme_x28ob"]
 HBoxContainer/constants/separation = 12

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://iqyjx7fu40nl"]
 
-[ext_resource type="Script" path="res://async/AsyncDisplay.cs" id="1_7xgbo"]
+[ext_resource type="Script" uid="uid://cul1qixdpqm3l" path="res://async/AsyncDisplay.cs" id="1_7xgbo"]
 [ext_resource type="Theme" uid="uid://bi124pyc35ecm" path="res://asset/theme/async/async.tres" id="1_wl5ln"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_52u1o"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="3_l26iq"]

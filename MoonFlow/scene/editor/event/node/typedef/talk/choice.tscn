@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://8o253vqmynts"]
 
 [ext_resource type="PackedScene" uid="uid://d2grhpwwh7whc" path="res://scene/editor/event/node/typedef/talk/talk.tscn" id="1_81byn"]
-[ext_resource type="Script" path="res://scene/editor/event/node/typedef/talk/EventFlowNodeChoice.cs" id="2_bstx2"]
+[ext_resource type="Script" uid="uid://bmxoibj3u0lv2" path="res://scene/editor/event/node/typedef/talk/EventFlowNodeChoice.cs" id="2_bstx2"]
 
 [node name="EventFlowNodeChoice" instance=ExtResource("1_81byn")]
 script = ExtResource("2_bstx2")

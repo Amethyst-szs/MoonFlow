@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0jdgwi7gylew"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_vk0jv"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/system/ColorTagScene.cs" id="2_pefrx"]
-[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_aljo5"]
+[ext_resource type="Script" uid="uid://8puqyyur3lux" path="res://scene/editor/msbt/tag_edit/system/ColorTagScene.cs" id="2_pefrx"]
+[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_aljo5"]
 [ext_resource type="Texture2D" uid="uid://yqppuxa8m17p" path="res://asset/material/arrow/circle.svg" id="4_ooed3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mkbhj"]

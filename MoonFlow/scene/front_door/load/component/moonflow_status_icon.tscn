@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b55745yahneej"]
 
-[ext_resource type="Shader" path="res://asset/shader/sheet/spritesheet.gdshader" id="1_qsda3"]
+[ext_resource type="Shader" uid="uid://cg3doah5u26eh" path="res://asset/shader/sheet/spritesheet.gdshader" id="1_qsda3"]
 [ext_resource type="Texture2D" uid="uid://cdnimgp2jhh8l" path="res://asset/animation_sheet/icon_sheet.png" id="2_evnld"]
-[ext_resource type="Script" path="res://scene/front_door/load/component/MoonFlowStatusIcon.cs" id="3_7m3i8"]
+[ext_resource type="Script" uid="uid://br7hha6s5ehm5" path="res://scene/front_door/load/component/MoonFlowStatusIcon.cs" id="3_7m3i8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8jhrf"]
 shader = ExtResource("1_qsda3")

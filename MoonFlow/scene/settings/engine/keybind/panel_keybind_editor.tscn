@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://7rqudtj0ycdw"]
 
 [ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="1_24ltj"]
-[ext_resource type="Script" path="res://scene/settings/engine/keybind/panel_keybind_editor.gd" id="2_ay4do"]
+[ext_resource type="Script" uid="uid://ds06qrc0hravl" path="res://scene/settings/engine/keybind/panel_keybind_editor.gd" id="2_ay4do"]
 [ext_resource type="SystemFont" uid="uid://cw8c0p3b5mv5y" path="res://addons/SmoothScroll/debug_font.tres" id="3_61hdb"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_dklwh"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="5_loks5"]

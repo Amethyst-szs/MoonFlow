@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://43d6xsdwodn4"]
 
 [ext_resource type="PackedScene" uid="uid://v3lu028vdd4p" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_with_text.tscn" id="1_r56qw"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/number/NumberTime.cs" id="2_k2m1d"]
+[ext_resource type="Script" uid="uid://bltpg35ydlqrk" path="res://scene/editor/msbt/tag_edit/number/NumberTime.cs" id="2_k2m1d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_o7i4s"]
 font_size = 14

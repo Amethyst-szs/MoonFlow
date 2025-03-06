@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://v3lu028vdd4p"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_ja6xo"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/TagEditSceneWithText.cs" id="2_vym4n"]
+[ext_resource type="Script" uid="uid://bcvf26vrhl155" path="res://scene/editor/msbt/tag_edit/TagEditSceneWithText.cs" id="2_vym4n"]
 
 [node name="TagEditSceneWithText" instance=ExtResource("1_ja6xo")]
 script = ExtResource("2_vym4n")

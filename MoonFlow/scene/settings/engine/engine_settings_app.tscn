@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://bpoxm31ltuycw"]
 
-[ext_resource type="Script" path="res://scene/settings/engine/EngineSettingsApp.cs" id="1_uf06t"]
+[ext_resource type="Script" uid="uid://dsnyneosc47m5" path="res://scene/settings/engine/EngineSettingsApp.cs" id="1_uf06t"]
 [ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="2_7515s"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_p7vkx"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_t3cmk"]
 [ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="4_d1iky"]
-[ext_resource type="Script" path="res://scene/common/button/exclusive_category_button.gd" id="4_ombcx"]
+[ext_resource type="Script" uid="uid://01w768f3wdbw" path="res://scene/common/button/exclusive_category_button.gd" id="4_ombcx"]
 [ext_resource type="PackedScene" uid="uid://dx5wrgv3ugohw" path="res://scene/settings/engine/page/general.tscn" id="6_cicul"]
 [ext_resource type="StyleBox" uid="uid://b333duw0kswvw" path="res://asset/theme/common/stylebox/common_vsep_minimal.tres" id="6_xjfkm"]
 [ext_resource type="StyleBox" uid="uid://cevdn2pwpj8cd" path="res://asset/theme/common/stylebox/common_engine_settings_content_panel.tres" id="7_h42e4"]

@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://bovx285ki32a6"]
 
-[ext_resource type="Script" path="res://scene/editor/event/inject/PopupInjectGraphNode.cs" id="1_0ams4"]
+[ext_resource type="Script" uid="uid://nyxedcneqg3b" path="res://scene/editor/event/inject/PopupInjectGraphNode.cs" id="1_0ams4"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_pt7cc"]
 [ext_resource type="StyleBox" uid="uid://ddq0lrvtrq2pr" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_panel.tres" id="3_1vumm"]
-[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_him4f"]
+[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_him4f"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="4_ok1qq"]
 [ext_resource type="Theme" uid="uid://bfe7r5pai77uy" path="res://asset/theme/event/inject/node_inject_popup.tres" id="4_v8di6"]
 [ext_resource type="Texture2D" uid="uid://bsrqtic8ahapp" path="res://asset/material/graph/block.svg" id="5_72po0"]
-[ext_resource type="Script" path="res://scene/editor/event/inject/NodeInjectLineSearch.cs" id="5_p7pnm"]
+[ext_resource type="Script" uid="uid://ctlkxeynty3fw" path="res://scene/editor/event/inject/NodeInjectLineSearch.cs" id="5_p7pnm"]
 
 [node name="PopupInjectGraphNode" type="Popup" node_paths=PackedStringArray("ContainerRoot", "ContainerFav", "LineSearch")]
 disable_3d = true

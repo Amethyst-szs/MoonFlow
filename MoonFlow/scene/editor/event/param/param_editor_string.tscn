@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://kxj2pc4o5t84"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_d5kb8"]
-[ext_resource type="Script" path="res://scene/editor/event/param/ParamEditorString.cs" id="2_054ax"]
+[ext_resource type="Script" uid="uid://ct10rcb1cpolg" path="res://scene/editor/event/param/ParamEditorString.cs" id="2_054ax"]
 [ext_resource type="StyleBox" uid="uid://c3xw4qjimmcnm" path="res://asset/theme/event/param/stylebox/event_node_param_string_panel.tres" id="3_s68mk"]
 
 [node name="ParamEditor_String" type="HBoxContainer" node_paths=PackedStringArray("EditHeader", "Edit")]

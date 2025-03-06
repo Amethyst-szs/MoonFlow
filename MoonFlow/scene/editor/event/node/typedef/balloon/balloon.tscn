@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://dr5q2j26coqld"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_rdu8i"]
-[ext_resource type="Script" path="res://scene/editor/event/node/typedef/balloon/EventFlowNodeMessageBalloon.cs" id="2_tsyva"]
+[ext_resource type="Script" uid="uid://fhm0mm0dqsa8" path="res://scene/editor/event/node/typedef/balloon/EventFlowNodeMessageBalloon.cs" id="2_tsyva"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_ut8lw"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="4_met63"]
 [ext_resource type="PackedScene" uid="uid://cjlli76vhlpfg" path="res://scene/editor/event/node/component/message_resolver_config.tscn" id="4_nokhd"]
-[ext_resource type="Script" path="res://scene/editor/event/node/typedef/balloon/OptionBalloonType.cs" id="5_rvgo4"]
-[ext_resource type="Script" path="res://scene/editor/event/node/typedef/balloon/OptionSourceType.cs" id="6_lkh3i"]
+[ext_resource type="Script" uid="uid://dbrwpqp8lnsre" path="res://scene/editor/event/node/typedef/balloon/OptionBalloonType.cs" id="5_rvgo4"]
+[ext_resource type="Script" uid="uid://bu52nq0ugmn78" path="res://scene/editor/event/node/typedef/balloon/OptionSourceType.cs" id="6_lkh3i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xbl6x"]
 font_size = 11

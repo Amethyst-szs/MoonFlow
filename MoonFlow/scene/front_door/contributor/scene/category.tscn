@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnpmmi6rvuow1"]
 
-[ext_resource type="Script" path="res://scene/front_door/contributor/scene/category.gd" id="1_5pg3e"]
+[ext_resource type="Script" uid="uid://dso4l68241ykp" path="res://scene/front_door/contributor/scene/category.gd" id="1_5pg3e"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_fywyx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2xtce"]

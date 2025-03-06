@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhfi7w656nngd"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_iqgxf"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/align/TextAlignment.cs" id="2_et0yp"]
+[ext_resource type="Script" uid="uid://bojak7siveia3" path="res://scene/editor/msbt/tag_edit/align/TextAlignment.cs" id="2_et0yp"]
 [ext_resource type="Texture2D" uid="uid://dd4f8b4mrmiw8" path="res://asset/nindot/lms/icon/TextAlign_Left.png" id="3_f23tv"]
 [ext_resource type="Texture2D" uid="uid://b0u2t701xuf8f" path="res://asset/nindot/lms/icon/TextAlign_Center.png" id="4_sguo5"]
 

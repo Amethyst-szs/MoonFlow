@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bv1x806pgnkgt"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_716b5"]
-[ext_resource type="Script" path="res://scene/settings/engine/keybind/overlay_keybind_capture.gd" id="1_kgdbb"]
+[ext_resource type="Script" uid="uid://77kg8r2g4qb0" path="res://scene/settings/engine/keybind/overlay_keybind_capture.gd" id="1_kgdbb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_512fn"]
 bg_color = Color(0, 0, 0, 0.564706)

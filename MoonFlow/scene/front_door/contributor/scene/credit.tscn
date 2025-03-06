@@ -2,12 +2,12 @@
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_c3g6q"]
 [ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="2_8rnkx"]
-[ext_resource type="Script" path="res://scene/front_door/contributor/scene/FrontDoorContributorApp.cs" id="2_vcxik"]
+[ext_resource type="Script" uid="uid://q5h0ec1mlva6" path="res://scene/front_door/contributor/scene/FrontDoorContributorApp.cs" id="2_vcxik"]
 [ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="3_ply6e"]
 [ext_resource type="Theme" uid="uid://bhp7hktmlp3qn" path="res://asset/theme/front_door/contributor.tres" id="4_ftcg4"]
-[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_hwjog"]
+[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_hwjog"]
 [ext_resource type="PackedScene" uid="uid://dnpmmi6rvuow1" path="res://scene/front_door/contributor/scene/category.tscn" id="6_b7d2p"]
-[ext_resource type="Script" path="res://scene/front_door/contributor/scene/credit_content.gd" id="6_c2ek2"]
+[ext_resource type="Script" uid="uid://bu2a2kphfjame" path="res://scene/front_door/contributor/scene/credit_content.gd" id="6_c2ek2"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="8_g7328"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hcimq"]

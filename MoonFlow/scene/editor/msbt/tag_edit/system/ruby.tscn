@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0nqs06u22wvi"]
 
 [ext_resource type="PackedScene" uid="uid://v3lu028vdd4p" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_with_text.tscn" id="1_t23vh"]
-[ext_resource type="Script" path="res://scene/editor/msbt/tag_edit/system/Ruby.cs" id="2_1deve"]
+[ext_resource type="Script" uid="uid://bfovdsg3nmhku" path="res://scene/editor/msbt/tag_edit/system/Ruby.cs" id="2_1deve"]
 [ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="2_qb6bf"]
 
 [node name="TagEditSceneWithText" instance=ExtResource("1_t23vh")]

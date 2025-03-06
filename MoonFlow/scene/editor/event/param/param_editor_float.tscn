@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btudirexgoe1r"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_d5kb8"]
-[ext_resource type="Script" path="res://scene/editor/event/param/ParamEditorFloat.cs" id="2_10i5s"]
+[ext_resource type="Script" uid="uid://b7h8qvg8sxkf0" path="res://scene/editor/event/param/ParamEditorFloat.cs" id="2_10i5s"]
 
 [node name="ParamEditor_Float" type="HBoxContainer" node_paths=PackedStringArray("Spin")]
 anchors_preset = 10

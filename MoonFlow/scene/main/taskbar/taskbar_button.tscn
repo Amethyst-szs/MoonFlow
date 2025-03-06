@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bckw1ahq16d0v"]
 
-[ext_resource type="Script" path="res://scene/main/taskbar/TaskbarButton.cs" id="1_jb15g"]
+[ext_resource type="Script" uid="uid://d03s3tlli3hv5" path="res://scene/main/taskbar/TaskbarButton.cs" id="1_jb15g"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="2_ynsus"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcg3p"]

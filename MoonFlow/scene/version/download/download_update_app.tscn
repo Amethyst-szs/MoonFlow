@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c06qrr7k28ena"]
 
-[ext_resource type="Script" path="res://scene/version/download/DownloadUpdateApp.cs" id="1_33jf8"]
+[ext_resource type="Script" uid="uid://dfrob5sc2aiih" path="res://scene/version/download/DownloadUpdateApp.cs" id="1_33jf8"]
 [ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="1_hjsav"]
 [ext_resource type="StyleBox" uid="uid://c4tgqlb0ttacc" path="res://asset/theme/front_door/stylebox/front_door_panel_background.tres" id="2_rjhkt"]
 [ext_resource type="Theme" uid="uid://bjqkhcyimcs7y" path="res://asset/theme/front_door/front_door.tres" id="3_4qt2b"]
@@ -10,7 +10,7 @@
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="7_05vxy"]
 [ext_resource type="PackedScene" uid="uid://dwpxrep18y4wy" path="res://scene/front_door/dot/playable.tscn" id="8_5vt1d"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="9_bmugd"]
-[ext_resource type="Script" path="res://scene/version/notify/open_repo_releases_webpage_button.gd" id="10_eji8g"]
+[ext_resource type="Script" uid="uid://i04at4ydcgau" path="res://scene/version/notify/open_repo_releases_webpage_button.gd" id="10_eji8g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_741w2"]
 font = ExtResource("6_ywebm")

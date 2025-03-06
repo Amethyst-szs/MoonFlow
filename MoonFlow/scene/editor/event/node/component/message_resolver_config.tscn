@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjlli76vhlpfg"]
 
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="1_ec2eu"]
-[ext_resource type="Script" path="res://scene/editor/msbt/page/MsbtPageEditor.cs" id="2_tas66"]
+[ext_resource type="Script" uid="uid://cu8r7uftininw" path="res://scene/editor/msbt/page/MsbtPageEditor.cs" id="2_tas66"]
 [ext_resource type="Texture2D" uid="uid://bw6q6mibncpgu" path="res://asset/material/graph/edit.svg" id="3_g835t"]
 [ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="4_o01mf"]
 
