@@ -15,8 +15,7 @@ using System.Collections.Generic;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[ScenePath("res://scene/editor/event/event_flow_app.tscn")]
-[Icon("res://asset/app/icon/eventflow.png")]
+[SceneUid("uid://myiyk7kteiqb"), Icon("res://asset/app/icon/eventflow.png")]
 public partial class EventFlowApp : AppScene
 {
     #region Properties

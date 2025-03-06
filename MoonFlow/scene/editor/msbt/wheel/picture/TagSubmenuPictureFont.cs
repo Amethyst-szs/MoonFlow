@@ -2,7 +2,7 @@ using Godot;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-[ScenePath("res://scene/editor/msbt/wheel/picture/submenu_pict.tscn")]
+[SceneUid("uid://bbwcbxape7kyt")]
 public partial class TagSubmenuPictureFont : TagSubmenuBase
 {
     public override void InitSubmenu()

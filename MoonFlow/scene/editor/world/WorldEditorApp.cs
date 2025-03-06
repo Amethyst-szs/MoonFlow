@@ -14,7 +14,7 @@ using MoonFlow.Async;
 
 namespace MoonFlow.Scene.EditorWorld;
 
-[ScenePath("res://scene/editor/world/world_editor_app.tscn"), Icon("res://asset/app/icon/world.png")]
+[SceneUid("uid://7jgd1gt2u83b"), Icon("res://asset/app/icon/world.png")]
 public partial class WorldEditorApp : AppScene
 {
 	[Export, ExportGroup("Internal References"), ExportSubgroup("Header")]

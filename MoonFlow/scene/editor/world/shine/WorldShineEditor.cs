@@ -6,6 +6,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorWorld;
 
+[SceneUid("uid://c5upu8m5vshym")]
 public partial class WorldShineEditor : MarginContainer
 {
 	public WorldInfo World { get; private set; } = null;

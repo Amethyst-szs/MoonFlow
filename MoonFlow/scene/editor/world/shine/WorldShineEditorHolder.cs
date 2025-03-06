@@ -10,7 +10,7 @@ using MoonFlow.Scene.EditorMsbt;
 
 namespace MoonFlow.Scene.EditorWorld;
 
-[ScenePath("res://scene/editor/world/shine/world_shine_editor_holder.tscn")]
+[SceneUid("uid://ctp1ncef3xift")]
 public partial class WorldShineEditorHolder : PanelContainer
 {
 	public WorldInfo World { get; private set; } = null;

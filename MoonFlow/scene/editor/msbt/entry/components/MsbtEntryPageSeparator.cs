@@ -2,7 +2,7 @@ using Godot;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-[ScenePath("res://scene/editor/msbt/entry/components/msbt_entry_page_separator.tscn")]
+[SceneUid("uid://bu1wg5m8oninc")]
 public partial class MsbtEntryPageSeparator : HBoxContainer
 {
 	public int PageIndex = 0;

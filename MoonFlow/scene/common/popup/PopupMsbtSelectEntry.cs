@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MoonFlow.Scene;
 
-[ScenePath("res://scene/common/popup/popup_msbt_select_entry.tscn")]
+[SceneUid("uid://h84sss0s2x5b")]
 public partial class PopupMsbtSelectEntry : Window
 {
 	[Export]

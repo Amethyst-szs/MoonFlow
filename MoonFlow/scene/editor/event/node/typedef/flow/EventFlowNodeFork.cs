@@ -7,7 +7,6 @@ using Nindot.Al.EventFlow.Smo;
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
-[ScenePath("res://scene/editor/event/node/typedef/fork/fork.tscn")]
 public partial class EventFlowNodeFork : EventFlowNodeCommon
 {
 	private NodeFork ForkNode;

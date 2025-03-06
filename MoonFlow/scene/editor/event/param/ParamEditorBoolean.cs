@@ -2,7 +2,7 @@ using Godot;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[ScenePath("res://scene/editor/event/param/param_editor_boolean.tscn")]
+[SceneUid("uid://drhi47ys0w5hv")]
 public partial class ParamEditorBoolean : EventNodeParamEditorBase
 {
 	[Export]

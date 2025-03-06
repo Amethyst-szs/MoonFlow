@@ -7,7 +7,7 @@ using Godot;
 
 namespace MoonFlow.Scene;
 
-[ScenePath("res://scene/version/download/download_update_app.tscn"), Icon("res://asset/app/icon/update.png")]
+[SceneUid("uid://c06qrr7k28ena"), Icon("res://asset/app/icon/update.png")]
 public partial class DownloadUpdateApp : AppScene
 {
 	public const string DownloadTempFile = "working.zip";

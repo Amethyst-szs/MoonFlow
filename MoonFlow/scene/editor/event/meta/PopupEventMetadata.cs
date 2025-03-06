@@ -2,7 +2,7 @@ using Godot;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[ScenePath("res://scene/editor/event/meta/editor/popup_event_metadata.tscn")]
+[SceneUid("uid://toha7mro71ue")]
 public partial class PopupEventMetadata : Popup
 {
 	private EventFlowNodeCommon Target;

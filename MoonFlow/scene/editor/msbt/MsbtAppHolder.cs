@@ -12,7 +12,7 @@ using MoonFlow.Async;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-[ScenePath("res://scene/editor/msbt/msbt_editor.tscn"), Icon("res://asset/app/icon/msbt.png")]
+[SceneUid("uid://bwicpcn2le56s"), Icon("res://asset/app/icon/msbt.png")]
 public partial class MsbtAppHolder : AppScene
 {
 	public MsbtEditor Editor = null;

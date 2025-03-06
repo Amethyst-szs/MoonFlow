@@ -5,7 +5,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[ScenePath("res://scene/editor/event/block/event_block_panel.tscn")]
+[SceneUid("uid://blugxxp7lqdgk")]
 public partial class EventBlockPanel : PanelContainer
 {
 	private string Id;

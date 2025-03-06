@@ -9,8 +9,7 @@ using MoonFlow.Addons;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-[ScenePath("res://scene/editor/msbp/color/msbp_color_editor.tscn")]
-[Icon("res://asset/nindot/lms/icon/System_Color_ForWheel.png")]
+[SceneUid("uid://041p6wwk4vvx"), Icon("res://asset/nindot/lms/icon/System_Color_ForWheel.png")]
 public partial class MsbpColorEditor : AppScene
 {
 	[Export]

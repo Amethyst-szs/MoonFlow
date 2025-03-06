@@ -5,9 +5,7 @@ using System.Linq;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[GlobalClass]
-[ScenePath("res://scene/editor/event/node/port/port_in.tscn")]
-[Icon("res://asset/material/graph/port.svg")]
+[GlobalClass, SceneUid("uid://bhc8hqjw7nqek"), Icon("res://asset/material/graph/port.svg")]
 public partial class PortIn : TextureRect
 {
 	public EventFlowNodeCommon Parent { get; private set; } = null;

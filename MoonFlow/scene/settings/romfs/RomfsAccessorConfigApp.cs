@@ -7,8 +7,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.Settings;
 
-[Icon("res://asset/app/icon/romfs_accessor_config.png")]
-[ScenePath("res://scene/settings/romfs/romfs_accessor_config_app.tscn")]
+[SceneUid("uid://bcb23wjw20ifi"), Icon("res://asset/app/icon/romfs_accessor_config.png")]
 public partial class RomfsAccessorConfigApp : AppScene
 {
     private VBoxContainer PathError = null;

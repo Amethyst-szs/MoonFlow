@@ -3,7 +3,7 @@ using System;
 
 namespace MoonFlow.Scene.Main;
 
-[ScenePath("res://scene/main/taskbar/taskbar_button.tscn")]
+[SceneUid("uid://bckw1ahq16d0v")]
 public partial class TaskbarButton : Button
 {
 	public AppScene App { get; private set; } = null;

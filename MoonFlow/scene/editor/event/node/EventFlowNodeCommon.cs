@@ -8,8 +8,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[GlobalClass]
-[ScenePath("res://scene/editor/event/node/event_flow_node_common.tscn")]
+[GlobalClass, SceneUid("uid://dn6k75166p7ua")]
 public partial class EventFlowNodeCommon : EventFlowNodeBase
 {
 	#region Properties

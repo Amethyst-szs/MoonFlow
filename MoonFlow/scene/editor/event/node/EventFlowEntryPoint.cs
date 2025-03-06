@@ -8,8 +8,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[GlobalClass]
-[ScenePath("res://scene/editor/event/node/event_flow_entry_point.tscn")]
+[GlobalClass, SceneUid("uid://cdcam0c6j5qr2")]
 public partial class EventFlowEntryPoint : EventFlowNodeBase
 {
 	public EventFlowNodeCommon Connection;

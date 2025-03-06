@@ -8,8 +8,7 @@ using MoonFlow.Scene.Settings;
 
 namespace MoonFlow.Scene;
 
-[Icon("res://asset/app/icon/front_door.png")]
-[ScenePath("res://scene/front_door/front_door.tscn")]
+[SceneUid("uid://qcjh1t51akmr"), Icon("res://asset/app/icon/front_door.png")]
 public partial class FrontDoor : AppScene
 {
 	private ProjectInitInfo InitInfo = new();

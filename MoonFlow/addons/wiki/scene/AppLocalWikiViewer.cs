@@ -3,8 +3,7 @@ using System.Linq;
 
 namespace MoonFlow.Scene;
 
-[ScenePath("res://addons/wiki/scene/app_local_wiki_viewer.tscn")]
-[Icon("res://asset/app/icon/wiki.png")]
+[SceneUid("uid://cgpdfqa825020"), Icon("res://asset/app/icon/wiki.png")]
 public partial class AppLocalWikiViewer : AppScene
 {
 	public string FilePath { get; private set; } = "";

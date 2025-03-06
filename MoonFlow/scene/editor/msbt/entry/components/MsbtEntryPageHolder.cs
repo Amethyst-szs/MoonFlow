@@ -5,7 +5,7 @@ using Nindot.LMS.Msbt;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-[ScenePath("res://scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn")]
+[SceneUid("uid://bqq2fg3a6fqij")]
 public partial class MsbtEntryPageHolder : HBoxContainer
 {
 	public MsbtPageEditor PageEditor { get; private set; }

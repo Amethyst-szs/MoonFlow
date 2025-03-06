@@ -1,6 +1,6 @@
 namespace MoonFlow.Scene.Dev;
 
-[ScenePath("res://scene/dev/mstxt/mstxt_viewer.tscn")]
+[SceneUid("uid://d2tdru5hgbfl3")]
 public partial class MstxtViewerApp : AppScene
 {
 }

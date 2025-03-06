@@ -6,7 +6,6 @@ using Nindot.Al.EventFlow;
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass]
-[ScenePath("res://scene/editor/event/node/typedef/join/join.tscn")]
 public partial class EventFlowNodeJoin : EventFlowNodeCommon
 {
 	protected Nindot.Al.EventFlow.Smo.NodeJoin NodeJoin;

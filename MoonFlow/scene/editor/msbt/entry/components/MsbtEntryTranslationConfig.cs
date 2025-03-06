@@ -2,7 +2,7 @@ using Godot;
 
 using MoonFlow.Project;
 
-[ScenePath("res://scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn")]
+[SceneUid("uid://brr5d6o7cfwd")]
 public partial class MsbtEntryTranslationConfig : PanelContainer
 {
 	[Signal]

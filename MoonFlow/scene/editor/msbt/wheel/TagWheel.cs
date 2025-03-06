@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-[ScenePath("res://scene/editor/msbt/wheel/tag_wheel.tscn")]
+[SceneUid("uid://drb6gmpl7tvlm")]
 public partial class TagWheel : Control
 {
 	public Vector2I CaretPosition = Vector2I.Zero;

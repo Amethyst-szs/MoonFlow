@@ -9,7 +9,7 @@ using MoonFlow.Scene.EditorMsbt;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[ScenePath("res://scene/editor/event/inject/popup_inject_graph_node.tscn")]
+[SceneUid("uid://bovx285ki32a6")]
 public partial class PopupInjectGraphNode : Popup
 {
 	public EventFlowApp Context { get; private set; } = null;

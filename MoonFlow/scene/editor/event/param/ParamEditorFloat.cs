@@ -2,7 +2,7 @@ using Godot;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[ScenePath("res://scene/editor/event/param/param_editor_float.tscn")]
+[SceneUid("uid://btudirexgoe1r")]
 public partial class ParamEditorFloat : EventNodeParamEditorBase
 {
 	[Export]

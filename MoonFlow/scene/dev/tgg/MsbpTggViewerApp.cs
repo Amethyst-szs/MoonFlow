@@ -1,6 +1,6 @@
 namespace MoonFlow.Scene.Dev;
 
-[ScenePath("res://scene/dev/tgg/msp_tgg.tscn")]
+[SceneUid("uid://d2tdru5hgbfl6")]
 public partial class MsbpTggViewerApp : AppScene
 {
 }

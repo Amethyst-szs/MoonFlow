@@ -9,6 +9,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
+[SceneUid("uid://0cdy5iuxlvqd")]
 public partial class EventFlowNodeBase : Node2D
 {
 	#region Properties

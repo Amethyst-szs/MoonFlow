@@ -3,7 +3,7 @@ using System;
 
 namespace MoonFlow.Scene.Dev;
 
-[ScenePath("res://scene/dev/updater/updater_debug.tscn"), Icon("res://iconS.png")]
+[SceneUid("uid://ri6l1jqtmyk7"), Icon("res://iconS.png")]
 public partial class UpdaterDebug : AppScene
 {
 	private string Url = "";

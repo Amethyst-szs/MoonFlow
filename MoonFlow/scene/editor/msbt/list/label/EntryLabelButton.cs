@@ -4,7 +4,7 @@ using System;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
-[ScenePath("res://scene/editor/msbt/list/label/entry_label_button.tscn")]
+[SceneUid("uid://bbovlwtl0g0pg")]
 public partial class EntryLabelButton : Button
 {
 	public string EntryLabel { get; private set; }

@@ -6,7 +6,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Async;
 
-[GlobalClass, ScenePath("res://async/async_display.tscn")]
+[GlobalClass, SceneUid("uid://iqyjx7fu40nl")]
 public partial class AsyncDisplay : Control
 {
     // ====================================================== //

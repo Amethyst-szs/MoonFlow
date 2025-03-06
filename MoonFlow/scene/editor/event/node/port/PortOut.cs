@@ -8,9 +8,7 @@ using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
-[GlobalClass]
-[ScenePath("res://scene/editor/event/node/port/port_out.tscn")]
-[Icon("res://asset/material/graph/port.svg")]
+[GlobalClass, SceneUid("uid://c61gmyptk1563"), Icon("res://asset/material/graph/port.svg")]
 public partial class PortOut : TextureRect
 {
 	#region Properties

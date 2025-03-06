@@ -11,8 +11,7 @@ using MoonFlow.Addons;
 
 namespace MoonFlow.Scene;
 
-[Icon("res://asset/app/icon/front_door_loading.png")]
-[ScenePath("res://scene/front_door/load/project_loading.tscn")]
+[SceneUid("uid://cio2gvsywxhso"), Icon("res://asset/app/icon/front_door_loading.png")]
 public partial class ProjectLoading : AppScene, IProjectLoadingScene
 {
 	private Task LoadingTask = null;

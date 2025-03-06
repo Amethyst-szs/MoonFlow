@@ -6,7 +6,7 @@ namespace MoonFlow.Scene.Home;
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 
-[Icon("res://asset/app/icon/home.png"), ScenePath("res://scene/home/home.tscn")]
+[SceneUid("uid://c5b01vfsh7pwp"), Icon("res://asset/app/icon/home.png")]
 public partial class HomeRoot : AppScene
 {
 	private static readonly GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");

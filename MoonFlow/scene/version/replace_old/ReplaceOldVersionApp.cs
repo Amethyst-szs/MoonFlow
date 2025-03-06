@@ -7,7 +7,7 @@ using Godot;
 
 namespace MoonFlow.Scene;
 
-[ScenePath("res://scene/version/replace_old/replace_old_version_app.tscn"), Icon("res://asset/app/icon/update.png")]
+[SceneUid("uid://k324j6rro3rn"), Icon("res://asset/app/icon/update.png")]
 public partial class ReplaceOldVersionApp : AppScene
 {
 	public const string CmdlineArgKeyTempDirectory = "--local_temp_dir";

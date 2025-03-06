@@ -11,7 +11,7 @@ using ByteSizeLib;
 
 namespace MoonFlow.Scene.Home;
 
-[ScenePath("res://scene/home/tab_event/tab_event.tscn")]
+[SceneUid("uid://djaf0d3bxuxkh")]
 public partial class TabEvent : HSplitContainer
 {
 	[Export, ExportGroup("Internal References")]
