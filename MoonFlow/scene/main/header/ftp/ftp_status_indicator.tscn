@@ -326,7 +326,6 @@ autoplay = "off"
 [node name="ToolMenu" type="Popup" parent="."]
 transparent_bg = true
 size = Vector2i(538, 167)
-visible = true
 transparent = true
 theme = ExtResource("4_dmjrq")
 script = ExtResource("5_ehxjy")
@@ -345,13 +344,6 @@ layout_mode = 2
 [node name="Label_Header" type="Label" parent="ToolMenu/Content/VBox_ItemList"]
 layout_mode = 2
 text = "FTP_STATUS_TOOL_MENU_HEADER"
-label_settings = SubResource("LabelSettings_aoo1a")
-horizontal_alignment = 1
-
-[node name="tmp" type="Label" parent="ToolMenu/Content/VBox_ItemList"]
-auto_translate_mode = 2
-layout_mode = 2
-text = "menu unfinished lol, no buttons do anything"
 label_settings = SubResource("LabelSettings_aoo1a")
 horizontal_alignment = 1
 

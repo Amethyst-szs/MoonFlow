@@ -1,4 +1,5 @@
 using Godot;
+using MoonFlow.Project;
 using MoonFlow.Project.FTP;
 using System;
 using System.Threading.Tasks;
@@ -13,8 +14,11 @@ public partial class ToolMenu : Popup
 
         if (!await ProjectFtpClient.IsConnectedStill())
             return;
-        
-        GD.Print("no impl");
+
+        if (!ProjectManager.IsProjectExist())
+            return;
+
+        ProjectFtpClient.UploadProjectAll(ProjectManager.GetPath());
     }
 
     private async void OnPressButtonDeleteRemoteRomfs()
@@ -23,8 +27,8 @@ public partial class ToolMenu : Popup
 
         if (!await ProjectFtpClient.IsConnectedStill())
             return;
-        
-        GD.Print("no impl");
+
+        ProjectFtpClient.Delete(ProjectFtpClient.CredentialStore.WorkingDirectory, true, true);
     }
 
     private async void OnPressButtonDeleteRemoteExefs()
@@ -33,7 +37,7 @@ public partial class ToolMenu : Popup
 
         if (!await ProjectFtpClient.IsConnectedStill())
             return;
-        
+
         ProjectFtpClient.Delete(ProjectFtpClient.GetAtmosphereExefsPath(), true);
         ProjectFtpClient.Delete(ProjectFtpClient.GetAtmosphereExefsPatchesPath(), true);
     }

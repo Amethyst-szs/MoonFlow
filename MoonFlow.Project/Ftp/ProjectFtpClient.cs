@@ -132,6 +132,16 @@ public static partial class ProjectFtpClient
         TryStartupQueue();
     }
 
+    public static void UploadProjectAll(string projPath, EventHandler<FtpProgress> callback = null)
+    {
+        var item = new ProjectFtpQueueUploadAll(projPath, callback);
+        if (IsQueueItemAlreadyExist(item))
+            return;
+
+        RemoteQueue.Enqueue(item);
+        TryStartupQueue();
+    }
+
     public static void RenameFile(string oldPath, string newPath)
     {
         var item = new ProjectFtpQueueRenameFile(oldPath, newPath);
@@ -151,9 +161,9 @@ public static partial class ProjectFtpClient
         TryStartupQueue();
     }
 
-    public static void Delete(string path, bool isRootPath = false)
+    public static void Delete(string path, bool isRootPath = false, bool isEmptyDirectory = false)
     {
-        var item = new ProjectFtpQueueDelete(path, isRootPath);
+        var item = new ProjectFtpQueueDelete(path, isRootPath, isEmptyDirectory);
         if (IsQueueItemAlreadyExist(item))
             return;
 

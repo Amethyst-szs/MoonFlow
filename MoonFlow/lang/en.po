@@ -3867,9 +3867,7 @@ msgstr "FTP Tools"
 
 #: scene/main/header/ftp/ftp_status_indicator.tscn
 msgid "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE_TOOLTIP"
-msgstr ""
-"Delete all files in the working directory, and start\n"
-"uploading all files in your romfs project."
+msgstr "Sync your local project files with the remote"
 
 #: scene/main/header/ftp/ftp_status_indicator.tscn
 msgid "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE"

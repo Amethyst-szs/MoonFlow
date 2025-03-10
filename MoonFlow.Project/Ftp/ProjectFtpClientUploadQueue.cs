@@ -69,8 +69,15 @@ public static partial class ProjectFtpClient
         if (RemoteCurrent != null && !item.IsUnique(RemoteCurrent))
             return true;
 
-        if (RemoteQueue.Any((compare) => !item.IsUnique(compare)))
-            return true;
+        try
+        {
+            if (RemoteQueue.Any((compare) => !item.IsUnique(compare)))
+                return true;
+        }
+        catch
+        {
+            return false;
+        }
 
         return false;
     }

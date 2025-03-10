@@ -7,10 +7,11 @@ using System.Linq;
 
 namespace MoonFlow.Project.FTP;
 
-internal struct ProjectFtpQueueDelete(string path, bool isRootPath = false) : IProjectFtpQueueItem
+internal struct ProjectFtpQueueDelete(string path, bool isRootPath = false, bool isEmptyDirectory = false) : IProjectFtpQueueItem
 {
     internal string Path = path;
     internal bool IsRootPath = isRootPath;
+    internal bool IsEmptyDirectory = isEmptyDirectory;
 
     public readonly async Task<bool> Process()
     {
@@ -31,7 +32,10 @@ internal struct ProjectFtpQueueDelete(string path, bool isRootPath = false) : IP
 
         if (await ProjectFtpClient.Client.DirectoryExists(remote))
         {
-            await ProjectFtpClient.Client.DeleteDirectory(remote);
+            if (!IsEmptyDirectory)
+                await ProjectFtpClient.Client.DeleteDirectory(remote);
+            else
+                await ProjectFtpClient.Client.EmptyDirectory(remote, FtpListOption.Auto);
 
             if (DebugFsFtpLogging)
                 GD.Print("FTP: Deleted directory " + Path.Split(['/', '\\']).Last());
