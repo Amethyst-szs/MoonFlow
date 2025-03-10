@@ -3770,6 +3770,18 @@ msgid "ENGINE_SETTINGS_PAGE_FTP_WORKING_DIRECTORY_CUSTOM_PLACEHOLDER"
 msgstr ""
 
 #: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_CONFIG_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_SYNC_ALL_LANGUAGES_TOGGLE_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_SYNC_ALL_LANGUAGES_TOGGLE"
+msgstr ""
+
+#: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_TITLE"
 msgstr ""
 

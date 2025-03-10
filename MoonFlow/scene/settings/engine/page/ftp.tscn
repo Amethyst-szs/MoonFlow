@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2mm35p8l18fm"]
+[gd_scene load_steps=17 format=3 uid="uid://c2mm35p8l18fm"]
 
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_n0qym"]
 [ext_resource type="Script" uid="uid://v5jk1ss3i235" path="res://scene/settings/engine/ftp/FtpServerConnectionConfig.cs" id="2_de7cm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://pbdj60mov224" path="res://asset/material/ftp/login.svg" id="7_e4xbd"]
 [ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="7_wjgw2"]
 [ext_resource type="Script" uid="uid://cs52jm2y41n2g" path="res://scene/settings/engine/ftp/OptionButtonWorkingDirectory.cs" id="9_o16m7"]
+[ext_resource type="Script" uid="uid://d4fwpo4xds4gs" path="res://scene/settings/engine/ftp/CheckSyncAllLangauges.cs" id="10_oa6fo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2x6cb"]
 font = ExtResource("2_fqh3h")
@@ -243,6 +244,31 @@ max_length = 256
 emoji_menu_enabled = false
 
 [node name="HSep_Spacer3" type="HSeparator" parent="VBox_Directory"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o16m7")
+
+[node name="VBox_Config" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label_ConfigHeader" type="Label" parent="VBox_Config"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_FTP_CONFIG_HEADER"
+label_settings = SubResource("LabelSettings_2x6cb")
+
+[node name="HSep" type="HSeparator" parent="VBox_Config"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Check_SyncAllLangauges" type="CheckBox" parent="VBox_Config"]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_FTP_SYNC_ALL_LANGUAGES_TOGGLE_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "ENGINE_SETTINGS_PAGE_FTP_SYNC_ALL_LANGUAGES_TOGGLE"
+script = ExtResource("10_oa6fo")
+
+[node name="HSep_Spacer3" type="HSeparator" parent="VBox_Config"]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_o16m7")

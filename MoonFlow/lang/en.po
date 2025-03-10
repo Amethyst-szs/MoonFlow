@@ -3843,6 +3843,21 @@ msgid "ENGINE_SETTINGS_PAGE_FTP_WORKING_DIRECTORY_CUSTOM_PLACEHOLDER"
 msgstr "Custom path on sd card (ex. switch/tools/smo/)"
 
 #: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_CONFIG_HEADER"
+msgstr "Sync Options"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_SYNC_ALL_LANGUAGES_TOGGLE_TOOLTIP"
+msgstr ""
+"By default only the main and current translation languages\n"
+"will be synced. Enable this to always sync every single\n"
+"LocalizedData language."
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_SYNC_ALL_LANGUAGES_TOGGLE"
+msgstr "Sync all Langauges"
+
+#: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_TITLE"
 msgstr "Confirm Reset"
 

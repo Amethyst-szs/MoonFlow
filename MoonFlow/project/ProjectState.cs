@@ -45,6 +45,10 @@ public class ProjectState(string path, ProjectConfig config)
         // Publish project's path to the FTP client here to ensure future file transfers can be sourced correctly
         ProjectFtpClient.UpdateLocalProjectDirectory(Path);
 
+        string transLang = EngineSettings.GetSetting<string>("moonflow/localization/translation_language", "USen");
+        bool isTransferAll = ProjectFtpClient.CredentialStore.IsTransferAllLanguages;
+        ProjectFtpClient.UpdateLanguageConfiguration(Config.GetDefaultLanguage(), transLang, isTransferAll);
+
         // Wait 200 milliseconds to allow loading screen to appear
         // This isn't nessecary for the code to function, but allows the end-user time to process the scene
         // transation and improves the user experience a bit!

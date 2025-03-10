@@ -32,8 +32,25 @@ public partial class ProjectFtpCredentialStore : ConfigFile
         set { SetValue(SectionCredentials, "pass", value); }
     }
 
+    public string DefaultLanguage
+    {
+        get { return GetValue(SectionLocalized, "main", "USen").AsString(); }
+        set { SetValue(SectionLocalized, "main", value); }
+    }
+    public string TranslationLanguage
+    {
+        get { return GetValue(SectionLocalized, "translate", "USen").AsString(); }
+        set { SetValue(SectionLocalized, "translate", value); }
+    }
+    public bool IsTransferAllLanguages
+    {
+        get { return GetValue(SectionLocalized, "is_all", false).AsBool(); }
+        set { SetValue(SectionLocalized, "is_all", value); }
+    }
+
     public const string SectionServer = "server";
     public const string SectionCredentials = "cred";
+    public const string SectionLocalized = "localized";
     public const string StorePath = "user://ftp.cfg";
 
     public ProjectFtpCredentialStore() => Load(StorePath);

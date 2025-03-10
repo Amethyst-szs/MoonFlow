@@ -213,11 +213,21 @@ public static partial class ProjectFtpClient
         await Client.SetWorkingDirectory(dir);
     }
 
+    public static void UpdateLanguageConfiguration(string main, string translation, bool isTransferAll)
+    {
+        CredentialStore.DefaultLanguage = main;
+        CredentialStore.TranslationLanguage = translation;
+        CredentialStore.IsTransferAllLanguages = isTransferAll;
+
+        CredentialStore.Save();
+    }
+
     public static string GetAtmosphereExefsPath() => "/atmosphere/contents/0100000000010000/exefs/";
     public static string GetAtmosphereExefsPatchesPath() => "/atmosphere/exefs_patches/StarlightBase/";
 
     internal static string CalcServerPathFromProjectPath(string path)
     {
+        path = path.Replace('\\', '/');
         if (!path.StartsWith(ProjectPath))
             throw new Exception("Cannot upload file that is not contained within project!");
 

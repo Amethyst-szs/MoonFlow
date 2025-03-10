@@ -8,6 +8,7 @@ using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib.Smo;
 
 using MoonFlow.Project;
+using MoonFlow.Project.FTP;
 using MoonFlow.Scene.EditorMsbt;
 using MoonFlow.Project.Database;
 
@@ -311,16 +312,20 @@ public partial class TabMsbt : HSplitContainer
 	}
 	private void OnTranslationLanguageSelected(string lang)
 	{
+		// Update configuration
 		var isReloadInterface = lang != TranslationLanguage && IsEnableTranslationFeatures;
 		TranslationLanguage = lang;
 
+		EngineSettings.SetSetting("moonflow/localization/translation_language", lang);
+
+        bool isTransferAll = ProjectFtpClient.CredentialStore.IsTransferAllLanguages;
+        ProjectFtpClient.UpdateLanguageConfiguration(ProjectManager.GetDefaultLang(), lang, isTransferAll);
+
+		// Update interface
 		UpdateTranslationWarning();
 
 		if (isReloadInterface)
-		{
-			EngineSettings.SetSetting("moonflow/localization/translation_language", lang);
 			ReloadInterface(true);
-		}
 	}
 
 	private static void OnOpenMsbpColorEditor() { AppSceneServer.CreateApp<MsbpColorEditor>(); }

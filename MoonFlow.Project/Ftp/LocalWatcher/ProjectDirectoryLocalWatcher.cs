@@ -48,6 +48,10 @@ internal class ProjectDirectoryLocalWatcher
     {
         if (e.ChangeType != WatcherChangeTypes.Changed) return;
 
+        var remote = ProjectFtpClient.CalcServerPathFromProjectPath(e.FullPath);
+        if (!IsValidForTransfer(remote))
+            return;
+
         if (DebugFsFtpLogging)
             GD.PrintRich("[i] ⒡ Change ~ " + e.Name);
         
@@ -85,6 +89,25 @@ internal class ProjectDirectoryLocalWatcher
     private void OnError(object sender, ErrorEventArgs e)
     {
         throw e.GetException();
+    }
+
+    #endregion
+
+    #region Utility
+
+    private static bool IsValidForTransfer(string remote)
+    {
+        if (ProjectFtpClient.CredentialStore.IsTransferAllLanguages)
+            return true;
+        
+        // If the path isn't part of localized data or is project information, always accept transfer
+        if (!remote.Contains("LocalizedData/") || remote.Contains("LocalizedData/Common/"))
+            return true;
+            
+        var main = ProjectFtpClient.CredentialStore.DefaultLanguage;
+        var trans = ProjectFtpClient.CredentialStore.TranslationLanguage;
+
+        return remote.Contains("LocalizedData/" + main + "/") || remote.Contains("LocalizedData/" + trans + "/");
     }
 
     #endregion
