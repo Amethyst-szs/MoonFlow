@@ -35,7 +35,8 @@ func _export_begin(features: PackedStringArray, is_debug: bool, path: String, fl
 		if result is int:
 			source = source.replace("{%s}" % method.name, str(result))
 		elif result is String:
-			source = source.replace("{%s}" % method.name, "\"%s\"" % result)
+			var formatted: String = result.replace("\"", "\\\"")
+			source = source.replace("{%s}" % method.name, "\"%s\"" % formatted)
 	
 	# Create gdscript file
 	var script := GDScript.new()
