@@ -2342,6 +2342,10 @@ msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr ""
 
