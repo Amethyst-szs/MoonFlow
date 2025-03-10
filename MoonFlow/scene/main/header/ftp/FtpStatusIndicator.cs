@@ -19,6 +19,9 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 	[Export]
 	private Label ProgressLabel;
 
+	[Export]
+	private Popup PopupFtpTools;
+
 	#region Display
 
 	private const string TooltipContext = "FTP_STATUS_INDICATOR_TOOLTIP";
@@ -76,6 +79,9 @@ public partial class FtpStatusIndicator : HBoxContainer, IProjectFtpStatusIndica
 		if (isCon && !ProjectFtpClient.IsTransferQueueActive())
 		{
 			SetStatusConnected(true);
+
+			PopupFtpTools.Position = (Vector2I)GlobalPosition + new Vector2I(0, (int)Size.Y);
+			PopupFtpTools.Popup();
 			return;
 		}
 

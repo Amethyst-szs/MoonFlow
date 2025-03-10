@@ -1,8 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://djdy8pajcdhin"]
+[gd_scene load_steps=20 format=3 uid="uid://djdy8pajcdhin"]
 
-[ext_resource type="Script" path="res://scene/main/header/ftp/FtpStatusIndicator.cs" id="1_mnlig"]
-[ext_resource type="Shader" path="res://asset/shader/common/color_invert_mono.gdshader" id="2_hq0tr"]
+[ext_resource type="Script" uid="uid://de6wrup72tmdu" path="res://scene/main/header/ftp/FtpStatusIndicator.cs" id="1_mnlig"]
+[ext_resource type="Shader" uid="uid://3cxnqpc3grs6" path="res://asset/shader/common/color_invert_mono.gdshader" id="2_hq0tr"]
 [ext_resource type="Texture2D" uid="uid://bcf0vbtvkcb6l" path="res://asset/material/file/none.svg" id="2_mlyxi"]
+[ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="4_dmjrq"]
+[ext_resource type="StyleBox" uid="uid://bq75lce6usfp3" path="res://asset/theme/main/stylebox/header_popup_menu_panel.tres" id="4_x6g84"]
+[ext_resource type="Script" uid="uid://mj1x23vwr6w1" path="res://scene/main/header/ftp/ToolMenu.cs" id="5_ehxjy"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="7_s2qjk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mslfu"]
 bg_color = Color(0, 0, 0, 0.784314)
@@ -244,15 +248,20 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l5ird"]
 _data = {
-"RESET": SubResource("Animation_f7sy1"),
-"active": SubResource("Animation_fveka"),
-"connect": SubResource("Animation_i4bfc"),
-"disconnect": SubResource("Animation_2hjc8"),
-"off": SubResource("Animation_t5lce"),
-"try_connect": SubResource("Animation_u4pq6")
+&"RESET": SubResource("Animation_f7sy1"),
+&"active": SubResource("Animation_fveka"),
+&"connect": SubResource("Animation_i4bfc"),
+&"disconnect": SubResource("Animation_2hjc8"),
+&"off": SubResource("Animation_t5lce"),
+&"try_connect": SubResource("Animation_u4pq6")
 }
 
-[node name="FtpStatusIndicator" type="HBoxContainer" node_paths=PackedStringArray("Animation", "ProgressBar", "ProgressLabel")]
+[sub_resource type="LabelSettings" id="LabelSettings_aoo1a"]
+font = ExtResource("7_s2qjk")
+font_size = 14
+font_color = Color(1, 1, 1, 0.701961)
+
+[node name="FtpStatusIndicator" type="HBoxContainer" node_paths=PackedStringArray("Animation", "ProgressBar", "ProgressLabel", "PopupFtpTools")]
 custom_minimum_size = Vector2(0, 17)
 offset_right = 17.0
 offset_bottom = 17.0
@@ -261,6 +270,7 @@ script = ExtResource("1_mnlig")
 Animation = NodePath("Animation")
 ProgressBar = NodePath("Progress")
 ProgressLabel = NodePath("Progress/Label_Progress")
+PopupFtpTools = NodePath("ToolMenu")
 
 [node name="Progress" type="ProgressBar" parent="."]
 visible = false
@@ -309,8 +319,62 @@ expand_mode = 3
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_l5ird")
+&"": SubResource("AnimationLibrary_l5ird")
 }
 autoplay = "off"
 
+[node name="ToolMenu" type="Popup" parent="."]
+transparent_bg = true
+size = Vector2i(538, 167)
+visible = true
+transparent = true
+theme = ExtResource("4_dmjrq")
+script = ExtResource("5_ehxjy")
+
+[node name="Content" type="PanelContainer" parent="ToolMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_x6g84")
+
+[node name="VBox_ItemList" type="VBoxContainer" parent="ToolMenu/Content"]
+layout_mode = 2
+
+[node name="Label_Header" type="Label" parent="ToolMenu/Content/VBox_ItemList"]
+layout_mode = 2
+text = "FTP_STATUS_TOOL_MENU_HEADER"
+label_settings = SubResource("LabelSettings_aoo1a")
+horizontal_alignment = 1
+
+[node name="tmp" type="Label" parent="ToolMenu/Content/VBox_ItemList"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "menu unfinished lol, no buttons do anything"
+label_settings = SubResource("LabelSettings_aoo1a")
+horizontal_alignment = 1
+
+[node name="Button_Upload" type="Button" parent="ToolMenu/Content/VBox_ItemList"]
+layout_mode = 2
+tooltip_text = "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE_TOOLTIP"
+text = "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE"
+
+[node name="HSep" type="HSeparator" parent="ToolMenu/Content/VBox_ItemList"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Button_Delete" type="Button" parent="ToolMenu/Content/VBox_ItemList"]
+layout_mode = 2
+tooltip_text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_ROMFS_REMOTE_TOOLTIP"
+text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_ROMFS_REMOTE"
+
+[node name="Button_DeleteExefs" type="Button" parent="ToolMenu/Content/VBox_ItemList"]
+layout_mode = 2
+tooltip_text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_EXEFS_REMOTE_TOOLTIP"
+text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_EXEFS_REMOTE"
+
 [connection signal="tree_entered" from="Progress" to="Progress" method="hide"]
+[connection signal="pressed" from="ToolMenu/Content/VBox_ItemList/Button_Upload" to="ToolMenu" method="OnPressButtonUploadProjectRomfs"]
+[connection signal="pressed" from="ToolMenu/Content/VBox_ItemList/Button_Delete" to="ToolMenu" method="OnPressButtonDeleteRemoteRomfs"]
+[connection signal="pressed" from="ToolMenu/Content/VBox_ItemList/Button_DeleteExefs" to="ToolMenu" method="OnPressButtonDeleteRemoteExefs"]

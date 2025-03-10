@@ -285,10 +285,6 @@ msgstr "Events"
 msgid "HOME_TAB_WORLD"
 msgstr "Kingdom"
 
-#: scene/home/home.tscn
-msgid "HOME_TAB_FTP"
-msgstr "FTP"
-
 #: scene/home/tab_msbt/tab_msbt.tscn
 msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
 msgstr "All text files in your project's default language"
@@ -1397,12 +1393,12 @@ msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr "Cap"
 
 #: scene/editor/msbt/msbt_editor.tscn
-msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH"
-msgstr "Refreshing Text Editor..."
-
-#: scene/editor/msbt/msbt_editor.tscn
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
 msgstr "Loading Text Editor..."
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH"
+msgstr "Refreshing Text Editor..."
 
 #: scene/editor/msbt/msbt_editor.tscn
 msgid "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
@@ -2510,31 +2506,6 @@ msgid "ENGINE_SETTINGS_APP_SAVE_AND_EXIT"
 msgstr "Save & Exit"
 
 #: scene/settings/engine/page/general.tscn
-msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
-msgid "DISABLED"
-msgstr "Disabled"
-
-#: scene/settings/engine/page/general.tscn
-msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
-msgid "MINIMAL"
-msgstr "Minimal"
-
-#: scene/settings/engine/page/general.tscn
-msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
-msgid "STANDARD"
-msgstr "Normal"
-
-#: scene/settings/engine/page/general.tscn
-msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
-msgid "STRONG"
-msgstr "Strong"
-
-#: scene/settings/engine/page/general.tscn
-msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
-msgid "VERY_STRONG"
-msgstr "ULTRA"
-
-#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
 msgstr "Language"
 
@@ -2610,6 +2581,31 @@ msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
 msgstr ""
 "Reduce CPU usage by setting the strength of the\n"
 "Low-Processor mode. ( REQUIRES RESTART )"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "DISABLED"
+msgstr "Disabled"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "MINIMAL"
+msgstr "Minimal"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "STANDARD"
+msgstr "Normal"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "STRONG"
+msgstr "Strong"
+
+#: scene/settings/engine/page/general.tscn
+msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
+msgid "VERY_STRONG"
+msgstr "ULTRA"
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_TOOLTIP"
@@ -3823,6 +3819,30 @@ msgid "ENGINE_SETTINGS_PAGE_FTP_BUTTON_CLEAR_ALL_CREDENTIALS"
 msgstr "Reset all Login Information"
 
 #: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_WORKING_DIRECTORY_HEADER"
+msgstr "Working Directory"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIRECTORY_OPTION_ATMOSPHERE"
+msgstr "Atmosphère (CANNOT HOT-RELOAD)"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIRECTORY_OPTION_LUNAKIT"
+msgstr "LunaKit"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIRECTORY_OPTION_QUICKMOON"
+msgstr "QuickMoon"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_DIRECTORY_OPTION_CUSTOM"
+msgstr "Custom"
+
+#: scene/settings/engine/page/ftp.tscn
+msgid "ENGINE_SETTINGS_PAGE_FTP_WORKING_DIRECTORY_CUSTOM_PLACEHOLDER"
+msgstr "Custom path on sd card (ex. switch/tools/smo/)"
+
+#: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_TITLE"
 msgstr "Confirm Reset"
 
@@ -3840,6 +3860,38 @@ msgstr ""
 #: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_PAGE_FTP_DIALOG_CLEAR_CANCEL"
 msgstr "Cancel"
+
+#: scene/main/header/ftp/ftp_status_indicator.tscn
+msgid "FTP_STATUS_TOOL_MENU_HEADER"
+msgstr "FTP Tools"
+
+#: scene/main/header/ftp/ftp_status_indicator.tscn
+msgid "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE_TOOLTIP"
+msgstr ""
+"Delete all files in the working directory, and start\n"
+"uploading all files in your romfs project."
+
+#: scene/main/header/ftp/ftp_status_indicator.tscn
+msgid "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE"
+msgstr "Upload Project"
+
+#: scene/main/header/ftp/ftp_status_indicator.tscn
+msgid "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_ROMFS_REMOTE_TOOLTIP"
+msgstr "Remove all romfs files from the remote working directory"
+
+#: scene/main/header/ftp/ftp_status_indicator.tscn
+msgid "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_ROMFS_REMOTE"
+msgstr "Delete remote RomFs"
+
+#: scene/main/header/ftp/ftp_status_indicator.tscn
+msgid "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_EXEFS_REMOTE_TOOLTIP"
+msgstr ""
+"Remove all exefs files from \"/atmosphere/contents/0100000000010000/exefs\"\n"
+"and \"/atmosphere/exefs_patches/StarlightBase\""
+
+#: scene/main/header/ftp/ftp_status_indicator.tscn
+msgid "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_EXEFS_REMOTE"
+msgstr "Delete remote ExeFs"
 
 #: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
@@ -3870,6 +3922,9 @@ msgstr ""
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
 msgid "off"
 msgstr "FTP Disabled"
+
+#~ msgid "HOME_TAB_FTP"
+#~ msgstr "FTP"
 
 #~ msgid "HELP_DIALOG_TITLE"
 #~ msgstr "Help Information"

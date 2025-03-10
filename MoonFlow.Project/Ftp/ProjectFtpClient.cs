@@ -185,7 +185,7 @@ public static partial class ProjectFtpClient
         if (Client == null || !Client.IsAuthenticated)
             return;
 
-        var dir = CredentialStore.TargetDirectory;
+        var dir = CredentialStore.WorkingDirectory;
 
         if (!await Client.DirectoryExists(dir))
             await Client.CreateDirectory(dir);
@@ -198,7 +198,7 @@ public static partial class ProjectFtpClient
         if (!path.StartsWith(ProjectPath))
             throw new Exception("Cannot upload file that is not contained within project!");
 
-        return CredentialStore.TargetDirectory + path.TrimPrefix(ProjectPath);
+        return CredentialStore.WorkingDirectory + path.TrimPrefix(ProjectPath);
     }
 
     internal static Progress<FtpProgress> TryCreateProgressCallbackHolder(EventHandler<FtpProgress> callback)

@@ -138,7 +138,7 @@ public partial class AppScene : Control
 		// Ensure this node was initilized from a scene, not a raw node
 		if (SceneFilePath == null || SceneFilePath == string.Empty)
 			throw new Exception(GetType().Name +
-				" cannot be initilized without a scene! Use SceneCreator utility and ScenePath attribute.");
+				" cannot be initilized without a scene! Use SceneCreator utility.");
 
 		// Queue taskbar item init for once main has completed ready
 		if (!Scene.IsNodeReady())
