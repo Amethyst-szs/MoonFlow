@@ -31,5 +31,10 @@
 			"technical.md",
 			"translations.md"
 		]
+	},
+	"tools": {
+		"__": [
+			"ftp_syncing.md"
+		]
 	}
 }

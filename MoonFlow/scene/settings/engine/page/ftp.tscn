@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c2mm35p8l18fm"]
+[gd_scene load_steps=20 format=3 uid="uid://c2mm35p8l18fm"]
 
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_n0qym"]
 [ext_resource type="Script" uid="uid://v5jk1ss3i235" path="res://scene/settings/engine/ftp/FtpServerConnectionConfig.cs" id="2_de7cm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://oddo0qvixg5i" path="res://asset/material/status/visible.svg" id="3_pr0xe"]
 [ext_resource type="Script" uid="uid://du00yf8ptmkni" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="3_qng21"]
 [ext_resource type="Texture2D" uid="uid://c4jxkit4m4lf0" path="res://asset/material/status/visible_off.svg" id="4_id4sb"]
+[ext_resource type="Script" uid="uid://dguj7hkqnpmqv" path="res://addons/wiki/access/WikiAccessorResource.cs" id="4_vq6am"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="7_2me3j"]
 [ext_resource type="Texture2D" uid="uid://pbdj60mov224" path="res://asset/material/ftp/login.svg" id="7_e4xbd"]
 [ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="7_wjgw2"]
@@ -18,7 +19,24 @@ font_size = 19
 
 [sub_resource type="LabelSettings" id="LabelSettings_f3hh4"]
 font_size = 14
-font_color = Color(1, 1, 1, 0.823529)
+font_color = Color(1, 0.9, 0.7, 0.823529)
+
+[sub_resource type="GDScript" id="GDScript_oa6fo"]
+script/source = "extends Label
+
+@export var wiki_target: WikiAccessorResource
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
+			wiki_target.OpenWiki()
+"
+
+[sub_resource type="Resource" id="Resource_asmdw"]
+script = ExtResource("4_vq6am")
+Path = "res://docs/tools/ftp_syncing.md"
+LocalPath = "tools/ftp_syncing.md"
+metadata/_custom_type_script = "uid://dguj7hkqnpmqv"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8tvi"]
 
@@ -66,6 +84,8 @@ mouse_default_cursor_shape = 2
 text = "ENGINE_SETTINGS_PAGE_FTP_CONNECTION_SUBHEADER_SETUP_GUIDE"
 label_settings = SubResource("LabelSettings_f3hh4")
 autowrap_mode = 3
+script = SubResource("GDScript_oa6fo")
+wiki_target = SubResource("Resource_asmdw")
 
 [node name="HSep" type="HSeparator" parent="VBox_Connection"]
 layout_mode = 2
