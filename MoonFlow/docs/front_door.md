@@ -36,5 +36,8 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 - [Power Moon List](kingdoms/moon_list.md)
 - [Stage List](kingdoms/stage_list.md)
 
+### Additional Tools
+- [FTP File Syncing](tools/ftp_syncing.md)
+
 ### Contributing
 - [Repository Outline](contributing/repo_outline.md)

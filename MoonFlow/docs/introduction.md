@@ -62,3 +62,7 @@ And with that, you've got MoonFlow set up and ready to roll! Check out the intro
 * [Text Editor](text/basics_text_editor.md)
 * [Event Graph Editor](events/basics_event_graph.md)
 * [Kingdom Editor](kingdoms/basics_kingdom_editor.md)
+
+or take a look at some of the other misc. tools available in MoonFlow!
+
+- [FTP File Syncing](tools/ftp_syncing.md)
