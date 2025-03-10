@@ -151,6 +151,16 @@ public static partial class ProjectFtpClient
         TryStartupQueue();
     }
 
+    public static void Delete(string path, bool isRootPath = false)
+    {
+        var item = new ProjectFtpQueueDelete(path, isRootPath);
+        if (IsQueueItemAlreadyExist(item))
+            return;
+
+        RemoteQueue.Enqueue(item);
+        TryStartupQueue();
+    }
+
     internal static void PushToQueue<T>(string path) where T : IProjectFtpQueueItem, new()
     {
         var item = new T();
@@ -192,6 +202,9 @@ public static partial class ProjectFtpClient
 
         await Client.SetWorkingDirectory(dir);
     }
+
+    public static string GetAtmosphereExefsPath() => "/atmosphere/contents/0100000000010000/exefs/";
+    public static string GetAtmosphereExefsPatchesPath() => "/atmosphere/exefs_patches/StarlightBase/";
 
     internal static string CalcServerPathFromProjectPath(string path)
     {
