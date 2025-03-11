@@ -53,6 +53,9 @@ public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
         set => _signature = value;
     }
 
+    [JsonInclude]
+    internal string DisplayName = "MoonFlow Project";
+
     #endregion
 
     #region Buckets

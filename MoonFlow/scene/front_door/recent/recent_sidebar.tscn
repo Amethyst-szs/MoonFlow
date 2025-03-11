@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://b00o2aortf3ba"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_bqllb"]
+[ext_resource type="Script" uid="uid://cr0dyy31hbjx7" path="res://scene/front_door/recent/RecentSidebar.cs" id="1_gv4vj"]
+[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_c4m0x"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="4_66q0p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gytco"]
+font = ExtResource("1_bqllb")
+font_size = 21
+font_color = Color(1, 0.737255, 0.258824, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gytco"]
+blend_mode = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4m0x"]
+content_margin_left = 6.0
+content_margin_top = 12.0
+content_margin_right = 6.0
+content_margin_bottom = 12.0
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[node name="VBox_Recent" type="VBoxContainer" node_paths=PackedStringArray("VBoxPanelHolder")]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 217.0
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+script = ExtResource("1_gv4vj")
+VBoxPanelHolder = NodePath("Scroll_Recent/Content")
+
+[node name="Label_RecentHeader" type="Label" parent="."]
+layout_mode = 2
+text = "RECENT_PROJECTS"
+label_settings = SubResource("LabelSettings_gytco")
+horizontal_alignment = 1
+
+[node name="Scroll_Recent" type="ScrollContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0.501961)
+material = SubResource("CanvasItemMaterial_gytco")
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_c4m0x")
+horizontal_scroll_mode = 0
+script = ExtResource("3_c4m0x")
+metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
+
+[node name="Content" type="VBoxContainer" parent="Scroll_Recent"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="HSep_Bottom" type="HSeparator" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 12
+theme_override_styles/separator = ExtResource("4_66q0p")

@@ -10,7 +10,7 @@ namespace MoonFlow.Scene;
 
 public partial class LangPicker : OptionButton
 {
-	private const string DisplayNameContext = "PROJECT_LANGUAGE_CODE";
+	public const string DisplayNameContext = "PROJECT_LANGUAGE_CODE";
 
 	[Export(PropertyHint.Enum, "Default Language:0,Translation Language:1")]
 	private int StartingLanguage = 0;

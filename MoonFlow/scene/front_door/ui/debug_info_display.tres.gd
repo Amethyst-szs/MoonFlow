@@ -1,8 +1,6 @@
 extends RichTextLabel
 
 func _ready() -> void:
-	append_text("[right]")
-	
 	_append_git_info()
 	_append_compile_info()
 	_append_engine_info()

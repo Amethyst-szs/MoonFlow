@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://brvdyoargiqjl"]
+
+[ext_resource type="StyleBox" uid="uid://crypexf7ycw28" path="res://asset/theme/front_door/stylebox/front_door_panel_recent_entry.tres" id="1_dbqt8"]
+[ext_resource type="Script" uid="uid://qujnwfn1t8vx" path="res://scene/front_door/recent/RecentEntryPanel.cs" id="2_8hbi1"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_euh80"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="4_8hbi1"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="4_u7whl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c4m0x"]
+font = ExtResource("2_euh80")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gv4vj"]
+font = ExtResource("4_u7whl")
+font_size = 13
+font_color = Color(0.9, 0.9, 0.9, 0.792157)
+
+[node name="RecentEntryPanel" type="PanelContainer" node_paths=PackedStringArray("LabelName", "LabelPath", "LabelAdditionalInfo")]
+anchors_preset = -1
+anchor_right = 0.111
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = ExtResource("1_dbqt8")
+script = ExtResource("2_8hbi1")
+LabelName = NodePath("VBox/Label_Name")
+LabelPath = NodePath("VBox/Label_Path")
+LabelAdditionalInfo = NodePath("VBox/Label_Additional")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label_Name" type="Label" parent="VBox"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "name"
+label_settings = SubResource("LabelSettings_c4m0x")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Label_Path" type="Label" parent="VBox"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 5
+text = "C:/path"
+label_settings = SubResource("LabelSettings_gv4vj")
+horizontal_alignment = 2
+clip_text = true
+
+[node name="HSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = ExtResource("4_8hbi1")
+
+[node name="Label_Additional" type="Label" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_gv4vj")
+horizontal_alignment = 1
+clip_text = true

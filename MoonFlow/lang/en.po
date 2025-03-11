@@ -2291,16 +2291,16 @@ msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
 msgstr "Quit MoonFlow"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
+msgstr "Open Project in File Browser"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
 msgstr "Reload Project"
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr "Close Project"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
-msgstr "Open Project in File Browser"
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
@@ -3939,6 +3939,12 @@ msgstr ""
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
 msgid "off"
 msgstr "FTP Disabled"
+
+#~ msgid "NEW"
+#~ msgstr "New"
+
+#~ msgid "OPEN"
+#~ msgstr "Open"
 
 #~ msgid "HOME_TAB_FTP"
 #~ msgstr "FTP"
