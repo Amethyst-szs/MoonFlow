@@ -170,15 +170,6 @@ msgid "OPEN_PROJECT"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
-#: scene/front_door/recent/recent_sidebar.tscn
-msgid "RECENT_PROJECTS"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
 msgstr ""
 
@@ -2349,6 +2340,14 @@ msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_CONFIG_RENAME"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr ""
 
@@ -3863,4 +3862,8 @@ msgstr ""
 
 #: scene/front_door/recent/recent_entry_panel.tscn
 msgid "FRONT_DOOR_RECENT_ENTRY_PANEL_DELETE_BUTTON_TOOLTIP"
+msgstr ""
+
+#: scene/front_door/recent/recent_sidebar.tscn
+msgid "RECENT_PROJECTS"
 msgstr ""

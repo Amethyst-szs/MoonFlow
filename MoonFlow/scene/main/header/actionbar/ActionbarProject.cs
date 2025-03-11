@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using FluentFTP.Helpers;
 using Godot;
 using MoonFlow.Project;
 using MoonFlow.Scene.Settings;
@@ -12,16 +15,23 @@ public partial class ActionbarProject : ActionbarItemBase
 		PROJECT_RELOAD = 1,
 		PROJECT_CLOSE = 2,
 
-		OPEN_ENGINE_SETTINGS = 3,
+		PROJECT_CONFIG_RENAME = 3,
+		PROJECT_MIRROR_CLONE = 4,
+
+		OPEN_ENGINE_SETTINGS = 5,
 	}
 
 	public override void _Ready()
 	{
 		base._Ready();
 
-		AssignFunction((int)MenuIds.PROJECT_OPEN_IN_EXPLORER, OnProjectOpenInExpolorerPressed);
+		AssignFunction((int)MenuIds.PROJECT_OPEN_IN_EXPLORER, OnProjectOpenInExplorerPressed);
 		AssignFunction((int)MenuIds.PROJECT_RELOAD, OnProjectReloadPressed, "home_actionbar_reload");
 		AssignFunction((int)MenuIds.PROJECT_CLOSE, OnProjectClosePressed, "home_actionbar_close");
+
+		AssignFunction((int)MenuIds.PROJECT_CONFIG_RENAME, OnProjectRenameRequest);
+		AssignFunction((int)MenuIds.PROJECT_MIRROR_CLONE, OnProjectMirrorCloneRequest);
+
 		AssignFunction((int)MenuIds.OPEN_ENGINE_SETTINGS, OnEngineSettingsPressed);
 	}
 
@@ -44,20 +54,45 @@ public partial class ActionbarProject : ActionbarItemBase
 		ProjectManager.CloseProject();
 	}
 
-	private void OnProjectOpenInExpolorerPressed()
+	private void OnProjectRenameRequest()
+	{
+		DisplayServer.DialogShow("Placeholder", "Not yet implemented!", ["OK"], Callable.From(null));
+	}
+
+	private void OnProjectMirrorCloneRequest()
+	{
+		DisplayServer.FileDialogShow(
+			"Select Clone Destination",
+			ProjectManager.GetPath(),
+			null,
+			false,
+			DisplayServer.FileDialogMode.OpenDir,
+			[],
+			Callable.From(new Action<bool, string[], int>(OnProjectMirrorCloneSubmitted))
+		);
+	}
+	private void OnProjectMirrorCloneSubmitted(bool isAccept, string[] paths, int _)
+	{
+		if (!isAccept || paths.Length != 1)
+			return;
+		
+		string source = ProjectManager.GetPath();
+		string target = paths[0].EnsurePostfix("/");
+		if (source == target)
+			return;
+		
+		if (!ProjectManager.IsProjectConfigExist(ref target, out string _, false)) {
+			GD.Print("There must already be a MoonFlow project at the clone destination!");
+			return;
+		}
+		
+		DirectoryExt.CopyFilesRecursively(source, target);
+	}
+
+	private void OnProjectOpenInExplorerPressed()
 	{
 		if (ProjectManager.IsProjectExist())
 			OS.ShellShowInFileManager(ProjectManager.GetPath());
-
-		// switch(DisplayServer.GetName())
-		// {
-		// 	case "Windows":
-
-		// 		break;
-		// 	default:
-		// 		DisplayServer.FileDialogShow("Project", ProjectManager.GetPath(), null, false, DisplayServer.FileDialogMode.OpenAny, [], Callable.From(null));
-		// 		break;
-		// }
 	}
 
 	private static void OnEngineSettingsPressed() { AppSceneServer.CreateApp<EngineSettingsApp>(); }

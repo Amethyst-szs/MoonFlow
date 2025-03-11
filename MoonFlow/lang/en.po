@@ -86,14 +86,6 @@ msgstr "New Project"
 msgid "OPEN_PROJECT"
 msgstr "Open Project"
 
-#: scene/front_door/front_door.tscn scene/front_door/recent/recent_sidebar.tscn
-msgid "RECENT_PROJECTS"
-msgstr "Recent Projects"
-
-#: scene/front_door/front_door.tscn
-msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
-msgstr "Clear History"
-
 #: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
 msgstr "MoonFlow Settings"
@@ -2303,6 +2295,14 @@ msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr "Close Project"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_CONFIG_RENAME"
+msgstr "Rename Project"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
+msgstr "Clone Project to Another Directory"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr "Open MoonFlow Settings"
 
@@ -3947,6 +3947,13 @@ msgstr "Project is Missing!"
 #: scene/front_door/recent/recent_entry_panel.tscn
 msgid "FRONT_DOOR_RECENT_ENTRY_PANEL_DELETE_BUTTON_TOOLTIP"
 msgstr "Remove project from recent history"
+
+#: scene/front_door/recent/recent_sidebar.tscn
+msgid "RECENT_PROJECTS"
+msgstr "Recent Projects"
+
+#~ msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
+#~ msgstr "Clear History"
 
 #~ msgid "NEW"
 #~ msgstr "New"
