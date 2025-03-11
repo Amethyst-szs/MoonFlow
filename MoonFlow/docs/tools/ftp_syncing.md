@@ -21,6 +21,8 @@ Once you have all the login details entered, attempt to connect! If all goes to 
 Below the login info are additional options to configure how your files are synced, make sure to set these up to your preference and enviroment.
 
 ## Important Note for WSL
-If MoonFlow does not detect files being modified in your project, this is an issue with CS's `FileSystemWatcher`. This is a common problem for people on windows developing through WSL.
+If MoonFlow does not detect files being modified in your project, this is an issue with CS's `FileSystemWatcher`. This is a common problem for people on windows developing through WSL. At the moment there are two main solutions for this problem:
 
-It's recommended to move the RomFS of your project to a local storage device outside of WSL if possible. Further research and solutions to this problem are needed!
+- Move the RomFS of your project to a local storage device outside of WSL, if possible.
+
+- Install the Linux release of MoonFlow onto WSL and run the app natively that way. This is not a flawless solution as various bugs are present in the application. More info about running GUI apps from WSL [here](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)
