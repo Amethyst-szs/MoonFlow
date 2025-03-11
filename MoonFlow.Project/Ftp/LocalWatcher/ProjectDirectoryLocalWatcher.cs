@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -8,8 +9,15 @@ namespace MoonFlow.Project.FTP;
 internal class ProjectDirectoryLocalWatcher
 {
     public string Path { get; private set; } = null;
-
     private FileSystemWatcher Watcher = null;
+
+    private static readonly string[] BlacklistFileTypes = [
+        ".mfproj",
+        ".mfmeta",
+        ".mfgraph",
+
+        "_d", // All MoonFlow debug file extensions end with an "_d" suffix
+    ];
 
     public void AttachToProject(string path)
     {
@@ -27,12 +35,7 @@ internal class ProjectDirectoryLocalWatcher
         {
             IncludeSubdirectories = true,
             EnableRaisingEvents = true,
-            NotifyFilter =
-                  NotifyFilters.FileName
-                | NotifyFilters.Attributes
-                | NotifyFilters.Size
-                | NotifyFilters.CreationTime
-                | NotifyFilters.LastWrite
+            NotifyFilter = NotifyFilters.LastWrite
         };
 
         Watcher.Changed += OnChanged;
@@ -100,7 +103,11 @@ internal class ProjectDirectoryLocalWatcher
         if (ProjectFtpClient.CredentialStore.IsTransferAllLanguages)
             return true;
         
-        // If the path isn't part of localized data or is project information, always accept transfer
+        // If the path ends with a blacklisted file format, always skip
+        if (BlacklistFileTypes.Any(remote.EndsWith))
+            return false;
+        
+        // If the path isn't part of localized data or is MSBP information, always accept transfer
         if (!remote.Contains("LocalizedData/") || remote.Contains("LocalizedData/Common/"))
             return true;
             
