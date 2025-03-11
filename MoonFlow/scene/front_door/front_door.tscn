@@ -419,6 +419,7 @@ resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwf
 [connection signal="NewProjectPath" from="." to="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options/Label_Directory" method="set_text"]
 [connection signal="NewProjectPath" from="." to="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options/Label_Directory" method="show" unbinds=1]
 [connection signal="NewProjectPath" from="." to="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options/Label_InvalidDirectory" method="hide" unbinds=1]
+[connection signal="OpenProject" from="." to="Content/Content_Side/RecentSidebar" method="OnProjectOpened"]
 [connection signal="tree_exiting" from="Content/Content_Side/RecentSidebar" to="Content/Content_Side" method="_on_v_box_recent_tree_exiting"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Button_New" to="Content/Content_Primary/NewProject" method="set_visibility"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]

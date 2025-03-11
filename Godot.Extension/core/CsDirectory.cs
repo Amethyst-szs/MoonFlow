@@ -27,5 +27,12 @@ public static class DirectoryExt
 			GD.Print("Copying file: " + newPath);
 			File.Copy(newPath, newPath.Replace(source, target), true);
 		}
+
+		// Clear all Zone.Identifier files from windows -> linux copies
+		foreach (string path in Directory.GetFiles(target, "*.*Zone.Identifier", SearchOption.AllDirectories))
+		{
+			GD.Print("Deleting file: " + path);
+			File.Delete(path);
+		}
 	}
 }

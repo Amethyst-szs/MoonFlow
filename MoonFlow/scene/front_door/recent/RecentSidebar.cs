@@ -26,10 +26,10 @@ public partial class RecentSidebar : VBoxContainer
         History = [.. EngineSettings.GetSetting<string[]>(RecentProjectPath, Array.Empty<string>())];
         ClampHistoryLength();
 
-        // Delete the recent sidebar if no recent projects exist
+        // Hide the recent sidebar if no recent projects exist
         if (History.Count == 0)
         {
-            QueueFree();
+            Hide();
             return;
         }
 
@@ -52,12 +52,11 @@ public partial class RecentSidebar : VBoxContainer
 
     #region Signals
 
-    private void OnPanelPressed(string path, bool isValid)
+    private void OnPanelPressed(string path, bool isDeleteFromHistory)
     {
-        History.Remove(path);
-
-        if (!isValid)
+        if (isDeleteFromHistory)
         {
+            History.Remove(path);
             EngineSettings.SetSetting(RecentProjectPath, History.ToArray());
             EngineSettings.Save();
 
@@ -65,12 +64,17 @@ public partial class RecentSidebar : VBoxContainer
             return;
         }
 
+        FrontDoorApp.OnDialogOpenProjectPathSelected(path);
+    }
+
+    private void OnProjectOpened(string path)
+    {
+        History.Remove(path);
         History = [.. History.Prepend(path)];
 
         EngineSettings.SetSetting(RecentProjectPath, History.ToArray());
         EngineSettings.Save();
 
-        FrontDoorApp.OnDialogOpenProjectPathSelected(path);
         _Ready();
     }
 

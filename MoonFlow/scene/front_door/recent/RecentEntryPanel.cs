@@ -21,7 +21,7 @@ public partial class RecentEntryPanel : PanelContainer
     private Label LabelWarnMissing;
 
     [Signal]
-    public delegate void PanelPressedEventHandler(string path, bool isValid);
+    public delegate void PanelPressedEventHandler(string path, bool isDeleteFromHistory);
 
     public void SetupPanel(string path)
     {
@@ -74,11 +74,11 @@ public partial class RecentEntryPanel : PanelContainer
         if (mouse.ButtonIndex != MouseButton.Left || !mouse.Pressed)
             return;
         
-        EmitSignalPanelPressed(Path, IsValid);
+        EmitSignalPanelPressed(Path, !IsValid);
     }
 
     private void OnPanelTrashPressed()
     {
-        EmitSignalPanelPressed(Path, false);
+        EmitSignalPanelPressed(Path, true);
     }
 }

@@ -32,7 +32,7 @@ public static partial class ProjectManager
 
     #region Open Project
 
-    public static ProjectManagerResult TryOpenProject(string path, out RomfsVersion version)
+    public static ProjectManagerResult TryOpenProject(ref string path, out RomfsVersion version)
     {
         GD.Print("Opening project at ", path);
 

@@ -42,7 +42,7 @@ public partial class ActionbarProject : ActionbarItemBase
 			return;
 
 		var path = ProjectManager.GetProject().Path;
-		ProjectManager.TryOpenProject(path, out _);
+		ProjectManager.TryOpenProject(ref path, out _);
 	}
 
 	private async void OnProjectClosePressed()

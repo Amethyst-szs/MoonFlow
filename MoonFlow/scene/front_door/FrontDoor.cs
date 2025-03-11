@@ -79,7 +79,7 @@ public partial class FrontDoor : AppScene
 
 	public void OnDialogOpenProjectPathSelected(string path)
 	{
-		var result = ProjectManager.TryOpenProject(path, out RomfsVersion version);
+		var result = ProjectManager.TryOpenProject(ref path, out RomfsVersion version);
 
 		if (result == ProjectManager.ProjectManagerResult.OK)
 		{

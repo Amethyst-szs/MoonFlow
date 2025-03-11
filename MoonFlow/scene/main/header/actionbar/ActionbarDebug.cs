@@ -76,7 +76,7 @@ public partial class ActionbarDebug : ActionbarItemBase
 			return;
 
 		var path = ProjectManager.GetProject().Path;
-		ProjectManager.TryOpenProject(path, out _);
+		ProjectManager.TryOpenProject(ref path, out _);
 	}
 
 	private void OnToggleFsFtpLogging()
