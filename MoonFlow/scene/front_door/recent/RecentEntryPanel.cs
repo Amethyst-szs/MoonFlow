@@ -1,6 +1,7 @@
 using Godot;
 using MoonFlow.Project;
 using System;
+using System.Linq;
 
 namespace MoonFlow.Scene;
 
@@ -42,7 +43,8 @@ public partial class RecentEntryPanel : PanelContainer
         if (config.IsDisplayNameDefault())
             LabelName.Hide();
 
-        LabelName.Text = config.GetDisplayName();
+        // LabelName.Text = config.GetDisplayName();
+        LabelName.Text = path.TrimSuffix("romfs/").Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries).Last();
         LabelPath.Text = path.TrimSuffix("romfs/");
 
         string additionalInfo = "";
