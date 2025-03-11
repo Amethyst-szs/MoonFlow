@@ -38,7 +38,7 @@ public partial class ToolMenu : Popup
         if (!await ProjectFtpClient.IsConnectedStill())
             return;
 
-        ProjectFtpClient.Delete(ProjectFtpClient.GetAtmosphereExefsPath(), true);
-        ProjectFtpClient.Delete(ProjectFtpClient.GetAtmosphereExefsPatchesPath(), true);
+        ProjectFtpClient.Delete(ProjectFtpClient.GetAtmosphereExefsPath(), true, true);
+        ProjectFtpClient.Delete(ProjectFtpClient.GetAtmosphereExefsPatchesPath(), true, true);
     }
 }
