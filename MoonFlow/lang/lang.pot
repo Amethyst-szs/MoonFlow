@@ -94,6 +94,8 @@
 # res://scene/settings/engine/page/ftp.tscn
 # res://scene/main/header/ftp/ftp_status_indicator.tscn
 # res://scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
+# res://scene/front_door/recent/recent_entry_panel.tscn
+# res://scene/front_door/recent/recent_sidebar.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -152,6 +154,14 @@ msgid "ROMFS_ACCESSOR_CONFIG_DELETE_PATH_BUTTON_TOOLTIP"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
 msgid "NEW_PROJECT"
 msgstr ""
 
@@ -160,6 +170,7 @@ msgid "OPEN_PROJECT"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
+#: scene/front_door/recent/recent_sidebar.tscn
 msgid "RECENT_PROJECTS"
 msgstr ""
 
@@ -233,14 +244,6 @@ msgstr ""
 
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
-msgstr ""
-
-#: scene/front_door/front_door.tscn
-msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON"
 msgstr ""
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
@@ -3852,4 +3855,12 @@ msgstr ""
 #: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
 msgid "off"
+msgstr ""
+
+#: scene/front_door/recent/recent_entry_panel.tscn
+msgid "FRONT_DOOR_RECENT_ENTRY_PANEL_WARN_MISSING"
+msgstr ""
+
+#: scene/front_door/recent/recent_entry_panel.tscn
+msgid "FRONT_DOOR_RECENT_ENTRY_PANEL_DELETE_BUTTON_TOOLTIP"
 msgstr ""

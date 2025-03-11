@@ -38,6 +38,7 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public bool IsFirstBoot() { return Data.Flags.FirstBoot; }
     public bool IsDebug() { return Data.Flags.DebugProject; }
     public bool IsAlwaysUpgrade() { return Data.Flags.AlwaysUpgrade; }
+    public bool IsDisplayNameDefault() { return Data.DisplayName == ProjectConfigBucketCommon.DisplayNameDefault; }
 
     public void SetDisplayName(string name)
     {

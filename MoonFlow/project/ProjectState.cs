@@ -9,6 +9,7 @@ using MoonFlow.Project.Database;
 using MoonFlow.Project.Cache;
 using MoonFlow.Addons;
 using MoonFlow.Project.FTP;
+using System.Linq;
 
 namespace MoonFlow.Project;
 
@@ -154,6 +155,20 @@ public class ProjectState(string path, ProjectConfig config)
 
         // Prepare event data archive cache
         EventArcHolder = new(Path, loadScreen);
+
+        // Create a default project name if no name is assigned
+        if (Config.IsDisplayNameDefault())
+        {
+            foreach (var item in Path.Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries).Reverse())
+            {
+                if (item == "romfs")
+                    continue;
+                
+                Config.SetDisplayName(item);
+                Config.WriteFile();
+                break;
+            }
+        }
 
         // Update the project's target engine version
         var gitHash = GitInfo.GitCommitHash();

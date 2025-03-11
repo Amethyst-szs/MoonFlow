@@ -77,7 +77,7 @@ public partial class FrontDoor : AppScene
 		GD.Print("Set InitInfo.Path to " + path);
 	}
 
-	private void OnDialogOpenProjectPathSelected(string path)
+	public void OnDialogOpenProjectPathSelected(string path)
 	{
 		var result = ProjectManager.TryOpenProject(path, out RomfsVersion version);
 

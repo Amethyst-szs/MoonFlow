@@ -54,7 +54,8 @@ public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
     }
 
     [JsonInclude]
-    internal string DisplayName = "MoonFlow Project";
+    internal string DisplayName = DisplayNameDefault;
+    internal const string DisplayNameDefault = "Unnamed Project";
 
     #endregion
 

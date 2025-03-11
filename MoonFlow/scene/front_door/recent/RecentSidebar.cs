@@ -9,6 +9,7 @@ namespace MoonFlow.Scene;
 public partial class RecentSidebar : VBoxContainer
 {
     private List<string> History = [];
+    private FrontDoor FrontDoorApp;
 
     [Export, ExportGroup("Internal References")]
     private VBoxContainer VBoxPanelHolder;
@@ -18,6 +19,9 @@ public partial class RecentSidebar : VBoxContainer
 
     public override void _Ready()
     {
+        // Locate parent front door app
+        FrontDoorApp = this.FindParentByType<FrontDoor>();
+
         // Load history information
         History = [.. EngineSettings.GetSetting<string[]>(RecentProjectPath, Array.Empty<string>())];
         ClampHistoryLength();
@@ -29,27 +33,45 @@ public partial class RecentSidebar : VBoxContainer
             return;
         }
 
+        // Clear children of recent project panel holder
+        foreach (var child in VBoxPanelHolder.GetChildren())
+            child.QueueFree();
+
         // Create panels for all recent projects
         foreach (var item in History)
         {
-            for (int i = 0; i < 2; i++) // Temp debug code just for testing
-            {
-                var panel = SceneCreator<RecentEntryPanel>.Create();
-                panel.SetupPanel(item);
-                panel.Connect(RecentEntryPanel.SignalName.PanelPressed, Callable.From(
-                    new Action<string>(OnPanelPressed)
-                ));
+            var panel = SceneCreator<RecentEntryPanel>.Create();
+            panel.SetupPanel(item);
+            panel.Connect(RecentEntryPanel.SignalName.PanelPressed, Callable.From(
+                new Action<string, bool>(OnPanelPressed)
+            ));
 
-                VBoxPanelHolder.AddChild(panel);
-            }
+            VBoxPanelHolder.AddChild(panel);
         }
     }
 
     #region Signals
 
-    private void OnPanelPressed(string path)
+    private void OnPanelPressed(string path, bool isValid)
     {
-        GD.Print("Pressed " + path);
+        History.Remove(path);
+
+        if (!isValid)
+        {
+            EngineSettings.SetSetting(RecentProjectPath, History.ToArray());
+            EngineSettings.Save();
+
+            _Ready();
+            return;
+        }
+
+        History = [.. History.Prepend(path)];
+
+        EngineSettings.SetSetting(RecentProjectPath, History.ToArray());
+        EngineSettings.Save();
+
+        FrontDoorApp.OnDialogOpenProjectPathSelected(path);
+        _Ready();
     }
 
     #endregion

@@ -8,6 +8,7 @@ namespace MoonFlow.Scene;
 public partial class RecentEntryPanel : PanelContainer
 {
     private string Path = null;
+    private bool IsValid = true;
     
     [Export, ExportGroup("Internal References")]
     private Label LabelName;
@@ -16,9 +17,11 @@ public partial class RecentEntryPanel : PanelContainer
 
     [Export]
     private Label LabelAdditionalInfo;
+    [Export]
+    private Label LabelWarnMissing;
 
     [Signal]
-    public delegate void PanelPressedEventHandler(string path);
+    public delegate void PanelPressedEventHandler(string path, bool isValid);
 
     public void SetupPanel(string path)
     {
@@ -31,9 +34,14 @@ public partial class RecentEntryPanel : PanelContainer
             return;
         }
 
+        LabelWarnMissing.Hide();
+
         var config = new ProjectConfig(projPath);
 
         // Setup labels
+        if (config.IsDisplayNameDefault())
+            LabelName.Hide();
+
         LabelName.Text = config.GetDisplayName();
         LabelPath.Text = path.TrimSuffix("romfs/");
 
@@ -49,9 +57,13 @@ public partial class RecentEntryPanel : PanelContainer
 
     private void SetupPanelWithoutProjectConfig(string path)
     {
-        LabelName.Text = "PLACEHOLDER ERROR";
+        IsValid = false;
+
+        LabelName.Hide();
         LabelPath.Text = path.TrimSuffix("romfs/");
+
         LabelAdditionalInfo.Hide();
+        LabelWarnMissing.Show();
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -62,6 +74,11 @@ public partial class RecentEntryPanel : PanelContainer
         if (mouse.ButtonIndex != MouseButton.Left || !mouse.Pressed)
             return;
         
-        EmitSignalPanelPressed(Path);
+        EmitSignalPanelPressed(Path, IsValid);
+    }
+
+    private void OnPanelTrashPressed()
+    {
+        EmitSignalPanelPressed(Path, false);
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=38 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" uid="uid://sq13135ns8pq" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -14,9 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="10_sqwg3"]
 [ext_resource type="PackedScene" uid="uid://c5b01vfsh7pwp" path="res://scene/home/home.tscn" id="11_ajwfd"]
 [ext_resource type="PackedScene" uid="uid://dwpxrep18y4wy" path="res://scene/front_door/dot/playable.tscn" id="11_h3uc8"]
-[ext_resource type="Texture2D" uid="uid://dj4axx0d5mbe4" path="res://asset/material/file/recent.svg" id="11_t4cui"]
 [ext_resource type="PackedScene" uid="uid://cio2gvsywxhso" path="res://scene/front_door/load/project_loading.tscn" id="12_my55f"]
-[ext_resource type="Script" uid="uid://8il13kylyvpv" path="res://scene/front_door/ui/menu_recent.gd" id="12_uh126"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="13_npgqm"]
 [ext_resource type="Script" uid="uid://fbbwiay7opbl" path="res://scene/front_door/ui/new_project_panel.gd" id="14_4g88j"]
 [ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="14_mr0wr"]
@@ -183,18 +181,6 @@ mouse_default_cursor_shape = 2
 text = "OPEN_PROJECT"
 icon = ExtResource("10_rxr5w")
 icon_alignment = 2
-
-[node name="Menu_Recent" type="MenuButton" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "RECENT_PROJECTS"
-icon = ExtResource("11_t4cui")
-flat = false
-icon_alignment = 2
-item_count = 1
-popup/item_0/text = "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
-popup/item_0/id = 0
-script = ExtResource("12_uh126")
 
 [node name="Shortcuts" type="HBoxContainer" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
 z_index = 1
@@ -433,12 +419,9 @@ resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwf
 [connection signal="NewProjectPath" from="." to="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options/Label_Directory" method="set_text"]
 [connection signal="NewProjectPath" from="." to="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options/Label_Directory" method="show" unbinds=1]
 [connection signal="NewProjectPath" from="." to="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options/Label_InvalidDirectory" method="hide" unbinds=1]
-[connection signal="OpenProject" from="." to="Content/Content_Primary/QuickbarHolder/Quickbar/Menu_Recent" method="_on_front_door_open_project"]
-[connection signal="OpenProjectFailed" from="." to="Content/Content_Primary/QuickbarHolder/Quickbar/Menu_Recent" method="_on_front_door_open_project_failed"]
 [connection signal="tree_exiting" from="Content/Content_Side/RecentSidebar" to="Content/Content_Side" method="_on_v_box_recent_tree_exiting"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Button_New" to="Content/Content_Primary/NewProject" method="set_visibility"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
-[connection signal="open_recent_project" from="Content/Content_Primary/QuickbarHolder/Quickbar/Menu_Recent" to="." method="OnDialogOpenProjectPathSelected"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_Settings" to="." method="OpenEngineSettingsApp"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_Contributors" to="." method="OpenContributorPage"]

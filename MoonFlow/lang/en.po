@@ -71,6 +71,14 @@ msgid "ROMFS_ACCESSOR_CONFIG_DELETE_PATH_BUTTON_TOOLTIP"
 msgstr "Remove the saved path for this game version"
 
 #: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
+msgstr "Open Documentation"
+
+#: scene/front_door/front_door.tscn
+msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON"
+msgstr "Wiki"
+
+#: scene/front_door/front_door.tscn
 msgid "NEW_PROJECT"
 msgstr "New Project"
 
@@ -78,7 +86,7 @@ msgstr "New Project"
 msgid "OPEN_PROJECT"
 msgstr "Open Project"
 
-#: scene/front_door/front_door.tscn
+#: scene/front_door/front_door.tscn scene/front_door/recent/recent_sidebar.tscn
 msgid "RECENT_PROJECTS"
 msgstr "Recent Projects"
 
@@ -155,14 +163,6 @@ msgstr "Default Game Language:"
 #: scene/front_door/front_door.tscn
 msgid "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 msgstr "Create Project"
-
-#: scene/front_door/front_door.tscn
-msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
-msgstr "Open Documentation"
-
-#: scene/front_door/front_door.tscn
-msgid "FRONT_DOOR_WIKI_ACCESS_BUTTON"
-msgstr "Wiki"
 
 #: scene/editor/msbt/entry/components/msbt_entry_page_holder.tscn
 msgid "MSBT_TOOLTIP_MOVE_UP_PAGE"
@@ -3939,6 +3939,14 @@ msgstr ""
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
 msgid "off"
 msgstr "FTP Disabled"
+
+#: scene/front_door/recent/recent_entry_panel.tscn
+msgid "FRONT_DOOR_RECENT_ENTRY_PANEL_WARN_MISSING"
+msgstr "Project is Missing!"
+
+#: scene/front_door/recent/recent_entry_panel.tscn
+msgid "FRONT_DOOR_RECENT_ENTRY_PANEL_DELETE_BUTTON_TOOLTIP"
+msgstr "Remove project from recent history"
 
 #~ msgid "NEW"
 #~ msgstr "New"
