@@ -12,7 +12,7 @@ namespace MoonFlow.Project.FTP;
 
 public static partial class ProjectFtpClient
 {
-    internal static AsyncFtpClient Client { get; private set; } = null;
+    public static AsyncFtpClient Client { get; private set; } = null;
     public readonly static ProjectFtpCredentialStore CredentialStore = new();
 
     private readonly static ProjectDirectoryLocalWatcher Project = new();

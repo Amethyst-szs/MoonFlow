@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlqa3a1xwd8sm"]
+
+[ext_resource type="Script" uid="uid://drt3sclksmgu0" path="res://scene/tools/ftp/album/AlbumFtp.cs" id="1_lppho"]
+[ext_resource type="Texture2D" uid="uid://dseo0q834pxjk" path="res://asset/nindot/lms/icon/DeviceFont_Album.png" id="2_8547y"]
+
+[node name="AlbumFtp" type="Control" node_paths=PackedStringArray("Container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lppho")
+Container = NodePath("ScrollContainer/HFlowContainer")
+AppName = "AlbumFtp"
+AppTaskbarTitle = "Switch Album"
+AppIcon = ExtResource("2_8547y")
+AppFlags = 51
+AppContentSaveType = 4054975743
+metadata/_custom_type_script = "uid://dhm5uva28wtm8"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

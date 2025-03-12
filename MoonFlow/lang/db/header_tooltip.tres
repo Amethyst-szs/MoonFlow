@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_qq226")
 context = "HEADER_TOOLTIP"
-keys = Array[String](["HelpSupport"])
+keys = Array[String](["HelpSupport", "AlbumFtp"])
