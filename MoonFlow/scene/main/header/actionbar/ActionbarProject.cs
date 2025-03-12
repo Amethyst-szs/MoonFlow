@@ -16,9 +16,7 @@ public partial class ActionbarProject : ActionbarItemBase
 		PROJECT_CLOSE = 2,
 
 		PROJECT_CONFIG_RENAME = 3,
-		PROJECT_MIRROR_CLONE = 4,
-
-		OPEN_ENGINE_SETTINGS = 5,
+		PROJECT_MIRROR_CLONE = 4
 	}
 
 	public override void _Ready()
@@ -31,8 +29,6 @@ public partial class ActionbarProject : ActionbarItemBase
 
 		AssignFunction((int)MenuIds.PROJECT_CONFIG_RENAME, OnProjectRenameRequest);
 		AssignFunction((int)MenuIds.PROJECT_MIRROR_CLONE, OnProjectMirrorCloneRequest);
-
-		AssignFunction((int)MenuIds.OPEN_ENGINE_SETTINGS, OnEngineSettingsPressed);
 	}
 
 	private async void OnProjectReloadPressed()
@@ -94,6 +90,4 @@ public partial class ActionbarProject : ActionbarItemBase
 		if (ProjectManager.IsProjectExist())
 			OS.ShellShowInFileManager(ProjectManager.GetPath());
 	}
-
-	private static void OnEngineSettingsPressed() { AppSceneServer.CreateApp<EngineSettingsApp>(); }
 }

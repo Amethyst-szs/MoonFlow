@@ -1,5 +1,6 @@
 using Godot;
 using MoonFlow.Scene.Home;
+using MoonFlow.Scene.Settings;
 
 namespace MoonFlow.Scene.Main;
 
@@ -12,6 +13,7 @@ public partial class ActionbarFile : ActionbarItemBase
 		FILE_SAVE_ALL = 2,
 		FILE_CLOSE = 3,
 
+		OPEN_ENGINE_SETTINGS = 42068,
 		CLOSE_MOONFLOW = 42069, // nice
 	}
 
@@ -26,6 +28,8 @@ public partial class ActionbarFile : ActionbarItemBase
 		AssignFunction((int)MenuIds.FILE_SAVE_AS, OnFileSaveAs, "ui_save_as");
 		AssignFunction((int)MenuIds.FILE_SAVE_ALL, OnFileSaveAll, "ui_save_all");
 		AssignFunction((int)MenuIds.FILE_CLOSE, OnFileClose);
+
+		AssignFunction((int)MenuIds.OPEN_ENGINE_SETTINGS, OnEngineSettingsPressed);
 		AssignFunction((int)MenuIds.CLOSE_MOONFLOW, OnMoonFlowApplicationClose);
 	}
 
@@ -51,6 +55,7 @@ public partial class ActionbarFile : ActionbarItemBase
 		for (var i = 0; i < ItemCount; i++)
 			SetItemDisabled(i, true);
 
+		SetItemDisabled(GetItemIndex((int)MenuIds.OPEN_ENGINE_SETTINGS), false);
 		SetItemDisabled(GetItemIndex((int)MenuIds.CLOSE_MOONFLOW), false);
 	}
 
@@ -79,6 +84,8 @@ public partial class ActionbarFile : ActionbarItemBase
 	{
 		AppSceneServer.CloseActiveApp();
 	}
+
+	private static void OnEngineSettingsPressed() { AppSceneServer.CreateApp<EngineSettingsApp>(); }
 
 	private void OnMoonFlowApplicationClose()
 	{
