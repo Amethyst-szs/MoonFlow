@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://c7ysxyd835hdj" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
 [ext_resource type="StyleBox" uid="uid://0dtgbio6xd20" path="res://asset/theme/msbt/stylebox/msbt_panel_container.tres" id="2_mottg"]
 [ext_resource type="Script" uid="uid://csqwnu4t1ipys" path="res://scene/editor/msbt/components/entry_list_controls.gd" id="3_tx1js"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="4_1jxf3"]
 [ext_resource type="Script" uid="uid://s8vblhk8w5mn" path="res://scene/editor/msbt/list/NewEntryInputLine.cs" id="4_furja"]
+[ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="4_pl0d8"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_d8emi"]
 [ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_xpdvg"]
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="7_rbj4v"]
@@ -30,23 +32,35 @@ action = &"msbt_reset_entry"
 [sub_resource type="Shortcut" id="Shortcut_1qw0l"]
 events = [SubResource("InputEventAction_lf03p")]
 
-[sub_resource type="InputEventAction" id="InputEventAction_sr0fp"]
-action = &"ui_find"
-
-[sub_resource type="Shortcut" id="Shortcut_7w4d7"]
-events = [SubResource("InputEventAction_sr0fp")]
-
-[node name="EntryListHolder" type="VBoxContainer" node_paths=PackedStringArray("AddBoxLine", "SearchBoxLine", "ButtonResetEntry", "ButtonListBlockedInTranslateMode")]
+[node name="EntryListHolder" type="VBoxContainer" node_paths=PackedStringArray("ContentHolder", "AddBoxLine", "SearchBoxLine", "ButtonResetEntry", "ButtonListBlockedInTranslateMode")]
 size_flags_horizontal = 3
 theme = ExtResource("1_e4ni0")
 script = ExtResource("1_q1mta")
+ContentHolder = NodePath("Content")
 AddBoxLine = NodePath("Controls/VBox/HBox_AddEntry/Line_EntryName")
-SearchBoxLine = NodePath("Controls/VBox/Line_Search")
-ButtonResetEntry = NodePath("Controls/VBox/HBox/Reset")
-ButtonListBlockedInTranslateMode = [NodePath("Controls/VBox/HBox/Add"), NodePath("Controls/VBox/HBox/Trash")]
+SearchBoxLine = NodePath("Line_Search")
+ButtonResetEntry = NodePath("Controls/VBox/Toolbar/Reset")
+ButtonListBlockedInTranslateMode = [NodePath("Controls/VBox/Toolbar/Add"), NodePath("Controls/VBox/Toolbar/Trash")]
 
-[node name="HSep" type="HSeparator" parent="."]
+[node name="Line_Search" type="LineEdit" parent="."]
 layout_mode = 2
+placeholder_text = "MSBT_SEARCH_ENTRIES"
+max_length = 128
+right_icon = ExtResource("7_rbj4v")
+script = ExtResource("4_pl0d8")
+regex_string = "[A-Za-z0-9_]"
+
+[node name="HSep_MinimialA" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("4_1jxf3")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSep_MinimialB" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("4_1jxf3")
 
 [node name="Controls" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -81,18 +95,12 @@ tooltip_text = "MSBT_INVALID_ENTRY_NAME_WARNING"
 texture = ExtResource("6_xpdvg")
 stretch_mode = 5
 
-[node name="Line_Search" type="LineEdit" parent="Controls/VBox"]
-layout_mode = 2
-placeholder_text = "MSBT_SEARCH_ENTRIES"
-max_length = 128
-right_icon = ExtResource("7_rbj4v")
-
-[node name="HBox" type="HBoxContainer" parent="Controls/VBox"]
+[node name="Toolbar" type="HBoxContainer" parent="Controls/VBox"]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Add" type="Button" parent="Controls/VBox/HBox"]
+[node name="Add" type="Button" parent="Controls/VBox/Toolbar"]
 layout_mode = 2
 tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_ADD"
 mouse_default_cursor_shape = 2
@@ -100,29 +108,21 @@ toggle_mode = true
 shortcut = SubResource("Shortcut_pq416")
 icon = ExtResource("5_d8emi")
 
-[node name="Trash" type="Button" parent="Controls/VBox/HBox"]
+[node name="Trash" type="Button" parent="Controls/VBox/Toolbar"]
 layout_mode = 2
 tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_TRASH"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_sbvrw")
 icon = ExtResource("8_ykyf6")
 
-[node name="Reset" type="Button" parent="Controls/VBox/HBox"]
+[node name="Reset" type="Button" parent="Controls/VBox/Toolbar"]
 layout_mode = 2
 tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_1qw0l")
 icon = ExtResource("10_a60pi")
 
-[node name="Search" type="Button" parent="Controls/VBox/HBox"]
-layout_mode = 2
-tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_SEARCH"
-mouse_default_cursor_shape = 2
-toggle_mode = true
-shortcut = SubResource("Shortcut_7w4d7")
-icon = ExtResource("7_rbj4v")
-
-[node name="Label_EntryCount" type="Label" parent="Controls/VBox/HBox"]
+[node name="Label_EntryCount" type="Label" parent="Controls/VBox/Toolbar"]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -131,13 +131,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[connection signal="text_changed" from="Line_Search" to="." method="OnUpdateSearch"]
 [connection signal="text_changed" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameChanged"]
 [connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls" method="_on_line_new_entry_text_submitted"]
 [connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameSubmitted"]
 [connection signal="pressed" from="Controls/VBox/HBox_AddEntry/Button_Add" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnEntrySubmitButtonPressed"]
-[connection signal="text_changed" from="Controls/VBox/Line_Search" to="." method="OnUpdateSearch"]
-[connection signal="toggled" from="Controls/VBox/HBox/Add" to="." method="OnToggleAddEntryLineEdit"]
-[connection signal="toggled" from="Controls/VBox/HBox/Add" to="Controls" method="_on_add_toggled"]
-[connection signal="pressed" from="Controls/VBox/HBox/Trash" to="." method="OnRequestDeleteEntry"]
-[connection signal="pressed" from="Controls/VBox/HBox/Reset" to="." method="OnRequestResetEntry"]
-[connection signal="toggled" from="Controls/VBox/HBox/Search" to="Controls" method="_on_search_toggled"]
+[connection signal="toggled" from="Controls/VBox/Toolbar/Add" to="." method="OnToggleAddEntryLineEdit"]
+[connection signal="toggled" from="Controls/VBox/Toolbar/Add" to="Controls" method="_on_add_toggled"]
+[connection signal="pressed" from="Controls/VBox/Toolbar/Trash" to="." method="OnRequestDeleteEntry"]
+[connection signal="pressed" from="Controls/VBox/Toolbar/Reset" to="." method="OnRequestResetEntry"]

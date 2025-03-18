@@ -511,6 +511,9 @@ custom_minimum_size = Vector2(480, 190)
 [node name="VBox_ArcPicker" parent="Popup_RenameMsbt/Content/VBox" index="2"]
 visible = false
 
+[node name="Option_Archive" parent="Popup_RenameMsbt/Content/VBox/VBox_ArcPicker" index="1"]
+popup/item_0/id = 0
+
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
 title = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1

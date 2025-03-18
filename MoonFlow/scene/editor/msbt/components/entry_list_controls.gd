@@ -1,16 +1,13 @@
 extends PanelContainer
 
-@onready var line_search: LineEdit = $VBox/Line_Search
-
 @onready var hbox_add_entry: HBoxContainer = $VBox/HBox_AddEntry
 @onready var line_add_entry: LineEdit = $VBox/HBox_AddEntry/Line_EntryName
 @onready var texture_warning: TextureRect = $VBox/HBox_AddEntry/Texture_Warning
 
-@onready var hbox_access_buttons: HBoxContainer = $VBox/HBox
-@onready var button_add: Button = $VBox/HBox/Add
-@onready var button_search: Button = $VBox/HBox/Search
-@onready var button_trash: Button = $VBox/HBox/Trash
-@onready var label_entry_count: Label = $VBox/HBox/Label_EntryCount
+@onready var hbox_access_buttons: HBoxContainer = $VBox/Toolbar
+@onready var button_add: Button = $VBox/Toolbar/Add
+@onready var button_trash: Button = $VBox/Toolbar/Trash
+@onready var label_entry_count: Label = $VBox/Toolbar/Label_EntryCount
 
 func _ready() -> void:
 	_hide_control_inputs()
@@ -36,19 +33,11 @@ func _on_add_toggled(toggled_on: bool) -> void:
 		line_add_entry.grab_focus()
 		line_add_entry.caret_column = line_add_entry.text.length()
 
-func _on_search_toggled(toggled_on: bool) -> void:
-	_hide_control_inputs(button_search, toggled_on)
-	
-	if toggled_on:
-		line_search.show()
-		line_search.grab_focus()
-
 #endregion
 
 #region Utilities
 
 func _hide_control_inputs(selection: Button = null, active: bool = false) -> void:
-	line_search.hide()
 	hbox_add_entry.hide()
 	
 	for child in hbox_access_buttons.get_children():

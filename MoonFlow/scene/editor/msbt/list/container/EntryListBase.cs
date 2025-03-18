@@ -22,7 +22,7 @@ public abstract partial class EntryListBase : VBoxContainer
             throw new NullReferenceException(nameof(Editor));
 
         // Get references
-        EntryCount = GetNode<PanelContainer>("../../Controls").Get("label_entry_count").As<Label>();
+        EntryCount = GetNode<PanelContainer>("../../../Controls").Get("label_entry_count").As<Label>();
 
         // Connect to signals from parent
         Editor.Connect(MsbtEditor.SignalName.ContentModified,

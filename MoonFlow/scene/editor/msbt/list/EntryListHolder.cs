@@ -13,6 +13,9 @@ public partial class EntryListHolder : VBoxContainer
 		= GD.Load<GDScript>("res://addons/SmoothScroll/SmoothScrollContainer.gd");
 
 	[Export]
+	public VBoxContainer ContentHolder { get; private set; }
+
+	[Export]
 	public LineEdit AddBoxLine { get; private set; }
 	[Export]
 	public LineEdit SearchBoxLine { get; private set; }
@@ -33,15 +36,8 @@ public partial class EntryListHolder : VBoxContainer
 		// Get access to editor
 		Editor = GetNode<MsbtEditor>("%MsbtEditor");
 
-		// Destroy scrollbox children
-		foreach (var child in GetChildren())
-		{
-			if (child is not ScrollContainer)
-				continue;
-
-			RemoveChild(child);
-			child.QueueFree();
-		}
+		// Destroy content holder children
+		ContentHolder.QueueFreeAllChildren();
 
 		// Create entry list scrollbox
 		var scroll = new ScrollContainer()
@@ -69,8 +65,7 @@ public partial class EntryListHolder : VBoxContainer
 		};
 
 		// Attach to tree
-		AddChild(scroll);
-		MoveChild(scroll, 0);
+		ContentHolder.AddChild(scroll);
 		scroll.AddChild(EntryList);
 	}
 

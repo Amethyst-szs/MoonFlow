@@ -74,7 +74,8 @@ public partial class EntryListStageMessage : EntryListBase
 
         // Create button
         var button = SceneCreator<EntryLabelButton>.Create();
-        button.SetupButton(this, key, label, meta, metaSource);
+        button.SetupMetadata(meta, metaSource);
+        button.SetupButton(this, key, label, true);
 
         container.AddChild(button);
     }

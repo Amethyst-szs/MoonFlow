@@ -18,7 +18,7 @@ public partial class EntryLabelButtonState : Resource
     public void SetButtonToState(EntryLabelButton button)
     {
         button.TooltipText = Tr(TextBankKey, TextContext);
-        button.SelfModulate = Modulate;
+        button.Modulate = Modulate;
 
         if (button.Icon != Icon)
             button.Icon = Icon;
