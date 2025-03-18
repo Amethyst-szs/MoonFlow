@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" uid="uid://doqmqk5tvmvum" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
-[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="3_pgcah"]
+[ext_resource type="Texture2D" uid="uid://cbn2fyulkjaa1" path="res://asset/material/file/search_small.svg" id="3_2t0c7"]
 [ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="4_blotm"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_kcoe0"]
 [ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_1278q"]
@@ -125,7 +125,7 @@ placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 max_length = 32
 context_menu_enabled = false
 clear_button_enabled = true
-right_icon = ExtResource("3_pgcah")
+right_icon = ExtResource("3_2t0c7")
 caret_blink = true
 script = ExtResource("4_blotm")
 

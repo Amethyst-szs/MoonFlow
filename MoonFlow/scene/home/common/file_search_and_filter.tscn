@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c13nf8caw5j3o"]
+
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="1_a5gcj"]
+[ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="2_wllx2"]
+[ext_resource type="Texture2D" uid="uid://bp1v2xsccj4oq" path="res://asset/material/file/filter.svg" id="3_wllx2"]
+[ext_resource type="Texture2D" uid="uid://cgtps2ds2pw72" path="res://asset/material/file/modify.svg" id="4_0vm4h"]
+[ext_resource type="Script" uid="uid://135o31frdggf" path="res://scene/home/common/button_filters.gd" id="4_p6o8o"]
+
+[node name="FileSearchAndFilter" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="Line_Search" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
+max_length = 32
+context_menu_enabled = false
+clear_button_enabled = true
+right_icon = ExtResource("1_a5gcj")
+caret_blink = true
+script = ExtResource("2_wllx2")
+
+[node name="Button_Filters" type="MenuButton" parent="."]
+layout_mode = 2
+theme_override_constants/icon_max_width = 40
+icon = ExtResource("3_wllx2")
+flat = false
+item_count = 1
+popup/item_0/text = "HOME_TAB_FILTER_OPTION_MODIFIED"
+popup/item_0/icon = ExtResource("4_0vm4h")
+popup/item_0/checkable = 1
+popup/item_0/id = 0
+script = ExtResource("4_p6o8o")
