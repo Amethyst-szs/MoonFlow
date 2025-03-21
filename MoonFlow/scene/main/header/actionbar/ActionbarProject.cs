@@ -15,8 +15,7 @@ public partial class ActionbarProject : ActionbarItemBase
 		PROJECT_RELOAD = 1,
 		PROJECT_CLOSE = 2,
 
-		PROJECT_CONFIG_RENAME = 3,
-		PROJECT_MIRROR_CLONE = 4
+		PROJECT_MIRROR_CLONE = 3
 	}
 
 	public override void _Ready()
@@ -27,7 +26,6 @@ public partial class ActionbarProject : ActionbarItemBase
 		AssignFunction((int)MenuIds.PROJECT_RELOAD, OnProjectReloadPressed, "home_actionbar_reload");
 		AssignFunction((int)MenuIds.PROJECT_CLOSE, OnProjectClosePressed, "home_actionbar_close");
 
-		AssignFunction((int)MenuIds.PROJECT_CONFIG_RENAME, OnProjectRenameRequest);
 		AssignFunction((int)MenuIds.PROJECT_MIRROR_CLONE, OnProjectMirrorCloneRequest);
 	}
 
@@ -48,11 +46,6 @@ public partial class ActionbarProject : ActionbarItemBase
 			return;
 
 		ProjectManager.CloseProject();
-	}
-
-	private void OnProjectRenameRequest()
-	{
-		DisplayServer.DialogShow("Placeholder", "Not yet implemented!", ["OK"], Callable.From(null));
 	}
 
 	private void OnProjectMirrorCloneRequest()

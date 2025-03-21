@@ -53,10 +53,6 @@ public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
         set => _signature = value;
     }
 
-    [JsonInclude]
-    internal string DisplayName = DisplayNameDefault;
-    internal const string DisplayNameDefault = "Unnamed Project";
-
     #endregion
 
     #region Buckets

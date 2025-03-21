@@ -39,10 +39,6 @@ public partial class RecentEntryPanel : PanelContainer
 
         var config = new ProjectConfig(projPath);
 
-        // Setup labels
-        if (config.IsDisplayNameDefault())
-            LabelName.Hide();
-
         // LabelName.Text = config.GetDisplayName();
         LabelName.Text = path.TrimSuffix("romfs/").Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries).Last();
         LabelPath.Text = path.TrimSuffix("romfs/");

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=34 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="11_1mgjq"]
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
 [ext_resource type="Texture2D" uid="uid://c8c0n0e4fw7mk" path="res://asset/material/file/open_new.svg" id="12_7xn60"]
-[ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="13_bfc3n"]
 [ext_resource type="Script" uid="uid://cv78a218kummk" path="res://scene/main/MainSceneRoot.cs" id="13_jlow7"]
 [ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="14_cleq4"]
 [ext_resource type="Script" uid="uid://bhs0e83p6wbaj" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
@@ -140,7 +139,7 @@ script = ExtResource("5_2c21b")
 [node name="Project" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
 size = Vector2i(309, 100)
-item_count = 6
+item_count = 5
 item_0/text = "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
 item_0/icon = ExtResource("12_7xn60")
 item_0/id = 0
@@ -152,12 +151,9 @@ item_2/icon = ExtResource("8_nx1ih")
 item_2/id = 2
 item_3/id = 10000
 item_3/separator = true
-item_4/text = "MAIN_ACTIONBAR_PROJECT_CONFIG_RENAME"
-item_4/icon = ExtResource("13_bfc3n")
+item_4/text = "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
+item_4/icon = ExtResource("14_cleq4")
 item_4/id = 3
-item_5/text = "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
-item_5/icon = ExtResource("14_cleq4")
-item_5/id = 4
 script = ExtResource("5_8pvlw")
 
 [node name="Help" type="PopupMenu" parent="Content/Header/Content/Actionbar"]

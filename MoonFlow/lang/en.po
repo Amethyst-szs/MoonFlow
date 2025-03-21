@@ -2300,7 +2300,7 @@ msgstr "Rename Project"
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
-msgstr "Clone Project to Another Directory"
+msgstr "Clone Project into Another Project"
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
