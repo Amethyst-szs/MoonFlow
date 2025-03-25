@@ -96,6 +96,7 @@
 # res://scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 # res://scene/front_door/recent/recent_entry_panel.tscn
 # res://scene/front_door/recent/recent_sidebar.tscn
+# res://scene/home/common/file_search_and_filter.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -363,6 +364,7 @@ msgstr ""
 
 #: scene/home/tab_msbt/tab_msbt.tscn
 #: scene/home/tab_event/tab_event.tscn
+#: scene/home/common/file_search_and_filter.tscn
 msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 msgstr ""
 
@@ -1462,15 +1464,15 @@ msgid "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
 msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_SEARCH_ENTRIES"
+msgstr ""
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_INVALID_ENTRY_NAME_WARNING"
-msgstr ""
-
-#: scene/editor/msbt/list/entry_list_holder.tscn
-msgid "MSBT_SEARCH_ENTRIES"
 msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
@@ -1483,10 +1485,6 @@ msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
-msgstr ""
-
-#: scene/editor/msbt/list/entry_list_holder.tscn
-msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_SEARCH"
 msgstr ""
 
 #: scene/home/tab_world/tab_world.tscn
@@ -2324,6 +2322,10 @@ msgid "MAIN_ACTIONBAR_FILE_CLOSE"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
 msgstr ""
 
@@ -2340,15 +2342,7 @@ msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr ""
 
 #: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_CONFIG_RENAME"
-msgstr ""
-
-#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr ""
 
 #: scene/main/main.tscn
@@ -2755,6 +2749,10 @@ msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_INDEX_GRABBER_TOOLTIP"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
@@ -3866,4 +3864,8 @@ msgstr ""
 
 #: scene/front_door/recent/recent_sidebar.tscn
 msgid "RECENT_PROJECTS"
+msgstr ""
+
+#: scene/home/common/file_search_and_filter.tscn
+msgid "HOME_TAB_FILTER_OPTION_MODIFIED"
 msgstr ""

@@ -35,7 +35,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 	private Button ButtonOpenDisplayName;
 
 	[Export, ExportSubgroup("Index Modification")]
-	private SpinBox SpinIndex;
+	private Label LabelIndex;
 
 	[Export, ExportSubgroup("Content Editor")]
 	private Button ButtonDropdown;
@@ -100,17 +100,13 @@ public partial class WorldShineEditorHolder : PanelContainer
 		}
 
 		// Setup index spinner
-		SpinIndex.MinValue = 0;
-		SpinIndex.MaxValue = world.ShineList.Count - 1;
-		SpinIndex.SetValueNoSignal(idx);
+		UpdateShineIndex(idx);
 	}
 
 	#region Signals
 
-	private void OnSpinIndexValueSet(float idxF)
+	private void OnSpinIndexValueSet(int idx)
 	{
-		var idx = (int)MathF.Floor(idxF);
-
 		World.ShineList.Remove(Shine);
 		World.ShineList.Insert(idx, Shine);
 
@@ -205,7 +201,11 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 	public void UpdateShineIndex()
 	{
-		SpinIndex.SetValueNoSignal(GetIndex());
+		LabelIndex.Text = (GetIndex() + 1).ToString();
+	}
+	public void UpdateShineIndex(int idx)
+	{
+		LabelIndex.Text = (idx + 1).ToString();
 	}
 	public void UpdateShineUniqueness()
 	{

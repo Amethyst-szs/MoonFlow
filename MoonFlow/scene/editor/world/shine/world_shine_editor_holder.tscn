@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctp1ncef3xift"]
+[gd_scene load_steps=24 format=3 uid="uid://ctp1ncef3xift"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
@@ -13,7 +13,20 @@
 [ext_resource type="PackedScene" uid="uid://c5upu8m5vshym" path="res://scene/editor/world/shine/world_shine_editor.tscn" id="10_ncq3p"]
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="11_b6myh"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="12_hwalq"]
+[ext_resource type="Texture2D" uid="uid://ch0r84d2bcetl" path="res://asset/nindot/lms/icon/PictureFont_7B.png" id="12_nm0gn"]
+[ext_resource type="Texture2D" uid="uid://0fe3b7pycpxs" path="res://asset/material/file/drag.svg" id="14_2hsfn"]
+[ext_resource type="Script" uid="uid://b6i5imxumiqwi" path="res://scene/editor/world/shine/component/index_grabber.gd" id="14_6t6iw"]
 [ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="14_h4xx8"]
+[ext_resource type="FontFile" uid="uid://baym28jc275tl" path="res://asset/font/FontHead.ttf" id="15_ukcdp"]
+
+[sub_resource type="GDScript" id="GDScript_nm0gn"]
+script/source = "@tool
+extends HBoxContainer
+
+func _ready() -> void:
+	size_flags_horizontal = SizeFlags.SIZE_SHRINK_CENTER
+	set_deferred(\"size_flags_horizontal\", SizeFlags.SIZE_EXPAND_FILL)
+"
 
 [sub_resource type="FontVariation" id="FontVariation_35sq1"]
 base_font = ExtResource("7_dbbq7")
@@ -28,14 +41,10 @@ font_color = Color(0.74, 0.74, 0.74, 1)
 font = ExtResource("7_dbbq7")
 font_size = 17
 
-[sub_resource type="GDScript" id="GDScript_i7wnd"]
-script/source = "extends SpinBox
+[sub_resource type="LabelSettings" id="LabelSettings_toy85"]
+font = ExtResource("15_ukcdp")
 
-func _ready() -> void:
-	custom_arrow_step = -1
-"
-
-[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "SpinIndex", "ButtonDropdown", "ContentContainer", "DialogConfirmDelete")]
+[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "LabelIndex", "ButtonDropdown", "ContentContainer", "DialogConfirmDelete")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 57.0
@@ -49,7 +58,7 @@ IconType = NodePath("Content/Layout/Texture_TypeIcon")
 IconGrand = NodePath("Content/Layout/Texture_GrandIcon")
 ButtonCreateDisplayName = NodePath("Content/Layout/Button_CreateDisplayName")
 ButtonOpenDisplayName = NodePath("Content/Layout/Button_OpenDisplayName")
-SpinIndex = NodePath("Content/Layout/Spin_Index")
+LabelIndex = NodePath("Content/Layout/HBox_IndexGrabber/Label_Index")
 ButtonDropdown = NodePath("Content/Layout/Check_Expand")
 ContentContainer = NodePath("Content")
 DropdownContentScene = ExtResource("10_ncq3p")
@@ -61,6 +70,7 @@ theme = ExtResource("4_j7oie")
 
 [node name="Layout" type="HBoxContainer" parent="Content"]
 layout_mode = 2
+script = SubResource("GDScript_nm0gn")
 
 [node name="Button_CreateDisplayName" type="Button" parent="Content/Layout"]
 layout_mode = 2
@@ -110,6 +120,7 @@ text_overrun_behavior = 4
 [node name="Texture_TypeIcon" type="TextureRect" parent="Content/Layout"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture = ExtResource("12_nm0gn")
 expand_mode = 1
 stretch_mode = 5
 
@@ -147,15 +158,29 @@ mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 20
 icon = ExtResource("12_hwalq")
 
-[node name="Spin_Index" type="SpinBox" parent="Content/Layout"]
+[node name="HBox_IndexGrabber" type="HBoxContainer" parent="Content/Layout" node_paths=PackedStringArray("holder")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_horizontal = 8
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_INDEX_GRABBER_TOOLTIP"
+mouse_filter = 0
 mouse_default_cursor_shape = 9
-rounded = true
-alignment = 1
-select_all_on_focus = true
-script = SubResource("GDScript_i7wnd")
+script = ExtResource("14_6t6iw")
+holder = NodePath("../../..")
+
+[node name="Label_Index" type="Label" parent="Content/Layout/HBox_IndexGrabber"]
+auto_translate_mode = 2
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_toy85")
+horizontal_alignment = 2
+text_overrun_behavior = 1
+
+[node name="Texture_Drag" type="TextureRect" parent="Content/Layout/HBox_IndexGrabber"]
+layout_mode = 2
+texture = ExtResource("14_2hsfn")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
@@ -172,5 +197,5 @@ script = ExtResource("14_h4xx8")
 [connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="toggled" from="Content/Layout/Check_Expand" to="." method="OnContentDropdownToggled"]
 [connection signal="pressed" from="Content/Layout/Button_Delete" to="." method="OnRequestDeleteShine"]
-[connection signal="value_changed" from="Content/Layout/Spin_Index" to="." method="OnSpinIndexValueSet"]
+[connection signal="index_changed" from="Content/Layout/HBox_IndexGrabber" to="." method="OnSpinIndexValueSet"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteShine"]

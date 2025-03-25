@@ -294,6 +294,7 @@ msgid "HOME_SUBTAB_TRANSLATION"
 msgstr "Translation"
 
 #: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
+#: scene/home/common/file_search_and_filter.tscn
 msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 msgstr "Search Files"
 
@@ -1397,6 +1398,10 @@ msgid "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
 msgstr "Alt-Code preview:"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_SEARCH_ENTRIES"
+msgstr "Search Entries"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr "Entry Name"
 
@@ -1407,10 +1412,6 @@ msgstr ""
 "- Name must be unique\n"
 "- Cannot be empty\n"
 "- Only use A-Z, 0-9, @, hyphens, and underscores"
-
-#: scene/editor/msbt/list/entry_list_holder.tscn
-msgid "MSBT_SEARCH_ENTRIES"
-msgstr "Search Entries"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_ADD"
@@ -1425,10 +1426,6 @@ msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
 msgstr ""
 "Reset selected entry for this language to default, unmodified state.\n"
 "Default state is pulled from your romfs dump directory."
-
-#: scene/editor/msbt/list/entry_list_holder.tscn
-msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_SEARCH"
-msgstr "Search & Filters"
 
 #: scene/home/tab_world/tab_world.tscn
 msgid "HOME_TAB_WORLD_HEADER"
@@ -2279,6 +2276,10 @@ msgid "MAIN_ACTIONBAR_FILE_CLOSE"
 msgstr "Close File"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr "Open MoonFlow Settings"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
 msgstr "Quit MoonFlow"
 
@@ -2295,16 +2296,8 @@ msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
 msgstr "Close Project"
 
 #: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_CONFIG_RENAME"
-msgstr "Rename Project"
-
-#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
 msgstr "Clone Project into Another Project"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
-msgstr "Open MoonFlow Settings"
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
@@ -2751,6 +2744,10 @@ msgstr "Multi-Moon"
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
 msgstr "Delete Power Moon Entry"
+
+#: scene/editor/world/shine/world_shine_editor_holder.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_INDEX_GRABBER_TOOLTIP"
+msgstr "Drag to change order"
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_TITLE"
@@ -3951,6 +3948,16 @@ msgstr "Remove project from recent history"
 #: scene/front_door/recent/recent_sidebar.tscn
 msgid "RECENT_PROJECTS"
 msgstr "Recent Projects"
+
+#: scene/home/common/file_search_and_filter.tscn
+msgid "HOME_TAB_FILTER_OPTION_MODIFIED"
+msgstr "Modified"
+
+#~ msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_SEARCH"
+#~ msgstr "Search & Filters"
+
+#~ msgid "MAIN_ACTIONBAR_PROJECT_CONFIG_RENAME"
+#~ msgstr "Rename Project"
 
 #~ msgid "FRONT_DOOR_RECENT_PROJECTS_CLEAR_HISTORY"
 #~ msgstr "Clear History"
