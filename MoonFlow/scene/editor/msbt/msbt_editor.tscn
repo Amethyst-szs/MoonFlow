@@ -228,11 +228,15 @@ theme_override_constants/separation = 16
 [node name="LanguagePicker" type="OptionButton" parent="MsbtEditor/Layout/Header"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
+fit_to_longest_item = false
 script = ExtResource("5_qoe03")
 
 [node name="Button_Properties" type="Button" parent="MsbtEditor/Layout/Header"]
+custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
 tooltip_text = "MSBT_FILE_PROPERTY_BUTTON_TOOLTIP"
+theme_override_constants/h_separation = 8
 theme_override_constants/icon_max_width = 16
 text = "MSBT_FILE_PROPERTY_BUTTON"
 icon = ExtResource("10_e0qjp")

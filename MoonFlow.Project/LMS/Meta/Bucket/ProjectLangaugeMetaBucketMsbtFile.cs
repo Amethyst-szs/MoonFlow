@@ -8,6 +8,8 @@ public class ProjectLanguageMetaBucketMsbtFile()
 {
     [JsonInclude]
     public long UnixTime = DateTime.UnixEpoch.ToFileTimeUtc();
+    [JsonInclude]
+    public string LinkArchive = null;
 
     public static readonly ProjectLanguageMetaBucketEntry Default = new();
 
@@ -18,7 +20,7 @@ public class ProjectLanguageMetaBucketMsbtFile()
             return false;
 
         var o = (ProjectLanguageMetaBucketMsbtFile)obj;
-        return UnixTime == o.UnixTime;
+        return UnixTime == o.UnixTime && LinkArchive == o.LinkArchive;
     }
     public override int GetHashCode() { return base.GetHashCode(); }
 }

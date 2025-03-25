@@ -5,6 +5,8 @@ using Nindot.LMS.Msbp;
 using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Project.Database;
+using System.IO;
+using System.Linq;
 
 namespace MoonFlow.Project;
 
@@ -29,6 +31,22 @@ public static partial class ProjectManager
     {
         if (Project == null) return null;
         return Project.Config.GetDefaultLanguage();
+    }
+
+    public static string[] GetObjectDataListing()
+    {
+        var ver = GetRomfsVersion();
+        var common = RomfsDefaultObjectTable.GetObjectDataList(ver);
+
+        if (common == null)
+            return null;
+        
+        var objPath = GetPath() + "ObjectData/";
+        if (!Directory.Exists(objPath))
+            return common;
+
+        var project = Directory.GetFiles(objPath, "*.szs").Select(s => s.Split(['\\', '/']).Last());
+        return [.. project, .. common];
     }
 
 

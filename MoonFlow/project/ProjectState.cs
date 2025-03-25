@@ -179,6 +179,8 @@ public class ProjectState(string path, ProjectConfig config)
         loadScreen.LoadingComplete();
         StartupTask = null;
 
+        ProjectManager.GetObjectDataListing();
+
         GD.Print("Project initilization successful");
         IsInitComplete = true;
     }
