@@ -133,7 +133,6 @@ autowrap_mode = 3
 
 [connection signal="text_changed" from="Line_Search" to="." method="OnUpdateSearch"]
 [connection signal="text_changed" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameChanged"]
-[connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls" method="_on_line_new_entry_text_submitted"]
 [connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameSubmitted"]
 [connection signal="pressed" from="Controls/VBox/HBox_AddEntry/Button_Add" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnEntrySubmitButtonPressed"]
 [connection signal="toggled" from="Controls/VBox/Toolbar/Add" to="." method="OnToggleAddEntryLineEdit"]

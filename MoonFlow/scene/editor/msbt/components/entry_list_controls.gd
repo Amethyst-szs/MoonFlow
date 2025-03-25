@@ -14,17 +14,6 @@ func _ready() -> void:
 
 #region Events
 
-func _on_line_new_entry_text_submitted(new_text: String) -> void:
-	await get_tree().create_timer(0.1).timeout
-	
-	var scroll := get_parent().get_child(0) as ScrollContainer
-	
-	var new_child: Control = scroll.find_child(new_text, true, false)
-	if !new_child:
-		return
-	
-	scroll.scroll_y_to(-new_child.position.y)
-
 func _on_add_toggled(toggled_on: bool) -> void:
 	_hide_control_inputs(button_add, toggled_on)
 	
