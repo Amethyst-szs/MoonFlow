@@ -16,10 +16,5 @@ public partial class PopupMsbtSelectEntryOnlyLabel : PopupMsbtSelectEntry
 		return cache.LookupLabelInFileExact(Archive, File, term);
 	}
 
-	protected override List<ProjectLabelCache.LabelLookupResult> LookupTermInFile(ProjectLabelCache cache, string term, string file)
-	{
-		return cache.LookupLabelInFileExact(Archive, File, term);
-	}
-
 	#endregion
 }

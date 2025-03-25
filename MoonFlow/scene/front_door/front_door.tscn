@@ -22,7 +22,7 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="15_xr5ea"]
 [ext_resource type="Script" uid="uid://d3cnisiq47k5j" path="res://addons/wiki/access/WikiAccessButton.cs" id="16_06dea"]
 [ext_resource type="Script" uid="uid://catu7mjgh76ca" path="res://scene/version/notify/version_update_button.gd" id="16_8ntwn"]
-[ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/option/LangPicker.cs" id="16_qq0jv"]
+[ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/language/LangPicker.cs" id="16_qq0jv"]
 [ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="17_wxtt3"]
 [ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="17_yn102"]
 [ext_resource type="Resource" uid="uid://jvfra3r2fdpd" path="res://addons/wiki/paths/default.tres" id="24_pm7wk"]

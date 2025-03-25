@@ -1,3 +1,4 @@
+using FuzzySharp;
 using Godot;
 using MoonFlow.Project;
 using MoonFlow.Project.Cache;
@@ -122,28 +123,9 @@ public partial class PopupMsbtSelectEntry : Window
 			return;
 		}
 
-		// Convert string into list of search terms separated by spaces
-		var txtList = txt.Split([' ', '/'], StringSplitOptions.RemoveEmptyEntries);
-
 		// Lookup all labels
 		var lookup = ProjectManager.GetProject().MsgLabelCache;
-		List<ProjectLabelCache.LabelLookupResult> results = [];
-
-		switch (txtList.Length)
-		{
-			case 0:
-				results = LookupTerm(lookup, "");
-				break;
-			case 1:
-				results = LookupTerm(lookup, txtList[0]);
-				break;
-			case 2:
-				results = LookupTermInFile(lookup, txtList[0], txtList[1]);
-				break;
-			default:
-				LabelInvalidRequest.Show();
-				return;
-		}
+		List<ProjectLabelCache.LabelLookupResult> results = LookupTerm(lookup, txt);
 
 		// If the list count is invalid, display a message and exit
 		if (results.Count == 0)
@@ -184,20 +166,6 @@ public partial class PopupMsbtSelectEntry : Window
 			results.AddRange(cache.LookupLabel(ProjectLabelCache.ArchiveType.STAGE, term));
 		if (IsLayoutMessage)
 			results.AddRange(cache.LookupLabel(ProjectLabelCache.ArchiveType.LAYOUT, term));
-
-		return results;
-	}
-
-	protected virtual List<ProjectLabelCache.LabelLookupResult> LookupTermInFile(ProjectLabelCache cache, string term, string file)
-	{
-		List<ProjectLabelCache.LabelLookupResult> results = [];
-
-		if (IsSystemMessage)
-			results.AddRange(cache.LookupLabelInFile(ProjectLabelCache.ArchiveType.SYSTEM, file, term));
-		if (IsStageMessage)
-			results.AddRange(cache.LookupLabelInFile(ProjectLabelCache.ArchiveType.STAGE, file, term));
-		if (IsLayoutMessage)
-			results.AddRange(cache.LookupLabelInFile(ProjectLabelCache.ArchiveType.LAYOUT, file, term));
 
 		return results;
 	}

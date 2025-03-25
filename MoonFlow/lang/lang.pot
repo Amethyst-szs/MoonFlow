@@ -1452,6 +1452,14 @@ msgid "TAG_EDIT_SCENE_GRAMMAR_CAP"
 msgstr ""
 
 #: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_FILE_PROPERTY_BUTTON_TOOLTIP"
+msgstr ""
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_FILE_PROPERTY_BUTTON"
+msgstr ""
+
+#: scene/editor/msbt/msbt_editor.tscn
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
 msgstr ""
 

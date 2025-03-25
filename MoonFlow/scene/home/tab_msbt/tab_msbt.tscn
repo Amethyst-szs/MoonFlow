@@ -23,7 +23,7 @@
 [ext_resource type="Script" uid="uid://bekwxtkt8mv73" path="res://scene/home/tab_msbt/TabMsbtFileAccessor.cs" id="15_3v0li"]
 [ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="16_hrtuc"]
 [ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="16_ygdce"]
-[ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/option/LangPicker.cs" id="17_3lgct"]
+[ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/language/LangPicker.cs" id="17_3lgct"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="19_v1srn"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_yed1p"]

@@ -7,6 +7,7 @@ using System.Linq;
 using Nindot;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib.Smo;
+using FuzzySharp;
 
 namespace MoonFlow.Project.Cache;
 
@@ -63,34 +64,19 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
     {
         var list = new List<LabelLookupResult>();
 
-        foreach (var file in LabelList[arc])
-        {
-            var matches = file.Value.ToList().FindAll(l =>
-                l.Key.Contains(label, System.StringComparison.OrdinalIgnoreCase)
-            );
-
-            if (matches.Count == 0)
-                continue;
-
-            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value));
-            list.AddRange(result);
-        }
-
-        return list;
-    }
-
-    public List<LabelLookupResult> LookupLabelInFile(ArchiveType arc, string fileName, string label)
-    {
-        var list = new List<LabelLookupResult>();
+        var terms = label.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var file in LabelList[arc])
         {
-            if (!file.Key.Contains(fileName, StringComparison.OrdinalIgnoreCase))
-                continue;
+            // Filter matches to only include items in the search label string
+            var matches = file.Value.ToList().FindAll(l => {
+                return terms.All(s => l.Key.Contains(s)) || terms.Any(s => Fuzz.Ratio(s, file.Key) > 90);
+            });
 
-            var matches = file.Value.ToList().FindAll(l =>
-                l.Key.Contains(label, StringComparison.OrdinalIgnoreCase)
-            );
+            // Sort matches by FuzzySort
+            matches.Sort((a, b) => {
+                return Fuzz.Ratio(label, b.Key) - Fuzz.Ratio(label, a.Key);
+            });
 
             if (matches.Count == 0)
                 continue;
@@ -153,15 +139,18 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
         var dict = new Dictionary<string, Dictionary<string, string>>();
         var meta = Archives.Metadata;
 
-        foreach (var data in arc.Content)
+        var nameList = arc.Content.Keys.ToList();
+        nameList.Sort();
+
+        foreach (var name in nameList)
         {
             // Ensure last modified time in metadata
-            meta.GetLastModifiedTime(arc, data.Key);
+            meta.GetLastModifiedTime(arc, name);
 
             MsbtFile file;
             try
             {
-                file = MsbtFile.FromBytes([.. data.Value], data.Key, new MsbtElementFactoryProjectSmo());
+                file = MsbtFile.FromBytes([.. arc.Content[name]], name, new MsbtElementFactoryProjectSmo());
             }
             catch (MsbtEntryParserException)
             {
@@ -169,7 +158,7 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
             }
             catch
             {
-                GD.PushWarning("Failed to read cache for ", data.Key);
+                GD.PushWarning("Failed to read cache for ", name);
                 continue;
             }
 
@@ -180,7 +169,7 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
 
             var result = labels.Zip(text, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
 
-            dict[data.Key] = result;
+            dict[name] = result;
         }
 
         return dict;
