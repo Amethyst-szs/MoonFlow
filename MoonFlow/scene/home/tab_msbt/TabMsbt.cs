@@ -176,6 +176,9 @@ public partial class TabMsbt : HSplitContainer
 			return false;
 		}
 
+		parent.MoveChild(box.GetParent(), 0);
+		parent.MoveChild(dropdown, 0);
+
 		return true;
 	}
 

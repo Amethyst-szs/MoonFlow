@@ -57,17 +57,6 @@ public class ProjectMsbpHolder
         foreach (var file in arcs.StageMessage.Content.Keys)
         {
             var world = worldDB.GetWorldInfoByStageName(file);
-
-            // If a file doesn't have an assigned world, create an entry for every world as backup
-            if (world == null)
-            {
-                GD.PrintRich("[i]WARNING:[/i] " + file + " does not have an assigned world");
-                foreach (var backup in worldDB.WorldList)
-                    PublishFile(arcs.StageMessage.Name, file, backup, db);
-
-                continue;
-            }
-
             PublishFile(arcs.StageMessage.Name, file, world, db);
         }
 
@@ -124,7 +113,12 @@ public class ProjectMsbpHolder
         if (arc != "StageMessage.szs")
             throw new Exception("Do not pass WorldInfo if archive is not StageMessage");
 
-        PublishFile("StageMessage/" + world.WorldName, msbt, db);
+        if (world != null) {
+            PublishFile("StageMessage/" + world.WorldName, msbt, db);
+            return;
+        }
+
+        PublishFile("StageMessage", msbt, db);
     }
 
     #endregion

@@ -114,9 +114,6 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 		if (newName == string.Empty)
 			return;
 
-		if (!TryGetWorld(arcName, newName, out WorldInfo world))
-			return;
-
 		var target = TabMsbt.GetFileName(newName);
 		var arcHolder = ProjectManager.GetMSBT();
 
@@ -156,9 +153,6 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 	private void OnNewFile(string arcName, string newName)
 	{
 		if (newName == string.Empty)
-			return;
-
-		if (!TryGetWorld(arcName, newName, out WorldInfo world))
 			return;
 
 		var target = TabMsbt.GetFileName(newName);
@@ -214,9 +208,6 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 		if (file == string.Empty)
 			return;
 
-		if (!TryGetWorld(archive, file, out _))
-			return;
-
 		var sourceArc = Parent.SelectedFile.Sarc;
 		if (!IsFileNameValid(TabMsbt.GetFileName(file), sourceArc))
 			return;
@@ -226,28 +217,6 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 
 		OnDuplicateFile(archive, file);
 		OnDeleteFile(sourceArcName, sourceFileName);
-	}
-
-	#endregion
-
-	#region Utility
-
-	private bool TryGetWorld(string arc, string targetName, out WorldInfo world)
-	{
-		if (arc != "StageMessage.szs")
-		{
-			world = null;
-			return true;
-		}
-
-		var db = ProjectManager.GetDB();
-		world = db.GetWorldInfoByStageName(targetName);
-
-		if (world != null)
-			return true;
-
-		GetNode<AcceptDialog>("Dialog_CreateError_WorldList").Popup();
-		return false;
 	}
 
 	#endregion
