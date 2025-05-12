@@ -38,7 +38,6 @@
 # res://async/async_text.tres
 # res://scene/editor/event/node/node_type_name_text.tres
 # res://scene/editor/event/node/typedef/talk/talk.tscn
-# res://scene/common/popup/popup_msbt_select_entry.tscn
 # res://scene/home/tab_event/tab_event.tscn
 # res://scene/editor/event/node/typedef/balloon/balloon.tscn
 # res://scene/editor/event/node/event_flow_entry_point.tscn
@@ -97,6 +96,8 @@
 # res://scene/front_door/recent/recent_entry_panel.tscn
 # res://scene/front_door/recent/recent_sidebar.tscn
 # res://scene/home/common/file_search_and_filter.tscn
+# res://scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+# res://scene/common/msbt_lookup/popup_msbt_select_entry_only_label.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2177,22 +2178,6 @@ msgstr ""
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 msgstr ""
 
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
-msgstr ""
-
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
-msgstr ""
-
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
-msgstr ""
-
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
-msgstr ""
-
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 msgstr ""
@@ -3876,4 +3861,20 @@ msgstr ""
 
 #: scene/home/common/file_search_and_filter.tscn
 msgid "HOME_TAB_FILTER_OPTION_MODIFIED"
+msgstr ""
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
+msgstr ""
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
+msgstr ""
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
+msgstr ""
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr ""

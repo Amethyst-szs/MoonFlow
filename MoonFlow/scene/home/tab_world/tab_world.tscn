@@ -15,7 +15,7 @@ thickness = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_0v056"]
 font = ExtResource("6_8f0m7")
-font_size = 48
+font_size = 42
 font_color = Color(0.988235, 0.792157, 0.27451, 1)
 outline_size = 24
 outline_color = Color(0, 0, 0, 1)

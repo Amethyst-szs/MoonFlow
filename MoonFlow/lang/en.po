@@ -2120,24 +2120,6 @@ msgstr ""
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 msgstr "Stage Map"
 
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
-msgstr "Search"
-
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
-msgstr ""
-"Search for a label, and optionally include part of the MSBT file name "
-"separated by a space."
-
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
-msgstr "No results!"
-
-#: scene/common/popup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
-msgstr "Too many results!"
-
 #: scene/home/tab_event/tab_event.tscn
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 msgstr "Refresh File List"
@@ -3960,6 +3942,30 @@ msgstr "Recent Projects"
 #: scene/home/common/file_search_and_filter.tscn
 msgid "HOME_TAB_FILTER_OPTION_MODIFIED"
 msgstr "Modified"
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
+msgstr "Search"
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
+msgstr ""
+"Search for a label, and optionally include part of the MSBT file name "
+"separated by a space."
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
+msgstr "No results!"
+
+#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
+msgstr "Too many results!"
+
+#~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
+#~ msgstr "or edit..."
+
+#~ msgid "HOME_TAB_WORLD_TOOLS_RESOURCE_KIT"
+#~ msgstr "Resource Loader"
 
 #~ msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_SEARCH"
 #~ msgstr "Search & Filters"
