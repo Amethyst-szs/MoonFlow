@@ -182,12 +182,13 @@ text = "OPEN_PROJECT"
 icon = ExtResource("10_rxr5w")
 icon_alignment = 2
 
-[node name="Shortcuts" type="HBoxContainer" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+[node name="Shortcuts" type="GridContainer" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/separation = 12
+theme_override_constants/h_separation = 12
+columns = 5
 
 [node name="Button_Settings" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts"]
 layout_mode = 2

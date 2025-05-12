@@ -9,17 +9,18 @@ namespace MoonFlow.Scene.Main;
 
 public partial class ActionbarTools : ActionbarItemBase
 {
-	private bool IsReady = false;
-
 	private enum MenuIds : int
 	{
 		ALBUM_FTP = 0
 	}
 
-	private void InitContent()
-	{
-		if (ProjectFtpClient.StatusIndicator == null)
+    public override void _Ready()
+    {
+		if (ProjectFtpClient.StatusIndicator == null) 
+		{
+			CallDeferred(MethodName._Ready);
 			return;
+		}
 
 		base._Ready();
 
@@ -30,14 +31,7 @@ public partial class ActionbarTools : ActionbarItemBase
 		SetItemTooltip(GetItemIndex((int)MenuIds.ALBUM_FTP), Tr("AlbumFtp", "HEADER_TOOLTIP"));
 
 		OnFtpConnectionStatus(ProjectFtpClient.IsConnected());
-		IsReady = true;
-	}
-
-	public override void _Process(double _)
-	{
-		if (!IsReady)
-			InitContent();
-	}
+    }
 
 	private void OnFtpConnectionStatusConnected() => OnFtpConnectionStatus(true);
 	private void OnFtpConnectionStatusDisconnected() => OnFtpConnectionStatus(false);

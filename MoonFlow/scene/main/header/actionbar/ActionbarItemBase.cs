@@ -13,7 +13,7 @@ public abstract partial class ActionbarItemBase : PopupMenu
 
     public override async void _Ready()
     {
-        IndexPressed += OnIdxPressed;
+        Connect(SignalName.IndexPressed, Callable.From(new Action<long>(OnIdxPressed)));
 
         var scene = await GetScene();
         
