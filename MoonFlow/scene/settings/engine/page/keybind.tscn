@@ -1,11 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://5cs2aobtcf6w"]
+[gd_scene load_steps=6 format=3 uid="uid://5cs2aobtcf6w"]
 
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_qd1ao"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_tikfe"]
 [ext_resource type="PackedScene" uid="uid://7rqudtj0ycdw" path="res://scene/settings/engine/keybind/panel_keybind_editor.tscn" id="2_6ag4b"]
-[ext_resource type="Theme" uid="uid://c3l6daeypmnf7" path="res://asset/theme/settings/engine_keybind/dropdown_button_engine_settings_keybinds.tres" id="2_52kpr"]
-[ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="4_htspl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doufl"]
+content_margin_left = 12.0
+content_margin_top = 16.0
+content_margin_right = 12.0
+content_margin_bottom = 16.0
+
+[sub_resource type="Theme" id="Theme_doufl"]
+FoldableContainer/colors/collapsed_font_color = Color(1, 1, 1, 0.721569)
+FoldableContainer/colors/font_color = Color(1, 1, 1, 0.827451)
+FoldableContainer/colors/hover_font_color = Color(1, 1, 1, 1)
+FoldableContainer/font_sizes/font_size = 18
+FoldableContainer/fonts/font = ExtResource("1_qd1ao")
+FoldableContainer/styles/title_collapsed_hover_panel = SubResource("StyleBoxEmpty_doufl")
+FoldableContainer/styles/title_collapsed_panel = SubResource("StyleBoxEmpty_doufl")
+FoldableContainer/styles/title_hover_panel = SubResource("StyleBoxEmpty_doufl")
+FoldableContainer/styles/title_panel = SubResource("StyleBoxEmpty_doufl")
 
 [node name="Page_Keybind" type="VBoxContainer"]
+theme = SubResource("Theme_doufl")
 
 [node name="Header" parent="." instance=ExtResource("1_tikfe")]
 layout_mode = 2
@@ -13,173 +30,146 @@ layout_mode = 2
 [node name="Label_Head" parent="Header/Layout" index="0"]
 text = "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
 
-[node name="UiHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
+[node name="Fold_UI" type="FoldableContainer" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_52kpr")
+folded = true
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
-flat = true
-script = ExtResource("4_htspl")
-dropdown = NodePath("../VBox_UI")
 
-[node name="VBox_UI" type="VBoxContainer" parent="."]
+[node name="VBox_UI" type="VBoxContainer" parent="Fold_UI"]
+visible = false
 layout_mode = 2
-theme_override_constants/separation = 8
 
-[node name="CloseApp" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="CloseApp" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_close_app"
 
-[node name="Refresh" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="Refresh" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_refresh"
 
-[node name="AppNavLeft" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="AppNavLeft" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_app_nav_left"
 
-[node name="AppNavRight" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="AppNavRight" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_app_nav_right"
 
-[node name="AppNavHome" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="AppNavHome" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_app_nav_home"
 
-[node name="Screenshot" parent="VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="Screenshot" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_screenshot"
 
-[node name="HSeparator" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 24
-
-[node name="FileManageHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
+[node name="Fold_FileManage" type="FoldableContainer" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_52kpr")
+folded = true
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_FILE_MANAGE"
-flat = true
-script = ExtResource("4_htspl")
-dropdown = NodePath("../VBox_FileManage")
 
-[node name="VBox_FileManage" type="VBoxContainer" parent="."]
+[node name="VBox_FileManage" type="VBoxContainer" parent="Fold_FileManage"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Save" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="Save" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_save"
 
-[node name="SaveAs" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="SaveAs" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_save_as"
 
-[node name="SaveAll" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="SaveAll" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_save_all"
 
-[node name="Rename" parent="VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="Rename" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_rename"
 
-[node name="HSeparator2" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 24
-
-[node name="ProjectHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
+[node name="Fold_Project" type="FoldableContainer" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_52kpr")
+folded = true
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
-flat = true
-script = ExtResource("4_htspl")
-dropdown = NodePath("../VBox_Project")
 
-[node name="VBox_Project" type="VBoxContainer" parent="."]
+[node name="VBox_Project" type="VBoxContainer" parent="Fold_Project"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Reload" parent="VBox_Project" instance=ExtResource("2_6ag4b")]
+[node name="Reload" parent="Fold_Project/VBox_Project" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "home_actionbar_reload"
 
-[node name="Close" parent="VBox_Project" instance=ExtResource("2_6ag4b")]
+[node name="Close" parent="Fold_Project/VBox_Project" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "home_actionbar_close"
 
-[node name="HSeparator3" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 24
-
-[node name="MsbtHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
+[node name="Fold_Msbt" type="FoldableContainer" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_52kpr")
+folded = true
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
-flat = true
-script = ExtResource("4_htspl")
-dropdown = NodePath("../VBox_Msbt")
 
-[node name="VBox_Msbt" type="VBoxContainer" parent="."]
+[node name="VBox_Msbt" type="VBoxContainer" parent="Fold_Msbt"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="AddTag" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="AddTag" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_add_tag"
 
-[node name="EditTag" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="EditTag" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_edit_tag"
 
-[node name="Add" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="Add" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "msbt_add_entry"
 
-[node name="Find" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="Find" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_find"
 
-[node name="Reset" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="Reset" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "msbt_reset_entry"
 
-[node name="Delete" parent="VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="Delete" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "msbt_delete_entry"
 
-[node name="HSeparator4" type="HSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 24
-
-[node name="EventHeader" type="CheckBox" parent="." node_paths=PackedStringArray("dropdown")]
+[node name="Fold_Event" type="FoldableContainer" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_52kpr")
+folded = true
 text = "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
-flat = true
-script = ExtResource("4_htspl")
-dropdown = NodePath("../VBox_Event")
 
-[node name="VBox_Event" type="VBoxContainer" parent="."]
+[node name="VBox_Event" type="VBoxContainer" parent="Fold_Event"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="AddNode" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="AddNode" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_graph_inject"
 
-[node name="ResetZoom" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="ResetZoom" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_graph_reset_zoom"
 
-[node name="Debug" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="Debug" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_toggle_debug"
 is_debug_only = true
 
-[node name="StepByStepDebug" parent="VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="StepByStepDebug" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_graph_step_by_step_debug"
 is_debug_only = true

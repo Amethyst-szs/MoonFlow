@@ -31,6 +31,9 @@ public partial class PortIn : TextureRect
 		(Material as ShaderMaterial).Shader = Shader;
 
 		UpdateDisplay();
+
+		// Fix positioning due to engine bug?
+		SetPosition(new Vector2(-24.0f, 0.0f));
 	}
 
 	public void AddIncoming(PortOut n)

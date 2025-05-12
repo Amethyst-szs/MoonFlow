@@ -138,7 +138,9 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 		// Reset current param editors
 		ParamHolder.Show();
-		ParamAddDropdownHolder.Show();
+
+		FoldableContainer additionalParamHolder = ParamAddDropdownHolder.GetParent() as FoldableContainer;
+		additionalParamHolder.Show();
 
 		foreach (var child in ParamHolder.GetChildren()) child.QueueFree();
 		foreach (var child in ParamAddDropdownHolder.GetChildren()) child.QueueFree();
@@ -147,14 +149,14 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 		var type = Content.GetSupportedParams(out Dictionary<string, Type> pList);
 		if (type == Nindot.Al.EventFlow.Node.NodeOptionType.NO_OPTIONS)
 		{
-			ParamAddDropdownHolder.Hide();
+			additionalParamHolder.Hide();
 			ParamHolder.Hide();
 			return;
 		}
 
 		if (type == Nindot.Al.EventFlow.Node.NodeOptionType.ANY_VALUE)
 		{
-			ParamAddDropdownHolder.Hide();
+			additionalParamHolder.Hide();
 
 			foreach (var p in Content.Params)
 				EventNodeParamFactory.CreateParamEditor(this, (string)p.Key, p.Value.GetType());
@@ -168,7 +170,7 @@ public partial class EventFlowNodeCommon : EventFlowNodeBase
 
 		// If there are no additional properties to add, remove dropdown
 		if (ParamAddDropdownHolder.GetChildCount() == 0)
-			ParamAddDropdownHolder.Hide();
+			additionalParamHolder.Hide();
 	}
 
 	private void SetupNameOptions(string[] opt)
