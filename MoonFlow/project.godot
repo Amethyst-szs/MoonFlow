@@ -12,12 +12,13 @@ config_version=5
 
 config/name="MoonFlow"
 config/description="A Super Mario Odyssey project management & mod development tool"
+config/tags=PackedStringArray("action_library")
 run/main_scene="res://scene/main/main.tscn"
 run/print_header=false
 config/project_settings_override="user://common.cfg"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 run/low_processor_mode=true
 run/low_processor_mode_sleep_usec=10000
 boot_splash/bg_color=Color(0.054902, 0.0745098, 0.105882, 1)
