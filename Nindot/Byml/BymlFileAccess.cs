@@ -147,6 +147,12 @@ public class BymlFileAccess
                 return;
             }
 
+            if (type == typeof(string) && value == null)
+            {
+                emitter.Emit(new Scalar("⌂♯" + Table[type], null, "", ScalarStyle.Any, true, false));
+                return;
+            }
+
             emitter.Emit(new Scalar("⌂♯" + Table[type], null, value.ToString(), ScalarStyle.Any, true, false));
         }
 

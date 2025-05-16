@@ -2781,7 +2781,19 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_HEADER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_PLACEHOLDER"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn

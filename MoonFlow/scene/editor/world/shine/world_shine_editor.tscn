@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://2g01fvaywdt" path="res://asset/nindot/lms/icon/PictureFont_31.png" id="11_8gd1o"]
 [ext_resource type="Texture2D" uid="uid://y2to817674x2" path="res://asset/nindot/lms/icon/PictureFont_4A.png" id="11_afu5f"]
 
-[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "QuestBitFlags", "ScenarioBitFlags", "SpinTranslationX", "SpinTranslationY", "SpinTranslationZ")]
+[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName", "LineObjId", "LineOptionalId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "QuestBitFlags", "ScenarioBitFlags", "SpinTranslationX", "SpinTranslationY", "SpinTranslationZ")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 121.0
@@ -28,6 +28,7 @@ theme_override_constants/margin_bottom = 6
 script = ExtResource("1_yi0vg")
 OptionStageName = NodePath("Content/Grid_NameId/Option_StageName")
 LineObjId = NodePath("Content/Grid_NameId/Line_ObjId")
+LineOptionalId = NodePath("Content/Grid_NameId/Line_OptionalId")
 SpinUID = NodePath("Content/Grid_UniqueHintType/HBox_UniqueId/Spin_UniqueId")
 SpinHint = NodePath("Content/Grid_UniqueHintType/HBox_HintId/Spin_HintId")
 TextureUIDWarning = NodePath("Content/Grid_UniqueHintType/HBox_UniqueId/Texture_DuplicateWarn")
@@ -50,7 +51,7 @@ layout_mode = 2
 
 [node name="Grid_NameId" type="GridContainer" parent="Content"]
 layout_mode = 2
-columns = 2
+columns = 3
 
 [node name="Label_StageHead" type="Label" parent="Content/Grid_NameId"]
 layout_mode = 2
@@ -72,6 +73,16 @@ text = "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
+[node name="Label_OptionalIdHead" type="Label" parent="Content/Grid_NameId"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_HEADER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
 [node name="Option_StageName" type="OptionButton" parent="Content/Grid_NameId"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -82,6 +93,16 @@ script = ExtResource("2_a2ycu")
 [node name="Line_ObjId" type="LineEdit" parent="Content/Grid_NameId"]
 layout_mode = 2
 placeholder_text = "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
+max_length = 126
+context_menu_enabled = false
+clear_button_enabled = true
+script = ExtResource("4_qgqcx")
+regex_string = "[A-Za-z0-9_]"
+is_return_if_empty = true
+
+[node name="Line_OptionalId" type="LineEdit" parent="Content/Grid_NameId"]
+layout_mode = 2
+placeholder_text = "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_PLACEHOLDER"
 max_length = 126
 context_menu_enabled = false
 clear_button_enabled = true
@@ -354,6 +375,7 @@ theme_override_styles/separator = ExtResource("6_diffx")
 
 [connection signal="StageSelected" from="Content/Grid_NameId/Option_StageName" to="." method="OnShineStageNameChanged"]
 [connection signal="text_validated" from="Content/Grid_NameId/Line_ObjId" to="." method="OnLineObjectIdModified"]
+[connection signal="text_validated" from="Content/Grid_NameId/Line_OptionalId" to="." method="OnLineOptionalIdModified"]
 [connection signal="mouse_entered" from="Content/Grid_UniqueHintType/HBox_UniqueId/Spin_UniqueId" to="." method="UpdateUniquenessWarnings"]
 [connection signal="value_changed" from="Content/Grid_UniqueHintType/HBox_UniqueId/Spin_UniqueId" to="." method="OnUniqueIdValueChanged"]
 [connection signal="mouse_entered" from="Content/Grid_UniqueHintType/HBox_UniqueId/Button_UniqueIdAuto" to="." method="UpdateUniquenessWarnings"]

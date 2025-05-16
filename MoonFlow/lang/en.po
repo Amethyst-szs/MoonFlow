@@ -2780,8 +2780,23 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
 msgstr "Object ID:"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
+msgstr ""
+"Optional field used for special types of Power Moons. Mainly\n"
+"used for hint arts, but also used for timer challenges,\n"
+"costume rooms, and more."
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_HEADER"
+msgstr "Optional ID:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
 msgstr "objID"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_PLACEHOLDER"
+msgstr "N/A"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_TOOLTIP"

@@ -252,6 +252,7 @@ public partial class WorldEditorApp : AppScene
 			StageName = World.Name,
 			ScenarioName = "",
 			ObjId = "obj0",
+			OptionalId = null,
 
 			MainScenarioNo = -1,
 			ProgressBitFlag = 32767, // 0111-1111-1111-1111

@@ -15,6 +15,7 @@ public class ShineInfo
 
     public string ObjId;
     public int UniqueId;
+    public string OptionalId;
 
     public int HintIdx;
     public int MainScenarioNo;

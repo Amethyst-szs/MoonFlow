@@ -16,6 +16,8 @@ public partial class WorldShineEditor : MarginContainer
 	private OptionStageName OptionStageName;
 	[Export]
 	private LineEdit LineObjId;
+	[Export]
+	private LineEdit LineOptionalId;
 
 	[Export]
 	private SpinBox SpinUID;
@@ -55,6 +57,7 @@ public partial class WorldShineEditor : MarginContainer
 
 		OptionStageName.SetSelection(this, shine.StageName);
 		LineObjId.Text = shine.ObjId;
+		LineOptionalId.Text = shine.OptionalId;
 
 		SpinUID.SetValueNoSignal(shine.UniqueId);
 		SpinHint.SetValueNoSignal(shine.HintIdx);
@@ -93,6 +96,18 @@ public partial class WorldShineEditor : MarginContainer
 			return;
 
 		Shine.ObjId = txt;
+		EmitSignal(SignalName.ContentModified);
+	}
+	private void OnLineOptionalIdModified(string txt)
+	{
+		if (Shine.OptionalId == txt)
+			return;
+
+		if (txt == string.Empty)
+			Shine.OptionalId = null;
+		else
+			Shine.OptionalId = txt;
+
 		EmitSignal(SignalName.ContentModified);
 	}
 
