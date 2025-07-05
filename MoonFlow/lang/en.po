@@ -2703,7 +2703,7 @@ msgid "EVENT_FLOW_NODE_NAME_EDIT_PLACEHOLDER"
 msgstr "Node Name"
 
 #: scene/editor/event/node/event_flow_node_common.tscn
-msgid "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
+msgid "EVENT_FLOW_NODE_FOLD_ADDITIONAL_PARAM"
 msgstr "Additional Properties"
 
 #: scene/editor/event/node/event_flow_node_common.tscn

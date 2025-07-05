@@ -23,7 +23,8 @@ offset_bottom = 110.0
 metadata/_edit_lock_ = true
 
 [node name="Port_In" parent="Content/Ports/PortHolder_In" index="0"]
-layout_mode = 0
+offset_left = 0.0
+offset_right = 24.0
 
 [node name="Line_NameEdit" type="LineEdit" parent="Content/Display/HBox_Name" index="1"]
 custom_minimum_size = Vector2(180, 0)
@@ -55,8 +56,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 folded = true
-text = "EVENT_FLOW_NODE_ADDITIONAL_PROPERTIES_DROPDOWN"
-text_overrun_behavior = 3
+title = "EVENT_FLOW_NODE_FOLD_ADDITIONAL_PARAM"
 
 [node name="AdditionalParamList" type="VBoxContainer" parent="Content/Display/Fold_Additional" index="0"]
 visible = false
@@ -84,7 +84,8 @@ theme_override_constants/icon_max_width = 16
 icon = ExtResource("7_jdg8o")
 
 [node name="VBox_ExtraDisplay" parent="Content/Extra" index="0"]
-layout_mode = 0
+offset_top = 0.0
+offset_bottom = 0.0
 
 [connection signal="text_changed" from="Content/Display/HBox_Name/Line_NameEdit" to="." method="OnSetNameLineEdit"]
 [connection signal="pressed" from="Content/Metadata/Button_Metadata" to="." method="OnMetadataEditRequest"]
