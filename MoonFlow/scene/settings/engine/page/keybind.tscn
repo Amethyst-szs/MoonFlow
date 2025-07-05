@@ -1,25 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://5cs2aobtcf6w"]
 
-[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_qd1ao"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_tikfe"]
 [ext_resource type="PackedScene" uid="uid://7rqudtj0ycdw" path="res://scene/settings/engine/keybind/panel_keybind_editor.tscn" id="2_6ag4b"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qd1ao"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doufl"]
-content_margin_left = 12.0
-content_margin_top = 16.0
-content_margin_right = 12.0
-content_margin_bottom = 16.0
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
 
 [sub_resource type="Theme" id="Theme_doufl"]
 FoldableContainer/colors/collapsed_font_color = Color(1, 1, 1, 0.721569)
 FoldableContainer/colors/font_color = Color(1, 1, 1, 0.827451)
 FoldableContainer/colors/hover_font_color = Color(1, 1, 1, 1)
 FoldableContainer/font_sizes/font_size = 18
-FoldableContainer/fonts/font = ExtResource("1_qd1ao")
-FoldableContainer/styles/title_collapsed_hover_panel = SubResource("StyleBoxEmpty_doufl")
-FoldableContainer/styles/title_collapsed_panel = SubResource("StyleBoxEmpty_doufl")
-FoldableContainer/styles/title_hover_panel = SubResource("StyleBoxEmpty_doufl")
-FoldableContainer/styles/title_panel = SubResource("StyleBoxEmpty_doufl")
+FoldableContainer/styles/focus = SubResource("StyleBoxEmpty_qd1ao")
+FoldableContainer/styles/panel = SubResource("StyleBoxEmpty_doufl")
 
 [node name="Page_Keybind" type="VBoxContainer"]
 theme = SubResource("Theme_doufl")
@@ -34,7 +31,7 @@ text = "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
-text = "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
+title = "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
 
 [node name="VBox_UI" type="VBoxContainer" parent="Fold_UI"]
 visible = false
@@ -68,7 +65,7 @@ input_action = "ui_screenshot"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
-text = "ENGINE_SETTINGS_PAGE_KEYBIND_FILE_MANAGE"
+title = "ENGINE_SETTINGS_PAGE_KEYBIND_FILE_MANAGE"
 
 [node name="VBox_FileManage" type="VBoxContainer" parent="Fold_FileManage"]
 visible = false
@@ -95,7 +92,7 @@ input_action = "ui_rename"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
-text = "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
+title = "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
 
 [node name="VBox_Project" type="VBoxContainer" parent="Fold_Project"]
 visible = false
@@ -114,7 +111,7 @@ input_action = "home_actionbar_close"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
-text = "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
+title = "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
 
 [node name="VBox_Msbt" type="VBoxContainer" parent="Fold_Msbt"]
 visible = false
@@ -149,7 +146,7 @@ input_action = "msbt_delete_entry"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
-text = "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
+title = "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
 
 [node name="VBox_Event" type="VBoxContainer" parent="Fold_Event"]
 visible = false

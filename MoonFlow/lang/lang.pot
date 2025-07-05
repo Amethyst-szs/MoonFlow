@@ -98,6 +98,7 @@
 # res://scene/home/common/file_search_and_filter.tscn
 # res://scene/common/msbt_lookup/popup_msbt_select_entry.tscn
 # res://scene/common/msbt_lookup/popup_msbt_select_entry_only_label.tscn
+# res://scene/settings/engine/keybind/panel_keybind_editor.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -3893,4 +3894,8 @@ msgstr ""
 
 #: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
+msgstr ""
+
+#: scene/settings/engine/keybind/panel_keybind_editor.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_BUTTON_ADD_KEYBIND"
 msgstr ""

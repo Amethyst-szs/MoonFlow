@@ -33,7 +33,6 @@ AppName = "Credit"
 AppTaskbarTitle = "Contributors"
 AppIcon = ExtResource("2_8rnkx")
 AppFlags = 35
-WikiPage = null
 
 [node name="Content" type="PanelContainer" parent="."]
 layout_mode = 1

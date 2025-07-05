@@ -8,7 +8,7 @@ const trash_icon: Texture2D = preload("res://asset/material/file/trash.svg")
 const capture_scene: PackedScene = preload("res://scene/settings/engine/keybind/overlay_keybind_capture.tscn")
 
 @onready var label_name: Label = $Panel/HBox_Layout/Label_Name
-@onready var bind_table: VBoxContainer = $Panel/HBox_Layout/VBox_BindTable
+@onready var bind_table: GridContainer = $Panel/HBox_Layout/Content/BindTable
 
 func _ready():
 	if Engine.is_editor_hint():
@@ -32,6 +32,11 @@ func _setup_content() -> void:
 	for bind in InputMap.action_get_events(input_action):
 		var c := _on_trash_pressed.bind(bind)
 		_create_button(bind.as_text(), trash_icon, c)
+	
+	if bind_table.get_child_count() == 1:
+		bind_table.columns = 1
+	else:
+		bind_table.columns = 2
 
 func _create_button(text: String, ico: Texture2D, c: Callable) -> void:
 	var button := Button.new()
@@ -39,9 +44,13 @@ func _create_button(text: String, ico: Texture2D, c: Callable) -> void:
 	bind_table.add_child(button)
 	
 	button.text = text
-	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	button.icon = ico
-	button.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.icon_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	
+	button.self_modulate = Color.RED.lightened(0.75)
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 func _on_trash_pressed(button: Button, event: InputEvent) -> void:
 	InputMap.action_erase_event(input_action, event)

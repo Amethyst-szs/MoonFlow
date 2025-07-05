@@ -6,6 +6,7 @@
 [resource]
 HSeparator/constants/separation = 28
 RichTextLabel/constants/line_separation = 5
+RichTextLabel/constants/paragraph_separation = 5
 RichTextLabel/font_sizes/normal_font_size = 18
 RichTextLabel/fonts/normal_font = ExtResource("1_p758a")
 RichTextLabel/styles/normal = ExtResource("1_mb1xf")

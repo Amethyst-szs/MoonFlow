@@ -3991,6 +3991,10 @@ msgstr "No results!"
 msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
 msgstr "Too many results!"
 
+#: scene/settings/engine/keybind/panel_keybind_editor.tscn
+msgid "ENGINE_SETTINGS_PAGE_KEYBIND_BUTTON_ADD_KEYBIND"
+msgstr "Add Keybind"
+
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."
 
