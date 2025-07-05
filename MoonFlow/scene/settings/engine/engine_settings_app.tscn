@@ -30,7 +30,7 @@ outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_b01h6"]
-VBoxContainer/constants/separation = 12
+VBoxContainer/constants/separation = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0oyq"]
 
