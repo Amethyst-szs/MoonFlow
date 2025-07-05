@@ -25,55 +25,31 @@ font_color = Color(0.988235, 0.792157, 0.27451, 1)
 
 [sub_resource type="Resource" id="Resource_lnyo4"]
 script = ExtResource("8_u3q7h")
-font_size = 2.285
 is_bold = true
-is_italic = false
-is_underlined = false
 override_font_color = true
 font_color = Color(0.988235, 0.792157, 0.27451, 1)
 
 [sub_resource type="Resource" id="Resource_2pil3"]
 script = ExtResource("9_umnl6")
-font_size = 1.714
 is_bold = true
-is_italic = false
-is_underlined = false
 override_font_color = true
 font_color = Color(0.996078, 0.498039, 0.176471, 1)
 
 [sub_resource type="Resource" id="Resource_wjd1f"]
 script = ExtResource("10_wksr2")
-font_size = 1.428
-is_bold = false
-is_italic = false
-is_underlined = false
-override_font_color = false
-font_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_0a3ap"]
 script = ExtResource("11_oa7r6")
-font_size = 1.142
-is_bold = false
-is_italic = false
-is_underlined = false
 override_font_color = true
 font_color = Color(1, 1, 1, 0.784314)
 
 [sub_resource type="Resource" id="Resource_u8tgk"]
 script = ExtResource("12_k0m16")
-font_size = 1.0
-is_bold = false
-is_italic = false
-is_underlined = false
 override_font_color = true
 font_color = Color(1, 1, 1, 0.717647)
 
 [sub_resource type="Resource" id="Resource_vyhhh"]
 script = ExtResource("13_rcv6f")
-font_size = 0.857
-is_bold = false
-is_italic = false
-is_underlined = false
 override_font_color = true
 font_color = Color(1, 1, 1, 0.717647)
 
@@ -177,9 +153,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 2
-theme_override_constants/text_highlight_v_padding = 2
-theme_override_constants/text_highlight_h_padding = 2
 theme_override_constants/line_separation = 8
+theme_override_constants/paragraph_separation = 8
+theme_override_constants/text_highlight_h_padding = 2
+theme_override_constants/text_highlight_v_padding = 2
 theme_override_fonts/normal_font = ExtResource("5_2yyqy")
 theme_override_fonts/bold_font = ExtResource("6_1147u")
 theme_override_font_sizes/mono_font_size = 14

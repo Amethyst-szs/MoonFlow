@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=24 format=3 uid="uid://dbung3qmbw5gp"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://dbung3qmbw5gp"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_rr64a"]
 [ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_5axl7"]
@@ -51,6 +51,24 @@ grow_end = -12.0
 thickness = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2s5b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxu86"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjwju"]
+bg_color = Color(0.135, 0.23674996, 0.3, 0.7058824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vg7en"]
+bg_color = Color(0.137255, 0.239216, 0.301961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wcnh"]
 
@@ -134,6 +152,9 @@ Tree/constants/scrollbar_h_separation = 12
 Tree/constants/v_separation = 8
 Tree/fonts/font = ExtResource("1_rr64a")
 Tree/styles/focus = SubResource("StyleBoxEmpty_u2s5b")
+Tree/styles/hovered = SubResource("StyleBoxEmpty_qxu86")
+Tree/styles/hovered_selected = SubResource("StyleBoxFlat_wjwju")
+Tree/styles/hovered_selected_focus = SubResource("StyleBoxFlat_vg7en")
 Tree/styles/panel = SubResource("StyleBoxEmpty_8wcnh")
 Tree/styles/selected = SubResource("StyleBoxFlat_bmi7r")
 Tree/styles/selected_focus = SubResource("StyleBoxFlat_qi4dp")
