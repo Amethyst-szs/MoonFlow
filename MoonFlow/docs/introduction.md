@@ -43,7 +43,7 @@ The path of your project is where all your modified files will be stored. This c
 > Pro Tip: Pick a central place to store all you projects, like an `smo_projects` folder. Make sure to avoid spaces in your folder names, MoonFlow supports them but not everything does!
 
 #### Game Version
-This is where you select which version of the game you want to base your project on top of. It is *strongly recommended* to choose Version 1.0.0. This is the primary modding version for all developers, and is what 99% of mod projects are created on. However, for specific use cases you can pick any other version from 1.0.1 to 1.3.0.[^4]
+This is where you select which version of the game you want to base your project on top of. It is *strongly recommended* to choose Version 1.0.0. This is the primary modding version for all developers, and is what 99% of mod projects are created on. However, for specific use cases you can pick any other version from 1.0.1 to 1.4.1.[^4]
 
 **This cannot be changed later!**
 

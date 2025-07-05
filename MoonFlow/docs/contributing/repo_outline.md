@@ -19,7 +19,9 @@ For most simple or high-level pull requests and changes, this directory is your 
 Changes to this library are far more technical and precise, featuring zero UI and very little high-level API access.
 
 ## Nindot.Tests
-A test library for the `Nindot` project. These tests can be run locally (with additional tests if a Super Mario Odyssey v1.0.0-v1.3.0 romfs path is provided) and are also run by GitHub actions to ensure stability in `Nindot`.
+A test library for the `Nindot` project. These tests can be run locally (with additional tests if a Super Mario Odyssey v1.0.0-v1.3.0[^1] romfs path is provided) and are also run by GitHub actions to ensure stability in `Nindot`.
+
+[^1]: v1.4.0 and v1.4.1 do not have tests because they are identicial to v1.3.0 on the original Nintendo Switch system.
 
 ## Godot.Extension
 A side-library built as a dependency for `MoonFlow`, featuring little more than extension methods for the `GodotSharp` classes and nodes.
