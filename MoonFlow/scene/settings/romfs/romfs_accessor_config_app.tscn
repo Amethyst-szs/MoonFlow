@@ -219,8 +219,16 @@ theme_override_styles/separator = ExtResource("11_545y6")
 [node name="v130" parent="Content/HBox/Preview/Panel_Content/Content" instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
-version_label = "v1.3.0"
+mouse_filter = 2
+version_label = "v1.3.0+"
+
+[node name="Panel_Label" parent="Content/HBox/Preview/Panel_Content/Content/v130" index="0"]
+self_modulate = Color(0.85, 0.98749995, 1, 1)
+tooltip_text = "ROMFS_CONFIG_EXPLANATION_FOR_V1.4"
+mouse_default_cursor_shape = 16
 
 [connection signal="dir_selected" from="PathPicker" to="." method="OnPathPickerSelection"]
 [connection signal="pressed" from="Content/HBox/Option/Button_Add" to="PathPicker" method="popup_centered"]
 [connection signal="pressed" from="Content/HBox/Option/Button_Save" to="." method="AppCloseForce"]
+
+[editable path="Content/HBox/Preview/Panel_Content/Content/v130"]

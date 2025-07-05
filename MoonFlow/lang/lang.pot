@@ -147,6 +147,10 @@ msgstr ""
 msgid "ROMFS_CONFIG_PATH_HEADER"
 msgstr ""
 
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_EXPLANATION_FOR_V1.4"
+msgstr ""
+
 #: scene/settings/romfs/path_display.tscn
 msgid "ROMFS_CONFIG_NO_PATH"
 msgstr ""

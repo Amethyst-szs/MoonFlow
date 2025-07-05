@@ -62,6 +62,21 @@ msgstr "Save & Continue"
 msgid "ROMFS_CONFIG_PATH_HEADER"
 msgstr "Paths"
 
+#: scene/settings/romfs/romfs_accessor_config_app.tscn
+msgid "ROMFS_CONFIG_EXPLANATION_FOR_V1.4"
+msgstr ""
+"Super Mario Odyssey was updated for the Nintendo Switch 2 system\n"
+"starting on version 1.4.0.\n"
+"\n"
+"This build of MoonFlow does not support modding the Nintendo\n"
+"Switch 2 game, and all updates released for the Switch 2 do not modify\n"
+"the original Nintendo Switch game in any way.\n"
+"\n"
+"As such, all versions below are identical for the purpose of MoonFlow:\n"
+"v1.3.0\n"
+"v1.4.0\n"
+"v1.4.1"
+
 #: scene/settings/romfs/path_display.tscn
 msgid "ROMFS_CONFIG_NO_PATH"
 msgstr "No Path"
