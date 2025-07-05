@@ -211,17 +211,20 @@ theme_override_constants/separation = 8
 [node name="Button_ZoomOut" type="Button" parent="Header/UI/HBox_ZoomControl"]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
+mouse_default_cursor_shape = 2
 icon = ExtResource("10_k8svk")
 
 [node name="Button_ZoomReset" type="Button" parent="Header/UI/HBox_ZoomControl"]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_RESET"
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_e8ok1")
 icon = ExtResource("11_uvpj5")
 
 [node name="Button_ZoomIn" type="Button" parent="Header/UI/HBox_ZoomControl"]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
+mouse_default_cursor_shape = 2
 icon = ExtResource("12_570rd")
 
 [node name="HBox_Tools" type="HBoxContainer" parent="Header/UI"]
@@ -231,12 +234,14 @@ theme_override_constants/separation = 8
 [node name="Button_InjectNode" type="Button" parent="Header/UI/HBox_Tools"]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_8p0il")
 icon = ExtResource("14_co2bl")
 
 [node name="Button_DeleteNodes" type="Button" parent="Header/UI/HBox_Tools"]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_DELETE_NODES"
+mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_7271u")
 icon = ExtResource("19_74ak0")
 
@@ -244,6 +249,7 @@ icon = ExtResource("19_74ak0")
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
+mouse_default_cursor_shape = 2
 toggle_mode = true
 shortcut = SubResource("Shortcut_bx36p")
 icon = ExtResource("12_scho0")

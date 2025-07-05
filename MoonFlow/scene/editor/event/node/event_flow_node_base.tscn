@@ -93,7 +93,8 @@ mouse_filter = 2
 [node name="VBox_ExtraDisplay" type="VBoxContainer" parent="Content/Extra"]
 layout_mode = 0
 offset_top = 16.0
-offset_bottom = 16.0
+offset_right = 182.0
+offset_bottom = 54.000015
 size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2

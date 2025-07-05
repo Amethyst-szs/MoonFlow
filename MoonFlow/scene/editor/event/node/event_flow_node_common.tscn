@@ -83,9 +83,5 @@ theme = ExtResource("3_6gwyg")
 theme_override_constants/icon_max_width = 16
 icon = ExtResource("7_jdg8o")
 
-[node name="VBox_ExtraDisplay" parent="Content/Extra" index="0"]
-offset_top = 0.0
-offset_bottom = 0.0
-
 [connection signal="text_changed" from="Content/Display/HBox_Name/Line_NameEdit" to="." method="OnSetNameLineEdit"]
 [connection signal="pressed" from="Content/Metadata/Button_Metadata" to="." method="OnMetadataEditRequest"]
