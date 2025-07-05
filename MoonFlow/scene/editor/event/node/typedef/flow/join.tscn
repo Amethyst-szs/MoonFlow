@@ -6,4 +6,4 @@
 [node name="EventFlowNodeJoin" instance=ExtResource("1_y5j6f")]
 script = ExtResource("2_m16ol")
 DefaultPortOutColor = Color(0.690196, 0.768627, 0.870588, 1)
-PortColorList = []
+PortColorList = Array[Color]([])

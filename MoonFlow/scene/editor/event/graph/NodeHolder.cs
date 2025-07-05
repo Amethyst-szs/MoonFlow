@@ -25,7 +25,7 @@ public partial class NodeHolder : Node2D
 
 	public override void _UnhandledKeyInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("ui_graph_step_by_step_debug", false, true))
+		if (ProjectManager.IsProjectDebug() && @event.IsActionPressed("ui_graph_step_by_step_debug", false, true))
 			EmitSignal(SignalName.StepByStepDebugger);
 	}
 

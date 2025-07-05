@@ -9,7 +9,7 @@
 [node name="EventFlowNodeFork" instance=ExtResource("1_xyc7e")]
 script = ExtResource("2_t0ky5")
 DefaultPortOutColor = Color(0.690196, 0.768627, 0.870588, 1)
-PortColorList = []
+PortColorList = Array[Color]([])
 
 [node name="Content" parent="." index="0"]
 offset_right = 100.0
@@ -31,13 +31,6 @@ tooltip_text = "EVENT_FLOW_NODE_FORK_BUTTON_ADD_PORT_TOOLTIP"
 icon = ExtResource("5_rufyy")
 
 [node name="Params" parent="Content/Display" index="3"]
-visible = false
-
-[node name="Dropdown_Additional" parent="Content/Display" index="4"]
-visible = false
-text = ""
-
-[node name="ParamAdditionalOptions" parent="Content/Display" index="5"]
 visible = false
 
 [connection signal="pressed" from="Content/Display/HBox_Count/Button_Sub" to="." method="OnButtonPressedRemovePort"]
