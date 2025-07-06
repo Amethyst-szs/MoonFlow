@@ -57,6 +57,7 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 folded = true
 title = "EVENT_FLOW_NODE_FOLD_ADDITIONAL_PARAM"
+title_text_overrun_behavior = 3
 
 [node name="AdditionalParamList" type="VBoxContainer" parent="Content/Display/Fold_Additional" index="0"]
 visible = false
