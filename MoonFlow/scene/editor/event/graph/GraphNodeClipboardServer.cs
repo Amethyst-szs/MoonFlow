@@ -110,18 +110,19 @@ public static class GraphNodeClipboardServer
 
         CloneIntoClipboard(list);
 
+        // Select all newly pasted nodes
+        context.DeselectAllNodes();
+        foreach (var item in nodeEditors)
+            item.SetSelectedMulti();
+
+        // Return list of nodes that got pasted
         return nodeEditors;
     }
 
     public static async void Duplicate(IList<EventFlowNodeCommon> cNodes, GraphCanvas context)
     {
         Copy(cNodes);
-        var list = await Paste(context);
-
-        // Select all nodes in clipboard
-        context.DeselectAllNodes();
-        foreach (var item in list)
-            item.SetSelectedMulti();
+        await Paste(context);
     }
 
     private static void CloneIntoClipboard(IList<Node> cNodes)
