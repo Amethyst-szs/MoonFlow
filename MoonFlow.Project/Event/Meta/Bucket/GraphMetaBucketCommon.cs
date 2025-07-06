@@ -18,40 +18,57 @@ public class GraphMetaBucketCommon : IProjectFileFormatDataRoot
     [JsonInclude]
     public Dictionary<int, GraphMetaBucketNode> Nodes = [];
     [JsonInclude]
-    public Dictionary<string, GraphMetaBucketNode> EntryPoints = [];
+    public Dictionary<string, GraphMetaBucketEntryPoint> EntryPoints = [];
 
     [JsonInclude]
     public Dictionary<string, GraphMetaBucketBlock> Blocks = [];
 
-    #region Utility (Node)
+    #region Utility (Entry Points)
 
-    public GraphMetaBucketNode RenameNode(int oldId, int newId)
+    public GraphMetaBucketEntryPoint GetEntryPointByUid(string uid)
     {
-        if (!Nodes.TryGetValue(oldId, out GraphMetaBucketNode instance))
-        {
-            var n = new GraphMetaBucketNode();
-            Nodes.Add(newId, n);
-            return n;
-        }
-
-        Nodes.Remove(oldId);
-        Nodes.Add(newId, instance);
-
-        return instance;
+        if (uid == null)
+            return null;
+        
+        EntryPoints.TryGetValue(uid, out GraphMetaBucketEntryPoint data);
+        return data;
     }
-    public GraphMetaBucketNode RenameEntryPoint(string oldName, string newName)
+    public GraphMetaBucketEntryPoint GetEntryPointByName(string name)
     {
-        if (!EntryPoints.TryGetValue(oldName, out GraphMetaBucketNode instance))
+        foreach (var item in EntryPoints.Values)
         {
-            var n = new GraphMetaBucketNode();
-            EntryPoints.Add(newName, n);
-            return n;
+            if (item.Name == name)
+                return item;
         }
 
-        EntryPoints.Remove(oldName);
-        EntryPoints.Add(newName, instance);
+        // If name lookup failed, use name as uid to account for legacy mfgraph versions
+        var backup = GetEntryPointByUid(name);
+        if (backup != null)
+        {
+            // If a node was found that uses the legacy keying system, assign it a uid and update its properties
+            backup.TryAssignUid();
+            backup.Name = name;
 
-        return instance;
+            // And make sure to fix entry point key for this item
+            EntryPoints.Remove(name);
+            EntryPoints.Add(backup.Uid, backup);
+
+            return backup;
+        }
+
+        return null;
+    }
+
+    public GraphMetaBucketEntryPoint RenameEntryPoint(string uid, string newName)
+    {
+        // Attempt to lookup node by uid
+        if (EntryPoints.TryGetValue(uid, out GraphMetaBucketEntryPoint instance))
+        {
+            instance.Name = newName;
+            return instance;
+        }
+
+        return null;
     }
 
     #endregion

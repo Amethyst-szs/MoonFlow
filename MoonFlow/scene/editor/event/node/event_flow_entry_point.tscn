@@ -1,18 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdcam0c6j5qr2"]
+[gd_scene load_steps=8 format=3 uid="uid://cdcam0c6j5qr2"]
 
 [ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_em0m4"]
 [ext_resource type="Script" uid="uid://d3o0xdnijlueg" path="res://scene/editor/event/node/EventFlowEntryPoint.cs" id="2_0b7pp"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_7mblp"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="3_c4ybk"]
 [ext_resource type="Script" uid="uid://du00yf8ptmkni" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_245uo"]
+[ext_resource type="Texture2D" uid="uid://vou0i55ynvdu" path="res://asset/material/status/warn.svg" id="6_pnxp5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xu247"]
 font = ExtResource("3_7mblp")
 font_size = 18
 
-[node name="EventFlowEntryPoint" node_paths=PackedStringArray("NameEdit") instance=ExtResource("1_em0m4")]
+[node name="EventFlowEntryPoint" node_paths=PackedStringArray("NameEdit", "RectDuplicateKeyWarning", "RectEmptyKeyWarning") instance=ExtResource("1_em0m4")]
 script = ExtResource("2_0b7pp")
 NameEdit = NodePath("Content/Display/Line_Name")
+RectDuplicateKeyWarning = NodePath("Content/Display/HBox_Warnings/Rect_WarnDuplicate")
+RectEmptyKeyWarning = NodePath("Content/Display/HBox_Warnings/Rect_WarnEmpty")
 
 [node name="HBox_Name" parent="Content/Display" index="0"]
 visible = false
@@ -32,7 +35,31 @@ alignment = 1
 max_length = 128
 context_menu_enabled = false
 script = ExtResource("4_245uo")
-regex_string = "[A-Za-z0-9_]"
-is_return_if_empty = true
+regex_string = "[A-Za-z0-9-_]"
+
+[node name="HBox_Warnings" type="HBoxContainer" parent="Content/Display" index="3"]
+layout_mode = 2
+
+[node name="Rect_WarnDuplicate" type="TextureRect" parent="Content/Display/HBox_Warnings" index="0"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "EVENT_FLOW_ENTRY_POINT_WARNING_DUPLICATE_KEY"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+theme = ExtResource("3_c4ybk")
+texture = ExtResource("6_pnxp5")
+stretch_mode = 5
+
+[node name="Rect_WarnEmpty" type="TextureRect" parent="Content/Display/HBox_Warnings" index="1"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "EVENT_FLOW_ENTRY_POINT_WARNING_EMPTY_KEY"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+theme = ExtResource("3_c4ybk")
+texture = ExtResource("6_pnxp5")
+stretch_mode = 5
 
 [connection signal="text_validated" from="Content/Display/Line_Name" to="." method="OnEntryPointNameChanged"]

@@ -18,7 +18,7 @@ public partial class MfgraphResource() : Resource(), IGraphMetadataResource
     [Export]
     public Dictionary<int, string> Nodes = [];
     [Export]
-    public Array EntryPoints = [];
+    public Dictionary<string, string> EntryPoints = [];
 
     [Export]
     private byte[] RawData = [];
@@ -39,7 +39,7 @@ public partial class MfgraphResource() : Resource(), IGraphMetadataResource
             Nodes.Add(node.Key, node.Value.Comment);
 
         foreach (var enter in data.EntryPoints)
-            EntryPoints.Add(enter.Key);
+            EntryPoints.Add(enter.Value.Uid, enter.Value.Name);
     }
 
     public override void _ValidateProperty(Dictionary property)

@@ -46,7 +46,7 @@ public partial class EventFlowApp : AppScene
     // ~~~~~~~~~~~~~~~ Signals ~~~~~~~~~~~~~~~ //
 
     [Signal]
-    public delegate void EntryPointListModifiedEventHandler(string oldName, string name);
+    public delegate void EntryPointListModifiedEventHandler();
     [Signal]
     public delegate void FileOpenCompleteEventHandler();
 
@@ -89,6 +89,8 @@ public partial class EventFlowApp : AppScene
         // Destroy current contents of editor, if any exist
         GraphNodeHolder.QueueFreeAllChildren();
 
+        PrepareEntryPointMetadata();
+
         await InitNodeList();
         InitEntryPointNodes();
 
@@ -104,6 +106,34 @@ public partial class EventFlowApp : AppScene
 
         IsInitCompleted = true;
         EmitSignal(SignalName.FileOpenComplete);
+    }
+
+    private void PrepareEntryPointMetadata()
+    {
+        // Create missing entry point metadata keys
+        foreach (var entry in Graph.EntryPoints)
+        {
+            var pointMeta = Metadata.GetEntryPointByName(entry.Key);
+
+            // If the metadata has not registered this entry point, create an entry
+            if (pointMeta == null)
+            {
+                pointMeta = new GraphMetaBucketEntryPoint
+                {
+                    Name = entry.Key
+                };
+
+                pointMeta.TryAssignUid();
+                Metadata.EntryPoints.Add(pointMeta.Uid, pointMeta);
+            }
+        }
+
+        // Remove unused entry point metadata keys
+        foreach (var entry in Metadata.EntryPoints.Values)
+        {
+            if (!Graph.EntryPoints.ContainsKey(entry.Name))
+                Metadata.EntryPoints.Remove(entry.Uid);
+        }
     }
 
     private async Task InitNodeList()
@@ -129,7 +159,7 @@ public partial class EventFlowApp : AppScene
         foreach (var entry in Graph.EntryPoints)
             InitEntryPoint(entry);
 
-        EmitSignal(SignalName.EntryPointListModified, "", "");
+        EmitSignalEntryPointListModified();
     }
 
     private EventFlowNodeCommon InitNode(Nindot.Al.EventFlow.Node node, MethodInfo factory)
@@ -185,12 +215,25 @@ public partial class EventFlowApp : AppScene
         var entryEdit = SceneCreator<EventFlowEntryPoint>.Create();
         GraphNodeHolder.AddChild(entryEdit);
 
+        // Fetch metadata for node
+        var pointMeta = Metadata.GetEntryPointByName(entry.Key);
+
+        // If the lookup failed, create a new metadata entry for this entry point
+        if (pointMeta == null)
+        {
+            pointMeta = new GraphMetaBucketEntryPoint
+            {
+                Name = entry.Key
+            };
+
+            pointMeta.TryAssignUid();
+            Metadata.EntryPoints.Add(pointMeta.Uid, pointMeta);
+        }
+
+        entryEdit.SetupEntryPointMetadata(Metadata, pointMeta);
+
         // Init main content from event flow graph byml
         entryEdit.InitContent(entry.Key, Graph, target);
-
-        // Setup metadata access (Node position, comments, and other additional info)
-        Metadata.EntryPoints.TryGetValue(entry.Key, out GraphMetaBucketNode data);
-        entryEdit.InitContentMetadata(Metadata, data);
 
         return entryEdit;
     }
@@ -257,7 +300,7 @@ public partial class EventFlowApp : AppScene
         var pair = new KeyValuePair<string, Nindot.Al.EventFlow.Node>(name, connection?.Content);
         var entry = InitEntryPoint(pair);
 
-        EmitSignal(SignalName.EntryPointListModified, "", "");
+        EmitSignalEntryPointListModified();
 
         return entry;
     }

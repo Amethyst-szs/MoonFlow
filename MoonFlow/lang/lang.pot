@@ -2279,6 +2279,14 @@ msgstr ""
 msgid "EVENT_FLOW_ENTRY_POINT_NAME_PLACEHOLDER_TEXT"
 msgstr ""
 
+#: scene/editor/event/node/event_flow_entry_point.tscn
+msgid "EVENT_FLOW_ENTRY_POINT_WARNING_DUPLICATE_KEY"
+msgstr ""
+
+#: scene/editor/event/node/event_flow_entry_point.tscn
+msgid "EVENT_FLOW_ENTRY_POINT_WARNING_EMPTY_KEY"
+msgstr ""
+
 #: scene/editor/event/node/component/message_resolver_config.tscn
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
 msgstr ""
@@ -2541,6 +2549,10 @@ msgstr ""
 
 #: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/general.tscn
+msgid ""
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn

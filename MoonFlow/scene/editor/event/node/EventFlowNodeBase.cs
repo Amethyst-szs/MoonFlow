@@ -314,6 +314,9 @@ public partial class EventFlowNodeBase : Node2D
 	protected virtual void DrawDebugLabel() { }
 	protected static string AppendDebugLabel(string property, object value)
 	{
+		if (value == null)
+			return property + ": " + "null\n";
+		
 		return property + ": " + value.ToString() + "\n";
 	}
 

@@ -5,16 +5,29 @@ using System.Collections.Generic;
 using Nindot.Al.EventFlow;
 
 using MoonFlow.Project;
+using System.Linq;
 
 namespace MoonFlow.Scene.EditorEvent;
 
 [GlobalClass, SceneUid("uid://cdcam0c6j5qr2")]
 public partial class EventFlowEntryPoint : EventFlowNodeBase
 {
+	// ~~~~~~~~~~~ Node References ~~~~~~~~~~~ //
+
 	public EventFlowNodeCommon Connection;
+
+	// ~~~~~~~~~~~~~~~~~ Data ~~~~~~~~~~~~~~~~ //
+
+	public GraphMetaBucketEntryPoint MetadataEntryPoint { get; protected set; } = null;
+
+	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
 	[Export, ExportGroup("Internal References")]
 	private LineEdit NameEdit;
+	[Export]
+	private TextureRect RectDuplicateKeyWarning;
+	[Export]
+	private TextureRect RectEmptyKeyWarning;
 
 	#region Initilization
 
@@ -25,14 +38,22 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 
 	public override void InitContent(string entryName, Graph graph, EventFlowNodeCommon target)
 	{
+		// Ensure we have a metadata pointer before continuing
+		if (MetadataEntryPoint == null)
+			throw new NullReferenceException("InitContent called before SetupEntryPointMetadata, no reference to MetadataEntryPoint!");
+
 		Graph = graph;
-		Name = entryName;
+		Name = MetadataEntryPoint.Uid;
 
 		// Setup name and type headers
 		var labelType = GetNode<Label>("%Label_Type");
 		labelType.Text = Tr("EntryPoint", "EVENT_GRAPH_NODE_TYPE");
 
 		NameEdit.Text = entryName;
+
+		// Hide warnings
+		RectDuplicateKeyWarning.Hide();
+		RectEmptyKeyWarning.Hide();
 
 		// Setup default colors
 		var color = MetaDefaultColorLookupTable.Lookup(MetaCategoryTable.Categories.ENTRY_POINT);
@@ -60,15 +81,10 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		throw new NotImplementedException("Not compatible with EventFlowEntryPoint");
 	}
 
-	public override bool InitContentMetadata(GraphMetaBucketCommon holder, GraphMetaBucketNode data)
+	public void SetupEntryPointMetadata(GraphMetaBucketCommon holder, GraphMetaBucketEntryPoint data)
 	{
-		if (!base.InitContentMetadata(holder, data))
-		{
-			holder.EntryPoints.Add(Name, Metadata);
-			return false;
-		}
-
-		return true;
+		InitContentMetadata(holder, data);
+		MetadataEntryPoint = data;
 	}
 
 	#endregion
@@ -88,7 +104,7 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		// Add self to the new connection incoming list
 		Connection?.PortIn.AddIncoming(port);
 
-		Graph.EntryPoints[Name] = connection?.Parent.Content;
+		Graph.EntryPoints[MetadataEntryPoint.Name] = connection?.Parent.Content;
 		DrawDebugLabel();
 	}
 
@@ -102,17 +118,11 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		}
 
 		// Delete content and godot object
-		Graph.EntryPoints.Remove(Name);
-		Application.Metadata.EntryPoints.Remove(Name);
+		Graph.EntryPoints.Remove(MetadataEntryPoint.Name);
+		Application.Metadata.EntryPoints.Remove(MetadataEntryPoint.Uid);
 
-		// Loop through graph, removing self from jump nodes
-		foreach (var node in Application.GraphNodeHolder.GetChildren())
-		{
-			if (node is not EventFlowNodeEntryJump) continue;
-
-			var jump = (EventFlowNodeEntryJump)node;
-			jump.OnEntryPointDeleted(Name);
-		}
+		// Notify other nodes that the entry list has been modified
+		Application.EmitSignal(EventFlowApp.SignalName.EntryPointListModified);
 
 		SetNodeModified();
 		QueueFree();
@@ -122,25 +132,25 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 	{
 		SetNodeModified();
 
-		var oldName = Name;
+		bool isNewKeyDuplicate = Graph.EntryPoints.ContainsKey(txt);
+		bool isNewKeyEmpty = txt == string.Empty || txt == null;
 
-		if (Graph.EntryPoints.ContainsKey(txt))
-		{
-			var caret = NameEdit.CaretColumn;
-			NameEdit.Text = Name;
-			NameEdit.CaretColumn = caret;
+		RectDuplicateKeyWarning.Visible = isNewKeyDuplicate;
+		RectEmptyKeyWarning.Visible = isNewKeyEmpty;
+
+		if (isNewKeyDuplicate || isNewKeyEmpty)
 			return;
-		}
-
-		Graph.EntryPoints.Remove(Name);
+		
+		// Update backend graph
+		var oldName = MetadataEntryPoint.Name;
+		Graph.EntryPoints.Remove(oldName);
 		Graph.EntryPoints.Add(txt, Connection?.Content);
 
-		Metadata = Application.Metadata.RenameEntryPoint(Name, txt);
+		// Update metadata and other nodes
+		MetadataEntryPoint.Name = txt;
+		Application.EmitSignal(EventFlowApp.SignalName.EntryPointListModified);
 
-		Name = txt;
 		DrawDebugLabel();
-
-		Application.EmitSignal(EventFlowApp.SignalName.EntryPointListModified, oldName, Name);
 	}
 
 	#endregion
@@ -149,7 +159,7 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 
 	protected override void DrawDebugLabel()
 	{
-		if (DebugDataDisplay == null)
+		if (DebugDataDisplay == null || MetadataEntryPoint == null)
 			return;
 
 		string txt = "";
@@ -157,9 +167,11 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		txt += AppendDebugLabel(nameof(Type), GetType().Name);
 		txt += AppendDebugLabel(nameof(Position), Position);
 
-		txt += AppendDebugLabel(nameof(Name), Name);
+		txt += AppendDebugLabel(nameof(MetadataEntryPoint.Uid), MetadataEntryPoint.Uid);
+		txt += AppendDebugLabel("GNN: ", Name);
+		txt += AppendDebugLabel(nameof(MetadataEntryPoint.Name), MetadataEntryPoint.Name);
 
-		if (Graph.EntryPoints.TryGetValue(Name, out Nindot.Al.EventFlow.Node target) && target != null)
+		if (Graph.EntryPoints.TryGetValue(MetadataEntryPoint.Name, out Nindot.Al.EventFlow.Node target) && target != null)
 			txt += AppendDebugLabel("Target", target.Id);
 
 		DebugDataDisplay.Text = txt;

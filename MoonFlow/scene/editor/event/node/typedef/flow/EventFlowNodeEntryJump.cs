@@ -11,7 +11,8 @@ namespace MoonFlow.Scene.EditorEvent;
 
 public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 {
-	protected NodeJumpEntry NodeJump;
+	protected GraphMetaBucketEntryPoint Target = null;
+	protected NodeJumpEntry NodeJump = null;
 
 	[Export]
 	private OptionButton JumpList;
@@ -29,77 +30,81 @@ public partial class EventFlowNodeEntryJump : EventFlowNodeCommon
 		RootPanel.SelfModulate = color;
 		PortIn.Modulate = color;
 
-		// Connect to event from application
-		Application.Connect(EventFlowApp.SignalName.EntryPointListModified,
-			Callable.From(new Action<string, string>(OnEntryPointListModified)));
-		
-		// Assign default selection
-		SetupSelection();
-	}
+		// Get target uid from metadata
+		Target = Application.Metadata.GetEntryPointByName(NodeJump.JumpEntryName);
 
-	public void SetupSelection()
-	{
-		string n = NodeJump.JumpEntryName;
-		OnEntryPointListModified(n, n);
+		// Connect to event from application
+		Application.Connect(EventFlowApp.SignalName.EntryPointListModified, Callable.From(OnEntryPointListModified));
+
+		// Assign default selection
+		OnEntryPointListModified();
 	}
 
 	#region Signals
 
-	public void OnEntryPointDeleted(string name)
+	private void OnEntryPointListModified()
 	{
-		if (NodeJump.JumpEntryName != name)
-			return;
-
-		OnEntryPointListModified("", "");
-		SetNodeModified();
-	}
-
-	private void OnEntryPointListModified(string oldName, string name)
-	{
-		var oldIdx = JumpList.Selected;
-		var newIdx = -1;
-
 		// Regenerate dropdown menu contents
 		JumpList.Clear();
-		for (var i = 0; i < Graph.EntryPoints.Count; i++)
-		{
-			var point = Graph.EntryPoints.ElementAt(i).Key;
-			JumpList.AddItem(point);
+		foreach (var point in Application.Metadata.EntryPoints.Values)
+			JumpList.AddItem(point.Name);
 
-			if (point == name)
-				newIdx = i;
-		}
+		// Set dropdown menu selection
+		var targetIdx = Application.Metadata.EntryPoints.Values.ToList().IndexOf(Target);
+		JumpList.Select(targetIdx);
 
-		if (oldName == string.Empty && name == string.Empty)
-		{
-			JumpList.Selected = oldIdx;
-			OnEntryPointJumpTargetSelected(oldIdx);
-			return;
-		}
+		// Update internal selection
+		OnEntryPointJumpTargetSelected(targetIdx);
 
-		if (oldName == NodeJump.JumpEntryName && newIdx != -1)
-		{
-			JumpList.Selected = newIdx;
-			OnEntryPointJumpTargetSelected(newIdx);
-			return;
-		}
+		DrawDebugLabel();
 	}
 
 	private void OnEntryPointJumpTargetSelected(int idx)
 	{
-		if (idx >= Graph.EntryPoints.Count)
-			idx = Graph.EntryPoints.Count - 1;
-		
 		if (idx == -1)
 		{
+			Target = null;
 			NodeJump.JumpEntryName = "__NULL__";
+
 			SetNodeModified();
 			return;
 		}
 
-		var name = Graph.EntryPoints.Keys.ElementAt(idx);
-		NodeJump.JumpEntryName = name;
+		Target = Application.Metadata.EntryPoints.Values.ElementAt(idx);
+		if (Target != null)
+			NodeJump.JumpEntryName = Target.Name;
+
 		SetNodeModified();
+		DrawDebugLabel();
+	}
+
+	#endregion
+
+	#region Debug
+
+	protected override void DrawDebugLabel()
+	{
+		if (DebugDataDisplay == null)
+			return;
+
+		string txt = "";
+
+		txt += AppendDebugLabel(nameof(Type), GetType().Name);
+
+		if (Content != null)
+		{
+			txt += AppendDebugLabel(nameof(Content.Id), Content.Id) + '\n';
+			txt += AppendDebugLabel(nameof(Content.TypeBase), Content.TypeBase);
+			txt += AppendDebugLabel(nameof(Content.Name), Content.Name);
+			txt += AppendDebugLabel("C# Type", Content.GetType().Name);
+		}
+
+		txt += "\n";
+		txt += AppendDebugLabel("Target Uid", Target?.Uid);
+		txt += AppendDebugLabel("Target Name", Target?.Name);
+		txt += AppendDebugLabel("Internal Target Name", NodeJump?.JumpEntryName);
+
+		DebugDataDisplay.Text = txt;
 	}
 
 	#endregion
