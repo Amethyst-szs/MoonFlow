@@ -9,6 +9,7 @@
 auto_translate_mode = 1
 disable_3d = true
 transparent_bg = true
+oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(480, 145)
 visible = true
@@ -39,6 +40,7 @@ max_length = 48
 context_menu_enabled = false
 clear_button_enabled = true
 script = ExtResource("4_eadkk")
+regex_string = "[A-Za-z0-9-_]"
 
 [node name="Button_Submit" type="Button" parent="Content/VBox"]
 layout_mode = 2

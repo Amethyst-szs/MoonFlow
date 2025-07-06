@@ -15,6 +15,7 @@ font_color = Color(1, 1, 1, 0.807843)
 auto_translate_mode = 1
 disable_3d = true
 transparent_bg = true
+oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(480, 350)
 visible = true
@@ -54,6 +55,7 @@ unique_name_in_owner = true
 layout_mode = 2
 item_count = 3
 popup/item_0/text = "HOME_TAB_TEXT_SYSTEM"
+popup/item_0/id = 0
 popup/item_1/text = "HOME_TAB_TEXT_STAGE"
 popup/item_1/id = 1
 popup/item_2/text = "HOME_TAB_TEXT_LAYOUT"
@@ -76,6 +78,7 @@ max_length = 48
 context_menu_enabled = false
 clear_button_enabled = true
 script = ExtResource("4_nu1k6")
+regex_string = "[A-Za-z0-9-_]"
 
 [node name="Button_Submit" type="Button" parent="Content/VBox"]
 layout_mode = 2
