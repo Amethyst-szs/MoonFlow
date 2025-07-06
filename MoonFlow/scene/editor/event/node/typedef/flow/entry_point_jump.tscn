@@ -25,5 +25,6 @@ custom_minimum_size = Vector2(224, 0)
 layout_mode = 2
 theme = ExtResource("3_cr68a")
 alignment = 1
+fit_to_longest_item = false
 
 [connection signal="item_selected" from="Content/Display/Option_JumpTarget" to="." method="OnEntryPointJumpTargetSelected"]
