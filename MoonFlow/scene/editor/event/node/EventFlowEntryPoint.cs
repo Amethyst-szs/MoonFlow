@@ -168,7 +168,7 @@ public partial class EventFlowEntryPoint : EventFlowNodeBase
 		txt += AppendDebugLabel(nameof(Position), Position);
 
 		txt += AppendDebugLabel(nameof(MetadataEntryPoint.Uid), MetadataEntryPoint.Uid);
-		txt += AppendDebugLabel("GNN: ", Name);
+		txt += AppendDebugLabel("GNN", Name);
 		txt += AppendDebugLabel(nameof(MetadataEntryPoint.Name), MetadataEntryPoint.Name);
 
 		if (Graph.EntryPoints.TryGetValue(MetadataEntryPoint.Name, out Nindot.Al.EventFlow.Node target) && target != null)
