@@ -7,26 +7,6 @@ namespace Nindot.Tests;
 
 public static class PathUtility
 {
-    public static string GetDefaultPathSmo()
-    {
-        if (Instance == null) InstantiateData();
-
-        foreach (var field in Instance.GetType().GetFields())
-        {
-            if (!field.Name.StartsWith("SMO"))
-                continue;
-
-            var value = field.GetValue(Instance);
-            if (value is not string str || str == string.Empty)
-                continue;
-
-            return str;
-        }
-
-        Assert.Skip("No path provided for test requiring SMO romfs");
-        return null;
-    }
-
     public static string GetPathSmo100() { return GetPath("SMOv100"); }
     public static string GetPathSmo101() { return GetPath("SMOv101"); }
     public static string GetPathSmo110() { return GetPath("SMOv110"); }
@@ -52,14 +32,15 @@ public static class PathUtility
 
     private static string GetPath(string key)
     {
-        if (IsInvalidInstanceData)
+        if (Instance == null || IsInvalidInstanceData)
+            TryInstantiateData();
+        
+        // If the data is still invalid after the attempted instantiation, skip test
+        if (Instance == null || IsInvalidInstanceData)
         {
             Assert.Skip("No path provided for test requiring " + key);
             return null;
         }
-
-        if (Instance == null)
-            InstantiateData();
 
         var field = Instance.GetType()?.GetFields()?.ToList()?.Find(p => p.Name == key)
         ?? throw new Exception("Could not find requested field on data instance");
@@ -87,7 +68,7 @@ public static class PathUtility
         IgnoreReadOnlyFields = true,
     };
 
-    private static void InstantiateData()
+    private static void TryInstantiateData()
     {
         const string path = "../../../GamePaths.json";
 
