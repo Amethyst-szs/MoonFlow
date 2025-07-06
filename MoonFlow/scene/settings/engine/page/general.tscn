@@ -17,8 +17,7 @@ script/source = "extends OptionButton
 
 func _ready() -> void:
 	for item in list:
-		if item == \"en_CK\": add_item(\"Programmer-nese\")
-		else: add_item(TranslationServer.get_locale_name(item))
+		add_item(TranslationServer.get_locale_name(item))
 	
 	# Add additional spacing to bottom of dropdown
 	add_item(\"\", 10000)
