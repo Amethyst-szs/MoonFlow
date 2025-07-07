@@ -11,17 +11,19 @@
 [sub_resource type="LabelSettings" id="LabelSettings_2cob3"]
 font_size = 13
 
-[node name="ArchivePanel" type="PanelContainer" node_paths=PackedStringArray("LabelName")]
+[node name="ArchivePanel" type="PanelContainer" node_paths=PackedStringArray("LabelName", "PanelType")]
+self_modulate = Color(1, 0.24999999, 0.24999999, 1)
 custom_minimum_size = Vector2(128, 128)
 offset_right = 128.0
 offset_bottom = 128.0
 size_flags_horizontal = 3
 theme = ExtResource("1_i261c")
-theme_override_styles/panel = ExtResource("2_2cob3")
+theme_override_styles/panel = ExtResource("2_isv05")
 script = ExtResource("3_2cob3")
 StyleboxDefault = ExtResource("2_isv05")
 StyleboxSelected = ExtResource("2_2cob3")
 LabelName = NodePath("Content/Label_Name")
+PanelType = NodePath("TypeHolder/Type")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -51,6 +53,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Type" type="PanelContainer" parent="TypeHolder"]
+self_modulate = Color(1, 0.24999999, 0.24999999, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0

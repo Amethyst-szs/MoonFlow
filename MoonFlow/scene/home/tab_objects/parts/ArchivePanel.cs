@@ -6,6 +6,8 @@ namespace MoonFlow.Scene.Home;
 [SceneUid("uid://c6rv82608htru")]
 public partial class ArchivePanel : PanelContainer
 {
+    public string Archive { get; private set; } = null;
+
     [Export, ExportGroup("Custom Styleboxes")]
     private StyleBox StyleboxDefault;
     [Export]
@@ -13,6 +15,8 @@ public partial class ArchivePanel : PanelContainer
 
     [Export, ExportGroup("Internal References")]
     private Label LabelName = null;
+    [Export]
+    private PanelContainer PanelType = null;
 
     #region Initilization
 
@@ -20,8 +24,22 @@ public partial class ArchivePanel : PanelContainer
     {
         Deselect();
 
+        Archive = arc;
         Name = arc;
         LabelName.Set("label_text", arc);
+
+        UpdateColor();
+    }
+
+    public void UpdateColor()
+    {
+        float hue = 0.5f; // TODO: Fetch actual hue information, translate from 0-360 to 0-1
+
+        var color = SelfModulate;
+        color.H = hue;
+
+        SelfModulate = color;
+        PanelType.SelfModulate = color;
     }
 
     #endregion

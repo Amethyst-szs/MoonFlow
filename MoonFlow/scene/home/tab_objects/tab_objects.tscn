@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cvdgsq1ltxug2"]
+[gd_scene load_steps=29 format=3 uid="uid://cvdgsq1ltxug2"]
 
 [ext_resource type="Script" uid="uid://d2k8aq5sjh8o2" path="res://scene/home/tab_objects/TabObjects.cs" id="1_hlcu6"]
 [ext_resource type="Texture2D" uid="uid://cbn2fyulkjaa1" path="res://asset/material/file/search_small.svg" id="2_dolhv"]
@@ -8,11 +8,12 @@
 [ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="3_wr5m1"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="3_y772l"]
 [ext_resource type="PackedScene" uid="uid://kkrq88b8tbec" path="res://scene/home/tab_event/popup_event_base.tscn" id="4_vckeu"]
-[ext_resource type="PackedScene" uid="uid://c6rv82608htru" path="res://scene/home/tab_objects/parts/archive_panel.tscn" id="5_wr5m1"]
 [ext_resource type="Texture2D" uid="uid://0qfv1wl6bwps" path="res://asset/material/file/duplicate.svg" id="7_24abj"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="9_1hohr"]
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="10_fdvr5"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="11_5c0y3"]
+[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="11_dolhv"]
+[ext_resource type="Script" uid="uid://cu8104y1n81i" path="res://scene/home/tab_objects/footer/button_color.gd" id="12_wr5m1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w5j5u"]
 content_margin_left = 8.0
@@ -78,6 +79,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_y772l")
 script = ExtResource("1_hlcu6")
 FlowContent = NodePath("FileList/ContentScroll/Layout/Content")
 
@@ -130,46 +132,6 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 
-[node name="PanelContainer" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer2" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer3" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer4" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer5" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer6" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer7" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer8" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer9" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="PanelContainer10" parent="FileList/ContentScroll/Layout/Content" instance=ExtResource("5_wr5m1")]
-layout_mode = 2
-mouse_filter = 1
-
 [node name="Footer" type="PanelContainer" parent="FileList"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -220,9 +182,11 @@ icon = ExtResource("11_5c0y3")
 layout_mode = 2
 theme_override_constants/separation = 64
 
-[node name="Label" type="Label" parent="FileList/Footer/HBox"]
+[node name="Button_Color" type="MenuButton" parent="FileList/Footer/HBox"]
 layout_mode = 2
-text = "Modification options for selected files (icon, color, tags, ect.)"
+icon = ExtResource("11_dolhv")
+flat = false
+script = ExtResource("12_wr5m1")
 
 [node name="TabObjectFileAccessor" type="Node" parent="." node_paths=PackedStringArray("DeleteButton")]
 script = ExtResource("2_h3bsg")
