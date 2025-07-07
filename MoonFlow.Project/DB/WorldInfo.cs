@@ -27,8 +27,6 @@ public class WorldInfo()
     public WorldItemType WorldItemType;
     [YamlIgnore]
     public CollectCoinCountInfo CoinCollectInfo;
-    [YamlIgnore]
-    public Map2dHolder MapInfo;
 
     public static string GetWorldListPath(string root) { return root + "SystemData/WorldList.szs"; }
     public static string GetShineInfoPath(string root) { return root + "SystemData/ShineInfo.szs"; }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Godot;
 using Godot.Extension.Resources;
@@ -20,6 +21,10 @@ public class ProjectDatabaseHolder
     private readonly ProjectLanguageHolder MsbtArchives = null;
 
     public readonly List<WorldInfo> WorldList = null;
+
+    private SarcFile SarcMap2d = null;
+    private BfresResource ResourceMap2d = null;
+    private readonly Dictionary<WorldInfo, Map2dHolder> ListMap2d = [];
 
     private SarcFile ArchiveWorldList = null;
     private SarcFile ArchiveShineInfo = null;
@@ -85,11 +90,6 @@ public class ProjectDatabaseHolder
             world.CoinCollectInfo = info;
         }
 
-        // Load Map2d archive and matrix list
-        GD.Print("Opening Texture2dMap.szs");
-        loadScreen.LoadingUpdateProgress("LOAD_MAP_2D");
-        SetupAllMap2dHolders();
-
         return;
     }
 
@@ -116,34 +116,6 @@ public class ProjectDatabaseHolder
     {
         byte[] bytes = [.. ArchiveWorldList.Content[CollectCoinCountInfo.BymlPath]];
         return BymlFileAccess.ParseBytes<List<CollectCoinCountInfo>>(bytes);
-    }
-
-    private void SetupAllMap2dHolders()
-    {
-        // Fetch map archive from project or romfs accessor
-        string filePath = Path + Map2dHolder.ArchivePathSuffix;
-        SarcFile archive;
-
-        if (File.Exists(filePath))
-        {
-            archive = SarcFile.FromFilePath(filePath);
-        }
-        else
-        {
-            if (!RomfsAccessor.TryGetRomfsDirectory(out string romDir))
-                throw new Exception("RomfsAccessor could not return directory");
-
-            archive = SarcFile.FromFilePath(romDir + Map2dHolder.ArchivePathSuffix);
-        }
-
-        if (archive == null)
-            throw new NullReferenceException("Map archive is null!");
-
-        var bfres = BfresResource.FromSarcFile(archive);
-
-        // Create a new Map2d holder for each registered world
-        foreach (var world in WorldList)
-            world.MapInfo = new Map2dHolder(world, archive, bfres);
     }
 
     #endregion
@@ -209,7 +181,7 @@ public class ProjectDatabaseHolder
         int dotIdx = name.Find('.');
         if (dotIdx != -1)
             name = name[..dotIdx];
-        
+
         // Lookup stage name
         foreach (var world in WorldList)
         {
@@ -222,7 +194,7 @@ public class ProjectDatabaseHolder
 
     public WorldInfo GetWorldByName(string name)
     {
-        return WorldList.Find((w) => w.WorldName == name);;
+        return WorldList.Find((w) => w.WorldName == name); ;
     }
 
     public ShineInfo GetShineByUID(int uid)
@@ -277,6 +249,56 @@ public class ProjectDatabaseHolder
     public static void SortWorldStagesByType(List<StageInfo> list)
     {
         list.Sort((a, b) => a.CompareTo(b));
+    }
+
+    public async Task<Map2d> TryCreateOrGetMap2d(WorldInfo world, int scenario = -1)
+    {
+        // Ensure we have access to a Map2d resource file
+        if (ResourceMap2d == null)
+            if (!await Task.Run(TryCreateResourceMap2d))
+                return null;
+
+        // If map is already cached, return from dictionary
+        if (ListMap2d.TryGetValue(world, out Map2dHolder map))
+        {
+            if (scenario == -1)
+                return map.GetMap();
+            else
+                return map.GetMap(scenario);
+        }
+
+        // Create map using resource if not cached
+        map = new Map2dHolder(world, SarcMap2d, ResourceMap2d);
+        ListMap2d.Add(world, map);
+
+        if (scenario == -1)
+            return map.GetMap();
+        else
+            return map.GetMap(scenario);
+    }
+
+    private bool TryCreateResourceMap2d()
+    {
+        // Fetch map archive from project or romfs accessor
+        string filePath = Path + Map2dHolder.ArchivePathSuffix;
+
+        if (File.Exists(filePath))
+        {
+            SarcMap2d = SarcFile.FromFilePath(filePath);
+        }
+        else
+        {
+            if (!RomfsAccessor.TryGetRomfsDirectory(out string romDir))
+                throw new Exception("RomfsAccessor could not return directory");
+
+            SarcMap2d = SarcFile.FromFilePath(romDir + Map2dHolder.ArchivePathSuffix);
+        }
+
+        if (SarcMap2d == null)
+            throw new NullReferenceException("Map archive is null!");
+
+        ResourceMap2d = BfresResource.FromSarcFile(SarcMap2d);
+        return true;
     }
 
     #endregion

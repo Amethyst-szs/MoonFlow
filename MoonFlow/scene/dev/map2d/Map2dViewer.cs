@@ -4,6 +4,7 @@ using System;
 using MoonFlow.Project;
 using MoonFlow.Project.Database;
 using System.Numerics;
+using System.Threading.Tasks;
 
 namespace MoonFlow.Scene.Dev;
 
@@ -14,6 +15,8 @@ public partial class Map2dViewer : AppScene
 	private VBoxContainer ContainerMapList;
 	[Export]
 	private TextureRect TextureMap;
+	[Export]
+	private Label LabelLoadingMessage;
 
 	private WorldInfo World;
 	private int Scenario = -1;
@@ -23,6 +26,8 @@ public partial class Map2dViewer : AppScene
 
 	public override void _Ready()
 	{
+		LabelLoadingMessage.Hide();
+
 		// Generate world list
 		foreach (var world in ProjectManager.GetDB().WorldList)
 		{
@@ -37,12 +42,18 @@ public partial class Map2dViewer : AppScene
 		}
 	}
 
-	private void OnWorldPicked(WorldInfo world)
+	private async void OnWorldPicked(WorldInfo world)
 	{
 		World = world;
+
+		LabelLoadingMessage.Show();
+
+		var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(world, Scenario);
+		if (map == null)
+			throw new NullReferenceException("Could not get map!");
 		
-		var map = world.MapInfo.GetMap(Scenario);
 		TextureMap.Texture = ImageTexture.CreateFromImage(map.Texture);
+		LabelLoadingMessage.Hide();
 
 		foreach (var child in TextureMap.GetChildren())
 			child.QueueFree();

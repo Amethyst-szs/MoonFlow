@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5qgtdeu2mqtb"]
 
-[ext_resource type="Script" path="res://scene/dev/map2d/Map2dViewer.cs" id="1_ouuxb"]
+[ext_resource type="Script" uid="uid://b3kwrb00c41m5" path="res://scene/dev/map2d/Map2dViewer.cs" id="1_ouuxb"]
 [ext_resource type="Theme" uid="uid://crm1k2xsr1n4h" path="res://asset/theme/common/common_bit_flag_container.tres" id="2_xkyrl"]
-[ext_resource type="Script" path="res://scene/common/container/bit_flag_button_holder.gd" id="3_ma00o"]
+[ext_resource type="Script" uid="uid://dlwdmhejeb1cq" path="res://scene/common/container/bit_flag_button_holder.gd" id="3_ma00o"]
 
 [sub_resource type="GDScript" id="GDScript_jvejl"]
 script/source = "extends Label
@@ -11,7 +11,7 @@ func setup(value: float) -> void:
 	text = \"%.01f%%\" % value
 "
 
-[node name="Map2dViewer" type="Control" node_paths=PackedStringArray("ContainerMapList", "TextureMap")]
+[node name="Map2dViewer" type="Control" node_paths=PackedStringArray("ContainerMapList", "TextureMap", "LabelLoadingMessage")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_ouuxb")
 ContainerMapList = NodePath("Margin/MapList/Scroll_List/List")
 TextureMap = NodePath("MapHolder/Texture_Map")
+LabelLoadingMessage = NodePath("MapHolder/Label_Loading")
 AppName = "Map2dViewer"
 AppTaskbarTitle = "Debug Map2d"
 AppFlags = 35
@@ -49,6 +50,21 @@ grow_vertical = 2
 size_flags_horizontal = 3
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Label_Loading" type="Label" parent="MapHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING MAP2D ARCHIVE..."
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
