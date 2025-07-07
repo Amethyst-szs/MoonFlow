@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=35 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
@@ -35,6 +35,10 @@ action = &"ui_close_app"
 
 [sub_resource type="Shortcut" id="Shortcut_x3u1l"]
 events = [SubResource("InputEventAction_4qj2l")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bfc3n"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.5882353)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8ej3"]
 bg_color = Color(0.054902, 0.0745098, 0.105882, 1)
@@ -92,7 +96,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Header" type="PanelContainer" parent="Content" node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose", "FtpStatusIndicator")]
+[node name="Header" type="PanelContainer" parent="Content" node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose", "FtpStatusIndicator", "LabelVersion")]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
@@ -101,6 +105,7 @@ script = ExtResource("4_kq4x0")
 ButtonAppMinimize = NodePath("Content/Button_Mini")
 ButtonAppClose = NodePath("Content/Button_Close")
 FtpStatusIndicator = NodePath("Content/HBox_FTP")
+LabelVersion = NodePath("Content/Label_Version")
 
 [node name="Content" type="HBoxContainer" parent="Content/Header"]
 layout_mode = 2
@@ -230,6 +235,10 @@ layout_mode = 2
 tooltip_text = "MAIN_HEADER_CLOSE_CURRENT_APP"
 shortcut = SubResource("Shortcut_x3u1l")
 icon = ExtResource("8_nx1ih")
+
+[node name="Label_Version" type="Label" parent="Content/Header/Content"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_bfc3n")
 
 [node name="Apps" type="Control" parent="Content"]
 unique_name_in_owner = true
