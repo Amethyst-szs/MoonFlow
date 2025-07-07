@@ -46,6 +46,24 @@ run/main_run_args="-- --launchmode=default"
 
 enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/git_database/plugin.cfg", "res://addons/markdownlabel/plugin.cfg", "res://addons/mfgraph_resource/plugin.cfg", "res://addons/podb/plugin.cfg", "res://addons/wiki/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "pink",
+"res://asset/": "orange",
+"res://async/": "gray",
+"res://docs/": "yellow",
+"res://lang/": "yellow",
+"res://project/": "gray",
+"res://scene/": "blue",
+"res://scene/dev/": "gray",
+"res://scene/editor/": "purple",
+"res://scene/front_door/": "teal",
+"res://scene/home/": "teal",
+"res://scene/settings/": "teal",
+"res://scene/version/": "teal"
+}
+
 [gui]
 
 timers/tooltip_delay_sec=0.07
