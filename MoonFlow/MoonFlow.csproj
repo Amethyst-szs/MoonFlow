@@ -13,5 +13,6 @@
 
   <ItemGroup>
     <PackageReference Include="ByteSize" Version="2.1.2" />
+    <PackageReference Include="NaturalSort.Extension" Version="4.3.0" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6rv82608htru"]
+
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_i261c"]
+[ext_resource type="StyleBox" uid="uid://cd8nxm43ojeoq" path="res://asset/theme/home/stylebox/home_object_archive_panel_selected.tres" id="2_2cob3"]
+[ext_resource type="StyleBox" uid="uid://dok8bkorsw16i" path="res://asset/theme/home/stylebox/home_object_archive_panel.tres" id="2_isv05"]
+[ext_resource type="Script" uid="uid://bo8cm6gmjxm10" path="res://scene/home/tab_objects/parts/ArchivePanel.cs" id="3_2cob3"]
+[ext_resource type="Texture2D" uid="uid://bk2pfw1btay2y" path="res://asset/material/file/content.svg" id="3_isv05"]
+[ext_resource type="Script" uid="uid://tflthqjtn4ys" path="res://scene/home/tab_objects/parts/archive_label_name.gd" id="4_4qp4s"]
+[ext_resource type="StyleBox" uid="uid://b1nkur5n8hsaf" path="res://asset/theme/home/stylebox/home_object_archive_type_panel.tres" id="5_r72nk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2cob3"]
+font_size = 13
+
+[node name="ArchivePanel" type="PanelContainer" node_paths=PackedStringArray("LabelName")]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 128.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+theme = ExtResource("1_i261c")
+theme_override_styles/panel = ExtResource("2_2cob3")
+script = ExtResource("3_2cob3")
+StyleboxDefault = ExtResource("2_isv05")
+StyleboxSelected = ExtResource("2_2cob3")
+LabelName = NodePath("Content/Label_Name")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Texture_Icon" type="TextureRect" parent="Content"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_isv05")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label_Name" type="Label" parent="Content"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "​Cap​World​Home​Stage​Texture.szs"
+label_settings = SubResource("LabelSettings_2cob3")
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+script = ExtResource("4_4qp4s")
+label_text = "CapWorldHomeStageTexture.szs"
+
+[node name="TypeHolder" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Type" type="PanelContainer" parent="TypeHolder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("5_r72nk")
+
+[node name="Rect_Type" type="TextureRect" parent="TypeHolder/Type"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_isv05")
+expand_mode = 3
+stretch_mode = 5
+
+[connection signal="visibility_changed" from="Content/Label_Name" to="Content/Label_Name" method="_on_visibility_changed"]

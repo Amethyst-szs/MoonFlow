@@ -21,12 +21,12 @@ public partial class TabObjectFileAccessor : TabFileAccessorBase
     private void OnNewArchiveSubmenuFooterPressed() { throw new NotImplementedException(); }
     private void OnCommonFooterPressed(string actionName)
     {
-        if (Parent.SelectedArc == null)
-            return;
+        // if (Parent.SelectedArc == null)
+        //     return;
 
-        var archivePopup = GetNode<Popup>("Popup_" + actionName);
-        archivePopup.PopupCentered();
-        archivePopup.Call("init_data", Parent.SelectedArc);
+        // var archivePopup = GetNode<Popup>("Popup_" + actionName);
+        // archivePopup.PopupCentered();
+        // archivePopup.Call("init_data", Parent.SelectedArc);
         return;
     }
 
