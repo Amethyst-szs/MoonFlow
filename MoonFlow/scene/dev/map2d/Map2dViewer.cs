@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace MoonFlow.Scene.Dev;
 
-[ScenePath("res://scene/dev/map2d/map2d_viewer.tscn")]
+[SceneUid("uid://c5qgtdeu2mqtb")]
 public partial class Map2dViewer : AppScene
 {
 	[Export]
