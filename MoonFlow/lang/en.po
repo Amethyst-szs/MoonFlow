@@ -2361,6 +2361,10 @@ msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
 msgstr "Open Event Flow Graph Prototype"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
+msgstr "Open Map2d Prototype"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
 msgstr "Force C# Runtime Exception"
 
