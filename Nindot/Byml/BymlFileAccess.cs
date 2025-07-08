@@ -60,6 +60,10 @@ public class BymlFileAccess
 
         version = byml.Header.Version;
 
+        // Check to see if the byml file is completely empty
+        if (byml.Header.StringTableOffset == 0 && byml.Header.RootNodeOffset == 0)
+            return "";
+
         // Convert this byml to yaml string
         string yamlString = byml.ToYaml();
         return yamlString;
