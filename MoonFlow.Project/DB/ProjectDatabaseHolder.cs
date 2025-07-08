@@ -17,7 +17,7 @@ public class ProjectDatabaseHolder
 {
     #region Properties & Init
 
-    private readonly string Path = null;
+    internal readonly string Path = null;
     private readonly ProjectLanguageHolder MsbtArchives = null;
 
     public readonly List<WorldInfo> WorldList = null;

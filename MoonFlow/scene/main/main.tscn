@@ -190,7 +190,7 @@ script = ExtResource("8_gmnrm")
 [node name="Debug" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
 auto_translate_mode = 1
 size = Vector2i(590, 100)
-item_count = 10
+item_count = 11
 item_0/text = "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
 item_0/checkable = 1
 item_0/id = 1000
@@ -210,10 +210,12 @@ item_6/text = "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
 item_6/id = 13
 item_7/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
 item_7/id = 14
-item_8/id = 9999
-item_8/separator = true
-item_9/text = "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
-item_9/id = 2000
+item_8/text = "MAIN_ACTIONBAR_DEBUG_WRITE_CHECKPOINT_DB"
+item_8/id = 15
+item_9/id = 9999
+item_9/separator = true
+item_10/text = "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
+item_10/id = 2000
 script = ExtResource("6_jwfa5")
 
 [node name="Center" type="VSeparator" parent="Content/Header/Content"]
