@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctffpm166bteo"]
+
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_qiqeq"]
+[ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="2_xa8bk"]
+[ext_resource type="Script" uid="uid://cahwqu0i8a58v" path="res://scene/editor/world/map/TabMap.cs" id="2_xpiv1"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qiqeq"]
+size = Vector2(2048, 2048)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xpiv1"]
+font = ExtResource("2_qiqeq")
+font_size = 23
+font_color = Color(0, 0, 0, 1)
+outline_size = 14
+
+[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading")]
+self_modulate = Color(1, 1, 1, 0.5019608)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -504.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = SubResource("PlaceholderTexture2D_qiqeq")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("2_xpiv1")
+IconHolder = NodePath("IconHolder")
+LabelLoading = NodePath("Label_Load")
+TextureShine = ExtResource("2_xa8bk")
+
+[node name="Label_Load" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "WORLD_EDITOR_MAP_TAB_ARCHIVE_LOADING"
+label_settings = SubResource("LabelSettings_xpiv1")
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="IconHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="resized" from="." to="." method="OnMapSizeChanged"]

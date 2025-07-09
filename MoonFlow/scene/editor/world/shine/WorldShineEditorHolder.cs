@@ -49,6 +49,10 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 	[Signal]
 	public delegate void ContentModifiedEventHandler();
+	[Signal]
+	public delegate void ShineHoveredEventHandler(WorldShineEditorHolder shine);
+	[Signal]
+	public delegate void ShineUnhoveredEventHandler();
 
 	private static readonly Texture2D TextureIconAchievement = GD.Load<Texture2D>(
 		"res://asset/nindot/lms/icon/PictureFont_31.png"
@@ -169,6 +173,9 @@ public partial class WorldShineEditorHolder : PanelContainer
 
 		ButtonDropdown.Set("dropdown", Editor);
 	}
+
+	private void OnShineHovered() => EmitSignalShineHovered(this);
+	private void OnShineUnhovered() => EmitSignalShineUnhovered();
 
 	#endregion
 

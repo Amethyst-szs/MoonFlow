@@ -70,6 +70,7 @@ theme = ExtResource("4_j7oie")
 
 [node name="Layout" type="HBoxContainer" parent="Content"]
 layout_mode = 2
+size_flags_horizontal = 3
 script = SubResource("GDScript_nm0gn")
 
 [node name="Button_CreateDisplayName" type="Button" parent="Content/Layout"]
@@ -101,17 +102,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="Rich_Name" type="RichTextLabel" parent="Content/Layout/VBox_InfoDisplay"]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/normal_font = ExtResource("4_neh1k")
 theme_override_fonts/italics_font = SubResource("FontVariation_35sq1")
-theme_override_font_sizes/italics_font_size = 12
 theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/italics_font_size = 12
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
 
 [node name="Label_Stage" type="Label" parent="Content/Layout/VBox_InfoDisplay"]
 auto_translate_mode = 2
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "ABCDEF"
 label_settings = SubResource("LabelSettings_cx7u1")
@@ -179,7 +183,6 @@ text_overrun_behavior = 1
 [node name="Texture_Drag" type="TextureRect" parent="Content/Layout/HBox_IndexGrabber"]
 layout_mode = 2
 texture = ExtResource("14_2hsfn")
-expand_mode = 3
 stretch_mode = 5
 
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
@@ -193,6 +196,8 @@ dialog_autowrap = true
 cancel_button_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("14_h4xx8")
 
+[connection signal="mouse_entered" from="." to="." method="OnShineHovered"]
+[connection signal="mouse_exited" from="." to="." method="OnShineUnhovered"]
 [connection signal="pressed" from="Content/Layout/Button_CreateDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="toggled" from="Content/Layout/Check_Expand" to="." method="OnContentDropdownToggled"]

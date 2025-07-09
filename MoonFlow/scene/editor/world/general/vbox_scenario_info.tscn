@@ -32,6 +32,7 @@ mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_SCENARIO_COUNT"
 label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
+text_overrun_behavior = 4
 
 [node name="Label_WorldPeace" type="Label" parent="Content"]
 layout_mode = 2
@@ -42,6 +43,7 @@ mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE"
 label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
+text_overrun_behavior = 4
 
 [node name="Spin_Count" type="SpinBox" parent="Content"]
 layout_mode = 2
@@ -70,6 +72,7 @@ mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME"
 label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
+text_overrun_behavior = 4
 
 [node name="Label_MoonRock" type="Label" parent="Content"]
 layout_mode = 2
@@ -80,6 +83,7 @@ mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK"
 label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
+text_overrun_behavior = 4
 
 [node name="Spin_Postgame" type="SpinBox" parent="Content"]
 layout_mode = 2

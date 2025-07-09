@@ -25,13 +25,15 @@ public partial class WorldEditorApp : AppScene
 	[Export, ExportGroup("Internal References"), ExportSubgroup("Tabs")]
 	private Array<InfoBoxBase> InfoBoxList = [];
 	[Export]
+	private TabMap TabMap;
+	[Export]
 	private VBoxContainer VBoxStageList;
 	[Export]
 	private VBoxContainer VBoxShineList;
 	[Export]
 	private Label LabelNewStageError;
 
-	private WorldInfo World;
+	public WorldInfo World { get; private set; }
 	private bool IsRunningInit = false;
 
 	private string NewStageName = "";
@@ -70,6 +72,7 @@ public partial class WorldEditorApp : AppScene
 
 		SetupStageList();
 		SetupShineList();
+		TabMap.InitMap();
 
 		GetNode<OptionButton>("%Option_Type").Selected = (int)NewStageCategory;
 
@@ -126,6 +129,12 @@ public partial class WorldEditorApp : AppScene
 
 		scene.SetupShineEditor(World, shine, shineDisplay, World.ShineList.IndexOf(shine));
 		scene.Connect(WorldShineEditorHolder.SignalName.ContentModified, Callable.From(OnShineListModify));
+
+		var callHover = Callable.From(new Action<WorldShineEditorHolder>(TabMap.OnShineHovered));
+		var callUnhover = Callable.From(TabMap.OnShineUnhovered);
+
+		scene.Connect(WorldShineEditorHolder.SignalName.ShineHovered, callHover);
+		scene.Connect(WorldShineEditorHolder.SignalName.ShineUnhovered, callUnhover);
 	}
 
 	public override string GetUniqueIdentifier(string input)

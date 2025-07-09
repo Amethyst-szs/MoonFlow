@@ -50,6 +50,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
 label_settings = SubResource("LabelSettings_rf715")
+text_overrun_behavior = 4
 
 [node name="Label_Name" type="Label" parent="Grid_Name"]
 layout_mode = 2
@@ -59,6 +60,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_DISPLAY_NAME"
 label_settings = SubResource("LabelSettings_rf715")
+text_overrun_behavior = 4
 
 [node name="Line_Home" type="LineEdit" parent="Grid_Name"]
 layout_mode = 2
@@ -72,6 +74,7 @@ layout_mode = 2
 text = "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
 icon = ExtResource("1_f7kr0")
 alignment = 0
+text_overrun_behavior = 4
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
@@ -92,6 +95,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_SHINE_TYPE"
 label_settings = SubResource("LabelSettings_rf715")
+text_overrun_behavior = 4
 
 [node name="Label_CoinType" type="Label" parent="Grid_Collectable"]
 layout_mode = 2
@@ -101,13 +105,17 @@ mouse_filter = 0
 mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
 label_settings = SubResource("LabelSettings_rf715")
+text_overrun_behavior = 4
 
 [node name="Option_ShineType" type="OptionButton" parent="Grid_Collectable"]
 layout_mode = 2
+text_overrun_behavior = 4
 selected = 0
+fit_to_longest_item = false
 item_count = 12
 popup/item_0/text = "WORLD_EDITOR_SHINE_TYPE_0"
 popup/item_0/icon = ExtResource("2_cmkam")
+popup/item_0/id = 0
 popup/item_1/text = "WORLD_EDITOR_SHINE_TYPE_1"
 popup/item_1/icon = ExtResource("3_gqqq6")
 popup/item_1/id = 1
@@ -186,6 +194,7 @@ mouse_default_cursor_shape = 16
 text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT"
 label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
+text_overrun_behavior = 4
 
 [node name="Spin_CoinCount" type="SpinBox" parent="."]
 layout_mode = 2

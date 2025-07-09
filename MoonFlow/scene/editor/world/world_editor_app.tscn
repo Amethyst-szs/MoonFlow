@@ -1,19 +1,19 @@
-[gd_scene load_steps=34 format=3 uid="uid://7jgd1gt2u83b"]
+[gd_scene load_steps=32 format=3 uid="uid://7jgd1gt2u83b"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_h16wr"]
 [ext_resource type="Script" uid="uid://bix44pl7i5q1x" path="res://scene/editor/world/WorldEditorApp.cs" id="1_l606m"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_55xy6"]
 [ext_resource type="Texture2D" uid="uid://c0beoybdkplbi" path="res://asset/app/icon/world.png" id="2_bf7ob"]
 [ext_resource type="Resource" uid="uid://ohtd8ro6uvsm" path="res://addons/wiki/paths/world.tres" id="5_pcgds"]
-[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="5_vxfcb"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_n3qm4"]
+[ext_resource type="StyleBox" uid="uid://cj0xkb7u7fbc8" path="res://asset/theme/common/stylebox/common_panel_app_root_margin.tres" id="6_tf15c"]
+[ext_resource type="PackedScene" uid="uid://ctffpm166bteo" path="res://scene/editor/world/map/tab_map.tscn" id="8_tf15c"]
 [ext_resource type="Theme" uid="uid://haskx3ghiaxm" path="res://asset/theme/world/world_editor_stage_list.tres" id="9_vnnbu"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="10_rroum"]
 [ext_resource type="Script" uid="uid://nubygtcoc3hc" path="res://scene/editor/world/stage/OptionStageType.cs" id="11_1r58n"]
 [ext_resource type="StyleBox" uid="uid://binjmxbf7rse2" path="res://asset/theme/home/stylebox/home_tab_container_bar_background_panel.tres" id="11_tue22"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="11_ues1d"]
 [ext_resource type="Script" uid="uid://du00yf8ptmkni" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="11_yinda"]
-[ext_resource type="Texture2D" uid="uid://b7bvfas6fimcp" path="res://asset/nindot/lms/icon/PictureFont_41.png" id="12_1h4vj"]
 [ext_resource type="Texture2D" uid="uid://c46b3cvbfpybx" path="res://asset/nindot/lms/icon/PictureFont_30.png" id="12_658qh"]
 [ext_resource type="PackedScene" uid="uid://cw73bpafji461" path="res://scene/editor/world/general/tab_general.tscn" id="14_ffw54"]
 [ext_resource type="Texture2D" uid="uid://b8f671q3vp6v5" path="res://asset/nindot/lms/icon/PictureFont_7A.png" id="14_q33et"]
@@ -47,14 +47,6 @@ keycode = 50
 [sub_resource type="Shortcut" id="Shortcut_fkocf"]
 events = [SubResource("InputEventKey_qcbp3")]
 
-[sub_resource type="InputEventKey" id="InputEventKey_jutt1"]
-device = -1
-command_or_control_autoremap = true
-keycode = 51
-
-[sub_resource type="Shortcut" id="Shortcut_pp5g2"]
-events = [SubResource("InputEventKey_jutt1")]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_43fy8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k655i"]
@@ -65,7 +57,7 @@ events = [SubResource("InputEventKey_jutt1")]
 font_size = 15
 font_color = Color(1, 0.27, 0.27, 1)
 
-[node name="WorldEditor" type="Control" node_paths=PackedStringArray("LabelHeaderWorldName", "LabelHeaderInternalName", "InfoBoxList", "VBoxStageList", "VBoxShineList", "LabelNewStageError")]
+[node name="WorldEditor" type="Control" node_paths=PackedStringArray("LabelHeaderWorldName", "LabelHeaderInternalName", "InfoBoxList", "TabMap", "VBoxStageList", "VBoxShineList", "LabelNewStageError")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,12 +68,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_h16wr")
 script = ExtResource("1_l606m")
-LabelHeaderWorldName = NodePath("Panel/Margin/VBox_Primary/Header/Label_World")
-LabelHeaderInternalName = NodePath("Panel/Margin/VBox_Primary/Header/Label_Internal")
-InfoBoxList = [NodePath("Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_GENERAL/Content/VBox/VBox_Basic"), NodePath("Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_GENERAL/Content/VBox/VBox_Scenario")]
-VBoxStageList = NodePath("Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Scroll/StageList")
-VBoxShineList = NodePath("Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList")
-LabelNewStageError = NodePath("Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/Label_Error")
+LabelHeaderWorldName = NodePath("Panel/Layout/Header/Label_World")
+LabelHeaderInternalName = NodePath("Panel/Layout/Header/Label_Internal")
+InfoBoxList = [NodePath("Panel/Layout/HSplit/MapAndMisc/Content/Misc/VBox_Basic"), NodePath("Panel/Layout/HSplit/MapAndMisc/Content/Misc/VBox_Scenario")]
+TabMap = NodePath("Panel/Layout/HSplit/MapAndMisc/Content/Map")
+VBoxStageList = NodePath("Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Scroll/StageList")
+VBoxShineList = NodePath("Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList")
+LabelNewStageError = NodePath("Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/Label_Error")
 AppName = "WorldEditor"
 AppTaskbarTitle = "Kingdom"
 AppIcon = ExtResource("2_bf7ob")
@@ -97,49 +90,73 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("5_vxfcb")
+theme_override_styles/panel = ExtResource("6_tf15c")
 
-[node name="Margin" type="MarginContainer" parent="Panel"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 12
-
-[node name="VBox_Primary" type="VBoxContainer" parent="Panel/Margin"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="Header" type="HBoxContainer" parent="Panel/Margin/VBox_Primary"]
+[node name="Layout" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
 
-[node name="Label_World" type="Label" parent="Panel/Margin/VBox_Primary/Header"]
+[node name="Header" type="HBoxContainer" parent="Panel/Layout"]
+layout_mode = 2
+
+[node name="Label_World" type="Label" parent="Panel/Layout/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = SubResource("LabelSettings_62rrt")
 text_overrun_behavior = 3
 
-[node name="Label_Internal" type="Label" parent="Panel/Margin/VBox_Primary/Header"]
+[node name="Label_Internal" type="Label" parent="Panel/Layout/Header"]
 layout_mode = 2
 size_flags_horizontal = 8
 label_settings = SubResource("LabelSettings_bvojx")
 
-[node name="HSep" type="HSeparator" parent="Panel/Margin/VBox_Primary"]
+[node name="HSep" type="HSeparator" parent="Panel/Layout"]
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Panel_TabList" type="PanelContainer" parent="Panel/Margin/VBox_Primary"]
+[node name="HSplit" type="HSplitContainer" parent="Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 380
+
+[node name="MapAndMisc" type="ScrollContainer" parent="Panel/Layout/HSplit"]
+layout_mode = 2
+script = ExtResource("15_1ilnw")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
+metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
+
+[node name="Content" type="VBoxContainer" parent="Panel/Layout/HSplit/MapAndMisc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Map" parent="Panel/Layout/HSplit/MapAndMisc/Content" instance=ExtResource("8_tf15c")]
+layout_mode = 2
+size_flags_vertical = 0
+expand_mode = 4
+
+[node name="Misc" parent="Panel/Layout/HSplit/MapAndMisc/Content" instance=ExtResource("14_ffw54")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="Panel/Layout/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Panel_TabList" type="PanelContainer" parent="Panel/Layout/HSplit/Content"]
 layout_mode = 2
 theme = ExtResource("16_kjvln")
 theme_override_styles/panel = ExtResource("11_tue22")
 
-[node name="HBox" type="HBoxContainer" parent="Panel/Margin/VBox_Primary/Panel_TabList"]
+[node name="HBox" type="HBoxContainer" parent="Panel/Layout/HSplit/Content/Panel_TabList"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Button_TabShine" type="Button" parent="Panel/Margin/VBox_Primary/Panel_TabList/HBox" node_paths=PackedStringArray("target")]
+[node name="Button_TabShine" type="Button" parent="Panel/Layout/HSplit/Content/Panel_TabList/HBox" node_paths=PackedStringArray("target")]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -155,7 +172,7 @@ script = ExtResource("19_2lnn3")
 target = NodePath("../../../Content/WORLD_EDITOR_TAB_SHINE")
 is_default_page = true
 
-[node name="Button_TabStage" type="Button" parent="Panel/Margin/VBox_Primary/Panel_TabList/HBox" node_paths=PackedStringArray("target")]
+[node name="Button_TabStage" type="Button" parent="Panel/Layout/HSplit/Content/Panel_TabList/HBox" node_paths=PackedStringArray("target")]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -170,32 +187,17 @@ icon_alignment = 2
 script = ExtResource("19_2lnn3")
 target = NodePath("../../../Content/WORLD_EDITOR_TAB_STAGE")
 
-[node name="Button_TabGeneral" type="Button" parent="Panel/Margin/VBox_Primary/Panel_TabList/HBox" node_paths=PackedStringArray("target")]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-toggle_mode = true
-action_mode = 0
-shortcut = SubResource("Shortcut_pp5g2")
-text = "WORLD_EDITOR_TAB_GENERAL"
-icon = ExtResource("12_1h4vj")
-text_overrun_behavior = 1
-icon_alignment = 2
-script = ExtResource("19_2lnn3")
-target = NodePath("../../../Content/WORLD_EDITOR_TAB_GENERAL")
-
-[node name="Content" type="PanelContainer" parent="Panel/Margin/VBox_Primary"]
+[node name="Content" type="PanelContainer" parent="Panel/Layout/HSplit/Content"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("21_ojwgg")
 
-[node name="WORLD_EDITOR_TAB_SHINE" type="Control" parent="Panel/Margin/VBox_Primary/Content"]
+[node name="WORLD_EDITOR_TAB_SHINE" type="Control" parent="Panel/Layout/HSplit/Content/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Scroll" type="ScrollContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE"]
+[node name="Scroll" type="ScrollContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,24 +214,25 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="Content" type="VBoxContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Scroll"]
+[node name="Content" type="VBoxContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ShineList" type="VBoxContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content"]
+[node name="ShineList" type="VBoxContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="HSeparator" type="HSeparator" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content"]
+[node name="HSeparator" type="HSeparator" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 52
 theme_override_styles/separator = SubResource("StyleBoxEmpty_k655i")
 
-[node name="Footer" type="PanelContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE"]
+[node name="Footer" type="PanelContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -245,7 +248,7 @@ size_flags_horizontal = 8
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("10_rroum")
 
-[node name="Button_CreateNew" type="Button" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Footer"]
+[node name="Button_CreateNew" type="Button" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer"]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "WORLD_EDITOR_TAB_SHINE_CREATE_NEW_TOOLTIP"
@@ -254,13 +257,13 @@ text = "WORLD_EDITOR_TAB_SHINE_CREATE_NEW"
 icon = ExtResource("11_ues1d")
 icon_alignment = 2
 
-[node name="WORLD_EDITOR_TAB_STAGE" type="VBoxContainer" parent="Panel/Margin/VBox_Primary/Content"]
+[node name="WORLD_EDITOR_TAB_STAGE" type="VBoxContainer" parent="Panel/Layout/HSplit/Content/Content"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Scroll" type="ScrollContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE"]
+[node name="Scroll" type="ScrollContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -272,7 +275,7 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="StageList" type="VBoxContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Scroll"]
+[node name="StageList" type="VBoxContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Scroll"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -281,25 +284,25 @@ theme = ExtResource("9_vnnbu")
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Footer" type="PanelContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE"]
+[node name="Footer" type="PanelContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("10_rroum")
 
-[node name="VBox" type="VBoxContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer"]
+[node name="VBox" type="VBoxContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label_Error" type="Label" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox"]
+[node name="Label_Error" type="Label" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
 label_settings = SubResource("LabelSettings_eeely")
 
-[node name="HBox" type="HBoxContainer" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox"]
+[node name="HBox" type="HBoxContainer" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Line_New" type="LineEdit" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox"]
+[node name="Line_New" type="LineEdit" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "WORLD_EDITOR_LINE_EDIT_ADD_NEW_STAGE"
@@ -307,32 +310,24 @@ max_length = 64
 clear_button_enabled = true
 script = ExtResource("11_yinda")
 
-[node name="Option_Type" type="OptionButton" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox"]
+[node name="Option_Type" type="OptionButton" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
 script = ExtResource("11_1r58n")
 
-[node name="Button_Submit" type="Button" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox"]
+[node name="Button_Submit" type="Button" parent="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
 icon = ExtResource("11_ues1d")
 
-[node name="WORLD_EDITOR_TAB_GENERAL" type="VBoxContainer" parent="Panel/Margin/VBox_Primary/Content"]
-visible = false
-layout_mode = 2
+[connection signal="child_order_changed" from="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList" to="." method="OnShineListChildOrderChanged"]
+[connection signal="pressed" from="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="." method="OnAddNewShine"]
+[connection signal="pressed" from="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll" method="call_deferred" binds= ["scroll_to_bottom"]]
+[connection signal="text_submitted" from="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Line_New" to="." method="OnNewStageSubmitted" unbinds=1]
+[connection signal="text_validated" from="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Line_New" to="." method="OnNewStageNameChanged"]
+[connection signal="item_selected" from="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Option_Type" to="." method="OnNewStageCategoryChanged"]
+[connection signal="pressed" from="Panel/Layout/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Button_Submit" to="." method="OnNewStageSubmitted"]
 
-[node name="Content" parent="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_GENERAL" instance=ExtResource("14_ffw54")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[connection signal="child_order_changed" from="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList" to="." method="OnShineListChildOrderChanged"]
-[connection signal="pressed" from="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="." method="OnAddNewShine"]
-[connection signal="pressed" from="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_SHINE/Scroll" method="call_deferred" binds= ["scroll_to_bottom"]]
-[connection signal="text_submitted" from="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Line_New" to="." method="OnNewStageSubmitted" unbinds=1]
-[connection signal="text_validated" from="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Line_New" to="." method="OnNewStageNameChanged"]
-[connection signal="item_selected" from="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Option_Type" to="." method="OnNewStageCategoryChanged"]
-[connection signal="pressed" from="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_STAGE/Footer/VBox/HBox/Button_Submit" to="." method="OnNewStageSubmitted"]
-
-[editable path="Panel/Margin/VBox_Primary/Content/WORLD_EDITOR_TAB_GENERAL/Content"]
+[editable path="Panel/Layout/HSplit/MapAndMisc/Content/Misc"]

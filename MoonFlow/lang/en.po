@@ -3641,7 +3641,7 @@ msgstr "MyWorldHomeStage"
 
 #: scene/editor/world/general/vbox_basic_info.tscn
 msgid "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
-msgstr "Open Relevant MSBTs"
+msgstr "Open MSBTs"
 
 #: scene/editor/world/general/vbox_basic_info.tscn
 msgid "WORLD_EDITOR_HEADER_SHINE_TYPE_TOOLTIP"
