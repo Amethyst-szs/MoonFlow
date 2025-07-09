@@ -79,13 +79,18 @@ public partial class AsyncDisplay : Control
         FileWrite = 0xF46201FF,
         FTP = 0XF1B204FF,
 
+        // Update project info
         UpdateProjectLabelCache = 0x3A648EFF,
         UpdateProjectMsbp = 0x3A648FFF,
 
+        // Save files
         SaveMsbtArchives = 0xF46202FF,
         SaveMsbp = 0xF46203FF,
         SaveWorldArchives = 0xF46302FF,
         SaveEventFlowGraph = 0xF46303FF,
+
+        // Generate databases
+        GenerateCheckpointDb = 0x22BB22FF
     }
 
     private Label LabelTitleKey = null;

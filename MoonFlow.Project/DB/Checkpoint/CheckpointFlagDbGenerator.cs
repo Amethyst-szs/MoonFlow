@@ -11,10 +11,16 @@ namespace MoonFlow.Project.Database;
 
 public static class CheckpointFlagDbGenerator
 {
-    public static void Generate(ProjectDatabaseHolder db)
+    public static void Generate(ProjectDatabaseHolder db, Action<int, int> progressCallback)
     {
         // Create sarc to store all generated checkpoint files
         SarcLibrary.Sarc sarc = [];
+
+        // Calculate total number of steps
+        int curWorld = 0;
+        int totalWorld = db.WorldList.Count;
+
+        progressCallback.Invoke(curWorld, totalWorld);
 
         // Iterate through all worlds and scenarios
         foreach (var world in db.WorldList)
@@ -29,6 +35,10 @@ public static class CheckpointFlagDbGenerator
 
             // Once all scenarios are done we can clear the kingdom's cache to save memory
             ClearStageDataCache();
+
+            // Update end-user on progress
+            curWorld++;
+            progressCallback.Invoke(curWorld, totalWorld);
         }
 
         // Write to project's SystemData directory
