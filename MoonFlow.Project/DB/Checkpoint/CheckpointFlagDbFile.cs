@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
-
+using System.Reflection.Metadata;
 using Nindot;
 using Nindot.Al.StageData;
 using Nindot.Byml;
@@ -14,15 +14,14 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
     private readonly string HomeStage;
     private readonly int Scenario;
 
-    public CheckpointFlagDbFile(WorldInfo world, ReadOnlyStageData data, int scenario1Through15)
+    public CheckpointFlagDbFile(ProjectDatabaseHolder db, WorldInfo world, ReadOnlyStageData data, int scenario1Through15)
     {
         // Store init properties for later
         HomeStage = world.Name;
         Scenario = scenario1Through15;
 
-        Init(data);
+        Init(db, data);
     }
-
     [Obsolete("This cobnstructor has very bad performance due to needing to read from disk for every scenario.Please provide ReadOnlyStageData in constructor for better performance.")]
     public CheckpointFlagDbFile(ProjectDatabaseHolder db, WorldInfo world, int scenario1Through15)
     {
@@ -33,10 +32,10 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
         // Fetch stage data
         string path = GetHomeStageSarcPath(world, db.Path);
         ReadOnlyStageData data = ReadOnlyStageData.FromSarcFilePath(path);
-        Init(data);
+        Init(db, data);
     }
 
-    private void Init(ReadOnlyStageData data)
+    private void Init(ProjectDatabaseHolder db, ReadOnlyStageData data)
     {
         if (data.IsEmptyStageFile())
             return;
@@ -45,12 +44,32 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
             throw new Exception("Invalid scenario number: " + Scenario);
 
         StageScenario scenario = data.GetScenario(Scenario);
+
+        // Init all checkpoints in the main homestage
+        InitCheckpointsInStage(data);
+
+        // Get list of zones used in stage
+        if (!scenario.TryGetValue("ZoneList", out List<StageObject> zones) && zones == null)
+            zones = [];
+
+        foreach (var zoneObject in zones)
+        {
+            string zoneName = zoneObject.GetUnitConfigName();
+            var zoneData = CheckpointFlagDbGenerator.GetOrCacheStageData(db, zoneName);
+
+            InitCheckpointsInZone(zoneData, zoneObject);
+        }
+    }
+
+    private void InitCheckpointsInStage(ReadOnlyStageData data)
+    {
+        StageScenario scenario = data.GetScenario(Scenario);
+
         if (!scenario.TryGetValue("CheckPointList", out List<StageObject> list))
             return;
-
-        // Add an entry for every checkpoint in the list
+        
         foreach (var checkpoint in list)
-        {   
+        {
             // Ensure that the object in the list is an actual checkpoint flag object
             string unitName = checkpoint.GetUnitConfigName();
             string paramName = checkpoint.GetParameterConfigName();
@@ -59,6 +78,55 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
                 continue;
 
             var info = new CheckpointFlagInfo(checkpoint.GetId(), checkpoint.GetPosition());
+            Add(info);
+        }
+    }
+    private void InitCheckpointsInZone(ReadOnlyStageData zoneData, StageObject zoneObject)
+    {
+        StageScenario scenario = zoneData.GetScenario(Scenario);
+
+        if (!scenario.TryGetValue("CheckPointList", out List<StageObject> list))
+            return;
+        
+        // Generate rotation quaternion for zone
+        var zoneRot = zoneObject.GetRotate();
+        zoneRot.X = (float)(Math.PI / 180) * zoneRot.X;
+        zoneRot.Y = (float)(Math.PI / 180) * zoneRot.Y;
+        zoneRot.Z = (float)(Math.PI / 180) * zoneRot.Z;
+
+        var zoneQuat = Quaternion.CreateFromYawPitchRoll(zoneRot.Y, zoneRot.X, zoneRot.Z);
+
+        // Init all zone checkpoints
+        foreach (var checkpoint in list)
+        {
+            // Ensure that the object in the list is an actual checkpoint flag object
+            string unitName = checkpoint.GetUnitConfigName();
+            string paramName = checkpoint.GetParameterConfigName();
+
+            if (unitName != "CheckpointFlag" || paramName != "CheckpointFlag")
+                continue;
+
+            // Construct id in the weird and obtuse format the game uses
+            string id = string.Format("{0}({1}[{2}])",
+                checkpoint.GetId(),
+                zoneObject.GetUnitConfigName(),
+                zoneObject.GetId()
+            );
+
+            // Calculate checkpoint positiom from zone's position
+            var pivot = zoneObject.GetPosition();
+            var pos = checkpoint.GetPosition() + pivot;
+
+            // Get the direction vector from the pivot to the point
+            Vector3 dir = pos - pivot;
+
+            // Rotate the direction vector by the quaternion
+            dir = Vector3.Transform(dir, zoneQuat);
+
+            // Add the rotated direction vector to the pivot point
+            pos = pivot + dir;
+
+            var info = new CheckpointFlagInfo(id, pos);
             Add(info);
         }
     }
@@ -84,8 +152,12 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
 
     internal static string GetHomeStageSarcPath(WorldInfo world, string projectPath)
     {
+        return GetStageSarcPath(world.Name, projectPath);
+    }
+    internal static string GetStageSarcPath(string name, string projectPath)
+    {
         // Create stage file lookup name
-        string stageFile = world.Name + "Map.szs";
+        string stageFile = name + "Map.szs";
 
         string stagePath = projectPath + "StageData/" + stageFile;
 

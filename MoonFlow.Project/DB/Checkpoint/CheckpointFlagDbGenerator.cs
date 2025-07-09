@@ -19,23 +19,21 @@ public static class CheckpointFlagDbGenerator
         // Iterate through all worlds and scenarios
         foreach (var world in db.WorldList)
         {
-            Console.WriteLine("Loading " + world.Name);
-
-            string homeStagePath = CheckpointFlagDbFile.GetHomeStageSarcPath(world, db.Path);
-            ReadOnlyStageData homeStage = ReadOnlyStageData.FromSarcFilePath(homeStagePath);
-
-            Console.WriteLine(homeStagePath + "\n^ writing " + world.ScenarioNum, " scenarios");
+            var stage = GetOrCacheStageData(db, world.Name);
 
             for (int scenario = 1; scenario <= world.ScenarioNum; scenario++)
             {
-                var file = new CheckpointFlagDbFile(world, homeStage, scenario);
+                var file = new CheckpointFlagDbFile(db, world, stage, scenario);
                 file.WriteIntoSarc(sarc);
             }
+
+            // Once all scenarios are done we can clear the kingdom's cache to save memory
+            ClearStageDataCache();
         }
 
         // Write to project's SystemData directory
         string path = GetCheckpointDbPath(db.Path);
-        
+
         MemoryStream stream = new();
         sarc.Write(stream);
 
@@ -43,5 +41,33 @@ public static class CheckpointFlagDbGenerator
         File.WriteAllBytes(path, [.. result]);
     }
 
-    private static string GetCheckpointDbPath(string root) { return root + "SystemData/CheckpointFlagInfo.szs"; } 
+    #region Cache
+
+    private static readonly Dictionary<string, ReadOnlyStageData> StageDataCache = [];
+    internal static ReadOnlyStageData GetOrCacheStageData(ProjectDatabaseHolder db, string stageName)
+    {
+        if (StageDataCache.TryGetValue(stageName, out ReadOnlyStageData cache))
+            return cache;
+
+        Console.WriteLine("Caching StageData for " + stageName);
+
+        string path = CheckpointFlagDbFile.GetStageSarcPath(stageName, db.Path);
+        ReadOnlyStageData stage = ReadOnlyStageData.FromSarcFilePath(path);
+
+        StageDataCache.Add(stageName, stage);
+
+        return stage;
+    }
+    internal static void ClearStageDataCache()
+    {
+        StageDataCache.Clear();
+    }
+
+    #endregion
+
+    #region Utility
+
+    private static string GetCheckpointDbPath(string root) { return root + "SystemData/CheckpointFlagInfo.szs"; }
+    
+    #endregion
 }
