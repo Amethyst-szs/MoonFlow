@@ -3363,8 +3363,8 @@ msgid "HelpSupport"
 msgstr ""
 "This project is not for profit, is not affiliated with\n"
 "Nintendo, and does not encourage or distribute any\n"
-"pirated content owned by Nintendo. If you want to donate\n"
-"to show appreciation, only do it if you really want to!"
+"pirated content owned by Nintendo. Only donate if\n"
+"you really want to!"
 
 #: scene/editor/event/block/event_block_panel.tscn
 msgid "EVENT_GRAPH_EDITOR_BLOCK_PANEL_HEADER_TOOLTIP"
