@@ -1616,7 +1616,17 @@ msgid "Success"
 msgstr ""
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "Success"
+msgstr ""
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileRead"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
 msgid "FileRead"
 msgstr ""
 
@@ -1626,7 +1636,17 @@ msgid "FileWrite"
 msgstr ""
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FileWrite"
+msgstr ""
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FTP"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
 msgid "FTP"
 msgstr ""
 
@@ -1636,7 +1656,17 @@ msgid "UpdateProjectLabelCache"
 msgstr ""
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "UpdateProjectLabelCache"
+msgstr ""
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectMsbp"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
 msgid "UpdateProjectMsbp"
 msgstr ""
 
@@ -1646,7 +1676,17 @@ msgid "SaveMsbtArchives"
 msgstr ""
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveMsbtArchives"
+msgstr ""
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbp"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
 msgid "SaveMsbp"
 msgstr ""
 
@@ -1656,8 +1696,28 @@ msgid "SaveWorldArchives"
 msgstr ""
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveWorldArchives"
+msgstr ""
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveEventFlowGraph"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveEventFlowGraph"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "GenerateCheckpointDb"
+msgstr ""
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "GenerateCheckpointDb"
 msgstr ""
 
 #: scene/editor/event/node/node_type_name_text.tres
@@ -2349,6 +2409,14 @@ msgstr ""
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
+msgstr ""
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DATABASES_CHECKPOINT_FLAG"
 msgstr ""
 
 #: scene/main/main.tscn

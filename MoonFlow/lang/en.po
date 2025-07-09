@@ -1565,9 +1565,19 @@ msgid "Success"
 msgstr "Success!"
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "Success"
+msgstr ":D"
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "FileRead"
 msgstr "Reading File..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FileRead"
+msgstr "Just a moment..."
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
@@ -1575,9 +1585,19 @@ msgid "FileWrite"
 msgstr "Writing File..."
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FileWrite"
+msgstr "Just a moment..."
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "FTP"
 msgstr "Transferring Files..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FTP"
+msgstr "Keep the FTP server online!"
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
@@ -1585,9 +1605,19 @@ msgid "UpdateProjectLabelCache"
 msgstr "Updating Label Cache..."
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "UpdateProjectLabelCache"
+msgstr "Studying your text files, just a sec!"
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "UpdateProjectMsbp"
 msgstr "Updating MSBP Database..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "UpdateProjectMsbp"
+msgstr "Making sure new text files are registered..."
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
@@ -1595,9 +1625,19 @@ msgid "SaveMsbtArchives"
 msgstr "Saving MSBT Archives..."
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveMsbtArchives"
+msgstr "Updating language archives..."
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveMsbp"
 msgstr "Saving MSBP..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveMsbp"
+msgstr "Making sure all the metadata is in place..."
 
 #: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
@@ -1605,9 +1645,29 @@ msgid "SaveWorldArchives"
 msgstr "Saving World Info..."
 
 #: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveWorldArchives"
+msgstr "Making sure all databases are good to go..."
+
+#: async/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY"
 msgid "SaveEventFlowGraph"
 msgstr "Saving Event Graph..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveEventFlowGraph"
+msgstr "Connecting all the nodes..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "GenerateCheckpointDb"
+msgstr "Generating CheckpointFlagInfo..."
+
+#: async/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "GenerateCheckpointDb"
+msgstr "This may take a minute or two..."
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
@@ -2311,6 +2371,14 @@ msgstr "Close Project"
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
 msgstr "Clone Project into Another Project"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
+msgstr "System Data"
+
+#: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DATABASES_CHECKPOINT_FLAG"
+msgstr "Update CheckpointFlagInfo"
 
 #: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"

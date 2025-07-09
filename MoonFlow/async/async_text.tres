@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_j5b2e")
 context = "ASYNC_TASK_DISPLAY"
-keys = Array[String](["Success", "FileRead", "FileWrite", "FTP", "UpdateProjectLabelCache", "UpdateProjectMsbp", "SaveMsbtArchives", "SaveMsbp", "SaveWorldArchives", "SaveEventFlowGraph"])
+keys = Array[String](["Success", "FileRead", "FileWrite", "FTP", "UpdateProjectLabelCache", "UpdateProjectMsbp", "SaveMsbtArchives", "SaveMsbp", "SaveWorldArchives", "SaveEventFlowGraph", "GenerateCheckpointDb"])
+create_multiple_contexts = true
+additional_contexts = ["ASYNC_TASK_DISPLAY_DESCRIPTION"]
