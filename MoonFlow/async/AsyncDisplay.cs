@@ -9,68 +9,7 @@ namespace MoonFlow.Async;
 [GlobalClass, SceneUid("uid://iqyjx7fu40nl")]
 public partial class AsyncDisplay : Control
 {
-    // ====================================================== //
-    // =================== Task Utilities =================== //
-    // ====================================================== //
-
-    public void UpdateProgress(int step, int target)
-    {
-        LabelProgress.SetDeferred(Label.PropertyName.Text, step + " / " + target);
-        LabelProgress.CallDeferred(Label.MethodName.Show);
-
-        ProgressBar.SetDeferred(ProgressBar.PropertyName.Value, step);
-        ProgressBar.SetDeferred(ProgressBar.PropertyName.MaxValue, target);
-    }
-
-    // ====================================================== //
-    // ===================== Task Events ==================== //
-    // ====================================================== //
-
-    [Signal]
-    public delegate void TaskEndedEventHandler();
-    [Signal]
-    public delegate void TaskSuccessfulEventHandler();
-    [Signal]
-    public delegate void TaskExceptionEventHandler();
-
-    public Exception Exception = null;
-
-    public async void OnTaskSuccessful()
-    {
-        LabelProgress.SetDeferred(Label.PropertyName.Text, "Success");
-
-        await Task.Delay(1800);
-
-        EmitSignal(SignalName.TaskSuccessful);
-        OnTaskFinished();
-    }
-
-    public async void OnTaskException()
-    {
-        SetDeferred(PropertyName.SelfModulate, new Color(0xFF0000FF));
-        GetNode<Label>("%Label_Exception").CallDeferred(Label.MethodName.Show);
-
-        await Task.Delay(4000);
-
-        EmitSignal(SignalName.TaskException);
-        OnTaskFinished();
-    }
-
-    private async void OnTaskFinished()
-    {
-        await Extension.WaitProcessFrame(this);
-
-        var tween = CreateTween().SetTrans(Tween.TransitionType.Cubic);
-        tween.TweenProperty(this, "modulate", new Color(0), 0.75);
-        await ToSignal(tween, Tween.SignalName.Finished);
-
-        EmitSignal(SignalName.TaskEnded);
-        QueueFree();
-    }
-
-    // ====================================================== //
-    // ==================== Initilization =================== //
-    // ====================================================== //
+    #region Types
 
     public enum Type : uint
     {
@@ -93,16 +32,20 @@ public partial class AsyncDisplay : Control
         GenerateCheckpointDb = 0x22BB22FF
     }
 
-    private Label LabelTitleKey = null;
-    private Label LabelProgress = null;
-    private ProgressBar ProgressBar = null;
+    #endregion
 
-    public override void _Ready()
-    {
-        LabelTitleKey = GetNode<Label>("%Label_Title");
-        LabelProgress = GetNode<Label>("%Label_Progress");
-        ProgressBar = GetNode<ProgressBar>("ProgressBar");
-    }
+    #region Init
+
+    [Export, ExportGroup("Internal References")]
+    private Label LabelTitleKey = null;
+    [Export]
+    private Label LabelDescKey = null;
+    [Export]
+    private Label LabelProgress = null;
+    [Export]
+    private Label LabelException = null;
+    [Export]
+    private ProgressBar ProgressBar = null;
 
     public static AsyncDisplay Instantiate(Type type)
     {
@@ -118,6 +61,71 @@ public partial class AsyncDisplay : Control
     public void Setup(Type type)
     {
         LabelTitleKey.Text = Tr(Enum.GetName(type), "ASYNC_TASK_DISPLAY");
+        LabelDescKey.Text = Tr(Enum.GetName(type), "ASYNC_TASK_DISPLAY_DESCRIPTION");
         SelfModulate = new Color((uint)type);
     }
+
+    #endregion
+
+    #region Task Process
+
+    public void UpdateProgress(int step, int target)
+    {
+        LabelProgress.SetDeferred(Label.PropertyName.Text, step + " / " + target);
+        LabelProgress.CallDeferred(Label.MethodName.Show);
+
+        ProgressBar.SetDeferred(ProgressBar.PropertyName.Value, step);
+        ProgressBar.SetDeferred(ProgressBar.PropertyName.MaxValue, target);
+    }
+
+    [Signal]
+    public delegate void TaskEndedEventHandler();
+    [Signal]
+    public delegate void TaskSuccessfulEventHandler();
+    [Signal]
+    public delegate void TaskExceptionEventHandler();
+
+    public Exception Exception = null;
+
+    public async void OnTaskSuccessful()
+    {
+        ProgressBar.SetDeferred(ProgressBar.PropertyName.Value, 1);
+        ProgressBar.SetDeferred(ProgressBar.PropertyName.MaxValue, 1);
+
+        LabelProgress.CallDeferred(Label.MethodName.Hide);
+        LabelDescKey.SetDeferred(Label.PropertyName.Text, Tr("Success", "ASYNC_TASK_DISPLAY"));
+
+        await Task.Delay(1800);
+
+        EmitSignal(SignalName.TaskSuccessful);
+        OnTaskFinished();
+    }
+
+    public async void OnTaskException()
+    {
+        SetDeferred(PropertyName.SelfModulate, new Color(0xFF0000FF));
+        LabelDescKey.CallDeferred(Label.MethodName.Hide);
+        LabelProgress.CallDeferred(Label.MethodName.Hide);
+
+        LabelException.CallDeferred(Label.MethodName.Show);
+
+        await Task.Delay(4000);
+
+        EmitSignal(SignalName.TaskException);
+        OnTaskFinished();
+    }
+
+    private async void OnTaskFinished()
+    {
+        await Extension.WaitProcessFrame(this);
+
+        var tween = CreateTween().SetTrans(Tween.TransitionType.Cubic);
+        tween.TweenProperty(this, "modulate", new Color(0), 0.75);
+        await ToSignal(tween, Tween.SignalName.Finished);
+
+        EmitSignal(SignalName.TaskEnded);
+        QueueFree();
+    }
+
+    #endregion
 }

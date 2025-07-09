@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://iqyjx7fu40nl"]
+[gd_scene load_steps=11 format=3 uid="uid://iqyjx7fu40nl"]
 
 [ext_resource type="Script" uid="uid://cul1qixdpqm3l" path="res://async/AsyncDisplay.cs" id="1_7xgbo"]
 [ext_resource type="Theme" uid="uid://bi124pyc35ecm" path="res://asset/theme/async/async.tres" id="1_wl5ln"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_52u1o"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="3_l26iq"]
+[ext_resource type="FontFile" uid="uid://baym28jc275tl" path="res://asset/font/FontHead.ttf" id="4_1v2qt"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e6hq7"]
 blend_mode = 1
@@ -15,17 +16,25 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_eyguj"]
-font = ExtResource("3_l26iq")
+font = ExtResource("4_1v2qt")
 font_size = 14
-font_color = Color(1, 1, 1, 0.619608)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1v2qt"]
+font = ExtResource("3_l26iq")
+font_size = 11
+font_color = Color(1, 1, 1, 0.8235294)
+outline_size = 6
+outline_color = Color(0, 0, 0, 0.8235294)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m58i0"]
 font = ExtResource("3_52u1o")
 font_size = 14
 font_color = Color(1, 0.68, 0.68, 1)
 
-[node name="AsyncDisplay" type="PanelContainer"]
-custom_minimum_size = Vector2(180, 48)
+[node name="AsyncDisplay" type="PanelContainer" node_paths=PackedStringArray("LabelTitleKey", "LabelDescKey", "LabelProgress", "LabelException", "ProgressBar")]
+custom_minimum_size = Vector2(260, 48)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -35,43 +44,46 @@ offset_left = -180.0
 offset_top = -66.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 theme = ExtResource("1_wl5ln")
 script = ExtResource("1_7xgbo")
+LabelTitleKey = NodePath("Content/Label_Title")
+LabelDescKey = NodePath("Content/Label_Desc")
+LabelProgress = NodePath("Content/Label_Progress")
+LabelException = NodePath("Content/Label_Exception")
+ProgressBar = NodePath("ProgressBar")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 material = SubResource("CanvasItemMaterial_e6hq7")
 layout_mode = 2
 size_flags_vertical = 1
-fill_mode = 3
+mouse_filter = 2
 show_percentage = false
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 12
+mouse_filter = 2
 
-[node name="Content" type="VBoxContainer" parent="Margin"]
+[node name="Label_Title" type="Label" parent="Content"]
+custom_minimum_size = Vector2(141.65, 0)
 layout_mode = 2
-
-[node name="Label_Title" type="Label" parent="Margin/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_c8051")
-horizontal_alignment = 2
+horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="Label_Progress" type="Label" parent="Margin/Content"]
-unique_name_in_owner = true
-visible = false
+[node name="Label_Progress" type="Label" parent="Content"]
 layout_mode = 2
-size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_eyguj")
 horizontal_alignment = 1
 
-[node name="Label_Exception" type="Label" parent="Margin/Content"]
-unique_name_in_owner = true
+[node name="Label_Desc" type="Label" parent="Content"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_1v2qt")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_Exception" type="Label" parent="Content"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
