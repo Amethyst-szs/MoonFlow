@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - stable
+    - dev
   pull_request:
   workflow_dispatch:
 
