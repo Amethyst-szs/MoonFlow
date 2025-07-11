@@ -19,7 +19,7 @@ public static class Map2dRenderUtility
         return ImageTexture.CreateFromImage(map.Texture);
     }
 
-    public static void PositionMapIcon(TabMap ctx, Map2d map, TextureRect icon, System.Numerics.Vector3 worldPos)
+    public static void PositionMapIcon(TabMap ctx, Map2d map, MapIcon icon, System.Numerics.Vector3 worldPos)
     {
         var mapSize = new System.Numerics.Vector2(ctx.Size.X, ctx.Size.Y);
         var m = map.CalcMapTrans(worldPos, mapSize);

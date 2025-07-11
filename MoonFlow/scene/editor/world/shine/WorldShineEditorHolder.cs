@@ -23,7 +23,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 	private RichTextLabel LabelShineName;
 	[Export]
 	private Label LabelStageName;
-	
+
 	[Export, ExportSubgroup("Icon Displays")]
 	private TextureRect IconType;
 	[Export]
@@ -124,7 +124,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 	{
 		var file = Shine.StageName + ".msbt";
 		var label = "ScenarioName_" + Shine.ObjId;
-		
+
 		_ = AppSceneServer.CreateOrOpenShineNameMsbt(file, label);
 	}
 
@@ -162,7 +162,7 @@ public partial class WorldShineEditorHolder : PanelContainer
 	{
 		if (Editor != null || !isOpen)
 			return;
-		
+
 		Editor = DropdownContentScene.Instantiate<WorldShineEditor>();
 		Editor.InitEditor(World, Shine);
 
@@ -174,8 +174,16 @@ public partial class WorldShineEditorHolder : PanelContainer
 		ButtonDropdown.Set("dropdown", Editor);
 	}
 
-	private void OnShineHovered() => EmitSignalShineHovered(this);
-	private void OnShineUnhovered() => EmitSignalShineUnhovered();
+	private void OnShineHovered()
+	{
+		TweenPanelColor(new Color(0x291000FF));
+		EmitSignalShineHovered(this);
+	}
+	private void OnShineUnhovered()
+	{
+		TweenPanelColor(new Color(0x13191cFF));
+		EmitSignalShineUnhovered();
+	}
 
 	#endregion
 
@@ -217,6 +225,12 @@ public partial class WorldShineEditorHolder : PanelContainer
 	public void UpdateShineUniqueness()
 	{
 		Editor?.UpdateUniquenessWarnings();
+	}
+
+	private void TweenPanelColor(Color color)
+	{
+		var tween = CreateTween().SetTrans(Tween.TransitionType.Cubic);
+		tween.TweenProperty(this, "self_modulate", color, 0.1);
 	}
 
 	#endregion

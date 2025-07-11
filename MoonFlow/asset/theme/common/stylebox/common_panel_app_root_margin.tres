@@ -2,7 +2,7 @@
 
 [resource]
 content_margin_left = 12.0
-content_margin_top = 8.0
+content_margin_top = 14.0
 content_margin_right = 12.0
 content_margin_bottom = 0.0
 bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)

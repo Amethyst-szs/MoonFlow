@@ -258,6 +258,7 @@ pseudolocalization/override=true
 2d_physics/layer_2="GraphNode"
 2d_physics/layer_3="GraphPortIn"
 2d_physics/layer_4="GraphPortOutGrabbed"
+2d_physics/layer_5="WorldShineEditor"
 
 [moonflow]
 

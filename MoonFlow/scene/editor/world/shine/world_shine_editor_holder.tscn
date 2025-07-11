@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctp1ncef3xift"]
+[gd_scene load_steps=25 format=3 uid="uid://ctp1ncef3xift"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
-[ext_resource type="StyleBox" uid="uid://bx0ltvemuw3qy" path="res://asset/theme/world/stylebox/editor_world_list_panel.tres" id="1_vequ3"]
 [ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="1_yop2g"]
+[ext_resource type="StyleBox" uid="uid://3nrw5c4qdivb" path="res://asset/theme/world/stylebox/editor_world_shine_panel.tres" id="2_vdu1j"]
 [ext_resource type="Script" uid="uid://dl0r1kkm37l66" path="res://scene/editor/world/shine/WorldShineEditorHolder.cs" id="3_nii6g"]
 [ext_resource type="Theme" uid="uid://b2d1f54edqxpw" path="res://asset/theme/world/world_editor_shine_list.tres" id="4_j7oie"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_neh1k"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://b6i5imxumiqwi" path="res://scene/editor/world/shine/component/index_grabber.gd" id="14_6t6iw"]
 [ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="14_h4xx8"]
 [ext_resource type="FontFile" uid="uid://baym28jc275tl" path="res://asset/font/FontHead.ttf" id="15_ukcdp"]
+[ext_resource type="Script" uid="uid://beesalyjwlaxm" path="res://scene/editor/world/shine/component/mouse_collider.gd" id="19_vdu1j"]
 
 [sub_resource type="GDScript" id="GDScript_nm0gn"]
 script/source = "@tool
@@ -45,12 +46,14 @@ font_size = 17
 font = ExtResource("15_ukcdp")
 
 [node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "LabelIndex", "ButtonDropdown", "ContentContainer", "DialogConfirmDelete")]
+self_modulate = Color(0.07450981, 0.09803922, 0.10980392, 1)
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 57.0
 grow_horizontal = 2
+mouse_filter = 2
 theme = ExtResource("1_edytr")
-theme_override_styles/panel = ExtResource("1_vequ3")
+theme_override_styles/panel = ExtResource("2_vdu1j")
 script = ExtResource("3_nii6g")
 LabelShineName = NodePath("Content/Layout/VBox_InfoDisplay/Rich_Name")
 LabelStageName = NodePath("Content/Layout/VBox_InfoDisplay/Label_Stage")
@@ -66,11 +69,13 @@ DialogConfirmDelete = NodePath("Dialog_ConfirmDelete")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme = ExtResource("4_j7oie")
 
 [node name="Layout" type="HBoxContainer" parent="Content"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 script = SubResource("GDScript_nm0gn")
 
 [node name="Button_CreateDisplayName" type="Button" parent="Content/Layout"]
@@ -100,6 +105,7 @@ script = ExtResource("1_yop2g")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+mouse_filter = 2
 
 [node name="Rich_Name" type="RichTextLabel" parent="Content/Layout/VBox_InfoDisplay"]
 custom_minimum_size = Vector2(64, 0)
@@ -196,11 +202,15 @@ dialog_autowrap = true
 cancel_button_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("14_h4xx8")
 
-[connection signal="mouse_entered" from="." to="." method="OnShineHovered"]
-[connection signal="mouse_exited" from="." to="." method="OnShineUnhovered"]
+[node name="MouseCollider" type="Node2D" parent="."]
+script = ExtResource("19_vdu1j")
+
+[connection signal="visibility_changed" from="." to="MouseCollider" method="_on_world_shine_editor_holder_visibility_changed"]
 [connection signal="pressed" from="Content/Layout/Button_CreateDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="pressed" from="Content/Layout/Button_OpenDisplayName" to="." method="OnOpenDisplayNameMsbt"]
 [connection signal="toggled" from="Content/Layout/Check_Expand" to="." method="OnContentDropdownToggled"]
 [connection signal="pressed" from="Content/Layout/Button_Delete" to="." method="OnRequestDeleteShine"]
 [connection signal="index_changed" from="Content/Layout/HBox_IndexGrabber" to="." method="OnSpinIndexValueSet"]
 [connection signal="confirmed" from="Dialog_ConfirmDelete" to="." method="OnDeleteShine"]
+[connection signal="mouse_entered" from="MouseCollider" to="." method="OnShineHovered"]
+[connection signal="mouse_exited" from="MouseCollider" to="." method="OnShineUnhovered"]

@@ -65,41 +65,36 @@ public partial class TabMap : TextureRect
             // Set modulation and size depending on if the shine is hovered
             if (HoverShine == null)
             {
-                icon.SelfModulate = new Color(0xFFFFFFBB);
+                icon.SetStateNothingFocused();
                 continue;
             }
 
             if (shine == HoverShine)
             {
-                icon.Size *= 1.33f;
-                icon.SelfModulate = Colors.White;
+                icon.SetStateFocus();
                 icon.MoveToFront();
             }
             else
             {
-                icon.Size *= 0.8f;
-                icon.SelfModulate = new Color(0xCCCCCC88);
+                icon.SetStateOtherFocused();
             }
         }
     }
 
-    private TextureRect GetOrCreateIcon(string id, Texture2D icon)
+    private MapIcon GetOrCreateIcon(string id, Texture2D icon)
     {
         // Lookup node in icon holder first
         Node iconNode = IconHolder.FindChild(id, false, false);
-        if (iconNode != null && iconNode is TextureRect iconNodeTex)
+        if (iconNode != null && iconNode is MapIcon iconNodeTex)
             return iconNodeTex;
 
         // Create new node if lookup failed
-        var ico = new TextureRect
-        {
-            Name = id,
-            Texture = icon,
-            ExpandMode = ExpandModeEnum.IgnoreSize,
-        };
+        var mapIcon = SceneCreator<MapIcon>.Create();
+        mapIcon.Name = id;
+        mapIcon.Texture = icon;
 
-        IconHolder.AddChild(ico);
-        return ico;
+        IconHolder.AddChild(mapIcon);
+        return mapIcon;
     }
 
     #endregion

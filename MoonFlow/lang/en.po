@@ -1463,8 +1463,8 @@ msgid "WORLD_EDITOR_TAB_STAGE"
 msgstr "Stages"
 
 #: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_TAB_GENERAL"
-msgstr "Misc."
+msgid "WORLD_EDITOR_TAB_PROPERTIES"
+msgstr "Properties"
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW_TOOLTIP"
@@ -4074,6 +4074,13 @@ msgstr "Too many results!"
 #: scene/settings/engine/keybind/panel_keybind_editor.tscn
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_BUTTON_ADD_KEYBIND"
 msgstr "Add Keybind"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_ARCHIVE_LOADING"
+msgstr "Loading Map..."
+
+#~ msgid "WORLD_EDITOR_TAB_GENERAL"
+#~ msgstr "Misc."
 
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."
