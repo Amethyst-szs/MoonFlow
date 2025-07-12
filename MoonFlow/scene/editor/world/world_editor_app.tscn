@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://7jgd1gt2u83b"]
+[gd_scene load_steps=34 format=3 uid="uid://7jgd1gt2u83b"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_h16wr"]
 [ext_resource type="Script" uid="uid://bix44pl7i5q1x" path="res://scene/editor/world/WorldEditorApp.cs" id="1_l606m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://ohtd8ro6uvsm" path="res://addons/wiki/paths/world.tres" id="5_pcgds"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_n3qm4"]
 [ext_resource type="StyleBox" uid="uid://cj0xkb7u7fbc8" path="res://asset/theme/common/stylebox/common_panel_app_root_margin.tres" id="6_tf15c"]
+[ext_resource type="Script" uid="uid://blmjweufeped2" path="res://scene/editor/world/ui_script/map_column.gd" id="7_27niv"]
 [ext_resource type="PackedScene" uid="uid://ctffpm166bteo" path="res://scene/editor/world/map/tab_map.tscn" id="8_tf15c"]
 [ext_resource type="Theme" uid="uid://haskx3ghiaxm" path="res://asset/theme/world/world_editor_stage_list.tres" id="9_vnnbu"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="10_rroum"]
@@ -99,11 +100,12 @@ theme_override_styles/panel = ExtResource("6_tf15c")
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-split_offset = -100
+split_offset = -80
 
 [node name="MapColumn" type="MarginContainer" parent="Panel/HSplit"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("7_27niv")
 
 [node name="Layout" type="VBoxContainer" parent="Panel/HSplit/MapColumn"]
 layout_mode = 2
@@ -132,7 +134,6 @@ theme_override_constants/separation = 18
 [node name="Map" parent="Panel/HSplit/MapColumn/Layout" instance=ExtResource("8_tf15c")]
 layout_mode = 2
 size_flags_vertical = 6
-expand_mode = 5
 
 [node name="Content" type="VBoxContainer" parent="Panel/HSplit"]
 layout_mode = 2
@@ -340,6 +341,7 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
+[connection signal="dragged" from="Panel/HSplit" to="Panel/HSplit/MapColumn" method="_on_parent_split_dragged"]
 [connection signal="child_order_changed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList" to="." method="OnShineListChildOrderChanged"]
 [connection signal="pressed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="." method="OnAddNewShine"]
 [connection signal="pressed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll" method="call_deferred" binds= ["scroll_to_bottom"]]
