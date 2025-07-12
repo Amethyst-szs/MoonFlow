@@ -42,6 +42,7 @@ public partial class WorldEditorApp : AppScene
 	private bool IsWorldInfoModified = false;
 	private bool IsShineListModified = false;
 	private bool IsItemInfoModified = false;
+	private bool IsMapInfoModified = false;
 
 	private static readonly PackedScene StageInfoScene = GD.Load<PackedScene>(
 		"res://scene/editor/world/stage/edit_stage_info.tscn"
@@ -152,7 +153,8 @@ public partial class WorldEditorApp : AppScene
 		int totalTasks =
 			(IsWorldInfoModified ? 1 : 0) +
 			(IsShineListModified ? 1 : 0) +
-			(IsItemInfoModified ? 1 : 0);
+			(IsItemInfoModified ? 1 : 0) +
+			(IsMapInfoModified ? 1 : 0);
 
 		IncrementTaskProgress(display, ref progressTask, totalTasks);
 
@@ -178,11 +180,18 @@ public partial class WorldEditorApp : AppScene
 			IncrementTaskProgress(display, ref progressTask, totalTasks);
 		}
 
+		if (IsMapInfoModified)
+		{
+			db.TrySaveMap2dDatabaseAndTextures(World);
+			IncrementTaskProgress(display, ref progressTask, totalTasks);
+		}
+
 		// Reset flags
 		IsModified = false;
 		IsWorldInfoModified = false;
 		IsShineListModified = false;
 		IsItemInfoModified = false;
+		IsMapInfoModified = false;
 	}
 
 	private static void IncrementTaskProgress(AsyncDisplay display, ref int progress, int max)
@@ -282,6 +291,16 @@ public partial class WorldEditorApp : AppScene
 		SetupShineEditorContainer(info, stageMessage);
 	}
 
+	private async void OnDebugMoveMapX(int direction)
+	{
+		var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(World, World.MoonRockScenario);
+		map.ViewMatrix[0, 3] += direction * 1000;
+
+		TabMap.InitMap();
+
+		OnMapInfoModify();
+	}
+
 	private void OnModify() { IsModified = true; }
 	private void OnWorldInfoModify()
 	{
@@ -296,6 +315,11 @@ public partial class WorldEditorApp : AppScene
 	private void OnItemInfoModify()
 	{
 		IsItemInfoModified = true;
+		OnModify();
+	}
+	private void OnMapInfoModify()
+	{
+		IsMapInfoModified = true;
 		OnModify();
 	}
 

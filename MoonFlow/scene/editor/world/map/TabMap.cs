@@ -49,6 +49,7 @@ public partial class TabMap : TextureRect
 
         // Get map information
         var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(Parent.World, PreviewScenario);
+        map.RecalculateViewProjMatrix();
 
         // Render all shines as icon on map
         foreach (var shine in Parent.World.ShineList)

@@ -28,4 +28,12 @@ public static partial class Extension
 		if (idx != -1) return str[..idx];
 		return str;
 	}
+
+	public static string TrimSuf(this string s, string suffix)
+	{
+		if (s.EndsWith(suffix))
+			return s[..^suffix.Length];
+
+		return s;
+	}
 }

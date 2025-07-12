@@ -254,7 +254,7 @@ public class ProjectDatabaseHolder
     public async Task<Map2d> TryCreateOrGetMap2d(WorldInfo world, int scenario = -1)
     {
         // Ensure we have access to a Map2d resource file
-        if (ResourceMap2d == null)
+        if (SarcMap2d == null || ResourceMap2d == null)
             if (!await Task.Run(TryCreateResourceMap2d))
                 return null;
 
@@ -298,6 +298,15 @@ public class ProjectDatabaseHolder
             throw new NullReferenceException("Map archive is null!");
 
         ResourceMap2d = BfresResource.FromSarcFile(SarcMap2d);
+        return true;
+    }
+
+    public bool TrySaveMap2dDatabaseAndTextures(WorldInfo world)
+    {
+        if (!ListMap2d.TryGetValue(world, out Map2dHolder map))
+            return false;
+
+        map.WriteMatrixArchive(Map2dHolder.GetArchivePath(Path));
         return true;
     }
 

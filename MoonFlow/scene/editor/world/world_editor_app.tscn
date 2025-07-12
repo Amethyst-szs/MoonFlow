@@ -150,11 +150,13 @@ alignment = 1
 [node name="Button1" type="Button" parent="Panel/HSplit/MapColumn/Layout/Map/MapControls"]
 layout_mode = 2
 tooltip_text = "Placeholder Button"
+text = "X-"
 icon = ExtResource("9_27niv")
 
 [node name="Button2" type="Button" parent="Panel/HSplit/MapColumn/Layout/Map/MapControls"]
 layout_mode = 2
 tooltip_text = "Placeholder Button"
+text = "X+"
 icon = ExtResource("9_27niv")
 
 [node name="Content" type="VBoxContainer" parent="Panel/HSplit"]
@@ -363,6 +365,8 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
+[connection signal="pressed" from="Panel/HSplit/MapColumn/Layout/Map/MapControls/Button1" to="." method="OnDebugMoveMapX" binds= [-1]]
+[connection signal="pressed" from="Panel/HSplit/MapColumn/Layout/Map/MapControls/Button2" to="." method="OnDebugMoveMapX" binds= [1]]
 [connection signal="child_order_changed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList" to="." method="OnShineListChildOrderChanged"]
 [connection signal="pressed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="." method="OnAddNewShine"]
 [connection signal="pressed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll" method="call_deferred" binds= ["scroll_to_bottom"]]
