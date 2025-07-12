@@ -19,10 +19,81 @@ public static class Map2dRenderUtility
         return ImageTexture.CreateFromImage(map.Texture);
     }
 
-    public static void PositionMapIcon(TabMap ctx, Map2d map, MapIcon icon, System.Numerics.Vector3 worldPos)
+    public static void RenderShineIcons(Map2d map, Godot.Vector2 mapSize, Control iconHolder, WorldShineList shineList, ShineInfo hoveredShine, Texture2D shineIcon)
     {
-        var mapSize = new System.Numerics.Vector2(ctx.Size.X, ctx.Size.Y);
-        var m = map.CalcMapTrans(worldPos, mapSize);
+        // Render all shines as icon on map
+        foreach (var shine in shineList)
+        {
+            var id = GetShineNodeId(shine);
+            var icon = GetOrCreateIcon(id, shineIcon, iconHolder);
+
+            // Write tooltip text if not already written
+            if (icon.TooltipText == string.Empty)
+                icon.TooltipText = shine.LookupDisplayName(ProjectManager.GetMSBTArchives()?.StageMessage)?.GetRawText();
+
+            // Convert world position to screen position
+            PositionMapIcon(map, mapSize, icon, shine.Trans);
+
+            // Set modulation and size depending on if the shine is hovered
+            if (hoveredShine == null)
+            {
+                icon.SetStateNothingFocused();
+                continue;
+            }
+
+            if (shine == hoveredShine)
+            {
+                icon.SetStateFocus();
+                icon.MoveToFront();
+            }
+            else
+            {
+                icon.SetStateOtherFocused();
+            }
+        }
+    }
+
+    public static void RenderOriginPoint(Map2d map, Godot.Vector2 mapSize, Control iconHolder, Texture2D originIcon)
+    {
+        var id = GetOriginNodeId();
+        var icon = GetOrCreateIcon(id, originIcon, iconHolder);
+
+        PositionMapIcon(map, mapSize, icon, System.Numerics.Vector3.Zero);
+        icon.MoveToFront();
+    }
+
+    #region Icon Creation & Fetching
+
+    public static MapIcon GetOrCreateIcon(string id, Texture2D icon, Control iconHolder)
+    {
+        // Lookup node in icon holder first
+        Node iconNode = iconHolder.FindChild(id, false, false);
+        if (iconNode != null && iconNode is MapIcon iconNodeTex)
+            return iconNodeTex;
+
+        // Create new node if lookup failed
+        var mapIcon = SceneCreator<MapIcon>.Create();
+        mapIcon.Name = id;
+        mapIcon.Texture = icon;
+
+        iconHolder.AddChild(mapIcon);
+        return mapIcon;
+    }
+
+    private static string GetShineNodeId(ShineInfo shine)
+    {
+        return string.Format("Shine_{0}_{1}", shine.UniqueId, shine.ObjId);
+    }
+    private static string GetOriginNodeId() => "Origin";
+
+    #endregion
+
+    #region Positioning
+
+    public static void PositionMapIcon(Map2d map, Godot.Vector2 mapSize, MapIcon icon, System.Numerics.Vector3 worldPos)
+    {
+        var mapSizeSys = new System.Numerics.Vector2(mapSize.X, mapSize.Y);
+        var m = map.CalcMapTrans(worldPos, mapSizeSys);
 
         var iconSize = new Godot.Vector2(mapSize.X, mapSize.Y) / 25.0f;
 
@@ -30,4 +101,6 @@ public static class Map2dRenderUtility
         icon.Position = new Godot.Vector2(m.X, m.Y) - (iconSize / 2.0f);
         icon.Size = iconSize;
     }
+    
+    #endregion
 }

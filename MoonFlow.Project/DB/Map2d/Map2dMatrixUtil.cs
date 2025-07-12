@@ -29,7 +29,6 @@ public partial class Map2d
 
         return matrix;
     }
-
     private static Matrix4x4 ImportMatrix3x4Data(IEnumerable<float> data)
     {
         if (data.Count() < (3 * 4))
@@ -48,6 +47,34 @@ public partial class Map2d
         }
 
         return matrix;
+    }
+
+    public void GetInternalMatrices(out Matrix4x4 proj, out Matrix4x4 view)
+    {
+        proj = ProjMatrix;
+        view = ViewMatrix;
+    }
+    public void SetInternalMatrices(Matrix4x4 proj, Matrix4x4 view)
+    {
+        ProjMatrix = proj;
+        ViewMatrix = view;
+        RecalculateViewProjMatrix();
+    }
+
+    public void DragViewMatrix(Godot.Vector2 vec)
+    {
+        ViewMatrix.M14 += vec.X;
+        ViewMatrix.M24 -= vec.Y;
+    }
+    public void RotateViewMatrix(float degree)
+    {
+        float rad = (float)(Math.PI / 180) * degree;
+        var quat = System.Numerics.Quaternion.CreateFromAxisAngle(System.Numerics.Vector3.UnitY, rad);
+        ViewMatrix = Matrix4x4.Transform(ViewMatrix, quat);
+    }
+    public void ScaleViewMatrix(float scale)
+    {
+        ViewMatrix = Matrix4x4.Multiply(ViewMatrix, scale);
     }
 
     private static void PrintMatrix(string name, Matrix4x4 matrix)

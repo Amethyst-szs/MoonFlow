@@ -291,16 +291,6 @@ public partial class WorldEditorApp : AppScene
 		SetupShineEditorContainer(info, stageMessage);
 	}
 
-	private async void OnDebugMoveMapX(int direction)
-	{
-		var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(World, World.MoonRockScenario);
-		map.ViewMatrix[0, 3] += direction * 1000;
-
-		TabMap.InitMap();
-
-		OnMapInfoModify();
-	}
-
 	private void OnModify() { IsModified = true; }
 	private void OnWorldInfoModify()
 	{
@@ -317,7 +307,7 @@ public partial class WorldEditorApp : AppScene
 		IsItemInfoModified = true;
 		OnModify();
 	}
-	private void OnMapInfoModify()
+	public void OnMapInfoModify()
 	{
 		IsMapInfoModified = true;
 		OnModify();

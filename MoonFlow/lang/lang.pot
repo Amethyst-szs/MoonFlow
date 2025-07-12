@@ -3988,3 +3988,51 @@ msgstr ""
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_TAB_ARCHIVE_LOADING"
 msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_ROTATE_INPUT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_ROTATE_INPUT"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SCALE_INPUT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SCALE_INPUT"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP"
+msgstr ""

@@ -4,27 +4,49 @@ using System.Threading.Tasks;
 
 using MoonFlow.Project;
 using MoonFlow.Project.Database;
+using System.Numerics;
 
 namespace MoonFlow.Scene.EditorWorld;
 
 public partial class TabMap : TextureRect
 {
+    private Map2d Map = null;
+
     private WorldEditorApp Parent = null;
     private int PreviewScenario = -1;
     private ShineInfo HoverShine = null;
+
+    private bool IsAdjustingMap = false;
+    private bool IsAdjustDragMap = false;
+    private const string DragSensivityKey = "moonflow/map2d/drag_sensitivity";
+
+    private Matrix4x4 MatrixBackupProj;
+    private Matrix4x4 MatrixBackupView;
 
     [Export, ExportGroup("Internal References")]
     private Control IconHolder = null;
     [Export]
     private Label LabelLoading = null;
+    [Export]
+    private HSlider SliderDragSensitivity = null;
+    [Export]
+    private SpinBox SpinMapRotate = null;
+    [Export]
+    private SpinBox SpinMapScale = null;
 
     [Export, ExportGroup("Map Icons")]
     private Texture2D TextureShine = null;
+    [Export]
+    private Texture2D TextureOrigin = null;
 
     public async void InitMap()
     {
         Parent = this.FindParentByType<WorldEditorApp>() ?? throw new NullReferenceException();
         PreviewScenario = Parent.World.MoonRockScenario;
+
+        Map = await ProjectManager.GetDB().TryCreateOrGetMap2d(Parent.World, PreviewScenario);
+
+        SliderDragSensitivity.Value = EngineSettings.GetSetting<float>(DragSensivityKey, 50.0f);
 
         await RenderMap();
         RenderIcons();
@@ -42,60 +64,19 @@ public partial class TabMap : TextureRect
 
         LabelLoading.Hide();
     }
-    private async void RenderIcons()
+    private void RenderIcons()
     {
-        if (Parent == null || Parent.World == null)
+        if (Parent == null || Parent.World == null || Map == null)
             return;
 
         // Get map information
-        var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(Parent.World, PreviewScenario);
-        map.RecalculateViewProjMatrix();
+        Map.RecalculateViewProjMatrix();
 
-        // Render all shines as icon on map
-        foreach (var shine in Parent.World.ShineList)
-        {
-            var id = GetShineNodeId(shine);
-            var icon = GetOrCreateIcon(id, TextureShine);
+        // Render icons
+        var shineList = Parent.World.ShineList;
+        Map2dRenderUtility.RenderShineIcons(Map, Size, IconHolder, shineList, HoverShine, TextureShine);
 
-            // Write tooltip text if not already written
-            if (icon.TooltipText == string.Empty)
-                icon.TooltipText = shine.LookupDisplayName(ProjectManager.GetMSBTArchives()?.StageMessage)?.GetRawText();
-
-            Map2dRenderUtility.PositionMapIcon(this, map, icon, shine.Trans);
-
-            // Set modulation and size depending on if the shine is hovered
-            if (HoverShine == null)
-            {
-                icon.SetStateNothingFocused();
-                continue;
-            }
-
-            if (shine == HoverShine)
-            {
-                icon.SetStateFocus();
-                icon.MoveToFront();
-            }
-            else
-            {
-                icon.SetStateOtherFocused();
-            }
-        }
-    }
-
-    private MapIcon GetOrCreateIcon(string id, Texture2D icon)
-    {
-        // Lookup node in icon holder first
-        Node iconNode = IconHolder.FindChild(id, false, false);
-        if (iconNode != null && iconNode is MapIcon iconNodeTex)
-            return iconNodeTex;
-
-        // Create new node if lookup failed
-        var mapIcon = SceneCreator<MapIcon>.Create();
-        mapIcon.Name = id;
-        mapIcon.Texture = icon;
-
-        IconHolder.AddChild(mapIcon);
-        return mapIcon;
+        Map2dRenderUtility.RenderOriginPoint(Map, Size, IconHolder, TextureOrigin);
     }
 
     #endregion
@@ -112,19 +93,103 @@ public partial class TabMap : TextureRect
         HoverShine = null;
         RenderIcons();
     }
+    private void OnMapSizeChanged() => RenderIcons();
 
-    private void OnMapSizeChanged()
+    private void OnSetDragAdjustSensitivity(bool isChanged)
     {
+        if (!isChanged)
+            return;
+        
+        EngineSettings.SetSetting(DragSensivityKey, SliderDragSensitivity.Value);
+        EngineSettings.Save();
+    }
+    private void OnSetRotateMapSpinbox(float value)
+    {
+        Parent.OnMapInfoModify();
+
+        Map.RotateViewMatrix(value);
+        RenderIcons();
+
+        SpinMapRotate.Value = 0;
+    }
+    private void OnSetScaleMapSpinbox(float value)
+    {
+        Parent.OnMapInfoModify();
+
+        Map.ScaleViewMatrix(value / 100.0f);
+        RenderIcons();
+
+        SpinMapScale.Value = 100;
+    }
+    private void OnUndoMatrixModifications()
+    {
+        Parent.OnMapInfoModify();
+
+        Map.SetInternalMatrices(MatrixBackupProj, MatrixBackupView);
+        RenderIcons();
+    }
+    private void OnDebugPlaceholder()
+    {
+        var p = 0;
         RenderIcons();
     }
 
     #endregion
 
-    #region Utility
+    #region States & Input
 
-    private string GetShineNodeId(ShineInfo shine)
+    public void SetAdjustState(bool isAdjusting)
     {
-        return string.Format("Shine_{0}_{1}", shine.UniqueId, shine.ObjId);
+        if (isAdjusting)
+            SetStateAdjustment();
+        else
+            SetStatePassive();
+    }
+    public void SetStatePassive()
+    {
+        IsAdjustingMap = false;
+        MouseDefaultCursorShape = CursorShape.Arrow;
+    }
+    public void SetStateAdjustment()
+    {
+        // Create backups of matrix transformations for undo button
+        Map.GetInternalMatrices(out MatrixBackupProj, out MatrixBackupView);
+
+        IsAdjustingMap = true;
+        MouseDefaultCursorShape = CursorShape.Move;
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouse && mouse.ButtonIndex == MouseButton.Left && mouse.IsReleased())
+            IsAdjustDragMap = false;
+    }
+    public override async void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouse && mouse.ButtonIndex == MouseButton.Left && mouse.IsPressed())
+        {
+            IsAdjustDragMap = true;
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+        
+        if (!IsAdjustingMap || !IsAdjustDragMap)
+            return;
+
+        if (@event is not InputEventMouseMotion motion)
+            return;
+
+        // Fetch distance and map
+        float sensitivity = EngineSettings.GetSetting<float>(DragSensivityKey, 50.0f);
+        var offset = motion.ScreenRelative * sensitivity;
+
+        var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(Parent.World, PreviewScenario);
+
+        // Modify translation of ViewMatrix
+        map.DragViewMatrix(offset);
+
+        Parent.OnMapInfoModify();
+        RenderIcons();
     }
 
     #endregion

@@ -4079,8 +4079,56 @@ msgstr "Add Keybind"
 msgid "WORLD_EDITOR_MAP_TAB_ARCHIVE_LOADING"
 msgstr "Loading Map..."
 
-#~ msgid "WORLD_EDITOR_TAB_GENERAL"
-#~ msgstr "Misc."
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_ROTATE_INPUT_TOOLTIP"
+msgstr "Amount (in degrees) to rotate projection around world origin"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_ROTATE_INPUT"
+msgstr "Rotate"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SCALE_INPUT_TOOLTIP"
+msgstr "Amount (percentage) to scale projection around world origin"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SCALE_INPUT"
+msgstr "Zoom"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT_TOOLTIP"
+msgstr "Revert all adjustments made to map projection"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT"
+msgstr "Undo"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER_TOOLTIP"
+msgstr "Adjust sensitivity of dragging map projection"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER"
+msgstr "Drag Sensitivity"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST_TOOLTIP"
+msgstr ""
+"Enable adjusting mode to drag around the map projection. This\n"
+"is only intended for making fine tweaks to map rendering, if you\n"
+"want to create a new map use the \"Setup New Map\" button."
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST"
+msgstr "Adjust Map"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP_TOOLTIP"
+msgstr "placeholder tooltip"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP"
+msgstr "Setup New Map"
 
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."

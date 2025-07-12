@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://7jgd1gt2u83b"]
+[gd_scene load_steps=33 format=3 uid="uid://7jgd1gt2u83b"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_h16wr"]
 [ext_resource type="Script" uid="uid://bix44pl7i5q1x" path="res://scene/editor/world/WorldEditorApp.cs" id="1_l606m"]
@@ -8,7 +8,6 @@
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_n3qm4"]
 [ext_resource type="StyleBox" uid="uid://cj0xkb7u7fbc8" path="res://asset/theme/common/stylebox/common_panel_app_root_margin.tres" id="6_tf15c"]
 [ext_resource type="PackedScene" uid="uid://ctffpm166bteo" path="res://scene/editor/world/map/tab_map.tscn" id="8_tf15c"]
-[ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="9_27niv"]
 [ext_resource type="Theme" uid="uid://haskx3ghiaxm" path="res://asset/theme/world/world_editor_stage_list.tres" id="9_vnnbu"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="10_rroum"]
 [ext_resource type="Script" uid="uid://nubygtcoc3hc" path="res://scene/editor/world/stage/OptionStageType.cs" id="11_1r58n"]
@@ -134,30 +133,6 @@ theme_override_constants/separation = 18
 layout_mode = 2
 size_flags_vertical = 6
 expand_mode = 5
-
-[node name="MapControls" type="HBoxContainer" parent="Panel/HSplit/MapColumn/Layout/Map"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -15.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
-
-[node name="Button1" type="Button" parent="Panel/HSplit/MapColumn/Layout/Map/MapControls"]
-layout_mode = 2
-tooltip_text = "Placeholder Button"
-text = "X-"
-icon = ExtResource("9_27niv")
-
-[node name="Button2" type="Button" parent="Panel/HSplit/MapColumn/Layout/Map/MapControls"]
-layout_mode = 2
-tooltip_text = "Placeholder Button"
-text = "X+"
-icon = ExtResource("9_27niv")
 
 [node name="Content" type="VBoxContainer" parent="Panel/HSplit"]
 layout_mode = 2
@@ -365,8 +340,6 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="pressed" from="Panel/HSplit/MapColumn/Layout/Map/MapControls/Button1" to="." method="OnDebugMoveMapX" binds= [-1]]
-[connection signal="pressed" from="Panel/HSplit/MapColumn/Layout/Map/MapControls/Button2" to="." method="OnDebugMoveMapX" binds= [1]]
 [connection signal="child_order_changed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList" to="." method="OnShineListChildOrderChanged"]
 [connection signal="pressed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="." method="OnAddNewShine"]
 [connection signal="pressed" from="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Footer/Button_CreateNew" to="Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll" method="call_deferred" binds= ["scroll_to_bottom"]]

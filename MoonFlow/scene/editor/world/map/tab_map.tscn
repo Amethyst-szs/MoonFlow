@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctffpm166bteo"]
+[gd_scene load_steps=14 format=3 uid="uid://ctffpm166bteo"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_qiqeq"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="2_xa8bk"]
 [ext_resource type="Script" uid="uid://cahwqu0i8a58v" path="res://scene/editor/world/map/TabMap.cs" id="2_xpiv1"]
+[ext_resource type="Texture2D" uid="uid://duskwvg3d10e5" path="res://asset/material/map2d/axis.svg" id="3_btxgw"]
+[ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/event_graph_ui_header.tres" id="4_7wfg5"]
+[ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="5_mct1i"]
+[ext_resource type="Texture2D" uid="uid://by65jg3a6jkq4" path="res://asset/material/map2d/adjust.svg" id="5_onm4b"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="6_5h7kc"]
+[ext_resource type="Texture2D" uid="uid://bggrffjaw6gcv" path="res://asset/material/map2d/undo_matrix.svg" id="6_btxgw"]
+[ext_resource type="Texture2D" uid="uid://c0aqr2waajryk" path="res://asset/material/map2d/map.svg" id="6_mct1i"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qiqeq"]
 size = Vector2(2048, 2048)
@@ -13,7 +20,12 @@ font_size = 23
 font_color = Color(0, 0, 0, 1)
 outline_size = 14
 
-[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading")]
+[sub_resource type="LabelSettings" id="LabelSettings_onm4b"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+outline_size = 9
+
+[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
 self_modulate = Color(1, 1, 1, 0.5019608)
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,13 +34,18 @@ offset_right = -504.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+mouse_filter = 0
 texture = SubResource("PlaceholderTexture2D_qiqeq")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("2_xpiv1")
 IconHolder = NodePath("IconHolder")
 LabelLoading = NodePath("Label_Load")
+SliderDragSensitivity = NodePath("MapControls/Adjust/Footer/Sensitivity/HSlider_Sensitivity")
+SpinMapRotate = NodePath("MapControls/Adjust/Transform/Rotate/Spin_Rotate")
+SpinMapScale = NodePath("MapControls/Adjust/Transform/Scale/Spin_Scale")
 TextureShine = ExtResource("2_xa8bk")
+TextureOrigin = ExtResource("3_btxgw")
 
 [node name="Label_Load" type="Label" parent="."]
 layout_mode = 1
@@ -52,5 +69,147 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="MapControls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 1.0
+anchor_right = 0.97
+anchor_bottom = 1.0
+offset_top = -15.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("4_7wfg5")
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Adjust" type="VBoxContainer" parent="MapControls"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Transform" type="HBoxContainer" parent="MapControls/Adjust"]
+layout_mode = 2
+theme = ExtResource("6_5h7kc")
+
+[node name="Rotate" type="VBoxContainer" parent="MapControls/Adjust/Transform"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Label_Rotate" type="Label" parent="MapControls/Adjust/Transform/Rotate"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_MAP_TAB_ROTATE_INPUT_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_MAP_TAB_ROTATE_INPUT"
+label_settings = SubResource("LabelSettings_onm4b")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Spin_Rotate" type="SpinBox" parent="MapControls/Adjust/Transform/Rotate"]
+layout_mode = 2
+min_value = -360.0
+max_value = 360.0
+step = 0.010000000009313226
+alignment = 1
+suffix = "°"
+custom_arrow_step = 45.0
+
+[node name="Scale" type="VBoxContainer" parent="MapControls/Adjust/Transform"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Label_Scale" type="Label" parent="MapControls/Adjust/Transform/Scale"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_MAP_TAB_SCALE_INPUT_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_MAP_TAB_SCALE_INPUT"
+label_settings = SubResource("LabelSettings_onm4b")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Spin_Scale" type="SpinBox" parent="MapControls/Adjust/Transform/Scale"]
+layout_mode = 2
+min_value = 1.0
+max_value = 1000.0
+value = 100.00000009220093
+alignment = 1
+suffix = "%"
+custom_arrow_step = 1.0
+
+[node name="Footer" type="HBoxContainer" parent="MapControls/Adjust"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button_Undo" type="Button" parent="MapControls/Adjust/Footer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT"
+icon = ExtResource("6_btxgw")
+text_overrun_behavior = 3
+
+[node name="Sensitivity" type="VBoxContainer" parent="MapControls/Adjust/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_mct1i")
+theme_override_constants/separation = 8
+
+[node name="Label_Sensitivity" type="Label" parent="MapControls/Adjust/Footer/Sensitivity"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER"
+label_settings = SubResource("LabelSettings_onm4b")
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="HSlider_Sensitivity" type="HSlider" parent="MapControls/Adjust/Footer/Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 10
+step = 2.0
+value = 50.0
+tick_count = 8
+ticks_position = 3
+
+[node name="Tools" type="HBoxContainer" parent="MapControls"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Button_Adjust" type="Button" parent="MapControls/Tools"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_MAP_BUTTON_ADJUST_TOOLTIP"
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "WORLD_EDITOR_MAP_BUTTON_ADJUST"
+icon = ExtResource("5_onm4b")
+text_overrun_behavior = 1
+
+[node name="Button_Align" type="Button" parent="MapControls/Tools"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP"
+icon = ExtResource("6_mct1i")
+text_overrun_behavior = 1
+icon_alignment = 2
 
 [connection signal="resized" from="." to="." method="OnMapSizeChanged"]
+[connection signal="ready" from="MapControls/Adjust" to="MapControls/Adjust" method="hide"]
+[connection signal="value_changed" from="MapControls/Adjust/Transform/Rotate/Spin_Rotate" to="." method="OnSetRotateMapSpinbox"]
+[connection signal="value_changed" from="MapControls/Adjust/Transform/Scale/Spin_Scale" to="." method="OnSetScaleMapSpinbox"]
+[connection signal="pressed" from="MapControls/Adjust/Footer/Button_Undo" to="." method="OnUndoMatrixModifications"]
+[connection signal="drag_ended" from="MapControls/Adjust/Footer/Sensitivity/HSlider_Sensitivity" to="." method="OnSetDragAdjustSensitivity"]
+[connection signal="toggled" from="MapControls/Tools/Button_Adjust" to="." method="SetAdjustState"]
+[connection signal="toggled" from="MapControls/Tools/Button_Adjust" to="MapControls/Adjust" method="set_visible"]
