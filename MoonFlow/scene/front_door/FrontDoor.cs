@@ -157,7 +157,9 @@ public partial class FrontDoor : AppScene
 		string p = ProjectSettings.GlobalizePath(ProjectManager.TEMPORARY_PROJECT_PATH);
 
 		// Remake directory at path
-		Directory.Delete(p, true);
+		if (Directory.Exists(p))
+			Directory.Delete(p, true);
+		
 		Directory.CreateDirectory(p);
 
 		// Init project in temporary directory

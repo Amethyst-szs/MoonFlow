@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 using MoonFlow.Project;
 using System.Threading.Tasks;
@@ -50,7 +51,7 @@ public partial class MainSceneRoot : Control
         var isValidClose = await AppSceneServer.TryCloseAllApps();
         if (!isValidClose)
             return;
-        
+
         // Update window properties in engine settings
         var win = GetWindow();
         var winSize = win.Size;
@@ -76,8 +77,16 @@ public partial class MainSceneRoot : Control
 
         EngineSettings.Save();
 
+        // If open project is a temporary project, delete its directory
+        if (ProjectManager.IsProjectExist() && ProjectManager.IsProjectTemporary())
+        {
+            string p = ProjectManager.GetPath();
+            if (Directory.Exists(p))
+                Directory.Delete(p, true);
+        }
+
         // Terminate application
-        GetTree().Quit(0);
+            GetTree().Quit(0);
     }
 
     private static void OnAppSceneServerWrapperCloseActive() { AppSceneServer.CloseActiveApp(); }

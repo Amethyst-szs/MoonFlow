@@ -102,6 +102,10 @@ public static partial class ProjectManager
         if (Project == null || SceneRoot == null)
             return;
 
+        // If open project is a temporary project, delete its directory
+        if (Project.IsTemporary && Directory.Exists(Project.Path))
+            Directory.Delete(Project.Path, true);
+
         Project = null;
 
         AppSceneServer.ForceCloseAllApps();
