@@ -28,13 +28,14 @@ signal primary_bit_changed(value: int)
 
 func _ready():
 	theme = theme_inst
-	_setup()
 	
 	if Engine.is_editor_hint():
 		editor_timer = Timer.new()
 		editor_timer.wait_time = 1.0
 		editor_timer.one_shot = true
 		add_child(editor_timer)
+	
+	_setup()
 
 func set_value(v: int) -> void:
 	value = v

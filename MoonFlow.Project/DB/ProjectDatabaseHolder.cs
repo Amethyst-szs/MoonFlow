@@ -251,7 +251,7 @@ public class ProjectDatabaseHolder
         list.Sort((a, b) => a.CompareTo(b));
     }
 
-    public async Task<Map2d> TryCreateOrGetMap2d(WorldInfo world, int scenario = -1)
+    public async Task<Map2dHolder> TryCreateOrGetMap2dHolder(WorldInfo world)
     {
         // Ensure we have access to a Map2d resource file
         if (SarcMap2d == null || ResourceMap2d == null)
@@ -259,22 +259,25 @@ public class ProjectDatabaseHolder
                 return null;
 
         // If map is already cached, return from dictionary
-        if (ListMap2d.TryGetValue(world, out Map2dHolder map))
-        {
-            if (scenario == -1)
-                return map.GetMap();
-            else
-                return map.GetMap(scenario);
-        }
+        if (ListMap2d.TryGetValue(world, out Map2dHolder mapHolder))
+            return mapHolder;
 
         // Create map using resource if not cached
-        map = new Map2dHolder(world, SarcMap2d, ResourceMap2d);
-        ListMap2d.Add(world, map);
+        mapHolder = new Map2dHolder(world, SarcMap2d, ResourceMap2d);
+        ListMap2d.Add(world, mapHolder);
+
+        return mapHolder;
+    }
+    public async Task<Map2d> TryCreateOrGetMap2d(WorldInfo world, int scenario = -1)
+    {
+        var mapHolder = await TryCreateOrGetMap2dHolder(world);
+        if (mapHolder == null)
+            return null;
 
         if (scenario == -1)
-            return map.GetMap();
+            return mapHolder.GetMap();
         else
-            return map.GetMap(scenario);
+            return mapHolder.GetMap(scenario);
     }
 
     private bool TryCreateResourcesForMap2d()

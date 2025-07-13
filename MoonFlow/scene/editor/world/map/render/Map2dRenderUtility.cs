@@ -15,6 +15,14 @@ public static class Map2dRenderUtility
         var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(world, scenario);
         if (map == null)
             throw new NullReferenceException("Could not get map!");
+        
+        // If this map doesn't have a valid texture, pull from default map
+        if (map.Texture == null)
+            map = (await ProjectManager.GetDB().TryCreateOrGetMap2dHolder(world)).GetMap();
+
+        // If the map *still* doesn't have a texture, cry
+        if (map.Texture == null)
+            throw new NullReferenceException("Was able to get map, but no texture could be found!");
 
         return ImageTexture.CreateFromImage(map.Texture);
     }

@@ -100,6 +100,7 @@
 # res://scene/common/msbt_lookup/popup_msbt_select_entry_only_label.tscn
 # res://scene/settings/engine/keybind/panel_keybind_editor.tscn
 # res://scene/editor/world/map/tab_map.tscn
+# res://scene/editor/world/map/scenario/popup_scenario.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2473,6 +2474,10 @@ msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
 msgstr ""
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
+msgstr ""
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
 msgstr ""
 
@@ -4046,5 +4051,41 @@ msgid "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE"
 msgstr ""
 
 #: scene/editor/world/map/tab_map.tscn
-msgid "WORLD_EDITOR_MAP_BUTTON_DOCUMENTATION"
+msgid "WORLD_EDITOR_MAP_BUTTON_SCENARIO_MANAGER_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_SCENARIO_MANAGER"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_MANAGER_TITLE"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_TYPE_DEFAULT"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_TYPE_OVERRIDE"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE"
 msgstr ""

@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuafhgvkvobnb"]
+
+[ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="1_gxxq4"]
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_mx0r3"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_h6oq1"]
+[ext_resource type="Script" uid="uid://csif2r6pfgtdq" path="res://scene/editor/world/map/scenario/PopupScenario.cs" id="3_xbeug"]
+[ext_resource type="Theme" uid="uid://crm1k2xsr1n4h" path="res://asset/theme/common/common_bit_flag_container.tres" id="4_h6oq1"]
+[ext_resource type="Script" uid="uid://dlwdmhejeb1cq" path="res://scene/common/container/bit_flag_button_holder.gd" id="5_xbeug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xbeug"]
+font = ExtResource("3_h6oq1")
+font_size = 18
+
+[node name="Popup_Scenario" type="PopupPanel" node_paths=PackedStringArray("ScenarioPicker", "LabelTypeDefault", "LabelTypeOverride", "ButtonMakeOverride", "ButtonRemoveOverride")]
+transparent_bg = false
+oversampling_override = 1.0
+title = "WORLD_EDITOR_MAP_SCENARIO_MANAGER_TITLE"
+initial_position = 1
+size = Vector2i(550, 380)
+visible = true
+borderless = false
+transparent = false
+min_size = Vector2i(550, 380)
+max_size = Vector2i(550, 380)
+theme = ExtResource("1_mx0r3")
+theme_override_styles/panel = ExtResource("1_gxxq4")
+script = ExtResource("3_xbeug")
+ScenarioPicker = NodePath("Content/Layout/ScenarioPicker")
+LabelTypeDefault = NodePath("Content/Layout/Label_TypeDefault")
+LabelTypeOverride = NodePath("Content/Layout/Label_TypeOverrides")
+ButtonMakeOverride = NodePath("Content/Layout/Button_ConvertToOverride")
+ButtonRemoveOverride = NodePath("Content/Layout/Button_RemoveOverride")
+
+[node name="Content" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
+
+[node name="Layout" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_Scenario" type="Label" parent="Content/Layout"]
+layout_mode = 2
+text = "WORLD_EDITOR_MAP_SCENARIO"
+label_settings = SubResource("LabelSettings_xbeug")
+horizontal_alignment = 1
+
+[node name="ScenarioPicker" type="VBoxContainer" parent="Content/Layout"]
+layout_mode = 2
+theme = ExtResource("4_h6oq1")
+script = ExtResource("5_xbeug")
+allow_bit_selection = false
+allow_primary_bit_selection = true
+total_bits = 15
+button_size = Vector2(32, 42)
+metadata/_custom_type_script = "uid://dlwdmhejeb1cq"
+
+[node name="HSeparator" type="HSeparator" parent="Content/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label_TypeDefault" type="Label" parent="Content/Layout"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "WORLD_EDITOR_MAP_SCENARIO_TYPE_DEFAULT"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label_TypeOverrides" type="Label" parent="Content/Layout"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "WORLD_EDITOR_MAP_SCENARIO_TYPE_OVERRIDE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="Content/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button_ConvertToOverride" type="Button" parent="Content/Layout"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE"
+text_overrun_behavior = 3
+
+[node name="Button_RemoveOverride" type="Button" parent="Content/Layout"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE"
+text_overrun_behavior = 3
+
+[connection signal="primary_bit_changed" from="Content/Layout/ScenarioPicker" to="." method="OnScenarioPickerSelection"]
+[connection signal="pressed" from="Content/Layout/Button_ConvertToOverride" to="." method="OnPressedMakeScenarioOverride"]
+[connection signal="pressed" from="Content/Layout/Button_RemoveOverride" to="." method="OnPressedRemoveScenarioOverride"]

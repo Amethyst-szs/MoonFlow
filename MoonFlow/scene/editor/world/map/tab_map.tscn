@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctffpm166bteo"]
+[gd_scene load_steps=22 format=3 uid="uid://ctffpm166bteo"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_qiqeq"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="2_xa8bk"]
@@ -10,11 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://by65jg3a6jkq4" path="res://asset/material/map2d/adjust.svg" id="5_onm4b"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="6_5h7kc"]
 [ext_resource type="Texture2D" uid="uid://bggrffjaw6gcv" path="res://asset/material/map2d/undo_matrix.svg" id="6_btxgw"]
+[ext_resource type="Texture2D" uid="uid://oddo0qvixg5i" path="res://asset/material/status/visible.svg" id="10_3abut"]
 [ext_resource type="Texture2D" uid="uid://bsyyjfgw2hnbb" path="res://asset/material/file/sync_alt.svg" id="11_2v8lb"]
 [ext_resource type="Texture2D" uid="uid://ctpjemxrt8587" path="res://asset/material/map2d/reference_image_export.svg" id="12_oyc72"]
+[ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/extra.svg" id="13_3tnt5"]
 [ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="13_lqb30"]
 [ext_resource type="Script" uid="uid://d3cnisiq47k5j" path="res://addons/wiki/access/WikiAccessButton.cs" id="14_ejxqf"]
 [ext_resource type="Resource" uid="uid://dy500wmmxasrl" path="res://addons/wiki/paths/world_map2d.tres" id="15_3tnt5"]
+[ext_resource type="PackedScene" uid="uid://cuafhgvkvobnb" path="res://scene/editor/world/map/scenario/popup_scenario.tscn" id="17_fjle2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qiqeq"]
 size = Vector2(2048, 2048)
@@ -30,10 +33,7 @@ font_size = 18
 font_color = Color(0, 0, 0, 1)
 outline_size = 9
 
-[sub_resource type="Theme" id="Theme_oyc72"]
-Button/font_sizes/font_size = 13
-
-[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading", "MapControls", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
+[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading", "MapControls", "PopupScenario", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
 self_modulate = Color(1, 1, 1, 0.5019608)
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,6 +50,7 @@ script = ExtResource("2_xpiv1")
 IconHolder = NodePath("IconHolder")
 LabelLoading = NodePath("Label_Load")
 MapControls = NodePath("MapControls")
+PopupScenario = NodePath("Popup_Scenario")
 SliderDragSensitivity = NodePath("MapControls/Adjust/Footer/Sensitivity/HSlider_Sensitivity")
 SpinMapRotate = NodePath("MapControls/Adjust/Transform/Rotate/Spin_Rotate")
 SpinMapScale = NodePath("MapControls/Adjust/Transform/Scale/Spin_Scale")
@@ -82,6 +83,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="MapControls" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0.9019608)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03
@@ -96,6 +98,7 @@ theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Adjust" type="VBoxContainer" parent="MapControls"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -122,7 +125,7 @@ text_overrun_behavior = 3
 layout_mode = 2
 min_value = -360.0
 max_value = 360.0
-step = 0.010000000009313226
+step = 0.01000000000931322
 alignment = 1
 suffix = "°"
 custom_arrow_step = 45.0
@@ -146,7 +149,7 @@ text_overrun_behavior = 3
 layout_mode = 2
 min_value = 1.0
 max_value = 1000.0
-value = 100.00000009220093
+value = 100.0
 alignment = 1
 suffix = "%"
 custom_arrow_step = 1.0
@@ -189,15 +192,27 @@ value = 50.0
 tick_count = 8
 ticks_position = 3
 
-[node name="Tools" type="GridContainer" parent="MapControls"]
+[node name="Tools" type="HBoxContainer" parent="MapControls"]
 layout_mode = 2
+
+[node name="Button_IconShow" type="Button" parent="MapControls/Tools"]
+self_modulate = Color(1, 1, 1, 0.8627451)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("10_3abut")
+
+[node name="ToolGrid" type="GridContainer" parent="MapControls/Tools"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 10
-theme = SubResource("Theme_oyc72")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 6
 columns = 2
 
-[node name="Button_Adjust" type="Button" parent="MapControls/Tools"]
+[node name="Button_Adjust" type="Button" parent="MapControls/Tools/ToolGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_MAP_BUTTON_ADJUST_TOOLTIP"
@@ -208,7 +223,7 @@ icon = ExtResource("5_onm4b")
 text_overrun_behavior = 3
 expand_icon = true
 
-[node name="Button_Refresh" type="Button" parent="MapControls/Tools"]
+[node name="Button_Refresh" type="Button" parent="MapControls/Tools/ToolGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_MAP_BUTTON_REFRESH_TOOLTIP"
@@ -219,7 +234,7 @@ text_overrun_behavior = 3
 icon_alignment = 2
 expand_icon = true
 
-[node name="Button_ExportReference" type="Button" parent="MapControls/Tools"]
+[node name="Button_ExportReference" type="Button" parent="MapControls/Tools/ToolGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE_TOOLTIP"
@@ -229,18 +244,29 @@ icon = ExtResource("12_oyc72")
 text_overrun_behavior = 3
 expand_icon = true
 
-[node name="Button_Docs" type="Button" parent="MapControls/Tools"]
+[node name="Button_Scenario" type="Button" parent="MapControls/Tools/ToolGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_MAP_BUTTON_SCENARIO_MANAGER_TOOLTIP"
 mouse_default_cursor_shape = 2
-text = "WORLD_EDITOR_MAP_BUTTON_DOCUMENTATION"
-icon = ExtResource("13_lqb30")
+text = "WORLD_EDITOR_MAP_BUTTON_SCENARIO_MANAGER"
+icon = ExtResource("13_3tnt5")
 text_overrun_behavior = 3
 icon_alignment = 2
 expand_icon = true
+
+[node name="Button_Docs" type="Button" parent="MapControls/Tools"]
+self_modulate = Color(1, 1, 1, 0.8627451)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("13_lqb30")
 script = ExtResource("14_ejxqf")
 WikiTarget = ExtResource("15_3tnt5")
 metadata/_custom_type_script = "uid://d3cnisiq47k5j"
+
+[node name="Popup_Scenario" parent="." instance=ExtResource("17_fjle2")]
+visible = false
 
 [connection signal="resized" from="." to="." method="OnMapSizeChanged"]
 [connection signal="ready" from="MapControls/Adjust" to="MapControls/Adjust" method="hide"]
@@ -248,7 +274,12 @@ metadata/_custom_type_script = "uid://d3cnisiq47k5j"
 [connection signal="value_changed" from="MapControls/Adjust/Transform/Scale/Spin_Scale" to="." method="OnSetScaleMapSpinbox"]
 [connection signal="pressed" from="MapControls/Adjust/Footer/Button_Undo" to="." method="OnUndoMatrixModifications"]
 [connection signal="drag_ended" from="MapControls/Adjust/Footer/Sensitivity/HSlider_Sensitivity" to="." method="OnSetDragAdjustSensitivity"]
-[connection signal="toggled" from="MapControls/Tools/Button_Adjust" to="." method="SetAdjustState"]
-[connection signal="toggled" from="MapControls/Tools/Button_Adjust" to="MapControls/Adjust" method="set_visible"]
-[connection signal="pressed" from="MapControls/Tools/Button_Refresh" to="." method="OnRefreshButton"]
-[connection signal="pressed" from="MapControls/Tools/Button_ExportReference" to="." method="OnExportReference"]
+[connection signal="toggled" from="MapControls/Tools/Button_IconShow" to="IconHolder" method="set_visible"]
+[connection signal="toggled" from="MapControls/Tools/ToolGrid/Button_Adjust" to="." method="SetAdjustState"]
+[connection signal="toggled" from="MapControls/Tools/ToolGrid/Button_Adjust" to="MapControls/Adjust" method="set_visible"]
+[connection signal="pressed" from="MapControls/Tools/ToolGrid/Button_Refresh" to="." method="OnRefreshButton"]
+[connection signal="pressed" from="MapControls/Tools/ToolGrid/Button_ExportReference" to="." method="OnExportReference"]
+[connection signal="pressed" from="MapControls/Tools/ToolGrid/Button_Scenario" to="Popup_Scenario" method="popup"]
+[connection signal="MakeScenarioOverride" from="Popup_Scenario" to="." method="OnScenarioMakeUnique"]
+[connection signal="RemoveScenarioOverride" from="Popup_Scenario" to="." method="OnScenarioRemoveUnique"]
+[connection signal="ScenarioPicked" from="Popup_Scenario" to="." method="OnScenarioSelectionChanged"]

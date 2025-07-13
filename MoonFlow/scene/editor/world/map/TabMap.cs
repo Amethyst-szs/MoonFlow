@@ -10,6 +10,7 @@ namespace MoonFlow.Scene.EditorWorld;
 
 public partial class TabMap : TextureRect
 {
+    private Map2dHolder MapHolder = null;
     private Map2d Map = null;
     private CheckpointFlagDbFile CheckpointInfo = null;
 
@@ -32,6 +33,8 @@ public partial class TabMap : TextureRect
     [Export]
     private VBoxContainer MapControls = null;
     [Export]
+    private PopupScenario PopupScenario = null;
+    [Export]
     private HSlider SliderDragSensitivity = null;
     [Export]
     private SpinBox SpinMapRotate = null;
@@ -49,7 +52,9 @@ public partial class TabMap : TextureRect
     {
         Parent = this.FindParentByType<WorldEditorApp>() ?? throw new NullReferenceException();
         World = Parent.World;
-        PreviewScenario = Parent.World.MoonRockScenario;
+
+        if (PreviewScenario == -1)
+            PreviewScenario = Parent.World.MoonRockScenario;
 
         await InitMapInternal();
     }
@@ -66,14 +71,22 @@ public partial class TabMap : TextureRect
 
         // Load map and other databases
         var db = ProjectManager.GetDB();
-        Map = await db.TryCreateOrGetMap2d(World, PreviewScenario);
+
+        MapHolder = await db.TryCreateOrGetMap2dHolder(World);
+        Map = MapHolder.GetMap(PreviewScenario);
+
         CheckpointInfo = await CheckpointFlagDbGenerator.CreateInfoAsync(db, World, PreviewScenario);
+
+        // Destroy children of IconHolder, will be re-created by the RenderIcons function
+        IconHolder.QueueFreeAllChildren();
 
         // Setup drag sensitivity slider in adjustment menu
         SliderDragSensitivity.Value = EngineSettings.GetSetting<float>(DragSensivityKey, 50.0f);
 
         await RenderMap();
         RenderIcons();
+
+        PopupScenario.InitInfo(World, PreviewScenario, MapHolder);
     }
 
     #region Rendering
@@ -161,6 +174,32 @@ public partial class TabMap : TextureRect
 
         Map.SetInternalMatrices(MatrixBackupProj, MatrixBackupView);
         RenderIcons();
+    }
+
+    private void OnScenarioSelectionChanged(int scenario)
+    {
+        if (scenario < 1)
+        {
+            PopupScenario.InitInfo(World, PreviewScenario, MapHolder);
+            return;
+        }
+
+        PreviewScenario = scenario;
+        _ = InitMap();
+    }
+    private void OnScenarioMakeUnique()
+    {
+        Parent?.OnMapInfoModify();
+        
+        MapHolder.MakeScenarioUnique(PreviewScenario);
+        _ = InitMap();
+    }
+    private void OnScenarioRemoveUnique()
+    {
+        Parent?.OnMapInfoModify();
+
+        MapHolder.MakeScenarioNotUnique(PreviewScenario);
+        _ = InitMap();
     }
 
     #endregion

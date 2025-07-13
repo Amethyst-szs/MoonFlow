@@ -15,7 +15,7 @@ namespace MoonFlow.Project;
 public partial class Map2d
 {
     private readonly SarcFile Archive = null;
-    private readonly string FileName = null;
+    internal string FileName = null;
 
     public readonly Godot.Image Texture = null;
 
@@ -113,6 +113,11 @@ public partial class Map2d
             ViewMatrix[3, column] = Matrix4x4.Identity[3, column];
 
         ViewProjMatrix = Matrix4x4.Multiply(ProjMatrix, ViewMatrix);
+    }
+
+    public Map2d DuplicateMap()
+    {
+        return MemberwiseClone() as Map2d;
     }
 
     #endregion

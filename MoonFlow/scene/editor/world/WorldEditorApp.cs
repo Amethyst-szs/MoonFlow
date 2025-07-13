@@ -73,7 +73,7 @@ public partial class WorldEditorApp : AppScene
 
 		SetupStageList();
 		SetupShineList();
-		TabMap.InitMap();
+        _ = TabMap.InitMap();
 
 		GetNode<OptionButton>("%Option_Type").Selected = (int)NewStageCategory;
 

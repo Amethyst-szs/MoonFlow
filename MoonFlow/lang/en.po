@@ -2433,6 +2433,10 @@ msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
 msgstr "Open Map2d Prototype"
 
 #: scene/main/main.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
+msgstr "Write Texture2dMap to Project"
+
+#: scene/main/main.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
 msgstr "Force C# Runtime Exception"
 
@@ -4125,9 +4129,8 @@ msgstr "Adjust"
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_BUTTON_REFRESH_TOOLTIP"
 msgstr ""
-"Refresh all icons on the map (including Power Moon positions and\n"
-"checkpoint positions).\n"
-"Reload MoonFlow project to refresh map texture!"
+"Refresh all icons on the map. Reload MoonFlow project\n"
+"to refresh the texture!"
 
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_BUTTON_REFRESH"
@@ -4144,8 +4147,46 @@ msgid "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE"
 msgstr "Export Reference"
 
 #: scene/editor/world/map/tab_map.tscn
-msgid "WORLD_EDITOR_MAP_BUTTON_DOCUMENTATION"
-msgstr "Map Docs"
+msgid "WORLD_EDITOR_MAP_BUTTON_SCENARIO_MANAGER_TOOLTIP"
+msgstr "Select map preview scenario and manage scenario overrides."
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_SCENARIO_MANAGER"
+msgstr "Scenarios"
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_MANAGER_TITLE"
+msgstr "Map Scenario Manager"
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO"
+msgstr "Selected Scenario:"
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_TYPE_DEFAULT"
+msgstr "This scenario uses the default map for the kingdom."
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_TYPE_OVERRIDE"
+msgstr ""
+"This scenario uses a unique map, replacing the texture and projection "
+"information for the kingdom."
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE_TOOLTIP"
+msgstr "BFRES will not be modified, create new texture file manually!"
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE"
+msgstr "Create Unique Map for Scenario"
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE_TOOLTIP"
+msgstr "BFRES will not be modified, remove old texture file manually!"
+
+#: scene/editor/world/map/scenario/popup_scenario.tscn
+msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE"
+msgstr "Remove Unique Map from Scenario"
 
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."

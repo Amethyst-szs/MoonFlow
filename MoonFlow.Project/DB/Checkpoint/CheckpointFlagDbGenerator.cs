@@ -76,7 +76,9 @@ public static class CheckpointFlagDbGenerator
 
         // Create file from byml
         var file = new CheckpointFlagDbFile(world, scenario1Through15);
-        file.AddRange(flagList);
+
+        if (flagList != null)
+            file.AddRange(flagList);
 
         return file;
     }

@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+
 using Godot;
 using Godot.Extension.Resources;
 
 using Nindot;
-using Nindot.Byml;
-
-using Syroot.Maths;
 
 using MoonFlow.Project.Database;
+using Godot.Extension;
 
 namespace MoonFlow.Project;
 
@@ -62,6 +60,30 @@ public class Map2dHolder
             scenario.WriteMatrixDataToDb();
 
         Archive.WriteArchive(path);
+    }
+
+    public void MakeScenarioUnique(int scenario)
+    {
+        if (ScenarioOverrides.ContainsKey(scenario))
+            throw new Exception("Cannot make a scenario unique that is already unique!");
+
+        // Duplicate default map
+        var duplicate = Default.DuplicateMap();
+
+        // Reformat file name
+        var newName = duplicate.FileName.TrimSuf(".byml") + scenario.ToString() + ".byml";
+        duplicate.FileName = newName;
+
+        ScenarioOverrides.Add(scenario, duplicate);
+    }
+    public void MakeScenarioNotUnique(int scenario)
+    {
+        if (!ScenarioOverrides.TryGetValue(scenario, out Map2d map))
+            throw new Exception("Cannot make scenario not unique that wasn't unique in the first place!");
+
+        // Remove entry from map's archive and scenario override table
+        Archive.Content.Remove(map.FileName);
+        ScenarioOverrides.Remove(scenario);
     }
 
     public const string ArchivePathSuffix = "ObjectData/Texture2dMap.szs";
