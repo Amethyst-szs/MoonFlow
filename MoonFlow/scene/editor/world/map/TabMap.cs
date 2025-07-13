@@ -14,6 +14,7 @@ public partial class TabMap : TextureRect
     private CheckpointFlagDbFile CheckpointInfo = null;
 
     private WorldEditorApp Parent = null;
+    private WorldInfo World = null;
     private int PreviewScenario = -1;
     private ShineInfo HoverShine = null;
 
@@ -29,6 +30,8 @@ public partial class TabMap : TextureRect
     [Export]
     private Label LabelLoading = null;
     [Export]
+    private VBoxContainer MapControls = null;
+    [Export]
     private HSlider SliderDragSensitivity = null;
     [Export]
     private SpinBox SpinMapRotate = null;
@@ -42,18 +45,31 @@ public partial class TabMap : TextureRect
     [Export]
     private Texture2D TextureOrigin = null;
 
-    public async void InitMap()
+    public async Task InitMap()
     {
         Parent = this.FindParentByType<WorldEditorApp>() ?? throw new NullReferenceException();
+        World = Parent.World;
         PreviewScenario = Parent.World.MoonRockScenario;
 
+        await InitMapInternal();
+    }
+    public async Task InitMap(WorldInfo world, int scenario)
+    {
+        World = world;
+        PreviewScenario = scenario;
+
+        await InitMapInternal();
+    }
+    private async Task InitMapInternal()
+    {
         RenderMapDisable();
 
         // Load map and other databases
         var db = ProjectManager.GetDB();
-        Map = await db.TryCreateOrGetMap2d(Parent.World, PreviewScenario);
-        CheckpointInfo = await CheckpointFlagDbGenerator.CreateInfoAsync(db, Parent.World, PreviewScenario);
+        Map = await db.TryCreateOrGetMap2d(World, PreviewScenario);
+        CheckpointInfo = await CheckpointFlagDbGenerator.CreateInfoAsync(db, World, PreviewScenario);
 
+        // Setup drag sensitivity slider in adjustment menu
         SliderDragSensitivity.Value = EngineSettings.GetSetting<float>(DragSensivityKey, 50.0f);
 
         await RenderMap();
@@ -71,7 +87,7 @@ public partial class TabMap : TextureRect
     {
         LabelLoading.Show();
 
-        ImageTexture tex = await Map2dRenderUtility.GetMapImageTexture(Parent.World, PreviewScenario);
+        ImageTexture tex = await Map2dRenderUtility.GetMapImageTexture(World, PreviewScenario);
         Texture = tex;
         SelfModulate = Colors.White;
 
@@ -79,19 +95,21 @@ public partial class TabMap : TextureRect
     }
     private void RenderIcons()
     {
-        if (Parent == null || Parent.World == null || Map == null)
+        if (World == null || Map == null)
             return;
 
         // Get map information
         Map.RecalculateViewProjMatrix();
 
         // Render icons
-        var shineList = Parent.World.ShineList;
+        var shineList = World.ShineList;
         Map2dRenderUtility.RenderShineIcons(Map, Size, IconHolder, shineList, HoverShine, TextureShine);
         Map2dRenderUtility.RenderCheckpointIcons(Map, Size, IconHolder, CheckpointInfo, TextureCheckpoint);
 
         Map2dRenderUtility.RenderOriginPoint(Map, Size, IconHolder, TextureOrigin);
     }
+
+    public void DisableMapControls() => MapControls.Hide();
 
     #endregion
 
@@ -108,7 +126,8 @@ public partial class TabMap : TextureRect
         RenderIcons();
     }
     private void OnMapSizeChanged() => RenderIcons();
-    private void OnRefreshButton() => InitMap();
+    private async void OnRefreshButton() => await InitMap();
+    private async void OnExportReference() => await ReferenceImageExporter.CreateAndSaveImage(World, PreviewScenario);
 
     private void OnSetDragAdjustSensitivity(bool isChanged)
     {
@@ -120,7 +139,7 @@ public partial class TabMap : TextureRect
     }
     private void OnSetRotateMapSpinbox(float value)
     {
-        Parent.OnMapInfoModify();
+        Parent?.OnMapInfoModify();
 
         Map.RotateViewMatrix(value);
         RenderIcons();
@@ -129,7 +148,7 @@ public partial class TabMap : TextureRect
     }
     private void OnSetScaleMapSpinbox(float value)
     {
-        Parent.OnMapInfoModify();
+        Parent?.OnMapInfoModify();
 
         Map.ScaleViewMatrix(value / 100.0f);
         RenderIcons();
@@ -138,7 +157,7 @@ public partial class TabMap : TextureRect
     }
     private void OnUndoMatrixModifications()
     {
-        Parent.OnMapInfoModify();
+        Parent?.OnMapInfoModify();
 
         Map.SetInternalMatrices(MatrixBackupProj, MatrixBackupView);
         RenderIcons();
@@ -193,12 +212,12 @@ public partial class TabMap : TextureRect
         float sensitivity = EngineSettings.GetSetting<float>(DragSensivityKey, 50.0f);
         var offset = motion.ScreenRelative * sensitivity;
 
-        var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(Parent.World, PreviewScenario);
+        var map = await ProjectManager.GetDB().TryCreateOrGetMap2d(World, PreviewScenario);
 
         // Modify translation of ViewMatrix
         map.DragViewMatrix(offset);
 
-        Parent.OnMapInfoModify();
+        Parent?.OnMapInfoModify();
         RenderIcons();
     }
 

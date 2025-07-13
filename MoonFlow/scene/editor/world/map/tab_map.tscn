@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctffpm166bteo"]
+[gd_scene load_steps=17 format=3 uid="uid://ctffpm166bteo"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_qiqeq"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="2_xa8bk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="6_5h7kc"]
 [ext_resource type="Texture2D" uid="uid://bggrffjaw6gcv" path="res://asset/material/map2d/undo_matrix.svg" id="6_btxgw"]
 [ext_resource type="Texture2D" uid="uid://bsyyjfgw2hnbb" path="res://asset/material/file/sync_alt.svg" id="11_2v8lb"]
+[ext_resource type="Texture2D" uid="uid://ctpjemxrt8587" path="res://asset/material/map2d/reference_image_export.svg" id="12_oyc72"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qiqeq"]
 size = Vector2(2048, 2048)
@@ -26,7 +27,10 @@ font_size = 18
 font_color = Color(0, 0, 0, 1)
 outline_size = 9
 
-[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
+[sub_resource type="Theme" id="Theme_oyc72"]
+Button/font_sizes/font_size = 13
+
+[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading", "MapControls", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
 self_modulate = Color(1, 1, 1, 0.5019608)
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,6 +46,7 @@ stretch_mode = 5
 script = ExtResource("2_xpiv1")
 IconHolder = NodePath("IconHolder")
 LabelLoading = NodePath("Label_Load")
+MapControls = NodePath("MapControls")
 SliderDragSensitivity = NodePath("MapControls/Adjust/Footer/Sensitivity/HSlider_Sensitivity")
 SpinMapRotate = NodePath("MapControls/Adjust/Transform/Rotate/Spin_Rotate")
 SpinMapScale = NodePath("MapControls/Adjust/Transform/Scale/Spin_Scale")
@@ -186,6 +191,7 @@ ticks_position = 3
 [node name="Tools" type="HBoxContainer" parent="MapControls"]
 layout_mode = 2
 size_flags_vertical = 10
+theme = SubResource("Theme_oyc72")
 
 [node name="Button_Adjust" type="Button" parent="MapControls/Tools"]
 layout_mode = 2
@@ -196,6 +202,7 @@ toggle_mode = true
 text = "WORLD_EDITOR_MAP_BUTTON_ADJUST"
 icon = ExtResource("5_onm4b")
 text_overrun_behavior = 3
+expand_icon = true
 
 [node name="Button_Refresh" type="Button" parent="MapControls/Tools"]
 layout_mode = 2
@@ -205,7 +212,17 @@ mouse_default_cursor_shape = 2
 text = "WORLD_EDITOR_MAP_BUTTON_REFRESH"
 icon = ExtResource("11_2v8lb")
 text_overrun_behavior = 3
-icon_alignment = 2
+expand_icon = true
+
+[node name="Button_ExportReference" type="Button" parent="MapControls/Tools"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE"
+icon = ExtResource("12_oyc72")
+text_overrun_behavior = 3
+expand_icon = true
 
 [connection signal="resized" from="." to="." method="OnMapSizeChanged"]
 [connection signal="ready" from="MapControls/Adjust" to="MapControls/Adjust" method="hide"]
@@ -216,3 +233,4 @@ icon_alignment = 2
 [connection signal="toggled" from="MapControls/Tools/Button_Adjust" to="." method="SetAdjustState"]
 [connection signal="toggled" from="MapControls/Tools/Button_Adjust" to="MapControls/Adjust" method="set_visible"]
 [connection signal="pressed" from="MapControls/Tools/Button_Refresh" to="." method="OnRefreshButton"]
+[connection signal="pressed" from="MapControls/Tools/Button_ExportReference" to="." method="OnExportReference"]

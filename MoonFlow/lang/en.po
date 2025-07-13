@@ -4114,9 +4114,9 @@ msgstr "Drag Sensitivity"
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST_TOOLTIP"
 msgstr ""
-"Enable adjusting mode to drag around the map projection. This\n"
-"is only intended for making fine tweaks to map rendering, if you\n"
-"want to create a new map use the \"Setup New Map\" button."
+"Use adjust mode to change the map projection. You can drag the\n"
+"projection's position and type rotation and scale modifications.\n"
+"Check the docs for more info!"
 
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST"
@@ -4133,11 +4133,15 @@ msgstr ""
 msgid "WORLD_EDITOR_MAP_BUTTON_REFRESH"
 msgstr "Refresh"
 
-#~ msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP_TOOLTIP"
-#~ msgstr "placeholder tooltip"
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE_TOOLTIP"
+msgstr ""
+"Export reference images of map and icons. For more information\n"
+"about creating new maps from reference images, check the docs!"
 
-#~ msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP"
-#~ msgstr "Setup New Map"
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE"
+msgstr "Export Reference"
 
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."
