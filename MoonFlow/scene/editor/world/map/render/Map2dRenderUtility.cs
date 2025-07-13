@@ -53,6 +53,22 @@ public static class Map2dRenderUtility
         }
     }
 
+    public static void RenderCheckpointIcons(Map2d map, Godot.Vector2 mapSize, Control iconHolder, CheckpointFlagDbFile flags, Texture2D flagIcon)
+    {
+        if (flags == null)
+            return;
+
+        // Render all shines as icon on map
+        foreach (var flag in flags)
+        {
+            var id = GetCheckpointNodeId(flag);
+            var icon = GetOrCreateIcon(id, flagIcon, iconHolder);
+
+            // Convert world position to screen position
+            PositionMapIcon(map, mapSize, icon, flag.Trans);
+        }
+    }
+
     public static void RenderOriginPoint(Map2d map, Godot.Vector2 mapSize, Control iconHolder, Texture2D originIcon)
     {
         var id = GetOriginNodeId();
@@ -83,6 +99,10 @@ public static class Map2dRenderUtility
     private static string GetShineNodeId(ShineInfo shine)
     {
         return string.Format("Shine_{0}_{1}", shine.UniqueId, shine.ObjId);
+    }
+    private static string GetCheckpointNodeId(CheckpointFlagInfo flag)
+    {
+        return string.Format("Flag_{0}", flag.FlagIdStr);
     }
     private static string GetOriginNodeId() => "Origin";
 

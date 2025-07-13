@@ -57,9 +57,9 @@ public partial class Map2d
 
         RecalculateViewProjMatrix();
 
-        PrintMatrix(nameof(ProjMatrix), ProjMatrix);
-        PrintMatrix(nameof(ViewMatrix), ViewMatrix);
-        PrintMatrix(nameof(ViewProjMatrix), ViewProjMatrix);
+        // PrintMatrix(nameof(ProjMatrix), ProjMatrix);
+        // PrintMatrix(nameof(ViewMatrix), ViewMatrix);
+        // PrintMatrix(nameof(ViewProjMatrix), ViewProjMatrix);
     }
 
     public void WriteMatrixDataToDb()

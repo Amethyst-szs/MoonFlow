@@ -22,17 +22,10 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
 
         Init(db, data);
     }
-    [Obsolete("This cobnstructor has very bad performance due to needing to read from disk for every scenario.Please provide ReadOnlyStageData in constructor for better performance.")]
-    public CheckpointFlagDbFile(ProjectDatabaseHolder db, WorldInfo world, int scenario1Through15)
+    public CheckpointFlagDbFile(WorldInfo world, int scenario1Through15)
     {
-        // Store init properties for later
         HomeStage = world.Name;
         Scenario = scenario1Through15;
-
-        // Fetch stage data
-        string path = GetHomeStageSarcPath(world, db.Path);
-        ReadOnlyStageData data = ReadOnlyStageData.FromSarcFilePath(path);
-        Init(db, data);
     }
 
     private void Init(ProjectDatabaseHolder db, ReadOnlyStageData data)
@@ -67,7 +60,7 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
 
         if (!scenario.TryGetValue("CheckPointList", out List<StageObject> list))
             return;
-        
+
         foreach (var checkpoint in list)
         {
             // Ensure that the object in the list is an actual checkpoint flag object
@@ -87,7 +80,7 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
 
         if (!scenario.TryGetValue("CheckPointList", out List<StageObject> list))
             return;
-        
+
         // Generate rotation quaternion for zone
         var zoneRot = zoneObject.GetRotate();
         zoneRot.X = (float)(Math.PI / 180) * zoneRot.X;
@@ -144,7 +137,7 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
         MemoryStream stream = new();
         BymlFileAccess.WriteFile(stream, bymlSource);
 
-        string bymlName = "FlagList_" + HomeStage + "_" + Scenario.ToString() + ".byml";
+        string bymlName = FormatFileName(HomeStage, Scenario);
         target.Add(bymlName, stream.ToArray());
     }
 
@@ -177,6 +170,11 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
         }
 
         throw new FileNotFoundException("Could not find world HomeStage at path " + stagePath);
+    }
+
+    internal static string FormatFileName(string homeStage, int scenario)
+    {
+        return "FlagList_" + homeStage + "_" + scenario.ToString() + ".byml";
     }
 
     #endregion

@@ -4120,15 +4120,24 @@ msgstr ""
 
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST"
-msgstr "Adjust Map"
+msgstr "Adjust"
 
 #: scene/editor/world/map/tab_map.tscn
-msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP_TOOLTIP"
-msgstr "placeholder tooltip"
+msgid "WORLD_EDITOR_MAP_BUTTON_REFRESH_TOOLTIP"
+msgstr ""
+"Refresh all icons on the map (including Power Moon positions and\n"
+"checkpoint positions).\n"
+"Reload MoonFlow project to refresh map texture!"
 
 #: scene/editor/world/map/tab_map.tscn
-msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP"
-msgstr "Setup New Map"
+msgid "WORLD_EDITOR_MAP_BUTTON_REFRESH"
+msgstr "Refresh"
+
+#~ msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP_TOOLTIP"
+#~ msgstr "placeholder tooltip"
+
+#~ msgid "WORLD_EDITOR_MAP_BUTTON_GENERATE_MAP"
+#~ msgstr "Setup New Map"
 
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."

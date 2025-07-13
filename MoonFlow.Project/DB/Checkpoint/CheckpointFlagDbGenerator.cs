@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using System.Threading.Tasks;
 
 using Nindot;
 using Nindot.Al.StageData;
@@ -51,6 +52,32 @@ public static class CheckpointFlagDbGenerator
         File.WriteAllBytes(path, [.. result]);
     }
 
+    public static async Task<CheckpointFlagDbFile> CreateInfoAsync(ProjectDatabaseHolder db, WorldInfo world, int scenario1Through15)
+    {
+        return await Task.Run(() => CreateInfo(db, world, scenario1Through15));
+    }
+    public static CheckpointFlagDbFile CreateInfo(ProjectDatabaseHolder db, WorldInfo world, int scenario1Through15)
+    {
+        // Lookup database sarc file
+        var dbPath = GetDbPathFromProjectOtherwiseRomfs(db);
+        var sarc = SarcFile.FromFilePath(dbPath);
+
+        // Lookup byml in sarc
+        var bymlName = CheckpointFlagDbFile.FormatFileName(world.Name, scenario1Through15);
+        if (!sarc.Content.TryGetValue(bymlName, out ArraySegment<byte> bymlData))
+            return null;
+
+        var byml = BymlFileAccess.ParseBytes<Dictionary<string, List<CheckpointFlagInfo>>>([.. bymlData]);
+        if (!byml.TryGetValue("FlagList", out List<CheckpointFlagInfo> flagList))
+            return null;
+
+        // Create file from byml
+        var file = new CheckpointFlagDbFile(world, scenario1Through15);
+        file.AddRange(flagList);
+
+        return file;
+    }
+
     #region Cache
 
     private static readonly Dictionary<string, ReadOnlyStageData> StageDataCache = [];
@@ -77,7 +104,29 @@ public static class CheckpointFlagDbGenerator
 
     #region Utility
 
-    private static string GetCheckpointDbPath(string root) { return root + "SystemData/CheckpointFlagInfo.szs"; }
+    private const string CheckpointDbPath = "SystemData/CheckpointFlagInfo.szs";
+    private static string GetCheckpointDbPath(string root) { return root + CheckpointDbPath; }
+    private static string GetDbPathFromProjectOtherwiseRomfs(ProjectDatabaseHolder db)
+    {
+        string path = GetCheckpointDbPath(db.Path);
+
+        // Attempt to access archive
+        if (File.Exists(path))
+        {
+            return path;
+        }
+        else
+        {
+            if (!RomfsAccessor.TryGetRomfsDirectory(out string romDir))
+                throw new Exception("RomfsAccessor could not return directory");
+
+            path = romDir + CheckpointDbPath;
+            if (File.Exists(path))
+                return path;
+        }
+
+        throw new FileNotFoundException("Could not find CheckpointFlagInfo.szs at path " + path);
+    }
     
     #endregion
 }

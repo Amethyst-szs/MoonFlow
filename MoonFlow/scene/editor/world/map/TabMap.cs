@@ -11,6 +11,7 @@ namespace MoonFlow.Scene.EditorWorld;
 public partial class TabMap : TextureRect
 {
     private Map2d Map = null;
+    private CheckpointFlagDbFile CheckpointInfo = null;
 
     private WorldEditorApp Parent = null;
     private int PreviewScenario = -1;
@@ -37,6 +38,8 @@ public partial class TabMap : TextureRect
     [Export, ExportGroup("Map Icons")]
     private Texture2D TextureShine = null;
     [Export]
+    private Texture2D TextureCheckpoint = null;
+    [Export]
     private Texture2D TextureOrigin = null;
 
     public async void InitMap()
@@ -44,7 +47,12 @@ public partial class TabMap : TextureRect
         Parent = this.FindParentByType<WorldEditorApp>() ?? throw new NullReferenceException();
         PreviewScenario = Parent.World.MoonRockScenario;
 
-        Map = await ProjectManager.GetDB().TryCreateOrGetMap2d(Parent.World, PreviewScenario);
+        RenderMapDisable();
+
+        // Load map and other databases
+        var db = ProjectManager.GetDB();
+        Map = await db.TryCreateOrGetMap2d(Parent.World, PreviewScenario);
+        CheckpointInfo = await CheckpointFlagDbGenerator.CreateInfoAsync(db, Parent.World, PreviewScenario);
 
         SliderDragSensitivity.Value = EngineSettings.GetSetting<float>(DragSensivityKey, 50.0f);
 
@@ -54,13 +62,18 @@ public partial class TabMap : TextureRect
 
     #region Rendering
 
+    private void RenderMapDisable()
+    {
+        LabelLoading.Show();
+        SelfModulate = Colors.Black;
+    }
     private async Task RenderMap()
     {
         LabelLoading.Show();
 
         ImageTexture tex = await Map2dRenderUtility.GetMapImageTexture(Parent.World, PreviewScenario);
-        SetDeferred(PropertyName.Texture, tex);
-        SetDeferred(PropertyName.SelfModulate, Colors.White);
+        Texture = tex;
+        SelfModulate = Colors.White;
 
         LabelLoading.Hide();
     }
@@ -75,6 +88,7 @@ public partial class TabMap : TextureRect
         // Render icons
         var shineList = Parent.World.ShineList;
         Map2dRenderUtility.RenderShineIcons(Map, Size, IconHolder, shineList, HoverShine, TextureShine);
+        Map2dRenderUtility.RenderCheckpointIcons(Map, Size, IconHolder, CheckpointInfo, TextureCheckpoint);
 
         Map2dRenderUtility.RenderOriginPoint(Map, Size, IconHolder, TextureOrigin);
     }
@@ -94,12 +108,13 @@ public partial class TabMap : TextureRect
         RenderIcons();
     }
     private void OnMapSizeChanged() => RenderIcons();
+    private void OnRefreshButton() => InitMap();
 
     private void OnSetDragAdjustSensitivity(bool isChanged)
     {
         if (!isChanged)
             return;
-        
+
         EngineSettings.SetSetting(DragSensivityKey, SliderDragSensitivity.Value);
         EngineSettings.Save();
     }
@@ -126,11 +141,6 @@ public partial class TabMap : TextureRect
         Parent.OnMapInfoModify();
 
         Map.SetInternalMatrices(MatrixBackupProj, MatrixBackupView);
-        RenderIcons();
-    }
-    private void OnDebugPlaceholder()
-    {
-        var p = 0;
         RenderIcons();
     }
 

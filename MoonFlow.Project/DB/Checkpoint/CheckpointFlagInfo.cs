@@ -3,8 +3,15 @@ using YamlDotNet.Serialization;
 
 namespace MoonFlow.Project.Database;
 
-public class CheckpointFlagInfo(string id, Vector3 position)
+public class CheckpointFlagInfo
 {
-    public string FlagIdStr = id;
-    public Vector3 Trans = position;
+    public CheckpointFlagInfo() {}
+    public CheckpointFlagInfo(string id, Vector3 position)
+    {
+        FlagIdStr = id;
+        Trans = position;
+    }
+
+    public string FlagIdStr;
+    public Vector3 Trans;
 }
