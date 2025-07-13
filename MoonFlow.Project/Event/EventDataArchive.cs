@@ -1,11 +1,12 @@
 using System;
 using System.IO;
+using AuroraLib.Compression.Algorithms;
 
 using Nindot;
 
 namespace MoonFlow.Project;
 
-public class EventDataArchive(SarcLibrary.Sarc file, string filePath) : SarcFile(file, filePath)
+public class EventDataArchive(SarcLibrary.Sarc file, NindotYaz0 yaz0Inst, string filePath) : SarcFile(file, yaz0Inst, filePath)
 {
     public enum ArchiveSource
     {
@@ -23,13 +24,14 @@ public class EventDataArchive(SarcLibrary.Sarc file, string filePath) : SarcFile
     public static EventDataArchive FromBytes(byte[] fileCompressed, string path, ArchiveSource source)
     {
         byte[] file;
+        var yaz0 = new NindotYaz0();
 
         // Decompress file using Yaz0, and return early if this fails
-        try { file = NindotYaz0.Decompress(fileCompressed); }
+        try { file = yaz0.Decompress(fileCompressed); }
         catch { throw new SarcFileException("Yaz0 decompress failed!"); }
 
         // Convert this decompressed file into a sarc object, and return a failure if empty
-        var output = new EventDataArchive(SarcLibrary.Sarc.FromBinary(file), path)
+        var output = new EventDataArchive(SarcLibrary.Sarc.FromBinary(file), yaz0, path)
         {
             Source = source
         };

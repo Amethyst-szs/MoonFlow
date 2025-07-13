@@ -20,6 +20,7 @@ public partial class ActionbarDebug : ActionbarItemBase
 		OPEN_MSBT_ENTRY_LOOKUP_POPUP = 12,
 		OPEN_EVENT_FLOW_GRAPH_PROTOTYPE = 13,
 		OPEN_MAP2D_VIEWER = 14,
+		WRITE_TEXTURE2DMAP = 15,
 
 		FORCE_EXCEPTION = 2000,
 	}
@@ -41,6 +42,7 @@ public partial class ActionbarDebug : ActionbarItemBase
 		AssignFunction((int)MenuIds.OPEN_MSBT_ENTRY_LOOKUP_POPUP, OnPressedOpenMsbtEntryLookup);
 		AssignFunction((int)MenuIds.OPEN_EVENT_FLOW_GRAPH_PROTOTYPE, OnPressedOpenEventFlowPrototype);
 		AssignFunction((int)MenuIds.OPEN_MAP2D_VIEWER, OnPressedOpenMap2dViewer);
+		AssignFunction((int)MenuIds.WRITE_TEXTURE2DMAP, OnPressedWriteTexture2dMap);
 		AssignFunction((int)MenuIds.FORCE_EXCEPTION, OnForceException);
 
 		AboutToPopup += OnAboutToAppear;
@@ -108,6 +110,14 @@ public partial class ActionbarDebug : ActionbarItemBase
 	}
 
 	private void OnPressedOpenMap2dViewer() => AppSceneServer.CreateApp<Map2dViewer>();
+	private async void OnPressedWriteTexture2dMap()
+	{
+		var db = ProjectManager.GetDB();
+		var world = db.WorldList[0];
+
+		_ = await db.TryCreateOrGetMap2d(world, -1);
+		db.TrySaveMap2dDatabaseAndTextures(world);
+	}
 
 	private void OnForceException()
 	{

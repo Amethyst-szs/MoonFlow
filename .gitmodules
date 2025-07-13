@@ -1,3 +1,9 @@
 [submodule "Module/BfresLibrary"]
 	path = Module/BfresLibrary
 	url = https://github.com/KillzXGaming/BfresLibrary
+[submodule "Module/SarcLibrary"]
+	path = Module/SarcLibrary
+	url = https://github.com/Amethyst-szs/SarcLibrary
+[submodule "Module/AuroraLib.Compression"]
+	path = Module/AuroraLib.Compression
+	url = https://github.com/Amethyst-szs/AuroraLib.Compression

@@ -8,9 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Module\AuroraLib.Compression\src\AuroraLib.Compression\AuroraLib.Compression.csproj" />
+    <ProjectReference Include="..\Module\SarcLibrary\src\SarcLibrary\SarcLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Nindot.BymlLibrary" Version="1.0.5" />
-    <PackageReference Include="AuroraLib.Compression" Version="1.5.1" />
-    <PackageReference Include="SarcLibrary" Version="3.3.0" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 </Project>

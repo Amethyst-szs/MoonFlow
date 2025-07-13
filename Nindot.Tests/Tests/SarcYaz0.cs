@@ -2,6 +2,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using AuroraLib.Compression.Algorithms;
+
 using static Nindot.Tests.PathUtility;
 
 namespace Nindot.Tests;
@@ -12,14 +14,14 @@ public class SarcYaz0
     public static void DecodeYaz0()
     {
         var data = File.ReadAllBytes(ResDirectory + "Example.szs");
-        NindotYaz0.Decompress(data);
+        new NindotYaz0().Decompress(data);
     }
 
     [Fact]
     public static void EncodeYaz0()
     {
         var source = "Hello world, I am example text for the yaz0 compression algo!";
-        NindotYaz0.Compress(Encoding.UTF8.GetBytes(source));
+        new NindotYaz0().Compress(Encoding.UTF8.GetBytes(source));
     }
 
     [Fact]

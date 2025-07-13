@@ -255,7 +255,7 @@ public class ProjectDatabaseHolder
     {
         // Ensure we have access to a Map2d resource file
         if (SarcMap2d == null || ResourceMap2d == null)
-            if (!await Task.Run(TryCreateResourceMap2d))
+            if (!await Task.Run(TryCreateResourcesForMap2d))
                 return null;
 
         // If map is already cached, return from dictionary
@@ -277,7 +277,7 @@ public class ProjectDatabaseHolder
             return map.GetMap(scenario);
     }
 
-    private bool TryCreateResourceMap2d()
+    private bool TryCreateResourcesForMap2d()
     {
         // Fetch map archive from project or romfs accessor
         string filePath = Path + Map2dHolder.ArchivePathSuffix;

@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using Godot;
 
+using AuroraLib.Compression.Algorithms;
+
 using Nindot;
 using Nindot.Al.EventFlow;
 using Nindot.Al.EventFlow.Smo;
@@ -82,7 +84,9 @@ public class ProjectEventDataArchiveHolder
 
         // Create new empty sarc and write to disk
         var sarc = new SarcLibrary.Sarc();
-        SarcFile.WriteArchive(sarc, targetPath);
+        var yaz0 = new NindotYaz0();
+        
+        SarcFile.WriteArchive(sarc, yaz0, targetPath);
 
         RefreshArchiveList();
         return true;

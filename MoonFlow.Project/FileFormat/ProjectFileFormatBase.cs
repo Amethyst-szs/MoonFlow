@@ -1,10 +1,11 @@
+using System;
 using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Linq;
 using Godot;
 
-using System;
+using AuroraLib.Compression.Algorithms;
 
 using Nindot;
 
@@ -17,6 +18,7 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
 
     public T Data = new();
 
+    private const int MAGIC_LENGTH = 4;
     private string __magic = null;
     private string MagicSignature
     {
@@ -29,14 +31,14 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
         }
         set
         {
-            if (value.Length != MagicLength)
+            if (value.Length != MAGIC_LENGTH)
                 throw new Exception("Invalid magic signature, must be MagicLength characters");
 
             __magic = value;
         }
     }
 
-    private const int MagicLength = 4;
+    private readonly NindotYaz0 Yaz0Instance = new();
 
     protected readonly JsonSerializerOptions JsonConfig = new();
 
@@ -79,10 +81,10 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
     private void Init(byte[] buffer)
     {
         // Compare first four bytes to magic signature
-        if (Encoding.UTF8.GetString(buffer.AsSpan()[..MagicLength]) != MagicSignature)
+        if (Encoding.UTF8.GetString(buffer.AsSpan()[..MAGIC_LENGTH]) != MagicSignature)
             throw new Exception("Invalid file magic signature!");
 
-        buffer = NindotYaz0.Decompress(buffer[MagicLength..]);
+        buffer = Yaz0Instance.Decompress(buffer.AsSpan()[MAGIC_LENGTH..]);
 
         Data = JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(buffer), JsonConfig);
         IsReadFromDisk = true;
@@ -109,7 +111,7 @@ public abstract class ProjectFileFormatBase<T> where T : IProjectFileFormatDataR
 
         // Create bytecode version of magic signature and compress data
         var sig = Encoding.UTF8.GetBytes(MagicSignature);
-        var compressionResult = NindotYaz0.Compress(bytes);
+        var compressionResult = Yaz0Instance.Compress(bytes).ToArray();
         
         // Write signature and compressed data to file
         var output = sig.Concat(compressionResult).ToArray();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
 using System.Threading.Tasks;
+using AuroraLib.Compression.Algorithms;
 
 using Nindot;
 using Nindot.Al.StageData;
@@ -48,7 +49,9 @@ public static class CheckpointFlagDbGenerator
         MemoryStream stream = new();
         sarc.Write(stream);
 
-        var result = NindotYaz0.Compress(stream);
+        var yaz0 = new NindotYaz0();
+
+        var result = yaz0.Compress(stream);
         File.WriteAllBytes(path, [.. result]);
     }
 

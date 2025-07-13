@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Linq;
 
+using AuroraLib.Compression.Algorithms;
+
 using Nindot.Al.EventFlow;
 using Nindot.Byml;
 using Nindot.LMS.Msbp;
@@ -10,13 +12,14 @@ using Nindot.LMS.Msbt.TagLib;
 
 namespace Nindot;
 
-public class SarcFile(SarcLibrary.Sarc file, string filePath)
+public class SarcFile(SarcLibrary.Sarc file, NindotYaz0 yaz0Inst, string filePath)
 {
     // ====================================================== //
     // ============ Initilization and Parameters ============ //
     // ====================================================== //
 
     public SarcLibrary.Sarc Content { get; private set; } = file;
+    private readonly NindotYaz0 Yaz0Instance = yaz0Inst;
 
     private string _filePath = filePath;
     public string FilePath
@@ -48,18 +51,19 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
     public static SarcFile FromBytes(byte[] fileCompressed, string path)
     {
         byte[] file;
+        var yaz0 = new NindotYaz0();
 
         // Decompress file using Yaz0, and return early if this fails
-        try { file = NindotYaz0.Decompress(fileCompressed); }
+        try { file = yaz0.Decompress(fileCompressed); }
         catch { throw new SarcFileException("Yaz0 decompress failed!"); }
 
         // Convert this decompressed file into a sarc object, and return a failure if empty
-        return new SarcFile(SarcLibrary.Sarc.FromBinary(file), path);
+        return new SarcFile(SarcLibrary.Sarc.FromBinary(file), yaz0, path);
     }
 
     public Exception WriteArchive() { return WriteArchive(FilePath); }
-    public virtual Exception WriteArchive(string path) { return WriteArchive(Content, path); }
-    public static Exception WriteArchive(SarcLibrary.Sarc sarcBase, string path)
+    public virtual Exception WriteArchive(string path) { return WriteArchive(Content, Yaz0Instance, path); }
+    public static Exception WriteArchive(SarcLibrary.Sarc sarcBase, NindotYaz0 yaz0Inst, string path)
     {
         MemoryStream stream = new();
         sarcBase.Write(stream);
@@ -69,7 +73,7 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
 
         try
         {
-            var result = NindotYaz0.Compress(stream);
+            var result = yaz0Inst.Compress(stream);
             File.WriteAllBytes(path, [.. result]);
         }
         catch (Exception e) { return e; }
@@ -77,13 +81,13 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
         return null;
     }
 
-    public byte[] GetBytes() { return GetBytes(Content); }
-    public static byte[] GetBytes(SarcLibrary.Sarc sarcBase)
+    public byte[] GetBytes() { return GetBytes(Content, Yaz0Instance); }
+    public static byte[] GetBytes(SarcLibrary.Sarc sarcBase, NindotYaz0 yaz0Inst)
     {
         MemoryStream stream = new();
         sarcBase.Write(stream);
 
-        return NindotYaz0.Compress(stream);
+        return yaz0Inst.Compress(stream);
     }
 
     // ====================================================== //
