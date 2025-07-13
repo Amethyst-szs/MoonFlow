@@ -9,6 +9,11 @@ public static class BitFlagButtonHolder
     public static void SetValue(VBoxContainer node, int value) { node.Call("set_value", value); }
     public static int GetPrimaryBit(VBoxContainer node) { return node.Get("primary_bit").As<int>(); }
     public static void SetPrimaryBit(VBoxContainer node, int value) { node.Call("set_primary_bit", value); }
+    public static void SetTotalBits(VBoxContainer node, int value)
+    {
+        node.Set("total_bits", value);
+        node.Call("_setup");
+    }
     public static void ConnectValueChanged(VBoxContainer node, Action<int> action)
     {
         var call = Callable.From(action);

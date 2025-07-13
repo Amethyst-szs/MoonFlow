@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://kv7uhw5rsffg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qd1ao"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doufl"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[resource]
+FoldableContainer/colors/collapsed_font_color = Color(1, 1, 1, 0.721569)
+FoldableContainer/colors/font_color = Color(1, 1, 1, 0.827451)
+FoldableContainer/colors/hover_font_color = Color(1, 1, 1, 1)
+FoldableContainer/font_sizes/font_size = 18
+FoldableContainer/styles/focus = SubResource("StyleBoxEmpty_qd1ao")
+FoldableContainer/styles/panel = SubResource("StyleBoxEmpty_doufl")

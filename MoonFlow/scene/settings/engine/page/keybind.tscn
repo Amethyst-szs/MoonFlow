@@ -1,25 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://5cs2aobtcf6w"]
+[gd_scene load_steps=4 format=3 uid="uid://5cs2aobtcf6w"]
 
+[ext_resource type="Theme" uid="uid://kv7uhw5rsffg" path="res://asset/theme/common/foldable_container_theme.tres" id="1_qd1ao"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_tikfe"]
 [ext_resource type="PackedScene" uid="uid://7rqudtj0ycdw" path="res://scene/settings/engine/keybind/panel_keybind_editor.tscn" id="2_6ag4b"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qd1ao"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doufl"]
-content_margin_left = 24.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-
-[sub_resource type="Theme" id="Theme_doufl"]
-FoldableContainer/colors/collapsed_font_color = Color(1, 1, 1, 0.721569)
-FoldableContainer/colors/font_color = Color(1, 1, 1, 0.827451)
-FoldableContainer/colors/hover_font_color = Color(1, 1, 1, 1)
-FoldableContainer/font_sizes/font_size = 18
-FoldableContainer/styles/focus = SubResource("StyleBoxEmpty_qd1ao")
-FoldableContainer/styles/panel = SubResource("StyleBoxEmpty_doufl")
-
 [node name="Page_Keybind" type="VBoxContainer"]
-theme = SubResource("Theme_doufl")
+theme = ExtResource("1_qd1ao")
 
 [node name="Header" parent="." instance=ExtResource("1_tikfe")]
 layout_mode = 2

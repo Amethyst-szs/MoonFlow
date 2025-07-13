@@ -16,8 +16,6 @@ public partial class WorldShineEditor : MarginContainer
 	private OptionStageName OptionStageName;
 	[Export]
 	private LineEdit LineObjId;
-	[Export]
-	private LineEdit LineOptionalId;
 
 	[Export]
 	private SpinBox SpinUID;
@@ -36,8 +34,6 @@ public partial class WorldShineEditor : MarginContainer
 	private Button ButtonTypeAchievement;
 
 	[Export]
-	private VBoxContainer QuestBitFlags;
-	[Export]
 	private VBoxContainer ScenarioBitFlags;
 
 	[Export]
@@ -46,6 +42,11 @@ public partial class WorldShineEditor : MarginContainer
 	private SpinBox SpinTranslationY;
 	[Export]
 	private SpinBox SpinTranslationZ;
+
+	[Export]
+	private VBoxContainer QuestBitFlags;
+	[Export]
+	private LineEdit LineOptionalId;
 
 	[Signal]
 	public delegate void ContentModifiedEventHandler();
@@ -57,7 +58,6 @@ public partial class WorldShineEditor : MarginContainer
 
 		OptionStageName.SetSelection(this, shine.StageName);
 		LineObjId.Text = shine.ObjId;
-		LineOptionalId.Text = shine.OptionalId;
 
 		SpinUID.SetValueNoSignal(shine.UniqueId);
 		SpinHint.SetValueNoSignal(shine.HintIdx);
@@ -67,17 +67,21 @@ public partial class WorldShineEditor : MarginContainer
 		ButtonTypeMoonRock.SetPressedNoSignal(shine.IsMoonRock);
 		ButtonTypeAchievement.SetPressedNoSignal(shine.IsAchievement);
 
+		BitFlagButtonHolder.SetTotalBits(ScenarioBitFlags, world.ScenarioNum);
 		BitFlagButtonHolder.SetValue(ScenarioBitFlags, shine.ProgressBitFlag);
 		BitFlagButtonHolder.ConnectValueChanged(ScenarioBitFlags,
 			new Action<int>(OnScenarioBitFlagsModified));
-		
+
+		SpinTranslationX.SetValueNoSignal(Shine.Trans.X);
+		SpinTranslationY.SetValueNoSignal(Shine.Trans.Y);
+		SpinTranslationZ.SetValueNoSignal(Shine.Trans.Z);
+
+		BitFlagButtonHolder.SetTotalBits(QuestBitFlags, world.MainQuestInfo.Count);
 		BitFlagButtonHolder.SetPrimaryBit(QuestBitFlags, shine.MainScenarioNo);
 		BitFlagButtonHolder.ConnectPrimaryBitChanged(QuestBitFlags,
 			new Action<int>(OnQuestIdModified));
 		
-		SpinTranslationX.SetValueNoSignal(Shine.Trans.X);
-		SpinTranslationY.SetValueNoSignal(Shine.Trans.Y);
-		SpinTranslationZ.SetValueNoSignal(Shine.Trans.Z);
+		LineOptionalId.Text = shine.OptionalId;
 	}
 
 	#region Signals

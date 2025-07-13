@@ -2879,23 +2879,8 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
 msgstr "Object ID:"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
-msgstr ""
-"Optional field used for special types of Power Moons. Mainly\n"
-"used for hint arts, but also used for timer challenges,\n"
-"costume rooms, and more."
-
-#: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_HEADER"
-msgstr "Optional ID:"
-
-#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
 msgstr "objID"
-
-#: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_PLACEHOLDER"
-msgstr "N/A"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_TOOLTIP"
@@ -2917,14 +2902,6 @@ msgstr ""
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_HEADER"
 msgstr "Hint ID:"
-
-#: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_TOOLTIP"
-msgstr "What type of Power Moon is this?"
-
-#: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_HEADER"
-msgstr "Power Moon Type:"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_AUTO_BUTTON_TOOLTIP"
@@ -2949,6 +2926,22 @@ msgstr ""
 "forms of hints to function correctly, please re-assign this ID!"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_TOOLTIP"
+msgstr "Which scenarios can this Power Moon collected in?"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
+msgstr "Valid Scenarios:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_TOOLTIP"
+msgstr "What type of Power Moon is this?"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_HEADER"
+msgstr "Power Moon Type:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_GRAND_TOOLTIP"
 msgstr "Multi-Moon"
 
@@ -2959,6 +2952,21 @@ msgstr "Post-game Moon Rock"
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_ACHIEVEMENT_TOOLTIP"
 msgstr "Toadette Achievement"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
+msgstr ""
+"Where in the world is this moon located? This value is\n"
+"only used to render the moon's icon on the kingdom map,\n"
+"in respect to the world projection matrix."
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES"
+msgstr "Map Position:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_SHINE_EDITOR_FOLD_EXTRA_OPTIONS"
+msgstr "Extra Options"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_TOOLTIP"
@@ -2972,23 +2980,19 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_HEADER"
 msgstr "Story Quest:"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_TOOLTIP"
-msgstr "Which scenarios can this Power Moon collected in?"
-
-#: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
-msgstr "Valid Scenarios:"
-
-#: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
 msgstr ""
-"Where in the world is this moon located? This value is\n"
-"only used to render the moon's icon on the kingdom map,\n"
-"in respect to the world projection matrix."
+"Optional field used for special types of Power Moons. Mainly\n"
+"used for hint arts, but also used for timer challenges,\n"
+"costume rooms, and more."
 
 #: scene/editor/world/shine/world_shine_editor.tscn
-msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES"
-msgstr "Map Position:"
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_HEADER"
+msgstr "Optional ID:"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_PLACEHOLDER"
+msgstr "N/A"
 
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"
