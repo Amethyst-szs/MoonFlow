@@ -11,4 +11,4 @@ When using the Kingdom Editor, you can hover over any Power Moon icon on the map
 Note that the Power Moon icon positions are based on the "[Map Position](kingdoms/moon_list.md#Position)" field, not the in-game position of the object. Make sure to set your map positions to keep the map accurate!
 
 ## Creating New Maps
-Creating new maps is a fairly in-depth process, but is made substantially easier with MoonFlow! There's a [video tutorial on this here]() and you can [read a written guide here](kingdoms/maps/creating_new_maps.md).
+Creating new maps is a fairly in-depth process, but is made substantially easier with MoonFlow! There's a [video tutorial on this here](https://youtu.be/KqcZTH-KYOs) and you can [read a written guide here](kingdoms/maps/creating_new_maps.md).
