@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=40 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" uid="uid://sq13135ns8pq" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -45,6 +45,12 @@ script/source = "extends VBoxContainer
 func _on_v_box_recent_tree_exiting() -> void:
 	wiki.size_flags_vertical = Control.SIZE_SHRINK_END | Control.SIZE_EXPAND
 "
+
+[sub_resource type="InputEventAction" id="InputEventAction_xn11x"]
+action = &"ui_help"
+
+[sub_resource type="Shortcut" id="Shortcut_03nct"]
+events = [SubResource("InputEventAction_xn11x")]
 
 [sub_resource type="GDScript" id="GDScript_pf6nj"]
 script/source = "extends Control
@@ -123,6 +129,7 @@ tooltip_text = "FRONT_DOOR_WIKI_ACCESS_BUTTON_TOOLTIP"
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 28
 theme_override_font_sizes/font_size = 14
+shortcut = SubResource("Shortcut_03nct")
 text = "FRONT_DOOR_WIKI_ACCESS_BUTTON"
 icon = ExtResource("17_wxtt3")
 script = ExtResource("16_06dea")
@@ -389,8 +396,8 @@ size_flags_vertical = 10
 theme = ExtResource("26_es3an")
 theme_override_constants/line_separation = 0
 theme_override_fonts/normal_font = SubResource("FontVariation_fyywr")
-theme_override_font_sizes/italics_font_size = 10
 theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/italics_font_size = 10
 bbcode_enabled = true
 fit_content = true
 hint_underlined = false

@@ -2,7 +2,6 @@
 tags:
   - world
 ---
-# Kingdom Editor - Power Moon List
 The Power Moon List is designed after the in-game moon list, however with lots of additional information displayed and modifiable. For the very basics on viewing the list, look [here](basics_kingdom_editor.md).
 
 ## Properties
@@ -20,6 +19,9 @@ The UID is a unique number for each moon, used to track what you have collected.
 ### Hint ID
 Similar to the Unique ID but only unique within the kingdom. Used for tracking unlocked hints, and is also recommended to use the automatic ID button unless absolutely necessary.
 
+### Scenarios
+This bitfield allows you to set which scenario IDs the Power Moon is collectable in. Note that this is based on the home stage's current scenario progression, *not* the current stage and scenario you happen to be in (ex. Koopa Freerunning). Any moons only collectable in higher scenarios than your progression will be hidden from the moon list. Highly recommended to make sure this matches your stage files.
+
 ### Power Moon Type
 The moon type switches determine a few basic behaviors.
 
@@ -29,13 +31,14 @@ The Moon Rock toggle is deceiving, because it doesn't exactly reflect what you s
 
 The Toadette / Achievement toggle is unused. The achievement system is almost completely separate from the Power Moon system, and they are stored in a completely separate list.
 
-### Quest
-The quest field allows you to select which Quest ID this moon is connected to. Every story moon that progresses your next objective is connected to a quest. The base game kingdom's only implement up to 6 quests, however MoonFlow offers support for up to 15 quest slots to ensure future compatibility with large modding projects.
-
-### Scenarios
-This bitfield allows you to set which scenario IDs the Power Moon is collectable in. Note that this is based on the home stage's current scenario progression, *not* the current stage and scenario you happen to be in (ex. Koopa Freerunning). Any moons only collectable in higher scenarios than your progression will be hidden from the moon list. Highly recommended to make sure this matches your stage files.
-
-### Translation
+### Position
 Position of the Shine object in 3D space. Position can be copied from EditorCore, in-game, or any other interface that uses real coordinates. This does *not* include Moonlight/Spotlight due to using fake simplified coordinates.
 
 This position is only used for rendering the icon on the kingdom's map screen, in respect to the world's projection matrix.
+
+### Extra Options
+#### Quest
+The quest field allows you to select which Quest ID this moon is connected to. Every story moon that progresses your next objective is connected to a quest. The base game kingdom's only implement up to 6 quests, however MoonFlow offers support for up to 15 quest slots to ensure future compatibility with large modding projects.
+
+#### Optional ID
+Optional IDs are a special ID used to link Power Moons to different objects and objectives. The most frequent use is to state which Hint Art the moon is connected to, but it is also used in some other cases like for timer challenges.

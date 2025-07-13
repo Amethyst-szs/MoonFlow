@@ -35,6 +35,7 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 - [Basics](kingdoms/basics_kingdom_editor.md)
 - [Power Moon List](kingdoms/moon_list.md)
 - [Stage List](kingdoms/stage_list.md)
+- [Maps](kingdoms/maps/basics_map.md)
 
 ### Additional Tools
 - [FTP File Syncing](tools/ftp_syncing.md)

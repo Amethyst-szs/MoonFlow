@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_ey6e8")
-Path = "res://docs/kingdoms/map2d.md"
-LocalPath = "kingdoms/map2d.md"
+Path = "res://docs/kingdoms/maps/basics_map.md"
+LocalPath = "kingdoms/maps/basics_map.md"
 metadata/_custom_type_script = "uid://dguj7hkqnpmqv"

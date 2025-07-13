@@ -19,10 +19,15 @@
 	"kingdoms": {
 		"__": [
 			"basics_kingdom_editor.md",
-			"map2d.md",
 			"moon_list.md",
 			"stage_list.md"
-		]
+		],
+		"maps": {
+			"__": [
+				"basics_map.md",
+				"creating_new_maps.md"
+			]
+		}
 	},
 	"text": {
 		"__": [
