@@ -29,6 +29,14 @@ public partial class ActionbarProject : ActionbarItemBase
 		AssignFunction((int)MenuIds.PROJECT_MIRROR_CLONE, OnProjectMirrorCloneRequest);
 	}
 
+	protected override void AppFocusChanged()
+	{
+		bool isTmp = ProjectManager.IsProjectTemporary();
+
+		SetItemDisabled(GetItemIndex((int)MenuIds.PROJECT_OPEN_IN_EXPLORER), isTmp);
+		SetItemDisabled(GetItemIndex((int)MenuIds.PROJECT_MIRROR_CLONE), isTmp);
+    }
+
 	private async void OnProjectReloadPressed()
 	{
 		var isValidReload = await AppSceneServer.TryCloseAllApps();

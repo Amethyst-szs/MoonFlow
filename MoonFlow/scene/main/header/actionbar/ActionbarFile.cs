@@ -1,4 +1,5 @@
 using Godot;
+using MoonFlow.Project;
 using MoonFlow.Scene.Home;
 using MoonFlow.Scene.Settings;
 
@@ -49,14 +50,15 @@ public partial class ActionbarFile : ActionbarItemBase
 		Header.ButtonAppClose.Visible = isAllowUserClose;
 		Header.ButtonAppMinimize.Visible = isAllowUserClose;
 
-		if (app is not HomeRoot)
-			return;
+		// If project is temporary or user is on a page that cannot save, disable most options
+		if (ProjectManager.IsProjectTemporary() || app is HomeRoot)
+		{
+			for (var i = 0; i < ItemCount; i++)
+				SetItemDisabled(i, true);
 
-		for (var i = 0; i < ItemCount; i++)
-			SetItemDisabled(i, true);
-
-		SetItemDisabled(GetItemIndex((int)MenuIds.OPEN_ENGINE_SETTINGS), false);
-		SetItemDisabled(GetItemIndex((int)MenuIds.CLOSE_MOONFLOW), false);
+			SetItemDisabled(GetItemIndex((int)MenuIds.OPEN_ENGINE_SETTINGS), false);
+			SetItemDisabled(GetItemIndex((int)MenuIds.CLOSE_MOONFLOW), false);
+		}
 	}
 
 	private void OnFileSave()
