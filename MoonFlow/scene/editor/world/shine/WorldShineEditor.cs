@@ -88,7 +88,7 @@ public partial class WorldShineEditor : MarginContainer
 			return;
 
 		Shine.StageName = name;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 	private void OnLineObjectIdModified(string txt)
 	{
@@ -96,7 +96,7 @@ public partial class WorldShineEditor : MarginContainer
 			return;
 
 		Shine.ObjId = txt;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 	private void OnLineOptionalIdModified(string txt)
 	{
@@ -108,7 +108,7 @@ public partial class WorldShineEditor : MarginContainer
 		else
 			Shine.OptionalId = txt;
 
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 
 	private void OnUniqueIdValueChanged(float valueF)
@@ -117,6 +117,8 @@ public partial class WorldShineEditor : MarginContainer
 		Shine.UniqueId = value;
 
 		UpdateUniquenessWarnings();
+
+		EmitSignalContentModified();
 	}
 	private void OnUniqueIdAutoReassign()
 	{
@@ -125,7 +127,7 @@ public partial class WorldShineEditor : MarginContainer
 
 		SpinUID.Value = Shine.UniqueId;
 
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 
 	private void OnHintIdValueChanged(float valueF)
@@ -140,50 +142,50 @@ public partial class WorldShineEditor : MarginContainer
 		Shine.ReassignHintId(World);
 		SpinHint.Value = Shine.HintIdx;
 
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 
 	private void OnTypeGrandToggled(bool state)
 	{
 		Shine.IsGrand = state;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 	private void OnTypeMoonRockToggled(bool state)
 	{
 		Shine.IsMoonRock = state;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 	private void OnTypeAchievementToggled(bool state)
 	{
 		Shine.IsAchievement = state;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 
 	private void OnScenarioBitFlagsModified(int value)
 	{
 		Shine.ProgressBitFlag = value;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 	private void OnQuestIdModified(int idx)
 	{
 		Shine.MainScenarioNo = idx;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 
 	private void OnTranslationXModified(float value)
 	{
 		Shine.Trans.X = value;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 	private void OnTranslationYModified(float value)
 	{
 		Shine.Trans.Y = value;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 	private void OnTranslationZModified(float value)
 	{
 		Shine.Trans.Z = value;
-		EmitSignal(SignalName.ContentModified);
+		EmitSignalContentModified();
 	}
 
 	#endregion
