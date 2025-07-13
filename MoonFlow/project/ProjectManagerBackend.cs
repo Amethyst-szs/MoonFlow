@@ -55,6 +55,15 @@ public static partial class ProjectManager
         if (!RomfsAccessor.TrySetGameVersion(version))
             return ProjectManagerResult.ROMFS_MISSING_PATH_FOR_PROJECT_VERSION;
 
+        // Notify various nodes that a project is being created
+        if (SceneRoot != null)
+        {
+            string tmpPath = ProjectSettings.GlobalizePath(TEMPORARY_PROJECT_PATH);
+            bool isTmp = path == tmpPath;
+
+            SceneRoot.NodeTaskbar.OnInitProject(isTmp);
+        }
+
         // Initilize project
         Project = new(path, config);
 

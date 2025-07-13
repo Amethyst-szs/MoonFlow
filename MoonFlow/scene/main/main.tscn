@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=39 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
@@ -29,6 +29,8 @@
 [ext_resource type="Script" uid="uid://c8udrhy75qqfr" path="res://scene/main/header/actionbar/ActionbarDatabases.cs" id="16_cleq4"]
 [ext_resource type="Texture2D" uid="uid://bw1k40r0kuu1r" path="res://asset/nindot/special/checkpoint_white.png" id="16_rtpkd"]
 [ext_resource type="PackedScene" uid="uid://djdy8pajcdhin" path="res://scene/main/header/ftp/ftp_status_indicator.tscn" id="20_gtms6"]
+[ext_resource type="StyleBox" uid="uid://d3llfwcm035av" path="res://asset/theme/main/stylebox/taskbar/taskbar_panel_normal.tres" id="27_lysc8"]
+[ext_resource type="StyleBox" uid="uid://cwc7tas8gn1e3" path="res://asset/theme/main/stylebox/taskbar/taskbar_panel_read_only_proj.tres" id="29_vg48i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlewa"]
 
@@ -265,11 +267,14 @@ mouse_filter = 2
 [node name="TaskbarPanel" type="PanelContainer" parent="Content"]
 layout_mode = 2
 theme = ExtResource("6_2jriu")
+theme_override_styles/panel = ExtResource("27_lysc8")
 
 [node name="Taskbar" type="Control" parent="Content/TaskbarPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("4_kco4x")
+TaskbarPanelDefault = ExtResource("27_lysc8")
+TaskbarPanelReadOnlyProj = ExtResource("29_vg48i")
 
 [node name="Alert" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

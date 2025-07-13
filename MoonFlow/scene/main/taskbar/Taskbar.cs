@@ -11,15 +11,22 @@ public partial class Taskbar : Control
     #region Init & App Init
 
     private MainSceneRoot Parent;
+    private PanelContainer ParentPanel;
 
     private readonly List<AppScene> FocusHistory = [];
     private int FocusHistoryPosition = 0;
     private const int FocusHistoryMaxSize = 20;
     private bool IsFocusHistoryEditable = true;
 
+    [Export, ExportGroup("Taskbar Styleboxes")]
+    private StyleBox TaskbarPanelDefault;
+    [Export]
+    private StyleBox TaskbarPanelReadOnlyProj;
+
     public override void _Ready()
     {
         Parent = this.FindParentByType<MainSceneRoot>();
+        ParentPanel = this.FindParentByType<PanelContainer>();
 
         GetWindow().SizeChanged += UpdateDisplay;
         EngineSettings.Connect("taskbar_size_modified", OnTaskbarSizeChanged);
@@ -77,6 +84,14 @@ public partial class Taskbar : Control
         return true;
     }
 
+    public void OnInitProject(bool isTmp)
+    {
+        if (isTmp)
+            ParentPanel.AddThemeStyleboxOverride("panel", TaskbarPanelReadOnlyProj);
+        else
+            ParentPanel.AddThemeStyleboxOverride("panel", TaskbarPanelDefault);
+    }
+
     #endregion
 
     #region Input
@@ -85,9 +100,9 @@ public partial class Taskbar : Control
     {
         if (@event is not InputEventMouseButton button || !button.IsPressed())
             return;
-        
+
         bool isChangeFocus = false;
-        switch(button.ButtonIndex)
+        switch (button.ButtonIndex)
         {
             case MouseButton.Xbutton1:
                 isChangeFocus = true;
@@ -101,9 +116,9 @@ public partial class Taskbar : Control
 
         if (!isChangeFocus)
             return;
-        
+
         GetViewport().SetInputAsHandled();
-        
+
         var app = FocusHistory[FocusHistory.Count - 1 - FocusHistoryPosition];
 
         if (app != AppSceneServer.GetActiveApp())
