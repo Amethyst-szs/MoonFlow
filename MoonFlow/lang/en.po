@@ -4143,6 +4143,10 @@ msgstr ""
 msgid "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE"
 msgstr "Export Reference"
 
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_BUTTON_DOCUMENTATION"
+msgstr "Map Docs"
+
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."
 

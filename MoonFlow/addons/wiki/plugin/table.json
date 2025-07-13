@@ -19,6 +19,7 @@
 	"kingdoms": {
 		"__": [
 			"basics_kingdom_editor.md",
+			"map2d.md",
 			"moon_list.md",
 			"stage_list.md"
 		]

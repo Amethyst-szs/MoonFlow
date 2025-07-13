@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WikiAccessorResource" load_steps=2 format=3 uid="uid://dy500wmmxasrl"]
+
+[ext_resource type="Script" uid="uid://dguj7hkqnpmqv" path="res://addons/wiki/access/WikiAccessorResource.cs" id="1_ey6e8"]
+
+[resource]
+script = ExtResource("1_ey6e8")
+Path = "res://docs/kingdoms/map2d.md"
+LocalPath = "kingdoms/map2d.md"
+metadata/_custom_type_script = "uid://dguj7hkqnpmqv"
