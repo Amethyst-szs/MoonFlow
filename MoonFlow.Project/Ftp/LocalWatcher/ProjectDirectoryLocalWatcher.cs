@@ -57,6 +57,9 @@ internal class ProjectDirectoryLocalWatcher
 
         if (DebugFsFtpLogging)
             GD.PrintRich("[i] ⒡ Change ~ " + e.Name);
+
+        if (!Directory.Exists(e.FullPath))
+            return;
         
         if ((File.GetAttributes(e.FullPath) & FileAttributes.Directory) == 0)
             ProjectFtpClient.UploadFile(e.FullPath);
@@ -91,7 +94,7 @@ internal class ProjectDirectoryLocalWatcher
     }
     private void OnError(object sender, ErrorEventArgs e)
     {
-        throw e.GetException();
+        Console.WriteLine("WARNING: ProjectDirectoryLocalWatcher reported " + e.GetException().Message);
     }
 
     #endregion

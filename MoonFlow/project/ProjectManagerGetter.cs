@@ -19,6 +19,11 @@ public static partial class ProjectManager
         if (Project == null) return false;
         return Project.Config.IsDebug();
     }
+    public static bool IsProjectTemporary()
+    {
+        if (Project == null) return false;
+        return Project.IsTemporary;
+    }
 
     public static ProjectState GetProject() { return Project; }
     public static RomfsVersion GetRomfsVersion()

@@ -102,6 +102,16 @@ msgid "OPEN_PROJECT"
 msgstr "Open Project"
 
 #: scene/front_door/front_door.tscn
+msgid "EXPLORE_GAME_FILES_TOOLTIP"
+msgstr ""
+"Freely explore the game's files in the MoonFlow editor.\n"
+"Saving is disabled and no changes will be preserved."
+
+#: scene/front_door/front_door.tscn
+msgid "EXPLORE_GAME_FILES"
+msgstr "Explore Files"
+
+#: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
 msgstr "MoonFlow Settings"
 

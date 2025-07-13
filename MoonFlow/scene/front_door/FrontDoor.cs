@@ -5,6 +5,7 @@ using static Nindot.RomfsPathUtility;
 
 using MoonFlow.Project;
 using MoonFlow.Scene.Settings;
+using System.IO;
 
 namespace MoonFlow.Scene;
 
@@ -149,6 +150,22 @@ public partial class FrontDoor : AppScene
 			GD.PushError("Failed to create project!");
 
 		OnDialogOpenProjectPathSelected(InitInfo.Path);
+	}
+
+	private void OnExploreGameFilesPressed()
+	{
+		string p = ProjectSettings.GlobalizePath(ProjectManager.TEMPORARY_PROJECT_PATH);
+
+		// Remake directory at path
+		Directory.Delete(p, true);
+		Directory.CreateDirectory(p);
+
+		// Init project in temporary directory
+		InitInfo.Path = p;
+		if (InitInfo.Version == RomfsVersion.INVALID_VERSION)
+			InitInfo.Version = RomfsAccessor.ActiveVersion;
+
+		OnNewProjectCreate();
 	}
 
 	private void OnLaunchApplicationUpdater(string url, int byteSize)

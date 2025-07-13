@@ -179,6 +179,14 @@ msgid "OPEN_PROJECT"
 msgstr ""
 
 #: scene/front_door/front_door.tscn
+msgid "EXPLORE_GAME_FILES_TOOLTIP"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
+msgid "EXPLORE_GAME_FILES"
+msgstr ""
+
+#: scene/front_door/front_door.tscn
 msgid "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
 msgstr ""
 

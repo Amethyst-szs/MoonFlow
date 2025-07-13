@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene load_steps=41 format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" uid="uid://sq13135ns8pq" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dwpxrep18y4wy" path="res://scene/front_door/dot/playable.tscn" id="11_h3uc8"]
 [ext_resource type="PackedScene" uid="uid://cio2gvsywxhso" path="res://scene/front_door/load/project_loading.tscn" id="12_my55f"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="13_npgqm"]
+[ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="14_03nct"]
 [ext_resource type="Script" uid="uid://fbbwiay7opbl" path="res://scene/front_door/ui/new_project_panel.gd" id="14_4g88j"]
 [ext_resource type="Texture2D" uid="uid://cjpqxf5df6rr2" path="res://asset/app/icon/credit.png" id="14_mr0wr"]
 [ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="15_h6jnw"]
@@ -187,6 +188,15 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "OPEN_PROJECT"
 icon = ExtResource("10_rxr5w")
+icon_alignment = 2
+
+[node name="Button_Explore" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "EXPLORE_GAME_FILES_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "EXPLORE_GAME_FILES"
+icon = ExtResource("14_03nct")
 icon_alignment = 2
 
 [node name="Shortcuts" type="HBoxContainer" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
@@ -430,6 +440,7 @@ resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwf
 [connection signal="tree_exiting" from="Content/Content_Side/RecentSidebar" to="Content/Content_Side" method="_on_v_box_recent_tree_exiting"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Button_New" to="Content/Content_Primary/NewProject" method="set_visibility"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Button_Open" to="Dialog_OpenProject" method="popup"]
+[connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Button_Explore" to="." method="OnExploreGameFilesPressed"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_Settings" to="." method="OpenEngineSettingsApp"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_RomfsConfig" to="." method="ForceOpenRomfsAccessorApp"]
 [connection signal="pressed" from="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_Contributors" to="." method="OpenContributorPage"]

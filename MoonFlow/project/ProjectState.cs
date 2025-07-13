@@ -23,6 +23,7 @@ public class ProjectState(string path, ProjectConfig config)
     // Status
     private bool IsInitComplete = false;
     private bool IsWaitingForAcceptance = false;
+    public bool IsTemporary { get; private set; } = false;
 
     // Project Components
     public ProjectMsbpHolder MsgStudioProject { get; private set; } = null;
@@ -35,6 +36,10 @@ public class ProjectState(string path, ProjectConfig config)
 
     public async void InitProject()
     {
+        // Check if the project path is the temporary exploration path
+        string tempPath = ProjectSettings.GlobalizePath(ProjectManager.TEMPORARY_PROJECT_PATH);
+        IsTemporary = Path == tempPath;
+
         // Close all applications if open and open the project loading screen
         AppSceneServer.ForceCloseAllAppsDeferred();
 

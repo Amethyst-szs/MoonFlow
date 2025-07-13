@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using MoonFlow.Project;
+
 namespace MoonFlow.Scene;
 
 [SceneUid("uid://b00o2aortf3ba")]
@@ -69,6 +71,11 @@ public partial class RecentSidebar : VBoxContainer
 
     private void OnProjectOpened(string path)
     {
+        // Check if project is the temporary project directory, ignore if so
+        string tempPath = ProjectSettings.GlobalizePath(ProjectManager.TEMPORARY_PROJECT_PATH);
+        if (path == tempPath)
+            return;
+
         History.Remove(path);
         History = [.. History.Prepend(path)];
 

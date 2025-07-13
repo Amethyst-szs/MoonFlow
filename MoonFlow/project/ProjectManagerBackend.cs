@@ -17,6 +17,8 @@ public static partial class ProjectManager
     private static ProjectState Project = null;
     private const string ProjectFileName = ".mfproj";
 
+    public const string TEMPORARY_PROJECT_PATH = "user://__TMP_EXPLORE__/";
+
     public static MainSceneRoot SceneRoot { get; set; } = null;
 
     public enum ProjectManagerResult
@@ -85,7 +87,7 @@ public static partial class ProjectManager
         // Create project config from init info
         var config = new ProjectConfig(projectFilePath, initInfo);
         config.SetEngineTarget(GitInfo.GitVersionName(), GitInfo.GitCommitHash(), GitInfo.GitCommitUnixTime());
-        
+
         config.WriteFile();
 
         return ProjectManagerResult.OK;
