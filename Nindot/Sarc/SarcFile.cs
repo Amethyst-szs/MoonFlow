@@ -64,6 +64,9 @@ public class SarcFile(SarcLibrary.Sarc file, string filePath)
         MemoryStream stream = new();
         sarcBase.Write(stream);
 
+        path = path.Replace('\\', '/');
+        Directory.CreateDirectory(path[..path.LastIndexOf('/')]);
+
         try
         {
             var result = NindotYaz0.Compress(stream);
