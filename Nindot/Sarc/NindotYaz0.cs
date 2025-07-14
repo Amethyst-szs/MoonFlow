@@ -19,13 +19,13 @@ public class NindotYaz0 : Yaz0
 
     public byte[] Compress(byte[] source)
     {
-        var result = new MemoryStream();
+        using MemoryStream result = new();
         Compress(source, result, CompressionType);
         return result.ToArray();
     }
     public byte[] Compress(Stream source)
     {
-        var result = new MemoryStream();
+        using MemoryStream result = new();
         Compress(source.ToArray(), result, CompressionType);
         return result.ToArray();
     }

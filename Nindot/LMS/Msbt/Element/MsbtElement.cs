@@ -75,7 +75,7 @@ public class MsbtTagCloseElement : MsbtBaseElement
 
     public override byte[] GetBytes()
     {
-        var stream = new MemoryStream();
+        using var stream = new MemoryStream();
         stream.Write(BYTECODE_TAG_CLOSE);
         stream.Write((uint)0x00000000); // Padding
         return stream.ToArray();

@@ -36,7 +36,7 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemBase
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(_color);
         return value.ToArray();
     }

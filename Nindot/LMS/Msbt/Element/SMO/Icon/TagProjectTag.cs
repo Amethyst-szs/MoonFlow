@@ -49,7 +49,7 @@ public class MsbtTagElementProjectTag : MsbtTagElement
     public override byte[] GetBytes()
     {
         // Now that data size is correct, stream can be created
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
 
         foreach (string icon in _iconTable)
         {

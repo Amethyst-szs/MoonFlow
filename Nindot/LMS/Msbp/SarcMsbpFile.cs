@@ -13,7 +13,7 @@ public class SarcMsbpFile(byte[] data, string name, SarcFile sarc)
         if (!Sarc.Content.ContainsKey(Name))
             throw new SarcFileException("Missing MsbpFile key!");
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         if (!WriteFile(stream))
             throw new LMSException("Failed to write MsbpFile");
 

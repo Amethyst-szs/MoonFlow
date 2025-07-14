@@ -15,7 +15,7 @@ public class SarcMsbtFile(MsbtElementFactory factory, byte[] data, string name, 
         if (!Sarc.Content.ContainsKey(Name))
             throw new SarcFileException("Missing MsbtFile key!");
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         if (!WriteFile(stream))
             throw new LMSException("Failed to write MsbtFile");
 

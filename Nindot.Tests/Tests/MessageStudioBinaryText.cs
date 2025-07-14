@@ -44,7 +44,7 @@ public class MessageStudioBinaryText
         Assert.True(msbt.IsValid());
 
         // Write file to stream
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         Assert.True(msbt.WriteFile(stream));
 
         // Write msbt to disk

@@ -23,7 +23,7 @@ public partial class MsbtEntry
         var pageBreak = new MsbtTagElementSystemPageBreak();
 
         // Create a stream and write each page to it
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         foreach (var page in Pages)
         {
             page.WriteBytes(stream);

@@ -29,7 +29,7 @@ public class MsbtTagElementSystemFont : MsbtTagElementSystemBase
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(Font);
         return value.ToArray();
     }

@@ -65,7 +65,7 @@ public class MsbtTagElementString : MsbtTagElementWithTextData
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         if (IsTextless)
         {
             const uint pad = 0x0;

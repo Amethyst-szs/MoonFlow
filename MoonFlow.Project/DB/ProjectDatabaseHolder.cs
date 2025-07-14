@@ -137,7 +137,7 @@ public class ProjectDatabaseHolder
         if (!ArchiveWorldList.Content.ContainsKey(name))
             throw new Exception(name + "does not exist in WorldList.szs");
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         if (!BymlFileAccess.WriteFile(stream, data))
             throw new Exception("Byml writer exception");
 

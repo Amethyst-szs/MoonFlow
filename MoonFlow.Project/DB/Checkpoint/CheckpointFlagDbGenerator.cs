@@ -46,7 +46,7 @@ public static class CheckpointFlagDbGenerator
         // Write to project's SystemData directory
         string path = GetCheckpointDbPath(db.Path);
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         sarc.Write(stream);
 
         var yaz0 = new NindotYaz0();

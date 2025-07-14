@@ -15,7 +15,7 @@ public class BfresLibraryTests
         var sarc = SarcFile.FromFilePath(ResDirectory + "TextureTest.szs");
         Assert.Contains("TextureTest.bfres", sarc.Content);
 
-        var stream = new MemoryStream([.. sarc.Content["TextureTest.bfres"]]);
+        using MemoryStream stream = new([.. sarc.Content["TextureTest.bfres"]]);
         var file = new ResFile(stream);
         Assert.NotNull(file);
         Assert.True(file.Textures.ContainsKey("ForestWorldHomeStage"));

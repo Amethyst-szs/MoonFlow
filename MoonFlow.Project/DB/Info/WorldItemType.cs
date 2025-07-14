@@ -30,7 +30,7 @@ public class WorldItemType()
         if (!file.Content.ContainsKey(filePath))
             throw new SarcFileException("Missing " + filePath);
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         if (!BymlFileAccess.WriteFile(stream, list))
             throw new Exception("Byml writer exception");
         

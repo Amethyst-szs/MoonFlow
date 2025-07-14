@@ -33,7 +33,7 @@ public partial class BfresResource : ResFile
         if (!sarc.Content.TryGetValue(name, out ArraySegment<byte> data))
             throw new KeyNotFoundException("Could not find " + name);
 
-        var stream = new MemoryStream([.. data]);
+        using MemoryStream stream = new([.. data]);
         return new BfresResource(stream);
     }
 }

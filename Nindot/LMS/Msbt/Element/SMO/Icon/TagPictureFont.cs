@@ -39,7 +39,7 @@ public class MsbtTagElementPictureFont : MsbtTagElement
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(FontIndex);
         value.Write(IconCode);
         return value.ToArray();

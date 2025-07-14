@@ -50,7 +50,7 @@ public class WorldShineList(string name, List<ShineInfo> list) : List<ShineInfo>
             { "ShineList", this }
         };
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         if (!BymlFileAccess.WriteFile(stream, input))
             throw new Exception("Byml writer exception");
         

@@ -118,7 +118,7 @@ public abstract class MsbtTagElementWithTextData : MsbtTagElement
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         WriteTextData(value);
         return value.ToArray();
     }

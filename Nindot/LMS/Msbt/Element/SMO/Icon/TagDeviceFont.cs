@@ -50,7 +50,7 @@ public class MsbtTagElementDeviceFont : MsbtTagElement
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(FontIndex);
         value.Write(GetChar16tFromTagName());
         return value.ToArray();

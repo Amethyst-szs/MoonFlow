@@ -26,7 +26,7 @@ public class MsbtTagElementUnknown : MsbtTagElement
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(Data);
         return value.ToArray();
     }

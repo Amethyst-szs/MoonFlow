@@ -24,7 +24,7 @@ public class MsbtTagElementEuiWait : MsbtTagElement
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(DelayFrames);
         return value.ToArray();
     }

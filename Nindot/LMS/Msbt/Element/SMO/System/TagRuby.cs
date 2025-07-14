@@ -33,7 +33,7 @@ public class MsbtTagElementSystemRuby : MsbtTagElementWithTextData
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(Code);
         WriteTextData(value);
 

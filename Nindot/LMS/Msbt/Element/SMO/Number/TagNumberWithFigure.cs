@@ -39,7 +39,7 @@ public class MsbtTagElementNumberWithFigure : MsbtTagElementWithTextData
 
     public override byte[] GetBytes()
     {
-        MemoryStream value = CreateMemoryStreamWithHeaderData();
+        using MemoryStream value = CreateMemoryStreamWithHeaderData();
         value.Write(Figure);
         value.Write(IsJapaneseZenkaku);
         WriteTextData(value);

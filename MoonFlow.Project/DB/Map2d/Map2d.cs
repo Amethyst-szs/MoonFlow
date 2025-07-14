@@ -73,7 +73,7 @@ public partial class Map2d
             { "ViewProjMatrix", ConvertMatrixToList(ViewProjMatrix, 4) }
         };
 
-        var stream = new MemoryStream();
+        using MemoryStream stream = new();
         if (!BymlFileAccess.WriteFile(stream, output))
             throw new Exception("Failed to write BYML data!");
 

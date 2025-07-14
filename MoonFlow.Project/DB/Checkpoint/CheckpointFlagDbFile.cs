@@ -134,7 +134,7 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
         if (Count == 0)
             bymlSource["FlagList"] = null;
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         BymlFileAccess.WriteFile(stream, bymlSource);
 
         string bymlName = FormatFileName(HomeStage, Scenario);

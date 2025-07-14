@@ -137,7 +137,7 @@ public class BlockHashTable(byte[] data, string typeName, int offset, FileBase p
         int hashTableByteSize = (HashEntryList.Count * HashTableEntry.ENTRY_SIZE) + 0x4;
 
         // Build a memory stream of the labels, will append to end of main stream at end of func
-        MemoryStream labelStream = new(HashEntryList.Count * HashTableEntry.ENTRY_SIZE);
+        using MemoryStream labelStream = new(HashEntryList.Count * HashTableEntry.ENTRY_SIZE);
 
         // Iterate over every hash table, building both the table slot stream and label stream
         foreach (var table in HashEntryList)

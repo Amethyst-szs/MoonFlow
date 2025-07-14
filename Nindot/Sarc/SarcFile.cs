@@ -65,7 +65,7 @@ public class SarcFile(SarcLibrary.Sarc file, NindotYaz0 yaz0Inst, string filePat
     public virtual Exception WriteArchive(string path) { return WriteArchive(Content, Yaz0Instance, path); }
     public static Exception WriteArchive(SarcLibrary.Sarc sarcBase, NindotYaz0 yaz0Inst, string path)
     {
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         sarcBase.Write(stream);
 
         path = path.Replace('\\', '/');
@@ -84,7 +84,7 @@ public class SarcFile(SarcLibrary.Sarc file, NindotYaz0 yaz0Inst, string filePat
     public byte[] GetBytes() { return GetBytes(Content, Yaz0Instance); }
     public static byte[] GetBytes(SarcLibrary.Sarc sarcBase, NindotYaz0 yaz0Inst)
     {
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         sarcBase.Write(stream);
 
         return yaz0Inst.Compress(stream);

@@ -32,7 +32,7 @@ public class MessageStudioBinaryProject
         MsbpFile file = MsbpFile.FromFilePath(ResDirectory + "ProjectData.msbp");
         Assert.True(file.IsValid());
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         Assert.True(file.WriteFile(stream));
 
         Directory.CreateDirectory(OutputDirectory);

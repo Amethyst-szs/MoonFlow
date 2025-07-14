@@ -84,7 +84,7 @@ public class BymlFile
         Byml.BymlFile file = Byml.BymlFile.FromFilePath(ResDirectory + "UnitTest.byml");
         Assert.NotNull(file);
 
-        MemoryStream stream = new();
+        using MemoryStream stream = new();
         Assert.True(file.WriteFile(stream));
 
         Directory.CreateDirectory(OutputDirectory);
