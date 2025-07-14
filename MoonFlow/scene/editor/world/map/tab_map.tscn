@@ -34,7 +34,7 @@ font_color = Color(0, 0, 0, 1)
 outline_size = 9
 
 [node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading", "MapControls", "PopupScenario", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
-self_modulate = Color(1, 1, 1, 0.5019608)
+self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

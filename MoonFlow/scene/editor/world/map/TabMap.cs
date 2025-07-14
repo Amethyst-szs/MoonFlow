@@ -67,8 +67,6 @@ public partial class TabMap : TextureRect
     }
     private async Task InitMapInternal()
     {
-        RenderMapDisable();
-
         // Load map and other databases
         var db = ProjectManager.GetDB();
 
@@ -91,15 +89,8 @@ public partial class TabMap : TextureRect
 
     #region Rendering
 
-    private void RenderMapDisable()
-    {
-        LabelLoading.Show();
-        SelfModulate = Colors.Black;
-    }
     private async Task RenderMap()
     {
-        LabelLoading.Show();
-
         ImageTexture tex = await Map2dRenderUtility.GetMapImageTexture(World, PreviewScenario);
         Texture = tex;
         SelfModulate = Colors.White;
