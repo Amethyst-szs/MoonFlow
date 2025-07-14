@@ -1484,22 +1484,6 @@ msgstr "Append a new Power Moon to the end of the list"
 msgid "WORLD_EDITOR_TAB_SHINE_CREATE_NEW"
 msgstr "New Power Moon"
 
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
-msgstr "Name already claimed by:"
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_LINE_EDIT_ADD_NEW_STAGE"
-msgstr "Add Stage Name to Kingdom"
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
-msgstr "Select stage type"
-
-#: scene/editor/world/world_editor_app.tscn
-msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
-msgstr "Submit"
-
 #: scene/front_door/contributor/scene/credit.tscn
 msgid "FRONT_DOOR_CONTRIBUTORS_APP_HEADER"
 msgstr "Contributors & Credits"
@@ -4201,6 +4185,34 @@ msgstr "BFRES will not be modified, remove old texture file manually!"
 #: scene/editor/world/map/scenario/popup_scenario.tscn
 msgid "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE"
 msgstr "Remove Unique Map from Scenario"
+
+#: scene/editor/world/stage/edit_stage_info.tscn
+msgid "WORLD_EDITOR_STAGE_OPTION_MENU_COPY_TO_PROJECT"
+msgstr "Copy stage files into Project"
+
+#: scene/editor/world/stage/edit_stage_info.tscn
+msgid "WORLD_EDITOR_STAGE_OPTION_MENU_DELETE"
+msgstr "Delete Entry"
+
+#: scene/editor/world/stage/world_editor_tab_stages.tscn
+msgid "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
+msgstr "Name already claimed by:"
+
+#: scene/editor/world/stage/world_editor_tab_stages.tscn
+msgid "WORLD_EDITOR_LINE_EDIT_ADD_NEW_STAGE"
+msgstr "Add Stage Name to Kingdom"
+
+#: scene/editor/world/stage/world_editor_tab_stages.tscn
+msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
+msgstr "Submit"
+
+#, fuzzy
+#~| msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
+#~ msgid "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
+#~ msgstr ""
+#~ "Optional field used for special types of Power Moons. Mainly\n"
+#~ "used for hint arts, but also used for timer challenges,\n"
+#~ "costume rooms, and more."
 
 #~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
 #~ msgstr "or edit..."

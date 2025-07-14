@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_xfk6m"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_lk8b2"]
-[ext_resource type="Script" uid="uid://bn68uf20kpk27" path="res://scene/editor/world/stage/StageTypeSeparator.cs" id="2_ufk0h"]
+[ext_resource type="Script" uid="uid://bn68uf20kpk27" path="res://scene/editor/world/stage/component/StageTypeSeparator.cs" id="2_ufk0h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ufk0h"]
 font = ExtResource("2_lk8b2")

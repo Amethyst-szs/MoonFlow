@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnvwsx8eyi8sb"]
+[gd_scene load_steps=9 format=3 uid="uid://dnvwsx8eyi8sb"]
 
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="1_qmc67"]
 [ext_resource type="Script" uid="uid://d24m4xa47kokp" path="res://scene/editor/world/stage/EditStageInfo.cs" id="1_s33pu"]
-[ext_resource type="Script" uid="uid://nubygtcoc3hc" path="res://scene/editor/world/stage/OptionStageType.cs" id="1_xpqoc"]
+[ext_resource type="Script" uid="uid://nubygtcoc3hc" path="res://scene/editor/world/stage/component/OptionStageType.cs" id="1_xpqoc"]
+[ext_resource type="Texture2D" uid="uid://gkt4uth2coun" path="res://asset/material/arrow/down.svg" id="2_1xln8"]
+[ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="3_0vv7d"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_nfqv3"]
+[ext_resource type="Script" uid="uid://btfjioace7v7q" path="res://scene/editor/world/stage/component/menu_stage.gd" id="4_rokrl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1xln8"]
 font = ExtResource("3_nfqv3")
@@ -17,12 +20,20 @@ script = ExtResource("1_s33pu")
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Button_Trash" type="Button" parent="HBox"]
-self_modulate = Color(1, 0.66999996, 0.66999996, 1)
+[node name="Menu_Stage" type="MenuButton" parent="HBox"]
+self_modulate = Color(0.99607843, 0.49803922, 0.1764706, 1)
 layout_mode = 2
-size_flags_horizontal = 8
 mouse_default_cursor_shape = 2
-icon = ExtResource("1_qmc67")
+icon = ExtResource("2_1xln8")
+flat = false
+item_count = 2
+popup/item_0/text = "WORLD_EDITOR_STAGE_OPTION_MENU_COPY_TO_PROJECT"
+popup/item_0/icon = ExtResource("3_0vv7d")
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_EDITOR_STAGE_OPTION_MENU_DELETE"
+popup/item_1/icon = ExtResource("1_qmc67")
+popup/item_1/id = 1
+script = ExtResource("4_rokrl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
@@ -39,9 +50,9 @@ label_settings = SubResource("LabelSettings_1xln8")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-tooltip_text = "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
 fit_to_longest_item = false
 script = ExtResource("1_xpqoc")
 
-[connection signal="pressed" from="HBox/Button_Trash" to="." method="OnDeleteRequest"]
+[connection signal="selected_copy_to_project" from="HBox/Menu_Stage" to="." method="OnCopyToProjectRequest"]
+[connection signal="selected_trash" from="HBox/Menu_Stage" to="." method="OnDeleteRequest"]
 [connection signal="item_selected" from="HBox/VBoxContainer/Option_Type" to="." method="OnTypeChanged"]
