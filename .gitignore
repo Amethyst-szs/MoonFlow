@@ -1,8 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
 .mono/
-.export/
 /android/
+
+.export/win-x86_64
+.export/linux-x86_64
 
 # VSCode
 .vscode/
