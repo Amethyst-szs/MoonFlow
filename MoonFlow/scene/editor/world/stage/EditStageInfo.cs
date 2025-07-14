@@ -4,6 +4,7 @@ using MoonFlow.Project.Database;
 
 namespace MoonFlow.Scene.EditorWorld;
 
+[SceneUid("uid://dnvwsx8eyi8sb")]
 public partial class EditStageInfo : PanelContainer
 {
 	private WorldInfo World = null;

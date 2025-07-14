@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://qd7wkeylrfo7"]
+
+[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_6up84"]
+[ext_resource type="Script" uid="uid://k630abrv3qrr" path="res://scene/editor/world/stage/WorldEditorTabStages.cs" id="1_bo42w"]
+[ext_resource type="Theme" uid="uid://haskx3ghiaxm" path="res://asset/theme/world/world_editor_stage_list.tres" id="2_bo42w"]
+[ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="3_x6ubh"]
+[ext_resource type="Script" uid="uid://du00yf8ptmkni" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_8wdrd"]
+[ext_resource type="Script" uid="uid://nubygtcoc3hc" path="res://scene/editor/world/stage/OptionStageType.cs" id="5_d3j84"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="6_wr0c1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sn1yo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eeely"]
+font_size = 15
+font_color = Color(1, 0.27, 0.27, 1)
+
+[node name="WorldEditorTabStages" type="VBoxContainer" node_paths=PackedStringArray("StageList", "OptionStageType", "LabelNewStageError")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_bo42w")
+StageList = NodePath("Scroll/StageList")
+OptionStageType = NodePath("Footer/VBox/HBox/Option_Type")
+LabelNewStageError = NodePath("Footer/VBox/Label_Error")
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sn1yo")
+follow_focus = true
+horizontal_scroll_mode = 0
+script = ExtResource("1_6up84")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
+
+[node name="StageList" type="VBoxContainer" parent="Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_bo42w")
+theme_override_constants/separation = 12
+
+[node name="Footer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_x6ubh")
+
+[node name="VBox" type="VBoxContainer" parent="Footer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label_Error" type="Label" parent="Footer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR"
+label_settings = SubResource("LabelSettings_eeely")
+
+[node name="HBox" type="HBoxContainer" parent="Footer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Line_New" type="LineEdit" parent="Footer/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "WORLD_EDITOR_LINE_EDIT_ADD_NEW_STAGE"
+max_length = 64
+clear_button_enabled = true
+script = ExtResource("4_8wdrd")
+
+[node name="Option_Type" type="OptionButton" parent="Footer/VBox/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
+script = ExtResource("5_d3j84")
+
+[node name="Button_Submit" type="Button" parent="Footer/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_wr0c1")
+
+[connection signal="text_validated" from="Footer/VBox/HBox/Line_New" to="." method="OnNewStageNameChanged"]
+[connection signal="validated_text_submitted" from="Footer/VBox/HBox/Line_New" to="." method="OnNewStageSubmitted" unbinds=1]
+[connection signal="item_selected" from="Footer/VBox/HBox/Option_Type" to="." method="OnNewStageCategoryChanged"]
+[connection signal="pressed" from="Footer/VBox/HBox/Button_Submit" to="." method="OnNewStageSubmitted"]

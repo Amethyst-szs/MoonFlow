@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnvwsx8eyi8sb"]
+[gd_scene load_steps=6 format=3 uid="uid://dnvwsx8eyi8sb"]
 
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="1_qmc67"]
 [ext_resource type="Script" uid="uid://d24m4xa47kokp" path="res://scene/editor/world/stage/EditStageInfo.cs" id="1_s33pu"]
 [ext_resource type="Script" uid="uid://nubygtcoc3hc" path="res://scene/editor/world/stage/OptionStageType.cs" id="1_xpqoc"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_nfqv3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1xln8"]
+font = ExtResource("3_nfqv3")
 
 [node name="EditStageInfo" type="PanelContainer"]
-anchors_preset = 10
-anchor_right = 1.0
+offset_right = 84.0
 offset_bottom = 48.0
-grow_horizontal = 2
 size_flags_horizontal = 3
 script = ExtResource("1_s33pu")
 
@@ -16,6 +18,7 @@ script = ExtResource("1_s33pu")
 layout_mode = 2
 
 [node name="Button_Trash" type="Button" parent="HBox"]
+self_modulate = Color(1, 0.66999996, 0.66999996, 1)
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_default_cursor_shape = 2
@@ -30,13 +33,14 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text_overrun_behavior = 3
+label_settings = SubResource("LabelSettings_1xln8")
 
 [node name="Option_Type" type="OptionButton" parent="HBox/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
+fit_to_longest_item = false
 script = ExtResource("1_xpqoc")
 
 [connection signal="pressed" from="HBox/Button_Trash" to="." method="OnDeleteRequest"]

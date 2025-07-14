@@ -27,26 +27,17 @@ public partial class WorldEditorApp : AppScene
 	[Export]
 	private TabMap TabMap;
 	[Export]
-	private VBoxContainer VBoxStageList;
+	private WorldEditorTabStages TabStageList;
 	[Export]
 	private VBoxContainer VBoxShineList;
-	[Export]
-	private Label LabelNewStageError;
 
 	public WorldInfo World { get; private set; }
 	private bool IsRunningInit = false;
-
-	private string NewStageName = "";
-	private StageInfo.CatEnum NewStageCategory = StageInfo.CatEnum.ExStage;
 
 	private bool IsWorldInfoModified = false;
 	private bool IsShineListModified = false;
 	private bool IsItemInfoModified = false;
 	private bool IsMapInfoModified = false;
-
-	private static readonly PackedScene StageInfoScene = GD.Load<PackedScene>(
-		"res://scene/editor/world/stage/edit_stage_info.tscn"
-	);
 
 	public void OpenWorld(WorldInfo world)
 	{
@@ -54,8 +45,6 @@ public partial class WorldEditorApp : AppScene
 		IsRunningInit = true;
 		World = world;
 		AppTaskbarTitle = world.Display;
-
-		LabelNewStageError.Hide();
 
 		// Setup header labels
 		LabelHeaderWorldName.Text = world.Display;
@@ -71,43 +60,15 @@ public partial class WorldEditorApp : AppScene
 			box.Connect(InfoBoxBase.SignalName.ModifiedItemInfo, Callable.From(OnItemInfoModify));
 		}
 
-		SetupStageList();
+		TabStageList.Init(world);
 		SetupShineList();
         _ = TabMap.InitMap();
-
-		GetNode<OptionButton>("%Option_Type").Selected = (int)NewStageCategory;
 
 		// Setup signals with header
 		var header = ProjectManager.SceneRoot.NodeHeader;
 		header.Connect(Header.SignalName.ButtonSave, Callable.From(new Action<bool>(SaveFileInternal)));
 
 		IsRunningInit = false;
-	}
-
-	private void SetupStageList()
-	{
-		VBoxStageList.QueueFreeAllChildren();
-
-		var prevCategory = StageInfo.CatEnum.Unknown;
-		foreach (var stage in World.StageList)
-		{
-			if (stage.CategoryType != prevCategory)
-			{
-				prevCategory = stage.CategoryType;
-				VBoxStageList.AddChild(new HSeparator());
-			}
-
-			var scene = StageInfoScene.Instantiate<EditStageInfo>();
-
-			scene.Connect(EditStageInfo.SignalName.RefreshList, Callable.From(() =>
-			{
-				OnWorldInfoModify();
-				SetupStageList();
-			}));
-
-			VBoxStageList.AddChild(scene);
-			scene.Setup(World, stage);
-		}
 	}
 
 	private void SetupShineList()
@@ -204,44 +165,6 @@ public partial class WorldEditorApp : AppScene
 
 	#region Signals
 
-	private void OnNewStageNameChanged(string str)
-	{
-		NewStageName = str;
-
-		bool isValid = IsNewStageNameValid(out string errorSource);
-		LabelNewStageError.Visible = !isValid && errorSource != "empty";
-
-		if (isValid || str == string.Empty)
-			return;
-
-		LabelNewStageError.Text = Tr("WORLD_EDITOR_INVALID_NEW_STAGE_NAME_ERROR") + " " + errorSource;
-	}
-
-	private void OnNewStageCategoryChanged(int id)
-	{
-		NewStageCategory = (StageInfo.CatEnum)id;
-	}
-
-	private void OnNewStageSubmitted()
-	{
-		if (!IsNewStageNameValid(out _))
-			return;
-
-		// Create new StageInfo
-		var info = new StageInfo
-		{
-			name = NewStageName,
-			CategoryType = NewStageCategory,
-		};
-
-		World.StageList.Add(info);
-		ProjectDatabaseHolder.SortWorldStagesByType(World.StageList);
-
-		// Reload scene
-		OnWorldInfoModify();
-		SetupStageList();
-	}
-
 	private void OnShineListChildOrderChanged()
 	{
 		if (IsRunningInit)
@@ -292,17 +215,17 @@ public partial class WorldEditorApp : AppScene
 	}
 
 	private void OnModify() { IsModified = true; }
-	private void OnWorldInfoModify()
+	public void OnWorldInfoModify()
 	{
 		IsWorldInfoModified = true;
 		OnModify();
 	}
-	private void OnShineListModify()
+	public void OnShineListModify()
 	{
 		IsShineListModified = true;
 		OnModify();
 	}
-	private void OnItemInfoModify()
+	public void OnItemInfoModify()
 	{
 		IsItemInfoModified = true;
 		OnModify();
@@ -311,39 +234,6 @@ public partial class WorldEditorApp : AppScene
 	{
 		IsMapInfoModified = true;
 		OnModify();
-	}
-
-	#endregion
-
-	#region Utilities
-
-	private bool IsNewStageNameValid(out string errorSource)
-	{
-		if (NewStageName == string.Empty)
-		{
-			errorSource = "empty";
-			return false;
-		}
-
-		// Check if this world already has this name
-		if (World.StageList.Any((s) => s.name == NewStageName))
-		{
-			errorSource = World.Display;
-			return false;
-		}
-
-		// Check if any world already has this stage name
-		foreach (var world in ProjectManager.GetDB().WorldList)
-		{
-			if (world.StageList.Any((s) => s.name == NewStageName))
-			{
-				errorSource = world.Display;
-				return false;
-			}
-		}
-
-		errorSource = "";
-		return true;
 	}
 
 	#endregion

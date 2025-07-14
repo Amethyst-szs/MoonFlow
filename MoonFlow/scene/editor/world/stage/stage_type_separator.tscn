@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://crlg0ndcpvyv5"]
+
+[ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_xfk6m"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_lk8b2"]
+[ext_resource type="Script" uid="uid://bn68uf20kpk27" path="res://scene/editor/world/stage/StageTypeSeparator.cs" id="2_ufk0h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ufk0h"]
+font = ExtResource("2_lk8b2")
+
+[node name="StageTypeSeparator" type="HBoxContainer" node_paths=PackedStringArray("LabelName")]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("1_xfk6m")
+script = ExtResource("2_ufk0h")
+LabelName = NodePath("Label_Type")
+
+[node name="L" type="HSeparator" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label_Type" type="Label" parent="."]
+layout_mode = 2
+text = "placeholder"
+label_settings = SubResource("LabelSettings_ufk0h")
+
+[node name="R" type="HSeparator" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
