@@ -11,7 +11,7 @@ Any [Godot Engine command line](https://docs.godotengine.org/en/stable/tutorials
 Provide a path for a MoonFlow project to open. The home screen will be skipped and it will load directly into the project. If path does not contain a valid MoonFlow project, an error will be printed and the home screen will load as normal.
 
 ## `--ignore_update_timestamp`
-Prevent the automatic updater from checking for a new release
+The automatic updater will always notify of a new version, even if you already have the latest release or newer
 
 ## `--launchmode`
 Determines the mode that MoonFlow boots in. Valid options:
