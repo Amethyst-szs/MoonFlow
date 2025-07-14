@@ -22,6 +22,8 @@ public static partial class AppSceneServer
     public const string CmdlineArgValueLaunchmodeUpdateReplaceOld = "update_replace";
     public const string CmdlineArgValueLaunchmodeUpdateCleanup = "update_cleanup";
     public const string CmdlineArgValueLaunchmodeUpdateDebug = "update_debug";
+    
+    public const string CmdlineArgKeyProject = "--project";
 
     public static void Init(Control appRoot)
     {
@@ -29,12 +31,12 @@ public static partial class AppSceneServer
             throw new Exception("AppSceneServer already has reference to app root");
 
         AppRoot = appRoot;
-        
+
         // Create initial app using command line arguments
         var args = Cmdline.GetArgs();
         args.TryGetValue(CmdlineArgKeyLaunchmode, out string mode);
 
-        switch(mode)
+        switch (mode)
         {
             case CmdlineArgValueLaunchmodeAppless: // Prevent launching any default application
                 GD.Print("Launched in appless mode");
@@ -50,9 +52,27 @@ public static partial class AppSceneServer
                 CreateApp<UpdaterDebug>();
                 break;
             default: // Standard behavior, showing project selection homescreen
-                CreateApp<FrontDoor>();
+                InitStandardLaunchMode();
                 break;
         }
+    }
+
+    private static void InitStandardLaunchMode()
+    {
+        var args = Cmdline.GetArgs();
+
+        // If --project is defined, attempt to open project at requested path
+        if (args.TryGetValue(CmdlineArgKeyProject, out string path) && path != string.Empty)
+        {
+            var result = ProjectManager.TryOpenProject(ref path, out _);
+
+            if (result == ProjectManager.ProjectManagerResult.OK)
+                GD.Print("Launching into project at " + path);
+            else
+                GD.PrintErr("--project cmd arg provided, but couldn't open project at path " + path);
+        }
+
+        CreateApp<FrontDoor>();
     }
 
     public static void Destroy()
