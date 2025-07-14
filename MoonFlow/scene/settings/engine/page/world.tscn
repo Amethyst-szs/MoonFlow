@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhwrwecewahtf"]
+
+[ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_tah4h"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_x7yt7"]
+[ext_resource type="Script" uid="uid://ddjtqhdysil2g" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="3_qpce8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3f1a"]
+font = ExtResource("2_x7yt7")
+font_size = 19
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7hcg"]
+
+[node name="Page_Graph" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 470.0
+grow_horizontal = 2
+
+[node name="Header" parent="." instance=ExtResource("1_tah4h")]
+layout_mode = 2
+
+[node name="Label_Head" parent="Header/Layout" index="0"]
+text = "ENGINE_SETTINGS_APP_CATEGORY_WORLD"
+
+[node name="VBox_Map" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_MapHeader" type="Label" parent="VBox_Map"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ENGINE_SETTINGS_PAGE_WORLD_MAP_HEADER"
+label_settings = SubResource("LabelSettings_g3f1a")
+
+[node name="HSeparator" type="HSeparator" parent="VBox_Map"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Check_HideIconsByMapScenario" type="CheckBox" parent="VBox_Map"]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
+script = ExtResource("3_qpce8")
+key = "moonflow/world_editor/hide_icons_by_map_scenario"
+default_value = true
+
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Map"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
+
+[editable path="Header"]

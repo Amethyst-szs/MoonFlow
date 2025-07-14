@@ -103,6 +103,7 @@
 # res://scene/editor/world/map/scenario/popup_scenario.tscn
 # res://scene/editor/world/stage/edit_stage_info.tscn
 # res://scene/editor/world/stage/world_editor_tab_stages.tscn
+# res://scene/settings/engine/page/world.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2602,6 +2603,10 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 msgstr ""
 
 #: scene/settings/engine/engine_settings_app.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_WORLD_EDITOR"
+msgstr ""
+
+#: scene/settings/engine/engine_settings_app.tscn
 #: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_FTP"
 msgstr ""
@@ -4106,4 +4111,20 @@ msgstr ""
 
 #: scene/editor/world/stage/world_editor_tab_stages.tscn
 msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
+msgstr ""
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_WORLD"
+msgstr ""
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HEADER"
+msgstr ""
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
 msgstr ""

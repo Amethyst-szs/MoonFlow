@@ -27,7 +27,7 @@ public static class Map2dRenderUtility
         return ImageTexture.CreateFromImage(map.Texture);
     }
 
-    public static void RenderShineIcons(Map2d map, Godot.Vector2 mapSize, Control iconHolder, WorldShineList shineList, ShineInfo hoveredShine, Texture2D shineIcon)
+    public static void RenderShineIcons(Map2d map, Godot.Vector2 mapSize, Control iconHolder, WorldShineList shineList, int scenario, bool isHideIconsByScenario, ShineInfo hoveredShine, Texture2D shineIcon)
     {
         // Render all shines as icon on map
         foreach (var shine in shineList)
@@ -41,6 +41,12 @@ public static class Map2dRenderUtility
 
             // Convert world position to screen position
             PositionMapIcon(map, mapSize, icon, shine.Trans);
+
+            // Determine if the icon should be hidden due to the currently previewed scenario
+            if (!isHideIconsByScenario)
+                icon.Show();
+            else
+                icon.Visible = (shine.ProgressBitFlag & (1 << (scenario - 1))) != 0;
 
             // Set modulation and size depending on if the shine is hovered
             if (hoveredShine == null)

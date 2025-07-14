@@ -26,6 +26,8 @@ public partial class TabMap : TextureRect
     private Matrix4x4 MatrixBackupProj;
     private Matrix4x4 MatrixBackupView;
 
+    private const string SettingsKeyHideIconsByScenario = "moonflow/world_editor/hide_icons_by_map_scenario";
+
     [Export, ExportGroup("Internal References")]
     private Control IconHolder = null;
     [Export]
@@ -106,10 +108,12 @@ public partial class TabMap : TextureRect
         Map.RecalculateViewProjMatrix();
 
         // Render icons
-        var shineList = World.ShineList;
-        Map2dRenderUtility.RenderShineIcons(Map, Size, IconHolder, shineList, HoverShine, TextureShine);
-        Map2dRenderUtility.RenderCheckpointIcons(Map, Size, IconHolder, CheckpointInfo, TextureCheckpoint);
+        var list = World.ShineList;
+        bool hideByScenario = EngineSettings.GetSetting<bool>(SettingsKeyHideIconsByScenario, true);
 
+        Map2dRenderUtility.RenderShineIcons(Map, Size, IconHolder, list, PreviewScenario, hideByScenario, HoverShine, TextureShine);
+
+        Map2dRenderUtility.RenderCheckpointIcons(Map, Size, IconHolder, CheckpointInfo, TextureCheckpoint);
         Map2dRenderUtility.RenderOriginPoint(Map, Size, IconHolder, TextureOrigin);
     }
 

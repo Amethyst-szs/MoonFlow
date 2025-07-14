@@ -2572,6 +2572,10 @@ msgid "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 msgstr "Event Graph"
 
 #: scene/settings/engine/engine_settings_app.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_WORLD_EDITOR"
+msgstr "Kingdom Editor"
+
+#: scene/settings/engine/engine_settings_app.tscn
 #: scene/settings/engine/page/ftp.tscn
 msgid "ENGINE_SETTINGS_APP_CATEGORY_FTP"
 msgstr "FTP Syncing"
@@ -4205,6 +4209,28 @@ msgstr "Add Stage Name to Kingdom"
 #: scene/editor/world/stage/world_editor_tab_stages.tscn
 msgid "WORLD_EDITOR_ADD_NEW_STAGE_SUBMIT"
 msgstr "Submit"
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_APP_CATEGORY_WORLD"
+msgstr "Kingdom Editor"
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HEADER"
+msgstr "Map2d Editor"
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO_TOOLTIP"
+msgstr ""
+"When enabled, the Power Moon icons on the map will only include\n"
+"moons collectable in the current preview scenario. This is determined\n"
+"by the \"Valid Scenarios\" field in the moon's properties.\n"
+"\n"
+"When disabled, all moons will be displayed regardless of the preview "
+"scenario."
+
+#: scene/settings/engine/page/world.tscn
+msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
+msgstr "Hide Moon Icons Based on Preview Scenario"
 
 #, fuzzy
 #~| msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
