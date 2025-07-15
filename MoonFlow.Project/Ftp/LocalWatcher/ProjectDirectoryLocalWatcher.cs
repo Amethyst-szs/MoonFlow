@@ -58,7 +58,7 @@ internal class ProjectDirectoryLocalWatcher
         if (DebugFsFtpLogging)
             GD.PrintRich("[i] ⒡ Change ~ " + e.Name);
 
-        if (!Directory.Exists(e.FullPath))
+        if (!File.Exists(e.FullPath))
             return;
         
         if ((File.GetAttributes(e.FullPath) & FileAttributes.Directory) == 0)
