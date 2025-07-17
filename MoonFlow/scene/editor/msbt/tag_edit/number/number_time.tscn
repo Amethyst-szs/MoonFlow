@@ -8,6 +8,7 @@ font_size = 14
 font_color = Color(0.678944, 0.678944, 0.678944, 1)
 
 [node name="TagEditSceneWithText" instance=ExtResource("1_r56qw")]
+oversampling_override = 1.0
 title = "TAG_EDIT_SCENE_HEADER_NUMBER_TIME"
 script = ExtResource("2_k2m1d")
 
@@ -31,6 +32,7 @@ layout_mode = 2
 selected = 0
 item_count = 5
 popup/item_0/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE"
+popup/item_0/id = 0
 popup/item_1/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL"
 popup/item_1/id = 1
 popup/item_2/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_RACE_TIME"
@@ -39,3 +41,5 @@ popup/item_3/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_EU"
 popup/item_3/id = 3
 popup/item_4/text = "TAG_EDIT_SCENE_NUMBER_TIME_TYPE_DATE_DETAIL_EU"
 popup/item_4/id = 4
+
+[connection signal="item_selected" from="Panel/Content/Option_TagName" to="." method="OnTagNameOptionSelected"]

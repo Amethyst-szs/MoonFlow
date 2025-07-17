@@ -60,6 +60,7 @@ CheckBox/icons/unchecked = SubResource("ImageTexture_yr80t")
 CheckBox/icons/unchecked_disabled = SubResource("ImageTexture_321ce")
 
 [node name="TagEditSceneWithText" instance=ExtResource("1_oslff")]
+oversampling_override = 1.0
 title = "TAG_EDIT_SCENE_HEADER_NUMBER_FIGURE"
 script = ExtResource("2_r6v6r")
 
@@ -79,6 +80,7 @@ selected = 0
 item_count = 3
 popup/item_0/text = "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_SCORE"
 popup/item_0/icon = ExtResource("3_3a5c8")
+popup/item_0/id = 0
 popup/item_1/text = "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_FIG02"
 popup/item_1/icon = ExtResource("3_3a5c8")
 popup/item_1/id = 1
@@ -101,3 +103,5 @@ theme = SubResource("Theme_voqop")
 text = "TAG_EDIT_SCENE_NUMBER_FIGURE_JP_TOGGLE"
 
 [connection signal="item_selected" from="Panel/Content/Option_TagName" to="." method="OnTagNameOptionSelected"]
+[connection signal="value_changed" from="Panel/Content/Spin_Figure" to="." method="OnFigureChanged"]
+[connection signal="toggled" from="Panel/Content/Check_JapaneseZenkaku" to="." method="OnJapaneseZenkakuToggled"]
