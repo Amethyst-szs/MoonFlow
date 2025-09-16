@@ -105,6 +105,11 @@
 # res://scene/home/tools/project/tab_project.tscn
 # res://async/gui/async_display.tscn
 # res://async/gui/async_text.tres
+# res://scene/home/actionbar/actionbar_home_find.tscn
+# res://scene/main/header/actionbar/global/actionbar_debug.tscn
+# res://scene/main/header/actionbar/global/actionbar_file.tscn
+# res://scene/main/header/actionbar/global/actionbar_help.tscn
+# res://scene/main/header/actionbar/global/actionbar_project.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2208,114 +2213,6 @@ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_REFRESH_TOOLTIP"
 msgstr ""
 
 #: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_SAVE"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_SAVE_AS"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_SAVE_ALL"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_CLOSE"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DATABASES_CHECKPOINT_FLAG"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_CREDITS"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_SUPPORT"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
-msgstr ""
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
-msgstr ""
-
-#: scene/main/main.tscn
 msgid "MAIN_HEADER_MINIMIZE_CURRENT_APP"
 msgstr ""
 
@@ -4156,4 +4053,109 @@ msgstr ""
 #: async/gui/async_text.tres
 msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
 msgid "GenerateCheckpointDb"
+msgstr ""
+
+#: scene/home/actionbar/actionbar_home_find.tscn
+msgid "MAIN_ACTIONBAR_HOME_FIND_SEARCH_STRING_IN_MSBT"
+msgstr ""
+
+#: scene/home/actionbar/actionbar_home_find.tscn
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE_AS"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE_ALL"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_CLOSE"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_CREDITS"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_SUPPORT"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
 msgstr ""

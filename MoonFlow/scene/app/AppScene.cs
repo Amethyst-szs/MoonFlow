@@ -64,6 +64,8 @@ public partial class AppScene : Control
 
 	[Export, ExportGroup("Packed Scene")]
 	private PackedScene UnsavedChangesScene = null;
+	[Export]
+	public Godot.Collections.Array<PackedScene> ActionbarScenes { get; private set; } = [];
 
 	// ~~~~~~~~ Header Config Exports ~~~~~~~~ //
 

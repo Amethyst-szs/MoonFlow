@@ -31,6 +31,14 @@ input_action = "ui_close_app"
 layout_mode = 2
 input_action = "ui_refresh"
 
+[node name="Find" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_find"
+
+[node name="FindSearch" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "ui_find_search"
+
 [node name="AppNavLeft" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_app_nav_left"
@@ -115,10 +123,6 @@ input_action = "ui_edit_tag"
 [node name="Add" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "msbt_add_entry"
-
-[node name="Find" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
-layout_mode = 2
-input_action = "ui_find"
 
 [node name="Reset" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
 layout_mode = 2

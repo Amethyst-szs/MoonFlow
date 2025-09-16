@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cijispd6jofjx"]
+
+[ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="1_a3xow"]
+[ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="2_d0cm0"]
+[ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="3_7hyf4"]
+[ext_resource type="Texture2D" uid="uid://ddbjk8qy03n3e" path="res://asset/material/window/setting.svg" id="4_b67nn"]
+[ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="5_yp0jb"]
+[ext_resource type="Script" uid="uid://m35v3iffy4cp" path="res://scene/main/header/actionbar/global/ActionbarFile.cs" id="6_8cwdy"]
+
+[node name="File" type="PopupMenu"]
+auto_translate_mode = 1
+size = Vector2i(250, 100)
+item_count = 8
+item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
+item_0/icon = ExtResource("1_a3xow")
+item_0/id = 0
+item_1/text = "MAIN_ACTIONBAR_FILE_SAVE_AS"
+item_1/icon = ExtResource("2_d0cm0")
+item_1/id = 1
+item_2/text = "MAIN_ACTIONBAR_FILE_SAVE_ALL"
+item_2/id = 2
+item_3/text = "MAIN_ACTIONBAR_FILE_CLOSE"
+item_3/icon = ExtResource("3_7hyf4")
+item_3/id = 3
+item_4/id = 1001
+item_4/separator = true
+item_5/text = "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+item_5/icon = ExtResource("4_b67nn")
+item_5/id = 42068
+item_6/id = 1002
+item_6/separator = true
+item_7/text = "MAIN_ACTIONBAR_QUIT_MOONFLOW"
+item_7/icon = ExtResource("5_yp0jb")
+item_7/id = 42069
+script = ExtResource("6_8cwdy")

@@ -243,6 +243,54 @@ public static partial class AppSceneServer
         // Update header
         scene.NodeHeader.Visible = focusingApp.IsAppShowHeader();
         scene.NodeHeader.EmitSignal(Header.SignalName.AppFocused);
+
+        UpdateActionbarInjectable(focusingApp);
+    }
+
+    private static void UpdateActionbarInjectable(AppScene app)
+    {
+        // Fetch and reset the current actionbar state
+        var scene = ProjectManager.SceneRoot;
+        var actionbarInjectable = scene.NodeHeader.ActionbarInjectable;
+
+        foreach (var child in actionbarInjectable.GetChildren())
+        {
+            if (!child.HasMeta("FromAppScene"))
+                continue;
+
+            actionbarInjectable.RemoveChild(child);
+            child.QueueFree();
+        }
+
+        // Ensure we have a list of actionbar scenes to create
+        if (app == null || app.ActionbarScenes.Count == 0)
+            return;
+
+        // Create all new inject items
+        int createdCount = 0;
+
+        foreach (var itemScene in app.ActionbarScenes)
+        {
+            var item = itemScene.Instantiate();
+
+            try
+            {
+                if (item is not ActionbarItemBase actionbarItem)
+                    throw new Exception(string.Format("{0} has ActionbarScenes entry that is not ActionbarItemBase", app.AppName));
+
+                actionbarItem.Hide();
+                actionbarItem.SetMeta("FromAppScene", true);
+
+                actionbarInjectable.AddChild(actionbarItem, true);
+                actionbarInjectable.MoveChild(actionbarItem, 2 + createdCount);
+
+                createdCount++;
+            }
+            catch
+            {
+                item.QueueFree();
+            }
+        }
     }
 
     #endregion

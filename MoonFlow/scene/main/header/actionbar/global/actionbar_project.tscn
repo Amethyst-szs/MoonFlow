@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://3u1gcxqoaq5h"]
+
+[ext_resource type="Texture2D" uid="uid://c8c0n0e4fw7mk" path="res://asset/material/file/open_new.svg" id="1_2eqvd"]
+[ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="2_r7tms"]
+[ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="3_l8yvi"]
+[ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="4_ta825"]
+[ext_resource type="Script" uid="uid://b4mcu3ychbygl" path="res://scene/main/header/actionbar/global/ActionbarProject.cs" id="5_q2l64"]
+
+[node name="Project" type="PopupMenu"]
+auto_translate_mode = 1
+size = Vector2i(309, 100)
+item_count = 5
+item_0/text = "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
+item_0/icon = ExtResource("1_2eqvd")
+item_0/id = 0
+item_1/text = "MAIN_ACTIONBAR_PROJECT_RELOAD"
+item_1/icon = ExtResource("2_r7tms")
+item_1/id = 1
+item_2/text = "MAIN_ACTIONBAR_PROJECT_CLOSE"
+item_2/icon = ExtResource("3_l8yvi")
+item_2/id = 2
+item_3/id = 10000
+item_3/separator = true
+item_4/text = "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
+item_4/icon = ExtResource("4_ta825")
+item_4/id = 3
+script = ExtResource("5_q2l64")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp0ceyv6os081"]
+
+[ext_resource type="Script" uid="uid://b26m8hyob35s5" path="res://scene/main/header/actionbar/global/ActionbarDebug.cs" id="1_yns1k"]
+
+[node name="Debug" type="PopupMenu"]
+auto_translate_mode = 1
+size = Vector2i(590, 100)
+item_count = 11
+item_0/text = "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
+item_0/checkable = 1
+item_0/id = 1000
+item_1/text = "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
+item_1/checkable = 1
+item_1/id = 1001
+item_2/id = 9999
+item_2/disabled = true
+item_2/separator = true
+item_3/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+item_3/id = 10
+item_4/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+item_4/id = 11
+item_5/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+item_5/id = 12
+item_6/text = "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+item_6/id = 13
+item_7/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
+item_7/id = 14
+item_8/text = "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
+item_8/id = 15
+item_9/id = 9999
+item_9/separator = true
+item_10/text = "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
+item_10/id = 2000
+script = ExtResource("1_yns1k")

@@ -2171,114 +2171,6 @@ msgid "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_REFRESH_TOOLTIP"
 msgstr "Refresh the text preview"
 
 #: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_SAVE"
-msgstr "Save"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_SAVE_AS"
-msgstr "Save As"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_SAVE_ALL"
-msgstr "Save All"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_FILE_CLOSE"
-msgstr "Close File"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
-msgstr "Open MoonFlow Settings"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
-msgstr "Quit MoonFlow"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
-msgstr "Open Project in File Browser"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
-msgstr "Reload Project"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
-msgstr "Close Project"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
-msgstr "Clone Project into Another Project"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
-msgstr "System Data"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DATABASES_CHECKPOINT_FLAG"
-msgstr "Update CheckpointFlagInfo"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
-msgstr "Help Page"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
-msgstr "In-App Wiki"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
-msgstr "Online Wiki"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
-msgstr "GitHub Repository"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_CREDITS"
-msgstr "Credits & Contributions"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_HELP_SUPPORT"
-msgstr "Support Development"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
-msgstr "Debug Project"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
-msgstr "Log FS -> FTP Events"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
-msgstr "Open MSBP MSTXT viewer"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-msgstr "Open MSBP TGG viewer"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-msgstr "Open MSBT Label Lookup"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
-msgstr "Open Event Flow Graph Prototype"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
-msgstr "Open Map2d Prototype"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
-msgstr "Write Texture2dMap to Project"
-
-#: scene/main/main.tscn
-msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
-msgstr "Force C# Runtime Exception"
-
-#: scene/main/main.tscn
 msgid "MAIN_HEADER_MINIMIZE_CURRENT_APP"
 msgstr "Hide App"
 
@@ -4273,6 +4165,117 @@ msgstr "Generating CheckpointFlagInfo..."
 msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
 msgid "GenerateCheckpointDb"
 msgstr "This may take a minute or two..."
+
+#: scene/home/actionbar/actionbar_home_find.tscn
+msgid "MAIN_ACTIONBAR_HOME_FIND_SEARCH_STRING_IN_MSBT"
+msgstr "Locate Text File/Entry"
+
+#: scene/home/actionbar/actionbar_home_find.tscn
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
+msgstr "Quit MoonFlow"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
+msgstr "Debug Project"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
+msgstr "Log FS -> FTP Events"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
+msgstr "Open MSBP MSTXT viewer"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
+msgstr "Open MSBP TGG viewer"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
+msgstr "Open MSBT Label Lookup"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
+msgstr "Open Event Flow Graph Prototype"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
+msgstr "Open Map2d Prototype"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
+msgstr "Write Texture2dMap to Project"
+
+#: scene/main/header/actionbar/global/actionbar_debug.tscn
+msgid "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
+msgstr "Force C# Runtime Exception"
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE"
+msgstr "Save"
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE_AS"
+msgstr "Save As"
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_SAVE_ALL"
+msgstr "Save All"
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_FILE_CLOSE"
+msgstr "Close File"
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr "Open MoonFlow Settings"
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
+msgstr "Help Page"
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
+msgstr "In-App Wiki"
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
+msgstr "Online Wiki"
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
+msgstr "GitHub Repository"
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_CREDITS"
+msgstr "Credits & Contributions"
+
+#: scene/main/header/actionbar/global/actionbar_help.tscn
+msgid "MAIN_ACTIONBAR_HELP_SUPPORT"
+msgstr "Support Development"
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
+msgstr "Open Project in File Browser"
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_RELOAD"
+msgstr "Reload Project"
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_CLOSE"
+msgstr "Close Project"
+
+#: scene/main/header/actionbar/global/actionbar_project.tscn
+msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
+msgstr "Clone Project into Another Project"
+
+#~ msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
+#~ msgstr "System Data"
+
+#~ msgid "MAIN_ACTIONBAR_DATABASES_CHECKPOINT_FLAG"
+#~ msgstr "Update CheckpointFlagInfo"
 
 #~ msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
 #~ msgstr "All text files in your project's default language"

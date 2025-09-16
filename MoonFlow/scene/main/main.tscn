@@ -1,30 +1,19 @@
-[gd_scene load_steps=37 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene load_steps=26 format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
 [ext_resource type="Script" uid="uid://d1h7xrch8saeh" path="res://scene/main/taskbar/Taskbar.cs" id="4_kco4x"]
 [ext_resource type="Script" uid="uid://c6ok0ombsc0os" path="res://scene/main/header/Header.cs" id="4_kq4x0"]
-[ext_resource type="Script" uid="uid://m35v3iffy4cp" path="res://scene/main/header/actionbar/ActionbarFile.cs" id="5_2c21b"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="5_7wt0y"]
-[ext_resource type="Script" uid="uid://b4mcu3ychbygl" path="res://scene/main/header/actionbar/ActionbarProject.cs" id="5_8pvlw"]
+[ext_resource type="PackedScene" uid="uid://cijispd6jofjx" path="res://scene/main/header/actionbar/global/actionbar_file.tscn" id="5_mm1ql"]
 [ext_resource type="Theme" uid="uid://2yk8byukiy02" path="res://asset/theme/main/taskbar.tres" id="6_2jriu"]
-[ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="6_736yk"]
-[ext_resource type="Script" uid="uid://b26m8hyob35s5" path="res://scene/main/header/actionbar/ActionbarDebug.cs" id="6_jwfa5"]
+[ext_resource type="PackedScene" uid="uid://3u1gcxqoaq5h" path="res://scene/main/header/actionbar/global/actionbar_project.tscn" id="6_q2oic"]
 [ext_resource type="Texture2D" uid="uid://bejy23w4qwuhn" path="res://asset/material/window/minimize.svg" id="7_3uat5"]
-[ext_resource type="Texture2D" uid="uid://ddbjk8qy03n3e" path="res://asset/material/window/setting.svg" id="7_lv0rq"]
-[ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="7_tq7ax"]
-[ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="8_0gxwu"]
-[ext_resource type="Script" uid="uid://cdfukihg1yaun" path="res://scene/main/header/actionbar/ActionbarHelp.cs" id="8_gmnrm"]
+[ext_resource type="PackedScene" uid="uid://6ksxl1g3hcvy" path="res://scene/main/header/actionbar/global/actionbar_help.tscn" id="7_tyv27"]
+[ext_resource type="PackedScene" uid="uid://cp0ceyv6os081" path="res://scene/main/header/actionbar/global/actionbar_debug.tscn" id="8_676lm"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="8_nx1ih"]
-[ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="9_7fyri"]
-[ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="9_j4qfv"]
-[ext_resource type="Texture2D" uid="uid://b0tliqoouitvy" path="res://iconS.png" id="10_hatx7"]
-[ext_resource type="Texture2D" uid="uid://d31ycdn7h62g0" path="res://asset/engine/heart.svg" id="10_tnl5i"]
-[ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="11_1mgjq"]
 [ext_resource type="Texture2D" uid="uid://v47a8l0v77f2" path="res://icon.png" id="11_kyve8"]
-[ext_resource type="Texture2D" uid="uid://c8c0n0e4fw7mk" path="res://asset/material/file/open_new.svg" id="12_7xn60"]
 [ext_resource type="Script" uid="uid://cv78a218kummk" path="res://scene/main/MainSceneRoot.cs" id="13_jlow7"]
-[ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="14_cleq4"]
 [ext_resource type="Script" uid="uid://bhs0e83p6wbaj" path="res://scene/main/alert/AlertHolder.cs" id="14_dvyda"]
 [ext_resource type="PackedScene" uid="uid://djdy8pajcdhin" path="res://scene/main/header/ftp/ftp_status_indicator.tscn" id="20_gtms6"]
 [ext_resource type="StyleBox" uid="uid://d3llfwcm035av" path="res://asset/theme/main/stylebox/taskbar/taskbar_panel_normal.tres" id="27_lysc8"]
@@ -98,7 +87,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Header" type="PanelContainer" parent="Content" node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose", "FtpStatusIndicator", "LabelVersion")]
+[node name="Header" type="PanelContainer" parent="Content" node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose", "FtpStatusIndicator", "LabelVersion", "ActionbarInjectable")]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
@@ -108,6 +97,7 @@ ButtonAppMinimize = NodePath("Content/Button_Mini")
 ButtonAppClose = NodePath("Content/Button_Close")
 FtpStatusIndicator = NodePath("Content/HBox_FTP")
 LabelVersion = NodePath("Content/Label_Version")
+ActionbarInjectable = NodePath("Content/Actionbar")
 
 [node name="Content" type="HBoxContainer" parent="Content/Header"]
 layout_mode = 2
@@ -116,109 +106,13 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("5_7wt0y")
 
-[node name="File" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
-auto_translate_mode = 1
-size = Vector2i(250, 100)
-item_count = 8
-item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
-item_0/icon = ExtResource("6_736yk")
-item_0/id = 0
-item_1/text = "MAIN_ACTIONBAR_FILE_SAVE_AS"
-item_1/icon = ExtResource("7_tq7ax")
-item_1/id = 1
-item_2/text = "MAIN_ACTIONBAR_FILE_SAVE_ALL"
-item_2/id = 2
-item_3/text = "MAIN_ACTIONBAR_FILE_CLOSE"
-item_3/icon = ExtResource("8_nx1ih")
-item_3/id = 3
-item_4/id = 1001
-item_4/separator = true
-item_5/text = "MAIN_ACTIONBAR_ENGINE_SETTINGS"
-item_5/icon = ExtResource("7_lv0rq")
-item_5/id = 42068
-item_6/id = 1002
-item_6/separator = true
-item_7/text = "MAIN_ACTIONBAR_QUIT_MOONFLOW"
-item_7/icon = ExtResource("9_7fyri")
-item_7/id = 42069
-script = ExtResource("5_2c21b")
+[node name="File" parent="Content/Header/Content/Actionbar" instance=ExtResource("5_mm1ql")]
 
-[node name="Project" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
-auto_translate_mode = 1
-size = Vector2i(309, 100)
-item_count = 5
-item_0/text = "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
-item_0/icon = ExtResource("12_7xn60")
-item_0/id = 0
-item_1/text = "MAIN_ACTIONBAR_PROJECT_RELOAD"
-item_1/icon = ExtResource("11_1mgjq")
-item_1/id = 1
-item_2/text = "MAIN_ACTIONBAR_PROJECT_CLOSE"
-item_2/icon = ExtResource("8_nx1ih")
-item_2/id = 2
-item_3/id = 10000
-item_3/separator = true
-item_4/text = "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
-item_4/icon = ExtResource("14_cleq4")
-item_4/id = 3
-script = ExtResource("5_8pvlw")
+[node name="Project" parent="Content/Header/Content/Actionbar" instance=ExtResource("6_q2oic")]
 
-[node name="Help" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
-auto_translate_mode = 1
-size = Vector2i(309, 100)
-item_count = 8
-item_0/text = "MAIN_ACTIONBAR_HELP_CURRENT_APP"
-item_0/icon = ExtResource("8_0gxwu")
-item_0/id = 0
-item_1/id = 1000
-item_1/separator = true
-item_2/text = "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
-item_2/id = 1
-item_3/text = "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
-item_3/id = 2
-item_4/id = 1001
-item_4/separator = true
-item_5/text = "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
-item_5/icon = ExtResource("9_j4qfv")
-item_5/id = 3
-item_6/text = "MAIN_ACTIONBAR_HELP_CREDITS"
-item_6/icon = ExtResource("10_hatx7")
-item_6/id = 4
-item_7/text = "MAIN_ACTIONBAR_HELP_SUPPORT"
-item_7/icon = ExtResource("10_tnl5i")
-item_7/id = 5
-script = ExtResource("8_gmnrm")
+[node name="Help" parent="Content/Header/Content/Actionbar" instance=ExtResource("7_tyv27")]
 
-[node name="Debug" type="PopupMenu" parent="Content/Header/Content/Actionbar"]
-auto_translate_mode = 1
-size = Vector2i(590, 100)
-item_count = 11
-item_0/text = "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
-item_0/checkable = 1
-item_0/id = 1000
-item_1/text = "MAIN_ACTIONBAR_DEBUG_TOGGLE_FILE_SYSTEM_FTP_LOGGING"
-item_1/checkable = 1
-item_1/id = 1001
-item_2/id = 9999
-item_2/disabled = true
-item_2/separator = true
-item_3/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSTXT_VIEWER"
-item_3/id = 10
-item_4/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBP_TGG_VIEWER"
-item_4/id = 11
-item_5/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MSBT_LABEL_LOOKUP"
-item_5/id = 12
-item_6/text = "MAIN_ACTIONBAR_DEBUG_OPEN_EVENT_FLOW_GRAPH_PROTOTYPE"
-item_6/id = 13
-item_7/text = "MAIN_ACTIONBAR_DEBUG_OPEN_MAP2D_VIEWER"
-item_7/id = 14
-item_8/text = "MAIN_ACTIONBAR_DEBUG_WRITE_TEXTURE2DMAP"
-item_8/id = 15
-item_9/id = 9999
-item_9/separator = true
-item_10/text = "MAIN_ACTIONBAR_DEBUG_FORCE_EXCEPTION"
-item_10/id = 2000
-script = ExtResource("6_jwfa5")
+[node name="Debug" parent="Content/Header/Content/Actionbar" instance=ExtResource("8_676lm")]
 
 [node name="Center" type="VSeparator" parent="Content/Header/Content"]
 layout_mode = 2
@@ -295,6 +189,5 @@ texture = ExtResource("11_kyve8")
 stretch_mode = 5
 script = SubResource("GDScript_vdahq")
 
-[connection signal="MoonFlowCloseRequest" from="Content/Header/Content/Actionbar/File" to="." method="OnWindowCloseRequest"]
 [connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="OnAppSceneServerWrapperFocusFirst"]
 [connection signal="pressed" from="Content/Header/Content/Button_Close" to="." method="OnAppSceneServerWrapperCloseActive"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://6ksxl1g3hcvy"]
+
+[ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="1_wueba"]
+[ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="2_jp2i6"]
+[ext_resource type="Texture2D" uid="uid://b0tliqoouitvy" path="res://iconS.png" id="3_8hh8j"]
+[ext_resource type="Texture2D" uid="uid://d31ycdn7h62g0" path="res://asset/engine/heart.svg" id="4_ce2xx"]
+[ext_resource type="Script" uid="uid://cdfukihg1yaun" path="res://scene/main/header/actionbar/global/ActionbarHelp.cs" id="5_tp4w4"]
+
+[node name="Help" type="PopupMenu"]
+auto_translate_mode = 1
+size = Vector2i(309, 100)
+item_count = 8
+item_0/text = "MAIN_ACTIONBAR_HELP_CURRENT_APP"
+item_0/icon = ExtResource("1_wueba")
+item_0/id = 0
+item_1/id = 1000
+item_1/separator = true
+item_2/text = "MAIN_ACTIONBAR_HELP_HOME_LOCAL"
+item_2/id = 1
+item_3/text = "MAIN_ACTIONBAR_HELP_HOME_REMOTE"
+item_3/id = 2
+item_4/id = 1001
+item_4/separator = true
+item_5/text = "MAIN_ACTIONBAR_HELP_GITHUB_REPO"
+item_5/icon = ExtResource("2_jp2i6")
+item_5/id = 3
+item_6/text = "MAIN_ACTIONBAR_HELP_CREDITS"
+item_6/icon = ExtResource("3_8hh8j")
+item_6/id = 4
+item_7/text = "MAIN_ACTIONBAR_HELP_SUPPORT"
+item_7/icon = ExtResource("4_ce2xx")
+item_7/id = 5
+script = ExtResource("5_tp4w4")

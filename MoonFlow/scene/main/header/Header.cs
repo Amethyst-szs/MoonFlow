@@ -15,6 +15,9 @@ public partial class Header : PanelContainer
 	[Export]
 	public Label LabelVersion;
 
+	[Export]
+	public MenuBar ActionbarInjectable;
+
 	[Signal]
 	public delegate void AppFocusedEventHandler();
 
