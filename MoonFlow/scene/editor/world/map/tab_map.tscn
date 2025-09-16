@@ -98,7 +98,6 @@ theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Adjust" type="VBoxContainer" parent="MapControls"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -192,6 +191,15 @@ value = 50.0
 tick_count = 8
 ticks_position = 3
 
+[node name="Button_CenterToOrigin" type="Button" parent="MapControls/Adjust/Footer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+tooltip_text = "WORLD_EDITOR_MAP_TAB_CENTER_TO_ORIGIN_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "WORLD_EDITOR_MAP_TAB_CENTER_TO_ORIGIN"
+icon = ExtResource("3_btxgw")
+text_overrun_behavior = 3
+
 [node name="Tools" type="HBoxContainer" parent="MapControls"]
 layout_mode = 2
 
@@ -274,6 +282,7 @@ visible = false
 [connection signal="value_changed" from="MapControls/Adjust/Transform/Scale/Spin_Scale" to="." method="OnSetScaleMapSpinbox"]
 [connection signal="pressed" from="MapControls/Adjust/Footer/Button_Undo" to="." method="OnUndoMatrixModifications"]
 [connection signal="drag_ended" from="MapControls/Adjust/Footer/Sensitivity/HSlider_Sensitivity" to="." method="OnSetDragAdjustSensitivity"]
+[connection signal="pressed" from="MapControls/Adjust/Footer/Button_CenterToOrigin" to="." method="OnMatrixCenterToOrigin"]
 [connection signal="toggled" from="MapControls/Tools/Button_IconShow" to="IconHolder" method="set_visible"]
 [connection signal="toggled" from="MapControls/Tools/ToolGrid/Button_Adjust" to="." method="SetAdjustState"]
 [connection signal="toggled" from="MapControls/Tools/ToolGrid/Button_Adjust" to="MapControls/Adjust" method="set_visible"]

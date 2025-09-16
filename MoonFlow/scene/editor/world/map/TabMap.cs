@@ -170,6 +170,13 @@ public partial class TabMap : TextureRect
         Map.SetInternalMatrices(MatrixBackupProj, MatrixBackupView);
         RenderIcons();
     }
+    private void OnMatrixCenterToOrigin()
+    {
+        Parent?.OnMapInfoModify();
+
+        Map.CenterViewMatrixToOrigin();
+        RenderIcons();
+    }
 
     private void OnScenarioSelectionChanged(int scenario)
     {

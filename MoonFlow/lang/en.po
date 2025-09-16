@@ -3795,22 +3795,6 @@ msgstr "Recent Projects"
 msgid "HOME_TAB_FILTER_OPTION_MODIFIED"
 msgstr "Modified"
 
-#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
-msgstr "Search"
-
-#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
-msgstr "Search for a text entry/label to use"
-
-#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
-msgstr "No results!"
-
-#: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
-msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
-msgstr "Too many results!"
-
 #: scene/settings/engine/keybind/panel_keybind_editor.tscn
 msgid "ENGINE_SETTINGS_PAGE_KEYBIND_BUTTON_ADD_KEYBIND"
 msgstr "Add Keybind"
@@ -3850,6 +3834,14 @@ msgstr "Adjust sensitivity of dragging map projection"
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER"
 msgstr "Drag Sensitivity"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_CENTER_TO_ORIGIN_TOOLTIP"
+msgstr "Set world's origin point to the center of the map"
+
+#: scene/editor/world/map/tab_map.tscn
+msgid "WORLD_EDITOR_MAP_TAB_CENTER_TO_ORIGIN"
+msgstr "Center"
 
 #: scene/editor/world/map/tab_map.tscn
 msgid "WORLD_EDITOR_MAP_BUTTON_ADJUST_TOOLTIP"
@@ -4269,17 +4261,33 @@ msgstr "Close Project"
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
 msgstr "Clone Project into Another Project"
 
-#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+#: scene/common/msbt_lookup/select_entry/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
+msgstr "Search"
+
+#: scene/common/msbt_lookup/select_entry/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
+msgstr "Search for a text entry/label to use"
+
+#: scene/common/msbt_lookup/select_entry/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
+msgstr "No results!"
+
+#: scene/common/msbt_lookup/select_entry/popup_msbt_select_entry.tscn
+msgid "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
+msgstr "Too many results!"
+
+#: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_BOX_PLACEHOLDER"
 msgstr "Find"
 
-#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+#: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_INVALID_SEARCH_REQUEST"
 msgstr ""
 "Search for the text that shows up in-game (in your project's default "
 "language), and you'll get a list of results from most to least confident."
 
-#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+#: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
 msgstr "No results!"
 

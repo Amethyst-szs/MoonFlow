@@ -61,6 +61,11 @@ public partial class Map2d
         RecalculateViewProjMatrix();
     }
 
+    public void CenterViewMatrixToOrigin()
+    {
+        ViewMatrix.M14 = 0.0f;
+        ViewMatrix.M24 = 0.0f;
+    }
     public void DragViewMatrix(Godot.Vector2 vec)
     {
         ViewMatrix.M14 += vec.X;
