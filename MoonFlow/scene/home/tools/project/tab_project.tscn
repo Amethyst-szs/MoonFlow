@@ -39,6 +39,5 @@ mouse_default_cursor_shape = 2
 text = "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
 icon = ExtResource("8_o81hq")
 alignment = 0
-icon_alignment = 2
 
 [connection signal="pressed" from="Content/Msbp/VBox_Msbp/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]

@@ -25,7 +25,7 @@ public partial class ActionbarDatabases : ActionbarItemBase
 
 	private void OnGenerateDatabaseCheckpointFlag()
 	{
-		AsyncRunner.Run(GenerateDatabaseCheckpointFlag, AsyncDisplay.Type.GenerateCheckpointDb);
+		AsyncRunner.Run(GenerateDatabaseCheckpointFlag, AsyncDisplay.Type.GenerateCheckpointDb, "dbgen_checkpoint_flag");
 	}
 	private void GenerateDatabaseCheckpointFlag(AsyncDisplay display)
 	{

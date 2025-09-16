@@ -261,7 +261,9 @@ public partial class AppScene : Control
 		if (!AppIsFocused() && isRequireFocus)
             return;
 		
-		var run = AsyncRunner.Run(TaskWriteAppSaveContent, AppContentSaveType);
+		var run = AsyncRunner.Run(TaskWriteAppSaveContent, AppContentSaveType, AppUniqueIdentifier);
+		if (run == null)
+			return;
 		
 		await run.Task;
         await Extension.WaitProcessFrame(this);

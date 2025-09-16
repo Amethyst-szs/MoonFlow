@@ -7,14 +7,22 @@ public class AsyncRunner
 {
     private AsyncDisplay Display = null;
     public Task Task { get; private set; } = null;
+    public readonly string Id = null;
 
-    public AsyncRunner(Action task)
+    private AsyncRunner(Action task, string id)
     {
-        Task.Run(task);
-        return;
+        Id = id;
+        AsyncStatusKeeper.RegisterTaskId(Id);
+
+        Task = new Task(task);
+        Task.Start();
+        Task.ContinueWith(Finished);
     }
-    public AsyncRunner(Action<AsyncDisplay> action, AsyncDisplay.Type type)
+    private AsyncRunner(Action<AsyncDisplay> action, AsyncDisplay.Type type, string id)
     {
+        Id = id;
+        AsyncStatusKeeper.RegisterTaskId(Id);
+
         Display = AsyncDisplay.Instantiate(type);
         if (Display == null)
             throw new NullReferenceException("ProjectManager doesn't have scene reference!");
@@ -26,18 +34,26 @@ public class AsyncRunner
         Task.ContinueWith(Finished);
     }
 
-    public static void Run(Action task)
+    public static void Run(Action task, string id)
     {
-        _ = new AsyncRunner(task);
+        if (AsyncStatusKeeper.IsTaskIdRunning(id))
+            return;
+        
+        _ = new AsyncRunner(task, id);
     }
-    public static AsyncRunner Run(Action<AsyncDisplay> task, AsyncDisplay.Type type)
+    public static AsyncRunner Run(Action<AsyncDisplay> task, AsyncDisplay.Type type, string id)
     {
-        var run = new AsyncRunner(task, type);
+        if (AsyncStatusKeeper.IsTaskIdRunning(id))
+            return null;
+        
+        var run = new AsyncRunner(task, type, id);
         return run;
     }
 
     private void Finished(Task task)
     {
+        AsyncStatusKeeper.RemoveTaskId(Id);
+
         if (Display == null)
         {
             if (task.Exception != null)
