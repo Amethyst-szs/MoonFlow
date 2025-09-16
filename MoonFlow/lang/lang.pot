@@ -4029,6 +4029,14 @@ msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
 msgid "HOME_TAB_PROJECT_MSBP_TOOLS"
 msgstr ""
 

@@ -46,6 +46,7 @@ func _gui_input(event: InputEvent) -> void:
 "
 
 [node name="AsyncDisplay" type="PanelContainer" node_paths=PackedStringArray("LabelTitleKey", "LabelDescKey", "LabelProgress", "LabelException", "ProgressBar")]
+z_index = 10
 custom_minimum_size = Vector2(260, 48)
 anchors_preset = 3
 anchor_left = 1.0

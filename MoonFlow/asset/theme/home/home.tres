@@ -50,7 +50,8 @@ vertical = true
 
 [resource]
 AcceptDialog/styles/panel = ExtResource("1_rf4hs")
-Button/constants/icon_max_width = 28
+Button/constants/h_separation = 8
+Button/constants/icon_max_width = 24
 Button/fonts/font = ExtResource("1_l1jp4")
 Button/styles/focus = ExtResource("2_8oev3")
 Button/styles/hover = ExtResource("3_ff0pw")
