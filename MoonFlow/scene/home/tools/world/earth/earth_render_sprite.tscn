@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://1lbvmh8be204" path="res://asset/shader/canvas_item_sphere/earth_globe_render.gdshader" id="1_ipyad"]
 [ext_resource type="Texture2D" uid="uid://cpkyrxq7afqic" path="res://asset/app/spread/earth-nrm.dds" id="2_2vuxf"]
 [ext_resource type="Texture2D" uid="uid://c82cei1wnywcf" path="res://asset/app/spread/earth-alb.dds" id="3_xathp"]
-[ext_resource type="Script" uid="uid://cuixea8hlqxaf" path="res://scene/home/tab_world/earth/earth_render_sprite.gd" id="4_kk7su"]
+[ext_resource type="Script" uid="uid://cuixea8hlqxaf" path="res://scene/home/tools/world/earth/earth_render_sprite.gd" id="4_kk7su"]
 [ext_resource type="Texture2D" uid="uid://bbpa2c84t03qu" path="res://asset/app/spread/white.png" id="5_47w6b"]
 [ext_resource type="Texture2D" uid="uid://cbimotphce4kr" path="res://asset/app/spread/light.png" id="6_sisi7"]
 

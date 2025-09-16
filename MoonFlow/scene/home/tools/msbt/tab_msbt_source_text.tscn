@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1hogm5krthy1"]
+
+[ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tools/msbt/tab_msbt_base.tscn" id="1_nvnec"]
+
+[node name="Text" instance=ExtResource("1_nvnec")]
+
+[editable path="Popup_RenameMsbt"]

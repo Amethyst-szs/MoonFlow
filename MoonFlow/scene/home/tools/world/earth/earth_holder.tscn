@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cjuty71e2t356"]
 
-[ext_resource type="PackedScene" uid="uid://dv4k4m35f2bxa" path="res://scene/home/tab_world/earth/earth_render_sprite.tscn" id="1_gal0s"]
+[ext_resource type="PackedScene" uid="uid://dv4k4m35f2bxa" path="res://scene/home/tools/world/earth/earth_render_sprite.tscn" id="1_gal0s"]
 
 [node name="EarthHolder" type="Control"]
 clip_contents = true

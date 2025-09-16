@@ -1,45 +1,27 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene load_steps=21 format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" uid="uid://cq6kx2rkcg6i8" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="3_1qod8"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="4_bfnf5"]
-[ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tab_msbt/tab_msbt.tscn" id="4_o0ymp"]
-[ext_resource type="StyleBox" uid="uid://binjmxbf7rse2" path="res://asset/theme/home/stylebox/home_tab_container_bar_background_panel.tres" id="5_cea5w"]
-[ext_resource type="Theme" uid="uid://c22jcvgv3n3qw" path="res://asset/theme/home/home_list_tabs.tres" id="5_l84xa"]
 [ext_resource type="PackedScene" uid="uid://bwicpcn2le56s" path="res://scene/editor/msbt/msbt_editor.tscn" id="6_bc8ek"]
-[ext_resource type="PackedScene" uid="uid://cei1tg8ys1x2u" path="res://scene/home/tab_world/tab_world.tscn" id="6_ps61c"]
-[ext_resource type="Script" uid="uid://01w768f3wdbw" path="res://scene/common/button/exclusive_category_button.gd" id="7_5wvs6"]
+[ext_resource type="PackedScene" uid="uid://cei1tg8ys1x2u" path="res://scene/home/tools/world/tab_world.tscn" id="6_ps61c"]
 [ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_52bqg"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="7_jixnq"]
 [ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="8_41cm4"]
+[ext_resource type="Theme" uid="uid://c22jcvgv3n3qw" path="res://asset/theme/home/home_list_tabs.tres" id="8_eqwqn"]
 [ext_resource type="StyleBox" uid="uid://bs2v8yiuqopt8" path="res://asset/theme/home/stylebox/home_tab_background_panel.tres" id="8_y8tkp"]
-[ext_resource type="PackedScene" uid="uid://djaf0d3bxuxkh" path="res://scene/home/tab_event/tab_event.tscn" id="9_l2bha"]
+[ext_resource type="Script" uid="uid://cynescxk8bhx5" path="res://scene/home/toolbar/ToolListEntry.cs" id="9_eqwqn"]
+[ext_resource type="PackedScene" uid="uid://djaf0d3bxuxkh" path="res://scene/home/tools/event/tab_event.tscn" id="9_l2bha"]
+[ext_resource type="Script" uid="uid://lix7i2v7mbm6" path="res://scene/home/toolbar/ToolList.cs" id="9_xgyp5"]
 [ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="10_2icam"]
 [ext_resource type="Texture2D" uid="uid://c0beoybdkplbi" path="res://asset/app/icon/world.png" id="11_t88ee"]
+[ext_resource type="PackedScene" uid="uid://b1hogm5krthy1" path="res://scene/home/tools/msbt/tab_msbt_source_text.tscn" id="12_xb81g"]
+[ext_resource type="Texture2D" uid="uid://chvvd6r1hoo2" path="res://asset/app/icon/msbt_translate.png" id="13_8m3i4"]
+[ext_resource type="PackedScene" uid="uid://bcwcfl0xs4bna" path="res://scene/home/tools/msbt/tab_msbt_translation.tscn" id="13_a46lk"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_qcbp3"]
-device = -1
-command_or_control_autoremap = true
-keycode = 49
-
-[sub_resource type="Shortcut" id="Shortcut_j72cj"]
-events = [SubResource("InputEventKey_qcbp3")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_8co0p"]
-device = -1
-command_or_control_autoremap = true
-keycode = 50
-
-[sub_resource type="Shortcut" id="Shortcut_iv1pd"]
-events = [SubResource("InputEventKey_8co0p")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_k4ff6"]
-device = -1
-command_or_control_autoremap = true
-keycode = 51
-
-[sub_resource type="Shortcut" id="Shortcut_go1wc"]
-events = [SubResource("InputEventKey_k4ff6")]
+[sub_resource type="LabelSettings" id="LabelSettings_eqwqn"]
+font = ExtResource("7_jixnq")
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -56,7 +38,7 @@ AppFlags = 22
 AppGuideId = "home"
 AppGuideScene = "res://scene/home/guide/home_guide.tscn"
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Layout" type="HSplitContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,90 +46,106 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_1qod8")
-theme_override_styles/panel = ExtResource("4_bfnf5")
+theme_override_constants/separation = 12
+theme_override_styles/split_bar_background = ExtResource("4_bfnf5")
+split_offset = -50000
+dragging_enabled = false
+dragger_visibility = 2
 
-[node name="VBox" type="VBoxContainer" parent="Content"]
+[node name="ToolList" type="PanelContainer" parent="Layout"]
 layout_mode = 2
-theme_override_constants/separation = 0
+size_flags_horizontal = 3
+theme = ExtResource("8_eqwqn")
+theme_override_styles/panel = ExtResource("8_y8tkp")
 
-[node name="Panel_TabList" type="PanelContainer" parent="Content/VBox"]
+[node name="Scroll" type="ScrollContainer" parent="Layout/ToolList"]
 layout_mode = 2
-theme = ExtResource("5_l84xa")
-theme_override_styles/panel = ExtResource("5_cea5w")
-
-[node name="Scroll" type="ScrollContainer" parent="Content/VBox/Panel_TabList"]
-layout_mode = 2
-vertical_scroll_mode = 0
+horizontal_scroll_mode = 0
 script = ExtResource("7_52bqg")
-allow_overdragging = false
-drag_with_touch = false
-allow_vertical_scroll = false
-force_horizontal_scrolling = true
+drag_with_mouse = false
+allow_horizontal_scroll = false
+force_vertical_scrolling = true
+metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
 
-[node name="HBox" type="HBoxContainer" parent="Content/VBox/Panel_TabList/Scroll"]
+[node name="ScrollContent" type="VBoxContainer" parent="Layout/ToolList/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 1
 
-[node name="Button_TabText" type="Button" parent="Content/VBox/Panel_TabList/Scroll/HBox" node_paths=PackedStringArray("target")]
+[node name="Header" type="VBoxContainer" parent="Layout/ToolList/Scroll/ScrollContent"]
 layout_mode = 2
+
+[node name="Label_ToolHeader" type="Label" parent="Layout/ToolList/Scroll/ScrollContent/Header"]
+layout_mode = 2
+mouse_filter = 1
+text = "HOME_TOOL_LIST_HEADER"
+label_settings = SubResource("LabelSettings_eqwqn")
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="HSeparator" type="HSeparator" parent="Layout/ToolList/Scroll/ScrollContent/Header"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 16
+
+[node name="List" type="VBoxContainer" parent="Layout/ToolList/Scroll/ScrollContent"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("9_xgyp5")
+
+[node name="Button_ToolText" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
+layout_mode = 2
+tooltip_text = "TOOL_TEXT_TOOLTIP"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 toggle_mode = true
-action_mode = 0
-shortcut = SubResource("Shortcut_j72cj")
-text = "HOME_TAB_TEXT"
+button_pressed = true
+text = "TOOL_TEXT"
 icon = ExtResource("8_41cm4")
-icon_alignment = 2
-script = ExtResource("7_5wvs6")
-target = NodePath("../../../../Panel_Content/HOME_TAB_TEXT")
-is_default_page = true
+script = ExtResource("9_eqwqn")
+ToolScene = ExtResource("12_xb81g")
+ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="Button_TabEvent" type="Button" parent="Content/VBox/Panel_TabList/Scroll/HBox" node_paths=PackedStringArray("target")]
+[node name="Button_ToolTranslate" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
 layout_mode = 2
+tooltip_text = "TOOL_TRANSLATE_TOOLTIP"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 toggle_mode = true
-action_mode = 0
-shortcut = SubResource("Shortcut_iv1pd")
-text = "HOME_TAB_EVENT"
+text = "TOOL_TRANSLATE"
+icon = ExtResource("13_8m3i4")
+script = ExtResource("9_eqwqn")
+ToolScene = ExtResource("13_a46lk")
+ToolDestination = NodePath("../../../../../ToolContent")
+
+[node name="Button_ToolEvent" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
+layout_mode = 2
+tooltip_text = "TOOL_EVENT_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "TOOL_EVENT"
 icon = ExtResource("10_2icam")
-icon_alignment = 2
-script = ExtResource("7_5wvs6")
-target = NodePath("../../../../Panel_Content/HOME_TAB_EVENT")
+script = ExtResource("9_eqwqn")
+ToolScene = ExtResource("9_l2bha")
+ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="Button_TabWorld" type="Button" parent="Content/VBox/Panel_TabList/Scroll/HBox" node_paths=PackedStringArray("target")]
+[node name="Button_ToolWorld" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
 layout_mode = 2
+tooltip_text = "TOOL_WORLD_TOOLTIP"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 toggle_mode = true
-action_mode = 0
-shortcut = SubResource("Shortcut_go1wc")
-text = "HOME_TAB_WORLD"
+text = "TOOL_WORLD"
 icon = ExtResource("11_t88ee")
-icon_alignment = 2
-script = ExtResource("7_5wvs6")
-target = NodePath("../../../../Panel_Content/HOME_TAB_WORLD")
+script = ExtResource("9_eqwqn")
+ToolScene = ExtResource("6_ps61c")
+ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="Panel_Content" type="PanelContainer" parent="Content/VBox"]
+[node name="ToolContent" type="PanelContainer" parent="Layout"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("8_y8tkp")
 
-[node name="HOME_TAB_TEXT" parent="Content/VBox/Panel_Content" instance=ExtResource("4_o0ymp")]
-layout_mode = 2
-
-[node name="HOME_TAB_EVENT" parent="Content/VBox/Panel_Content" instance=ExtResource("9_l2bha")]
-visible = false
-layout_mode = 2
-
-[node name="HOME_TAB_WORLD" parent="Content/VBox/Panel_Content" instance=ExtResource("6_ps61c")]
-visible = false
-layout_mode = 2
-
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("app_msbt_editor"), [ExtResource("6_bc8ek")]]
-
-[connection signal="AppFocused" from="." to="Content/VBox/Panel_Content/HOME_TAB_EVENT" method="GenerateFileList"]
-[connection signal="AppFocused" from="." to="Content/VBox/Panel_Content/HOME_TAB_TEXT" method="ReloadInterface" binds= [false]]

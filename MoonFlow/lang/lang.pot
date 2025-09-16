@@ -7,7 +7,6 @@
 # res://scene/front_door/load/project_loading.tscn
 # res://scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 # res://scene/home/home.tscn
-# res://scene/home/tab_msbt/tab_msbt.tscn
 # res://async/async_display.tscn
 # res://scene/editor/msbt/tag_edit/default/fallback.tscn
 # res://scene/editor/msbt/wheel/tag_wheel.tscn
@@ -29,16 +28,16 @@
 # res://scene/editor/msbt/tag_edit/grammar/caping.tscn
 # res://scene/editor/msbt/msbt_editor.tscn
 # res://scene/editor/msbt/list/entry_list_holder.tscn
-# res://scene/home/tab_world/tab_world.tscn
+# res://scene/home/tools/world/tab_world.tscn
 # res://scene/editor/world/world_editor_app.tscn
 # res://scene/front_door/contributor/scene/credit.tscn
 # res://scene/editor/msbt/list/container/stage_message_category_table.gd
-# res://scene/home/tab_msbt/popup_msbt_create.tscn
-# res://scene/home/tab_msbt/popup_msbt_create.gd
+# res://scene/home/tools/msbt/popup_msbt_create.tscn
+# res://scene/home/tools/msbt/popup_msbt_create.gd
 # res://async/async_text.tres
 # res://scene/editor/event/node/node_type_name_text.tres
 # res://scene/editor/event/node/typedef/talk/talk.tscn
-# res://scene/home/tab_event/tab_event.tscn
+# res://scene/home/tools/event/tab_event.tscn
 # res://scene/editor/event/node/typedef/balloon/balloon.tscn
 # res://scene/editor/event/node/event_flow_entry_point.tscn
 # res://scene/editor/event/node/component/message_resolver_config.tscn
@@ -55,7 +54,7 @@
 # res://scene/editor/msbp/color/color_editor_element.tscn
 # res://scene/editor/msbp/color/color_editor_element_preview.tscn
 # res://scene/editor/event/node/event_flow_node_common.tscn
-# res://scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
+# res://scene/home/tools/event/home_tab_event_tooltip_translation_text.tres
 # res://scene/editor/world/shine/world_shine_editor_holder.tscn
 # res://scene/editor/world/shine/world_shine_editor.tscn
 # res://addons/podb/input_map.tres
@@ -104,6 +103,7 @@
 # res://scene/editor/world/stage/edit_stage_info.tscn
 # res://scene/editor/world/stage/world_editor_tab_stages.tscn
 # res://scene/settings/engine/page/world.tscn
+# res://scene/home/tools/msbt/tab_msbt_base.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -354,160 +354,39 @@ msgid "MSBT_ENTRY_TOGGLE_DEFAULT_LANGUAGE_SYNC_TOOLTIP"
 msgstr ""
 
 #: scene/home/home.tscn
-msgid "HOME_TAB_TEXT"
+msgid "HOME_TOOL_LIST_HEADER"
 msgstr ""
 
 #: scene/home/home.tscn
-msgid "HOME_TAB_EVENT"
+msgid "TOOL_TEXT_TOOLTIP"
 msgstr ""
 
 #: scene/home/home.tscn
-msgid "HOME_TAB_WORLD"
+msgid "TOOL_TEXT"
 msgstr ""
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
+#: scene/home/home.tscn
+msgid "TOOL_TRANSLATE_TOOLTIP"
 msgstr ""
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_SOURCE_TEXT"
+#: scene/home/home.tscn
+msgid "TOOL_TRANSLATE"
 msgstr ""
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_TRANSLATION_TOOLTIP"
+#: scene/home/home.tscn
+msgid "TOOL_EVENT_TOOLTIP"
 msgstr ""
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_TRANSLATION"
+#: scene/home/home.tscn
+msgid "TOOL_EVENT"
 msgstr ""
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-#: scene/home/common/file_search_and_filter.tscn
-msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
+#: scene/home/home.tscn
+msgid "TOOL_WORLD_TOOLTIP"
 msgstr ""
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOLS"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_COPY_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_CUT_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_NEW_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_DETAILS_FILE_SIZE"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_DETAILS_MODIFIED_TIME"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DETAILS_USAGE"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_COPY_DEBUG_HASH"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_OPEN_FILE"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-#: scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
-msgstr ""
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
+#: scene/home/home.tscn
+msgid "TOOL_WORLD"
 msgstr ""
 
 #: async/async_display.tscn
@@ -1514,7 +1393,7 @@ msgstr ""
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
 msgstr ""
 
-#: scene/home/tab_world/tab_world.tscn
+#: scene/home/tools/world/tab_world.tscn
 msgid "HOME_TAB_WORLD_HEADER"
 msgstr ""
 
@@ -1571,39 +1450,39 @@ msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "QUEST"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_SELECT_ARCHIVE"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_SYSTEM"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_STAGE"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_FILE_NAME_HEADER"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_SUBMIT"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_DUPLICATE"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr ""
 
-#: scene/home/tab_msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_RENAME"
 msgstr ""
 
@@ -2240,75 +2119,136 @@ msgstr ""
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/common/file_search_and_filter.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_COPY_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_CUT_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_NEW_EVENT_TOOLTIP"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_IS_WITHIN_PROJECT_NOTICE"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_NAME"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_COPY_DEBUG_HASH"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
+msgstr ""
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_DUPLICATE"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_EVENT_DUPLICATE"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_EVENT_NEW"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_RENAME_ARCHIVE"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_RENAME_EVENT"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
 msgstr ""
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
@@ -2813,7 +2753,7 @@ msgstr ""
 msgid "EVENT_FLOW_NODE_METADATA_ACCESS_BUTTON_TOOLTIP"
 msgstr ""
 
-#: scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
+#: scene/home/tools/event/home_tab_event_tooltip_translation_text.tres
 msgctxt "HOME_TAB_EVENT"
 msgid "EVENT_ARCHIVE_EMPTY"
 msgstr ""
@@ -4127,4 +4067,72 @@ msgstr ""
 
 #: scene/settings/engine/page/world.tscn
 msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOLS"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_NEW_FILE_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DETAILS_FILE_SIZE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DETAILS_MODIFIED_TIME"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DETAILS_USAGE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_OPEN_FILE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""

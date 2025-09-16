@@ -1,7 +1,7 @@
-[gd_scene load_steps=48 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene load_steps=47 format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
-[ext_resource type="Script" uid="uid://doqmqk5tvmvum" path="res://scene/home/tab_event/TabEvent.cs" id="2_m1qug"]
+[ext_resource type="Script" uid="uid://doqmqk5tvmvum" path="res://scene/home/tools/event/TabEvent.cs" id="2_m1qug"]
 [ext_resource type="Texture2D" uid="uid://cbn2fyulkjaa1" path="res://asset/material/file/search_small.svg" id="3_2t0c7"]
 [ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="4_blotm"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_kcoe0"]
@@ -16,12 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://8lrc2fwgcutm" path="res://asset/material/file/paste.svg" id="9_gmrq3"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="10_xss54"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="11_1pteu"]
-[ext_resource type="Script" uid="uid://6sbv5echj8ba" path="res://scene/common/container/DebugProjectOnlyContainer.cs" id="12_dpnv5"]
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="13_tboky"]
 [ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="15_j2wr0"]
-[ext_resource type="Script" uid="uid://mov6vwkxvqtv" path="res://scene/home/tab_event/TabEventFileAccessor.cs" id="15_obiaq"]
+[ext_resource type="Script" uid="uid://mov6vwkxvqtv" path="res://scene/home/tools/event/TabEventFileAccessor.cs" id="15_obiaq"]
 [ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="16_3flvg"]
-[ext_resource type="PackedScene" uid="uid://kkrq88b8tbec" path="res://scene/home/tab_event/popup_event_base.tscn" id="19_77ica"]
+[ext_resource type="PackedScene" uid="uid://kkrq88b8tbec" path="res://scene/home/tools/event/popup_event_base.tscn" id="19_77ica"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="19_f5lsa"]
 
 [sub_resource type="Theme" id="Theme_fwkao"]
@@ -269,17 +268,20 @@ layout_mode = 2
 
 [node name="Label_ArcDateTimeHeader" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 label_settings = SubResource("LabelSettings_c7mur")
+horizontal_alignment = 2
+text_overrun_behavior = 3
 
 [node name="Label_ArcDateTime" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime"]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "PLACEHOLDER"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_ArcInfo"]
 layout_mode = 2
@@ -292,9 +294,11 @@ theme_override_constants/separation = 12
 
 [node name="Label_ArcNotWithinProject" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcNotWithinProject"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_ARCHIVE_IS_WITHIN_PROJECT_NOTICE"
 label_settings = SubResource("LabelSettings_c7mur")
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="VBox_EventInfo" type="VBoxContainer" parent="Info/VBox"]
 layout_mode = 2
@@ -305,17 +309,20 @@ layout_mode = 2
 
 [node name="Label_ArcNameHeader" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_ARCHIVE_NAME"
 label_settings = SubResource("LabelSettings_c7mur")
+horizontal_alignment = 2
+text_overrun_behavior = 3
 
 [node name="Label_ArcName" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName"]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "PLACEHOLDER"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_EventInfo"]
 layout_mode = 2
@@ -326,21 +333,23 @@ layout_mode = 2
 
 [node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_EventInfo/Size"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
 label_settings = SubResource("LabelSettings_c7mur")
+horizontal_alignment = 2
+text_overrun_behavior = 3
 
 [node name="Label_Size" type="Label" parent="Info/VBox/VBox_EventInfo/Size"]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "PLACEHOLDER"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_EventInfo"]
 layout_mode = 2
-script = ExtResource("12_dpnv5")
 
 [node name="HSep" type="HSeparator" parent="Info/VBox/VBox_EventInfo/DebugHash"]
 layout_mode = 2
@@ -351,15 +360,18 @@ layout_mode = 2
 
 [node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_EventInfo/DebugHash/Content"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_COPY_DEBUG_HASH_HEADER"
 label_settings = SubResource("LabelSettings_d4vbl")
+horizontal_alignment = 2
+text_overrun_behavior = 3
 
 [node name="Button_Copy" type="Button" parent="Info/VBox/VBox_EventInfo/DebugHash/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_COPY_DEBUG_HASH"
+text_overrun_behavior = 3
 
 [node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
 layout_mode = 2

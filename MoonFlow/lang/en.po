@@ -291,157 +291,40 @@ msgstr ""
 "to the default language, allowing entry of a real translation."
 
 #: scene/home/home.tscn
-msgid "HOME_TAB_TEXT"
-msgstr "Text"
+msgid "HOME_TOOL_LIST_HEADER"
+msgstr "Tools:"
 
 #: scene/home/home.tscn
-msgid "HOME_TAB_EVENT"
-msgstr "Events"
+msgid "TOOL_TEXT_TOOLTIP"
+msgstr "Modify MSBT and MSBP data in LocalizedData"
 
 #: scene/home/home.tscn
-msgid "HOME_TAB_WORLD"
-msgstr "Kingdom"
+msgid "TOOL_TEXT"
+msgstr "Source Text"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
-msgstr "All text files in your project's default language"
+#: scene/home/home.tscn
+msgid "TOOL_TRANSLATE_TOOLTIP"
+msgstr "Create translations for different LocalizedData languages"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_SOURCE_TEXT"
-msgstr "Source"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_TRANSLATION_TOOLTIP"
-msgstr "Provide translations for modified text"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_SUBTAB_TRANSLATION"
+#: scene/home/home.tscn
+msgid "TOOL_TRANSLATE"
 msgstr "Translation"
 
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-#: scene/home/common/file_search_and_filter.tscn
-msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
-msgstr "Search Files"
+#: scene/home/home.tscn
+msgid "TOOL_EVENT_TOOLTIP"
+msgstr "Modify EventData flowcharts"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
-msgstr ""
-"Cannot translate to the project's default language, change translation "
-"language below!"
+#: scene/home/home.tscn
+msgid "TOOL_EVENT"
+msgstr "Event Graph"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOLS"
-msgstr "Message Studio Project"
+#: scene/home/home.tscn
+msgid "TOOL_WORLD_TOOLTIP"
+msgstr "Modify properties of different worlds"
 
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
-msgstr "Color Palette Editor"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_COPY_FILE_TOOLTIP"
-msgstr "Copy Selected File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_CUT_FILE_TOOLTIP"
-msgstr "Cut Selected File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
-msgstr "Paste Selected File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
-msgstr "Duplicate Selected File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_NEW_FILE_TOOLTIP"
-msgstr "New File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
-msgstr "Rename Selected File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
-msgstr "Delete Selected File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
-msgstr "Translation Language:"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_DETAILS_FILE_SIZE"
-msgstr "File Size:"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_DETAILS_MODIFIED_TIME"
-msgstr "Last Modified:"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
-msgstr "Total Strings:"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DETAILS_USAGE"
-msgstr "File Usage:"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
-msgstr "Metadata Hash"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_COPY_DEBUG_HASH"
-msgstr "Copy to Clipboard"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_OPEN_FILE"
-msgstr "Open File"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
-msgstr "File already exists!"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
-msgstr "Ok"
-
-#: scene/home/tab_msbt/tab_msbt.tscn scene/home/tab_event/tab_event.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
-msgstr "A file using this name already exists, try a different name."
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
-msgstr "Invalid stage name!"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
-msgstr "Ok"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
-msgstr ""
-"This name doesn't seem to connect to a real stage! Make sure to check for "
-"any typos, and make sure to add your stage to the WorldList before creating "
-"the text file."
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
-msgstr "Are you sure?"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
-msgstr "Yes I'm sure."
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
-msgstr ""
-"Deleting MSBT files cannot be undone. Removing files required by the game "
-"can cause crashes and other glitches. Are you absolutely sure you want to "
-"delete this?"
-
-#: scene/home/tab_msbt/tab_msbt.tscn
-msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
-msgstr "Wait, no, go back!"
+#: scene/home/home.tscn
+msgid "TOOL_WORLD"
+msgstr "Kingdoms"
 
 #: async/async_display.tscn
 msgid "ASYNC_DISPLAY_EXCEPTION"
@@ -1460,7 +1343,7 @@ msgstr ""
 "Reset selected entry for this language to default, unmodified state.\n"
 "Default state is pulled from your romfs dump directory."
 
-#: scene/home/tab_world/tab_world.tscn
+#: scene/home/tools/world/tab_world.tscn
 msgid "HOME_TAB_WORLD_HEADER"
 msgstr "Select a Kingdom"
 
@@ -1517,39 +1400,39 @@ msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "QUEST"
 msgstr "Quests"
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_SELECT_ARCHIVE"
 msgstr "Archive:"
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_SYSTEM"
 msgstr "System Text"
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_STAGE"
 msgstr "Stage Text"
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_TEXT_LAYOUT"
 msgstr "Layout Text"
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_FILE_NAME_HEADER"
 msgstr "File Name:"
 
-#: scene/home/tab_msbt/popup_msbt_create.tscn
+#: scene/home/tools/msbt/popup_msbt_create.tscn
 msgid "HOME_TAB_POPUP_SUBMIT"
 msgstr "Submit"
 
-#: scene/home/tab_msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_DUPLICATE"
 msgstr "Duplicate File"
 
-#: scene/home/tab_msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr "Create New File"
 
-#: scene/home/tab_msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_RENAME"
 msgstr "Rename File"
 
@@ -2189,71 +2072,132 @@ msgstr ""
 msgid "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
 msgstr "Stage Map"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/common/file_search_and_filter.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
+msgstr "Search Files"
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 msgstr "Refresh File List"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_COPY_FILE_TOOLTIP"
+msgstr "Copy Selected File"
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_CUT_FILE_TOOLTIP"
+msgstr "Cut Selected File"
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
+msgstr "Paste Selected File"
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
+msgstr "Duplicate Selected File"
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
 msgstr "New Event Archive"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_NEW_EVENT_TOOLTIP"
 msgstr "New Event Graph"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
+msgstr "Rename Selected File"
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
+msgstr "Delete Selected File"
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
 msgstr "Archive Last Modified:"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_IS_WITHIN_PROJECT_NOTICE"
 msgstr "Archive not added to project!"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_ARCHIVE_NAME"
 msgstr "Archive Name:"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
 msgstr "Graph Size:"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
+msgstr "Metadata Hash"
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_COPY_DEBUG_HASH"
+msgstr "Copy to Clipboard"
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_OPEN_FILE"
 msgstr "Open Graph"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
+msgstr "File already exists!"
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
+msgstr "Ok"
+
+#: scene/home/tools/event/tab_event.tscn
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
+msgstr "A file using this name already exists, try a different name."
+
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_DUPLICATE"
 msgstr "Duplicate Event Archive"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_EVENT_DUPLICATE"
 msgstr "Duplicate Event Graph"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
 msgstr "Create new Event Archive"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_EVENT_NEW"
 msgstr "Create new Event Graph"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_RENAME_ARCHIVE"
 msgstr "Rename Event Archive"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_POPUP_RENAME_EVENT"
 msgstr "Rename Event Graph"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
 msgstr "Are you sure?"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_OK"
 msgstr "Delete!"
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DESCRIPTION"
 msgstr ""
 "Are you sure you'd like to delete the selected EventData archive/graph? This "
@@ -2262,7 +2206,7 @@ msgstr ""
 "If you delete a base-game archive, it will be removed from your project, but "
 "the original version will still be accessible by the game's romfs. "
 
-#: scene/home/tab_event/tab_event.tscn
+#: scene/home/tools/event/tab_event.tscn
 msgid "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Go back!"
 
@@ -2807,7 +2751,7 @@ msgstr "Additional Properties"
 msgid "EVENT_FLOW_NODE_METADATA_ACCESS_BUTTON_TOOLTIP"
 msgstr "User Data"
 
-#: scene/home/tab_event/home_tab_event_tooltip_translation_text.tres
+#: scene/home/tools/event/home_tab_event_tooltip_translation_text.tres
 msgctxt "HOME_TAB_EVENT"
 msgid "EVENT_ARCHIVE_EMPTY"
 msgstr "This archive is empty!"
@@ -4232,6 +4176,103 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
 msgstr "Hide Moon Icons Based on Preview Scenario"
 
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
+msgstr ""
+"Cannot translate to the project's default language, change translation "
+"language below!"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOLS"
+msgstr "Message Studio Project"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
+msgstr "Color Palette Editor"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_NEW_FILE_TOOLTIP"
+msgstr "New File"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
+msgstr "Translation Language:"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DETAILS_FILE_SIZE"
+msgstr "File Size:"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_DETAILS_MODIFIED_TIME"
+msgstr "Last Modified:"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
+msgstr "Total Strings:"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DETAILS_USAGE"
+msgstr "File Usage:"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_OPEN_FILE"
+msgstr "Open File"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
+msgstr "Invalid stage name!"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
+msgstr "Ok"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
+msgstr ""
+"This name doesn't seem to connect to a real stage! Make sure to check for "
+"any typos, and make sure to add your stage to the WorldList before creating "
+"the text file."
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
+msgstr "Are you sure?"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
+msgstr "Yes I'm sure."
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
+msgstr ""
+"Deleting MSBT files cannot be undone. Removing files required by the game "
+"can cause crashes and other glitches. Are you absolutely sure you want to "
+"delete this?"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr "Wait, no, go back!"
+
+#~ msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
+#~ msgstr "All text files in your project's default language"
+
+#~ msgid "HOME_SUBTAB_SOURCE_TEXT"
+#~ msgstr "Source"
+
+#~ msgid "HOME_SUBTAB_TRANSLATION_TOOLTIP"
+#~ msgstr "Provide translations for modified text"
+
+#~ msgid "HOME_SUBTAB_TRANSLATION"
+#~ msgstr "Translation"
+
+#~ msgid "HOME_TAB_TEXT"
+#~ msgstr "Text"
+
+#~ msgid "HOME_TAB_EVENT"
+#~ msgstr "Events"
+
+#~ msgid "HOME_TAB_WORLD"
+#~ msgstr "Kingdom"
+
 #, fuzzy
 #~| msgid "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
 #~ msgid "WORLD_EDITOR_STAGE_TYPE_OPTION_TOOLTIP"
@@ -4239,9 +4280,6 @@ msgstr "Hide Moon Icons Based on Preview Scenario"
 #~ "Optional field used for special types of Power Moons. Mainly\n"
 #~ "used for hint arts, but also used for timer challenges,\n"
 #~ "costume rooms, and more."
-
-#~ msgid "HOME_TAB_WORLD_TOOL_HEADER"
-#~ msgstr "or edit..."
 
 #~ msgid "HOME_TAB_WORLD_TOOLS_RESOURCE_KIT"
 #~ msgstr "Resource Loader"

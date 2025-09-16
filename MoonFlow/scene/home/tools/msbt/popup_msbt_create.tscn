@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cskp7so180vjn"]
 
-[ext_resource type="Script" uid="uid://bgxey3f45h8hw" path="res://scene/home/tab_msbt/popup_msbt_create.gd" id="1_aifqx"]
+[ext_resource type="Script" uid="uid://bgxey3f45h8hw" path="res://scene/home/tools/msbt/popup_msbt_create.gd" id="1_aifqx"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_ey5mn"]
 [ext_resource type="StyleBox" uid="uid://btyn7bgrl1pi" path="res://asset/theme/common/stylebox/common_panel_tooltip.tres" id="2_45iim"]
 [ext_resource type="Script" uid="uid://du00yf8ptmkni" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="4_nu1k6"]

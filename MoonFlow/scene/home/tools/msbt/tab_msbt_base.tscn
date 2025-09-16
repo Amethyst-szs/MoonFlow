@@ -1,48 +1,28 @@
-[gd_scene load_steps=51 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=45 format=3 uid="uid://dgh2onvx6k4ft"]
 
-[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_3jppe"]
-[ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="1_8nwia"]
-[ext_resource type="Script" uid="uid://bn8g146v3u4sb" path="res://scene/home/tab_msbt/TabMsbt.cs" id="2_ioahr"]
-[ext_resource type="Script" uid="uid://01w768f3wdbw" path="res://scene/common/button/exclusive_category_button.gd" id="3_382sl"]
-[ext_resource type="Texture2D" uid="uid://cbn2fyulkjaa1" path="res://asset/material/file/search_small.svg" id="4_675t4"]
-[ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="4_bc16x"]
-[ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="4_nlvsm"]
-[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="5_gi3dm"]
-[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="6_pbk2q"]
-[ext_resource type="Texture2D" uid="uid://0qfv1wl6bwps" path="res://asset/material/file/duplicate.svg" id="6_puq1e"]
-[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_t0tp7"]
-[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="8_n1hpl"]
-[ext_resource type="PackedScene" uid="uid://cskp7so180vjn" path="res://scene/home/tab_msbt/popup_msbt_create.tscn" id="9_0g6c8"]
-[ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="9_a6hhu"]
-[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="9_pqb3l"]
-[ext_resource type="Texture2D" uid="uid://g3gxcj4c4niq" path="res://asset/material/file/cut.svg" id="10_k8i8t"]
-[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="10_m4jr4"]
-[ext_resource type="Texture2D" uid="uid://8lrc2fwgcutm" path="res://asset/material/file/paste.svg" id="10_mqrpi"]
-[ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="13_cdee3"]
-[ext_resource type="Script" uid="uid://6sbv5echj8ba" path="res://scene/common/container/DebugProjectOnlyContainer.cs" id="14_62h41"]
-[ext_resource type="Script" uid="uid://bekwxtkt8mv73" path="res://scene/home/tab_msbt/TabMsbtFileAccessor.cs" id="15_3v0li"]
-[ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="16_hrtuc"]
-[ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="16_ygdce"]
-[ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/language/LangPicker.cs" id="17_3lgct"]
-[ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="19_v1srn"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_yed1p"]
-device = -1
-command_or_control_autoremap = true
-shift_pressed = true
-keycode = 49
-
-[sub_resource type="Shortcut" id="Shortcut_nccgk"]
-events = [SubResource("InputEventKey_yed1p")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_n36k0"]
-device = -1
-command_or_control_autoremap = true
-shift_pressed = true
-keycode = 50
-
-[sub_resource type="Shortcut" id="Shortcut_x11v8"]
-events = [SubResource("InputEventKey_n36k0")]
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_66n6i"]
+[ext_resource type="Script" uid="uid://bn8g146v3u4sb" path="res://scene/home/tools/msbt/TabMsbt.cs" id="2_44jli"]
+[ext_resource type="Texture2D" uid="uid://cbn2fyulkjaa1" path="res://asset/material/file/search_small.svg" id="4_fbv2x"]
+[ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="5_tdq3c"]
+[ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="6_b3nkc"]
+[ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_ewps6"]
+[ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="8_j18q1"]
+[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="9_d2m21"]
+[ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="10_ucfko"]
+[ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="11_xxbal"]
+[ext_resource type="Texture2D" uid="uid://g3gxcj4c4niq" path="res://asset/material/file/cut.svg" id="12_y4ly6"]
+[ext_resource type="Texture2D" uid="uid://8lrc2fwgcutm" path="res://asset/material/file/paste.svg" id="13_u1bdq"]
+[ext_resource type="Texture2D" uid="uid://0qfv1wl6bwps" path="res://asset/material/file/duplicate.svg" id="14_4agf0"]
+[ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="15_xpyjb"]
+[ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="16_42xei"]
+[ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="17_fc737"]
+[ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/language/LangPicker.cs" id="18_2pg8r"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="19_nqcap"]
+[ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="20_crlcy"]
+[ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="22_n3v24"]
+[ext_resource type="Script" uid="uid://bekwxtkt8mv73" path="res://scene/home/tools/msbt/TabMsbtFileAccessor.cs" id="23_1536k"]
+[ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="24_wjb0a"]
+[ext_resource type="PackedScene" uid="uid://cskp7so180vjn" path="res://scene/home/tools/msbt/popup_msbt_create.tscn" id="25_rhf50"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
 font_color = Color(0.996078, 0.498039, 0.176471, 1)
@@ -97,7 +77,7 @@ font_size = 14
 font_color = Color(1, 1, 1, 0.745098)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7bmst"]
-font = ExtResource("9_pqb3l")
+font = ExtResource("19_nqcap")
 font_size = 22
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twpxa"]
@@ -108,49 +88,25 @@ font_color = Color(1, 1, 1, 0.87451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5v4w"]
 
-[node name="Text" type="HSplitContainer" node_paths=PackedStringArray("FileListScroll", "FileListArchives", "TranslationLanguageWarning", "FileAccessor")]
+[node name="Text" type="HSplitContainer" node_paths=PackedStringArray("FileListScroll", "FileListArchives", "TranslationLanguageWarning", "FooterSourceText", "FooterTranslation", "FileAccessor")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_3jppe")
-script = ExtResource("2_ioahr")
+theme = ExtResource("1_66n6i")
+script = ExtResource("2_44jli")
 FileListScroll = NodePath("FileList/FileList/FileListContent")
 FileListArchives = NodePath("FileList/FileList/FileListContent/Content/VBox_Archives")
 TranslationLanguageWarning = NodePath("FileList/FileList/Label_TranslateDefaultWarning")
+FooterSourceText = NodePath("FileList/FileList/Footer/HBox_SourceTextFooter")
+FooterTranslation = NodePath("FileList/FileList/Footer/VBox_TranslationPicker")
 FileAccessor = NodePath("TabMsbtFileAccessor")
 metadata/_tab_index = 0
 
 [node name="FileList" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="TabHeader" type="HBoxContainer" parent="FileList"]
-layout_mode = 2
-
-[node name="Button_Source" type="Button" parent="FileList/TabHeader"]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
-mouse_default_cursor_shape = 2
-toggle_mode = true
-shortcut = SubResource("Shortcut_nccgk")
-text = "HOME_SUBTAB_SOURCE_TEXT"
-script = ExtResource("3_382sl")
-is_default_page = true
-filter_type = 1
-
-[node name="Button_Translation" type="Button" parent="FileList/TabHeader"]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "HOME_SUBTAB_TRANSLATION_TOOLTIP"
-mouse_default_cursor_shape = 2
-toggle_mode = true
-shortcut = SubResource("Shortcut_x11v8")
-text = "HOME_SUBTAB_TRANSLATION"
-script = ExtResource("3_382sl")
-filter_type = 1
 
 [node name="Line_Search" type="LineEdit" parent="FileList"]
 layout_mode = 2
@@ -159,14 +115,14 @@ placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 max_length = 32
 context_menu_enabled = false
 clear_button_enabled = true
-right_icon = ExtResource("4_675t4")
+right_icon = ExtResource("4_fbv2x")
 caret_blink = true
-script = ExtResource("4_bc16x")
+script = ExtResource("5_tdq3c")
 
 [node name="HSep" type="HSeparator" parent="FileList"]
 layout_mode = 2
 theme_override_constants/separation = 8
-theme_override_styles/separator = ExtResource("10_m4jr4")
+theme_override_styles/separator = ExtResource("6_b3nkc")
 
 [node name="FileList" type="VBoxContainer" parent="FileList"]
 layout_mode = 2
@@ -190,7 +146,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 horizontal_scroll_mode = 0
-script = ExtResource("7_t0tp7")
+script = ExtResource("7_ewps6")
 drag_with_mouse = false
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
@@ -209,7 +165,7 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 1
 text = "HOME_TAB_TEXT_MSBP_TOOLS"
-script = ExtResource("1_8nwia")
+script = ExtResource("8_j18q1")
 dropdown = NodePath("../NotInSearch_MSBP")
 
 [node name="NotInSearch_MSBP" type="MarginContainer" parent="FileList/FileList/FileListContent/Content/VBox_Project"]
@@ -223,13 +179,13 @@ layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
-icon = ExtResource("6_pbk2q")
+icon = ExtResource("9_d2m21")
 alignment = 0
 icon_alignment = 2
 
 [node name="Footer" type="PanelContainer" parent="FileList/FileList"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("4_nlvsm")
+theme_override_styles/panel = ExtResource("10_ucfko")
 
 [node name="HBox_SourceTextFooter" type="HBoxContainer" parent="FileList/FileList/Footer"]
 layout_mode = 2
@@ -241,28 +197,28 @@ layout_mode = 2
 tooltip_text = "HOME_TAB_COPY_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_grteu")
-icon = ExtResource("9_a6hhu")
+icon = ExtResource("11_xxbal")
 
 [node name="Button_Cut" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_CUT_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_rank1")
-icon = ExtResource("10_k8i8t")
+icon = ExtResource("12_y4ly6")
 
 [node name="Button_Paste" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_PASTE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_c6cgf")
-icon = ExtResource("10_mqrpi")
+icon = ExtResource("13_u1bdq")
 
 [node name="Button_Duplicate" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_x2uvp")
-icon = ExtResource("6_puq1e")
+icon = ExtResource("14_4agf0")
 
 [node name="VSep1" type="VSeparator" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 self_modulate = Color(1, 1, 1, 0.439216)
@@ -273,21 +229,21 @@ layout_mode = 2
 tooltip_text = "HOME_TAB_NEW_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_2mm84")
-icon = ExtResource("5_gi3dm")
+icon = ExtResource("15_xpyjb")
 
 [node name="Button_Rename" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_RENAME_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_4accc")
-icon = ExtResource("13_cdee3")
+icon = ExtResource("16_42xei")
 
 [node name="Button_Delete" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DELETE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_stxmf")
-icon = ExtResource("8_n1hpl")
+icon = ExtResource("17_fc737")
 
 [node name="VBox_TranslationPicker" type="VBoxContainer" parent="FileList/FileList/Footer"]
 layout_mode = 2
@@ -303,7 +259,7 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 alignment = 1
-script = ExtResource("17_3lgct")
+script = ExtResource("18_2pg8r")
 StartingLanguage = 1
 AutomaticallySetGameVersion = true
 
@@ -333,7 +289,7 @@ text_overrun_behavior = 3
 [node name="Texture_PageIcon" type="TextureRect" parent="Info/VBox/HBox_Header"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("16_ygdce")
+texture = ExtResource("20_crlcy")
 
 [node name="VSep" type="VSeparator" parent="Info/VBox/HBox_Header"]
 layout_mode = 2
@@ -352,100 +308,117 @@ layout_mode = 2
 
 [node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_DETAILS_FILE_SIZE"
 label_settings = SubResource("LabelSettings_7ddx3")
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Label_Size" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "PLACEHOLDER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="HSep1" type="HSeparator" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
-theme_override_styles/separator = ExtResource("10_m4jr4")
+theme_override_styles/separator = ExtResource("6_b3nkc")
 
 [node name="DateTime" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
 
 [node name="Label_DateTimeHeader" type="Label" parent="Info/VBox/VBox_Stats/DateTime"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_DETAILS_MODIFIED_TIME"
 label_settings = SubResource("LabelSettings_7ddx3")
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Label_DateTime" type="Label" parent="Info/VBox/VBox_Stats/DateTime"]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "PLACEHOLDER"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
-theme_override_styles/separator = ExtResource("10_m4jr4")
+theme_override_styles/separator = ExtResource("6_b3nkc")
 
 [node name="EntryCount" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
 
 [node name="Label_EntryCountHeader" type="Label" parent="Info/VBox/VBox_Stats/EntryCount"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
 label_settings = SubResource("LabelSettings_7ddx3")
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Label_EntryCount" type="Label" parent="Info/VBox/VBox_Stats/EntryCount"]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "PLACEHOLDER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="HSep2" type="HSeparator" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
-theme_override_styles/separator = ExtResource("10_m4jr4")
+theme_override_styles/separator = ExtResource("6_b3nkc")
 
 [node name="Usage" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
 
 [node name="Label_UsageHeader" type="Label" parent="Info/VBox/VBox_Stats/Usage"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_TEXT_DETAILS_USAGE"
 label_settings = SubResource("LabelSettings_7ddx3")
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Label_Usage" type="Label" parent="Info/VBox/VBox_Stats/Usage"]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "PLACEHOLDER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_Stats"]
 layout_mode = 2
-script = ExtResource("14_62h41")
 
 [node name="HSep" type="HSeparator" parent="Info/VBox/VBox_Stats/DebugHash"]
 layout_mode = 2
-theme_override_styles/separator = ExtResource("10_m4jr4")
+theme_override_styles/separator = ExtResource("6_b3nkc")
 
 [node name="Content" type="HBoxContainer" parent="Info/VBox/VBox_Stats/DebugHash"]
 layout_mode = 2
 
 [node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_Stats/DebugHash/Content"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 text = "HOME_TAB_COPY_DEBUG_HASH_HEADER"
 label_settings = SubResource("LabelSettings_7ddx3")
+horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Button_Copy" type="Button" parent="Info/VBox/VBox_Stats/DebugHash/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_COPY_DEBUG_HASH"
+text_overrun_behavior = 3
 
 [node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
 layout_mode = 2
@@ -454,19 +427,19 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_p5v4w")
 
 [node name="Footer" type="PanelContainer" parent="Info/VBox"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("4_nlvsm")
+theme_override_styles/panel = ExtResource("10_ucfko")
 
 [node name="Button_Open" type="Button" parent="Info/VBox/Footer"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_TEXT_OPEN_FILE"
-icon = ExtResource("19_v1srn")
+icon = ExtResource("22_n3v24")
 icon_alignment = 2
 expand_icon = true
 
 [node name="TabMsbtFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
-script = ExtResource("15_3v0li")
+script = ExtResource("23_1536k")
 CopyButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy")
 PasteButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste")
 CutButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut")
@@ -476,32 +449,32 @@ DeleteButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Butto
 title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 initial_position = 2
 size = Vector2i(520, 100)
-theme = ExtResource("1_3jppe")
+theme = ExtResource("1_66n6i")
 ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
 dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 dialog_autowrap = true
-script = ExtResource("16_hrtuc")
+script = ExtResource("24_wjb0a")
 
 [node name="Dialog_CreateError_WorldList" type="AcceptDialog" parent="TabMsbtFileAccessor"]
 auto_translate_mode = 1
 title = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
 initial_position = 1
 size = Vector2i(520, 100)
-theme = ExtResource("1_3jppe")
+theme = ExtResource("1_66n6i")
 ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_OK"
 dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 dialog_autowrap = true
-script = ExtResource("16_hrtuc")
+script = ExtResource("24_wjb0a")
 
-[node name="Popup_DuplicateMsbt" parent="." instance=ExtResource("9_0g6c8")]
+[node name="Popup_DuplicateMsbt" parent="." instance=ExtResource("25_rhf50")]
 visible = false
 autofill_text = true
 
-[node name="Popup_NewMsbt" parent="." instance=ExtResource("9_0g6c8")]
+[node name="Popup_NewMsbt" parent="." instance=ExtResource("25_rhf50")]
 visible = false
 title_selection = 1
 
-[node name="Popup_RenameMsbt" parent="." instance=ExtResource("9_0g6c8")]
+[node name="Popup_RenameMsbt" parent="." instance=ExtResource("25_rhf50")]
 visible = false
 title_selection = 2
 autofill_text = true
@@ -512,9 +485,6 @@ custom_minimum_size = Vector2(480, 190)
 [node name="VBox_ArcPicker" parent="Popup_RenameMsbt/Content/VBox" index="2"]
 visible = false
 
-[node name="Option_Archive" parent="Popup_RenameMsbt/Content/VBox/VBox_ArcPicker" index="1"]
-popup/item_0/id = 0
-
 [node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
 title = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1
@@ -523,16 +493,8 @@ ok_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_OK"
 dialog_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
 dialog_autowrap = true
 cancel_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
-script = ExtResource("16_hrtuc")
+script = ExtResource("24_wjb0a")
 
-[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/FileListContent/Content/VBox_Project" method="show"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="show"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="FileList/FileList/Footer/VBox_TranslationPicker" method="hide"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Source" to="." method="OnEnableTranslationFeatures" binds= [false]]
-[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/FileListContent/Content/VBox_Project" method="hide"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/HBox_SourceTextFooter" method="hide"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="FileList/FileList/Footer/VBox_TranslationPicker" method="show"]
-[connection signal="pressed" from="FileList/TabHeader/Button_Translation" to="." method="OnEnableTranslationFeatures" binds= [true]]
 [connection signal="text_changed" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]

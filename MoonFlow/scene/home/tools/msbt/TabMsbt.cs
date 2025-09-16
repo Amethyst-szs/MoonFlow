@@ -16,6 +16,7 @@ using ByteSizeLib;
 
 namespace MoonFlow.Scene.Home;
 
+[SceneUid("uid://dgh2onvx6k4ft")]
 public partial class TabMsbt : HSplitContainer
 {
 	#region Properties
@@ -24,6 +25,7 @@ public partial class TabMsbt : HSplitContainer
 
 	public SarcMsbtFile SelectedFile { get; private set; } = null;
 
+	[Export]
 	public bool IsEnableTranslationFeatures { get; private set; } = false;
 	public string TranslationLanguage { get; private set; } = "USen";
 
@@ -36,6 +38,11 @@ public partial class TabMsbt : HSplitContainer
 
 	[Export]
 	private Label TranslationLanguageWarning = null;
+
+	[Export]
+	private BoxContainer FooterSourceText = null;
+	[Export]
+	private BoxContainer FooterTranslation = null;
 
 	[Export]
 	private TabMsbtFileAccessor FileAccessor = null;
@@ -64,6 +71,10 @@ public partial class TabMsbt : HSplitContainer
 		// Set initial selection
 		var first = FileListArchives.FindChildByType<Button>((node) => !node.HasMeta("dropdown_button"));
 		first?.EmitSignal(Button.SignalName.Pressed);
+
+		// Setup footer based on type
+		FooterSourceText.Visible = !IsEnableTranslationFeatures;
+		FooterTranslation.Visible = IsEnableTranslationFeatures;
 	}
 
 	private void CreateArchiveDropdown(SarcFile file)
@@ -301,18 +312,6 @@ public partial class TabMsbt : HSplitContainer
 		HomeRoot.RecursiveFileSearch(FileListScroll, txt);
 	}
 
-	private void OnEnableTranslationFeatures(bool enabled)
-	{
-		var isReloadInterface = enabled != IsEnableTranslationFeatures;
-		IsEnableTranslationFeatures = enabled;
-
-		EngineSettings.SetSetting("moonflow/localization/translation_features_tab", enabled);
-
-		UpdateTranslationWarning();
-
-		if (isReloadInterface)
-			ReloadInterface(true);
-	}
 	private void OnTranslationLanguageSelected(string lang)
 	{
 		// Update configuration
@@ -321,8 +320,8 @@ public partial class TabMsbt : HSplitContainer
 
 		EngineSettings.SetSetting("moonflow/localization/translation_language", lang);
 
-        bool isTransferAll = ProjectFtpClient.CredentialStore.IsTransferAllLanguages;
-        ProjectFtpClient.UpdateLanguageConfiguration(ProjectManager.GetDefaultLang(), lang, isTransferAll);
+		bool isTransferAll = ProjectFtpClient.CredentialStore.IsTransferAllLanguages;
+		ProjectFtpClient.UpdateLanguageConfiguration(ProjectManager.GetDefaultLang(), lang, isTransferAll);
 
 		// Update interface
 		UpdateTranslationWarning();
