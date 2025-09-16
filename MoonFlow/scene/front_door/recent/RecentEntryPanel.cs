@@ -1,7 +1,9 @@
-using Godot;
-using MoonFlow.Project;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Godot;
+
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene;
 
@@ -27,7 +29,11 @@ public partial class RecentEntryPanel : PanelContainer
     public void SetupPanel(string path)
     {
         Path = path;
-
+        Hide();
+        Task.Run(() => SetupPanelAsyncTask(path));
+    }
+    private void SetupPanelAsyncTask(string path)
+    {
         // Load config data for project
         if (!ProjectManager.IsProjectConfigExist(ref path, out string projPath, false))
         {
@@ -35,33 +41,39 @@ public partial class RecentEntryPanel : PanelContainer
             return;
         }
 
-        LabelWarnMissing.Hide();
+        LabelWarnMissing.CallDeferred(MethodName.Hide);
 
+        // Load information from this project's config file
+        // This can take a bit especially for network directories, hence why this is an async task
         var config = new ProjectConfig(projPath);
 
-        // LabelName.Text = config.GetDisplayName();
-        LabelName.Text = path.TrimSuffix("romfs/").Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries).Last();
-        LabelPath.Text = path.TrimSuffix("romfs/");
+        string lName = path.TrimSuffix("romfs/").Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries).Last();
+        LabelName.SetDeferred(Label.PropertyName.Text, lName);
 
+        LabelPath.SetDeferred(Label.PropertyName.Text, path.TrimSuffix("romfs/"));
+
+        // Setup additional info string
         string additionalInfo = "";
-
         // Add string for romfs version target
         additionalInfo += 'v' + ((int)config.GetRomfsVersion()).ToString(@"#\.#\.#") + " - ";
         // Add string for default language
-        additionalInfo += Tr(config.GetDefaultLanguage(), LangPicker.DisplayNameContext);
+        additionalInfo += TranslationServer.Translate(config.GetDefaultLanguage(), LangPicker.DisplayNameContext);
 
-        LabelAdditionalInfo.Text = additionalInfo;
+        LabelAdditionalInfo.SetDeferred(Label.PropertyName.Text, additionalInfo);
+
+        CallDeferred(MethodName.Show);
     }
-
     private void SetupPanelWithoutProjectConfig(string path)
     {
         IsValid = false;
 
-        LabelName.Hide();
-        LabelPath.Text = path.TrimSuffix("romfs/");
+        LabelName.CallDeferred(MethodName.Hide);
+        LabelPath.SetDeferred(Label.PropertyName.Text, path.TrimSuffix("romfs/"));
 
-        LabelAdditionalInfo.Hide();
-        LabelWarnMissing.Show();
+        LabelAdditionalInfo.CallDeferred(MethodName.Hide);
+        LabelWarnMissing.CallDeferred(MethodName.Show);
+
+        CallDeferred(MethodName.Show);
     }
 
     public override void _GuiInput(InputEvent @event)
