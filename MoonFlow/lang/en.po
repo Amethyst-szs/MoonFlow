@@ -3801,9 +3801,7 @@ msgstr "Search"
 
 #: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
-msgstr ""
-"Search for a label, and optionally include part of the MSBT file name "
-"separated by a space."
+msgstr "Search for a text entry/label to use"
 
 #: scene/common/msbt_lookup/popup_msbt_select_entry.tscn
 msgid "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
@@ -4270,6 +4268,20 @@ msgstr "Close Project"
 #: scene/main/header/actionbar/global/actionbar_project.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
 msgstr "Clone Project into Another Project"
+
+#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_BOX_PLACEHOLDER"
+msgstr "Find"
+
+#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_INVALID_SEARCH_REQUEST"
+msgstr ""
+"Search for the text that shows up in-game (in your project's default "
+"language), and you'll get a list of results from most to least confident."
+
+#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
+msgstr "No results!"
 
 #~ msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
 #~ msgstr "System Data"

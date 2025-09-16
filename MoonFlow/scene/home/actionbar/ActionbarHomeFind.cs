@@ -21,6 +21,8 @@ public partial class ActionbarHomeFind : ActionbarItemBase
 
 	private void OnSearchForStringInMsbt()
 	{
-		GD.Print("placeholder");
+		var popup = SceneCreator<PopupMsbtFindSearchEntry>.Create();
+		GetTree().CurrentScene.AddChild(popup);
+		popup.Popup();
 	}
 }

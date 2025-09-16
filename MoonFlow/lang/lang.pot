@@ -110,6 +110,7 @@
 # res://scene/main/header/actionbar/global/actionbar_file.tscn
 # res://scene/main/header/actionbar/global/actionbar_help.tscn
 # res://scene/main/header/actionbar/global/actionbar_project.tscn
+# res://scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -4158,4 +4159,16 @@ msgstr ""
 
 #: scene/main/header/actionbar/global/actionbar_project.tscn
 msgid "MAIN_ACTIONBAR_PROJECT_MIRROR_CLONE"
+msgstr ""
+
+#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_BOX_PLACEHOLDER"
+msgstr ""
+
+#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_INVALID_SEARCH_REQUEST"
+msgstr ""
+
+#: scene/common/msbt_lookup/find_search/popup_msb_find_search_entry.tscn
+msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
 msgstr ""

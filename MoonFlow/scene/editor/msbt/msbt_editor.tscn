@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://bwicpcn2le56s"]
+[gd_scene load_steps=127 format=3 uid="uid://bwicpcn2le56s"]
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_celu7"]
 [ext_resource type="Script" uid="uid://u47y8ociu06e" path="res://scene/editor/msbt/MsbtAppHolder.cs" id="1_dt1us"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://iyi5aiovpxlx" path="res://asset/app/icon/msbt.png" id="2_2nd54"]
 [ext_resource type="StyleBox" uid="uid://bf7wrl0is1pq3" path="res://asset/theme/home/stylebox/home_panel.tres" id="3_52h4d"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="4_2flhd"]
+[ext_resource type="PackedScene" uid="uid://bokkpq2lmheep" path="res://scene/home/actionbar/actionbar_home_find.tscn" id="4_27g3f"]
 [ext_resource type="Resource" uid="uid://dnsmt70q0h71r" path="res://addons/wiki/paths/msbt.tres" id="4_o5nhl"]
 [ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/language/LangPicker.cs" id="5_qoe03"]
 [ext_resource type="PackedScene" uid="uid://ck2mpawvgk0li" path="res://scene/editor/msbt/list/entry_list_holder.tscn" id="7_j5n3o"]
@@ -170,6 +171,7 @@ AppIcon = ExtResource("2_2nd54")
 AppFlags = 115
 AppContentSaveType = 4100063999
 UnsavedChangesScene = ExtResource("18_5a5n5")
+ActionbarScenes = Array[PackedScene]([ExtResource("4_27g3f")])
 WikiPage = ExtResource("4_o5nhl")
 
 [node name="MsbtEditor" type="PanelContainer" parent="." node_paths=PackedStringArray("EntryListHolder", "EntryContentHolder", "FileTitleName", "FileEntryName", "LanguagePicker", "LoadingOverlay", "AltCodeHandler")]

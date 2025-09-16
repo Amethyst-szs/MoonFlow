@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace MoonFlow.Scene;
 
 [SceneUid("uid://h84sss0s2x5b")]
-public partial class PopupMsbtSelectEntry : Window
+public partial class PopupMsbtSelectEntry : PopupMsbtLookupBase
 {
 	[Export]
 	public bool IsSystemMessage = true;
@@ -16,94 +16,26 @@ public partial class PopupMsbtSelectEntry : Window
 	public bool IsStageMessage = false;
 	[Export]
 	public bool IsLayoutMessage = true;
-	[Export]
-	public bool IsDisplayWithoutSearch = false;
-	[Export]
-	public int MaxResults = 300;
 
 	[Export, ExportGroup("Internal References")]
-	private LineEdit LineSearch;
-	[Export]
-	private VBoxContainer ResultList;
-	[Export]
 	private Label LabelInvalidRequest;
 	[Export]
 	private Label LabelNoResults;
 	[Export]
 	private Label LabelTooManyResults;
 
-	private Timer InputTimer;
-	private static string SearchLast = "";
-
-	[Signal]
-	public delegate void ItemSelectedEventHandler(string arc, string file, string label);
-
 	public override void _Ready()
 	{
-		InputTimer = new Timer
-		{
-			WaitTime = 0.2,
-			OneShot = true,
-		};
-
-		InputTimer.Timeout += OnInputTimerTimeout;
-		AddChild(InputTimer);
-
-		AboutToPopup += OnPopupReady;
-
-		Hide();
+		base._Ready();
+		
 		LabelNoResults.Hide();
 		LabelTooManyResults.Hide();
 		LabelInvalidRequest.Show();
-
-		SetupSearchBoxFromSearchLast();
-	}
-
-	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed("ui_cancel"))
-			QueueFree();
-	}
-
-	public override void _Notification(int what)
-	{
-		if (what == NotificationWMCloseRequest)
-			QueueFree();
-	}
-
-	private void SetupSearchBoxFromSearchLast()
-	{
-		if (SearchLast == string.Empty)
-			return;
-		
-		LineSearch.SetDeferred(LineEdit.PropertyName.Text, SearchLast);
-		LineSearch.SetDeferred(LineEdit.PropertyName.CaretColumn, SearchLast.Length);
-		CallDeferred(MethodName.OnInputTimerTimeout);
-	}
+    }
 
 	#region Signals
 
-	private void OnPopupReady()
-	{
-		// Setup search box
-		LineSearch.Text = "";
-		LineSearch.GrabFocus();
-
-		// Clear result list content
-		ResultList.QueueFreeAllChildren();
-
-		// Set window size
-		var size = GetTree().CurrentScene.GetWindow().Size;
-		size.X /= 2;
-		size.Y -= 128;
-		Size = size;
-
-		if (IsDisplayWithoutSearch)
-			OnInputTimerTimeout();
-	}
-
-	private void OnLineSearchModified(string _) { InputTimer.Start(); }
-	private void OnInputTimerTimeout()
+	protected override void UpdateListing()
 	{
 		// Reset warning messages
 		LabelNoResults.Hide();
@@ -144,8 +76,7 @@ public partial class PopupMsbtSelectEntry : Window
 		foreach (var item in results)
 			CreateItem(item);
 	}
-
-	private void OnItemSelected(ProjectLabelCache.LabelLookupResult item)
+	protected override void HandleItemSelect(ProjectLabelCache.LabelLookupResult item)
 	{
 		var arc = ProjectLabelCache.GetArchiveNameFromEnum(item);
 		EmitSignal(SignalName.ItemSelected, arc, item.File, item.Label);
@@ -154,9 +85,7 @@ public partial class PopupMsbtSelectEntry : Window
 
 	#endregion
 
-	#region Label Lookup
-
-	protected virtual List<ProjectLabelCache.LabelLookupResult> LookupTerm(ProjectLabelCache cache, string term)
+	protected override List<ProjectLabelCache.LabelLookupResult> LookupTerm(ProjectLabelCache cache, string term)
 	{
 		List<ProjectLabelCache.LabelLookupResult> results = [];
 
@@ -170,11 +99,9 @@ public partial class PopupMsbtSelectEntry : Window
 		return results;
 	}
 
-	#endregion
-
 	#region Node Builders
 
-	private void CreateItem(ProjectLabelCache.LabelLookupResult item)
+	protected override void CreateItem(ProjectLabelCache.LabelLookupResult item)
 	{
 		VBoxContainer container;
 
@@ -193,32 +120,9 @@ public partial class PopupMsbtSelectEntry : Window
 			AutowrapMode = TextServer.AutowrapMode.Arbitrary,
 		};
 
-		button.Connect(Button.SignalName.Pressed, Callable.From(() => OnItemSelected(item)));
+		button.Connect(Button.SignalName.Pressed, Callable.From(() => HandleItemSelect(item)));
 		container.AddChild(button);
 	}
 
-	private VBoxContainer CreateFileContainer(string file)
-	{
-		var hsep = new HSeparator();
-		ResultList.AddChild(hsep);
-
-		var label = new Label
-		{
-			Name = file + "_Header",
-			Text = file,
-			SelfModulate = Colors.LightGray,
-		};
-
-		ResultList.AddChild(label);
-
-		var box = new VBoxContainer
-		{
-			Name = file,
-		};
-
-		ResultList.AddChild(box);
-		return box;
-	}
-
-	#endregion
+    #endregion
 }

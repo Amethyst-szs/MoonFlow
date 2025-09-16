@@ -8,12 +8,14 @@ using Nindot;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib.Smo;
 using FuzzySharp;
+using System.Diagnostics;
 
 namespace MoonFlow.Project.Cache;
 
 public class ProjectLabelCache(ProjectLanguageHolder archives)
 {
     private readonly Dictionary<ArchiveType, Dictionary<string, Dictionary<string, string>>> LabelList = [];
+    private readonly List<KeyValuePair<LabelTarget, string>> UnsortedLabelList = [];
     private readonly ProjectLanguageHolder Archives = archives;
 
     public enum ArchiveType
@@ -25,12 +27,19 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
 
     #region Cache Accessor
 
-    public struct LabelLookupResult(ArchiveType arc, string file, string label, string preview)
+    public readonly struct LabelTarget(ArchiveType arc, string file, string label)
     {
-        public ArchiveType Archive = arc;
-        public string File = file;
-        public string Label = label;
-        public string PreviewText = preview;
+        public readonly ArchiveType Archive = arc;
+        public readonly string File = file;
+        public readonly string Label = label;
+    }
+    public readonly struct LabelLookupResult(ArchiveType arc, string file, string label, string preview, int fuzz)
+    {
+        public readonly ArchiveType Archive = arc;
+        public readonly string File = file;
+        public readonly string Label = label;
+        public readonly string PreviewText = preview;
+        public readonly int FuzzValue = fuzz;
     }
 
     public ReadOnlyCollection<string> GetLabelsInArchive(ArchiveType arc)
@@ -69,25 +78,26 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
         foreach (var file in LabelList[arc])
         {
             // Filter matches to only include items in the search label string
-            var matches = file.Value.ToList().FindAll(l => {
+            var matches = file.Value.ToList().FindAll(l =>
+            {
                 return terms.All(s => l.Key.Contains(s)) || terms.Any(s => Fuzz.Ratio(s, file.Key) > 90);
             });
 
             // Sort matches by FuzzySort
-            matches.Sort((a, b) => {
+            matches.Sort((a, b) =>
+            {
                 return Fuzz.Ratio(label, b.Key) - Fuzz.Ratio(label, a.Key);
             });
 
             if (matches.Count == 0)
                 continue;
 
-            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value));
+            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value, Fuzz.Ratio(label, s.Key)));
             list.AddRange(result);
         }
 
         return list;
     }
-
     public List<LabelLookupResult> LookupLabelInFileExact(ArchiveType arc, string fileName, string label)
     {
         var list = new List<LabelLookupResult>();
@@ -104,11 +114,31 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
             if (matches.Count == 0)
                 continue;
 
-            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value));
+            var result = matches.Select(s => new LabelLookupResult(arc, file.Key, s.Key, s.Value, Fuzz.Ratio(label, s.Key)));
             list.AddRange(result);
         }
 
         return list;
+    }
+    public List<LabelLookupResult> CreateSortedListByFuzz(string query)
+    {
+        List<KeyValuePair<LabelTarget, string>> rawList = [.. UnsortedLabelList];
+        List<LabelLookupResult> result = [];
+
+        // Convert raw list to LabelLookupResult list with fuzz ratio information
+        foreach (var item in rawList)
+        {
+            int ratio = Fuzz.PartialRatio(query, item.Value);
+            result.Add(new LabelLookupResult(item.Key.Archive, item.Key.File, item.Key.Label, item.Value, ratio));
+        }
+
+        // Sort list by the fuzz ratio
+        result.Sort((a, b) =>
+        {
+            return b.FuzzValue - a.FuzzValue;
+        });
+
+        return result;
     }
 
     public static string GetArchiveNameFromEnum(LabelLookupResult e)
@@ -128,15 +158,26 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
 
     public void UpdateCache()
     {
+        UnsortedLabelList.Clear();
+
         // Update each archive's cache
-        LabelList[ArchiveType.SYSTEM] = UpdateArchiveCache(Archives.SystemMessage);
-        LabelList[ArchiveType.STAGE] = UpdateArchiveCache(Archives.StageMessage);
-        LabelList[ArchiveType.LAYOUT] = UpdateArchiveCache(Archives.LayoutMessage);
+        UpdateArchiveCache(ArchiveType.SYSTEM);
+        UpdateArchiveCache(ArchiveType.STAGE);
+        UpdateArchiveCache(ArchiveType.LAYOUT);
     }
 
-    private Dictionary<string, Dictionary<string, string>> UpdateArchiveCache(SarcFile arc)
+    private void UpdateArchiveCache(ArchiveType arcType)
     {
-        var dict = new Dictionary<string, Dictionary<string, string>>();
+        // Fetch SarcFile
+        SarcFile arc = arcType switch
+        {
+            ArchiveType.SYSTEM => Archives.SystemMessage,
+            ArchiveType.STAGE => Archives.StageMessage,
+            ArchiveType.LAYOUT => Archives.LayoutMessage,
+            _ => throw new UnreachableException(),
+        };
+
+        var result = new Dictionary<string, Dictionary<string, string>>();
         var meta = Archives.Metadata;
 
         var nameList = arc.Content.Keys.ToList();
@@ -167,12 +208,20 @@ public class ProjectLabelCache(ProjectLanguageHolder archives)
 
             var text = labels.Select(l => file.GetEntry(l).GetRawText(true)).ToList();
 
-            var result = labels.Zip(text, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
+            // Create and store output in result
+            var msbtOutput = labels.Zip(text, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
+            result[name] = msbtOutput;
 
-            dict[name] = result;
+            // Dump data into unsorted label list
+            foreach (var item in msbtOutput)
+            {
+                var target = new LabelTarget(arcType, name, item.Key);
+                UnsortedLabelList.Add(new KeyValuePair<LabelTarget, string>(target, item.Value));
+            }
         }
 
-        return dict;
+        LabelList[arcType] = result;
+        return;
     }
 
     #endregion
