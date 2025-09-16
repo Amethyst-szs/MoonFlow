@@ -109,7 +109,7 @@ public partial class AsyncDisplay : Control
 
         LabelException.CallDeferred(Label.MethodName.Show);
 
-        await Task.Delay(4000);
+        await Task.Delay(10000);
 
         EmitSignal(SignalName.TaskException);
         OnTaskFinished();
@@ -126,6 +126,15 @@ public partial class AsyncDisplay : Control
         EmitSignal(SignalName.TaskEnded);
         QueueFree();
     }
+
+    private void OnTaskCopyExceptionToClipboard()
+    {
+        DisplayServer.ClipboardSet(GetExceptionAsString(Exception));
+    }
+    private static string GetExceptionAsString(Exception e)
+	{
+		return e.Message + '\n' + e.Source + '\n' + e.TargetSite + "\n\n" + e.StackTrace;
+	}
 
     #endregion
 }

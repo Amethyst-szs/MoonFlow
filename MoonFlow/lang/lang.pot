@@ -7,7 +7,6 @@
 # res://scene/front_door/load/project_loading.tscn
 # res://scene/editor/msbt/entry/components/msbt_entry_translation_config.tscn
 # res://scene/home/home.tscn
-# res://async/async_display.tscn
 # res://scene/editor/msbt/tag_edit/default/fallback.tscn
 # res://scene/editor/msbt/wheel/tag_wheel.tscn
 # res://scene/editor/msbt/wheel/picture/submenu_pict.tscn
@@ -34,7 +33,6 @@
 # res://scene/editor/msbt/list/container/stage_message_category_table.gd
 # res://scene/home/tools/msbt/popup_msbt_create.tscn
 # res://scene/home/tools/msbt/popup_msbt_create.gd
-# res://async/async_text.tres
 # res://scene/editor/event/node/node_type_name_text.tres
 # res://scene/editor/event/node/typedef/talk/talk.tscn
 # res://scene/home/tools/event/tab_event.tscn
@@ -105,6 +103,8 @@
 # res://scene/settings/engine/page/world.tscn
 # res://scene/home/tools/msbt/tab_msbt_base.tscn
 # res://scene/home/tools/project/tab_project.tscn
+# res://async/gui/async_display.tscn
+# res://async/gui/async_text.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -400,10 +400,6 @@ msgstr ""
 
 #: scene/home/home.tscn
 msgid "HOME_NO_TOOL_SELECTED_PLACEHOLDER"
-msgstr ""
-
-#: async/async_display.tscn
-msgid "ASYNC_DISPLAY_EXCEPTION"
 msgstr ""
 
 #: scene/editor/msbt/tag_edit/default/fallback.tscn
@@ -1497,116 +1493,6 @@ msgstr ""
 
 #: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_RENAME"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "Success"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "Success"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "FileRead"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "FileRead"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "FileWrite"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "FileWrite"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "FTP"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "FTP"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "UpdateProjectLabelCache"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "UpdateProjectLabelCache"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "UpdateProjectMsbp"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "UpdateProjectMsbp"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveMsbtArchives"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveMsbtArchives"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveMsbp"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveMsbp"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveWorldArchives"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveWorldArchives"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveEventFlowGraph"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveEventFlowGraph"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "GenerateCheckpointDb"
-msgstr ""
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "GenerateCheckpointDb"
 msgstr ""
 
 #: scene/editor/event/node/node_type_name_text.tres
@@ -4148,4 +4034,118 @@ msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
 msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
+msgstr ""
+
+#: async/gui/async_display.tscn
+msgid "ASYNC_DISPLAY_EXCEPTION"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "Success"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "Success"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileRead"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FileRead"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileWrite"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FileWrite"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FTP"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FTP"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectLabelCache"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "UpdateProjectLabelCache"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectMsbp"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "UpdateProjectMsbp"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbtArchives"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveMsbtArchives"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbp"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveMsbp"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveWorldArchives"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveWorldArchives"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveEventFlowGraph"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveEventFlowGraph"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "GenerateCheckpointDb"
+msgstr ""
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "GenerateCheckpointDb"
 msgstr ""

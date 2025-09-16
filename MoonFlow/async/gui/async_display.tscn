@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://iqyjx7fu40nl"]
+[gd_scene load_steps=12 format=3 uid="uid://iqyjx7fu40nl"]
 
 [ext_resource type="Script" uid="uid://cul1qixdpqm3l" path="res://async/gui/AsyncDisplay.cs" id="1_7xgbo"]
 [ext_resource type="Theme" uid="uid://bi124pyc35ecm" path="res://asset/theme/async/async.tres" id="1_wl5ln"]
@@ -30,8 +30,20 @@ outline_color = Color(0, 0, 0, 0.8235294)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m58i0"]
 font = ExtResource("3_52u1o")
-font_size = 14
 font_color = Color(1, 0.68, 0.68, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_r1w6g"]
+script/source = "extends Label
+
+signal pressed
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton && event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT:
+		pressed.emit()
+		get_viewport().set_input_as_handled()
+"
 
 [node name="AsyncDisplay" type="PanelContainer" node_paths=PackedStringArray("LabelTitleKey", "LabelDescKey", "LabelProgress", "LabelException", "ProgressBar")]
 custom_minimum_size = Vector2(260, 48)
@@ -85,8 +97,14 @@ autowrap_mode = 3
 
 [node name="Label_Exception" type="Label" parent="Content"]
 visible = false
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 text = "ASYNC_DISPLAY_EXCEPTION"
 label_settings = SubResource("LabelSettings_m58i0")
 horizontal_alignment = 1
+autowrap_mode = 2
+script = SubResource("GDScript_r1w6g")
+
+[connection signal="pressed" from="Content/Label_Exception" to="." method="OnTaskCopyExceptionToClipboard"]

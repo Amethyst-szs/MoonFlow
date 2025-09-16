@@ -340,10 +340,6 @@ msgstr ""
 "You find yourself in a strange place!\n"
 "No tool is currently selected."
 
-#: async/async_display.tscn
-msgid "ASYNC_DISPLAY_EXCEPTION"
-msgstr "Task Failed!"
-
 #: scene/editor/msbt/tag_edit/default/fallback.tscn
 msgid "TAG_EDIT_SCENE_HEADER_ERROR_FALLBACK"
 msgstr "Error"
@@ -1449,116 +1445,6 @@ msgstr "Create New File"
 #: scene/home/tools/msbt/popup_msbt_create.gd
 msgid "HOME_MSBT_POPUP_TITLE_RENAME"
 msgstr "Rename File"
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "Success"
-msgstr "Success!"
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "Success"
-msgstr ":D"
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "FileRead"
-msgstr "Reading File..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "FileRead"
-msgstr "Just a moment..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "FileWrite"
-msgstr "Writing File..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "FileWrite"
-msgstr "Just a moment..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "FTP"
-msgstr "Transferring Files..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "FTP"
-msgstr "Keep the FTP server online!"
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "UpdateProjectLabelCache"
-msgstr "Updating Label Cache..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "UpdateProjectLabelCache"
-msgstr "Studying your text files, just a sec!"
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "UpdateProjectMsbp"
-msgstr "Updating MSBP Database..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "UpdateProjectMsbp"
-msgstr "Making sure new text files are registered..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveMsbtArchives"
-msgstr "Saving MSBT Archives..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveMsbtArchives"
-msgstr "Updating language archives..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveMsbp"
-msgstr "Saving MSBP..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveMsbp"
-msgstr "Making sure all the metadata is in place..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveWorldArchives"
-msgstr "Saving World Info..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveWorldArchives"
-msgstr "Making sure all databases are good to go..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "SaveEventFlowGraph"
-msgstr "Saving Event Graph..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "SaveEventFlowGraph"
-msgstr "Connecting all the nodes..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY"
-msgid "GenerateCheckpointDb"
-msgstr "Generating CheckpointFlagInfo..."
-
-#: async/async_text.tres
-msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
-msgid "GenerateCheckpointDb"
-msgstr "This may take a minute or two..."
 
 #: scene/editor/event/node/node_type_name_text.tres
 msgctxt "EVENT_GRAPH_NODE_TYPE"
@@ -4265,6 +4151,120 @@ msgstr "Message Studio Project"
 #: scene/home/tools/project/tab_project.tscn
 msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
 msgstr "Color Palette Editor"
+
+#: async/gui/async_display.tscn
+msgid "ASYNC_DISPLAY_EXCEPTION"
+msgstr "Task Failed! (click to copy error info to clipboard)"
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "Success"
+msgstr "Success!"
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "Success"
+msgstr ":D"
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileRead"
+msgstr "Reading File..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FileRead"
+msgstr "Just a moment..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FileWrite"
+msgstr "Writing File..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FileWrite"
+msgstr "Just a moment..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "FTP"
+msgstr "Transferring Files..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "FTP"
+msgstr "Keep the FTP server online!"
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectLabelCache"
+msgstr "Updating Label Cache..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "UpdateProjectLabelCache"
+msgstr "Studying your text files, just a sec!"
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "UpdateProjectMsbp"
+msgstr "Updating MSBP Database..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "UpdateProjectMsbp"
+msgstr "Making sure new text files are registered..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbtArchives"
+msgstr "Saving MSBT Archives..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveMsbtArchives"
+msgstr "Updating language archives..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveMsbp"
+msgstr "Saving MSBP..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveMsbp"
+msgstr "Making sure all the metadata is in place..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveWorldArchives"
+msgstr "Saving World Info..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveWorldArchives"
+msgstr "Making sure all databases are good to go..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "SaveEventFlowGraph"
+msgstr "Saving Event Graph..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "SaveEventFlowGraph"
+msgstr "Connecting all the nodes..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY"
+msgid "GenerateCheckpointDb"
+msgstr "Generating CheckpointFlagInfo..."
+
+#: async/gui/async_text.tres
+msgctxt "ASYNC_TASK_DISPLAY_DESCRIPTION"
+msgid "GenerateCheckpointDb"
+msgstr "This may take a minute or two..."
 
 #~ msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
 #~ msgstr "All text files in your project's default language"
