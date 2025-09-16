@@ -110,7 +110,7 @@ public class MsbtElementFactoryProjectSmo : MsbtElementFactory
         return tag switch
         {
             (ushort)TagNameSystem.Ruby => new MsbtTagElementSystemRuby(ref pointer, buffer),
-            (ushort)TagNameSystem.Font => new MsbtTagElementDeviceFont(ref pointer, buffer),
+            (ushort)TagNameSystem.Font => new MsbtTagElementSystemFont(ref pointer, buffer),
             (ushort)TagNameSystem.FontSize => new MsbtTagElementSystemFontSize(ref pointer, buffer),
             (ushort)TagNameSystem.Color => new MsbtTagElementSystemColor(ref pointer, buffer),
             (ushort)TagNameSystem.PageBreak => new MsbtTagElementSystemPageBreak(ref pointer, buffer),
