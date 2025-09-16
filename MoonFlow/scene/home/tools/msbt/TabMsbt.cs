@@ -330,8 +330,6 @@ public partial class TabMsbt : HSplitContainer
 			ReloadInterface(true);
 	}
 
-	private static void OnOpenMsbpColorEditor() { AppSceneServer.CreateApp<MsbpColorEditor>(); }
-
 	private void OnCopyFileHashPressed()
 	{
 		if (SelectedFile == null)

@@ -296,7 +296,7 @@ msgstr "Tools:"
 
 #: scene/home/home.tscn
 msgid "TOOL_TEXT_TOOLTIP"
-msgstr "Modify MSBT and MSBP data in LocalizedData"
+msgstr "Modify MSBT data in LocalizedData"
 
 #: scene/home/home.tscn
 msgid "TOOL_TEXT"
@@ -325,6 +325,20 @@ msgstr "Modify properties of different worlds"
 #: scene/home/home.tscn
 msgid "TOOL_WORLD"
 msgstr "Kingdoms"
+
+#: scene/home/home.tscn
+msgid "TOOL_PROJECT_TOOLTIP"
+msgstr "Modify various project databases and properties"
+
+#: scene/home/home.tscn
+msgid "TOOL_PROJECT"
+msgstr "Project"
+
+#: scene/home/home.tscn
+msgid "HOME_NO_TOOL_SELECTED_PLACEHOLDER"
+msgstr ""
+"You find yourself in a strange place!\n"
+"No tool is currently selected."
 
 #: async/async_display.tscn
 msgid "ASYNC_DISPLAY_EXCEPTION"
@@ -4183,14 +4197,6 @@ msgstr ""
 "language below!"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOLS"
-msgstr "Message Studio Project"
-
-#: scene/home/tools/msbt/tab_msbt_base.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
-msgstr "Color Palette Editor"
-
-#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr "New File"
 
@@ -4251,6 +4257,14 @@ msgstr ""
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Wait, no, go back!"
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MSBP_TOOLS"
+msgstr "Message Studio Project"
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
+msgstr "Color Palette Editor"
 
 #~ msgid "HOME_SUBTAB_SOURCE_TEXT_TOOLTIP"
 #~ msgstr "All text files in your project's default language"

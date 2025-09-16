@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene load_steps=43 format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_66n6i"]
 [ext_resource type="Script" uid="uid://bn8g146v3u4sb" path="res://scene/home/tools/msbt/TabMsbt.cs" id="2_44jli"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="5_tdq3c"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="6_b3nkc"]
 [ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_ewps6"]
-[ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="8_j18q1"]
-[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="9_d2m21"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="10_ucfko"]
 [ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="11_xxbal"]
 [ext_resource type="Texture2D" uid="uid://g3gxcj4c4niq" path="res://asset/material/file/cut.svg" id="12_y4ly6"]
@@ -157,31 +155,6 @@ size_flags_horizontal = 3
 
 [node name="VBox_Archives" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content"]
 layout_mode = 2
-
-[node name="VBox_Project" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content"]
-layout_mode = 2
-
-[node name="NotInSearch_Check_MSBP" type="CheckBox" parent="FileList/FileList/FileListContent/Content/VBox_Project" node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_TEXT_MSBP_TOOLS"
-script = ExtResource("8_j18q1")
-dropdown = NodePath("../NotInSearch_MSBP")
-
-[node name="NotInSearch_MSBP" type="MarginContainer" parent="FileList/FileList/FileListContent/Content/VBox_Project"]
-layout_mode = 2
-
-[node name="MSBP_VBox" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP"]
-layout_mode = 2
-
-[node name="Button_MsbpColors" type="Button" parent="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP/MSBP_VBox"]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
-icon = ExtResource("9_d2m21")
-alignment = 0
-icon_alignment = 2
 
 [node name="Footer" type="PanelContainer" parent="FileList/FileList"]
 layout_mode = 2
@@ -496,7 +469,6 @@ cancel_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("24_wjb0a")
 
 [connection signal="text_changed" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
-[connection signal="pressed" from="FileList/FileList/FileListContent/Content/VBox_Project/NotInSearch_MSBP/MSBP_VBox/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut" to="TabMsbtFileAccessor" method="OnCutFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste" to="TabMsbtFileAccessor" method="OnPasteFile"]

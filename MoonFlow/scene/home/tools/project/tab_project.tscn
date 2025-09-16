@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvkspqwgxsqxy"]
+
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_dvg6o"]
+[ext_resource type="Script" uid="uid://sr6781n8r8yp" path="res://scene/home/tools/project/TabProject.cs" id="2_w5mgl"]
+[ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="7_3akrv"]
+[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="8_o81hq"]
+
+[node name="Project" type="HSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dvg6o")
+script = ExtResource("2_w5mgl")
+metadata/_tab_index = 0
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Check_Msbp" type="CheckBox" parent="Content" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+mouse_filter = 1
+text = "HOME_TAB_PROJECT_MSBP_TOOLS"
+script = ExtResource("7_3akrv")
+dropdown = NodePath("../Msbp")
+
+[node name="Msbp" type="MarginContainer" parent="Content"]
+layout_mode = 2
+
+[node name="VBox_Msbp" type="VBoxContainer" parent="Content/Msbp"]
+layout_mode = 2
+
+[node name="Button_MsbpColors" type="Button" parent="Content/Msbp/VBox_Msbp"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
+icon = ExtResource("8_o81hq")
+alignment = 0
+icon_alignment = 2
+
+[connection signal="pressed" from="Content/Msbp/VBox_Msbp/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]

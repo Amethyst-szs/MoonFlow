@@ -20,18 +20,19 @@ public partial class HomeRoot : AppScene
 
 	public static void RecursiveFileSearch(Control root, string term)
 	{
-		if (root.Name.ToString().StartsWith("NotInSearch_"))
-		{
-			if (root is MarginContainer)
-				root.Hide();
-			else
-				root.Visible = term == string.Empty;
+		// Part of an old hacky fix, no longer needed?
+		// if (root.Name.ToString().StartsWith("NotInSearch_"))
+		// {
+		// 	if (root is MarginContainer)
+		// 		root.Hide();
+		// 	else
+		// 		root.Visible = term == string.Empty;
 
-			if (root is Button b)
-				b.SetPressedNoSignal(false);
+		// 	if (root is Button b)
+		// 		b.SetPressedNoSignal(false);
 
-			return;
-		}
+		// 	return;
+		// }
 
 		if (root is Button button)
 		{

@@ -104,6 +104,7 @@
 # res://scene/editor/world/stage/world_editor_tab_stages.tscn
 # res://scene/settings/engine/page/world.tscn
 # res://scene/home/tools/msbt/tab_msbt_base.tscn
+# res://scene/home/tools/project/tab_project.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -387,6 +388,18 @@ msgstr ""
 
 #: scene/home/home.tscn
 msgid "TOOL_WORLD"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "TOOL_PROJECT_TOOLTIP"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "TOOL_PROJECT"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "HOME_NO_TOOL_SELECTED_PLACEHOLDER"
 msgstr ""
 
 #: async/async_display.tscn
@@ -4074,14 +4087,6 @@ msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
 msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOLS"
-msgstr ""
-
-#: scene/home/tools/msbt/tab_msbt_base.tscn
-msgid "HOME_TAB_TEXT_MSBP_TOOL_COLOR_LIST"
-msgstr ""
-
-#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr ""
 
@@ -4135,4 +4140,12 @@ msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MSBP_TOOLS"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
 msgstr ""
