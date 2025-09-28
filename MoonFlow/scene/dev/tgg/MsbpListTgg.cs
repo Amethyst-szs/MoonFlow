@@ -28,7 +28,9 @@ public partial class MsbpListTgg : VBoxContainer
 
 			foreach (var tag in proj.Tag_GetList(group))
 			{
-				CreateLabel(tag.Name, 1, 16);
+				int idx = proj.Tag_GetList(group).IndexOf(tag);
+
+				CreateLabel(string.Format("{0} ({1:X})", tag.Name, idx), 1, 16);
 
 				foreach (var param in proj.TagParam_GetList(tag))
 					CreateLabel(param.Name, 2, 10);

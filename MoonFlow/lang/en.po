@@ -3353,6 +3353,11 @@ msgstr "First Launch Setup"
 
 #: scene/front_door/load/component/loading_message_text.tres
 msgctxt "PROJECT_LOADING"
+msgid "LOAD_PROJECT_UPGRADE"
+msgstr "Upgrading Project Version"
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr "Success!"
 

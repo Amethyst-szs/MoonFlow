@@ -3306,6 +3306,11 @@ msgstr ""
 
 #: scene/front_door/load/component/loading_message_text.tres
 msgctxt "PROJECT_LOADING"
+msgid "LOAD_PROJECT_UPGRADE"
+msgstr ""
+
+#: scene/front_door/load/component/loading_message_text.tres
+msgctxt "PROJECT_LOADING"
 msgid "END"
 msgstr ""
 

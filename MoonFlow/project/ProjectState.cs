@@ -10,6 +10,7 @@ using MoonFlow.Project.Cache;
 using MoonFlow.Addons;
 using MoonFlow.Project.FTP;
 using System.Linq;
+using Nindot;
 
 namespace MoonFlow.Project;
 
@@ -161,25 +162,14 @@ public class ProjectState(string path, ProjectConfig config)
         // Prepare event data archive cache
         EventArcHolder = new(Path, loadScreen);
 
-        // Update the project's target engine version
+        // Complete Initilization
         var gitHash = GitInfo.GitCommitHash();
 
         if (!Config.IsEngineTargetOk(gitHash))
-        {
-            Config.EnsureSignature();
-            Config.SetEngineTarget(GitInfo.GitVersionName(), gitHash, GitInfo.GitCommitUnixTime());
-            Config.WriteFile();
-        }
+            InitProjectUpgradingFromOldVersion(loadScreen, gitHash);
 
-        // Complete Initilization
         if (Config.IsFirstBoot())
-        {
             InitProjectFirstOpen(loadScreen);
-
-            Config.EnsureSignature();
-            Config.ClearFirstBootFlag();
-            Config.WriteFile();
-        }
 
         loadScreen.LoadingComplete();
         StartupTask = null;
@@ -190,7 +180,16 @@ public class ProjectState(string path, ProjectConfig config)
         IsInitComplete = true;
     }
 
-    public void InitProjectFirstOpen(ProjectLoading loadScreen)
+    private void InitProjectUpgradingFromOldVersion(ProjectLoading loadScreen, string gitHash)
+    {
+        loadScreen.LoadingUpdateProgress("LOAD_PROJECT_UPGRADE");
+
+        // Finalize project upgrading
+        Config.EnsureSignature();
+        Config.SetEngineTarget(GitInfo.GitVersionName(), gitHash, GitInfo.GitCommitUnixTime());
+        Config.WriteFile();
+    }
+    private void InitProjectFirstOpen(ProjectLoading loadScreen)
     {
         // Build metadata table for MSBT files
         int progress = 0;
@@ -211,6 +210,11 @@ public class ProjectState(string path, ProjectConfig config)
             lang.Value.BuildMetadataTableForInit();
             progress++;
         }
+
+        // Finalize first open changes
+        Config.EnsureSignature();
+        Config.ClearFirstBootFlag();
+        Config.WriteFile();
     }
 
     public bool IsReady() { return IsInitComplete; }

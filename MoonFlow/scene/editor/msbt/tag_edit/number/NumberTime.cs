@@ -39,6 +39,6 @@ public partial class NumberTime : TagEditSceneWithText
 		if (option > (int)TagNameNumber.DateDetailEU)
 			throw new Exception("Invalid TagName!");
 
-		Tag.SetTagNameDangerous((ushort)option);
+		Tag.SetTagNameUnsafe((ushort)option);
 	}
 }
