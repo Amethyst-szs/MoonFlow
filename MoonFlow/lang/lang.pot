@@ -3924,6 +3924,22 @@ msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
 msgid "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
 msgstr ""
 

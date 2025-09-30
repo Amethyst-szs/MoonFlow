@@ -9,6 +9,9 @@ public class ProjectLocalConfigBucketMain : IProjectFileFormatDataRoot
     #region Common
 
     [JsonInclude]
+    public string ProjectNickname = null;
+
+    [JsonInclude]
     public string CloneProjectUtilTargetPath = null;
 
     #endregion

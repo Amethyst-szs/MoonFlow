@@ -4032,6 +4032,26 @@ msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Wait, no, go back!"
 
 #: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
+msgstr "MoonFlow Project"
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+msgstr ""
+"A project's nickname is stored locally and not committed to\n"
+"version control. It has no effect on the project, and just helps\n"
+"you distinguish between this project and others in similar\n"
+"directories."
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
+msgstr "Nickname:"
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
+msgstr "My Super Project"
+
+#: scene/home/tools/project/tab_project.tscn
 msgid "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
 msgstr "System Databases"
 

@@ -351,9 +351,20 @@ public static partial class AppSceneServer
         if (app != GetActiveApp())
             return;
 
-        var prefix = ProjectSettings.GetSetting("application/config/name", "MoonFlow").AsString();
-        var debug = OS.IsDebugBuild() ? " DEBUG" : "";
+        // Calculate prefix
+        string prefix = ProjectSettings.GetSetting("application/config/name", "MoonFlow").AsString();;
 
+        if (ProjectManager.IsProjectExist())
+        {
+            var proj = ProjectManager.GetProject() ?? throw new NullReferenceException();
+            string nickname = proj.Config.LocalConfig.Data.ProjectNickname;
+
+            if (nickname != null && nickname != string.Empty)
+                prefix = nickname;
+        }
+        
+        // Calculate additional information and push to window title
+        var debug = OS.IsDebugBuild() ? " DEBUG" : "";
         var version = string.Format("{0} b{1}.{2}",
             GitInfo.GitBranch(),
             GitInfo.GitCommitCountMainBranch(),

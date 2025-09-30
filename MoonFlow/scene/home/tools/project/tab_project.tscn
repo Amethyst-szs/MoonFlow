@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvkspqwgxsqxy"]
+[gd_scene load_steps=7 format=3 uid="uid://dvkspqwgxsqxy"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_dvg6o"]
 [ext_resource type="Script" uid="uid://sr6781n8r8yp" path="res://scene/home/tools/project/TabProject.cs" id="2_w5mgl"]
 [ext_resource type="Texture2D" uid="uid://bw1k40r0kuu1r" path="res://asset/nindot/special/checkpoint_white.png" id="4_70wej"]
+[ext_resource type="Script" uid="uid://ngjbg3thuodi" path="res://scene/home/tools/project/component/SubtabMoonflowProject.cs" id="4_crvj7"]
 [ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="7_3akrv"]
 [ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="8_o81hq"]
 
@@ -19,6 +20,38 @@ metadata/_tab_index = 0
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Check_MfProject" type="CheckBox" parent="Content" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+mouse_filter = 1
+text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
+script = ExtResource("7_3akrv")
+dropdown = NodePath("../MfProject")
+
+[node name="MfProject" type="MarginContainer" parent="Content" node_paths=PackedStringArray("LineNickname")]
+layout_mode = 2
+script = ExtResource("4_crvj7")
+LineNickname = NodePath("VBox_MfProject/Nickname/Line_Nickname")
+
+[node name="VBox_MfProject" type="VBoxContainer" parent="Content/MfProject"]
+layout_mode = 2
+
+[node name="Nickname" type="HBoxContainer" parent="Content/MfProject/VBox_MfProject"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label_Nickname" type="Label" parent="Content/MfProject/VBox_MfProject/Nickname"]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
+
+[node name="Line_Nickname" type="LineEdit" parent="Content/MfProject/VBox_MfProject/Nickname"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
+max_length = 32
 
 [node name="Check_SystemData" type="CheckBox" parent="Content" node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
@@ -62,5 +95,6 @@ text = "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
 icon = ExtResource("8_o81hq")
 alignment = 0
 
+[connection signal="text_submitted" from="Content/MfProject/VBox_MfProject/Nickname/Line_Nickname" to="Content/MfProject" method="OnTextSubmittedProjectNickname"]
 [connection signal="pressed" from="Content/SystemData/VBox_System/Button_CheckpointListTask" to="." method="OnGenerateDatabaseCheckpointFlag"]
 [connection signal="pressed" from="Content/Msbp/VBox_Msbp/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]

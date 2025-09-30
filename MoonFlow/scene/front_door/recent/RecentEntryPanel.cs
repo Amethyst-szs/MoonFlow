@@ -46,9 +46,17 @@ public partial class RecentEntryPanel : PanelContainer
         // Load information from this project's config file
         // This can take a bit especially for network directories, hence why this is an async task
         var config = new ProjectConfig(projPath);
+        string nickname = config.LocalConfig.Data.ProjectNickname;
 
-        string lName = path.TrimSuffix("romfs/").Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries).Last();
-        LabelName.SetDeferred(Label.PropertyName.Text, lName);
+        if (nickname != null)
+        {
+            LabelName.SetDeferred(Label.PropertyName.Text, nickname);
+        }
+        else
+        {
+            string lName = path.TrimSuffix("romfs/").Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries).Last();
+            LabelName.SetDeferred(Label.PropertyName.Text, lName);
+        }
 
         LabelPath.SetDeferred(Label.PropertyName.Text, path.TrimSuffix("romfs/"));
 
