@@ -98,6 +98,7 @@ public static partial class ProjectManager
         config.SetEngineTarget(GitInfo.GitVersionName(), GitInfo.GitCommitHash(), GitInfo.GitCommitUnixTime());
 
         config.WriteFile();
+        config.LocalConfig.WriteFile();
 
         return ProjectManagerResult.OK;
     }

@@ -9,22 +9,27 @@ namespace MoonFlow.Project;
 
 public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
 {
-    public ProjectConfig(string path) : base("PROJ", path) { }
-    public ProjectConfig(byte[] data) : base("PROJ", data) { }
+    public ProjectLocalConfig LocalConfig { get; private set; } = null;
+
+    #region Init
+
+    public ProjectConfig(string path) : base("PROJ", path) { InitLocalConfig(); }
+    public ProjectConfig(byte[] data) : base("PROJ", data) { InitLocalConfig(); }
     public ProjectConfig(string path, ProjectInitInfo initInfo) : base("PROJ")
     {
-        Path = path;
-
         // Copy data from init info to config
+        Path = path;
         Data.Version = initInfo.Version;
         Data.DefaultLanguage = initInfo.DefaultLanguage;
+
+        InitLocalConfig();
+    }
+    private void InitLocalConfig()
+    {
+        LocalConfig = new(Path, this);
     }
 
-    protected override bool TryGetWriteData(out object data)
-    {
-        data = Data;
-        return true;
-    }
+    #endregion
 
     #region Access Utility
 
@@ -37,11 +42,6 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public bool IsFirstBoot() { return Data.Flags.FirstBoot; }
     public bool IsDebug() { return Data.Flags.DebugProject; }
     public bool IsAlwaysUpgrade() { return Data.Flags.AlwaysUpgrade; }
-
-    // ~~~~~~~~~~~~~ Event Graph ~~~~~~~~~~~~~ //
-
-    public List<string> GetEventGraphPinned() { return Data.EventGraph.NodePins; }
-    public bool IsEventGraphNodePinned(string n) { return Data.EventGraph.NodePins.Contains(n); }
 
     // ~~~~~~~~~~~~~~~~ Target ~~~~~~~~~~~~~~~ //
 
@@ -71,15 +71,6 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public void SetDebugState(bool isDebug) { Data.Flags.DebugProject = isDebug; }
     public void EnsureSignature() { _ = Data.Signature; } // The signature's get method generates a sig if not present
 
-    public void AddEventGraphPin(string pin)
-    {
-        if (Data.EventGraph.NodePins.Contains(pin))
-            return;
-
-        Data.EventGraph.NodePins.Add(pin);
-    }
-    public void RemoveEventGraphPin(string pin) { Data.EventGraph.NodePins.Remove(pin); }
-
     public void SetEngineTarget(string name, string hash, long time)
     {
         SetEngineTarget(name, hash, DateTime.FromFileTimeUtc(time));
@@ -89,6 +80,12 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
         Data.Target.Name = name;
         Data.Target.CommitHash = hash;
         Data.Target.UnixTime = time.ToFileTimeUtc();
+    }
+
+    protected override bool TryGetWriteData(out object data)
+    {
+        data = Data;
+        return true;
     }
 
     #endregion

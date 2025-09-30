@@ -38,7 +38,7 @@ public partial class PopupInjectGraphNode : Popup
 	public override void _Ready()
 	{
 		// Initilize all favorite options
-		var config = ProjectManager.GetProject().Config;
+		var config = ProjectManager.GetProject().Config.LocalConfig;
 		foreach (var fav in config.GetEventGraphPinned())
 		{
 			var button = new NodeInjectButton();
@@ -172,7 +172,7 @@ public partial class PopupInjectGraphNode : Popup
 	public void OnInjectButtonPinned(string name)
 	{
 		// Update pin list
-		var config = ProjectManager.GetProject().Config;
+		var config = ProjectManager.GetProject().Config.LocalConfig;
 		if (config.IsEventGraphNodePinned(name))
 			return;
 
@@ -187,7 +187,7 @@ public partial class PopupInjectGraphNode : Popup
 	public void OnInjectButtonRemovePinned(string name)
 	{
 		// Update pin list
-		var config = ProjectManager.GetProject().Config;
+		var config = ProjectManager.GetProject().Config.LocalConfig;
 		if (!config.IsEventGraphNodePinned(name))
 			return;
 

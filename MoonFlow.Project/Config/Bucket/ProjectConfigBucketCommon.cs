@@ -61,8 +61,6 @@ public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
     internal ProjectConfigBucketFlags Flags = new();
     [JsonInclude]
     internal ProjectConfigBucketEngineTarget Target = new();
-    [JsonInclude]
-    internal ProjectConfigBucketEventGraph EventGraph = new();
 
     #endregion
 };

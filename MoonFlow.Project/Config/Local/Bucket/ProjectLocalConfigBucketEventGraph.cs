@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace MoonFlow.Project;
 
-internal class ProjectConfigBucketEventGraph
+internal class ProjectLocalConfigBucketEventGraph
 {
     private List<string> _pins = [];
     [JsonInclude]

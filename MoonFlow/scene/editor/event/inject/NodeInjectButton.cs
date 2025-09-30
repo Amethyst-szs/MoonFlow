@@ -68,7 +68,7 @@ public partial class NodeInjectButton : Button
 		SelfModulate = color.Lightened(0.15F);
 
 		var config = ProjectManager.GetProject().Config;
-		if (config.IsEventGraphNodePinned(name))
+		if (config.LocalConfig.IsEventGraphNodePinned(name))
 		{
 			_isPin = true;
 			Icon = PinIcon;
