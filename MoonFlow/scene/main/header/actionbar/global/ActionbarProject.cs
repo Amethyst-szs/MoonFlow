@@ -58,9 +58,19 @@ public partial class ActionbarProject : ActionbarItemBase
 
 	private void OnProjectMirrorCloneRequest()
 	{
+		ProjectState proj = ProjectManager.GetProject();
+		if (proj == null)
+			return;
+
+		ProjectLocalConfig config = proj.Config.LocalConfig;
+		string path = config.Data.CloneProjectUtilTargetPath;
+
+		if (path == null || path == string.Empty)
+			path = ProjectManager.GetPath();
+
 		DisplayServer.FileDialogShow(
 			"Select Clone Destination",
-			ProjectManager.GetPath(),
+			path,
 			null,
 			false,
 			DisplayServer.FileDialogMode.OpenDir,
@@ -72,18 +82,29 @@ public partial class ActionbarProject : ActionbarItemBase
 	{
 		if (!isAccept || paths.Length != 1)
 			return;
-		
+
 		string source = ProjectManager.GetPath();
 		string target = paths[0].EnsurePostfix("/");
 		if (source == target)
 			return;
-		
-		if (!ProjectManager.IsProjectConfigExist(ref target, out string _, false)) {
+
+		if (!ProjectManager.IsProjectConfigExist(ref target, out string _, false))
+		{
 			GD.Print("There must already be a MoonFlow project at the clone destination!");
 			return;
 		}
-		
+
 		DirectoryExt.CopyFilesRecursively(source, target);
+
+		// Update saved clone target directory
+		ProjectState proj = ProjectManager.GetProject();
+		if (proj != null)
+		{
+			ProjectLocalConfig config = proj.Config.LocalConfig;
+
+			config.Data.CloneProjectUtilTargetPath = target;
+			config.WriteFile();
+		}
 	}
 
 	private void OnProjectOpenInExplorerPressed()
