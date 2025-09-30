@@ -111,6 +111,7 @@
 # res://scene/common/msbt_lookup/select_entry/popup_msbt_select_entry.tscn
 # res://scene/common/msbt_lookup/select_entry/popup_msbt_select_entry_only_label.tscn
 # res://scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
+# res://scene/home/tools/beta/tab_beta.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -402,6 +403,14 @@ msgstr ""
 
 #: scene/home/home.tscn
 msgid "TOOL_PROJECT"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "TOOL_BETAS_TOOLTIP"
+msgstr ""
+
+#: scene/home/home.tscn
+msgid "TOOL_BETAS"
 msgstr ""
 
 #: scene/home/home.tscn
@@ -4200,4 +4209,20 @@ msgstr ""
 
 #: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
+msgstr ""
+
+#: scene/home/tools/beta/tab_beta.tscn
+msgid "HOME_TAB_BETA_GRAPHICS_PRESET_TOOL_HEADER"
+msgstr ""
+
+#: scene/home/tools/beta/tab_beta.tscn
+msgid "HOME_TAB_BETA_GRAPHICS_PRESET_TOOL_DESCRIPTION"
+msgstr ""
+
+#: scene/home/tools/beta/tab_beta.tscn
+msgid "HOME_TAB_BETA_OPEN_TOOL"
+msgstr ""
+
+#: scene/home/tools/beta/tab_beta.tscn
+msgid "HOME_TAB_BETA_CLOSE_TOOL"
 msgstr ""

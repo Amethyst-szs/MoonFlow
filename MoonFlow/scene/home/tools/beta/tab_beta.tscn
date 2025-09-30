@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cenetrnak13sp"]
+
+[ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_onwjo"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_ju5j8"]
+[ext_resource type="StyleBox" uid="uid://ddq0lrvtrq2pr" path="res://asset/theme/event/inject/stylebox/event_graph_node_inject_popup_panel.tres" id="2_wkthy"]
+[ext_resource type="Script" uid="uid://8fcbo4ng14k1" path="res://scene/home/tools/beta/component/PanelGraphicsPreset.cs" id="3_tv0lb"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="4_mx84p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkthy"]
+font = ExtResource("2_ju5j8")
+font_size = 18
+
+[sub_resource type="SystemFont" id="SystemFont_tv0lb"]
+fallbacks = Array[Font]([ExtResource("4_mx84p")])
+font_names = PackedStringArray("Noto Mono")
+
+[node name="Beta" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_onwjo")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+metadata/_tab_index = 0
+
+[node name="Content" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 3
+
+[node name="Panel_GraphicsPreset" type="PanelContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wkthy")
+script = ExtResource("3_tv0lb")
+
+[node name="VBox" type="VBoxContainer" parent="Content/Panel_GraphicsPreset"]
+layout_mode = 2
+
+[node name="Label_GraphicsPreset" type="Label" parent="Content/Panel_GraphicsPreset/VBox"]
+layout_mode = 2
+text = "HOME_TAB_BETA_GRAPHICS_PRESET_TOOL_HEADER"
+label_settings = SubResource("LabelSettings_wkthy")
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Label_GraphicsPresetDesc" type="RichTextLabel" parent="Content/Panel_GraphicsPreset/VBox"]
+custom_minimum_size = Vector2(64, 192)
+layout_mode = 2
+theme_override_fonts/mono_font = SubResource("SystemFont_tv0lb")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+theme_override_font_sizes/italics_font_size = 13
+theme_override_font_sizes/mono_font_size = 12
+bbcode_enabled = true
+text = "HOME_TAB_BETA_GRAPHICS_PRESET_TOOL_DESCRIPTION"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button_GraphicsPreset" type="Button" parent="Content/Panel_GraphicsPreset/VBox"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "HOME_TAB_BETA_OPEN_TOOL"
+text_overrun_behavior = 3
+
+[node name="Button_GraphicsPresetEnd" type="Button" parent="Content/Panel_GraphicsPreset/VBox"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "HOME_TAB_BETA_CLOSE_TOOL"
+text_overrun_behavior = 3
+
+[connection signal="pressed" from="Content/Panel_GraphicsPreset/VBox/Button_GraphicsPreset" to="Content/Panel_GraphicsPreset" method="OnButtonStartupPressed"]
+[connection signal="pressed" from="Content/Panel_GraphicsPreset/VBox/Button_GraphicsPresetEnd" to="Content/Panel_GraphicsPreset" method="OnButtonEndPressed"]
