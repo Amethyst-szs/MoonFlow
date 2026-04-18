@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cgpdfqa825020"]
+[gd_scene format=3 uid="uid://cgpdfqa825020"]
 
 [ext_resource type="Script" uid="uid://cxmboqbfq1402" path="res://addons/wiki/scene/AppLocalWikiViewer.cs" id="1_apa5k"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_noxf1"]
@@ -53,7 +53,7 @@ script = ExtResource("13_rcv6f")
 override_font_color = true
 font_color = Color(1, 1, 1, 0.717647)
 
-[node name="AppLocalWikiViewer" type="Control" node_paths=PackedStringArray("Markdown", "Browser")]
+[node name="AppLocalWikiViewer" type="Control" unique_id=1145973494 node_paths=PackedStringArray("Markdown", "Browser")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +69,7 @@ AppTaskbarTitle = "Wiki"
 AppIcon = ExtResource("3_ecq31")
 AppFlags = 35
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=1119009435]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,38 +78,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("3_50pm3")
 
-[node name="Margin" type="MarginContainer" parent="Content"]
+[node name="Margin" type="MarginContainer" parent="Content" unique_id=1678636694]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
 
-[node name="Split" type="HSplitContainer" parent="Content/Margin"]
+[node name="Split" type="HSplitContainer" parent="Content/Margin" unique_id=298518082]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_constants/autohide = 0
+split_offsets = PackedInt32Array(-250)
 split_offset = -250
 
-[node name="Panel_Browser" type="PanelContainer" parent="Content/Margin/Split"]
+[node name="Panel_Browser" type="PanelContainer" parent="Content/Margin/Split" unique_id=946158656]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("5_qdr3e")
 
-[node name="Margin" type="MarginContainer" parent="Content/Margin/Split/Panel_Browser"]
+[node name="Margin" type="MarginContainer" parent="Content/Margin/Split/Panel_Browser" unique_id=1169443178]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 8
 
-[node name="VBox" type="VBoxContainer" parent="Content/Margin/Split/Panel_Browser/Margin"]
+[node name="VBox" type="VBoxContainer" parent="Content/Margin/Split/Panel_Browser/Margin" unique_id=714331990]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="Label_BrowseHeader" type="Label" parent="Content/Margin/Split/Panel_Browser/Margin/VBox"]
+[node name="Label_BrowseHeader" type="Label" parent="Content/Margin/Split/Panel_Browser/Margin/VBox" unique_id=56092431]
 layout_mode = 2
 mouse_filter = 1
 text = "WIKI_APP_BROWSE_HEADER"
@@ -117,7 +118,7 @@ label_settings = SubResource("LabelSettings_q3ilf")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Tree_Files" type="Tree" parent="Content/Margin/Split/Panel_Browser/Margin/VBox"]
+[node name="Tree_Files" type="Tree" parent="Content/Margin/Split/Panel_Browser/Margin/VBox" unique_id=31593665]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
@@ -126,7 +127,7 @@ hide_root = true
 scroll_horizontal_enabled = false
 script = ExtResource("6_kxboy")
 
-[node name="Button_OpenBrowser" type="Button" parent="Content/Margin/Split/Panel_Browser/Margin/VBox"]
+[node name="Button_OpenBrowser" type="Button" parent="Content/Margin/Split/Panel_Browser/Margin/VBox" unique_id=1280959989]
 layout_mode = 2
 theme_override_constants/icon_max_width = 21
 text = "WIKI_APP_OPEN_IN_BROWSER"
@@ -134,20 +135,20 @@ icon = ExtResource("8_wpxiv")
 text_overrun_behavior = 3
 icon_alignment = 2
 
-[node name="Panel_Markdown" type="PanelContainer" parent="Content/Margin/Split"]
+[node name="Panel_Markdown" type="PanelContainer" parent="Content/Margin/Split" unique_id=681583914]
 self_modulate = Color(0.658824, 0.658824, 0.658824, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("3_50pm3")
 
-[node name="Margin" type="MarginContainer" parent="Content/Margin/Split/Panel_Markdown"]
+[node name="Margin" type="MarginContainer" parent="Content/Margin/Split/Panel_Markdown" unique_id=663691700]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="Markdown" type="RichTextLabel" parent="Content/Margin/Split/Panel_Markdown/Margin"]
+[node name="Markdown" type="RichTextLabel" parent="Content/Margin/Split/Panel_Markdown/Margin" unique_id=148395016]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

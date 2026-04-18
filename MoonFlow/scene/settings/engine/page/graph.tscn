@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cloegljf3qn5e"]
+[gd_scene format=3 uid="uid://cloegljf3qn5e"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_2xewp"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_8d0hg"]
@@ -12,33 +12,33 @@ font_size = 19
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7hcg"]
 
-[node name="Page_Graph" type="VBoxContainer"]
+[node name="Page_Graph" type="VBoxContainer" unique_id=1473150112]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 470.0
 grow_horizontal = 2
 
-[node name="Header" parent="." instance=ExtResource("1_8d0hg")]
+[node name="Header" parent="." unique_id=1207679939 instance=ExtResource("1_8d0hg")]
 layout_mode = 2
 
-[node name="Label_Head" parent="Header/Layout" index="0"]
+[node name="Label_Head" parent="Header/Layout" parent_id_path=PackedInt32Array(1207679939, 209024878) index="0" unique_id=53255930]
 text = "ENGINE_SETTINGS_APP_CATEGORY_GRAPH"
 
-[node name="VBox_Visual" type="VBoxContainer" parent="."]
+[node name="VBox_Visual" type="VBoxContainer" parent="." unique_id=939734365]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label_VisualHeader" type="Label" parent="VBox_Visual"]
+[node name="Label_VisualHeader" type="Label" parent="VBox_Visual" unique_id=1100445630]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
 label_settings = SubResource("LabelSettings_g3f1a")
 
-[node name="HSeparator" type="HSeparator" parent="VBox_Visual"]
+[node name="HSeparator" type="HSeparator" parent="VBox_Visual" unique_id=488033247]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Check_DisableShaderBG" type="CheckBox" parent="VBox_Visual"]
+[node name="Check_DisableShaderBG" type="CheckBox" parent="VBox_Visual" unique_id=354948928]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -46,31 +46,31 @@ text = "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND"
 script = ExtResource("2_rm84r")
 key = "moonflow/event_graph/disable_background"
 
-[node name="HSep_Spacer" type="HSeparator" parent="VBox_Visual"]
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Visual" unique_id=1063540557]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
 
-[node name="VBox_Controls" type="VBoxContainer" parent="."]
+[node name="VBox_Controls" type="VBoxContainer" parent="." unique_id=1047675086]
 layout_mode = 2
 theme = ExtResource("3_l4qnn")
 theme_override_constants/separation = 8
 
-[node name="Label_ControlHeader" type="Label" parent="VBox_Controls"]
+[node name="Label_ControlHeader" type="Label" parent="VBox_Controls" unique_id=1574767718]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS"
 label_settings = SubResource("LabelSettings_g3f1a")
 
-[node name="HSeparator" type="HSeparator" parent="VBox_Controls"]
+[node name="HSeparator" type="HSeparator" parent="VBox_Controls" unique_id=96143433]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label_ZoomSensitivity" type="Label" parent="VBox_Controls"]
+[node name="Label_ZoomSensitivity" type="Label" parent="VBox_Controls" unique_id=17761327]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_HEADER"
 
-[node name="Slider_ZoomSensitivity" type="HSlider" parent="VBox_Controls" node_paths=PackedStringArray("label")]
+[node name="Slider_ZoomSensitivity" type="HSlider" parent="VBox_Controls" unique_id=1134623972 node_paths=PackedStringArray("label")]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_ZOOM_SENSITIVITY_TOOLTIP"
 mouse_default_cursor_shape = 10
@@ -85,16 +85,16 @@ label = NodePath("../Label_ZoomSensitivity")
 display_factor = 10.0
 suffix = "x"
 
-[node name="HSep_MiniSpacer0" type="HSeparator" parent="VBox_Controls"]
+[node name="HSep_MiniSpacer0" type="HSeparator" parent="VBox_Controls" unique_id=1210122977]
 layout_mode = 2
 theme_override_constants/separation = 14
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
 
-[node name="Label_PanSensitivityX" type="Label" parent="VBox_Controls"]
+[node name="Label_PanSensitivityX" type="Label" parent="VBox_Controls" unique_id=473974227]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_X_HEADER"
 
-[node name="Slider_PanSensitivityX" type="HSlider" parent="VBox_Controls" node_paths=PackedStringArray("label")]
+[node name="Slider_PanSensitivityX" type="HSlider" parent="VBox_Controls" unique_id=990927818 node_paths=PackedStringArray("label")]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_X_TOOLTIP"
 mouse_default_cursor_shape = 10
@@ -108,16 +108,16 @@ key = "moonflow/event_graph/sensitivity_pan_x"
 label = NodePath("../Label_PanSensitivityX")
 suffix = "x"
 
-[node name="HSep_MiniSpacer1" type="HSeparator" parent="VBox_Controls"]
+[node name="HSep_MiniSpacer1" type="HSeparator" parent="VBox_Controls" unique_id=1213238051]
 layout_mode = 2
 theme_override_constants/separation = 14
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
 
-[node name="Label_PanSensitivityY" type="Label" parent="VBox_Controls"]
+[node name="Label_PanSensitivityY" type="Label" parent="VBox_Controls" unique_id=1685960925]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_HEADER"
 
-[node name="Slider_PanSensitivityY" type="HSlider" parent="VBox_Controls" node_paths=PackedStringArray("label")]
+[node name="Slider_PanSensitivityY" type="HSlider" parent="VBox_Controls" unique_id=1864422243 node_paths=PackedStringArray("label")]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_CONTROLS_PAN_SENSITIVITY_Y_TOOLTIP"
 mouse_default_cursor_shape = 10
@@ -131,7 +131,7 @@ key = "moonflow/event_graph/sensitivity_pan_y"
 label = NodePath("../Label_PanSensitivityY")
 suffix = "x"
 
-[node name="HSep_Spacer" type="HSeparator" parent="VBox_Controls"]
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Controls" unique_id=1589565336]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")

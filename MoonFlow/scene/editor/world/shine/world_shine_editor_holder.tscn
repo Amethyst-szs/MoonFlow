@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ctp1ncef3xift"]
+[gd_scene format=3 uid="uid://ctp1ncef3xift"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_408cb"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_edytr"]
@@ -45,7 +45,7 @@ font_size = 17
 [sub_resource type="LabelSettings" id="LabelSettings_toy85"]
 font = ExtResource("15_ukcdp")
 
-[node name="WorldShineEditorHolder" type="PanelContainer" node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "LabelIndex", "ButtonDropdown", "ContentContainer", "DialogConfirmDelete")]
+[node name="WorldShineEditorHolder" type="PanelContainer" unique_id=71882097 node_paths=PackedStringArray("LabelShineName", "LabelStageName", "IconType", "IconGrand", "ButtonCreateDisplayName", "ButtonOpenDisplayName", "LabelIndex", "ButtonDropdown", "ContentContainer", "DialogConfirmDelete")]
 self_modulate = Color(0.07450981, 0.09803922, 0.10980392, 1)
 anchors_preset = 10
 anchor_right = 1.0
@@ -67,32 +67,32 @@ ContentContainer = NodePath("Content")
 DropdownContentScene = ExtResource("10_ncq3p")
 DialogConfirmDelete = NodePath("Dialog_ConfirmDelete")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=647427142]
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("4_j7oie")
 
-[node name="Layout" type="HBoxContainer" parent="Content"]
+[node name="Layout" type="HBoxContainer" parent="Content" unique_id=1214338862]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 script = SubResource("GDScript_nm0gn")
 
-[node name="Button_CreateDisplayName" type="Button" parent="Content/Layout"]
+[node name="Button_CreateDisplayName" type="Button" parent="Content/Layout" unique_id=807123466]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_CREATE"
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 20
 icon = ExtResource("10_61kdi")
 
-[node name="Button_OpenDisplayName" type="Button" parent="Content/Layout"]
+[node name="Button_OpenDisplayName" type="Button" parent="Content/Layout" unique_id=2138543791]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DISPLAY_NAME_BUTTON_OPEN"
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 20
 icon = ExtResource("11_b6myh")
 
-[node name="Check_Expand" type="CheckBox" parent="Content/Layout"]
+[node name="Check_Expand" type="CheckBox" parent="Content/Layout" unique_id=441815459]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -101,13 +101,13 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("1_408cb")
 script = ExtResource("1_yop2g")
 
-[node name="VBox_InfoDisplay" type="VBoxContainer" parent="Content/Layout"]
+[node name="VBox_InfoDisplay" type="VBoxContainer" parent="Content/Layout" unique_id=236651567]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Rich_Name" type="RichTextLabel" parent="Content/Layout/VBox_InfoDisplay"]
+[node name="Rich_Name" type="RichTextLabel" parent="Content/Layout/VBox_InfoDisplay" unique_id=868080906]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -119,7 +119,7 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 
-[node name="Label_Stage" type="Label" parent="Content/Layout/VBox_InfoDisplay"]
+[node name="Label_Stage" type="Label" parent="Content/Layout/VBox_InfoDisplay" unique_id=86580200]
 auto_translate_mode = 2
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
@@ -127,14 +127,14 @@ text = "ABCDEF"
 label_settings = SubResource("LabelSettings_cx7u1")
 text_overrun_behavior = 4
 
-[node name="Texture_TypeIcon" type="TextureRect" parent="Content/Layout"]
+[node name="Texture_TypeIcon" type="TextureRect" parent="Content/Layout" unique_id=948817996]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("12_nm0gn")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Texture_GrandIcon" type="TextureRect" parent="Content/Layout"]
+[node name="Texture_GrandIcon" type="TextureRect" parent="Content/Layout" unique_id=671773496]
 self_modulate = Color(1, 1, 1, 0.121569)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -143,7 +143,7 @@ texture = ExtResource("8_msi0w")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Content/Layout/Texture_GrandIcon"]
+[node name="Label" type="Label" parent="Content/Layout/Texture_GrandIcon" unique_id=2132979763]
 auto_translate_mode = 2
 layout_mode = 1
 anchors_preset = 8
@@ -161,14 +161,14 @@ text = "3"
 label_settings = SubResource("LabelSettings_q0u7j")
 horizontal_alignment = 1
 
-[node name="Button_Delete" type="Button" parent="Content/Layout"]
+[node name="Button_Delete" type="Button" parent="Content/Layout" unique_id=484015985]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_DELETE_SHINE_TOOLTIP"
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 20
 icon = ExtResource("12_hwalq")
 
-[node name="HBox_IndexGrabber" type="HBoxContainer" parent="Content/Layout" node_paths=PackedStringArray("holder")]
+[node name="HBox_IndexGrabber" type="HBoxContainer" parent="Content/Layout" unique_id=1889657064 node_paths=PackedStringArray("holder")]
 layout_mode = 2
 size_flags_horizontal = 8
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_INDEX_GRABBER_TOOLTIP"
@@ -177,7 +177,7 @@ mouse_default_cursor_shape = 9
 script = ExtResource("14_6t6iw")
 holder = NodePath("../../..")
 
-[node name="Label_Index" type="Label" parent="Content/Layout/HBox_IndexGrabber"]
+[node name="Label_Index" type="Label" parent="Content/Layout/HBox_IndexGrabber" unique_id=317745161]
 auto_translate_mode = 2
 custom_minimum_size = Vector2(34, 0)
 layout_mode = 2
@@ -186,12 +186,12 @@ label_settings = SubResource("LabelSettings_toy85")
 horizontal_alignment = 2
 text_overrun_behavior = 1
 
-[node name="Texture_Drag" type="TextureRect" parent="Content/Layout/HBox_IndexGrabber"]
+[node name="Texture_Drag" type="TextureRect" parent="Content/Layout/HBox_IndexGrabber" unique_id=829704867]
 layout_mode = 2
 texture = ExtResource("14_2hsfn")
 stretch_mode = 5
 
-[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
+[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="." unique_id=84517854]
 auto_translate_mode = 1
 title = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1
@@ -202,7 +202,7 @@ dialog_autowrap = true
 cancel_button_text = "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("14_h4xx8")
 
-[node name="MouseCollider" type="Node2D" parent="."]
+[node name="MouseCollider" type="Node2D" parent="." unique_id=1310236392]
 script = ExtResource("19_vdu1j")
 
 [connection signal="visibility_changed" from="." to="MouseCollider" method="_on_world_shine_editor_holder_visibility_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://h84sss0s2x5b"]
+[gd_scene format=3 uid="uid://h84sss0s2x5b"]
 
 [ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_xmmk2"]
 [ext_resource type="Script" uid="uid://xwhuo8kjnijg" path="res://scene/common/msbt_lookup/select_entry/PopupMsbtSelectEntry.cs" id="2_a2ipd"]
@@ -14,7 +14,8 @@ font_color = Color(1, 0.43, 0.43, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r06ms"]
 
-[node name="PopupMsbtSelectEntry" type="Window" node_paths=PackedStringArray("LineSearch", "ResultList", "LabelInvalidRequest", "LabelNoResults", "LabelTooManyResults")]
+[node name="PopupMsbtSelectEntry" type="Window" unique_id=572689988 node_paths=PackedStringArray("LabelInvalidRequest", "LabelNoResults", "LabelTooManyResults", "LineSearch", "ResultList")]
+oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(620, 512)
 transient = true
@@ -22,13 +23,13 @@ exclusive = true
 min_size = Vector2i(256, 312)
 theme = ExtResource("1_xmmk2")
 script = ExtResource("2_a2ipd")
-LineSearch = NodePath("Content/VBox/Line_Search")
-ResultList = NodePath("Content/VBox/Scroll_Results/VBox_Results")
 LabelInvalidRequest = NodePath("Content/VBox/Label_InvalidRequest")
 LabelNoResults = NodePath("Content/VBox/Label_NoResults")
 LabelTooManyResults = NodePath("Content/VBox/Label_TooManyResults")
+LineSearch = NodePath("Content/VBox/Line_Search")
+ResultList = NodePath("Content/VBox/Scroll_Results/VBox_Results")
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=2121537675]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,17 +37,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("3_pqj6m")
 
-[node name="VBox" type="VBoxContainer" parent="Content"]
+[node name="VBox" type="VBoxContainer" parent="Content" unique_id=2125083880]
 layout_mode = 2
 theme = ExtResource("2_ac1cj")
 theme_override_constants/separation = 12
 
-[node name="Line_Search" type="LineEdit" parent="Content/VBox"]
+[node name="Line_Search" type="LineEdit" parent="Content/VBox" unique_id=1658163963]
 layout_mode = 2
 placeholder_text = "POPUP_MSBT_SELECT_ENTRY_SEARCH_BOX_PLACEHOLDER"
 right_icon = ExtResource("2_osma2")
 
-[node name="Label_InvalidRequest" type="Label" parent="Content/VBox"]
+[node name="Label_InvalidRequest" type="Label" parent="Content/VBox" unique_id=1476980581]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "POPUP_MSBT_SELECT_ENTRY_INVALID_SEARCH_REQUEST"
@@ -54,7 +55,7 @@ label_settings = SubResource("LabelSettings_3drgo")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_NoResults" type="Label" parent="Content/VBox"]
+[node name="Label_NoResults" type="Label" parent="Content/VBox" unique_id=466017369]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "POPUP_MSBT_SELECT_ENTRY_NO_RESULTS_MESSAGE"
@@ -62,7 +63,7 @@ label_settings = SubResource("LabelSettings_mffdp")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_TooManyResults" type="Label" parent="Content/VBox"]
+[node name="Label_TooManyResults" type="Label" parent="Content/VBox" unique_id=228271448]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "POPUP_MSBT_SELECT_ENTRY_TOO_MANY_RESULTS_MESSAGE"
@@ -70,7 +71,7 @@ label_settings = SubResource("LabelSettings_mffdp")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Scroll_Results" type="ScrollContainer" parent="Content/VBox"]
+[node name="Scroll_Results" type="ScrollContainer" parent="Content/VBox" unique_id=1119058207]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r06ms")
@@ -81,7 +82,7 @@ follow_focus_margin = 40
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="VBox_Results" type="VBoxContainer" parent="Content/VBox/Scroll_Results"]
+[node name="VBox_Results" type="VBoxContainer" parent="Content/VBox/Scroll_Results" unique_id=1815616860]
 layout_mode = 2
 size_flags_horizontal = 3
 

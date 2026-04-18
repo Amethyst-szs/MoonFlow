@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2775ugm6di8r"]
+[gd_scene format=3 uid="uid://d2775ugm6di8r"]
 
 [ext_resource type="Theme" uid="uid://bv475afvceima" path="res://asset/theme/msbp/color/msbp_color_editor.tres" id="1_00ii6"]
 [ext_resource type="StyleBox" uid="uid://dc7dabk10eeb5" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_edit.tres" id="1_m6c5j"]
@@ -14,26 +14,26 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ftjp"]
 shader = ExtResource("4_4qx4e")
 
-[node name="Element" type="HBoxContainer"]
+[node name="Element" type="HBoxContainer" unique_id=45516529]
 theme = ExtResource("1_00ii6")
 script = ExtResource("2_5xs7q")
 
-[node name="Panel_Color" type="PanelContainer" parent="."]
+[node name="Panel_Color" type="PanelContainer" parent="." unique_id=5880929]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("1_m6c5j")
 
-[node name="Layout" type="HBoxContainer" parent="Panel_Color"]
+[node name="Layout" type="HBoxContainer" parent="Panel_Color" unique_id=1204090098]
 layout_mode = 2
 
-[node name="Button_OpenPicker" type="Button" parent="Panel_Color/Layout"]
+[node name="Button_OpenPicker" type="Button" parent="Panel_Color/Layout" unique_id=1652121139]
 self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme = ExtResource("3_h36ao")
 disabled = true
 
-[node name="Texture_Icon" type="TextureRect" parent="Panel_Color/Layout/Button_OpenPicker"]
+[node name="Texture_Icon" type="TextureRect" parent="Panel_Color/Layout/Button_OpenPicker" unique_id=1263650889]
 material = SubResource("ShaderMaterial_3ftjp")
 layout_mode = 1
 anchors_preset = 8
@@ -50,7 +50,7 @@ grow_vertical = 2
 texture = ExtResource("3_0d0pn")
 expand_mode = 1
 
-[node name="Line_ColorName" type="LineEdit" parent="Panel_Color/Layout"]
+[node name="Line_ColorName" type="LineEdit" parent="Panel_Color/Layout" unique_id=1630520902]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
@@ -59,21 +59,21 @@ editable = false
 script = ExtResource("6_c447u")
 is_return_if_empty = true
 
-[node name="Panel_PreviewBlack" type="PanelContainer" parent="."]
+[node name="Panel_PreviewBlack" type="PanelContainer" parent="." unique_id=441698400]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_l4ct1")
 
-[node name="Preview" parent="Panel_PreviewBlack" instance=ExtResource("8_5bfqn")]
+[node name="Preview" parent="Panel_PreviewBlack" unique_id=1563837752 instance=ExtResource("8_5bfqn")]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Panel_PreviewWhite" type="PanelContainer" parent="."]
+[node name="Panel_PreviewWhite" type="PanelContainer" parent="." unique_id=1087354640]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("3_0x0g4")
 
-[node name="Preview" parent="Panel_PreviewWhite" instance=ExtResource("8_5bfqn")]
+[node name="Preview" parent="Panel_PreviewWhite" unique_id=1269521727 instance=ExtResource("8_5bfqn")]
 layout_mode = 2
 size_flags_vertical = 4
 

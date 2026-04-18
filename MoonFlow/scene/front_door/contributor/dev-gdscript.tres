@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ContributorList" load_steps=4 format=3 uid="uid://bn1eqe3mahm8v"]
+[gd_resource type="Resource" script_class="ContributorList" format=3 uid="uid://bn1eqe3mahm8v"]
 
 [ext_resource type="Script" uid="uid://cdy54g12vpoj4" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_mce3g"]
 [ext_resource type="Script" uid="uid://cl3hejrv1dgl4" path="res://scene/front_door/contributor/define/contribute_list.gd" id="2_jof76"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctffpm166bteo"]
+[gd_scene format=3 uid="uid://ctffpm166bteo"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_qiqeq"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="2_xa8bk"]
@@ -33,7 +33,7 @@ font_size = 18
 font_color = Color(0, 0, 0, 1)
 outline_size = 9
 
-[node name="Texture_Map" type="TextureRect" node_paths=PackedStringArray("IconHolder", "LabelLoading", "MapControls", "PopupScenario", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
+[node name="Texture_Map" type="TextureRect" unique_id=108215352 node_paths=PackedStringArray("IconHolder", "LabelLoading", "MapControls", "PopupScenario", "SliderDragSensitivity", "SpinMapRotate", "SpinMapScale")]
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +58,7 @@ TextureShine = ExtResource("2_xa8bk")
 TextureCheckpoint = ExtResource("3_2v8lb")
 TextureOrigin = ExtResource("3_btxgw")
 
-[node name="Label_Load" type="Label" parent="."]
+[node name="Label_Load" type="Label" parent="." unique_id=1418900748]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -73,7 +73,7 @@ label_settings = SubResource("LabelSettings_xpiv1")
 horizontal_alignment = 1
 text_overrun_behavior = 1
 
-[node name="IconHolder" type="Control" parent="."]
+[node name="IconHolder" type="Control" parent="." unique_id=298688544]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MapControls" type="VBoxContainer" parent="."]
+[node name="MapControls" type="VBoxContainer" parent="." unique_id=1975200593]
 modulate = Color(1, 1, 1, 0.9019608)
 layout_mode = 1
 anchors_preset = -1
@@ -97,20 +97,21 @@ theme = ExtResource("4_7wfg5")
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Adjust" type="VBoxContainer" parent="MapControls"]
+[node name="Adjust" type="VBoxContainer" parent="MapControls" unique_id=1940506298]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Transform" type="HBoxContainer" parent="MapControls/Adjust"]
+[node name="Transform" type="HBoxContainer" parent="MapControls/Adjust" unique_id=525717719]
 layout_mode = 2
 theme = ExtResource("6_5h7kc")
 
-[node name="Rotate" type="VBoxContainer" parent="MapControls/Adjust/Transform"]
+[node name="Rotate" type="VBoxContainer" parent="MapControls/Adjust/Transform" unique_id=1443576261]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Label_Rotate" type="Label" parent="MapControls/Adjust/Transform/Rotate"]
+[node name="Label_Rotate" type="Label" parent="MapControls/Adjust/Transform/Rotate" unique_id=1649631212]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_MAP_TAB_ROTATE_INPUT_TOOLTIP"
 mouse_filter = 1
@@ -120,7 +121,7 @@ label_settings = SubResource("LabelSettings_onm4b")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Spin_Rotate" type="SpinBox" parent="MapControls/Adjust/Transform/Rotate"]
+[node name="Spin_Rotate" type="SpinBox" parent="MapControls/Adjust/Transform/Rotate" unique_id=1018024714]
 layout_mode = 2
 min_value = -360.0
 max_value = 360.0
@@ -129,12 +130,12 @@ alignment = 1
 suffix = "°"
 custom_arrow_step = 45.0
 
-[node name="Scale" type="VBoxContainer" parent="MapControls/Adjust/Transform"]
+[node name="Scale" type="VBoxContainer" parent="MapControls/Adjust/Transform" unique_id=1791562182]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Label_Scale" type="Label" parent="MapControls/Adjust/Transform/Scale"]
+[node name="Label_Scale" type="Label" parent="MapControls/Adjust/Transform/Scale" unique_id=383917354]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_MAP_TAB_SCALE_INPUT_TOOLTIP"
 mouse_filter = 1
@@ -144,7 +145,7 @@ label_settings = SubResource("LabelSettings_onm4b")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Spin_Scale" type="SpinBox" parent="MapControls/Adjust/Transform/Scale"]
+[node name="Spin_Scale" type="SpinBox" parent="MapControls/Adjust/Transform/Scale" unique_id=1134517938]
 layout_mode = 2
 min_value = 1.0
 max_value = 1000.0
@@ -153,11 +154,11 @@ alignment = 1
 suffix = "%"
 custom_arrow_step = 1.0
 
-[node name="Footer" type="HBoxContainer" parent="MapControls/Adjust"]
+[node name="Footer" type="HBoxContainer" parent="MapControls/Adjust" unique_id=2104756926]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Button_Undo" type="Button" parent="MapControls/Adjust/Footer"]
+[node name="Button_Undo" type="Button" parent="MapControls/Adjust/Footer" unique_id=850310746]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT_TOOLTIP"
@@ -166,13 +167,13 @@ text = "WORLD_EDITOR_MAP_TAB_UNDO_ADJUSTMENT"
 icon = ExtResource("6_btxgw")
 text_overrun_behavior = 3
 
-[node name="Sensitivity" type="VBoxContainer" parent="MapControls/Adjust/Footer"]
+[node name="Sensitivity" type="VBoxContainer" parent="MapControls/Adjust/Footer" unique_id=1029426246]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_mct1i")
 theme_override_constants/separation = 8
 
-[node name="Label_Sensitivity" type="Label" parent="MapControls/Adjust/Footer/Sensitivity"]
+[node name="Label_Sensitivity" type="Label" parent="MapControls/Adjust/Footer/Sensitivity" unique_id=842626672]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_MAP_TAB_SENSITIVITY_SLIDER_TOOLTIP"
 mouse_filter = 1
@@ -182,7 +183,7 @@ label_settings = SubResource("LabelSettings_onm4b")
 horizontal_alignment = 1
 text_overrun_behavior = 1
 
-[node name="HSlider_Sensitivity" type="HSlider" parent="MapControls/Adjust/Footer/Sensitivity"]
+[node name="HSlider_Sensitivity" type="HSlider" parent="MapControls/Adjust/Footer/Sensitivity" unique_id=864965989]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 10
@@ -191,7 +192,7 @@ value = 50.0
 tick_count = 8
 ticks_position = 3
 
-[node name="Button_CenterToOrigin" type="Button" parent="MapControls/Adjust/Footer"]
+[node name="Button_CenterToOrigin" type="Button" parent="MapControls/Adjust/Footer" unique_id=1723736184]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_MAP_TAB_CENTER_TO_ORIGIN_TOOLTIP"
@@ -200,10 +201,10 @@ text = "WORLD_EDITOR_MAP_TAB_CENTER_TO_ORIGIN"
 icon = ExtResource("3_btxgw")
 text_overrun_behavior = 3
 
-[node name="Tools" type="HBoxContainer" parent="MapControls"]
+[node name="Tools" type="HBoxContainer" parent="MapControls" unique_id=1356076966]
 layout_mode = 2
 
-[node name="Button_IconShow" type="Button" parent="MapControls/Tools"]
+[node name="Button_IconShow" type="Button" parent="MapControls/Tools" unique_id=264051831]
 self_modulate = Color(1, 1, 1, 0.8627451)
 layout_mode = 2
 size_flags_vertical = 4
@@ -212,7 +213,7 @@ toggle_mode = true
 button_pressed = true
 icon = ExtResource("10_3abut")
 
-[node name="ToolGrid" type="GridContainer" parent="MapControls/Tools"]
+[node name="ToolGrid" type="GridContainer" parent="MapControls/Tools" unique_id=426404662]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
@@ -220,7 +221,7 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 6
 columns = 2
 
-[node name="Button_Adjust" type="Button" parent="MapControls/Tools/ToolGrid"]
+[node name="Button_Adjust" type="Button" parent="MapControls/Tools/ToolGrid" unique_id=1464864757]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_MAP_BUTTON_ADJUST_TOOLTIP"
@@ -231,7 +232,7 @@ icon = ExtResource("5_onm4b")
 text_overrun_behavior = 3
 expand_icon = true
 
-[node name="Button_Refresh" type="Button" parent="MapControls/Tools/ToolGrid"]
+[node name="Button_Refresh" type="Button" parent="MapControls/Tools/ToolGrid" unique_id=947792709]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_MAP_BUTTON_REFRESH_TOOLTIP"
@@ -242,7 +243,7 @@ text_overrun_behavior = 3
 icon_alignment = 2
 expand_icon = true
 
-[node name="Button_ExportReference" type="Button" parent="MapControls/Tools/ToolGrid"]
+[node name="Button_ExportReference" type="Button" parent="MapControls/Tools/ToolGrid" unique_id=1122167919]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_MAP_BUTTON_EXPORT_REFERENCE_IMAGE_TOOLTIP"
@@ -252,7 +253,7 @@ icon = ExtResource("12_oyc72")
 text_overrun_behavior = 3
 expand_icon = true
 
-[node name="Button_Scenario" type="Button" parent="MapControls/Tools/ToolGrid"]
+[node name="Button_Scenario" type="Button" parent="MapControls/Tools/ToolGrid" unique_id=1033539350]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_MAP_BUTTON_SCENARIO_MANAGER_TOOLTIP"
@@ -263,7 +264,7 @@ text_overrun_behavior = 3
 icon_alignment = 2
 expand_icon = true
 
-[node name="Button_Docs" type="Button" parent="MapControls/Tools"]
+[node name="Button_Docs" type="Button" parent="MapControls/Tools" unique_id=1206669132]
 self_modulate = Color(1, 1, 1, 0.8627451)
 layout_mode = 2
 size_flags_vertical = 4
@@ -273,7 +274,7 @@ script = ExtResource("14_ejxqf")
 WikiTarget = ExtResource("15_3tnt5")
 metadata/_custom_type_script = "uid://d3cnisiq47k5j"
 
-[node name="Popup_Scenario" parent="." instance=ExtResource("17_fjle2")]
+[node name="Popup_Scenario" parent="." unique_id=586343301 instance=ExtResource("17_fjle2")]
 visible = false
 
 [connection signal="resized" from="." to="." method="OnMapSizeChanged"]

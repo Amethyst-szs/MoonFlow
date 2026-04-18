@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://djdy8pajcdhin"]
+[gd_scene format=3 uid="uid://djdy8pajcdhin"]
 
 [ext_resource type="Script" uid="uid://de6wrup72tmdu" path="res://scene/main/header/ftp/FtpStatusIndicator.cs" id="1_mnlig"]
 [ext_resource type="Shader" uid="uid://3cxnqpc3grs6" path="res://asset/shader/common/color_invert_mono.gdshader" id="2_hq0tr"]
@@ -261,7 +261,7 @@ font = ExtResource("7_s2qjk")
 font_size = 14
 font_color = Color(1, 1, 1, 0.701961)
 
-[node name="FtpStatusIndicator" type="HBoxContainer" node_paths=PackedStringArray("Animation", "ProgressBar", "ProgressLabel", "PopupFtpTools")]
+[node name="FtpStatusIndicator" type="HBoxContainer" unique_id=1093747200 node_paths=PackedStringArray("Animation", "ProgressBar", "ProgressLabel", "PopupFtpTools")]
 custom_minimum_size = Vector2(0, 17)
 offset_right = 17.0
 offset_bottom = 17.0
@@ -272,7 +272,7 @@ ProgressBar = NodePath("Progress")
 ProgressLabel = NodePath("Progress/Label_Progress")
 PopupFtpTools = NodePath("ToolMenu")
 
-[node name="Progress" type="ProgressBar" parent="."]
+[node name="Progress" type="ProgressBar" parent="." unique_id=1722241010]
 visible = false
 custom_minimum_size = Vector2(324, 0)
 layout_mode = 2
@@ -284,7 +284,7 @@ show_percentage = false
 indeterminate = true
 editor_preview_indeterminate = false
 
-[node name="Label_Progress" type="Label" parent="Progress"]
+[node name="Label_Progress" type="Label" parent="Progress" unique_id=1705615263]
 material = SubResource("ShaderMaterial_37nxb")
 layout_mode = 1
 anchors_preset = 15
@@ -297,13 +297,13 @@ horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
 
-[node name="IconHolder" type="Control" parent="."]
+[node name="IconHolder" type="Control" parent="." unique_id=824208770]
 custom_minimum_size = Vector2(17, 0)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Texture_Status" type="TextureRect" parent="IconHolder"]
+[node name="Texture_Status" type="TextureRect" parent="IconHolder" unique_id=790600026]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -317,20 +317,18 @@ pivot_offset = Vector2(8.5, 8.5)
 texture = ExtResource("2_mlyxi")
 expand_mode = 3
 
-[node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_l5ird")
-}
-autoplay = "off"
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1477694359]
+libraries/ = SubResource("AnimationLibrary_l5ird")
+autoplay = &"off"
 
-[node name="ToolMenu" type="Popup" parent="."]
+[node name="ToolMenu" type="Popup" parent="." unique_id=1932891385]
 transparent_bg = true
 size = Vector2i(538, 167)
 transparent = true
 theme = ExtResource("4_dmjrq")
 script = ExtResource("5_ehxjy")
 
-[node name="Content" type="PanelContainer" parent="ToolMenu"]
+[node name="Content" type="PanelContainer" parent="ToolMenu" unique_id=1370736435]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -338,30 +336,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("4_x6g84")
 
-[node name="VBox_ItemList" type="VBoxContainer" parent="ToolMenu/Content"]
+[node name="VBox_ItemList" type="VBoxContainer" parent="ToolMenu/Content" unique_id=889249454]
 layout_mode = 2
 
-[node name="Label_Header" type="Label" parent="ToolMenu/Content/VBox_ItemList"]
+[node name="Label_Header" type="Label" parent="ToolMenu/Content/VBox_ItemList" unique_id=1961011556]
 layout_mode = 2
 text = "FTP_STATUS_TOOL_MENU_HEADER"
 label_settings = SubResource("LabelSettings_aoo1a")
 horizontal_alignment = 1
 
-[node name="Button_Upload" type="Button" parent="ToolMenu/Content/VBox_ItemList"]
+[node name="Button_Upload" type="Button" parent="ToolMenu/Content/VBox_ItemList" unique_id=719416378]
 layout_mode = 2
 tooltip_text = "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE_TOOLTIP"
 text = "FTP_STATUS_TOOL_MENU_BUTTON_UPLOAD_ROMFS_REMOTE"
 
-[node name="HSep" type="HSeparator" parent="ToolMenu/Content/VBox_ItemList"]
+[node name="HSep" type="HSeparator" parent="ToolMenu/Content/VBox_ItemList" unique_id=787044550]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button_Delete" type="Button" parent="ToolMenu/Content/VBox_ItemList"]
+[node name="Button_Delete" type="Button" parent="ToolMenu/Content/VBox_ItemList" unique_id=1629438999]
 layout_mode = 2
 tooltip_text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_ROMFS_REMOTE_TOOLTIP"
 text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_ROMFS_REMOTE"
 
-[node name="Button_DeleteExefs" type="Button" parent="ToolMenu/Content/VBox_ItemList"]
+[node name="Button_DeleteExefs" type="Button" parent="ToolMenu/Content/VBox_ItemList" unique_id=656790843]
 layout_mode = 2
 tooltip_text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_EXEFS_REMOTE_TOOLTIP"
 text = "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_EXEFS_REMOTE"

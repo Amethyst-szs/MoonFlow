@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4j4g3xghg0a5"]
+[gd_scene format=3 uid="uid://b4j4g3xghg0a5"]
 
 [ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_pi2hg"]
 [ext_resource type="Script" uid="uid://cjyy8f0dgwbvh" path="res://scene/app/components/dialog_unsaved_changes.gd" id="2_b5yuu"]
 
-[node name="Dialog_UnsavedChanges" type="ConfirmationDialog"]
+[node name="Dialog_UnsavedChanges" type="ConfirmationDialog" unique_id=635083967]
 auto_translate_mode = 1
 disable_3d = true
 title = "UNSAVED_CHANGES_DIALOG_TITLE"

@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2tdru5hgbfl6"]
+[gd_scene format=3 uid="uid://d2tdru5hgbfl6"]
 
 [ext_resource type="Script" uid="uid://bthjeyg1gn1wd" path="res://scene/dev/tgg/MsbpTggViewerApp.cs" id="1_u736k"]
 [ext_resource type="Script" uid="uid://c4vqsxa03v2hy" path="res://scene/dev/tgg/MsbpListTgg.cs" id="3_bgrs3"]
 
-[node name="MsbpTggViewerApp" type="Control"]
+[node name="MsbpTggViewerApp" type="Control" unique_id=596548549]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ AppName = "TggViewer"
 AppTaskbarTitle = "TGG TAG TGP"
 AppFlags = 3
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=1775951412]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,11 +27,11 @@ theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 18
 
-[node name="Scroll_Display" type="ScrollContainer" parent="Margin"]
+[node name="Scroll_Display" type="ScrollContainer" parent="Margin" unique_id=26764682]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MsbpTgg" type="VBoxContainer" parent="Margin/Scroll_Display"]
+[node name="MsbpTgg" type="VBoxContainer" parent="Margin/Scroll_Display" unique_id=1312491168]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

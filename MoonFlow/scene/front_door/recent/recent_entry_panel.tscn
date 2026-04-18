@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brvdyoargiqjl"]
+[gd_scene format=3 uid="uid://brvdyoargiqjl"]
 
 [ext_resource type="StyleBox" uid="uid://crypexf7ycw28" path="res://asset/theme/front_door/stylebox/front_door_panel_recent_entry.tres" id="1_dbqt8"]
 [ext_resource type="Script" uid="uid://qujnwfn1t8vx" path="res://scene/front_door/recent/RecentEntryPanel.cs" id="2_8hbi1"]
@@ -21,7 +21,7 @@ font = ExtResource("4_u7whl")
 font_size = 13
 font_color = Color(1, 0.31, 0.31, 0.847059)
 
-[node name="RecentEntryPanel" type="PanelContainer" node_paths=PackedStringArray("LabelName", "LabelPath", "LabelAdditionalInfo", "LabelWarnMissing")]
+[node name="RecentEntryPanel" type="PanelContainer" unique_id=942610421 node_paths=PackedStringArray("LabelName", "LabelPath", "LabelAdditionalInfo", "LabelWarnMissing")]
 anchors_preset = -1
 anchor_right = 0.111
 mouse_default_cursor_shape = 2
@@ -32,11 +32,11 @@ LabelPath = NodePath("VBox/Label_Path")
 LabelAdditionalInfo = NodePath("VBox/Label_Additional")
 LabelWarnMissing = NodePath("VBox/Label_MissingWarn")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="." unique_id=2062439825]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label_Name" type="Label" parent="VBox"]
+[node name="Label_Name" type="Label" parent="VBox" unique_id=446606574]
 auto_translate_mode = 2
 layout_mode = 2
 text = "name"
@@ -44,7 +44,7 @@ label_settings = SubResource("LabelSettings_c4m0x")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_Path" type="Label" parent="VBox"]
+[node name="Label_Path" type="Label" parent="VBox" unique_id=1555598180]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 5
@@ -53,13 +53,13 @@ label_settings = SubResource("LabelSettings_gv4vj")
 horizontal_alignment = 2
 clip_text = true
 
-[node name="HSeparator" type="HSeparator" parent="VBox"]
+[node name="HSeparator" type="HSeparator" parent="VBox" unique_id=1585829179]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = ExtResource("4_8hbi1")
 
-[node name="Label_Additional" type="Label" parent="VBox"]
+[node name="Label_Additional" type="Label" parent="VBox" unique_id=1711679351]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -67,7 +67,7 @@ label_settings = SubResource("LabelSettings_gv4vj")
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Label_MissingWarn" type="Label" parent="VBox"]
+[node name="Label_MissingWarn" type="Label" parent="VBox" unique_id=1830063954]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -76,19 +76,19 @@ label_settings = SubResource("LabelSettings_u7whl")
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Bubble" type="Control" parent="."]
+[node name="Bubble" type="Control" parent="." unique_id=392990916]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Content" type="HBoxContainer" parent="Bubble"]
+[node name="Content" type="HBoxContainer" parent="Bubble" unique_id=586239548]
 layout_mode = 0
 offset_left = -13.0
 offset_top = -13.0
 offset_right = 13.0
 offset_bottom = 13.0
 
-[node name="Button_Trash" type="Button" parent="Bubble/Content"]
+[node name="Button_Trash" type="Button" parent="Bubble/Content" unique_id=889766122]
 layout_mode = 2
 tooltip_text = "FRONT_DOOR_RECENT_ENTRY_PANEL_DELETE_BUTTON_TOOLTIP"
 mouse_default_cursor_shape = 2

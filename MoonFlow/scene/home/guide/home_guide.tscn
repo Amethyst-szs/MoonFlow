@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjboo8fvgax0p"]
+[gd_scene format=3 uid="uid://bjboo8fvgax0p"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_wi62w"]
 [ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="2_4sul0"]
@@ -328,7 +328,7 @@ _data = {
 &"appear": SubResource("Animation_2oyri")
 }
 
-[node name="HomeGuide" type="PanelContainer"]
+[node name="HomeGuide" type="PanelContainer" unique_id=598936939]
 self_modulate = Color(1, 1, 1, 0.945098)
 anchors_preset = 15
 anchor_right = 1.0
@@ -338,13 +338,13 @@ grow_vertical = 2
 theme = ExtResource("1_wi62w")
 theme_override_styles/panel = ExtResource("2_4sul0")
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Center" type="CenterContainer" parent="." unique_id=956801003]
 layout_mode = 2
 
-[node name="Content" type="Control" parent="Center"]
+[node name="Content" type="Control" parent="Center" unique_id=769259039]
 layout_mode = 2
 
-[node name="Layout" type="VBoxContainer" parent="Center/Content"]
+[node name="Layout" type="VBoxContainer" parent="Center/Content" unique_id=1312115967]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -358,11 +358,11 @@ grow_vertical = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="Control_Icon" type="Control" parent="Center/Content/Layout"]
+[node name="Control_Icon" type="Control" parent="Center/Content/Layout" unique_id=507699075]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="Texture_Icon" parent="Center/Content/Layout/Control_Icon" instance=ExtResource("3_42cjf")]
+[node name="Texture_Icon" parent="Center/Content/Layout/Control_Icon" unique_id=656811920 instance=ExtResource("3_42cjf")]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 1
 anchors_preset = 8
@@ -381,40 +381,40 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 AnimationState = 1
 
-[node name="Label_HomeGuideHeader" type="Label" parent="Center/Content/Layout"]
+[node name="Label_HomeGuideHeader" type="Label" parent="Center/Content/Layout" unique_id=1720156297]
 layout_mode = 2
 text = "HOME_GUIDE_POPUP_HEADER"
 label_settings = SubResource("LabelSettings_b3bgr")
 horizontal_alignment = 1
 
-[node name="Label_HomeGuideSubheader" type="Label" parent="Center/Content/Layout"]
+[node name="Label_HomeGuideSubheader" type="Label" parent="Center/Content/Layout" unique_id=1963021011]
 layout_mode = 2
 text = "HOME_GUIDE_POPUP_SUBHEADER_TAGLINE"
 label_settings = SubResource("LabelSettings_brdma")
 horizontal_alignment = 1
 
-[node name="HSep" type="HSeparator" parent="Center/Content/Layout"]
+[node name="HSep" type="HSeparator" parent="Center/Content/Layout" unique_id=386600419]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label_HomeGuideDesc" type="Label" parent="Center/Content/Layout"]
+[node name="Label_HomeGuideDesc" type="Label" parent="Center/Content/Layout" unique_id=30125828]
 custom_minimum_size = Vector2(640, 0)
 layout_mode = 2
 text = "HOME_GUIDE_POPUP_DESCRIPTION_INFO"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSep_Invis" type="HSeparator" parent="Center/Content/Layout"]
+[node name="HSep_Invis" type="HSeparator" parent="Center/Content/Layout" unique_id=2037712758]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_nhilp")
 
-[node name="Control_Options" type="Control" parent="Center/Content/Layout"]
+[node name="Control_Options" type="Control" parent="Center/Content/Layout" unique_id=414857094]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("5_kphpc")
 
-[node name="HBox_Options" type="HBoxContainer" parent="Center/Content/Layout/Control_Options"]
+[node name="HBox_Options" type="HBoxContainer" parent="Center/Content/Layout/Control_Options" unique_id=196280260]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -423,11 +423,11 @@ grow_horizontal = 2
 pivot_offset = Vector2(320, 0)
 theme_override_constants/separation = 16
 
-[node name="Root_Close" type="Control" parent="Center/Content/Layout/Control_Options/HBox_Options"]
+[node name="Root_Close" type="Control" parent="Center/Content/Layout/Control_Options/HBox_Options" unique_id=40231335]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button_Close" type="Button" parent="Center/Content/Layout/Control_Options/HBox_Options/Root_Close"]
+[node name="Button_Close" type="Button" parent="Center/Content/Layout/Control_Options/HBox_Options/Root_Close" unique_id=1648705195]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -444,11 +444,11 @@ text_overrun_behavior = 1
 icon_alignment = 2
 script = ExtResource("6_0iqa5")
 
-[node name="Root_Wiki" type="Control" parent="Center/Content/Layout/Control_Options/HBox_Options"]
+[node name="Root_Wiki" type="Control" parent="Center/Content/Layout/Control_Options/HBox_Options" unique_id=1875200178]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button_Wiki" type="Button" parent="Center/Content/Layout/Control_Options/HBox_Options/Root_Wiki"]
+[node name="Button_Wiki" type="Button" parent="Center/Content/Layout/Control_Options/HBox_Options/Root_Wiki" unique_id=1709354268]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -465,8 +465,6 @@ text_overrun_behavior = 1
 icon_alignment = 2
 script = ExtResource("8_yl8no")
 
-[node name="Appear" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_81rj1")
-}
-autoplay = "appear"
+[node name="Appear" type="AnimationPlayer" parent="." unique_id=783992797]
+libraries/ = SubResource("AnimationLibrary_81rj1")
+autoplay = &"appear"

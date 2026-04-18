@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cio2gvsywxhso"]
+[gd_scene format=3 uid="uid://cio2gvsywxhso"]
 
 [ext_resource type="Script" uid="uid://cep6dkhoup5ta" path="res://scene/front_door/load/ProjectLoading.cs" id="1_jo062"]
 [ext_resource type="Texture2D" uid="uid://cntrievg5fk50" path="res://asset/app/icon/front_door_loading.png" id="2_py8o7"]
@@ -62,7 +62,7 @@ font_color = Color(1, 0.62, 0.62, 1)
 font_size = 14
 font_color = Color(1, 1, 1, 0.8)
 
-[node name="ProjectLoading" type="Control" node_paths=PackedStringArray("LabelProgress", "IconStatus", "ContainerStatus", "Containers", "GridVersionDetails", "LabelOutdatedLocal", "LabelOutdatedRemote", "ContainerOutdated", "ContainerUpgrade", "ContainerException", "LabelException", "MsbtEntryParserInfoScene")]
+[node name="ProjectLoading" type="Control" unique_id=2003307619 node_paths=PackedStringArray("LabelProgress", "IconStatus", "ContainerStatus", "Containers", "GridVersionDetails", "LabelOutdatedLocal", "LabelOutdatedRemote", "ContainerOutdated", "ContainerUpgrade", "ContainerException", "LabelException", "MsbtEntryParserInfoScene")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +87,7 @@ AppTaskbarTitle = "Loading"
 AppIcon = ExtResource("2_py8o7")
 AppFlags = 14
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=2113875766]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,14 +97,14 @@ grow_vertical = 2
 theme = ExtResource("4_gajvy")
 theme_override_styles/panel = ExtResource("5_ysjnh")
 
-[node name="Scroll" type="ScrollContainer" parent="Content"]
+[node name="Scroll" type="ScrollContainer" parent="Content" unique_id=529731031]
 custom_minimum_size = Vector2(620, 280)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_y6jlb")
 horizontal_scroll_mode = 0
 
-[node name="VBox" type="VBoxContainer" parent="Content/Scroll"]
+[node name="VBox" type="VBoxContainer" parent="Content/Scroll" unique_id=1969452034]
 custom_minimum_size = Vector2(740, 0)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -112,17 +112,17 @@ size_flags_vertical = 6
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="StatusIcon" parent="Content/Scroll/VBox" instance=ExtResource("7_4pbl6")]
+[node name="StatusIcon" parent="Content/Scroll/VBox" unique_id=678749070 instance=ExtResource("7_4pbl6")]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="VBox_Status" type="VBoxContainer" parent="Content/Scroll/VBox"]
+[node name="VBox_Status" type="VBoxContainer" parent="Content/Scroll/VBox" unique_id=2025725655]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label_Load" type="Label" parent="Content/Scroll/VBox/VBox_Status"]
+[node name="Label_Load" type="Label" parent="Content/Scroll/VBox/VBox_Status" unique_id=1293786962]
 layout_mode = 2
 text = "LOADING..."
 label_settings = SubResource("LabelSettings_qqp1u")
@@ -130,10 +130,10 @@ horizontal_alignment = 1
 visible_characters_behavior = 1
 script = SubResource("GDScript_aq741")
 
-[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Status"]
+[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Status" unique_id=1623270048]
 layout_mode = 2
 
-[node name="Progress" type="ProgressBar" parent="Content/Scroll/VBox/VBox_Status"]
+[node name="Progress" type="ProgressBar" parent="Content/Scroll/VBox/VBox_Status" unique_id=1017150861]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 1
@@ -142,7 +142,7 @@ show_percentage = false
 indeterminate = true
 editor_preview_indeterminate = false
 
-[node name="Label_ProgressTask" type="Label" parent="Content/Scroll/VBox/VBox_Status/Progress"]
+[node name="Label_ProgressTask" type="Label" parent="Content/Scroll/VBox/VBox_Status/Progress" unique_id=949279374]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -154,11 +154,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBox_Outdated" type="VBoxContainer" parent="Content/Scroll/VBox"]
+[node name="VBox_Outdated" type="VBoxContainer" parent="Content/Scroll/VBox" unique_id=744970962]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label_OutdatedHeader" type="Label" parent="Content/Scroll/VBox/VBox_Outdated"]
+[node name="Label_OutdatedHeader" type="Label" parent="Content/Scroll/VBox/VBox_Outdated" unique_id=699990239]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "LOADING_OUTDATED_MOONFLOW_APPLICATION_HEADER"
@@ -166,21 +166,21 @@ label_settings = SubResource("LabelSettings_hdk0y")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_OutdatedDescription" type="Label" parent="Content/Scroll/VBox/VBox_Outdated"]
+[node name="Label_OutdatedDescription" type="Label" parent="Content/Scroll/VBox/VBox_Outdated" unique_id=239700463]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "LOADING_OUTDATED_MOONFLOW_APPLICATION_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Outdated"]
+[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Outdated" unique_id=1134243865]
 layout_mode = 2
 
-[node name="HBox_Options" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Outdated"]
+[node name="HBox_Options" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Outdated" unique_id=1432257909]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button_Accept" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options"]
+[node name="Button_Accept" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options" unique_id=276133084]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -188,7 +188,7 @@ text = "LOADING_OUTDATED_ACCEPT"
 icon = ExtResource("8_480l8")
 icon_alignment = 2
 
-[node name="Button_GitHub" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options"]
+[node name="Button_GitHub" type="Button" parent="Content/Scroll/VBox/VBox_Outdated/HBox_Options" unique_id=929793140]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -197,7 +197,7 @@ icon = ExtResource("8_8nh1l")
 icon_alignment = 2
 script = ExtResource("10_qjasc")
 
-[node name="Button_ForceContinue" type="Button" parent="Content/Scroll/VBox/VBox_Outdated"]
+[node name="Button_ForceContinue" type="Button" parent="Content/Scroll/VBox/VBox_Outdated" unique_id=1499263509]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "LOADING_OUTDATED_FORCE_OPEN_ANYWAY_TOOLTIP"
@@ -211,12 +211,12 @@ text = "LOADING_OUTDATED_FORCE_OPEN_ANYWAY"
 flat = true
 icon_alignment = 2
 
-[node name="VBox_Upgrade" type="VBoxContainer" parent="Content/Scroll/VBox"]
+[node name="VBox_Upgrade" type="VBoxContainer" parent="Content/Scroll/VBox" unique_id=342261621]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label_UpgradeHeader" type="Label" parent="Content/Scroll/VBox/VBox_Upgrade"]
+[node name="Label_UpgradeHeader" type="Label" parent="Content/Scroll/VBox/VBox_Upgrade" unique_id=234891735]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "LOADING_UPGRADE_PROJECT_CONFIRMATION_HEADER"
@@ -224,21 +224,21 @@ label_settings = SubResource("LabelSettings_hdk0y")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_UpgradeDescription" type="Label" parent="Content/Scroll/VBox/VBox_Upgrade"]
+[node name="Label_UpgradeDescription" type="Label" parent="Content/Scroll/VBox/VBox_Upgrade" unique_id=1395233792]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "LOADING_UPGRADE_PROJECT_CONFIRMATION_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Upgrade"]
+[node name="HSeparator" type="HSeparator" parent="Content/Scroll/VBox/VBox_Upgrade" unique_id=1919463581]
 layout_mode = 2
 
-[node name="HBox_Options" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Upgrade"]
+[node name="HBox_Options" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Upgrade" unique_id=685748652]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button_Always" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options"]
+[node name="Button_Always" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options" unique_id=645978743]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -247,7 +247,7 @@ icon = ExtResource("10_02wsd")
 text_overrun_behavior = 1
 icon_alignment = 2
 
-[node name="Button_Once" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options"]
+[node name="Button_Once" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options" unique_id=2131557282]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -256,7 +256,7 @@ icon = ExtResource("11_dctwd")
 text_overrun_behavior = 1
 icon_alignment = 2
 
-[node name="Button_Cancel" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options"]
+[node name="Button_Cancel" type="Button" parent="Content/Scroll/VBox/VBox_Upgrade/HBox_Options" unique_id=913592781]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -265,13 +265,13 @@ icon = ExtResource("10_hlmkx")
 text_overrun_behavior = 1
 icon_alignment = 2
 
-[node name="VBox_Exception" type="VBoxContainer" parent="Content/Scroll/VBox"]
+[node name="VBox_Exception" type="VBoxContainer" parent="Content/Scroll/VBox" unique_id=310066328]
 custom_minimum_size = Vector2(612, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
 
-[node name="Label_ExceptionHead" type="Label" parent="Content/Scroll/VBox/VBox_Exception"]
+[node name="Label_ExceptionHead" type="Label" parent="Content/Scroll/VBox/VBox_Exception" unique_id=1461306931]
 layout_mode = 2
 text = "LOADING_EXCEPTION_HEADER"
 label_settings = SubResource("LabelSettings_qjn8m")
@@ -279,18 +279,18 @@ horizontal_alignment = 1
 visible_characters_behavior = 1
 script = SubResource("GDScript_aq741")
 
-[node name="HSeparator_Error" type="HSeparator" parent="Content/Scroll/VBox/VBox_Exception"]
+[node name="HSeparator_Error" type="HSeparator" parent="Content/Scroll/VBox/VBox_Exception" unique_id=1334902699]
 modulate = Color(1, 0.05, 0.05, 1)
 layout_mode = 2
 
-[node name="MsbtEntryParserException" parent="Content/Scroll/VBox/VBox_Exception" instance=ExtResource("13_c0yfp")]
+[node name="MsbtEntryParserException" parent="Content/Scroll/VBox/VBox_Exception" unique_id=1351298916 instance=ExtResource("13_c0yfp")]
 layout_mode = 2
 
-[node name="HBox_ButtonHolder" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Exception"]
+[node name="HBox_ButtonHolder" type="HBoxContainer" parent="Content/Scroll/VBox/VBox_Exception" unique_id=1324595083]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button_Accept" type="Button" parent="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder"]
+[node name="Button_Accept" type="Button" parent="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder" unique_id=1502824257]
 modulate = Color(1, 0.24, 0.24, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -299,7 +299,7 @@ text = "LOADING_EXCEPTION_ACCEPT"
 icon = ExtResource("8_480l8")
 icon_alignment = 2
 
-[node name="Button_CopyLog" type="Button" parent="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder"]
+[node name="Button_CopyLog" type="Button" parent="Content/Scroll/VBox/VBox_Exception/HBox_ButtonHolder" unique_id=1513166368]
 modulate = Color(1, 0.24, 0.24, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -308,55 +308,55 @@ text = "LOADING_EXCEPTION_COPY_LOG_TO_CLIPBOARD"
 icon = ExtResource("8_o626k")
 icon_alignment = 2
 
-[node name="Label_Exception" type="Label" parent="Content/Scroll/VBox/VBox_Exception"]
+[node name="Label_Exception" type="Label" parent="Content/Scroll/VBox/VBox_Exception" unique_id=275439184]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_5rl7s")
 autowrap_mode = 3
 
-[node name="Grid_Details" type="GridContainer" parent="Content/Scroll/VBox"]
+[node name="Grid_Details" type="GridContainer" parent="Content/Scroll/VBox" unique_id=1106510533]
 visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 6
 columns = 2
 
-[node name="Label_LocalHeader" type="Label" parent="Content/Scroll/VBox/Grid_Details"]
+[node name="Label_LocalHeader" type="Label" parent="Content/Scroll/VBox/Grid_Details" unique_id=22736006]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LOADING_OUTDATED_LOCAL_INFO_HEADER"
 label_settings = SubResource("LabelSettings_exrgr")
 horizontal_alignment = 2
 
-[node name="Rich_Local" type="RichTextLabel" parent="Content/Scroll/VBox/Grid_Details"]
+[node name="Rich_Local" type="RichTextLabel" parent="Content/Scroll/VBox/Grid_Details" unique_id=2004921482]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/italics_font_size = 11
 theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/italics_font_size = 11
 fit_content = true
 scroll_active = false
 meta_underlined = false
 hint_underlined = false
 
-[node name="Label_RemoteHeader" type="Label" parent="Content/Scroll/VBox/Grid_Details"]
+[node name="Label_RemoteHeader" type="Label" parent="Content/Scroll/VBox/Grid_Details" unique_id=1571245688]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LOADING_OUTDATED_REMOTE_INFO_HEADER"
 label_settings = SubResource("LabelSettings_exrgr")
 horizontal_alignment = 2
 
-[node name="Rich_Remote" type="RichTextLabel" parent="Content/Scroll/VBox/Grid_Details"]
+[node name="Rich_Remote" type="RichTextLabel" parent="Content/Scroll/VBox/Grid_Details" unique_id=1276166168]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/italics_font_size = 11
 theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/italics_font_size = 11
 fit_content = true
 scroll_active = false
 meta_underlined = false
 hint_underlined = false
 
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+[node name="ResourcePreloader" type="ResourcePreloader" parent="." unique_id=1076014044]
 resources = [PackedStringArray("home"), [ExtResource("8_tu3pa")]]
 
 [connection signal="pressed" from="Content/Scroll/VBox/VBox_Outdated/HBox_Options/Button_Accept" to="." method="OnButtonGoToFrontDoorPressed"]

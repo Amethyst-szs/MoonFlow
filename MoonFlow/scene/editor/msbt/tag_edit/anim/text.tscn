@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dy173the0swpk"]
+[gd_scene format=3 uid="uid://dy173the0swpk"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_paddo"]
 [ext_resource type="Texture2D" uid="uid://byr4ud7aq84bw" path="res://asset/nindot/lms/icon/TextAnim_Tremble.png" id="2_faf3o"]
@@ -28,27 +28,27 @@ script = ExtResource("10_sd506")
 [sub_resource type="RichTextEffect" id="RichTextEffect_ohtbf"]
 script = ExtResource("12_1yoay")
 
-[node name="TextAnim" instance=ExtResource("1_paddo")]
+[node name="TextAnim" unique_id=1870727683 instance=ExtResource("1_paddo")]
 title = "TAG_EDIT_SCENE_HEADER_TEXT_ANIM"
 script = ExtResource("2_vfe8d")
 
-[node name="Panel" parent="." index="0"]
+[node name="Panel" parent="." index="0" unique_id=2007589657]
 theme = SubResource("Theme_x28ob")
 
-[node name="HBoxT0" type="HBoxContainer" parent="Panel/Content" index="0"]
+[node name="HBoxT0" type="HBoxContainer" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="0" unique_id=294116906]
 layout_mode = 2
 
-[node name="ButtonT0" type="Button" parent="Panel/Content/HBoxT0" index="0"]
+[node name="ButtonT0" type="Button" parent="Panel/Content/HBoxT0" index="0" unique_id=891469773]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TAG_EDIT_SCENE_TEXT_ANIM_TAG_TREMBLE"
 icon = ExtResource("2_faf3o")
 
-[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT0" index="1"]
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT0" index="1" unique_id=1438035402]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="PreviewT0" type="RichTextLabel" parent="Panel/Content/HBoxT0" index="2"]
+[node name="PreviewT0" type="RichTextLabel" parent="Panel/Content/HBoxT0" index="2" unique_id=562741394]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -62,20 +62,20 @@ threaded = true
 script = ExtResource("5_utoxu")
 prefix = "[tremble]"
 
-[node name="HBoxT1" type="HBoxContainer" parent="Panel/Content" index="1"]
+[node name="HBoxT1" type="HBoxContainer" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="1" unique_id=120436378]
 layout_mode = 2
 
-[node name="ButtonT1" type="Button" parent="Panel/Content/HBoxT1" index="0"]
+[node name="ButtonT1" type="Button" parent="Panel/Content/HBoxT1" index="0" unique_id=1442223574]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SHAKE"
 icon = ExtResource("3_dbm32")
 
-[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT1" index="1"]
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT1" index="1" unique_id=2002855741]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="PreviewT1" type="RichTextLabel" parent="Panel/Content/HBoxT1" index="2"]
+[node name="PreviewT1" type="RichTextLabel" parent="Panel/Content/HBoxT1" index="2" unique_id=1663502686]
 clip_contents = false
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
@@ -90,20 +90,20 @@ threaded = true
 script = ExtResource("5_utoxu")
 prefix = "[shaketag]"
 
-[node name="HBoxT2" type="HBoxContainer" parent="Panel/Content" index="2"]
+[node name="HBoxT2" type="HBoxContainer" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="2" unique_id=709155584]
 layout_mode = 2
 
-[node name="ButtonT2" type="Button" parent="Panel/Content/HBoxT2" index="0"]
+[node name="ButtonT2" type="Button" parent="Panel/Content/HBoxT2" index="0" unique_id=229538219]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TAG_EDIT_SCENE_TEXT_ANIM_TAG_WAVE"
 icon = ExtResource("4_8b8of")
 
-[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT2" index="1"]
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT2" index="1" unique_id=1475820902]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="PreviewT2" type="RichTextLabel" parent="Panel/Content/HBoxT2" index="2"]
+[node name="PreviewT2" type="RichTextLabel" parent="Panel/Content/HBoxT2" index="2" unique_id=753247605]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -116,20 +116,20 @@ threaded = true
 script = ExtResource("5_utoxu")
 prefix = "[wave]"
 
-[node name="HBoxT3" type="HBoxContainer" parent="Panel/Content" index="3"]
+[node name="HBoxT3" type="HBoxContainer" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="3" unique_id=482726770]
 layout_mode = 2
 
-[node name="ButtonT3" type="Button" parent="Panel/Content/HBoxT3" index="0"]
+[node name="ButtonT3" type="Button" parent="Panel/Content/HBoxT3" index="0" unique_id=401155070]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TAG_EDIT_SCENE_TEXT_ANIM_TAG_SCREAM"
 icon = ExtResource("5_7olld")
 
-[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT3" index="1"]
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT3" index="1" unique_id=1064537890]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="PreviewT3" type="RichTextLabel" parent="Panel/Content/HBoxT3" index="2"]
+[node name="PreviewT3" type="RichTextLabel" parent="Panel/Content/HBoxT3" index="2" unique_id=1699602518]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -143,20 +143,20 @@ threaded = true
 script = ExtResource("5_utoxu")
 prefix = "[scream]"
 
-[node name="HBoxT4" type="HBoxContainer" parent="Panel/Content" index="4"]
+[node name="HBoxT4" type="HBoxContainer" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="4" unique_id=2013621480]
 layout_mode = 2
 
-[node name="ButtonT4" type="Button" parent="Panel/Content/HBoxT4" index="0"]
+[node name="ButtonT4" type="Button" parent="Panel/Content/HBoxT4" index="0" unique_id=715598145]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TAG_EDIT_SCENE_TEXT_ANIM_TAG_BEAT"
 icon = ExtResource("6_rbhum")
 
-[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT4" index="1"]
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/HBoxT4" index="1" unique_id=454985322]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="PreviewT4" type="RichTextLabel" parent="Panel/Content/HBoxT4" index="2"]
+[node name="PreviewT4" type="RichTextLabel" parent="Panel/Content/HBoxT4" index="2" unique_id=588542893]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_horizontal = 4

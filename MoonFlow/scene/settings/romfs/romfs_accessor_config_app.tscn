@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcb23wjw20ifi"]
+[gd_scene format=3 uid="uid://bcb23wjw20ifi"]
 
 [ext_resource type="Script" uid="uid://c1flg3dhrkuvn" path="res://scene/settings/romfs/RomfsAccessorConfigApp.cs" id="1_r13aa"]
 [ext_resource type="Texture2D" uid="uid://cwis7h5dommn3" path="res://asset/app/icon/romfs_accessor_config.png" id="2_6p26v"]
@@ -33,7 +33,7 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_phx0g"]
 font_color = Color(1, 0.42, 0.42, 1)
 
-[node name="RomfsAccessorConfigApp" type="Control"]
+[node name="RomfsAccessorConfigApp" type="Control" unique_id=1761300704]
 auto_translate_mode = 1
 layout_mode = 3
 anchors_preset = 15
@@ -47,7 +47,7 @@ AppTaskbarTitle = "Romfs Setup"
 AppIcon = ExtResource("2_6p26v")
 AppFlags = 10
 
-[node name="PathPicker" type="FileDialog" parent="."]
+[node name="PathPicker" type="FileDialog" parent="." unique_id=1143610237]
 disable_3d = true
 title = "Open a Directory"
 initial_position = 4
@@ -58,7 +58,7 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=1292611633]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,49 +68,49 @@ grow_vertical = 2
 theme = ExtResource("3_etysk")
 theme_override_styles/panel = SubResource("StyleBoxFlat_blbrj")
 
-[node name="HBox" type="HBoxContainer" parent="Content"]
+[node name="HBox" type="HBoxContainer" parent="Content" unique_id=1503250443]
 layout_mode = 2
 
-[node name="Option" type="VBoxContainer" parent="Content/HBox"]
+[node name="Option" type="VBoxContainer" parent="Content/HBox" unique_id=959963499]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 18
 
-[node name="Label_Header" type="Label" parent="Content/HBox/Option"]
+[node name="Label_Header" type="Label" parent="Content/HBox/Option" unique_id=1982413150]
 layout_mode = 2
 size_flags_vertical = 0
 text = "ROMFS_CONFIG_MAIN_HEADER"
 label_settings = SubResource("LabelSettings_e2o0d")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Content/HBox/Option"]
+[node name="HSeparator" type="HSeparator" parent="Content/HBox/Option" unique_id=1812388536]
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Label_Desc" type="Label" parent="Content/HBox/Option"]
+[node name="Label_Desc" type="Label" parent="Content/HBox/Option" unique_id=1203737131]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "CONFIG_CONFIG_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSep_BottomAlign" type="HSeparator" parent="Content/HBox/Option"]
+[node name="HSep_BottomAlign" type="HSeparator" parent="Content/HBox/Option" unique_id=185505227]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_gfwh8")
 
-[node name="VBox_PathError" type="VBoxContainer" parent="Content/HBox/Option"]
+[node name="VBox_PathError" type="VBoxContainer" parent="Content/HBox/Option" unique_id=1397422514]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
-[node name="Texture_Warn" type="TextureRect" parent="Content/HBox/Option/VBox_PathError"]
+[node name="Texture_Warn" type="TextureRect" parent="Content/HBox/Option/VBox_PathError" unique_id=1722174527]
 modulate = Color(1, 0.419608, 0.419608, 1)
 layout_mode = 2
 texture = ExtResource("6_li4wf")
 stretch_mode = 5
 
-[node name="Label_Warn" type="Label" parent="Content/HBox/Option/VBox_PathError"]
+[node name="Label_Warn" type="Label" parent="Content/HBox/Option/VBox_PathError" unique_id=1470959963]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "ROMFS_CONFIG_INVALID_PATH_WARNING"
@@ -118,14 +118,14 @@ label_settings = SubResource("LabelSettings_phx0g")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Button_CannotContinue" type="Button" parent="Content/HBox/Option"]
+[node name="Button_CannotContinue" type="Button" parent="Content/HBox/Option" unique_id=1945528987]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 disabled = true
 text = "ROMFS_CONFIG_PATH_REQUIRED_WARNING"
 
-[node name="Button_Add" type="Button" parent="Content/HBox/Option"]
+[node name="Button_Add" type="Button" parent="Content/HBox/Option" unique_id=633255648]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 8
@@ -135,7 +135,7 @@ text = "ROMFS_CONFIG_ADD_PATH"
 icon = ExtResource("6_q5662")
 icon_alignment = 2
 
-[node name="Button_Save" type="Button" parent="Content/HBox/Option"]
+[node name="Button_Save" type="Button" parent="Content/HBox/Option" unique_id=2072669243]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -146,83 +146,83 @@ text = "ROMFS_CONFIG_SAVE_AND_QUIT"
 icon = ExtResource("5_mwvld")
 icon_alignment = 2
 
-[node name="VSeparator" type="VSeparator" parent="Content/HBox"]
+[node name="VSeparator" type="VSeparator" parent="Content/HBox" unique_id=731704379]
 layout_mode = 2
 
-[node name="Preview" type="VBoxContainer" parent="Content/HBox"]
+[node name="Preview" type="VBoxContainer" parent="Content/HBox" unique_id=1400349390]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 18
 
-[node name="Label_Header" type="Label" parent="Content/HBox/Preview"]
+[node name="Label_Header" type="Label" parent="Content/HBox/Preview" unique_id=756541851]
 layout_mode = 2
 text = "ROMFS_CONFIG_PATH_HEADER"
 label_settings = SubResource("LabelSettings_e2o0d")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Content/HBox/Preview"]
+[node name="HSeparator" type="HSeparator" parent="Content/HBox/Preview" unique_id=236975915]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 18
 
-[node name="Panel_Content" type="PanelContainer" parent="Content/HBox/Preview"]
+[node name="Panel_Content" type="PanelContainer" parent="Content/HBox/Preview" unique_id=301556046]
 material = ExtResource("8_0hje8")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("8_ne4bl")
 
-[node name="Content" type="VBoxContainer" parent="Content/HBox/Preview/Panel_Content"]
+[node name="Content" type="VBoxContainer" parent="Content/HBox/Preview/Panel_Content" unique_id=1372273174]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="v100" parent="Content/HBox/Preview/Panel_Content/Content" instance=ExtResource("7_x1uik")]
+[node name="v100" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=670144969 instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HSep0" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content"]
+[node name="HSep0" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=433588215]
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = ExtResource("11_545y6")
 
-[node name="v101" parent="Content/HBox/Preview/Panel_Content/Content" instance=ExtResource("7_x1uik")]
+[node name="v101" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=188052267 instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
 version_label = "v1.0.1"
 
-[node name="HSep1" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content"]
+[node name="HSep1" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=1650550223]
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = ExtResource("11_545y6")
 
-[node name="v110" parent="Content/HBox/Preview/Panel_Content/Content" instance=ExtResource("7_x1uik")]
+[node name="v110" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=1851170179 instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
 version_label = "v1.1.0"
 
-[node name="HSep2" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content"]
+[node name="HSep2" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=1438463443]
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = ExtResource("11_545y6")
 
-[node name="v120" parent="Content/HBox/Preview/Panel_Content/Content" instance=ExtResource("7_x1uik")]
+[node name="v120" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=932576088 instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
 version_label = "v1.2.0"
 
-[node name="HSep3" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content"]
+[node name="HSep3" type="HSeparator" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=1233142954]
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = ExtResource("11_545y6")
 
-[node name="v130" parent="Content/HBox/Preview/Panel_Content/Content" instance=ExtResource("7_x1uik")]
+[node name="v130" parent="Content/HBox/Preview/Panel_Content/Content" unique_id=23455020 instance=ExtResource("7_x1uik")]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 version_label = "v1.3.0+"
 
-[node name="Panel_Label" parent="Content/HBox/Preview/Panel_Content/Content/v130" index="0"]
+[node name="Panel_Label" parent="Content/HBox/Preview/Panel_Content/Content/v130" index="0" unique_id=547588207]
 self_modulate = Color(0.85, 0.98749995, 1, 1)
 tooltip_text = "ROMFS_CONFIG_EXPLANATION_FOR_V1.4"
 mouse_default_cursor_shape = 16

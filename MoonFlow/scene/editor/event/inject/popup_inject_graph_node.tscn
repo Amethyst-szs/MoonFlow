@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bovx285ki32a6"]
+[gd_scene format=3 uid="uid://bovx285ki32a6"]
 
 [ext_resource type="Script" uid="uid://nyxedcneqg3b" path="res://scene/editor/event/inject/PopupInjectGraphNode.cs" id="1_0ams4"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_pt7cc"]
@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bsrqtic8ahapp" path="res://asset/material/graph/block.svg" id="5_72po0"]
 [ext_resource type="Script" uid="uid://ctlkxeynty3fw" path="res://scene/editor/event/inject/NodeInjectLineSearch.cs" id="5_p7pnm"]
 
-[node name="PopupInjectGraphNode" type="Popup" node_paths=PackedStringArray("ContainerRoot", "ContainerFav", "LineSearch")]
+[node name="PopupInjectGraphNode" type="Popup" unique_id=318207521 node_paths=PackedStringArray("ContainerRoot", "ContainerFav", "LineSearch")]
 disable_3d = true
+oversampling_override = 1.0
 size = Vector2i(390, 432)
 visible = true
 theme = ExtResource("1_pt7cc")
@@ -19,7 +20,7 @@ ContainerRoot = NodePath("Panel/Scroll/Content")
 ContainerFav = NodePath("Panel/Scroll/Content/VBox_Favorite")
 LineSearch = NodePath("Panel/Scroll/Content/Line_Search")
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=1057999157]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("3_1vumm")
 
-[node name="Scroll" type="ScrollContainer" parent="Panel"]
+[node name="Scroll" type="ScrollContainer" parent="Panel" unique_id=1593000434]
 custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 follow_focus = true
@@ -37,13 +38,13 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="Content" type="VBoxContainer" parent="Panel/Scroll"]
+[node name="Content" type="VBoxContainer" parent="Panel/Scroll" unique_id=822645568]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_v8di6")
 
-[node name="Line_Search" type="LineEdit" parent="Panel/Scroll/Content"]
+[node name="Line_Search" type="LineEdit" parent="Panel/Scroll/Content" unique_id=593511033]
 custom_minimum_size = Vector2(344, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -51,11 +52,11 @@ placeholder_text = "EVENT_FLOW_GRAPH_INJECT_SEARCH_BOX_PLACEHOLDER_TEXT"
 right_icon = ExtResource("4_ok1qq")
 script = ExtResource("5_p7pnm")
 
-[node name="HBox_Special" type="HBoxContainer" parent="Panel/Scroll/Content"]
+[node name="HBox_Special" type="HBoxContainer" parent="Panel/Scroll/Content" unique_id=1212055735]
 layout_mode = 2
 theme = ExtResource("1_pt7cc")
 
-[node name="Button_CreateBlock" type="Button" parent="Panel/Scroll/Content/HBox_Special"]
+[node name="Button_CreateBlock" type="Button" parent="Panel/Scroll/Content/HBox_Special" unique_id=778965259]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "EVENT_FLOW_GRAPH_INJECT_BLOCK_TOOLTIP"
@@ -66,10 +67,10 @@ text = "EVENT_FLOW_GRAPH_INJECT_BLOCK"
 icon = ExtResource("5_72po0")
 icon_alignment = 2
 
-[node name="VBox_Favorite" type="VBoxContainer" parent="Panel/Scroll/Content"]
+[node name="VBox_Favorite" type="VBoxContainer" parent="Panel/Scroll/Content" unique_id=864153447]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="Panel/Scroll/Content"]
+[node name="HSeparator" type="HSeparator" parent="Panel/Scroll/Content" unique_id=1678556552]
 layout_mode = 2
 mouse_filter = 1
 

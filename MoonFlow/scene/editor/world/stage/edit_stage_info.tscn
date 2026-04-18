@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnvwsx8eyi8sb"]
+[gd_scene format=3 uid="uid://dnvwsx8eyi8sb"]
 
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="1_qmc67"]
 [ext_resource type="Script" uid="uid://d24m4xa47kokp" path="res://scene/editor/world/stage/EditStageInfo.cs" id="1_s33pu"]
@@ -11,16 +11,16 @@
 [sub_resource type="LabelSettings" id="LabelSettings_1xln8"]
 font = ExtResource("3_nfqv3")
 
-[node name="EditStageInfo" type="PanelContainer"]
+[node name="EditStageInfo" type="PanelContainer" unique_id=1182116730]
 offset_right = 84.0
 offset_bottom = 48.0
 size_flags_horizontal = 3
 script = ExtResource("1_s33pu")
 
-[node name="HBox" type="HBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1125486]
 layout_mode = 2
 
-[node name="Menu_Stage" type="MenuButton" parent="HBox"]
+[node name="Menu_Stage" type="MenuButton" parent="HBox" unique_id=1897347595]
 self_modulate = Color(0.99607843, 0.49803922, 0.1764706, 1)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -35,18 +35,18 @@ popup/item_1/icon = ExtResource("1_qmc67")
 popup/item_1/id = 1
 script = ExtResource("4_rokrl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBox" unique_id=835771343]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label_Name" type="Label" parent="HBox/VBoxContainer"]
+[node name="Label_Name" type="Label" parent="HBox/VBoxContainer" unique_id=1989257837]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 label_settings = SubResource("LabelSettings_1xln8")
 
-[node name="Option_Type" type="OptionButton" parent="HBox/VBoxContainer"]
+[node name="Option_Type" type="OptionButton" parent="HBox/VBoxContainer" unique_id=292104398]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0

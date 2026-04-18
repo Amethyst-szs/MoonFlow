@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cu2v3vjprl6i2"]
+[gd_scene format=3 uid="uid://cu2v3vjprl6i2"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_rkd5o"]
 [ext_resource type="Script" uid="uid://chsug3ji7p87f" path="res://scene/editor/msbt/tag_edit/system/FontSize.cs" id="2_sgsg7"]
@@ -39,11 +39,11 @@ func _process(_delta: float) -> void:
 	value = round(value / 10) * 10
 "
 
-[node name="TagEditSceneBase" instance=ExtResource("1_rkd5o")]
+[node name="TagEditSceneBase" unique_id=1727717996 instance=ExtResource("1_rkd5o")]
 title = "TAG_EDIT_SCENE_HEADER_SYSTEM_FONT_SIZE"
 script = ExtResource("2_sgsg7")
 
-[node name="Spin_Percent" type="SpinBox" parent="Panel/Content" index="0"]
+[node name="Spin_Percent" type="SpinBox" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="0" unique_id=1530357674]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -56,15 +56,15 @@ suffix = "%"
 select_all_on_focus = true
 script = SubResource("GDScript_j5j0l")
 
-[node name="HBox_Value" type="HBoxContainer" parent="Panel/Content" index="1"]
+[node name="HBox_Value" type="HBoxContainer" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="1" unique_id=1318659279]
 layout_mode = 2
 theme = SubResource("Theme_1ugqk")
 
-[node name="Button_Sub" type="Button" parent="Panel/Content/HBox_Value" index="0"]
+[node name="Button_Sub" type="Button" parent="Panel/Content/HBox_Value" index="0" unique_id=675154342]
 layout_mode = 2
 icon = ExtResource("3_xixsk")
 
-[node name="Slider" type="HSlider" parent="Panel/Content/HBox_Value" index="1"]
+[node name="Slider" type="HSlider" parent="Panel/Content/HBox_Value" index="1" unique_id=2145100263]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
@@ -76,7 +76,7 @@ exp_edit = true
 rounded = true
 script = SubResource("GDScript_vabv7")
 
-[node name="Button_Add" type="Button" parent="Panel/Content/HBox_Value" index="2"]
+[node name="Button_Add" type="Button" parent="Panel/Content/HBox_Value" index="2" unique_id=1307558679]
 layout_mode = 2
 icon = ExtResource("4_bvqny")
 

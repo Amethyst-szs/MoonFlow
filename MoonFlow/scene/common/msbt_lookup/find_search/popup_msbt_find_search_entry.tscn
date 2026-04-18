@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgg76e446o85y"]
+[gd_scene format=3 uid="uid://bgg76e446o85y"]
 
 [ext_resource type="Theme" uid="uid://dd65oednyc051" path="res://asset/theme/common/app_common_dialog.tres" id="1_70e06"]
 [ext_resource type="Script" uid="uid://kt0uhnylqrhl" path="res://scene/common/msbt_lookup/find_search/PopupMsbtFindSearchEntry.cs" id="2_yvaxa"]
@@ -17,7 +17,7 @@ font_color = Color(1, 0.43, 0.43, 1)
 [sub_resource type="Theme" id="Theme_yvaxa"]
 Button/constants/line_spacing = 8
 
-[node name="PopupMsbtFindSearchEntry" type="Window" node_paths=PackedStringArray("LabelInvalidRequest", "LabelNoResults", "LineSearch", "ResultScroll", "ResultList")]
+[node name="PopupMsbtFindSearchEntry" type="Window" unique_id=1032074140 node_paths=PackedStringArray("LabelInvalidRequest", "LabelNoResults", "LineSearch", "ResultScroll", "ResultList")]
 oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(620, 512)
@@ -34,7 +34,7 @@ LineSearch = NodePath("Content/VBox/Line_Search")
 ResultScroll = NodePath("Content/VBox/Scroll_Results")
 ResultList = NodePath("Content/VBox/Scroll_Results/VBox_Results")
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=519404767]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,17 +42,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("3_n5hot")
 
-[node name="VBox" type="VBoxContainer" parent="Content"]
+[node name="VBox" type="VBoxContainer" parent="Content" unique_id=1567226218]
 layout_mode = 2
 theme = ExtResource("4_a20dd")
 theme_override_constants/separation = 12
 
-[node name="Line_Search" type="LineEdit" parent="Content/VBox"]
+[node name="Line_Search" type="LineEdit" parent="Content/VBox" unique_id=1684938277]
 layout_mode = 2
 placeholder_text = "POPUP_MSBT_FIND_SEARCH_ENTRY_BOX_PLACEHOLDER"
 right_icon = ExtResource("5_bhg0t")
 
-[node name="Label_InvalidRequest" type="Label" parent="Content/VBox"]
+[node name="Label_InvalidRequest" type="Label" parent="Content/VBox" unique_id=1628806783]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "POPUP_MSBT_FIND_SEARCH_ENTRY_INVALID_SEARCH_REQUEST"
@@ -60,7 +60,7 @@ label_settings = SubResource("LabelSettings_3drgo")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_NoResults" type="Label" parent="Content/VBox"]
+[node name="Label_NoResults" type="Label" parent="Content/VBox" unique_id=1428130699]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
@@ -68,7 +68,7 @@ label_settings = SubResource("LabelSettings_mffdp")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Scroll_Results" type="ScrollContainer" parent="Content/VBox"]
+[node name="Scroll_Results" type="ScrollContainer" parent="Content/VBox" unique_id=274361915]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r06ms")
@@ -79,7 +79,7 @@ follow_focus_margin = 40
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="VBox_Results" type="VBoxContainer" parent="Content/VBox/Scroll_Results"]
+[node name="VBox_Results" type="VBoxContainer" parent="Content/VBox/Scroll_Results" unique_id=628914801]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_yvaxa")

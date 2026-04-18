@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw73bpafji461"]
+[gd_scene format=3 uid="uid://cw73bpafji461"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_bsrvh"]
 [ext_resource type="PackedScene" uid="uid://n5fe7jd6mwy4" path="res://scene/editor/world/general/vbox_basic_info.tscn" id="2_wwaj3"]
@@ -15,13 +15,13 @@ font_color = Color(0.99, 0.79992, 0.2772, 0.858824)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_irpy7"]
 
-[node name="WorldEditorTabGeneral" type="VBoxContainer"]
+[node name="WorldEditorTabGeneral" type="VBoxContainer" unique_id=346440491]
 offset_right = 1152.0
 offset_bottom = 586.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Label_Basic" type="Label" parent="."]
+[node name="Label_Basic" type="Label" parent="." unique_id=1755972853]
 layout_mode = 2
 mouse_filter = 1
 text = "WORLD_EDITOR_CATEGORY_HEADER_BASIC"
@@ -29,20 +29,20 @@ label_settings = SubResource("LabelSettings_a80xt")
 horizontal_alignment = 1
 text_overrun_behavior = 4
 
-[node name="HSep_Basic" type="HSeparator" parent="."]
+[node name="HSep_Basic" type="HSeparator" parent="." unique_id=468365749]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="VBox_Basic" parent="." instance=ExtResource("2_wwaj3")]
+[node name="VBox_Basic" parent="." unique_id=922998765 instance=ExtResource("2_wwaj3")]
 layout_mode = 2
 
-[node name="HSep_Empty0" type="HSeparator" parent="."]
+[node name="HSep_Empty0" type="HSeparator" parent="." unique_id=1887212251]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_irpy7")
 
-[node name="Label_Scenario" type="Label" parent="."]
+[node name="Label_Scenario" type="Label" parent="." unique_id=1235960389]
 layout_mode = 2
 mouse_filter = 1
 text = "WORLD_EDITOR_CATEGORY_HEADER_SCENARIO"
@@ -50,9 +50,9 @@ label_settings = SubResource("LabelSettings_a80xt")
 horizontal_alignment = 1
 text_overrun_behavior = 4
 
-[node name="HSep_Scenario" type="HSeparator" parent="."]
+[node name="HSep_Scenario" type="HSeparator" parent="." unique_id=1241635932]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="VBox_Scenario" parent="." instance=ExtResource("3_ht8qo")]
+[node name="VBox_Scenario" parent="." unique_id=1959329050 instance=ExtResource("3_ht8qo")]
 layout_mode = 2

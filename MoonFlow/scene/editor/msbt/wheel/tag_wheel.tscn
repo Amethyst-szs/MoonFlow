@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://drb6gmpl7tvlm"]
+[gd_scene format=3 uid="uid://drb6gmpl7tvlm"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_fvc5i"]
 [ext_resource type="Script" uid="uid://dges46dr3rupv" path="res://scene/editor/msbt/wheel/TagWheel.cs" id="1_oonfm"]
@@ -47,19 +47,19 @@ unicode = 32
 [sub_resource type="Shortcut" id="Shortcut_3mtg5"]
 events = [SubResource("InputEventKey_d31wk")]
 
-[node name="TagWheel" type="Control"]
+[node name="TagWheel" type="Control" unique_id=1946682734]
 layout_mode = 3
 anchors_preset = 0
 theme = SubResource("Theme_6egn5")
 script = ExtResource("1_oonfm")
 
-[node name="WheelP1" type="Control" parent="."]
+[node name="WheelP1" type="Control" parent="." unique_id=177442879]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="System_Color" type="Button" parent="WheelP1"]
+[node name="System_Color" type="Button" parent="WheelP1" unique_id=1842881986]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -70,7 +70,7 @@ script = ExtResource("2_q0x4n")
 Type = 1
 Texture = ExtResource("3_o1tnp")
 
-[node name="System_Font" type="Button" parent="WheelP1"]
+[node name="System_Font" type="Button" parent="WheelP1" unique_id=1092851162]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -81,7 +81,7 @@ script = ExtResource("2_q0x4n")
 Type = 2
 Texture = ExtResource("5_78y0d")
 
-[node name="System_FontSize" type="Button" parent="WheelP1"]
+[node name="System_FontSize" type="Button" parent="WheelP1" unique_id=999700106]
 layout_mode = 0
 offset_top = -1.0
 offset_right = 48.0
@@ -93,7 +93,7 @@ script = ExtResource("2_q0x4n")
 Type = 3
 Texture = ExtResource("5_e036j")
 
-[node name="Eui_Speed" type="Button" parent="WheelP1"]
+[node name="Eui_Speed" type="Button" parent="WheelP1" unique_id=1114458044]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 48.0
@@ -105,7 +105,7 @@ script = ExtResource("2_q0x4n")
 Type = 4
 Texture = ExtResource("6_sivq6")
 
-[node name="Eui_Wait" type="Button" parent="WheelP1"]
+[node name="Eui_Wait" type="Button" parent="WheelP1" unique_id=147471905]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -116,7 +116,7 @@ script = ExtResource("2_q0x4n")
 Type = 5
 Texture = ExtResource("7_71bop")
 
-[node name="TextAnim" type="Button" parent="WheelP1"]
+[node name="TextAnim" type="Button" parent="WheelP1" unique_id=62571166]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -127,7 +127,7 @@ script = ExtResource("2_q0x4n")
 Type = 7
 Texture = ExtResource("8_j2qy4")
 
-[node name="Voice" type="Button" parent="WheelP1"]
+[node name="Voice" type="Button" parent="WheelP1" unique_id=1666019066]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -138,7 +138,7 @@ script = ExtResource("2_q0x4n")
 Type = 8
 Texture = ExtResource("10_ntb4m")
 
-[node name="DeviceFont" type="Button" parent="WheelP1"]
+[node name="DeviceFont" type="Button" parent="WheelP1" unique_id=334755264]
 layout_mode = 0
 offset_right = 65.0
 offset_bottom = 66.0
@@ -149,7 +149,7 @@ script = ExtResource("2_q0x4n")
 Type = 13
 Texture = ExtResource("12_2df4n")
 
-[node name="PictureFont" type="Button" parent="WheelP1"]
+[node name="PictureFont" type="Button" parent="WheelP1" unique_id=2052662302]
 layout_mode = 0
 offset_right = 67.0
 offset_bottom = 67.0
@@ -160,13 +160,13 @@ script = ExtResource("2_q0x4n")
 Type = 12
 Texture = ExtResource("13_38vhr")
 
-[node name="WheelP2" type="Control" parent="."]
+[node name="WheelP2" type="Control" parent="." unique_id=1859959191]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextAlign" type="Button" parent="WheelP2"]
+[node name="TextAlign" type="Button" parent="WheelP2" unique_id=1325287923]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -177,7 +177,7 @@ script = ExtResource("2_q0x4n")
 Type = 14
 Texture = ExtResource("5_7800c")
 
-[node name="Grammar" type="Button" parent="WheelP2"]
+[node name="Grammar" type="Button" parent="WheelP2" unique_id=238675459]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -188,7 +188,7 @@ script = ExtResource("2_q0x4n")
 Type = 15
 Texture = ExtResource("9_1lncn")
 
-[node name="Ruby" type="Button" parent="WheelP2"]
+[node name="Ruby" type="Button" parent="WheelP2" unique_id=295107548]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -199,7 +199,7 @@ script = ExtResource("2_q0x4n")
 Type = 16
 Texture = ExtResource("10_j4sfo")
 
-[node name="Number" type="Button" parent="WheelP2"]
+[node name="Number" type="Button" parent="WheelP2" unique_id=1686025551]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -210,7 +210,7 @@ script = ExtResource("2_q0x4n")
 Type = 6
 Texture = ExtResource("13_5k885")
 
-[node name="NumberTime" type="Button" parent="WheelP2"]
+[node name="NumberTime" type="Button" parent="WheelP2" unique_id=26662192]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -221,7 +221,7 @@ script = ExtResource("2_q0x4n")
 Type = 17
 Texture = ExtResource("18_1cwbs")
 
-[node name="String" type="Button" parent="WheelP2"]
+[node name="String" type="Button" parent="WheelP2" unique_id=812084830]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -232,7 +232,7 @@ script = ExtResource("2_q0x4n")
 Type = 9
 Texture = ExtResource("14_m2s4y")
 
-[node name="TimeComponent" type="Button" parent="WheelP2"]
+[node name="TimeComponent" type="Button" parent="WheelP2" unique_id=1943926645]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -243,7 +243,7 @@ script = ExtResource("2_q0x4n")
 Type = 11
 Texture = ExtResource("15_n45je")
 
-[node name="CyclePage" type="Button" parent="."]
+[node name="CyclePage" type="Button" parent="." unique_id=1242907486]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
 anchors_preset = 8

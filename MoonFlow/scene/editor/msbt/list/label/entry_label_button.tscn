@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbovlwtl0g0pg"]
+[gd_scene format=3 uid="uid://bbovlwtl0g0pg"]
 
 [ext_resource type="Script" uid="uid://caqsietrg4n04" path="res://scene/editor/msbt/list/label/EntryLabelButton.cs" id="1_mbybi"]
 [ext_resource type="Texture2D" uid="uid://bcf0vbtvkcb6l" path="res://asset/material/file/none.svg" id="2_0mxtj"]
@@ -12,7 +12,6 @@
 [sub_resource type="Resource" id="Resource_12i87"]
 script = ExtResource("2_ykqm8")
 Icon = ExtResource("2_0mxtj")
-TextBankKey = "None"
 Modulate = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="Resource" id="Resource_lgman"]
@@ -25,7 +24,6 @@ Modulate = Color(1, 0.918333, 0.65, 1)
 script = ExtResource("2_ykqm8")
 Icon = ExtResource("4_e8osq")
 TextBankKey = "IconModified"
-Modulate = Color(1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_4huo2"]
 script = ExtResource("2_ykqm8")
@@ -39,7 +37,7 @@ Icon = ExtResource("5_dlnhu")
 TextBankKey = "IconUntranslated"
 Modulate = Color(1, 0.65, 0.65, 1)
 
-[node name="EntryLabelButton" type="Button" node_paths=PackedStringArray("LabelRich")]
+[node name="EntryLabelButton" type="Button" unique_id=1564706840 node_paths=PackedStringArray("LabelRich")]
 auto_translate_mode = 2
 offset_right = 8.0
 offset_bottom = 8.0
@@ -58,7 +56,7 @@ IconModified = SubResource("Resource_516x6")
 IconUnmodifiedInSourceLang = SubResource("Resource_4huo2")
 IconUntranslated = SubResource("Resource_3hegl")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=1535808496]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +67,7 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 28
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="RichTextLabel" parent="Margin"]
+[node name="Label" type="RichTextLabel" parent="Margin" unique_id=1240724813]
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("8_aj8qc")

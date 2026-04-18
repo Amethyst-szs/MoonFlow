@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvkspqwgxsqxy"]
+[gd_scene format=3 uid="uid://dvkspqwgxsqxy"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_dvg6o"]
 [ext_resource type="Script" uid="uid://sr6781n8r8yp" path="res://scene/home/tools/project/TabProject.cs" id="2_w5mgl"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="7_3akrv"]
 [ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="8_o81hq"]
 
-[node name="Project" type="HSplitContainer"]
+[node name="Project" type="HSplitContainer" unique_id=1347196704]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,56 +17,56 @@ theme = ExtResource("1_dvg6o")
 script = ExtResource("2_w5mgl")
 metadata/_tab_index = 0
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=187119058]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Check_MfProject" type="CheckBox" parent="Content" node_paths=PackedStringArray("dropdown")]
+[node name="Check_MfProject" type="CheckBox" parent="Content" unique_id=981073205 node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 mouse_filter = 1
 text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
 script = ExtResource("7_3akrv")
 dropdown = NodePath("../MfProject")
 
-[node name="MfProject" type="MarginContainer" parent="Content" node_paths=PackedStringArray("LineNickname")]
+[node name="MfProject" type="MarginContainer" parent="Content" unique_id=2141055595 node_paths=PackedStringArray("LineNickname")]
 layout_mode = 2
 script = ExtResource("4_crvj7")
 LineNickname = NodePath("VBox_MfProject/Nickname/Line_Nickname")
 
-[node name="VBox_MfProject" type="VBoxContainer" parent="Content/MfProject"]
+[node name="VBox_MfProject" type="VBoxContainer" parent="Content/MfProject" unique_id=312705319]
 layout_mode = 2
 
-[node name="Nickname" type="HBoxContainer" parent="Content/MfProject/VBox_MfProject"]
+[node name="Nickname" type="HBoxContainer" parent="Content/MfProject/VBox_MfProject" unique_id=1725601834]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label_Nickname" type="Label" parent="Content/MfProject/VBox_MfProject/Nickname"]
+[node name="Label_Nickname" type="Label" parent="Content/MfProject/VBox_MfProject/Nickname" unique_id=350423487]
 layout_mode = 2
 tooltip_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
 mouse_filter = 0
 mouse_default_cursor_shape = 16
 text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
 
-[node name="Line_Nickname" type="LineEdit" parent="Content/MfProject/VBox_MfProject/Nickname"]
+[node name="Line_Nickname" type="LineEdit" parent="Content/MfProject/VBox_MfProject/Nickname" unique_id=610614901]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
 max_length = 32
 
-[node name="Check_SystemData" type="CheckBox" parent="Content" node_paths=PackedStringArray("dropdown")]
+[node name="Check_SystemData" type="CheckBox" parent="Content" unique_id=1518063308 node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 mouse_filter = 1
 text = "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
 script = ExtResource("7_3akrv")
 dropdown = NodePath("../SystemData")
 
-[node name="SystemData" type="MarginContainer" parent="Content"]
+[node name="SystemData" type="MarginContainer" parent="Content" unique_id=299466136]
 layout_mode = 2
 
-[node name="VBox_System" type="VBoxContainer" parent="Content/SystemData"]
+[node name="VBox_System" type="VBoxContainer" parent="Content/SystemData" unique_id=431521139]
 layout_mode = 2
 
-[node name="Button_CheckpointListTask" type="Button" parent="Content/SystemData/VBox_System"]
+[node name="Button_CheckpointListTask" type="Button" parent="Content/SystemData/VBox_System" unique_id=142216575]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
@@ -74,20 +74,20 @@ text = "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
 icon = ExtResource("4_70wej")
 alignment = 0
 
-[node name="Check_Msbp" type="CheckBox" parent="Content" node_paths=PackedStringArray("dropdown")]
+[node name="Check_Msbp" type="CheckBox" parent="Content" unique_id=1291820876 node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 mouse_filter = 1
 text = "HOME_TAB_PROJECT_MSBP_TOOLS"
 script = ExtResource("7_3akrv")
 dropdown = NodePath("../Msbp")
 
-[node name="Msbp" type="MarginContainer" parent="Content"]
+[node name="Msbp" type="MarginContainer" parent="Content" unique_id=827775652]
 layout_mode = 2
 
-[node name="VBox_Msbp" type="VBoxContainer" parent="Content/Msbp"]
+[node name="VBox_Msbp" type="VBoxContainer" parent="Content/Msbp" unique_id=1647386928]
 layout_mode = 2
 
-[node name="Button_MsbpColors" type="Button" parent="Content/Msbp/VBox_Msbp"]
+[node name="Button_MsbpColors" type="Button" parent="Content/Msbp/VBox_Msbp" unique_id=1130490782]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2

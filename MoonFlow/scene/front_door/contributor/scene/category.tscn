@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnpmmi6rvuow1"]
+[gd_scene format=3 uid="uid://dnpmmi6rvuow1"]
 
 [ext_resource type="Script" uid="uid://dso4l68241ykp" path="res://scene/front_door/contributor/scene/category.gd" id="1_5pg3e"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_fywyx"]
@@ -7,7 +7,7 @@
 font = ExtResource("1_fywyx")
 font_size = 22
 
-[node name="CategoryInfo" type="VBoxContainer"]
+[node name="CategoryInfo" type="VBoxContainer" unique_id=975060386]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -17,25 +17,25 @@ offset_bottom = 60.0
 grow_horizontal = 2
 script = ExtResource("1_5pg3e")
 
-[node name="HBox_Head" type="HBoxContainer" parent="."]
+[node name="HBox_Head" type="HBoxContainer" parent="." unique_id=1391635447]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Icon" type="TextureRect" parent="HBox_Head"]
+[node name="Icon" type="TextureRect" parent="HBox_Head" unique_id=1852637367]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 expand_mode = 1
 
-[node name="Label" type="Label" parent="HBox_Head"]
+[node name="Label" type="Label" parent="HBox_Head" unique_id=1116949501]
 layout_mode = 2
 mouse_filter = 1
 text = "CATEGORY_HEADER"
 label_settings = SubResource("LabelSettings_2xtce")
 
-[node name="Entries" type="GridContainer" parent="."]
+[node name="Entries" type="GridContainer" parent="." unique_id=1879664747]
 layout_mode = 2
 columns = 3
 
-[node name="HSep" type="HSeparator" parent="."]
+[node name="HSep" type="HSeparator" parent="." unique_id=809905783]
 layout_mode = 2
 mouse_filter = 1

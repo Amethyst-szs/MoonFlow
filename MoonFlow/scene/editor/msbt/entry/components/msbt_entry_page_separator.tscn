@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu1wg5m8oninc"]
+[gd_scene format=3 uid="uid://bu1wg5m8oninc"]
 
 [ext_resource type="Script" uid="uid://xru8d0agcvbk" path="res://scene/editor/msbt/entry/components/MsbtEntryPageSeparator.cs" id="1_cnsax"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="1_x3wp2"]
 
-[node name="MsbtEntryPageSeparator" type="HBoxContainer"]
+[node name="MsbtEntryPageSeparator" type="HBoxContainer" unique_id=1695927071]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 48.0
@@ -12,18 +12,18 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 4
 script = ExtResource("1_cnsax")
 
-[node name="Start" type="HSeparator" parent="."]
+[node name="Start" type="HSeparator" parent="." unique_id=575381643]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AddPage" type="Button" parent="."]
+[node name="AddPage" type="Button" parent="." unique_id=1501920719]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MSBT_TOOLTIP_ADD_PAGE"
 mouse_default_cursor_shape = 2
 icon = ExtResource("1_x3wp2")
 
-[node name="End" type="HSeparator" parent="."]
+[node name="End" type="HSeparator" parent="." unique_id=132692754]
 layout_mode = 2
 size_flags_horizontal = 3
 

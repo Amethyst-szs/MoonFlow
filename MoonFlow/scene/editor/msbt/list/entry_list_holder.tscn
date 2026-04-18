@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ck2mpawvgk0li"]
+[gd_scene format=3 uid="uid://ck2mpawvgk0li"]
 
 [ext_resource type="Theme" uid="uid://bvqf307r03sie" path="res://asset/theme/msbt/msbt_entry_list.tres" id="1_e4ni0"]
 [ext_resource type="Script" uid="uid://c7ysxyd835hdj" path="res://scene/editor/msbt/list/EntryListHolder.cs" id="1_q1mta"]
@@ -32,7 +32,7 @@ action = &"msbt_reset_entry"
 [sub_resource type="Shortcut" id="Shortcut_1qw0l"]
 events = [SubResource("InputEventAction_lf03p")]
 
-[node name="EntryListHolder" type="VBoxContainer" node_paths=PackedStringArray("ContentHolder", "AddBoxLine", "SearchBoxLine", "ButtonResetEntry", "ButtonListBlockedInTranslateMode")]
+[node name="EntryListHolder" type="VBoxContainer" unique_id=2064201563 node_paths=PackedStringArray("ContentHolder", "AddBoxLine", "SearchBoxLine", "ButtonResetEntry", "ButtonListBlockedInTranslateMode")]
 size_flags_horizontal = 3
 theme = ExtResource("1_e4ni0")
 script = ExtResource("1_q1mta")
@@ -42,7 +42,7 @@ SearchBoxLine = NodePath("Line_Search")
 ButtonResetEntry = NodePath("Controls/VBox/Toolbar/Reset")
 ButtonListBlockedInTranslateMode = [NodePath("Controls/VBox/Toolbar/Add"), NodePath("Controls/VBox/Toolbar/Trash")]
 
-[node name="Line_Search" type="LineEdit" parent="."]
+[node name="Line_Search" type="LineEdit" parent="." unique_id=1088705884]
 layout_mode = 2
 placeholder_text = "MSBT_SEARCH_ENTRIES"
 max_length = 128
@@ -50,32 +50,32 @@ right_icon = ExtResource("7_rbj4v")
 script = ExtResource("4_pl0d8")
 regex_string = "[A-Za-z0-9_]"
 
-[node name="HSep_MinimialA" type="HSeparator" parent="."]
+[node name="HSep_MinimialA" type="HSeparator" parent="." unique_id=1507876550]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("4_1jxf3")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=841645309]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSep_MinimialB" type="HSeparator" parent="."]
+[node name="HSep_MinimialB" type="HSeparator" parent="." unique_id=642265420]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("4_1jxf3")
 
-[node name="Controls" type="PanelContainer" parent="."]
+[node name="Controls" type="PanelContainer" parent="." unique_id=823921945]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_mottg")
 script = ExtResource("3_tx1js")
 
-[node name="VBox" type="VBoxContainer" parent="Controls"]
+[node name="VBox" type="VBoxContainer" parent="Controls" unique_id=1266973269]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBox_AddEntry" type="HBoxContainer" parent="Controls/VBox"]
+[node name="HBox_AddEntry" type="HBoxContainer" parent="Controls/VBox" unique_id=1800750990]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Line_EntryName" type="LineEdit" parent="Controls/VBox/HBox_AddEntry"]
+[node name="Line_EntryName" type="LineEdit" parent="Controls/VBox/HBox_AddEntry" unique_id=1055669148]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -84,23 +84,23 @@ max_length = 128
 clear_button_enabled = true
 script = ExtResource("4_furja")
 
-[node name="Button_Add" type="Button" parent="Controls/VBox/HBox_AddEntry"]
+[node name="Button_Add" type="Button" parent="Controls/VBox/HBox_AddEntry" unique_id=534150135]
 layout_mode = 2
 icon = ExtResource("5_d8emi")
 
-[node name="Texture_Warning" type="TextureRect" parent="Controls/VBox/HBox_AddEntry"]
+[node name="Texture_Warning" type="TextureRect" parent="Controls/VBox/HBox_AddEntry" unique_id=1405900811]
 modulate = Color(1, 0.266667, 0, 1)
 layout_mode = 2
 tooltip_text = "MSBT_INVALID_ENTRY_NAME_WARNING"
 texture = ExtResource("6_xpdvg")
 stretch_mode = 5
 
-[node name="Toolbar" type="HBoxContainer" parent="Controls/VBox"]
+[node name="Toolbar" type="HBoxContainer" parent="Controls/VBox" unique_id=171019894]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Add" type="Button" parent="Controls/VBox/Toolbar"]
+[node name="Add" type="Button" parent="Controls/VBox/Toolbar" unique_id=1035609067]
 layout_mode = 2
 tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_ADD"
 mouse_default_cursor_shape = 2
@@ -108,21 +108,21 @@ toggle_mode = true
 shortcut = SubResource("Shortcut_pq416")
 icon = ExtResource("5_d8emi")
 
-[node name="Trash" type="Button" parent="Controls/VBox/Toolbar"]
+[node name="Trash" type="Button" parent="Controls/VBox/Toolbar" unique_id=1535040638]
 layout_mode = 2
 tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_TRASH"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_sbvrw")
 icon = ExtResource("8_ykyf6")
 
-[node name="Reset" type="Button" parent="Controls/VBox/Toolbar"]
+[node name="Reset" type="Button" parent="Controls/VBox/Toolbar" unique_id=871471588]
 layout_mode = 2
 tooltip_text = "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_1qw0l")
 icon = ExtResource("10_a60pi")
 
-[node name="Label_EntryCount" type="Label" parent="Controls/VBox/Toolbar"]
+[node name="Label_EntryCount" type="Label" parent="Controls/VBox/Toolbar" unique_id=1891992395]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
 size_flags_vertical = 1

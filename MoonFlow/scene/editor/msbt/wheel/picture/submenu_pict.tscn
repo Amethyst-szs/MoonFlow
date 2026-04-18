@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bbwcbxape7kyt"]
+[gd_scene format=3 uid="uid://bbwcbxape7kyt"]
 
 [ext_resource type="Script" uid="uid://q76cug4d3jch" path="res://scene/editor/msbt/wheel/picture/TagSubmenuPictureFont.cs" id="1_2bwnk"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="2_bxd02"]
@@ -82,7 +82,7 @@ font = ExtResource("4_8sksy")
 font_size = 17
 font_color = Color(0.741176, 0.556863, 0.215686, 1)
 
-[node name="SubmenuTagPictureFont" type="PanelContainer"]
+[node name="SubmenuTagPictureFont" type="PanelContainer" unique_id=1113773103]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("2_bxd02")
@@ -90,7 +90,7 @@ theme_override_styles/panel = ExtResource("3_laewc")
 script = ExtResource("1_2bwnk")
 IsCenterWindow = true
 
-[node name="Scroll" type="ScrollContainer" parent="."]
+[node name="Scroll" type="ScrollContainer" parent="." unique_id=1138350001]
 custom_minimum_size = Vector2(705, 420)
 layout_mode = 2
 theme = SubResource("Theme_imy0c")
@@ -102,25 +102,25 @@ drag_with_mouse = false
 follow_focus_margin = 80
 force_vertical_scrolling = true
 
-[node name="VBox" type="VBoxContainer" parent="Scroll"]
+[node name="VBox" type="VBoxContainer" parent="Scroll" unique_id=1630691228]
 layout_mode = 2
 
-[node name="HSep_Char" type="HSeparator" parent="Scroll/VBox"]
+[node name="HSep_Char" type="HSeparator" parent="Scroll/VBox" unique_id=744203915]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Character" type="Label" parent="Scroll/VBox"]
+[node name="Label_Character" type="Label" parent="Scroll/VBox" unique_id=97582179]
 layout_mode = 2
 mouse_filter = 1
 text = "PICTURE_FONT_HEADER_CHARACTERS"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Character" type="HBoxContainer" parent="Scroll/VBox"]
+[node name="Character" type="HBoxContainer" parent="Scroll/VBox" unique_id=720531786]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Char0" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char0" type="Button" parent="Scroll/VBox/Character" unique_id=512373158]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconMario_0"
 mouse_filter = 1
@@ -129,7 +129,7 @@ script = ExtResource("8_ebijr")
 IconCode = 76
 IsAutograbFocus = true
 
-[node name="Char1" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char1" type="Button" parent="Scroll/VBox/Character" unique_id=229127740]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconMarioCapOff_0"
 mouse_filter = 1
@@ -137,7 +137,7 @@ icon = ExtResource("6_1rshh")
 script = ExtResource("8_ebijr")
 IconCode = 78
 
-[node name="Char3" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char3" type="Button" parent="Scroll/VBox/Character" unique_id=1992898010]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconLuigi_0"
 mouse_filter = 1
@@ -145,7 +145,7 @@ icon = ExtResource("5_ysvnl")
 script = ExtResource("8_ebijr")
 IconCode = 57
 
-[node name="Char2" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char2" type="Button" parent="Scroll/VBox/Character" unique_id=213947444]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCap_0"
 mouse_filter = 1
@@ -153,7 +153,7 @@ icon = ExtResource("8_m5toe")
 script = ExtResource("8_ebijr")
 IconCode = 77
 
-[node name="Char11" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char11" type="Button" parent="Scroll/VBox/Character" unique_id=1351996096]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCapManHero_0"
 mouse_filter = 1
@@ -161,7 +161,7 @@ icon = ExtResource("9_k24t8")
 script = ExtResource("8_ebijr")
 IconCode = 56
 
-[node name="Char13" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char13" type="Button" parent="Scroll/VBox/Character" unique_id=440585169]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconFrog_0"
 mouse_filter = 1
@@ -169,7 +169,7 @@ icon = ExtResource("10_wrb3e")
 script = ExtResource("8_ebijr")
 IconCode = 75
 
-[node name="Char4" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char4" type="Button" parent="Scroll/VBox/Character" unique_id=162772638]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconPeach_0"
 mouse_filter = 1
@@ -177,7 +177,7 @@ icon = ExtResource("9_joscf")
 script = ExtResource("8_ebijr")
 IconCode = 68
 
-[node name="Char5" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char5" type="Button" parent="Scroll/VBox/Character" unique_id=1711124500]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconTiara_0"
 mouse_filter = 1
@@ -185,7 +185,7 @@ icon = ExtResource("11_lpu87")
 script = ExtResource("8_ebijr")
 IconCode = 69
 
-[node name="Char12" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char12" type="Button" parent="Scroll/VBox/Character" unique_id=645994745]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconPauline_0"
 mouse_filter = 1
@@ -193,7 +193,7 @@ icon = ExtResource("18_ygcni")
 script = ExtResource("8_ebijr")
 IconCode = 79
 
-[node name="Char6" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char6" type="Button" parent="Scroll/VBox/Character" unique_id=851037824]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconKoopa_0"
 mouse_filter = 1
@@ -201,7 +201,7 @@ icon = ExtResource("12_qehv8")
 script = ExtResource("8_ebijr")
 IconCode = 67
 
-[node name="Char7" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char7" type="Button" parent="Scroll/VBox/Character" unique_id=769296994]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalStacker_0"
 mouse_filter = 1
@@ -209,7 +209,7 @@ icon = ExtResource("13_fxe4x")
 script = ExtResource("8_ebijr")
 IconCode = 72
 
-[node name="Char8" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char8" type="Button" parent="Scroll/VBox/Character" unique_id=149203545]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalBombTail_0"
 mouse_filter = 1
@@ -217,7 +217,7 @@ icon = ExtResource("14_wi8lp")
 script = ExtResource("8_ebijr")
 IconCode = 73
 
-[node name="Char9" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char9" type="Button" parent="Scroll/VBox/Character" unique_id=1024766597]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBoodalFireBlower_0"
 mouse_filter = 1
@@ -225,7 +225,7 @@ icon = ExtResource("15_widru")
 script = ExtResource("8_ebijr")
 IconCode = 71
 
-[node name="Char10" type="Button" parent="Scroll/VBox/Character"]
+[node name="Char10" type="Button" parent="Scroll/VBox/Character" unique_id=915643012]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconBroodalCapThrower_0"
 mouse_filter = 1
@@ -233,24 +233,24 @@ icon = ExtResource("16_vr1ru")
 script = ExtResource("8_ebijr")
 IconCode = 70
 
-[node name="HSep_Icon" type="HSeparator" parent="Scroll/VBox"]
+[node name="HSep_Icon" type="HSeparator" parent="Scroll/VBox" unique_id=1071458332]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Icon" type="Label" parent="Scroll/VBox"]
+[node name="Label_Icon" type="Label" parent="Scroll/VBox" unique_id=882337293]
 layout_mode = 2
 mouse_filter = 1
 text = "PICTURE_FONT_HEADER_ICONS"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Icon" type="HBoxContainer" parent="Scroll/VBox"]
+[node name="Icon" type="HBoxContainer" parent="Scroll/VBox" unique_id=1299218706]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Ico6" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico6" type="Button" parent="Scroll/VBox/Icon" unique_id=298675100]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCoin_0"
 mouse_filter = 1
@@ -258,7 +258,7 @@ icon = ExtResource("26_04evv")
 script = ExtResource("8_ebijr")
 IconCode = 64
 
-[node name="Ico5" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico5" type="Button" parent="Scroll/VBox/Icon" unique_id=1212841330]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconLifeMaxUpItem_0"
 mouse_filter = 1
@@ -266,7 +266,7 @@ icon = ExtResource("25_2jpqa")
 script = ExtResource("8_ebijr")
 IconCode = 55
 
-[node name="Ico9" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico9" type="Button" parent="Scroll/VBox/Icon" unique_id=733387528]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconHomeShip_0"
 mouse_filter = 1
@@ -274,7 +274,7 @@ icon = ExtResource("29_4qif7")
 script = ExtResource("8_ebijr")
 IconCode = 74
 
-[node name="Ico7" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico7" type="Button" parent="Scroll/VBox/Icon" unique_id=1697183950]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconEarth_0"
 mouse_filter = 1
@@ -282,7 +282,7 @@ icon = ExtResource("27_h45bd")
 script = ExtResource("8_ebijr")
 IconCode = 65
 
-[node name="Ico8" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico8" type="Button" parent="Scroll/VBox/Icon" unique_id=1066547517]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconCheckpoint_0"
 mouse_filter = 1
@@ -290,7 +290,7 @@ icon = ExtResource("28_32e6j")
 script = ExtResource("8_ebijr")
 IconCode = 66
 
-[node name="Ico4" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico4" type="Button" parent="Scroll/VBox/Icon" unique_id=1592280285]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconAmiibo_0"
 mouse_filter = 1
@@ -298,7 +298,7 @@ icon = ExtResource("24_735fq")
 script = ExtResource("8_ebijr")
 IconCode = 52
 
-[node name="Ico0" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico0" type="Button" parent="Scroll/VBox/Icon" unique_id=2109209570]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconMoonRock_0"
 mouse_filter = 1
@@ -306,7 +306,7 @@ icon = ExtResource("20_i0ju6")
 script = ExtResource("8_ebijr")
 IconCode = 48
 
-[node name="Ico1" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico1" type="Button" parent="Scroll/VBox/Icon" unique_id=1528458460]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconAchivementNpc_0"
 mouse_filter = 1
@@ -314,7 +314,7 @@ icon = ExtResource("21_t3ix0")
 script = ExtResource("8_ebijr")
 IconCode = 49
 
-[node name="Ico2" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico2" type="Button" parent="Scroll/VBox/Icon" unique_id=988064833]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconHintNpc_0"
 mouse_filter = 1
@@ -322,7 +322,7 @@ icon = ExtResource("22_ajn4x")
 script = ExtResource("8_ebijr")
 IconCode = 50
 
-[node name="Ico3" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico3" type="Button" parent="Scroll/VBox/Icon" unique_id=627025387]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconPoetter_0"
 mouse_filter = 1
@@ -330,7 +330,7 @@ icon = ExtResource("23_5re5o")
 script = ExtResource("8_ebijr")
 IconCode = 51
 
-[node name="Ico10" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico10" type="Button" parent="Scroll/VBox/Icon" unique_id=1384566800]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconStar_0"
 mouse_filter = 1
@@ -338,7 +338,7 @@ icon = ExtResource("30_7lrs0")
 script = ExtResource("8_ebijr")
 IconCode = 53
 
-[node name="Ico11" type="Button" parent="Scroll/VBox/Icon"]
+[node name="Ico11" type="Button" parent="Scroll/VBox/Icon" unique_id=1378295339]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconStarDotted_0"
 mouse_filter = 1
@@ -346,31 +346,31 @@ icon = ExtResource("31_ih4oj")
 script = ExtResource("8_ebijr")
 IconCode = 54
 
-[node name="HSep_Shine" type="HSeparator" parent="Scroll/VBox"]
+[node name="HSep_Shine" type="HSeparator" parent="Scroll/VBox" unique_id=1443235240]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Shine" type="Label" parent="Scroll/VBox"]
+[node name="Label_Shine" type="Label" parent="Scroll/VBox" unique_id=812178470]
 layout_mode = 2
 mouse_filter = 1
 text = "PICTURE_FONT_HEADER_SHINE"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Shine" type="HBoxContainer" parent="Scroll/VBox"]
+[node name="Shine" type="HBoxContainer" parent="Scroll/VBox" unique_id=523470680]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="ShineDynamic" type="Button" parent="Scroll/VBox/Shine"]
+[node name="ShineDynamic" type="Button" parent="Scroll/VBox/Shine" unique_id=1150152237]
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_ShineIconCurrentWorld"
 mouse_filter = 1
 icon = ExtResource("33_2ev7k")
 script = ExtResource("33_5foj8")
 
-[node name="Shine0" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine0" type="Button" parent="Scroll/VBox/Shine" unique_id=1872897390]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineCommon_0"
 mouse_filter = 1
@@ -378,7 +378,7 @@ icon = ExtResource("32_ajep0")
 script = ExtResource("8_ebijr")
 IconCode = 112
 
-[node name="Shine1" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine1" type="Button" parent="Scroll/VBox/Shine" unique_id=771707584]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSand_0"
 mouse_filter = 1
@@ -386,7 +386,7 @@ icon = ExtResource("33_ywntl")
 script = ExtResource("8_ebijr")
 IconCode = 117
 
-[node name="Shine2" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine2" type="Button" parent="Scroll/VBox/Shine" unique_id=659841929]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineForest_0"
 mouse_filter = 1
@@ -394,7 +394,7 @@ icon = ExtResource("34_hy3eh")
 script = ExtResource("8_ebijr")
 IconCode = 114
 
-[node name="Shine3" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine3" type="Button" parent="Scroll/VBox/Shine" unique_id=1268762573]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineLake_0"
 mouse_filter = 1
@@ -402,7 +402,7 @@ icon = ExtResource("35_gsrts")
 script = ExtResource("8_ebijr")
 IconCode = 119
 
-[node name="Shine4" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine4" type="Button" parent="Scroll/VBox/Shine" unique_id=994928503]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineCity_0"
 mouse_filter = 1
@@ -410,7 +410,7 @@ icon = ExtResource("36_1ax18")
 script = ExtResource("8_ebijr")
 IconCode = 113
 
-[node name="Shine5" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine5" type="Button" parent="Scroll/VBox/Shine" unique_id=1229241190]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSea_0"
 mouse_filter = 1
@@ -418,7 +418,7 @@ icon = ExtResource("37_nkrjl")
 script = ExtResource("8_ebijr")
 IconCode = 120
 
-[node name="Shine6" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine6" type="Button" parent="Scroll/VBox/Shine" unique_id=909149131]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSnow_0"
 mouse_filter = 1
@@ -426,7 +426,7 @@ icon = ExtResource("38_hblcb")
 script = ExtResource("8_ebijr")
 IconCode = 116
 
-[node name="Shine7" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine7" type="Button" parent="Scroll/VBox/Shine" unique_id=902079337]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineLava_0"
 mouse_filter = 1
@@ -434,7 +434,7 @@ icon = ExtResource("39_3tiif")
 script = ExtResource("8_ebijr")
 IconCode = 118
 
-[node name="Shine8" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine8" type="Button" parent="Scroll/VBox/Shine" unique_id=476268467]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineSky_0"
 mouse_filter = 1
@@ -442,7 +442,7 @@ icon = ExtResource("40_5o6bi")
 script = ExtResource("8_ebijr")
 IconCode = 115
 
-[node name="Shine9" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine9" type="Button" parent="Scroll/VBox/Shine" unique_id=412007872]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineMoon_0"
 mouse_filter = 1
@@ -450,7 +450,7 @@ icon = ExtResource("41_bux5u")
 script = ExtResource("8_ebijr")
 IconCode = 121
 
-[node name="Shine10" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine10" type="Button" parent="Scroll/VBox/Shine" unique_id=1861889990]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineRainbow_0"
 mouse_filter = 1
@@ -458,7 +458,7 @@ icon = ExtResource("42_plh7m")
 script = ExtResource("8_ebijr")
 IconCode = 122
 
-[node name="Shine11" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine11" type="Button" parent="Scroll/VBox/Shine" unique_id=1834918919]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineNull_0"
 mouse_filter = 1
@@ -466,7 +466,7 @@ icon = ExtResource("43_b7eje")
 script = ExtResource("8_ebijr")
 IconCode = 123
 
-[node name="Shine12" type="Button" parent="Scroll/VBox/Shine"]
+[node name="Shine12" type="Button" parent="Scroll/VBox/Shine" unique_id=1187280153]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_ShineTripleDot_0"
 mouse_filter = 1
@@ -474,24 +474,24 @@ icon = ExtResource("44_dgjw8")
 script = ExtResource("8_ebijr")
 IconCode = 124
 
-[node name="HSep_CC" type="HSeparator" parent="Scroll/VBox"]
+[node name="HSep_CC" type="HSeparator" parent="Scroll/VBox" unique_id=1306262109]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_CC" type="Label" parent="Scroll/VBox"]
+[node name="Label_CC" type="Label" parent="Scroll/VBox" unique_id=610918212]
 layout_mode = 2
 mouse_filter = 1
 text = "PICTURE_FONT_HEADER_COIN_COLLECT"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="CC" type="HBoxContainer" parent="Scroll/VBox"]
+[node name="CC" type="HBoxContainer" parent="Scroll/VBox" unique_id=201273202]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="CCDynamic" type="Button" parent="Scroll/VBox/CC"]
+[node name="CCDynamic" type="Button" parent="Scroll/VBox/CC" unique_id=1266098257]
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_CoinCollectIconCurrentWorld"
 mouse_filter = 1
@@ -499,7 +499,7 @@ icon = ExtResource("48_kkwak")
 script = ExtResource("33_5foj8")
 IconCode = 1
 
-[node name="CC0" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC0" type="Button" parent="Scroll/VBox/CC" unique_id=831509650]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectCap_0"
 mouse_filter = 1
@@ -507,7 +507,7 @@ icon = ExtResource("45_2uxgu")
 script = ExtResource("8_ebijr")
 IconCode = 80
 
-[node name="CC1" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC1" type="Button" parent="Scroll/VBox/CC" unique_id=469192823]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectWaterfall_0"
 mouse_filter = 1
@@ -515,7 +515,7 @@ icon = ExtResource("46_202xv")
 script = ExtResource("8_ebijr")
 IconCode = 81
 
-[node name="CC2" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC2" type="Button" parent="Scroll/VBox/CC" unique_id=815220303]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSand_0"
 mouse_filter = 1
@@ -523,7 +523,7 @@ icon = ExtResource("47_uo68l")
 script = ExtResource("8_ebijr")
 IconCode = 82
 
-[node name="CC4" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC4" type="Button" parent="Scroll/VBox/CC" unique_id=312833979]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectForest_0"
 mouse_filter = 1
@@ -531,7 +531,7 @@ icon = ExtResource("48_uw45n")
 script = ExtResource("8_ebijr")
 IconCode = 83
 
-[node name="CC3" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC3" type="Button" parent="Scroll/VBox/CC" unique_id=1489519070]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectLake_0"
 mouse_filter = 1
@@ -539,7 +539,7 @@ icon = ExtResource("49_0lwds")
 script = ExtResource("8_ebijr")
 IconCode = 84
 
-[node name="CC5" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC5" type="Button" parent="Scroll/VBox/CC" unique_id=886235576]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectClash_0"
 mouse_filter = 1
@@ -547,7 +547,7 @@ icon = ExtResource("50_btfn1")
 script = ExtResource("8_ebijr")
 IconCode = 85
 
-[node name="CC6" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC6" type="Button" parent="Scroll/VBox/CC" unique_id=2118685182]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectCity_0"
 mouse_filter = 1
@@ -555,7 +555,7 @@ icon = ExtResource("51_32cwk")
 script = ExtResource("8_ebijr")
 IconCode = 86
 
-[node name="CC7" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC7" type="Button" parent="Scroll/VBox/CC" unique_id=1398671040]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSea_0"
 mouse_filter = 1
@@ -563,7 +563,7 @@ icon = ExtResource("52_ijsi0")
 script = ExtResource("8_ebijr")
 IconCode = 87
 
-[node name="CC8" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC8" type="Button" parent="Scroll/VBox/CC" unique_id=230740955]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSnow_0"
 mouse_filter = 1
@@ -571,7 +571,7 @@ icon = ExtResource("53_phvj7")
 script = ExtResource("8_ebijr")
 IconCode = 88
 
-[node name="CC9" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC9" type="Button" parent="Scroll/VBox/CC" unique_id=836454172]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectLava_0"
 mouse_filter = 1
@@ -579,7 +579,7 @@ icon = ExtResource("54_74ynm")
 script = ExtResource("8_ebijr")
 IconCode = 89
 
-[node name="CC10" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC10" type="Button" parent="Scroll/VBox/CC" unique_id=729653196]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectSky_0"
 mouse_filter = 1
@@ -587,7 +587,7 @@ icon = ExtResource("55_wddas")
 script = ExtResource("8_ebijr")
 IconCode = 90
 
-[node name="CC11" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC11" type="Button" parent="Scroll/VBox/CC" unique_id=1546098593]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectMoon_0"
 mouse_filter = 1
@@ -595,7 +595,7 @@ icon = ExtResource("56_8hk4x")
 script = ExtResource("8_ebijr")
 IconCode = 91
 
-[node name="CC12" type="Button" parent="Scroll/VBox/CC"]
+[node name="CC12" type="Button" parent="Scroll/VBox/CC" unique_id=1403477597]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_CoinCollectPeach_0"
 mouse_filter = 1
@@ -603,24 +603,24 @@ icon = ExtResource("57_bcw7y")
 script = ExtResource("8_ebijr")
 IconCode = 92
 
-[node name="HSep_Treasure" type="HSeparator" parent="Scroll/VBox"]
+[node name="HSep_Treasure" type="HSeparator" parent="Scroll/VBox" unique_id=1998355726]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Treasure" type="Label" parent="Scroll/VBox"]
+[node name="Label_Treasure" type="Label" parent="Scroll/VBox" unique_id=1278257924]
 layout_mode = 2
 mouse_filter = 1
 text = "PICTURE_FONT_HEADER_WEDDING_TREASURE"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Treasure" type="HBoxContainer" parent="Scroll/VBox"]
+[node name="Treasure" type="HBoxContainer" parent="Scroll/VBox" unique_id=1799397626]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Wed0" type="Button" parent="Scroll/VBox/Treasure"]
+[node name="Wed0" type="Button" parent="Scroll/VBox/Treasure" unique_id=496337164]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureRing_0"
 mouse_filter = 1
@@ -628,7 +628,7 @@ icon = ExtResource("5_532jh")
 script = ExtResource("8_ebijr")
 IconCode = 96
 
-[node name="Wed1" type="Button" parent="Scroll/VBox/Treasure"]
+[node name="Wed1" type="Button" parent="Scroll/VBox/Treasure" unique_id=74484929]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureFlower_0"
 mouse_filter = 1
@@ -636,7 +636,7 @@ icon = ExtResource("59_6vhuf")
 script = ExtResource("8_ebijr")
 IconCode = 97
 
-[node name="Wed2" type="Button" parent="Scroll/VBox/Treasure"]
+[node name="Wed2" type="Button" parent="Scroll/VBox/Treasure" unique_id=1418658530]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureDress_0"
 mouse_filter = 1
@@ -644,7 +644,7 @@ icon = ExtResource("60_we171")
 script = ExtResource("8_ebijr")
 IconCode = 98
 
-[node name="Wed3" type="Button" parent="Scroll/VBox/Treasure"]
+[node name="Wed3" type="Button" parent="Scroll/VBox/Treasure" unique_id=1113082037]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureWater_0"
 mouse_filter = 1
@@ -652,7 +652,7 @@ icon = ExtResource("61_lfmcn")
 script = ExtResource("8_ebijr")
 IconCode = 99
 
-[node name="Wed4" type="Button" parent="Scroll/VBox/Treasure"]
+[node name="Wed4" type="Button" parent="Scroll/VBox/Treasure" unique_id=322609692]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureCake_0"
 mouse_filter = 1
@@ -660,7 +660,7 @@ icon = ExtResource("62_4347m")
 script = ExtResource("8_ebijr")
 IconCode = 100
 
-[node name="Wed5" type="Button" parent="Scroll/VBox/Treasure"]
+[node name="Wed5" type="Button" parent="Scroll/VBox/Treasure" unique_id=1982796980]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_TreasureStew_0"
 mouse_filter = 1
@@ -668,31 +668,31 @@ icon = ExtResource("63_j0dw2")
 script = ExtResource("8_ebijr")
 IconCode = 101
 
-[node name="HSep_Special" type="HSeparator" parent="Scroll/VBox"]
+[node name="HSep_Special" type="HSeparator" parent="Scroll/VBox" unique_id=79631834]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Special" type="Label" parent="Scroll/VBox"]
+[node name="Label_Special" type="Label" parent="Scroll/VBox" unique_id=1501451600]
 layout_mode = 2
 mouse_filter = 1
 text = "PICTURE_FONT_HEADER_SPECIAL"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Special" type="HBoxContainer" parent="Scroll/VBox"]
+[node name="Special" type="HBoxContainer" parent="Scroll/VBox" unique_id=228629687]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Sp0" type="Button" parent="Scroll/VBox/Special"]
+[node name="Sp0" type="Button" parent="Scroll/VBox/Special" unique_id=1828678585]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphDot_0"
 mouse_filter = 1
 icon = ExtResource("64_jhbiy")
 script = ExtResource("8_ebijr")
 
-[node name="Sp1" type="Button" parent="Scroll/VBox/Special"]
+[node name="Sp1" type="Button" parent="Scroll/VBox/Special" unique_id=2004330694]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphSlash_0"
 mouse_filter = 1
@@ -700,7 +700,7 @@ icon = ExtResource("65_d3qkq")
 script = ExtResource("8_ebijr")
 IconCode = 47
 
-[node name="Sp2" type="Button" parent="Scroll/VBox/Special"]
+[node name="Sp2" type="Button" parent="Scroll/VBox/Special" unique_id=331692654]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_1"
 mouse_filter = 1
@@ -709,7 +709,7 @@ script = ExtResource("8_ebijr")
 IconCode = 58
 VersionRequirement = 1
 
-[node name="Sp3" type="Button" parent="Scroll/VBox/Special"]
+[node name="Sp3" type="Button" parent="Scroll/VBox/Special" unique_id=462504435]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_GlyphColon_IconBalloonHintArrow_2"
 mouse_filter = 1
@@ -718,7 +718,7 @@ script = ExtResource("8_ebijr")
 IconCode = 58
 VersionRequirement = 2
 
-[node name="Sp4" type="Button" parent="Scroll/VBox/Special"]
+[node name="Sp4" type="Button" parent="Scroll/VBox/Special" unique_id=1631632540]
 layout_mode = 2
 tooltip_text = "PICTURE_FONT_TOOLTIP_IconStarSmall_2"
 mouse_filter = 1
@@ -727,11 +727,11 @@ script = ExtResource("8_ebijr")
 IconCode = 59
 VersionRequirement = 2
 
-[node name="HSep_End" type="HSeparator" parent="Scroll/VBox"]
+[node name="HSep_End" type="HSeparator" parent="Scroll/VBox" unique_id=1755382724]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="TagMenuFocusNeighborBuilder" type="Node" parent="." node_paths=PackedStringArray("Rows")]
+[node name="TagMenuFocusNeighborBuilder" type="Node" parent="." unique_id=1281548933 node_paths=PackedStringArray("Rows")]
 script = ExtResource("73_u0nap")
 Rows = [NodePath("../Scroll/VBox/Character"), NodePath("../Scroll/VBox/Icon"), NodePath("../Scroll/VBox/Shine"), NodePath("../Scroll/VBox/CC"), NodePath("../Scroll/VBox/Treasure"), NodePath("../Scroll/VBox/Special")]
 

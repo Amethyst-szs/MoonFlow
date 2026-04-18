@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://dbung3qmbw5gp"]
+[gd_resource type="Theme" format=3 uid="uid://dbung3qmbw5gp"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_rr64a"]
 [ext_resource type="StyleBox" uid="uid://dt6f0vaxjn3om" path="res://asset/theme/common/stylebox/common_button_focus.tres" id="2_5axl7"]

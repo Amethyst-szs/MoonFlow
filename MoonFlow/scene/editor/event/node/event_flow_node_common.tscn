@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn6k75166p7ua"]
+[gd_scene format=3 uid="uid://dn6k75166p7ua"]
 
 [ext_resource type="Script" uid="uid://dxqsmubwp6uqd" path="res://scene/editor/event/node/EventFlowNodeCommon.cs" id="1_7s7lh"]
 [ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_e82a6"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bw6q6mibncpgu" path="res://asset/material/graph/edit.svg" id="4_p37at"]
 [ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/extra.svg" id="7_jdg8o"]
 
-[node name="EventFlowNodeCommon" node_paths=PackedStringArray("ParamHolder", "ParamAddDropdownHolder", "NameOptionButton", "NameLineEdit") instance=ExtResource("1_e82a6")]
+[node name="EventFlowNodeCommon" unique_id=277898961 node_paths=PackedStringArray("ParamHolder", "ParamAddDropdownHolder", "NameOptionButton", "NameLineEdit") instance=ExtResource("1_e82a6")]
 script = ExtResource("1_7s7lh")
 ParamHolder = NodePath("Content/Display/Params")
 ParamAddDropdownHolder = NodePath("Content/Display/Fold_Additional/AdditionalParamList")
@@ -15,18 +15,18 @@ NameOptionButton = NodePath("Content/Display/HBox_Name/Menu_Options")
 NameLineEdit = NodePath("Content/Display/HBox_Name/Line_NameEdit")
 PortColorList = Array[Color]([Color(0.34, 1, 0.34, 1), Color(1, 0.53, 0.53, 1), Color(0.53, 0.913833, 1, 1), Color(0.9295, 0.53, 1, 1), Color(0.937333, 1, 0.53, 1), Color(0.53, 1, 0.702333, 1)])
 
-[node name="Content" parent="." index="0"]
+[node name="Content" parent="." index="0" unique_id=466449151]
 offset_right = 129.0
 offset_bottom = 110.0
 
-[node name="Ports" parent="Content" index="0"]
+[node name="Ports" parent="Content" index="0" unique_id=1492469599]
 metadata/_edit_lock_ = true
 
-[node name="Port_In" parent="Content/Ports/PortHolder_In" index="0"]
+[node name="Port_In" parent="Content/Ports/PortHolder_In" parent_id_path=PackedInt32Array(2115040503) index="0" unique_id=544625999]
 offset_left = 0.0
 offset_right = 24.0
 
-[node name="Line_NameEdit" type="LineEdit" parent="Content/Display/HBox_Name" index="1"]
+[node name="Line_NameEdit" type="LineEdit" parent="Content/Display/HBox_Name" parent_id_path=PackedInt32Array(1690362829) index="1" unique_id=419429851]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -36,22 +36,22 @@ max_length = 128
 expand_to_text_length = true
 context_menu_enabled = false
 
-[node name="Menu_Options" type="MenuButton" parent="Content/Display/HBox_Name" index="2"]
+[node name="Menu_Options" type="MenuButton" parent="Content/Display/HBox_Name" parent_id_path=PackedInt32Array(1690362829) index="2" unique_id=399897399]
 layout_mode = 2
 theme = ExtResource("3_6gwyg")
 theme_override_constants/icon_max_width = 18
 icon = ExtResource("4_p37at")
 flat = false
 
-[node name="Params" type="VBoxContainer" parent="Content/Display" index="2"]
+[node name="Params" type="VBoxContainer" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="2" unique_id=1742237788]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HSep" type="HSeparator" parent="Content/Display/Params" index="0"]
+[node name="HSep" type="HSeparator" parent="Content/Display/Params" index="0" unique_id=1367143950]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Fold_Additional" type="FoldableContainer" parent="Content/Display" index="3"]
+[node name="Fold_Additional" type="FoldableContainer" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="3" unique_id=1988380923]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -59,17 +59,17 @@ folded = true
 title = "EVENT_FLOW_NODE_FOLD_ADDITIONAL_PARAM"
 title_text_overrun_behavior = 3
 
-[node name="AdditionalParamList" type="VBoxContainer" parent="Content/Display/Fold_Additional" index="0"]
+[node name="AdditionalParamList" type="VBoxContainer" parent="Content/Display/Fold_Additional" index="0" unique_id=1637141729]
 visible = false
 layout_mode = 2
 
-[node name="Metadata" type="Control" parent="Content" index="3"]
+[node name="Metadata" type="Control" parent="Content" index="3" unique_id=1917597120]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("3_eioh2")
 
-[node name="Button_Metadata" type="Button" parent="Content/Metadata" index="0"]
+[node name="Button_Metadata" type="Button" parent="Content/Metadata" index="0" unique_id=2140106323]
 self_modulate = Color(1, 1, 1, 0.807843)
 layout_mode = 1
 offset_left = -1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjlli76vhlpfg"]
+[gd_scene format=3 uid="uid://cjlli76vhlpfg"]
 
 [ext_resource type="Texture2D" uid="uid://qxs0q7bdtu4l" path="res://asset/material/file/search.svg" id="1_ec2eu"]
 [ext_resource type="Script" uid="uid://cu8r7uftininw" path="res://scene/editor/msbt/page/MsbtPageEditor.cs" id="2_tas66"]
@@ -14,21 +14,21 @@ font_size = 12
 font_size = 11
 font_color = Color(1, 1, 1, 0.827451)
 
-[node name="MessageResolverConfig" type="VBoxContainer"]
+[node name="MessageResolverConfig" type="VBoxContainer" unique_id=761470520]
 
-[node name="HSep0" type="HSeparator" parent="."]
+[node name="HSep0" type="HSeparator" parent="." unique_id=1767777661]
 layout_mode = 2
 theme_override_constants/separation = 16
 theme_override_styles/separator = SubResource("StyleBoxEmpty_jci63")
 
-[node name="Label_TargetSource" type="Label" parent="."]
+[node name="Label_TargetSource" type="Label" parent="." unique_id=316298087]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 16
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER"
 label_settings = SubResource("LabelSettings_1fgse")
 
-[node name="Button_SelectSource" type="Button" parent="."]
+[node name="Button_SelectSource" type="Button" parent="." unique_id=420284637]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -36,20 +36,20 @@ text = "EVENT_FLOW_NODE_MESSAGE_TALK_CHANGE_SOURCE"
 icon = ExtResource("1_ec2eu")
 alignment = 0
 
-[node name="HSep1" type="HSeparator" parent="."]
+[node name="HSep1" type="HSeparator" parent="." unique_id=14048613]
 layout_mode = 2
 theme_override_constants/separation = 16
 theme_override_styles/separator = SubResource("StyleBoxEmpty_jci63")
 
-[node name="Label_Preview" type="Label" parent="."]
+[node name="Label_Preview" type="Label" parent="." unique_id=1135755481]
 layout_mode = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_PREVIEW_HEADER"
 label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="HBox_Preview" type="HBoxContainer" parent="."]
+[node name="HBox_Preview" type="HBoxContainer" parent="." unique_id=138726460]
 layout_mode = 2
 
-[node name="Text_Preview" type="TextEdit" parent="HBox_Preview"]
+[node name="Text_Preview" type="TextEdit" parent="HBox_Preview" unique_id=1338950574]
 custom_minimum_size = Vector2(260, 128)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -58,10 +58,10 @@ editable = false
 wrap_mode = 1
 script = ExtResource("2_tas66")
 
-[node name="VBox_Tools" type="VBoxContainer" parent="HBox_Preview"]
+[node name="VBox_Tools" type="VBoxContainer" parent="HBox_Preview" unique_id=2039307016]
 layout_mode = 2
 
-[node name="Button_Edit" type="Button" parent="HBox_Preview/VBox_Tools"]
+[node name="Button_Edit" type="Button" parent="HBox_Preview/VBox_Tools" unique_id=363398419]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_EDIT_TOOLTIP"
@@ -69,7 +69,7 @@ mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 24
 icon = ExtResource("3_g835t")
 
-[node name="Button_Refresh" type="Button" parent="HBox_Preview/VBox_Tools"]
+[node name="Button_Refresh" type="Button" parent="HBox_Preview/VBox_Tools" unique_id=1282051009]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_MESSAGE_REFRESH_TOOLTIP"

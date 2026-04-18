@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="TranslationBank" load_steps=2 format=3 uid="uid://ckhnom32otq5x"]
+[gd_resource type="Resource" script_class="TranslationBank" format=3 uid="uid://ckhnom32otq5x"]
 
-[ext_resource type="Script" path="res://addons/podb/translation_db.gd" id="1_h1vc2"]
+[ext_resource type="Script" uid="uid://jgwiowbmiv34" path="res://addons/podb/translation_db.gd" id="1_h1vc2"]
 
 [resource]
 script = ExtResource("1_h1vc2")

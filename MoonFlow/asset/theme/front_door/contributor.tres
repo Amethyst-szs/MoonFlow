@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bhp7hktmlp3qn"]
+[gd_resource type="Theme" format=3 uid="uid://bhp7hktmlp3qn"]
 
 [ext_resource type="StyleBox" uid="uid://del0i2efsmke" path="res://asset/theme/front_door/stylebox/contributor_rich_text_label_panel.tres" id="1_mb1xf"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_p758a"]

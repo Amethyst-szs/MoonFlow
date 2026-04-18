@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dww7ily72byhv"]
+[gd_scene format=3 uid="uid://dww7ily72byhv"]
 
 [ext_resource type="PackedScene" uid="uid://v3lu028vdd4p" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_with_text.tscn" id="1_oslff"]
 [ext_resource type="Script" uid="uid://cue61fr6pbure" path="res://scene/editor/msbt/tag_edit/number/NumberFigure.cs" id="2_r6v6r"]
@@ -59,21 +59,20 @@ CheckBox/icons/checked_disabled = SubResource("ImageTexture_q2q2p")
 CheckBox/icons/unchecked = SubResource("ImageTexture_yr80t")
 CheckBox/icons/unchecked_disabled = SubResource("ImageTexture_321ce")
 
-[node name="TagEditSceneWithText" instance=ExtResource("1_oslff")]
-oversampling_override = 1.0
+[node name="TagEditSceneWithText" unique_id=1313097837 instance=ExtResource("1_oslff")]
 title = "TAG_EDIT_SCENE_HEADER_NUMBER_FIGURE"
 script = ExtResource("2_r6v6r")
 
-[node name="Label_TextHeader" parent="Panel/Content/VBox_TextData" index="0"]
+[node name="Label_TextHeader" parent="Panel/Content/VBox_TextData" parent_id_path=PackedInt32Array(180785975) index="0" unique_id=2006349111]
 text = "NUMBER_FIGURE_TAG_EDIT_TEXT_FIELD_HEADER"
 
-[node name="Line_Text" parent="Panel/Content/VBox_TextData" index="1"]
+[node name="Line_Text" parent="Panel/Content/VBox_TextData" parent_id_path=PackedInt32Array(180785975) index="1" unique_id=579539887]
 placeholder_text = "NUMBER_FIGURE_TAG_EDIT_TEXT_FIELD_PLACEHOLDER"
 
-[node name="HSeparator" type="HSeparator" parent="Panel/Content/VBox_TextData" index="2"]
+[node name="HSeparator" type="HSeparator" parent="Panel/Content/VBox_TextData" parent_id_path=PackedInt32Array(180785975) index="2" unique_id=826831927]
 layout_mode = 2
 
-[node name="Option_TagName" type="OptionButton" parent="Panel/Content" index="1"]
+[node name="Option_TagName" type="OptionButton" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="1" unique_id=1283953961]
 unique_name_in_owner = true
 layout_mode = 2
 selected = 0
@@ -88,7 +87,7 @@ popup/item_2/text = "TAG_EDIT_SCENE_NUMBER_FIGURE_TYPE_COIN_NUM"
 popup/item_2/icon = ExtResource("4_o3hmt")
 popup/item_2/id = 2
 
-[node name="Spin_Figure" type="SpinBox" parent="Panel/Content" index="2"]
+[node name="Spin_Figure" type="SpinBox" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="2" unique_id=1425908109]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 65000.0
@@ -96,7 +95,7 @@ rounded = true
 alignment = 1
 suffix = "Figure"
 
-[node name="Check_JapaneseZenkaku" type="CheckBox" parent="Panel/Content" index="3"]
+[node name="Check_JapaneseZenkaku" type="CheckBox" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="3" unique_id=1237740105]
 unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_voqop")

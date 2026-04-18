@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c61gmyptk1563"]
+[gd_scene format=3 uid="uid://c61gmyptk1563"]
 
 [ext_resource type="Texture2D" uid="uid://j5kqgxssjrov" path="res://asset/material/graph/port.svg" id="1_xp2pk"]
 [ext_resource type="Script" uid="uid://bioyof1plhjl7" path="res://scene/editor/event/node/port/PortOut.cs" id="2_jlr03"]
@@ -13,7 +13,7 @@ shader_parameter/direction = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um605"]
 size = Vector2(11, 11)
 
-[node name="Port_Out" type="TextureRect" node_paths=PackedStringArray("ConnectionLine", "DraggerLine", "GrabCollider")]
+[node name="Port_Out" type="TextureRect" unique_id=1192850110 node_paths=PackedStringArray("ConnectionLine", "DraggerLine", "GrabCollider")]
 z_index = 2
 custom_minimum_size = Vector2(24, 24)
 mouse_filter = 0
@@ -25,7 +25,7 @@ ConnectionLine = NodePath("Line_Connection")
 DraggerLine = NodePath("Line_Dragger")
 GrabCollider = NodePath("Area_MouseColliderScan")
 
-[node name="Line_Connection" type="Line2D" parent="."]
+[node name="Line_Connection" type="Line2D" parent="." unique_id=1039020716]
 z_index = -1
 position = Vector2(12, 12)
 width = 5.0
@@ -34,7 +34,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Line_Dragger" type="Line2D" parent="."]
+[node name="Line_Dragger" type="Line2D" parent="." unique_id=396446098]
 z_index = 1
 material = SubResource("ShaderMaterial_by1ul")
 position = Vector2(12, 12)
@@ -45,14 +45,14 @@ begin_cap_mode = 1
 end_cap_mode = 2
 antialiased = true
 
-[node name="Area_MouseColliderScan" type="Area2D" parent="."]
+[node name="Area_MouseColliderScan" type="Area2D" parent="." unique_id=2094172758]
 process_mode = 4
 z_index = 4
 collision_layer = 8
 collision_mask = 4
 monitorable = false
 
-[node name="Shape" type="CollisionShape2D" parent="Area_MouseColliderScan"]
+[node name="Shape" type="CollisionShape2D" parent="Area_MouseColliderScan" unique_id=1097148278]
 shape = SubResource("RectangleShape2D_um605")
 debug_color = Color(0, 0.83, 0.442667, 0.419608)
 

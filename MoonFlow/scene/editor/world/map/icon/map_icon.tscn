@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwr02scc527sx"]
+[gd_scene format=3 uid="uid://dwr02scc527sx"]
 
 [ext_resource type="Script" uid="uid://dxnnv71hisvt4" path="res://scene/editor/world/map/icon/MapIcon.cs" id="1_qh8y2"]
 [ext_resource type="Texture2D" uid="uid://bd16pyhu6k0e" path="res://asset/nindot/lms/icon/PictureFont_70.png" id="1_r1mlj"]
@@ -95,7 +95,7 @@ _data = {
 &"other_focused": SubResource("Animation_tne4w")
 }
 
-[node name="MapIcon" type="TextureRect" node_paths=PackedStringArray("Animation")]
+[node name="MapIcon" type="TextureRect" unique_id=1231017377 node_paths=PackedStringArray("Animation")]
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(1.2, 1.2)
@@ -104,7 +104,5 @@ expand_mode = 1
 script = ExtResource("1_qh8y2")
 Animation = NodePath("AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_2dqpd")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=670184197]
+libraries/ = SubResource("AnimationLibrary_2dqpd")

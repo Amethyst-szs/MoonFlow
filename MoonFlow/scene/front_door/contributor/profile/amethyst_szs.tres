@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ContributeUser" load_steps=2 format=3 uid="uid://bfuv7msa5dlny"]
+[gd_resource type="Resource" script_class="ContributeUser" format=3 uid="uid://bfuv7msa5dlny"]
 
 [ext_resource type="Script" uid="uid://cdy54g12vpoj4" path="res://scene/front_door/contributor/define/contribute_info.gd" id="1_27eri"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5qgtdeu2mqtb"]
+[gd_scene format=3 uid="uid://c5qgtdeu2mqtb"]
 
 [ext_resource type="Script" uid="uid://b3kwrb00c41m5" path="res://scene/dev/map2d/Map2dViewer.cs" id="1_ouuxb"]
 [ext_resource type="Theme" uid="uid://crm1k2xsr1n4h" path="res://asset/theme/common/common_bit_flag_container.tres" id="2_xkyrl"]
@@ -11,7 +11,7 @@ func setup(value: float) -> void:
 	text = \"%.01f%%\" % value
 "
 
-[node name="Map2dViewer" type="Control" node_paths=PackedStringArray("ContainerMapList", "TextureMap", "LabelLoadingMessage")]
+[node name="Map2dViewer" type="Control" unique_id=1372489334 node_paths=PackedStringArray("ContainerMapList", "TextureMap", "LabelLoadingMessage")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ AppName = "Map2dViewer"
 AppTaskbarTitle = "Debug Map2d"
 AppFlags = 35
 
-[node name="MapHolder" type="Control" parent="."]
+[node name="MapHolder" type="Control" parent="." unique_id=628650159]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -40,7 +40,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Texture_Map" type="TextureRect" parent="MapHolder"]
+[node name="Texture_Map" type="TextureRect" parent="MapHolder" unique_id=887259118]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +51,7 @@ size_flags_horizontal = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label_Loading" type="Label" parent="MapHolder"]
+[node name="Label_Loading" type="Label" parent="MapHolder" unique_id=468924234]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,7 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "LOADING MAP2D ARCHIVE..."
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=713799674]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -77,31 +77,31 @@ theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 18
 
-[node name="MapList" type="VBoxContainer" parent="Margin"]
+[node name="MapList" type="VBoxContainer" parent="Margin" unique_id=255738043]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Scroll_List" type="ScrollContainer" parent="Margin/MapList"]
+[node name="Scroll_List" type="ScrollContainer" parent="Margin/MapList" unique_id=980203114]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="List" type="VBoxContainer" parent="Margin/MapList/Scroll_List"]
+[node name="List" type="VBoxContainer" parent="Margin/MapList/Scroll_List" unique_id=1194048551]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Margin/MapList"]
+[node name="Label" type="Label" parent="Margin/MapList" unique_id=1813412742]
 layout_mode = 2
 script = SubResource("GDScript_jvejl")
 
-[node name="HSlider" type="HSlider" parent="Margin/MapList"]
+[node name="HSlider" type="HSlider" parent="Margin/MapList" unique_id=786427150]
 layout_mode = 2
 min_value = 80.0
 max_value = 120.0
 step = 0.1
 value = 100.0
 
-[node name="BitFlagButtonHolder" type="VBoxContainer" parent="Margin/MapList"]
+[node name="BitFlagButtonHolder" type="VBoxContainer" parent="Margin/MapList" unique_id=1577074395]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("2_xkyrl")

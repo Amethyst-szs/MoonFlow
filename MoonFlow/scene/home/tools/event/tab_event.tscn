@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://djaf0d3bxuxkh"]
+[gd_scene format=3 uid="uid://djaf0d3bxuxkh"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_8utrk"]
 [ext_resource type="Script" uid="uid://doqmqk5tvmvum" path="res://scene/home/tools/event/TabEvent.cs" id="2_m1qug"]
@@ -96,7 +96,7 @@ font_color = Color(1, 1, 1, 0.87451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2a70"]
 
-[node name="Event" type="HSplitContainer" node_paths=PackedStringArray("ArchiveHolder", "SelectionLabel", "SelectionInfoBox", "VBoxArcInfo", "VBoxEventInfo", "DisableWhenNoGraphSelected", "FileAccessor")]
+[node name="Event" type="HSplitContainer" unique_id=1599788095 node_paths=PackedStringArray("ArchiveHolder", "SelectionLabel", "SelectionInfoBox", "VBoxArcInfo", "VBoxEventInfo", "DisableWhenNoGraphSelected", "FileAccessor")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -113,22 +113,22 @@ DisableWhenNoGraphSelected = [NodePath("Info/VBox/Footer/Button_Open")]
 FileAccessor = NodePath("TabEventFileAccessor")
 metadata/_tab_index = 0
 
-[node name="FileList" type="VBoxContainer" parent="."]
+[node name="FileList" type="VBoxContainer" parent="." unique_id=1835792356]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Line_Search" type="LineEdit" parent="FileList"]
+[node name="Line_Search" type="LineEdit" parent="FileList" unique_id=1963443475]
 layout_mode = 2
 placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 max_length = 32
 context_menu_enabled = false
 clear_button_enabled = true
-right_icon = ExtResource("3_2t0c7")
 caret_blink = true
+right_icon = ExtResource("3_2t0c7")
 script = ExtResource("4_blotm")
 
-[node name="Content" type="ScrollContainer" parent="FileList"]
+[node name="Content" type="ScrollContainer" parent="FileList" unique_id=743905884]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -139,91 +139,91 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="VBox_ArchiveHolder" type="VBoxContainer" parent="FileList/Content"]
+[node name="VBox_ArchiveHolder" type="VBoxContainer" parent="FileList/Content" unique_id=1887413272]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Footer" type="PanelContainer" parent="FileList"]
+[node name="Footer" type="PanelContainer" parent="FileList" unique_id=1471727913]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("4_kcoe0")
 
-[node name="HBox" type="HBoxContainer" parent="FileList/Footer"]
+[node name="HBox" type="HBoxContainer" parent="FileList/Footer" unique_id=656936802]
 layout_mode = 2
 theme = SubResource("Theme_fwkao")
 alignment = 1
 
-[node name="Button_Reload" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_Reload" type="Button" parent="FileList/Footer/HBox" unique_id=1665499308]
 layout_mode = 2
 tooltip_text = "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_uqggt")
 icon = ExtResource("6_xkxyy")
 
-[node name="VSep0" type="VSeparator" parent="FileList/Footer/HBox"]
+[node name="VSep0" type="VSeparator" parent="FileList/Footer/HBox" unique_id=696708948]
 self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
-[node name="Button_Copy" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_Copy" type="Button" parent="FileList/Footer/HBox" unique_id=1236577201]
 layout_mode = 2
 tooltip_text = "HOME_TAB_COPY_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_g0g2q")
 icon = ExtResource("7_qw17o")
 
-[node name="Button_Cut" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_Cut" type="Button" parent="FileList/Footer/HBox" unique_id=913232407]
 layout_mode = 2
 tooltip_text = "HOME_TAB_CUT_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_p2nu5")
 icon = ExtResource("8_w6r2f")
 
-[node name="Button_Paste" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_Paste" type="Button" parent="FileList/Footer/HBox" unique_id=385857248]
 layout_mode = 2
 tooltip_text = "HOME_TAB_PASTE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_6piv2")
 icon = ExtResource("9_gmrq3")
 
-[node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_Duplicate" type="Button" parent="FileList/Footer/HBox" unique_id=1397347198]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_qh2pt")
 icon = ExtResource("6_tkrku")
 
-[node name="VSep1" type="VSeparator" parent="FileList/Footer/HBox"]
+[node name="VSep1" type="VSeparator" parent="FileList/Footer/HBox" unique_id=448080421]
 self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
-[node name="Button_NewArc" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_NewArc" type="Button" parent="FileList/Footer/HBox" unique_id=1460531868]
 layout_mode = 2
 tooltip_text = "HOME_TAB_EVENT_NEW_ARCHIVE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_t43t0")
 icon = ExtResource("9_bqhdu")
 
-[node name="Button_New" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_New" type="Button" parent="FileList/Footer/HBox" unique_id=1592374017]
 layout_mode = 2
 tooltip_text = "HOME_TAB_EVENT_NEW_EVENT_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("7_hy22n")
 
-[node name="Button_Rename" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_Rename" type="Button" parent="FileList/Footer/HBox" unique_id=1456032477]
 layout_mode = 2
 tooltip_text = "HOME_TAB_RENAME_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_jgauy")
 icon = ExtResource("13_tboky")
 
-[node name="Button_Delete" type="Button" parent="FileList/Footer/HBox"]
+[node name="Button_Delete" type="Button" parent="FileList/Footer/HBox" unique_id=774001330]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DELETE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_stxmf")
 icon = ExtResource("8_j3ltd")
 
-[node name="Info" type="MarginContainer" parent="."]
+[node name="Info" type="MarginContainer" parent="." unique_id=1030191053]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 0
@@ -231,14 +231,14 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="VBox" type="VBoxContainer" parent="Info"]
+[node name="VBox" type="VBoxContainer" parent="Info" unique_id=1399769731]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HBox_Header" type="HBoxContainer" parent="Info/VBox"]
+[node name="HBox_Header" type="HBoxContainer" parent="Info/VBox" unique_id=987325099]
 layout_mode = 2
 
-[node name="Label_InfoName" type="Label" parent="Info/VBox/HBox_Header"]
+[node name="Label_InfoName" type="Label" parent="Info/VBox/HBox_Header" unique_id=650262706]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -246,27 +246,27 @@ label_settings = SubResource("LabelSettings_tnh0v")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Texture_PageIcon" type="TextureRect" parent="Info/VBox/HBox_Header"]
+[node name="Texture_PageIcon" type="TextureRect" parent="Info/VBox/HBox_Header" unique_id=1208962961]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("16_3flvg")
 
-[node name="VSep" type="VSeparator" parent="Info/VBox/HBox_Header"]
+[node name="VSep" type="VSeparator" parent="Info/VBox/HBox_Header" unique_id=192020695]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ir1vg")
 
-[node name="HSep_Header" type="HSeparator" parent="Info/VBox"]
+[node name="HSep_Header" type="HSeparator" parent="Info/VBox" unique_id=255093399]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="VBox_ArcInfo" type="VBoxContainer" parent="Info/VBox"]
+[node name="VBox_ArcInfo" type="VBoxContainer" parent="Info/VBox" unique_id=1980655409]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ArcDateTime" type="HBoxContainer" parent="Info/VBox/VBox_ArcInfo"]
+[node name="ArcDateTime" type="HBoxContainer" parent="Info/VBox/VBox_ArcInfo" unique_id=242202797]
 layout_mode = 2
 
-[node name="Label_ArcDateTimeHeader" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime"]
+[node name="Label_ArcDateTimeHeader" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime" unique_id=813640574]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_ARCHIVE_DETAILS_MODIFIED_TIME"
@@ -274,7 +274,7 @@ label_settings = SubResource("LabelSettings_c7mur")
 horizontal_alignment = 2
 text_overrun_behavior = 3
 
-[node name="Label_ArcDateTime" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime"]
+[node name="Label_ArcDateTime" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcDateTime" unique_id=929064443]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -283,16 +283,16 @@ text = "PLACEHOLDER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_ArcInfo"]
+[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_ArcInfo" unique_id=784260645]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("11_1pteu")
 
-[node name="ArcNotWithinProject" type="VBoxContainer" parent="Info/VBox/VBox_ArcInfo"]
+[node name="ArcNotWithinProject" type="VBoxContainer" parent="Info/VBox/VBox_ArcInfo" unique_id=370588336]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label_ArcNotWithinProject" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcNotWithinProject"]
+[node name="Label_ArcNotWithinProject" type="Label" parent="Info/VBox/VBox_ArcInfo/ArcNotWithinProject" unique_id=1937367015]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_ARCHIVE_IS_WITHIN_PROJECT_NOTICE"
@@ -300,14 +300,14 @@ label_settings = SubResource("LabelSettings_c7mur")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBox_EventInfo" type="VBoxContainer" parent="Info/VBox"]
+[node name="VBox_EventInfo" type="VBoxContainer" parent="Info/VBox" unique_id=294872263]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ArcName" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo"]
+[node name="ArcName" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo" unique_id=69357738]
 layout_mode = 2
 
-[node name="Label_ArcNameHeader" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName"]
+[node name="Label_ArcNameHeader" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName" unique_id=239103640]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_ARCHIVE_NAME"
@@ -315,7 +315,7 @@ label_settings = SubResource("LabelSettings_c7mur")
 horizontal_alignment = 2
 text_overrun_behavior = 3
 
-[node name="Label_ArcName" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName"]
+[node name="Label_ArcName" type="Label" parent="Info/VBox/VBox_EventInfo/ArcName" unique_id=792907196]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -324,14 +324,14 @@ text = "PLACEHOLDER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_EventInfo"]
+[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_EventInfo" unique_id=46431618]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("11_1pteu")
 
-[node name="Size" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo"]
+[node name="Size" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo" unique_id=755484475]
 layout_mode = 2
 
-[node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_EventInfo/Size"]
+[node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_EventInfo/Size" unique_id=1220788634]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
@@ -339,7 +339,7 @@ label_settings = SubResource("LabelSettings_c7mur")
 horizontal_alignment = 2
 text_overrun_behavior = 3
 
-[node name="Label_Size" type="Label" parent="Info/VBox/VBox_EventInfo/Size"]
+[node name="Label_Size" type="Label" parent="Info/VBox/VBox_EventInfo/Size" unique_id=1990180542]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -348,17 +348,17 @@ text = "PLACEHOLDER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_EventInfo"]
+[node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_EventInfo" unique_id=405331070]
 layout_mode = 2
 
-[node name="HSep" type="HSeparator" parent="Info/VBox/VBox_EventInfo/DebugHash"]
+[node name="HSep" type="HSeparator" parent="Info/VBox/VBox_EventInfo/DebugHash" unique_id=1816068928]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("11_1pteu")
 
-[node name="Content" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo/DebugHash"]
+[node name="Content" type="HBoxContainer" parent="Info/VBox/VBox_EventInfo/DebugHash" unique_id=1082737372]
 layout_mode = 2
 
-[node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_EventInfo/DebugHash/Content"]
+[node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_EventInfo/DebugHash/Content" unique_id=754354100]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_COPY_DEBUG_HASH_HEADER"
@@ -366,23 +366,23 @@ label_settings = SubResource("LabelSettings_d4vbl")
 horizontal_alignment = 2
 text_overrun_behavior = 3
 
-[node name="Button_Copy" type="Button" parent="Info/VBox/VBox_EventInfo/DebugHash/Content"]
+[node name="Button_Copy" type="Button" parent="Info/VBox/VBox_EventInfo/DebugHash/Content" unique_id=807451720]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_COPY_DEBUG_HASH"
 text_overrun_behavior = 3
 
-[node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
+[node name="HSep_Bottom" type="HSeparator" parent="Info/VBox" unique_id=1132100245]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_n2a70")
 
-[node name="Footer" type="PanelContainer" parent="Info/VBox"]
+[node name="Footer" type="PanelContainer" parent="Info/VBox" unique_id=1062904930]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("4_kcoe0")
 
-[node name="Button_Open" type="Button" parent="Info/VBox/Footer"]
+[node name="Button_Open" type="Button" parent="Info/VBox/Footer" unique_id=1970753086]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -392,14 +392,14 @@ flat = true
 icon_alignment = 2
 expand_icon = true
 
-[node name="TabEventFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
+[node name="TabEventFileAccessor" type="Node" parent="." unique_id=2081835556 node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
 script = ExtResource("15_obiaq")
 CopyButton = NodePath("../FileList/Footer/HBox/Button_Copy")
 PasteButton = NodePath("../FileList/Footer/HBox/Button_Paste")
 CutButton = NodePath("../FileList/Footer/HBox/Button_Cut")
 DeleteButton = NodePath("../FileList/Footer/HBox/Button_Delete")
 
-[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="TabEventFileAccessor"]
+[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="TabEventFileAccessor" unique_id=663147015]
 title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 initial_position = 2
 size = Vector2i(520, 100)
@@ -408,53 +408,53 @@ ok_button_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
 dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 dialog_autowrap = true
 
-[node name="Popup_DuplicateArchive" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+[node name="Popup_DuplicateArchive" parent="TabEventFileAccessor" unique_id=1106501795 instance=ExtResource("19_77ica")]
 visible = false
 theme = ExtResource("1_8utrk")
 autofill_text = true
 
-[node name="Label_Header" parent="TabEventFileAccessor/Popup_DuplicateArchive/Content/VBox" index="0"]
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_DuplicateArchive/Content/VBox" parent_id_path=PackedInt32Array(1106501795, 973588717) index="0" unique_id=158144205]
 text = "HOME_TAB_EVENT_POPUP_ARCHIVE_DUPLICATE"
 
-[node name="Popup_DuplicateEvent" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+[node name="Popup_DuplicateEvent" parent="TabEventFileAccessor" unique_id=1604047397 instance=ExtResource("19_77ica")]
 visible = false
 theme = ExtResource("1_8utrk")
 autofill_text = true
 
-[node name="Label_Header" parent="TabEventFileAccessor/Popup_DuplicateEvent/Content/VBox" index="0"]
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_DuplicateEvent/Content/VBox" parent_id_path=PackedInt32Array(1604047397, 973588717) index="0" unique_id=158144205]
 text = "HOME_TAB_EVENT_POPUP_EVENT_DUPLICATE"
 
-[node name="Popup_NewArchive" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+[node name="Popup_NewArchive" parent="TabEventFileAccessor" unique_id=1350970442 instance=ExtResource("19_77ica")]
 visible = false
 theme = ExtResource("1_8utrk")
 
-[node name="Label_Header" parent="TabEventFileAccessor/Popup_NewArchive/Content/VBox" index="0"]
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_NewArchive/Content/VBox" parent_id_path=PackedInt32Array(1350970442, 973588717) index="0" unique_id=158144205]
 text = "HOME_TAB_EVENT_POPUP_ARCHIVE_NEW"
 
-[node name="Popup_NewEvent" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+[node name="Popup_NewEvent" parent="TabEventFileAccessor" unique_id=350644889 instance=ExtResource("19_77ica")]
 visible = false
 theme = ExtResource("1_8utrk")
 
-[node name="Label_Header" parent="TabEventFileAccessor/Popup_NewEvent/Content/VBox" index="0"]
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_NewEvent/Content/VBox" parent_id_path=PackedInt32Array(350644889, 973588717) index="0" unique_id=158144205]
 text = "HOME_TAB_EVENT_POPUP_EVENT_NEW"
 
-[node name="Popup_RenameArchive" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+[node name="Popup_RenameArchive" parent="TabEventFileAccessor" unique_id=1157889923 instance=ExtResource("19_77ica")]
 visible = false
 theme = ExtResource("1_8utrk")
 autofill_text = true
 
-[node name="Label_Header" parent="TabEventFileAccessor/Popup_RenameArchive/Content/VBox" index="0"]
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_RenameArchive/Content/VBox" parent_id_path=PackedInt32Array(1157889923, 973588717) index="0" unique_id=158144205]
 text = "HOME_TAB_EVENT_POPUP_RENAME_ARCHIVE"
 
-[node name="Popup_RenameEvent" parent="TabEventFileAccessor" instance=ExtResource("19_77ica")]
+[node name="Popup_RenameEvent" parent="TabEventFileAccessor" unique_id=975483675 instance=ExtResource("19_77ica")]
 visible = false
 theme = ExtResource("1_8utrk")
 autofill_text = true
 
-[node name="Label_Header" parent="TabEventFileAccessor/Popup_RenameEvent/Content/VBox" index="0"]
+[node name="Label_Header" parent="TabEventFileAccessor/Popup_RenameEvent/Content/VBox" parent_id_path=PackedInt32Array(975483675, 973588717) index="0" unique_id=158144205]
 text = "HOME_TAB_EVENT_POPUP_RENAME_EVENT"
 
-[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
+[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="." unique_id=338592970]
 title = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1
 size = Vector2i(930, 100)

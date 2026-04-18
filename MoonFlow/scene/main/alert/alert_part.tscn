@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dndalo2avvtvh"]
+[gd_scene format=3 uid="uid://dndalo2avvtvh"]
 
 [ext_resource type="Theme" uid="uid://dskvusrskxbgf" path="res://asset/theme/main/alert.tres" id="1_as178"]
 [ext_resource type="Script" uid="uid://cqq6ph1mm5cmh" path="res://scene/main/alert/alert_part.gd" id="1_yhgib"]
@@ -135,7 +135,7 @@ _data = {
 &"end_hovered": SubResource("Animation_pk8jg")
 }
 
-[node name="AlertPart" type="PanelContainer"]
+[node name="AlertPart" type="PanelContainer" unique_id=219144629]
 self_modulate = Color(0.0846899, 0.0846899, 0.0846899, 1)
 custom_minimum_size = Vector2(320, 0)
 offset_right = 320.0
@@ -146,12 +146,12 @@ mouse_filter = 2
 theme = ExtResource("1_as178")
 script = ExtResource("1_yhgib")
 
-[node name="Content" type="HBoxContainer" parent="."]
+[node name="Content" type="HBoxContainer" parent="." unique_id=860072089]
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Texture_Icon" type="TextureRect" parent="Content"]
+[node name="Texture_Icon" type="TextureRect" parent="Content" unique_id=944392535]
 custom_minimum_size = Vector2(52, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -160,7 +160,7 @@ mouse_filter = 2
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextContent" type="VBoxContainer" parent="Content"]
+[node name="TextContent" type="VBoxContainer" parent="Content" unique_id=1127509435]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -168,24 +168,22 @@ mouse_filter = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Label_Title" type="Label" parent="Content/TextContent"]
+[node name="Label_Title" type="Label" parent="Content/TextContent" unique_id=149431142]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Rich_Desc" type="RichTextLabel" parent="Content/TextContent"]
+[node name="Rich_Desc" type="RichTextLabel" parent="Content/TextContent" unique_id=1932273932]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
 fit_content = true
 
-[node name="Progress_End" type="ProgressBar" parent="."]
+[node name="Progress_End" type="ProgressBar" parent="." unique_id=1466682510]
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2
 step = 0.001
 show_percentage = false
 
-[node name="Anim" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_gnnjh")
-}
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=1609771501]
+libraries/ = SubResource("AnimationLibrary_gnnjh")

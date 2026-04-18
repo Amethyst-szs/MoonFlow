@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://by1uqtvhxvu4b"]
+[gd_scene format=3 uid="uid://by1uqtvhxvu4b"]
 
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="1_l2lpu"]
 [ext_resource type="StyleBox" uid="uid://cdh3fo4fwbcwo" path="res://asset/theme/msbt/stylebox/msbt_panel_tag_submenu.tres" id="2_u1qsr"]
@@ -90,7 +90,7 @@ grow_begin = -2.0
 grow_end = -2.0
 thickness = 3
 
-[node name="SubmenuTagDeviceFont" type="PanelContainer"]
+[node name="SubmenuTagDeviceFont" type="PanelContainer" unique_id=1132901890]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_l2lpu")
@@ -98,7 +98,7 @@ theme_override_styles/panel = ExtResource("2_u1qsr")
 script = ExtResource("3_bbcu7")
 IsCenterWindow = true
 
-[node name="Scroll" type="ScrollContainer" parent="."]
+[node name="Scroll" type="ScrollContainer" parent="." unique_id=200721004]
 custom_minimum_size = Vector2(640, 420)
 layout_mode = 2
 theme = SubResource("Theme_xu6gh")
@@ -110,25 +110,25 @@ drag_with_mouse = false
 follow_focus_margin = 80
 force_vertical_scrolling = true
 
-[node name="Layout" type="VBoxContainer" parent="Scroll"]
+[node name="Layout" type="VBoxContainer" parent="Scroll" unique_id=238665076]
 layout_mode = 2
 
-[node name="Panel_Dynamic" type="PanelContainer" parent="Scroll/Layout"]
+[node name="Panel_Dynamic" type="PanelContainer" parent="Scroll/Layout" unique_id=119481066]
 self_modulate = Color(1, 0.333333, 0, 1)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("33_i1fyw")
 
-[node name="VBox" type="VBoxContainer" parent="Scroll/Layout/Panel_Dynamic"]
+[node name="VBox" type="VBoxContainer" parent="Scroll/Layout/Panel_Dynamic" unique_id=858926329]
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="VBox_InputDevicePreview" type="VBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="VBox_InputDevicePreview" type="VBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=451020602]
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Label_Device" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview"]
+[node name="Label_Device" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview" unique_id=2035632425]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
@@ -136,11 +136,11 @@ text = "PROJECT_TAG_INPUT_DEVICE_PREVIEW"
 label_settings = SubResource("LabelSettings_aijqg")
 horizontal_alignment = 1
 
-[node name="HBox_InputDevice" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview"]
+[node name="HBox_InputDevice" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview" unique_id=970746597]
 layout_mode = 2
 alignment = 1
 
-[node name="Option_Device" type="OptionButton" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview/HBox_InputDevice"]
+[node name="Option_Device" type="OptionButton" parent="Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview/HBox_InputDevice" unique_id=1496999059]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
@@ -150,6 +150,7 @@ selected = 0
 item_count = 5
 popup/item_0/text = "PROJECT_TAG_INPUT_DEVICE_DUAL"
 popup/item_0/icon = ExtResource("42_wxh23")
+popup/item_0/id = 0
 popup/item_1/text = "PROJECT_TAG_INPUT_DEVICE_HANDHELD"
 popup/item_1/icon = ExtResource("42_wxh23")
 popup/item_1/id = 1
@@ -165,23 +166,23 @@ popup/item_4/id = 4
 script = SubResource("GDScript_isipo")
 update_root = NodePath("../../..")
 
-[node name="HSep_Button" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="HSep_Button" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=788640576]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Button" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Label_Button" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=377182135]
 layout_mode = 2
 mouse_filter = 1
 text = "PROJECT_TAG_DYNAMIC_HEADER_BUTTON"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Button" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Button" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=1030940661]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="StyleA" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleA" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=181294420]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonA"
@@ -191,7 +192,7 @@ script = ExtResource("6_yx5jy")
 IconCode = 2
 IsAutograbFocus = true
 
-[node name="StyleB" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleB" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=34082539]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonB"
@@ -200,7 +201,7 @@ icon = ExtResource("8_1asfq")
 script = ExtResource("6_yx5jy")
 IconCode = 3
 
-[node name="StyleX" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleX" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=562243282]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonX"
@@ -209,7 +210,7 @@ icon = ExtResource("9_8y42p")
 script = ExtResource("6_yx5jy")
 IconCode = 4
 
-[node name="StyleY" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleY" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=1343252273]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonY"
@@ -218,7 +219,7 @@ icon = ExtResource("10_qb7cn")
 script = ExtResource("6_yx5jy")
 IconCode = 5
 
-[node name="StyleL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=399217131]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonL"
@@ -227,7 +228,7 @@ icon = ExtResource("11_n61dc")
 script = ExtResource("6_yx5jy")
 IconCode = 6
 
-[node name="StyleR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=1115610226]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonR"
@@ -236,7 +237,7 @@ icon = ExtResource("12_47l8p")
 script = ExtResource("6_yx5jy")
 IconCode = 7
 
-[node name="StyleZL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleZL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=669971506]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonZL"
@@ -245,7 +246,7 @@ icon = ExtResource("13_n5b4r")
 script = ExtResource("6_yx5jy")
 IconCode = 8
 
-[node name="StyleZR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleZR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=454689144]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonZR"
@@ -254,7 +255,7 @@ icon = ExtResource("14_5043j")
 script = ExtResource("6_yx5jy")
 IconCode = 9
 
-[node name="StylePlus" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StylePlus" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=634390585]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonPlus"
@@ -263,7 +264,7 @@ icon = ExtResource("17_3q683")
 script = ExtResource("6_yx5jy")
 IconCode = 11
 
-[node name="StyleMinus" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button"]
+[node name="StyleMinus" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Button" unique_id=981423726]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonMinus"
@@ -272,23 +273,23 @@ icon = ExtResource("18_sxdrs")
 script = ExtResource("6_yx5jy")
 IconCode = 10
 
-[node name="HSep_Directional" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="HSep_Directional" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=1128505222]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Directional" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Label_Directional" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=318499860]
 layout_mode = 2
 mouse_filter = 1
 text = "PROJECT_TAG_DYNAMIC_HEADER_DIRECTIONAL"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Directional" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Directional" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=496662790]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="StyleLeft" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleLeft" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=171586108]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyLeft"
@@ -297,7 +298,7 @@ icon = ExtResource("24_w3vif")
 script = ExtResource("6_yx5jy")
 IconCode = 14
 
-[node name="StyleRight" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleRight" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=268285896]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyRight"
@@ -306,7 +307,7 @@ icon = ExtResource("25_vx8qe")
 script = ExtResource("6_yx5jy")
 IconCode = 15
 
-[node name="StyleUp" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleUp" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=1815102724]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyUp"
@@ -315,7 +316,7 @@ icon = ExtResource("26_lpkme")
 script = ExtResource("6_yx5jy")
 IconCode = 12
 
-[node name="StyleDown" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleDown" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=75816875]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleKeyDown"
@@ -324,13 +325,13 @@ icon = ExtResource("27_i1t0b")
 script = ExtResource("6_yx5jy")
 IconCode = 13
 
-[node name="VSep0" type="VSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="VSep0" type="VSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=1972576806]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
 
-[node name="StyleStickL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleStickL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=395085354]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickL"
@@ -339,7 +340,7 @@ icon = ExtResource("31_m2oy2")
 script = ExtResource("6_yx5jy")
 IconCode = 16
 
-[node name="StyleStickR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleStickR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=1552129231]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickR"
@@ -348,7 +349,7 @@ icon = ExtResource("34_nvbus")
 script = ExtResource("6_yx5jy")
 IconCode = 17
 
-[node name="StyleStickRPush" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleStickRPush" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=945298825]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickPushR"
@@ -357,7 +358,7 @@ icon = ExtResource("35_6fu2e")
 script = ExtResource("6_yx5jy")
 IconCode = 18
 
-[node name="StyleStickUD" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleStickUD" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=1046312415]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickUD"
@@ -366,7 +367,7 @@ icon = ExtResource("30_xtuel")
 script = ExtResource("6_yx5jy")
 IconCode = 19
 
-[node name="StyleStickLR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional"]
+[node name="StyleStickLR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Directional" unique_id=1791874431]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleStickLR"
@@ -375,23 +376,23 @@ icon = ExtResource("36_8t5ju")
 script = ExtResource("6_yx5jy")
 IconCode = 20
 
-[node name="HSep_Device" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="HSep_Device" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=1954777594]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Device" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Label_Device" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=541755839]
 layout_mode = 2
 mouse_filter = 1
 text = "PROJECT_TAG_DYNAMIC_HEADER_DEVICE"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Device" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Device" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=1706825855]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="StyleConText" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+[node name="StyleConText" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device" unique_id=384004784]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleJoyCon"
@@ -400,7 +401,7 @@ icon = ExtResource("42_wxh23")
 script = ExtResource("6_yx5jy")
 IconCode = 22
 
-[node name="StyleCon" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+[node name="StyleCon" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device" unique_id=546665647]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleJoyConIconOnly"
@@ -409,7 +410,7 @@ icon = ExtResource("42_wxh23")
 script = ExtResource("6_yx5jy")
 IconCode = 25
 
-[node name="StyleConR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+[node name="StyleConR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device" unique_id=1066234515]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleJoyConR"
@@ -418,13 +419,13 @@ icon = ExtResource("42_wxh23")
 script = ExtResource("6_yx5jy")
 IconCode = 23
 
-[node name="VSep1" type="VSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+[node name="VSep1" type="VSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox/Device" unique_id=1214880810]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
 
-[node name="StyleCapture" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+[node name="StyleCapture" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device" unique_id=900241916]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleButtonCapture"
@@ -433,7 +434,7 @@ icon = ExtResource("39_q3520")
 script = ExtResource("6_yx5jy")
 IconCode = 21
 
-[node name="StyleReset" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device"]
+[node name="StyleReset" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Device" unique_id=1397999867]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyleReset"
@@ -442,23 +443,23 @@ icon = ExtResource("12_47l8p")
 script = ExtResource("6_yx5jy")
 IconCode = 24
 
-[node name="HSep_Special" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="HSep_Special" type="HSeparator" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=1411387846]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_Special" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Label_Special" type="Label" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=1189259191]
 layout_mode = 2
 mouse_filter = 1
 text = "PROJECT_TAG_DYNAMIC_HEADER_SPECIAL"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="Special" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox"]
+[node name="Special" type="HBoxContainer" parent="Scroll/Layout/Panel_Dynamic/VBox" unique_id=834728766]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="Style2PY" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+[node name="Style2PY" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special" unique_id=729146036]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyle2PButtonY"
@@ -467,7 +468,7 @@ icon = ExtResource("19_k5i75")
 script = ExtResource("6_yx5jy")
 IconCode = 26
 
-[node name="Style2PStickL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+[node name="Style2PStickL" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special" unique_id=252900449]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyle2PStickL"
@@ -476,7 +477,7 @@ icon = ExtResource("28_4nhv5")
 script = ExtResource("6_yx5jy")
 IconCode = 27
 
-[node name="Style2PStickR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+[node name="Style2PStickR" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special" unique_id=1717427914]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadStyle2PStickR"
@@ -485,7 +486,7 @@ icon = ExtResource("28_4nhv5")
 script = ExtResource("6_yx5jy")
 IconCode = 28
 
-[node name="PairMenu" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+[node name="PairMenu" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special" unique_id=1712470876]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadPairMenu"
@@ -494,7 +495,7 @@ icon = ExtResource("18_sxdrs")
 script = ExtResource("6_yx5jy")
 IconCode = 29
 
-[node name="PairMap" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special"]
+[node name="PairMap" type="Button" parent="Scroll/Layout/Panel_Dynamic/VBox/Special" unique_id=1286773256]
 custom_minimum_size = Vector2(41, 41)
 layout_mode = 2
 tooltip_text = "PROJECT_TAG_TOOLTIP_PadPairMap"
@@ -503,41 +504,41 @@ icon = ExtResource("18_sxdrs")
 script = ExtResource("6_yx5jy")
 IconCode = 30
 
-[node name="HSep_Mid" type="HSeparator" parent="Scroll/Layout"]
+[node name="HSep_Mid" type="HSeparator" parent="Scroll/Layout" unique_id=419973228]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxLine_ifgad")
 
-[node name="Panel_Static" type="PanelContainer" parent="Scroll/Layout"]
+[node name="Panel_Static" type="PanelContainer" parent="Scroll/Layout" unique_id=1734692648]
 self_modulate = Color(0, 0.289833, 0.47, 1)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("33_i1fyw")
 
-[node name="VBox" type="VBoxContainer" parent="Scroll/Layout/Panel_Static"]
+[node name="VBox" type="VBoxContainer" parent="Scroll/Layout/Panel_Static" unique_id=109187115]
 layout_mode = 2
 
-[node name="Label_StaticButton" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="Label_StaticButton" type="Label" parent="Scroll/Layout/Panel_Static/VBox" unique_id=102208313]
 layout_mode = 2
 mouse_filter = 1
 text = "DEVICE_FONT_STATIC_HEADER_BUTTON"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="StaticButton" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="StaticButton" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1408459909]
 layout_mode = 2
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="Button0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=778602323]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonA"
 mouse_filter = 1
 icon = ExtResource("6_5v1sr")
 script = ExtResource("6_nwmc2")
 
-[node name="Button1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=1999945924]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonB"
 mouse_filter = 1
@@ -545,7 +546,7 @@ icon = ExtResource("8_1asfq")
 script = ExtResource("6_nwmc2")
 IconCode = 5
 
-[node name="Button2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=1505284390]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonX"
 mouse_filter = 1
@@ -553,7 +554,7 @@ icon = ExtResource("9_8y42p")
 script = ExtResource("6_nwmc2")
 IconCode = 6
 
-[node name="Button3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=128639978]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonY"
 mouse_filter = 1
@@ -561,7 +562,7 @@ icon = ExtResource("10_qb7cn")
 script = ExtResource("6_nwmc2")
 IconCode = 7
 
-[node name="Button4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=581947247]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonL"
 mouse_filter = 1
@@ -569,7 +570,7 @@ icon = ExtResource("11_n61dc")
 script = ExtResource("6_nwmc2")
 IconCode = 8
 
-[node name="Button5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=1247068086]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonR"
 mouse_filter = 1
@@ -577,7 +578,7 @@ icon = ExtResource("12_47l8p")
 script = ExtResource("6_nwmc2")
 IconCode = 9
 
-[node name="Button6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=358408118]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonZL"
 mouse_filter = 1
@@ -585,7 +586,7 @@ icon = ExtResource("13_n5b4r")
 script = ExtResource("6_nwmc2")
 IconCode = 10
 
-[node name="Button7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=1511359175]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonZR"
 mouse_filter = 1
@@ -593,7 +594,7 @@ icon = ExtResource("14_5043j")
 script = ExtResource("6_nwmc2")
 IconCode = 11
 
-[node name="Button8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=1514445511]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonSL"
 mouse_filter = 1
@@ -601,7 +602,7 @@ icon = ExtResource("15_bhg8x")
 script = ExtResource("6_nwmc2")
 IconCode = 12
 
-[node name="Button9" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button9" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=2040803396]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonSR"
 mouse_filter = 1
@@ -609,7 +610,7 @@ icon = ExtResource("16_uftty")
 script = ExtResource("6_nwmc2")
 IconCode = 13
 
-[node name="Button10" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button10" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=647079043]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonPlus"
 mouse_filter = 1
@@ -617,7 +618,7 @@ icon = ExtResource("17_3q683")
 script = ExtResource("6_nwmc2")
 IconCode = 18
 
-[node name="Button11" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton"]
+[node name="Button11" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticButton" unique_id=1222963942]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonMinus"
 mouse_filter = 1
@@ -625,23 +626,23 @@ icon = ExtResource("18_sxdrs")
 script = ExtResource("6_nwmc2")
 IconCode = 19
 
-[node name="HSep_StaticDPad" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="HSep_StaticDPad" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1382407580]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_StaticDPad" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="Label_StaticDPad" type="Label" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1649198184]
 layout_mode = 2
 mouse_filter = 1
 text = "DEVICE_FONT_STATIC_HEADER_DPAD"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="StaticDPad" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="StaticDPad" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1035390535]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="DPad0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=1943399975]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupLeft"
 mouse_filter = 1
@@ -649,7 +650,7 @@ icon = ExtResource("19_k5i75")
 script = ExtResource("6_nwmc2")
 IconCode = 3
 
-[node name="DPad1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=374186565]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupRight"
 mouse_filter = 1
@@ -657,7 +658,7 @@ icon = ExtResource("20_gidpk")
 script = ExtResource("6_nwmc2")
 IconCode = 0
 
-[node name="DPad2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=940374105]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupUp"
 mouse_filter = 1
@@ -665,7 +666,7 @@ icon = ExtResource("21_y2ffv")
 script = ExtResource("6_nwmc2")
 IconCode = 2
 
-[node name="DPad3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=1916790311]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonGroupBottom"
 mouse_filter = 1
@@ -673,7 +674,7 @@ icon = ExtResource("22_evf2x")
 script = ExtResource("6_nwmc2")
 IconCode = 1
 
-[node name="DPad4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=1438067134]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonLR"
 mouse_filter = 1
@@ -681,13 +682,13 @@ icon = ExtResource("23_ol7tb")
 script = ExtResource("6_nwmc2")
 IconCode = 36
 
-[node name="VSep" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="VSep" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=1846435463]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
 
-[node name="DPad5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=72562738]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonLeft"
 mouse_filter = 1
@@ -695,7 +696,7 @@ icon = ExtResource("24_w3vif")
 script = ExtResource("6_nwmc2")
 IconCode = 16
 
-[node name="DPad6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=609943928]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonRight"
 mouse_filter = 1
@@ -703,7 +704,7 @@ icon = ExtResource("25_vx8qe")
 script = ExtResource("6_nwmc2")
 IconCode = 17
 
-[node name="DPad7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=59035659]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonUp"
 mouse_filter = 1
@@ -711,7 +712,7 @@ icon = ExtResource("26_lpkme")
 script = ExtResource("6_nwmc2")
 IconCode = 14
 
-[node name="DPad8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad"]
+[node name="DPad8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDPad" unique_id=1850669488]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonDown"
 mouse_filter = 1
@@ -719,23 +720,23 @@ icon = ExtResource("27_i1t0b")
 script = ExtResource("6_nwmc2")
 IconCode = 15
 
-[node name="HSep_StaticStick" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="HSep_StaticStick" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox" unique_id=338640180]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_StaticStick" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="Label_StaticStick" type="Label" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1569237760]
 layout_mode = 2
 mouse_filter = 1
 text = "DEVICE_FONT_STATIC_HEADER_STICK"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="StaticStick" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="StaticStick" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1494744199]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="Stick0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=154194349]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_Stick"
 mouse_filter = 1
@@ -743,7 +744,7 @@ icon = ExtResource("28_4nhv5")
 script = ExtResource("6_nwmc2")
 IconCode = 23
 
-[node name="Stick1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=293365380]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickPush"
 mouse_filter = 1
@@ -751,7 +752,7 @@ icon = ExtResource("29_kou7u")
 script = ExtResource("6_nwmc2")
 IconCode = 26
 
-[node name="Stick2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=993789626]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickUD"
 mouse_filter = 1
@@ -759,13 +760,13 @@ icon = ExtResource("30_xtuel")
 script = ExtResource("6_nwmc2")
 IconCode = 33
 
-[node name="VSep0" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="VSep0" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=125313031]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
 
-[node name="Stick3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=937666576]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickL"
 mouse_filter = 1
@@ -773,7 +774,7 @@ icon = ExtResource("31_m2oy2")
 script = ExtResource("6_nwmc2")
 IconCode = 24
 
-[node name="Stick4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=1993481889]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickPushL"
 mouse_filter = 1
@@ -781,7 +782,7 @@ icon = ExtResource("32_e47cp")
 script = ExtResource("6_nwmc2")
 IconCode = 27
 
-[node name="Stick5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=74384498]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickUDL"
 mouse_filter = 1
@@ -789,13 +790,13 @@ icon = ExtResource("33_40rvl")
 script = ExtResource("6_nwmc2")
 IconCode = 34
 
-[node name="VSep1" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="VSep1" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=416250058]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
 
-[node name="Stick6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=991390282]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickR"
 mouse_filter = 1
@@ -803,7 +804,7 @@ icon = ExtResource("34_nvbus")
 script = ExtResource("6_nwmc2")
 IconCode = 25
 
-[node name="Stick7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=381398563]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickPushR"
 mouse_filter = 1
@@ -811,7 +812,7 @@ icon = ExtResource("35_6fu2e")
 script = ExtResource("6_nwmc2")
 IconCode = 28
 
-[node name="Stick8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick"]
+[node name="Stick8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticStick" unique_id=819631915]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_StickLRR"
 mouse_filter = 1
@@ -819,23 +820,23 @@ icon = ExtResource("36_8t5ju")
 script = ExtResource("6_nwmc2")
 IconCode = 35
 
-[node name="HSep_StaticDevice" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="HSep_StaticDevice" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1696176440]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label_StaticDevice" type="Label" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="Label_StaticDevice" type="Label" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1083790973]
 layout_mode = 2
 mouse_filter = 1
 text = "DEVICE_FONT_STATIC_HEADER_DEVICE"
 label_settings = SubResource("LabelSettings_32rks")
 horizontal_alignment = 1
 
-[node name="StaticDevice" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="StaticDevice" type="HBoxContainer" parent="Scroll/Layout/Panel_Static/VBox" unique_id=621700012]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="Stick0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick0" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=1695852312]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonPower"
 mouse_filter = 1
@@ -843,7 +844,7 @@ icon = ExtResource("37_iurjv")
 script = ExtResource("6_nwmc2")
 IconCode = 20
 
-[node name="Stick1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick1" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=1103346007]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonHome"
 mouse_filter = 1
@@ -851,7 +852,7 @@ icon = ExtResource("38_wcvle")
 script = ExtResource("6_nwmc2")
 IconCode = 21
 
-[node name="Stick2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick2" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=1216675995]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ButtonCapture"
 mouse_filter = 1
@@ -859,7 +860,7 @@ icon = ExtResource("39_q3520")
 script = ExtResource("6_nwmc2")
 IconCode = 22
 
-[node name="Stick3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick3" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=321967389]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ArrowRight"
 mouse_filter = 1
@@ -867,7 +868,7 @@ icon = ExtResource("40_p1vk8")
 script = ExtResource("6_nwmc2")
 IconCode = 41
 
-[node name="Stick4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick4" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=2137488740]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_Album"
 mouse_filter = 1
@@ -875,13 +876,13 @@ icon = ExtResource("41_rfyrf")
 script = ExtResource("6_nwmc2")
 IconCode = 42
 
-[node name="VSep2" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="VSep2" type="VSeparator" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=1865491596]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_nq2a5")
 
-[node name="Stick5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick5" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=645002136]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_JoyConBoth"
 mouse_filter = 1
@@ -889,7 +890,7 @@ icon = ExtResource("42_wxh23")
 script = ExtResource("6_nwmc2")
 IconCode = 37
 
-[node name="Stick6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick6" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=2083691206]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_JoyConRight"
 mouse_filter = 1
@@ -897,7 +898,7 @@ icon = ExtResource("43_opley")
 script = ExtResource("6_nwmc2")
 IconCode = 38
 
-[node name="Stick7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick7" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=678331813]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_JoyConSingle"
 mouse_filter = 1
@@ -905,7 +906,7 @@ icon = ExtResource("44_3rdgl")
 script = ExtResource("6_nwmc2")
 IconCode = 39
 
-[node name="Stick8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice"]
+[node name="Stick8" type="Button" parent="Scroll/Layout/Panel_Static/VBox/StaticDevice" unique_id=47368991]
 layout_mode = 2
 tooltip_text = "DEVICE_FONT_TOOLTIP_ProCon"
 mouse_filter = 1
@@ -913,11 +914,11 @@ icon = ExtResource("45_jfb8m")
 script = ExtResource("6_nwmc2")
 IconCode = 40
 
-[node name="HSep_End" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox"]
+[node name="HSep_End" type="HSeparator" parent="Scroll/Layout/Panel_Static/VBox" unique_id=1287337503]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="TagMenuFocusNeighborBuilder" type="Node" parent="." node_paths=PackedStringArray("Rows")]
+[node name="TagMenuFocusNeighborBuilder" type="Node" parent="." unique_id=1805351859 node_paths=PackedStringArray("Rows")]
 script = ExtResource("48_7higa")
 Rows = [NodePath("../Scroll/Layout/Panel_Dynamic/VBox/VBox_InputDevicePreview/HBox_InputDevice"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Button"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Directional"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Device"), NodePath("../Scroll/Layout/Panel_Dynamic/VBox/Special"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticButton"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticDPad"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticStick"), NodePath("../Scroll/Layout/Panel_Static/VBox/StaticDevice")]
 

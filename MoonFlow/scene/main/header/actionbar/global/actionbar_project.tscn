@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3u1gcxqoaq5h"]
+[gd_scene format=3 uid="uid://3u1gcxqoaq5h"]
 
 [ext_resource type="Texture2D" uid="uid://c8c0n0e4fw7mk" path="res://asset/material/file/open_new.svg" id="1_2eqvd"]
 [ext_resource type="Texture2D" uid="uid://e8kfhi5lnfdc" path="res://asset/material/file/refresh.svg" id="2_r7tms"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="4_ta825"]
 [ext_resource type="Script" uid="uid://b4mcu3ychbygl" path="res://scene/main/header/actionbar/global/ActionbarProject.cs" id="5_q2l64"]
 
-[node name="Project" type="PopupMenu"]
+[node name="Project" type="PopupMenu" unique_id=33495651]
 auto_translate_mode = 1
-size = Vector2i(309, 100)
+oversampling_override = 1.0
+size = Vector2i(447, 204)
+visible = true
 item_count = 5
 item_0/text = "MAIN_ACTIONBAR_PROJECT_OPEN_IN_EXPLORER"
 item_0/icon = ExtResource("1_2eqvd")

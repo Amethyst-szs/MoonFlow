@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://q8kd4hmy1qwe"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://q8kd4hmy1qwe"]
 
-[ext_resource type="Shader" path="res://asset/shader/gradient/gradient_step.gdshader" id="1_ec4wr"]
+[ext_resource type="Shader" uid="uid://c432ddjvvet5r" path="res://asset/shader/gradient/gradient_step.gdshader" id="1_ec4wr"]
 
 [resource]
 shader = ExtResource("1_ec4wr")

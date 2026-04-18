@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4kgsdkia0bx8"]
+[gd_scene format=3 uid="uid://b4kgsdkia0bx8"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_dj8ql"]
 [ext_resource type="Script" uid="uid://rqlc3r3ute7" path="res://scene/editor/msbt/tag_edit/eui/Wait.cs" id="2_5oqox"]
@@ -21,17 +21,17 @@ func _on_value_changed(_value) -> void:
 	get_line_edit().release_focus()
 "
 
-[node name="TagEditSceneBase" instance=ExtResource("1_dj8ql")]
+[node name="TagEditSceneBase" unique_id=1843526841 instance=ExtResource("1_dj8ql")]
 title = "TAG_EDIT_SCENE_HEADER_EUI_WAIT"
 script = ExtResource("2_5oqox")
 
-[node name="Label_Sec" type="Label" parent="Panel/Content" index="0"]
+[node name="Label_Sec" type="Label" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="0" unique_id=1104521417]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_b4jkt")
 horizontal_alignment = 1
 script = SubResource("GDScript_fmg3c")
 
-[node name="Spin_Frames" type="SpinBox" parent="Panel/Content" index="1"]
+[node name="Spin_Frames" type="SpinBox" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="1" unique_id=2022969224]
 unique_name_in_owner = true
 auto_translate_mode = 1
 custom_minimum_size = Vector2(256, 0)
@@ -44,5 +44,5 @@ custom_arrow_step = 5.0
 script = SubResource("GDScript_w8hxy")
 
 [connection signal="value_changed" from="Panel/Content/Spin_Frames" to="." method="OnDelayFramesSliderChanged"]
-[connection signal="value_changed" from="Panel/Content/Spin_Frames" to="Panel/Content/Spin_Frames" method="_on_value_changed"]
 [connection signal="value_changed" from="Panel/Content/Spin_Frames" to="Panel/Content/Label_Sec" method="set_seconds"]
+[connection signal="value_changed" from="Panel/Content/Spin_Frames" to="Panel/Content/Spin_Frames" method="_on_value_changed"]

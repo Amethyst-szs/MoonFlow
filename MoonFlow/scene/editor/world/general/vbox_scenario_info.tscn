@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://clhy3h8j6kcm"]
+[gd_scene format=3 uid="uid://clhy3h8j6kcm"]
 
 [ext_resource type="Script" uid="uid://dv3dklptgfjot" path="res://scene/editor/world/general/VBoxScenarioInfo.cs" id="1_yrngu"]
 
@@ -6,7 +6,7 @@
 font_size = 14
 font_color = Color(1, 1, 1, 0.705882)
 
-[node name="VBox_Scenario" type="VBoxContainer" node_paths=PackedStringArray("SpinCount", "SpinWorldPeace", "SpinPostgame", "SpinMoonRock")]
+[node name="VBox_Scenario" type="VBoxContainer" unique_id=1060820364 node_paths=PackedStringArray("SpinCount", "SpinWorldPeace", "SpinPostgame", "SpinMoonRock")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 126.0
@@ -17,13 +17,13 @@ SpinWorldPeace = NodePath("Content/Spin_WorldPeace")
 SpinPostgame = NodePath("Content/Spin_Postgame")
 SpinMoonRock = NodePath("Content/Spin_MoonRock")
 
-[node name="Content" type="GridContainer" parent="."]
+[node name="Content" type="GridContainer" parent="." unique_id=1425843419]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="Label_Count" type="Label" parent="Content"]
+[node name="Label_Count" type="Label" parent="Content" unique_id=739342446]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_COUNT_TOOLTIP"
@@ -34,7 +34,7 @@ label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
 text_overrun_behavior = 4
 
-[node name="Label_WorldPeace" type="Label" parent="Content"]
+[node name="Label_WorldPeace" type="Label" parent="Content" unique_id=1075060301]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_WORLD_PEACE_TOOLTIP"
@@ -45,7 +45,7 @@ label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
 text_overrun_behavior = 4
 
-[node name="Spin_Count" type="SpinBox" parent="Content"]
+[node name="Spin_Count" type="SpinBox" parent="Content" unique_id=1744863141]
 layout_mode = 2
 min_value = 1.0
 max_value = 15.0
@@ -54,7 +54,7 @@ rounded = true
 alignment = 1
 update_on_text_changed = true
 
-[node name="Spin_WorldPeace" type="SpinBox" parent="Content"]
+[node name="Spin_WorldPeace" type="SpinBox" parent="Content" unique_id=1960084152]
 layout_mode = 2
 min_value = 1.0
 max_value = 15.0
@@ -63,7 +63,7 @@ rounded = true
 alignment = 1
 update_on_text_changed = true
 
-[node name="Label_Postgame" type="Label" parent="Content"]
+[node name="Label_Postgame" type="Label" parent="Content" unique_id=1699572553]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_POSTGAME_TOOLTIP"
@@ -74,7 +74,7 @@ label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
 text_overrun_behavior = 4
 
-[node name="Label_MoonRock" type="Label" parent="Content"]
+[node name="Label_MoonRock" type="Label" parent="Content" unique_id=2050114802]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_SCENARIO_MOON_ROCK_TOOLTIP"
@@ -85,7 +85,7 @@ label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
 text_overrun_behavior = 4
 
-[node name="Spin_Postgame" type="SpinBox" parent="Content"]
+[node name="Spin_Postgame" type="SpinBox" parent="Content" unique_id=1025598459]
 layout_mode = 2
 min_value = 1.0
 max_value = 15.0
@@ -94,7 +94,7 @@ rounded = true
 alignment = 1
 update_on_text_changed = true
 
-[node name="Spin_MoonRock" type="SpinBox" parent="Content"]
+[node name="Spin_MoonRock" type="SpinBox" parent="Content" unique_id=1602725574]
 layout_mode = 2
 min_value = 1.0
 max_value = 15.0

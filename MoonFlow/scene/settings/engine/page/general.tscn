@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dx5wrgv3ugohw"]
+[gd_scene format=3 uid="uid://dx5wrgv3ugohw"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_1hk75"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_rui4d"]
@@ -107,46 +107,46 @@ func _on_item_selected(idx: int) -> void:
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gn66n"]
 
-[node name="Page_General" type="VBoxContainer"]
+[node name="Page_General" type="VBoxContainer" unique_id=1849980518]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 28.0
 grow_horizontal = 2
 
-[node name="Header" parent="." instance=ExtResource("1_rui4d")]
+[node name="Header" parent="." unique_id=1068676584 instance=ExtResource("1_rui4d")]
 layout_mode = 2
 
-[node name="Label_Head" parent="Header/Layout" index="0"]
+[node name="Label_Head" parent="Header/Layout" parent_id_path=PackedInt32Array(1068676584, 209024878) index="0" unique_id=53255930]
 text = "ENGINE_SETTINGS_APP_CATEGORY_GENERAL"
 
-[node name="VBox_Lang" type="VBoxContainer" parent="."]
+[node name="VBox_Lang" type="VBoxContainer" parent="." unique_id=1015493690]
 layout_mode = 2
 
-[node name="Label_LanguageHeader" type="Label" parent="VBox_Lang"]
+[node name="Label_LanguageHeader" type="Label" parent="VBox_Lang" unique_id=1957467290]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_HEADER"
 label_settings = SubResource("LabelSettings_2x6cb")
 
-[node name="HSep" type="HSeparator" parent="VBox_Lang"]
+[node name="HSep" type="HSeparator" parent="VBox_Lang" unique_id=591281717]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label_LocaleHeader" type="Label" parent="VBox_Lang"]
+[node name="Label_LocaleHeader" type="Label" parent="VBox_Lang" unique_id=294754195]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
 
-[node name="Option_Locale" type="OptionButton" parent="VBox_Lang"]
+[node name="Option_Locale" type="OptionButton" parent="VBox_Lang" unique_id=1096819434]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = SubResource("GDScript_4x0fm")
 
-[node name="HSep_Spacer" type="HSeparator" parent="VBox_Lang"]
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Lang" unique_id=539844889]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
-[node name="Check_DocSource" type="CheckBox" parent="VBox_Lang"]
+[node name="Check_DocSource" type="CheckBox" parent="VBox_Lang" unique_id=1350558599]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -154,25 +154,25 @@ text = "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE"
 script = ExtResource("2_ihk7t")
 key = "moonflow/wiki/is_use_local"
 
-[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Lang"]
+[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Lang" unique_id=213958478]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
-[node name="VBox_Visual" type="VBoxContainer" parent="."]
+[node name="VBox_Visual" type="VBoxContainer" parent="." unique_id=1907669538]
 layout_mode = 2
 
-[node name="Label_VisualHeader" type="Label" parent="VBox_Visual"]
+[node name="Label_VisualHeader" type="Label" parent="VBox_Visual" unique_id=1368924825]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_HEADER"
 label_settings = SubResource("LabelSettings_2x6cb")
 
-[node name="HSep" type="HSeparator" parent="VBox_Visual"]
+[node name="HSep" type="HSeparator" parent="VBox_Visual" unique_id=1527836415]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Button_ResetDisplayServer" type="Button" parent="VBox_Visual"]
+[node name="Button_ResetDisplayServer" type="Button" parent="VBox_Visual" unique_id=117245800]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_RESET_DISPLAY_SERVER_DEFAULT_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -181,16 +181,16 @@ text = "ENGINE_SETTINGS_PAGE_RESET_DISPLAY_SERVER_DEFAULT"
 alignment = 0
 script = SubResource("GDScript_sropi")
 
-[node name="HSep_Spacer4" type="HSeparator" parent="VBox_Visual"]
+[node name="HSep_Spacer4" type="HSeparator" parent="VBox_Visual" unique_id=1025970192]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
-[node name="Label_UiScaleHeader" type="Label" parent="VBox_Visual"]
+[node name="Label_UiScaleHeader" type="Label" parent="VBox_Visual" unique_id=1054343715]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_UI_SCALE_HEADER"
 
-[node name="Slider_UiScale" type="HSlider" parent="VBox_Visual" node_paths=PackedStringArray("label")]
+[node name="Slider_UiScale" type="HSlider" parent="VBox_Visual" unique_id=1379297820 node_paths=PackedStringArray("label")]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_UI_SCALE_TOOLTIP"
 mouse_default_cursor_shape = 10
@@ -205,16 +205,16 @@ key = "display/window/stretch/scale"
 label = NodePath("../Label_UiScaleHeader")
 suffix = "x"
 
-[node name="HSep_Spacer3" type="HSeparator" parent="VBox_Visual"]
+[node name="HSep_Spacer3" type="HSeparator" parent="VBox_Visual" unique_id=1120313682]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
-[node name="Label_TaskbarSizeHeader" type="Label" parent="VBox_Visual"]
+[node name="Label_TaskbarSizeHeader" type="Label" parent="VBox_Visual" unique_id=1363132171]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_TASKBAR_SIZE_HEADER"
 
-[node name="Slider_TaskbarSize" type="HSlider" parent="VBox_Visual" node_paths=PackedStringArray("label")]
+[node name="Slider_TaskbarSize" type="HSlider" parent="VBox_Visual" unique_id=1424656506 node_paths=PackedStringArray("label")]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_TASKBAR_SIZE_TOOLTIP"
 mouse_default_cursor_shape = 10
@@ -230,12 +230,12 @@ label = NodePath("../Label_TaskbarSizeHeader")
 display_as_percent = true
 percent_excludes_zero = false
 
-[node name="HSep_Spacer" type="HSeparator" parent="VBox_Visual"]
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Visual" unique_id=1174190873]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
-[node name="Check_WorldListShader" type="CheckBox" parent="VBox_Visual"]
+[node name="Check_WorldListShader" type="CheckBox" parent="VBox_Visual" unique_id=84617454]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -243,40 +243,40 @@ text = "ENGINE_SETTINGS_PAGE_GENERAL_VISUAL_ENABLE_WORLD_LIST_SHADER"
 script = ExtResource("2_ihk7t")
 key = "moonflow/general/world_list_shader"
 
-[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Visual"]
+[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Visual" unique_id=498405531]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")
 
-[node name="VBox_Performance" type="VBoxContainer" parent="."]
+[node name="VBox_Performance" type="VBoxContainer" parent="." unique_id=1414325601]
 layout_mode = 2
 
-[node name="Label_PerformanceHeader" type="Label" parent="VBox_Performance"]
+[node name="Label_PerformanceHeader" type="Label" parent="VBox_Performance" unique_id=2002015794]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_HEADER"
 label_settings = SubResource("LabelSettings_2x6cb")
 
-[node name="HSep" type="HSeparator" parent="VBox_Performance"]
+[node name="HSep" type="HSeparator" parent="VBox_Performance" unique_id=927029225]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label_LowProcessorHeader" type="Label" parent="VBox_Performance"]
+[node name="Label_LowProcessorHeader" type="Label" parent="VBox_Performance" unique_id=370720499]
 layout_mode = 2
 text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_HEADER"
 
-[node name="Option_LowProcessor" type="OptionButton" parent="VBox_Performance"]
+[node name="Option_LowProcessor" type="OptionButton" parent="VBox_Performance" unique_id=1175078671]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
 script = SubResource("GDScript_nl872")
 
-[node name="HSep_MiniSpacer0" type="HSeparator" parent="VBox_Performance"]
+[node name="HSep_MiniSpacer0" type="HSeparator" parent="VBox_Performance" unique_id=414305226]
 layout_mode = 2
 theme_override_constants/separation = 14
 theme_override_styles/separator = SubResource("StyleBoxEmpty_gn66n")
 
-[node name="Check_VSync" type="CheckBox" parent="VBox_Performance"]
+[node name="Check_VSync" type="CheckBox" parent="VBox_Performance" unique_id=508664116]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -284,7 +284,7 @@ text = "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_VSYNC"
 script = ExtResource("2_ihk7t")
 key = "display/window/vsync/vsync_mode"
 
-[node name="HSep_Spacer" type="HSeparator" parent="VBox_Performance"]
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Performance" unique_id=1142386034]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_i8tvi")

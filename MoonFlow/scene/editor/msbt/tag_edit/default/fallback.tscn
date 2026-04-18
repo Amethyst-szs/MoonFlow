@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dixqhrdd2qsrb"]
+[gd_scene format=3 uid="uid://dixqhrdd2qsrb"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_ww4lv"]
 
-[node name="Fallback" instance=ExtResource("1_ww4lv")]
+[node name="Fallback" unique_id=83902340 instance=ExtResource("1_ww4lv")]
 title = "TAG_EDIT_SCENE_HEADER_ERROR_FALLBACK"
 
-[node name="Panel" parent="." index="0"]
+[node name="Panel" parent="." index="0" unique_id=2007589657]
 self_modulate = Color(1, 0.5, 0.5, 1)
 
-[node name="Label_Error" type="Label" parent="Panel/Content" index="0"]
+[node name="Label_Error" type="Label" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="0" unique_id=1973611910]
 layout_mode = 2
 text = "TAG_EDIT_ERROR_FALLBACK_MESSAGE"

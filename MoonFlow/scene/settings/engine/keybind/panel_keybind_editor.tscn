@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://7rqudtj0ycdw"]
+[gd_scene format=3 uid="uid://7rqudtj0ycdw"]
 
 [ext_resource type="Script" uid="uid://ds06qrc0hravl" path="res://scene/settings/engine/keybind/panel_keybind_editor.gd" id="2_ay4do"]
 [ext_resource type="SystemFont" uid="uid://cw8c0p3b5mv5y" path="res://addons/SmoothScroll/debug_font.tres" id="3_61hdb"]
@@ -26,7 +26,7 @@ shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.945098)
 shadow_offset = Vector2(2, 2)
 
-[node name="Panel_KeybindEditor" type="VBoxContainer"]
+[node name="Panel_KeybindEditor" type="VBoxContainer" unique_id=246213434]
 auto_translate_mode = 2
 anchors_preset = 10
 anchor_right = 1.0
@@ -34,14 +34,14 @@ offset_bottom = 60.0
 grow_horizontal = 2
 script = ExtResource("2_ay4do")
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=351694733]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5npy4")
 
-[node name="HBox_Layout" type="HBoxContainer" parent="Panel"]
+[node name="HBox_Layout" type="HBoxContainer" parent="Panel" unique_id=780734285]
 layout_mode = 2
 
-[node name="Label_Name" type="Label" parent="Panel/HBox_Layout"]
+[node name="Label_Name" type="Label" parent="Panel/HBox_Layout" unique_id=1666672255]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -49,16 +49,16 @@ label_settings = SubResource("LabelSettings_xkil3")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Content" type="VBoxContainer" parent="Panel/HBox_Layout"]
+[node name="Content" type="VBoxContainer" parent="Panel/HBox_Layout" unique_id=2071983537]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BindTable" type="GridContainer" parent="Panel/HBox_Layout/Content"]
+[node name="BindTable" type="GridContainer" parent="Panel/HBox_Layout/Content" unique_id=1648723107]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="Button_Add" type="Button" parent="Panel/HBox_Layout/Content"]
+[node name="Button_Add" type="Button" parent="Panel/HBox_Layout/Content" unique_id=1357680416]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_vertical = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dgh2onvx6k4ft"]
+[gd_scene format=3 uid="uid://dgh2onvx6k4ft"]
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_66n6i"]
 [ext_resource type="Script" uid="uid://bn8g146v3u4sb" path="res://scene/home/tools/msbt/TabMsbt.cs" id="2_44jli"]
@@ -86,7 +86,7 @@ font_color = Color(1, 1, 1, 0.87451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5v4w"]
 
-[node name="Text" type="HSplitContainer" node_paths=PackedStringArray("FileListScroll", "FileListArchives", "TranslationLanguageWarning", "FooterSourceText", "FooterTranslation", "FileAccessor")]
+[node name="Text" type="HSplitContainer" unique_id=1532006706 node_paths=PackedStringArray("FileListScroll", "FileListArchives", "TranslationLanguageWarning", "FooterSourceText", "FooterTranslation", "FileAccessor")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -102,33 +102,33 @@ FooterTranslation = NodePath("FileList/FileList/Footer/VBox_TranslationPicker")
 FileAccessor = NodePath("TabMsbtFileAccessor")
 metadata/_tab_index = 0
 
-[node name="FileList" type="VBoxContainer" parent="."]
+[node name="FileList" type="VBoxContainer" parent="." unique_id=1654058157]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Line_Search" type="LineEdit" parent="FileList"]
+[node name="Line_Search" type="LineEdit" parent="FileList" unique_id=347096590]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 max_length = 32
 context_menu_enabled = false
 clear_button_enabled = true
-right_icon = ExtResource("4_fbv2x")
 caret_blink = true
+right_icon = ExtResource("4_fbv2x")
 script = ExtResource("5_tdq3c")
 
-[node name="HSep" type="HSeparator" parent="FileList"]
+[node name="HSep" type="HSeparator" parent="FileList" unique_id=519461755]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = ExtResource("6_b3nkc")
 
-[node name="FileList" type="VBoxContainer" parent="FileList"]
+[node name="FileList" type="VBoxContainer" parent="FileList" unique_id=1929540690]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="Label_TranslateDefaultWarning" type="Label" parent="FileList/FileList"]
+[node name="Label_TranslateDefaultWarning" type="Label" parent="FileList/FileList" unique_id=1829516226]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -137,7 +137,7 @@ label_settings = SubResource("LabelSettings_dgqq0")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="FileListContent" type="ScrollContainer" parent="FileList/FileList"]
+[node name="FileListContent" type="ScrollContainer" parent="FileList/FileList" unique_id=1203914027]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -149,85 +149,85 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="Content" type="VBoxContainer" parent="FileList/FileList/FileListContent"]
+[node name="Content" type="VBoxContainer" parent="FileList/FileList/FileListContent" unique_id=1897117034]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBox_Archives" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content"]
+[node name="VBox_Archives" type="VBoxContainer" parent="FileList/FileList/FileListContent/Content" unique_id=923492111]
 layout_mode = 2
 
-[node name="Footer" type="PanelContainer" parent="FileList/FileList"]
+[node name="Footer" type="PanelContainer" parent="FileList/FileList" unique_id=2117448616]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("10_ucfko")
 
-[node name="HBox_SourceTextFooter" type="HBoxContainer" parent="FileList/FileList/Footer"]
+[node name="HBox_SourceTextFooter" type="HBoxContainer" parent="FileList/FileList/Footer" unique_id=1271505537]
 layout_mode = 2
 theme = SubResource("Theme_fwkao")
 alignment = 1
 
-[node name="Button_Copy" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="Button_Copy" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=161282687]
 layout_mode = 2
 tooltip_text = "HOME_TAB_COPY_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_grteu")
 icon = ExtResource("11_xxbal")
 
-[node name="Button_Cut" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="Button_Cut" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=1610370675]
 layout_mode = 2
 tooltip_text = "HOME_TAB_CUT_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_rank1")
 icon = ExtResource("12_y4ly6")
 
-[node name="Button_Paste" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="Button_Paste" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=1447703568]
 layout_mode = 2
 tooltip_text = "HOME_TAB_PASTE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_c6cgf")
 icon = ExtResource("13_u1bdq")
 
-[node name="Button_Duplicate" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="Button_Duplicate" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=197551029]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_x2uvp")
 icon = ExtResource("14_4agf0")
 
-[node name="VSep1" type="VSeparator" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="VSep1" type="VSeparator" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=886049009]
 self_modulate = Color(1, 1, 1, 0.439216)
 layout_mode = 2
 
-[node name="Button_New" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="Button_New" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=1829869316]
 layout_mode = 2
 tooltip_text = "HOME_TAB_NEW_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_2mm84")
 icon = ExtResource("15_xpyjb")
 
-[node name="Button_Rename" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="Button_Rename" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=1059383546]
 layout_mode = 2
 tooltip_text = "HOME_TAB_RENAME_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_4accc")
 icon = ExtResource("16_42xei")
 
-[node name="Button_Delete" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter"]
+[node name="Button_Delete" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=1940552552]
 layout_mode = 2
 tooltip_text = "HOME_TAB_DELETE_FILE_TOOLTIP"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_stxmf")
 icon = ExtResource("17_fc737")
 
-[node name="VBox_TranslationPicker" type="VBoxContainer" parent="FileList/FileList/Footer"]
+[node name="VBox_TranslationPicker" type="VBoxContainer" parent="FileList/FileList/Footer" unique_id=692024144]
 layout_mode = 2
 
-[node name="Label_Header" type="Label" parent="FileList/FileList/Footer/VBox_TranslationPicker"]
+[node name="Label_Header" type="Label" parent="FileList/FileList/Footer/VBox_TranslationPicker" unique_id=1752334345]
 layout_mode = 2
 text = "HOME_TAB_TEXT_TRANSLATION_PICKER_HEADER"
 label_settings = SubResource("LabelSettings_p586a")
 horizontal_alignment = 1
 
-[node name="Option_Lang" type="OptionButton" parent="FileList/FileList/Footer/VBox_TranslationPicker"]
+[node name="Option_Lang" type="OptionButton" parent="FileList/FileList/Footer/VBox_TranslationPicker" unique_id=798614747]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -236,7 +236,7 @@ script = ExtResource("18_2pg8r")
 StartingLanguage = 1
 AutomaticallySetGameVersion = true
 
-[node name="Info" type="MarginContainer" parent="."]
+[node name="Info" type="MarginContainer" parent="." unique_id=1726459121]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 0
@@ -244,14 +244,14 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="VBox" type="VBoxContainer" parent="Info"]
+[node name="VBox" type="VBoxContainer" parent="Info" unique_id=1670979816]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HBox_Header" type="HBoxContainer" parent="Info/VBox"]
+[node name="HBox_Header" type="HBoxContainer" parent="Info/VBox" unique_id=824548923]
 layout_mode = 2
 
-[node name="Label_InfoName" type="Label" parent="Info/VBox/HBox_Header"]
+[node name="Label_InfoName" type="Label" parent="Info/VBox/HBox_Header" unique_id=64471332]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -259,27 +259,27 @@ label_settings = SubResource("LabelSettings_7bmst")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Texture_PageIcon" type="TextureRect" parent="Info/VBox/HBox_Header"]
+[node name="Texture_PageIcon" type="TextureRect" parent="Info/VBox/HBox_Header" unique_id=347236856]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("20_crlcy")
 
-[node name="VSep" type="VSeparator" parent="Info/VBox/HBox_Header"]
+[node name="VSep" type="VSeparator" parent="Info/VBox/HBox_Header" unique_id=897297152]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_twpxa")
 
-[node name="HSep_Header" type="HSeparator" parent="Info/VBox"]
+[node name="HSep_Header" type="HSeparator" parent="Info/VBox" unique_id=1167067271]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="VBox_Stats" type="VBoxContainer" parent="Info/VBox"]
+[node name="VBox_Stats" type="VBoxContainer" parent="Info/VBox" unique_id=1293226492]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="FileSize" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+[node name="FileSize" type="HBoxContainer" parent="Info/VBox/VBox_Stats" unique_id=724776435]
 layout_mode = 2
 
-[node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
+[node name="Label_SizeHeader" type="Label" parent="Info/VBox/VBox_Stats/FileSize" unique_id=1856664770]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_DETAILS_FILE_SIZE"
@@ -287,7 +287,7 @@ label_settings = SubResource("LabelSettings_7ddx3")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_Size" type="Label" parent="Info/VBox/VBox_Stats/FileSize"]
+[node name="Label_Size" type="Label" parent="Info/VBox/VBox_Stats/FileSize" unique_id=1604089202]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -296,14 +296,14 @@ text = "PLACEHOLDER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HSep1" type="HSeparator" parent="Info/VBox/VBox_Stats"]
+[node name="HSep1" type="HSeparator" parent="Info/VBox/VBox_Stats" unique_id=937674430]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("6_b3nkc")
 
-[node name="DateTime" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+[node name="DateTime" type="HBoxContainer" parent="Info/VBox/VBox_Stats" unique_id=1085087529]
 layout_mode = 2
 
-[node name="Label_DateTimeHeader" type="Label" parent="Info/VBox/VBox_Stats/DateTime"]
+[node name="Label_DateTimeHeader" type="Label" parent="Info/VBox/VBox_Stats/DateTime" unique_id=753735087]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_DETAILS_MODIFIED_TIME"
@@ -311,7 +311,7 @@ label_settings = SubResource("LabelSettings_7ddx3")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_DateTime" type="Label" parent="Info/VBox/VBox_Stats/DateTime"]
+[node name="Label_DateTime" type="Label" parent="Info/VBox/VBox_Stats/DateTime" unique_id=520939179]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -320,14 +320,14 @@ text = "PLACEHOLDER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_Stats"]
+[node name="HSep3" type="HSeparator" parent="Info/VBox/VBox_Stats" unique_id=1573607359]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("6_b3nkc")
 
-[node name="EntryCount" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+[node name="EntryCount" type="HBoxContainer" parent="Info/VBox/VBox_Stats" unique_id=458106437]
 layout_mode = 2
 
-[node name="Label_EntryCountHeader" type="Label" parent="Info/VBox/VBox_Stats/EntryCount"]
+[node name="Label_EntryCountHeader" type="Label" parent="Info/VBox/VBox_Stats/EntryCount" unique_id=647369629]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_TEXT_DETAILS_ENTRY_COUNT"
@@ -335,7 +335,7 @@ label_settings = SubResource("LabelSettings_7ddx3")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_EntryCount" type="Label" parent="Info/VBox/VBox_Stats/EntryCount"]
+[node name="Label_EntryCount" type="Label" parent="Info/VBox/VBox_Stats/EntryCount" unique_id=908608293]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -344,14 +344,14 @@ text = "PLACEHOLDER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HSep2" type="HSeparator" parent="Info/VBox/VBox_Stats"]
+[node name="HSep2" type="HSeparator" parent="Info/VBox/VBox_Stats" unique_id=1320955534]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("6_b3nkc")
 
-[node name="Usage" type="HBoxContainer" parent="Info/VBox/VBox_Stats"]
+[node name="Usage" type="HBoxContainer" parent="Info/VBox/VBox_Stats" unique_id=172115192]
 layout_mode = 2
 
-[node name="Label_UsageHeader" type="Label" parent="Info/VBox/VBox_Stats/Usage"]
+[node name="Label_UsageHeader" type="Label" parent="Info/VBox/VBox_Stats/Usage" unique_id=881836005]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_TEXT_DETAILS_USAGE"
@@ -359,7 +359,7 @@ label_settings = SubResource("LabelSettings_7ddx3")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_Usage" type="Label" parent="Info/VBox/VBox_Stats/Usage"]
+[node name="Label_Usage" type="Label" parent="Info/VBox/VBox_Stats/Usage" unique_id=1456670396]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -368,17 +368,17 @@ text = "PLACEHOLDER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_Stats"]
+[node name="DebugHash" type="VBoxContainer" parent="Info/VBox/VBox_Stats" unique_id=1662629272]
 layout_mode = 2
 
-[node name="HSep" type="HSeparator" parent="Info/VBox/VBox_Stats/DebugHash"]
+[node name="HSep" type="HSeparator" parent="Info/VBox/VBox_Stats/DebugHash" unique_id=762813927]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("6_b3nkc")
 
-[node name="Content" type="HBoxContainer" parent="Info/VBox/VBox_Stats/DebugHash"]
+[node name="Content" type="HBoxContainer" parent="Info/VBox/VBox_Stats/DebugHash" unique_id=416222660]
 layout_mode = 2
 
-[node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_Stats/DebugHash/Content"]
+[node name="Label_DebugHashHeader" type="Label" parent="Info/VBox/VBox_Stats/DebugHash/Content" unique_id=683643864]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HOME_TAB_COPY_DEBUG_HASH_HEADER"
@@ -386,23 +386,23 @@ label_settings = SubResource("LabelSettings_7ddx3")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Button_Copy" type="Button" parent="Info/VBox/VBox_Stats/DebugHash/Content"]
+[node name="Button_Copy" type="Button" parent="Info/VBox/VBox_Stats/DebugHash/Content" unique_id=480736812]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "HOME_TAB_COPY_DEBUG_HASH"
 text_overrun_behavior = 3
 
-[node name="HSep_Bottom" type="HSeparator" parent="Info/VBox"]
+[node name="HSep_Bottom" type="HSeparator" parent="Info/VBox" unique_id=860185855]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_p5v4w")
 
-[node name="Footer" type="PanelContainer" parent="Info/VBox"]
+[node name="Footer" type="PanelContainer" parent="Info/VBox" unique_id=1262562713]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("10_ucfko")
 
-[node name="Button_Open" type="Button" parent="Info/VBox/Footer"]
+[node name="Button_Open" type="Button" parent="Info/VBox/Footer" unique_id=1157825850]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -411,14 +411,14 @@ icon = ExtResource("22_n3v24")
 icon_alignment = 2
 expand_icon = true
 
-[node name="TabMsbtFileAccessor" type="Node" parent="." node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
+[node name="TabMsbtFileAccessor" type="Node" parent="." unique_id=872999456 node_paths=PackedStringArray("CopyButton", "PasteButton", "CutButton", "DeleteButton")]
 script = ExtResource("23_1536k")
 CopyButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy")
 PasteButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste")
 CutButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut")
 DeleteButton = NodePath("../FileList/FileList/Footer/HBox_SourceTextFooter/Button_Delete")
 
-[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="TabMsbtFileAccessor"]
+[node name="Dialog_CreateError_DuplicateName" type="AcceptDialog" parent="TabMsbtFileAccessor" unique_id=1616105616]
 title = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 initial_position = 2
 size = Vector2i(520, 100)
@@ -428,7 +428,7 @@ dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 dialog_autowrap = true
 script = ExtResource("24_wjb0a")
 
-[node name="Dialog_CreateError_WorldList" type="AcceptDialog" parent="TabMsbtFileAccessor"]
+[node name="Dialog_CreateError_WorldList" type="AcceptDialog" parent="TabMsbtFileAccessor" unique_id=1888894541]
 auto_translate_mode = 1
 title = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_TITLE"
 initial_position = 1
@@ -439,26 +439,26 @@ dialog_text = "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 dialog_autowrap = true
 script = ExtResource("24_wjb0a")
 
-[node name="Popup_DuplicateMsbt" parent="." instance=ExtResource("25_rhf50")]
+[node name="Popup_DuplicateMsbt" parent="." unique_id=1370860821 instance=ExtResource("25_rhf50")]
 visible = false
 autofill_text = true
 
-[node name="Popup_NewMsbt" parent="." instance=ExtResource("25_rhf50")]
+[node name="Popup_NewMsbt" parent="." unique_id=957171423 instance=ExtResource("25_rhf50")]
 visible = false
 title_selection = 1
 
-[node name="Popup_RenameMsbt" parent="." instance=ExtResource("25_rhf50")]
+[node name="Popup_RenameMsbt" parent="." unique_id=770780881 instance=ExtResource("25_rhf50")]
 visible = false
 title_selection = 2
 autofill_text = true
 
-[node name="Content" parent="Popup_RenameMsbt" index="0"]
+[node name="Content" parent="Popup_RenameMsbt" index="0" unique_id=1676907696]
 custom_minimum_size = Vector2(480, 190)
 
-[node name="VBox_ArcPicker" parent="Popup_RenameMsbt/Content/VBox" index="2"]
+[node name="VBox_ArcPicker" parent="Popup_RenameMsbt/Content/VBox" parent_id_path=PackedInt32Array(770780881, 1284648643) index="2" unique_id=396571451]
 visible = false
 
-[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="."]
+[node name="Dialog_ConfirmDelete" type="ConfirmationDialog" parent="." unique_id=1290295582]
 title = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
 initial_position = 1
 size = Vector2i(902, 100)

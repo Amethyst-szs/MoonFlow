@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2grhpwwh7whc"]
+[gd_scene format=3 uid="uid://d2grhpwwh7whc"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_uo123"]
 [ext_resource type="Script" uid="uid://bgcyf4l7vtsu2" path="res://scene/editor/event/node/typedef/talk/EventFlowNodeMessageTalk.cs" id="2_qf2as"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="4_hvfgh"]
 [ext_resource type="PackedScene" uid="uid://cjlli76vhlpfg" path="res://scene/editor/event/node/component/message_resolver_config.tscn" id="6_5jgdp"]
 
-[node name="EventFlowNodeMessageTalk" node_paths=PackedStringArray("ButtonIsMapUnit", "TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh") instance=ExtResource("1_uo123")]
+[node name="EventFlowNodeMessageTalk" unique_id=296584095 node_paths=PackedStringArray("ButtonIsMapUnit", "TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh") instance=ExtResource("1_uo123")]
 script = ExtResource("2_qf2as")
 ButtonIsMapUnit = NodePath("Content/Display/TalkText/Check_IsMapUnit")
 TextMessagePreview = NodePath("Content/Display/TalkText/MessageResolverConfig/HBox_Preview/Text_Preview")
@@ -15,15 +15,15 @@ LabelTextSource = NodePath("Content/Display/TalkText/MessageResolverConfig/Label
 ButtonMessageEdit = NodePath("Content/Display/TalkText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Edit")
 ButtonMessageRefresh = NodePath("Content/Display/TalkText/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Refresh")
 
-[node name="TalkText" type="VBoxContainer" parent="Content/Display" index="2"]
+[node name="TalkText" type="VBoxContainer" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="2" unique_id=234853831]
 layout_mode = 2
 theme = ExtResource("3_207b8")
 
-[node name="HSep" type="HSeparator" parent="Content/Display/TalkText" index="0"]
+[node name="HSep" type="HSeparator" parent="Content/Display/TalkText" index="0" unique_id=1110586153]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("4_ec1t2")
 
-[node name="Check_IsMapUnit" type="CheckBox" parent="Content/Display/TalkText" index="1" node_paths=PackedStringArray("dropdown")]
+[node name="Check_IsMapUnit" type="CheckBox" parent="Content/Display/TalkText" index="1" unique_id=1941084066 node_paths=PackedStringArray("dropdown")]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT_TOOLTIP"
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MAP_UNIT"
@@ -31,10 +31,10 @@ script = ExtResource("4_hvfgh")
 dropdown = NodePath("../MessageResolverConfig")
 invert_result = true
 
-[node name="MessageResolverConfig" parent="Content/Display/TalkText" index="2" instance=ExtResource("6_5jgdp")]
+[node name="MessageResolverConfig" parent="Content/Display/TalkText" index="2" unique_id=1649521203 instance=ExtResource("6_5jgdp")]
 layout_mode = 2
 
-[node name="HSep" parent="Content/Display/Params" index="0"]
+[node name="HSep" parent="Content/Display/Params" parent_id_path=PackedInt32Array(1742237788) index="0" unique_id=1367143950]
 theme_override_constants/separation = 32
 
 [connection signal="toggled" from="Content/Display/TalkText/Check_IsMapUnit" to="." method="OnMapUnitToggled"]

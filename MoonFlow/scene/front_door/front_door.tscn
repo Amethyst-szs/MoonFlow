@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://qcjh1t51akmr"]
+[gd_scene format=3 uid="uid://qcjh1t51akmr"]
 
 [ext_resource type="Script" uid="uid://sq13135ns8pq" path="res://scene/front_door/FrontDoor.cs" id="1_plewj"]
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="2_jf1ga"]
@@ -87,7 +87,7 @@ func _item_selected(index: int) -> void:
 [sub_resource type="FontVariation" id="FontVariation_fyywr"]
 variation_transform = Transform2D(1, 0.1, 0, 1, 0, 0)
 
-[node name="FrontDoor" type="Control"]
+[node name="FrontDoor" type="Control" unique_id=58102133]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,7 +100,7 @@ AppTaskbarTitle = "Welcome"
 AppIcon = ExtResource("2_jf1ga")
 AppFlags = 6
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=804312083]
 material = SubResource("ShaderMaterial_kq5y5")
 layout_mode = 1
 anchors_preset = 15
@@ -112,17 +112,17 @@ theme = ExtResource("4_lmulx")
 theme_override_styles/panel = ExtResource("5_a75k4")
 script = ExtResource("6_cmu6i")
 
-[node name="Content_Side" type="VBoxContainer" parent="Content"]
+[node name="Content_Side" type="VBoxContainer" parent="Content" unique_id=771375654]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 12
 script = SubResource("GDScript_ytpfc")
 
-[node name="RecentSidebar" parent="Content/Content_Side" instance=ExtResource("7_4aj6h")]
+[node name="RecentSidebar" parent="Content/Content_Side" unique_id=1849718413 instance=ExtResource("7_4aj6h")]
 layout_mode = 2
 
-[node name="WikiAccess" type="Button" parent="Content/Content_Side"]
+[node name="WikiAccess" type="Button" parent="Content/Content_Side" unique_id=1082948233]
 self_modulate = Color(1, 1, 1, 0.929412)
 layout_mode = 2
 size_flags_vertical = 8
@@ -136,18 +136,18 @@ icon = ExtResource("17_wxtt3")
 script = ExtResource("16_06dea")
 WikiTarget = ExtResource("24_pm7wk")
 
-[node name="Content_Primary" type="HBoxContainer" parent="Content"]
+[node name="Content_Primary" type="HBoxContainer" parent="Content" unique_id=552925791]
 z_index = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="QuickbarHolder" type="Control" parent="Content/Content_Primary"]
+[node name="QuickbarHolder" type="Control" parent="Content/Content_Primary" unique_id=1729550389]
 custom_minimum_size = Vector2(295, 0)
 layout_mode = 2
 script = SubResource("GDScript_pf6nj")
 
-[node name="Quickbar" type="VBoxContainer" parent="Content/Content_Primary/QuickbarHolder"]
+[node name="Quickbar" type="VBoxContainer" parent="Content/Content_Primary/QuickbarHolder" unique_id=2140184526]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -159,11 +159,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 17
 
-[node name="Logo" type="Control" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+[node name="Logo" type="Control" parent="Content/Content_Primary/QuickbarHolder/Quickbar" unique_id=1704386084]
 custom_minimum_size = Vector2(256, 178)
 layout_mode = 2
 
-[node name="Texture_Logo" type="TextureRect" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Logo"]
+[node name="Texture_Logo" type="TextureRect" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Logo" unique_id=848039307]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 0
 offset_right = 256.0
@@ -174,7 +174,7 @@ texture = ExtResource("3_2iugp")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Button_New" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+[node name="Button_New" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar" unique_id=1519351968]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -182,7 +182,7 @@ text = "NEW_PROJECT"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
-[node name="Button_Open" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+[node name="Button_Open" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar" unique_id=1892243416]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -190,7 +190,7 @@ text = "OPEN_PROJECT"
 icon = ExtResource("10_rxr5w")
 icon_alignment = 2
 
-[node name="Button_Explore" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+[node name="Button_Explore" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar" unique_id=641787762]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "EXPLORE_GAME_FILES_TOOLTIP"
@@ -199,42 +199,42 @@ text = "EXPLORE_GAME_FILES"
 icon = ExtResource("14_03nct")
 icon_alignment = 2
 
-[node name="Shortcuts" type="HBoxContainer" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+[node name="Shortcuts" type="HBoxContainer" parent="Content/Content_Primary/QuickbarHolder/Quickbar" unique_id=1284956290]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 12
 
-[node name="Button_Settings" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts"]
+[node name="Button_Settings" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts" unique_id=1640636466]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ENGINE_SETTINGS"
 mouse_default_cursor_shape = 2
 icon = ExtResource("17_yn102")
 
-[node name="Button_RomfsConfig" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts"]
+[node name="Button_RomfsConfig" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts" unique_id=1204756890]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_ROMFS_CONFIG"
 mouse_default_cursor_shape = 2
 icon = ExtResource("10_sqwg3")
 
-[node name="Button_Contributors" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts"]
+[node name="Button_Contributors" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts" unique_id=1829975584]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_CREDITS_PAGE"
 mouse_default_cursor_shape = 2
 icon = ExtResource("14_mr0wr")
 
-[node name="Button_Update" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts"]
+[node name="Button_Update" type="Button" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts" unique_id=201113787]
 layout_mode = 2
 tooltip_text = "BUTTON_TOOLTIP_OPEN_GITHUB_FOR_UPDATE"
 mouse_default_cursor_shape = 2
 icon = ExtResource("15_h6jnw")
 script = ExtResource("16_8ntwn")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_Update"]
+[node name="HTTPRequest" type="HTTPRequest" parent="Content/Content_Primary/QuickbarHolder/Quickbar/Shortcuts/Button_Update" unique_id=2041434147]
 use_threads = true
 
-[node name="Label_OpenError" type="Label" parent="Content/Content_Primary/QuickbarHolder/Quickbar"]
+[node name="Label_OpenError" type="Label" parent="Content/Content_Primary/QuickbarHolder/Quickbar" unique_id=11080759]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(64, 0)
@@ -244,57 +244,57 @@ horizontal_alignment = 1
 autowrap_mode = 3
 script = ExtResource("9_mpvuk")
 
-[node name="VSep" type="VSeparator" parent="Content/Content_Primary"]
+[node name="VSep" type="VSeparator" parent="Content/Content_Primary" unique_id=174214094]
 visible = false
 layout_mode = 2
 
-[node name="NewProject" type="PanelContainer" parent="Content/Content_Primary"]
+[node name="NewProject" type="PanelContainer" parent="Content/Content_Primary" unique_id=1968720273]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("13_npgqm")
 script = ExtResource("14_4g88j")
 
-[node name="Margin" type="MarginContainer" parent="Content/Content_Primary/NewProject"]
+[node name="Margin" type="MarginContainer" parent="Content/Content_Primary/NewProject" unique_id=1118493198]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 14
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 14
 
-[node name="Scroll" type="ScrollContainer" parent="Content/Content_Primary/NewProject/Margin"]
+[node name="Scroll" type="ScrollContainer" parent="Content/Content_Primary/NewProject/Margin" unique_id=1873878269]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBox_Options" type="VBoxContainer" parent="Content/Content_Primary/NewProject/Margin/Scroll"]
+[node name="VBox_Options" type="VBoxContainer" parent="Content/Content_Primary/NewProject/Margin/Scroll" unique_id=316383677]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="Label_Header" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Label_Header" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=1434993633]
 layout_mode = 2
 text = "FRONT_DOOR_NEW_PROJECT_MENU_HEADER"
 label_settings = SubResource("LabelSettings_x0bb7")
 horizontal_alignment = 1
 
-[node name="HSep0" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="HSep0" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=984409883]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label_DirectoryHeader" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Label_DirectoryHeader" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=1958080389]
 layout_mode = 2
 text = "FRONT_DOOR_NEW_PROJECT_DIRECTORY_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_Directory" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Label_Directory" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=554138633]
 visible = false
 layout_mode = 2
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_InvalidDirectory" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Label_InvalidDirectory" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=1594064113]
 visible = false
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
@@ -303,24 +303,24 @@ label_settings = SubResource("LabelSettings_ry8px")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Button_Directory" type="Button" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Button_Directory" type="Button" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=1387454546]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "FRONT_DOOR_NEW_PROJECT_SELECT_DIRECTORY"
 icon = ExtResource("10_rxr5w")
 icon_alignment = 2
 
-[node name="HSep1" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="HSep1" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=1414244984]
 layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxEmpty_xdqeg")
 
-[node name="Label_VersionHeader" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Label_VersionHeader" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=149579911]
 layout_mode = 2
 text = "FRONT_DOOR_NEW_PROJECT_VERSION_SELECT_HEADER"
 horizontal_alignment = 1
 
-[node name="Option_Version" type="OptionButton" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Option_Version" type="OptionButton" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=273847231]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
@@ -341,29 +341,29 @@ popup/item_5/text = "FRONT_DOOR_PROJECT_VERSION_V130"
 popup/item_5/id = 130
 script = SubResource("GDScript_8daaw")
 
-[node name="HSep2" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="HSep2" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=394085288]
 layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxEmpty_xdqeg")
 
-[node name="Label_DefaultLang" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Label_DefaultLang" type="Label" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=1181517504]
 layout_mode = 2
 text = "FRONT_DOOR_NEW_PROJECT_DEFAULT_LANGUAGE_HEADER"
 horizontal_alignment = 1
 
-[node name="Option_DefaultLang" type="OptionButton" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Option_DefaultLang" type="OptionButton" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=530902370]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 alignment = 1
 script = ExtResource("16_qq0jv")
 
-[node name="HSep3" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="HSep3" type="HSeparator" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=998100253]
 layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxEmpty_xdqeg")
 
-[node name="Button_Create" type="Button" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options"]
+[node name="Button_Create" type="Button" parent="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options" unique_id=1769961882]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
@@ -373,7 +373,7 @@ text = "FRONT_DOOR_NEW_PROJECT_CREATE_BUTTON"
 icon = ExtResource("6_clkik")
 icon_alignment = 2
 
-[node name="DotPlayable" type="Control" parent="."]
+[node name="DotPlayable" type="Control" parent="." unique_id=363543357]
 z_index = 3
 layout_mode = 1
 anchors_preset = 7
@@ -388,9 +388,9 @@ grow_vertical = 0
 scale = Vector2(2, 2)
 mouse_filter = 1
 
-[node name="DotPlayable" parent="DotPlayable" instance=ExtResource("11_h3uc8")]
+[node name="DotPlayable" parent="DotPlayable" unique_id=668622569 instance=ExtResource("11_h3uc8")]
 
-[node name="Label_Debug" type="RichTextLabel" parent="."]
+[node name="Label_Debug" type="RichTextLabel" parent="." unique_id=1858893628]
 self_modulate = Color(1, 1, 1, 0.447059)
 layout_mode = 1
 anchors_preset = -1
@@ -413,7 +413,7 @@ fit_content = true
 hint_underlined = false
 script = ExtResource("26_d4gfb")
 
-[node name="Dialog_NewProject" type="FileDialog" parent="."]
+[node name="Dialog_NewProject" type="FileDialog" parent="." unique_id=279178658]
 auto_translate_mode = 1
 title = "Open a Directory"
 size = Vector2i(352, 180)
@@ -422,14 +422,14 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
-[node name="Dialog_OpenProject" type="FileDialog" parent="."]
+[node name="Dialog_OpenProject" type="FileDialog" parent="." unique_id=1582296908]
 title = "Open a Directory"
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
 use_native_dialog = true
 
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+[node name="ResourcePreloader" type="ResourcePreloader" parent="." unique_id=241644351]
 resources = [PackedStringArray("home", "project_loading"), [ExtResource("11_ajwfd"), ExtResource("12_my55f")]]
 
 [connection signal="NewProjectInvalidPath" from="." to="Content/Content_Primary/NewProject/Margin/Scroll/VBox_Options/Label_InvalidDirectory" method="show"]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2tdru5hgbfl3"]
+[gd_scene format=3 uid="uid://d2tdru5hgbfl3"]
 
 [ext_resource type="Script" uid="uid://bj0bunlqgull6" path="res://scene/dev/mstxt/MstxtViewerApp.cs" id="1_snoi6"]
 [ext_resource type="Script" uid="uid://cp2k63fx4027s" path="res://scene/dev/mstxt/MsbpListMstxt.cs" id="2_1agyf"]
 [ext_resource type="Texture2D" uid="uid://c1xyeyald8p5k" path="res://asset/material/arrow/triple_right.svg" id="2_18lt2"]
 
-[node name="MstxtViewerApp" type="Control"]
+[node name="MstxtViewerApp" type="Control" unique_id=1341813162]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ AppTaskbarTitle = "Mstxt Viewer"
 AppIcon = ExtResource("2_18lt2")
 AppFlags = 3
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=562822108]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,11 +29,11 @@ theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 18
 
-[node name="Scroll_Display" type="ScrollContainer" parent="Margin"]
+[node name="Scroll_Display" type="ScrollContainer" parent="Margin" unique_id=1117087788]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MsbpMstxt" type="VBoxContainer" parent="Margin/Scroll_Display"]
+[node name="MsbpMstxt" type="VBoxContainer" parent="Margin/Scroll_Display" unique_id=267204422]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

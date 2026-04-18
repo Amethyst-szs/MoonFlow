@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr5q2j26coqld"]
+[gd_scene format=3 uid="uid://dr5q2j26coqld"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_rdu8i"]
 [ext_resource type="Script" uid="uid://fhm0mm0dqsa8" path="res://scene/editor/event/node/typedef/balloon/EventFlowNodeMessageBalloon.cs" id="2_tsyva"]
@@ -12,7 +12,7 @@
 font_size = 11
 font_color = Color(1, 1, 1, 0.827451)
 
-[node name="EventFlowNodeMessageBalloon" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh", "MessageResolverConfig", "OptionBalloon", "OptionSource", "IsMultiDivide") instance=ExtResource("1_rdu8i")]
+[node name="EventFlowNodeMessageBalloon" unique_id=1916812232 node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh", "MessageResolverConfig", "OptionBalloon", "OptionSource", "IsMultiDivide") instance=ExtResource("1_rdu8i")]
 script = ExtResource("2_tsyva")
 TextMessagePreview = NodePath("Content/Display/BalloonText/MessageResolverConfig/HBox_Preview/Text_Preview")
 LabelTextSource = NodePath("Content/Display/BalloonText/MessageResolverConfig/Label_TargetSource")
@@ -23,38 +23,38 @@ OptionBalloon = NodePath("Content/Display/BalloonText/Option_BalloonType")
 OptionSource = NodePath("Content/Display/BalloonText/Option_SourceType")
 IsMultiDivide = NodePath("Content/Display/BalloonText/Check_IsMultiDevide")
 
-[node name="BalloonText" type="VBoxContainer" parent="Content/Display" index="2"]
+[node name="BalloonText" type="VBoxContainer" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="2" unique_id=539707386]
 layout_mode = 2
 theme = ExtResource("3_ut8lw")
 
-[node name="HSep0" type="HSeparator" parent="Content/Display/BalloonText" index="0"]
+[node name="HSep0" type="HSeparator" parent="Content/Display/BalloonText" index="0" unique_id=1734779031]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("4_met63")
 
-[node name="Label_BalloonType" type="Label" parent="Content/Display/BalloonText" index="1"]
+[node name="Label_BalloonType" type="Label" parent="Content/Display/BalloonText" index="1" unique_id=2046998176]
 layout_mode = 2
 text = "EVENT_FLOW_NODE_MESSAGE_BALLOON_TYPE_HEADER"
 label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="Option_BalloonType" type="OptionButton" parent="Content/Display/BalloonText" index="2"]
+[node name="Option_BalloonType" type="OptionButton" parent="Content/Display/BalloonText" index="2" unique_id=981093097]
 layout_mode = 2
 script = ExtResource("5_rvgo4")
 
-[node name="Label_SourceType" type="Label" parent="Content/Display/BalloonText" index="3"]
+[node name="Label_SourceType" type="Label" parent="Content/Display/BalloonText" index="3" unique_id=444675378]
 layout_mode = 2
 text = "EVENT_FLOW_NODE_MESSAGE_BALLOON_SOURCE_HEADER"
 label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="Option_SourceType" type="OptionButton" parent="Content/Display/BalloonText" index="4"]
+[node name="Option_SourceType" type="OptionButton" parent="Content/Display/BalloonText" index="4" unique_id=1927983589]
 layout_mode = 2
 script = ExtResource("6_lkh3i")
 
-[node name="Label_MultiDevide" type="Label" parent="Content/Display/BalloonText" index="5"]
+[node name="Label_MultiDevide" type="Label" parent="Content/Display/BalloonText" index="5" unique_id=1562819879]
 layout_mode = 2
 text = "EVENT_FLOW_NODE_MESSAGE_BALLOON_MULTI_DEVIDE_HEADER"
 label_settings = SubResource("LabelSettings_xbl6x")
 
-[node name="Check_IsMultiDevide" type="CheckBox" parent="Content/Display/BalloonText" index="6"]
+[node name="Check_IsMultiDevide" type="CheckBox" parent="Content/Display/BalloonText" index="6" unique_id=2052460006]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -62,14 +62,14 @@ tooltip_text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE_TOOLTIP"
 mouse_default_cursor_shape = 2
 text = "EVENT_FLOW_NODE_MESSAGE_TALK_IS_MULTI_DEVIDE"
 
-[node name="HSep1" type="HSeparator" parent="Content/Display/BalloonText" index="7"]
+[node name="HSep1" type="HSeparator" parent="Content/Display/BalloonText" index="7" unique_id=266171666]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("4_met63")
 
-[node name="MessageResolverConfig" parent="Content/Display/BalloonText" index="8" instance=ExtResource("4_nokhd")]
+[node name="MessageResolverConfig" parent="Content/Display/BalloonText" index="8" unique_id=559730406 instance=ExtResource("4_nokhd")]
 layout_mode = 2
 
-[node name="HSep" parent="Content/Display/Params" index="0"]
+[node name="HSep" parent="Content/Display/Params" parent_id_path=PackedInt32Array(1742237788) index="0" unique_id=1367143950]
 theme_override_constants/separation = 32
 
 [connection signal="OptionSelected" from="Content/Display/BalloonText/Option_BalloonType" to="." method="OnBalloonTypeOrSourceModified"]

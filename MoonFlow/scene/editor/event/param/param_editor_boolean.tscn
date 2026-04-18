@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://drhi47ys0w5hv"]
+[gd_scene format=3 uid="uid://drhi47ys0w5hv"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_al1j5"]
 [ext_resource type="Script" uid="uid://bji7xhc78ol8c" path="res://scene/editor/event/param/ParamEditorBoolean.cs" id="2_iv2vl"]
@@ -10,7 +10,7 @@ func _pressed() -> void:
 	get_viewport().set_input_as_handled()
 "
 
-[node name="ParamEditor_Boolean" type="HBoxContainer" node_paths=PackedStringArray("Check")]
+[node name="ParamEditor_Boolean" type="HBoxContainer" unique_id=1312468264 node_paths=PackedStringArray("Check")]
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
@@ -18,7 +18,7 @@ theme = ExtResource("1_al1j5")
 script = ExtResource("2_iv2vl")
 Check = NodePath("Check")
 
-[node name="Check" type="CheckBox" parent="."]
+[node name="Check" type="CheckBox" parent="." unique_id=1233644542]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2

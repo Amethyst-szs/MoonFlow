@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://btudirexgoe1r"]
+[gd_scene format=3 uid="uid://btudirexgoe1r"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_d5kb8"]
 [ext_resource type="Script" uid="uid://b7h8qvg8sxkf0" path="res://scene/editor/event/param/ParamEditorFloat.cs" id="2_10i5s"]
 
-[node name="ParamEditor_Float" type="HBoxContainer" node_paths=PackedStringArray("Spin")]
+[node name="ParamEditor_Float" type="HBoxContainer" unique_id=1992761285 node_paths=PackedStringArray("Spin")]
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
@@ -12,7 +12,7 @@ theme = ExtResource("1_d5kb8")
 script = ExtResource("2_10i5s")
 Spin = NodePath("Spin")
 
-[node name="Spin" type="SpinBox" parent="."]
+[node name="Spin" type="SpinBox" parent="." unique_id=708558997]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://toha7mro71ue"]
+[gd_scene format=3 uid="uid://toha7mro71ue"]
 
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_41gk0"]
 [ext_resource type="Script" uid="uid://c4qukmbqv7qkn" path="res://scene/editor/event/meta/PopupEventMetadata.cs" id="2_f0xbx"]
@@ -18,8 +18,9 @@ font_color = Color(1, 1, 1, 0.72549)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h40d1"]
 shader = ExtResource("6_8ry4n")
 
-[node name="Popup_NodeMetadataEditor" type="Popup" node_paths=PackedStringArray("TextComment", "ColorPicker", "ButtonColorSet", "ButtonColorReset", "FlowTags")]
+[node name="Popup_NodeMetadataEditor" type="Popup" unique_id=539453247 node_paths=PackedStringArray("TextComment", "ColorPicker", "ButtonColorSet", "ButtonColorReset", "FlowTags")]
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "EVENT_EDITOR_METADATA_POPUP_TITLE"
 initial_position = 1
 size = Vector2i(520, 364)
@@ -33,7 +34,7 @@ ButtonColorSet = NodePath("Content/Layout/HBox_Extra/Button_ColorPick")
 ButtonColorReset = NodePath("Content/Layout/HBox_Extra/Button_ColorReset")
 FlowTags = NodePath("Content/Layout/Scroll_Tags/Flow_Tags")
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=794421673]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -41,16 +42,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_q77dw")
 
-[node name="Layout" type="VBoxContainer" parent="Content"]
+[node name="Layout" type="VBoxContainer" parent="Content" unique_id=1663363822]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label_Comment" type="Label" parent="Content/Layout"]
+[node name="Label_Comment" type="Label" parent="Content/Layout" unique_id=1004299476]
 layout_mode = 2
 text = "EVENT_EDITOR_METADATA_COMMENT_TEXT_HEADER"
 label_settings = SubResource("LabelSettings_ceduk")
 
-[node name="Text_Comment" type="TextEdit" parent="Content/Layout"]
+[node name="Text_Comment" type="TextEdit" parent="Content/Layout" unique_id=1882500432]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -60,16 +61,16 @@ context_menu_enabled = false
 wrap_mode = 1
 caret_multiple = false
 
-[node name="HBox_Extra" type="HBoxContainer" parent="Content/Layout"]
+[node name="HBox_Extra" type="HBoxContainer" parent="Content/Layout" unique_id=1040366415]
 layout_mode = 2
 
-[node name="Button_ColorPick" type="Button" parent="Content/Layout/HBox_Extra"]
+[node name="Button_ColorPick" type="Button" parent="Content/Layout/HBox_Extra" unique_id=1481357475]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 tooltip_text = "EVENT_EDITOR_METADATA_SET_COLOR_TOOLTIP"
 theme = ExtResource("5_8xer2")
 
-[node name="Texture_Icon" type="TextureRect" parent="Content/Layout/HBox_Extra/Button_ColorPick"]
+[node name="Texture_Icon" type="TextureRect" parent="Content/Layout/HBox_Extra/Button_ColorPick" unique_id=874521696]
 material = SubResource("ShaderMaterial_h40d1")
 layout_mode = 1
 anchors_preset = 8
@@ -86,36 +87,36 @@ grow_vertical = 2
 texture = ExtResource("7_hi7yl")
 expand_mode = 1
 
-[node name="Button_ColorReset" type="Button" parent="Content/Layout/HBox_Extra"]
+[node name="Button_ColorReset" type="Button" parent="Content/Layout/HBox_Extra" unique_id=1053302157]
 layout_mode = 2
 tooltip_text = "EVENT_EDITOR_METADATA_RESET_COLOR_TOOLTIP"
 icon = ExtResource("8_4w7f2")
 
-[node name="Line_Tags" type="LineEdit" parent="Content/Layout/HBox_Extra"]
+[node name="Line_Tags" type="LineEdit" parent="Content/Layout/HBox_Extra" unique_id=448725330]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "EVENT_EDITOR_METADATA_LINE_SEARCH_TAGS_PLACEHOLDER"
 max_length = 16
 
-[node name="HSeparator" type="HSeparator" parent="Content/Layout"]
+[node name="HSeparator" type="HSeparator" parent="Content/Layout" unique_id=1938267364]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label_Tags" type="Label" parent="Content/Layout"]
+[node name="Label_Tags" type="Label" parent="Content/Layout" unique_id=2066324268]
 layout_mode = 2
 text = "EVENT_EDITOR_METADATA_SEARCH_TAGS_BOX_HEADER"
 label_settings = SubResource("LabelSettings_ceduk")
 
-[node name="Scroll_Tags" type="ScrollContainer" parent="Content/Layout"]
+[node name="Scroll_Tags" type="ScrollContainer" parent="Content/Layout" unique_id=2022179589]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Flow_Tags" type="HFlowContainer" parent="Content/Layout/Scroll_Tags"]
+[node name="Flow_Tags" type="HFlowContainer" parent="Content/Layout/Scroll_Tags" unique_id=960938209]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Popup_Picker" type="Popup" parent="."]
+[node name="Popup_Picker" type="Popup" parent="." unique_id=1843150836]
 auto_translate_mode = 1
 transparent_bg = true
 initial_position = 2
@@ -123,14 +124,14 @@ size = Vector2i(346, 501)
 transparent = true
 theme = ExtResource("8_ghj5s")
 
-[node name="Panel_Picker" type="PanelContainer" parent="Popup_Picker"]
+[node name="Panel_Picker" type="PanelContainer" parent="Popup_Picker" unique_id=121982578]
 offset_right = 306.0
 offset_bottom = 485.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = ExtResource("9_22x4l")
 
-[node name="Picker" type="ColorPicker" parent="Popup_Picker/Panel_Picker"]
+[node name="Picker" type="ColorPicker" parent="Popup_Picker/Panel_Picker" unique_id=1017040491]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4

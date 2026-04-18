@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ri6l1jqtmyk7"]
+[gd_scene format=3 uid="uid://ri6l1jqtmyk7"]
 
 [ext_resource type="Script" uid="uid://bne5ovt884rql" path="res://scene/dev/updater/UpdaterDebug.cs" id="1_lp2ou"]
 [ext_resource type="Texture2D" uid="uid://evl66l6xykck" path="res://asset/app/icon/update.png" id="2_r4y6a"]
 [ext_resource type="Script" uid="uid://catu7mjgh76ca" path="res://scene/version/notify/version_update_button.gd" id="3_esqf1"]
 
-[node name="UpdaterDebugApp" type="Control"]
+[node name="UpdaterDebugApp" type="Control" unique_id=1179191912]
 auto_translate_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -17,7 +17,7 @@ AppName = "UpdaterDebugApp"
 AppTaskbarTitle = "Updater Debug"
 AppFlags = 42
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=1659909463]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,16 +29,16 @@ theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 18
 
-[node name="Scroll_Display" type="ScrollContainer" parent="Margin"]
+[node name="Scroll_Display" type="ScrollContainer" parent="Margin" unique_id=684202857]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="List" type="VBoxContainer" parent="Margin/Scroll_Display"]
+[node name="List" type="VBoxContainer" parent="Margin/Scroll_Display" unique_id=1871107459]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button_Official" type="Button" parent="Margin/Scroll_Display/List"]
+[node name="Button_Official" type="Button" parent="Margin/Scroll_Display/List" unique_id=1254023960]
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_default_cursor_shape = 2
@@ -47,18 +47,18 @@ icon = ExtResource("2_r4y6a")
 alignment = 0
 script = ExtResource("3_esqf1")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="Margin/Scroll_Display/List/Button_Official"]
+[node name="HTTPRequest" type="HTTPRequest" parent="Margin/Scroll_Display/List/Button_Official" unique_id=952684376]
 use_threads = true
 
-[node name="HSeparator" type="HSeparator" parent="Margin/Scroll_Display/List"]
+[node name="HSeparator" type="HSeparator" parent="Margin/Scroll_Display/List" unique_id=905664896]
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Line_URL" type="LineEdit" parent="Margin/Scroll_Display/List"]
+[node name="Line_URL" type="LineEdit" parent="Margin/Scroll_Display/List" unique_id=1147951105]
 layout_mode = 2
 placeholder_text = "URL"
 
-[node name="Button_DownloadByUrl" type="Button" parent="Margin/Scroll_Display/List"]
+[node name="Button_DownloadByUrl" type="Button" parent="Margin/Scroll_Display/List" unique_id=1369147757]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Download from URL"

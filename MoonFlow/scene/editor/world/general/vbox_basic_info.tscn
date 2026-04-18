@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://n5fe7jd6mwy4"]
+[gd_scene format=3 uid="uid://n5fe7jd6mwy4"]
 
 [ext_resource type="Script" uid="uid://bfvrmkotopss6" path="res://scene/editor/world/general/VBoxBasicInfo.cs" id="1_6umq7"]
 [ext_resource type="Texture2D" uid="uid://csqtg684ewrm4" path="res://asset/material/file/open.svg" id="1_f7kr0"]
@@ -22,7 +22,7 @@
 font_size = 14
 font_color = Color(1, 1, 1, 0.705882)
 
-[node name="VBox_Basic" type="VBoxContainer" node_paths=PackedStringArray("LineHomeStage", "OptionShineType", "CustomShineType", "OptionCoinType", "CustomCoinType", "CountCoinCollect")]
+[node name="VBox_Basic" type="VBoxContainer" unique_id=78306182 node_paths=PackedStringArray("LineHomeStage", "OptionShineType", "CustomShineType", "OptionCoinType", "CustomCoinType", "CountCoinCollect")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 462.0
@@ -36,13 +36,13 @@ OptionCoinType = NodePath("Grid_Collectable/Option_CoinType")
 CustomCoinType = NodePath("Grid_Collectable/Line_CoinTypeCustom")
 CountCoinCollect = NodePath("Spin_CoinCount")
 
-[node name="Grid_Name" type="GridContainer" parent="."]
+[node name="Grid_Name" type="GridContainer" parent="." unique_id=1384094443]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="Label_Home" type="Label" parent="Grid_Name"]
+[node name="Label_Home" type="Label" parent="Grid_Name" unique_id=1331136996]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_HOME_STAGE_NAME_TOOLTIP"
@@ -52,7 +52,7 @@ text = "WORLD_EDITOR_HEADER_HOME_STAGE_NAME"
 label_settings = SubResource("LabelSettings_rf715")
 text_overrun_behavior = 4
 
-[node name="Label_Name" type="Label" parent="Grid_Name"]
+[node name="Label_Name" type="Label" parent="Grid_Name" unique_id=338310057]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_DISPLAY_NAME_TOOLTIP"
@@ -62,32 +62,32 @@ text = "WORLD_EDITOR_HEADER_DISPLAY_NAME"
 label_settings = SubResource("LabelSettings_rf715")
 text_overrun_behavior = 4
 
-[node name="Line_Home" type="LineEdit" parent="Grid_Name"]
+[node name="Line_Home" type="LineEdit" parent="Grid_Name" unique_id=2094754307]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "WORLD_EDITOR_PLACEHOLDER_HOME_STAGE_NAME"
 max_length = 64
 clear_button_enabled = true
 
-[node name="Button_Name" type="Button" parent="Grid_Name"]
+[node name="Button_Name" type="Button" parent="Grid_Name" unique_id=2004849455]
 layout_mode = 2
 text = "WORLD_EDITOR_DISPLAY_NAME_OPEN_MSBT"
 icon = ExtResource("1_f7kr0")
 alignment = 0
 text_overrun_behavior = 4
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=805811986]
 layout_mode = 2
 theme_override_constants/separation = 16
 theme_override_styles/separator = ExtResource("3_j4lju")
 
-[node name="Grid_Collectable" type="GridContainer" parent="."]
+[node name="Grid_Collectable" type="GridContainer" parent="." unique_id=177632692]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="Label_ShineType" type="Label" parent="Grid_Collectable"]
+[node name="Label_ShineType" type="Label" parent="Grid_Collectable" unique_id=419887100]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_SHINE_TYPE_TOOLTIP"
@@ -97,7 +97,7 @@ text = "WORLD_EDITOR_HEADER_SHINE_TYPE"
 label_settings = SubResource("LabelSettings_rf715")
 text_overrun_behavior = 4
 
-[node name="Label_CoinType" type="Label" parent="Grid_Collectable"]
+[node name="Label_CoinType" type="Label" parent="Grid_Collectable" unique_id=762082680]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE_TOOLTIP"
@@ -107,7 +107,7 @@ text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TYPE"
 label_settings = SubResource("LabelSettings_rf715")
 text_overrun_behavior = 4
 
-[node name="Option_ShineType" type="OptionButton" parent="Grid_Collectable"]
+[node name="Option_ShineType" type="OptionButton" parent="Grid_Collectable" unique_id=22837299]
 layout_mode = 2
 text_overrun_behavior = 4
 selected = 0
@@ -151,13 +151,13 @@ popup/item_11/icon = ExtResource("13_lncdy")
 popup/item_11/id = 11
 script = ExtResource("14_3cd80")
 
-[node name="Option_CoinType" type="OptionButton" parent="Grid_Collectable" node_paths=PackedStringArray("CustomInput")]
+[node name="Option_CoinType" type="OptionButton" parent="Grid_Collectable" unique_id=680400537 node_paths=PackedStringArray("CustomInput")]
 layout_mode = 2
 disabled = true
 script = ExtResource("16_3xsaf")
 CustomInput = NodePath("../Line_CoinTypeCustom")
 
-[node name="Spin_ShineTypeCustom" type="SpinBox" parent="Grid_Collectable"]
+[node name="Spin_ShineTypeCustom" type="SpinBox" parent="Grid_Collectable" unique_id=1649364497]
 layout_mode = 2
 min_value = -1.0
 max_value = 9.0
@@ -167,7 +167,7 @@ alignment = 1
 update_on_text_changed = true
 prefix = "ID:"
 
-[node name="Line_CoinTypeCustom" type="LineEdit" parent="Grid_Collectable"]
+[node name="Line_CoinTypeCustom" type="LineEdit" parent="Grid_Collectable" unique_id=1842354903]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "WORLD_EDITOR_PLACEHOLDER_COIN_COLLECT_TYPE"
@@ -181,12 +181,12 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 draw_control_chars = true
 
-[node name="HSeparator2" type="HSeparator" parent="."]
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=12615473]
 layout_mode = 2
 theme_override_constants/separation = 16
 theme_override_styles/separator = ExtResource("3_j4lju")
 
-[node name="Label_CoinCount" type="Label" parent="."]
+[node name="Label_CoinCount" type="Label" parent="." unique_id=611653682]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_HEADER_COIN_COLLECT_TOTAL_COUNT_TOOLTIP"
 mouse_filter = 0
@@ -196,7 +196,7 @@ label_settings = SubResource("LabelSettings_rf715")
 horizontal_alignment = 1
 text_overrun_behavior = 4
 
-[node name="Spin_CoinCount" type="SpinBox" parent="."]
+[node name="Spin_CoinCount" type="SpinBox" parent="." unique_id=400770777]
 layout_mode = 2
 rounded = true
 allow_greater = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b00o2aortf3ba"]
+[gd_scene format=3 uid="uid://b00o2aortf3ba"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_bqllb"]
 [ext_resource type="Script" uid="uid://cr0dyy31hbjx7" path="res://scene/front_door/recent/RecentSidebar.cs" id="1_gv4vj"]
@@ -33,7 +33,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 6
 corner_detail = 6
 
-[node name="VBox_Recent" type="VBoxContainer" node_paths=PackedStringArray("VBoxPanelHolder")]
+[node name="VBox_Recent" type="VBoxContainer" unique_id=1782494816 node_paths=PackedStringArray("VBoxPanelHolder")]
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 217.0
@@ -43,13 +43,13 @@ theme_override_constants/separation = 12
 script = ExtResource("1_gv4vj")
 VBoxPanelHolder = NodePath("Scroll_Recent/Content")
 
-[node name="Label_RecentHeader" type="Label" parent="."]
+[node name="Label_RecentHeader" type="Label" parent="." unique_id=180315456]
 layout_mode = 2
 text = "RECENT_PROJECTS"
 label_settings = SubResource("LabelSettings_gytco")
 horizontal_alignment = 1
 
-[node name="Scroll_Recent" type="ScrollContainer" parent="."]
+[node name="Scroll_Recent" type="ScrollContainer" parent="." unique_id=305008362]
 self_modulate = Color(1, 1, 1, 0.501961)
 material = SubResource("CanvasItemMaterial_gytco")
 custom_minimum_size = Vector2(0, 150)
@@ -60,13 +60,13 @@ horizontal_scroll_mode = 0
 script = ExtResource("3_c4m0x")
 metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
 
-[node name="Content" type="VBoxContainer" parent="Scroll_Recent"]
+[node name="Content" type="VBoxContainer" parent="Scroll_Recent" unique_id=582849606]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 6
 
-[node name="HSep_Bottom" type="HSeparator" parent="."]
+[node name="HSep_Bottom" type="HSeparator" parent="." unique_id=1195688732]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 12

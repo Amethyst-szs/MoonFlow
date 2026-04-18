@@ -1,29 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://vq654im8rp5x"]
+[gd_scene format=3 uid="uid://vq654im8rp5x"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_4wkdy"]
 [ext_resource type="PackedScene" uid="uid://cjlli76vhlpfg" path="res://scene/editor/event/node/component/message_resolver_config.tscn" id="2_1tl62"]
 [ext_resource type="Script" uid="uid://bdbti8uf1g1pq" path="res://scene/editor/event/node/typedef/cap_message/EventFlowNodeCapMessage.cs" id="2_ji33a"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="4_wku4m"]
 
-[node name="EventFlowNodeCapMessage" node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh") instance=ExtResource("1_4wkdy")]
+[node name="EventFlowNodeCapMessage" unique_id=353774441 node_paths=PackedStringArray("TextMessagePreview", "LabelTextSource", "ButtonMessageEdit", "ButtonMessageRefresh") instance=ExtResource("1_4wkdy")]
 script = ExtResource("2_ji33a")
 TextMessagePreview = NodePath("Content/Display/MessageResolverConfig/HBox_Preview/Text_Preview")
 LabelTextSource = NodePath("Content/Display/MessageResolverConfig/Label_TargetSource")
 ButtonMessageEdit = NodePath("Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Edit")
 ButtonMessageRefresh = NodePath("Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools/Button_Refresh")
 
-[node name="MessageResolverConfig" parent="Content/Display" index="2" instance=ExtResource("2_1tl62")]
+[node name="MessageResolverConfig" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="2" unique_id=96910815 instance=ExtResource("2_1tl62")]
 layout_mode = 2
 theme = ExtResource("4_wku4m")
 
-[node name="VBox_Tools" parent="Content/Display/MessageResolverConfig/HBox_Preview" index="1"]
+[node name="VBox_Tools" parent="Content/Display/MessageResolverConfig/HBox_Preview" parent_id_path=PackedInt32Array(96910815, 138726460) index="1" unique_id=2039307016]
 visible = false
 
-[node name="Button_Edit" parent="Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools" index="0"]
+[node name="Button_Edit" parent="Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools" index="0" unique_id=363398419]
 visible = false
 disabled = true
 
-[node name="Button_Refresh" parent="Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools" index="1"]
+[node name="Button_Refresh" parent="Content/Display/MessageResolverConfig/HBox_Preview/VBox_Tools" index="1" unique_id=1282051009]
 visible = false
 disabled = true
 

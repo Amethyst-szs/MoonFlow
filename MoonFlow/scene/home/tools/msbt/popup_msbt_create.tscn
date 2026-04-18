@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cskp7so180vjn"]
+[gd_scene format=3 uid="uid://cskp7so180vjn"]
 
 [ext_resource type="Script" uid="uid://bgxey3f45h8hw" path="res://scene/home/tools/msbt/popup_msbt_create.gd" id="1_aifqx"]
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_ey5mn"]
@@ -11,7 +11,7 @@ font_color = Color(1, 1, 1, 0.807843)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rndet"]
 
-[node name="Popup_DuplicateMsbt" type="Popup"]
+[node name="Popup_DuplicateMsbt" type="Popup" unique_id=1631291975]
 auto_translate_mode = 1
 disable_3d = true
 transparent_bg = true
@@ -22,35 +22,35 @@ visible = true
 transparent = true
 script = ExtResource("1_aifqx")
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=1676907696]
 custom_minimum_size = Vector2(480, 280)
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_ey5mn")
 theme_override_styles/panel = ExtResource("2_45iim")
 
-[node name="VBox" type="VBoxContainer" parent="Content"]
+[node name="VBox" type="VBoxContainer" parent="Content" unique_id=1284648643]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label_Header" type="Label" parent="Content/VBox"]
+[node name="Label_Header" type="Label" parent="Content/VBox" unique_id=150248658]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="HSep" type="HSeparator" parent="Content/VBox"]
+[node name="HSep" type="HSeparator" parent="Content/VBox" unique_id=1827115244]
 layout_mode = 2
 
-[node name="VBox_ArcPicker" type="VBoxContainer" parent="Content/VBox"]
+[node name="VBox_ArcPicker" type="VBoxContainer" parent="Content/VBox" unique_id=396571451]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label_Archive" type="Label" parent="Content/VBox/VBox_ArcPicker"]
+[node name="Label_Archive" type="Label" parent="Content/VBox/VBox_ArcPicker" unique_id=564228694]
 layout_mode = 2
 text = "HOME_TAB_POPUP_SELECT_ARCHIVE"
 label_settings = SubResource("LabelSettings_1pvya")
 
-[node name="Option_Archive" type="OptionButton" parent="Content/VBox/VBox_ArcPicker"]
+[node name="Option_Archive" type="OptionButton" parent="Content/VBox/VBox_ArcPicker" unique_id=521697459]
 unique_name_in_owner = true
 layout_mode = 2
 item_count = 3
@@ -61,17 +61,17 @@ popup/item_1/id = 1
 popup/item_2/text = "HOME_TAB_TEXT_LAYOUT"
 popup/item_2/id = 2
 
-[node name="HSep_Invis" type="HSeparator" parent="Content/VBox/VBox_ArcPicker"]
+[node name="HSep_Invis" type="HSeparator" parent="Content/VBox/VBox_ArcPicker" unique_id=1837312445]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_rndet")
 
-[node name="Label_FileName" type="Label" parent="Content/VBox"]
+[node name="Label_FileName" type="Label" parent="Content/VBox" unique_id=588874100]
 layout_mode = 2
 text = "HOME_TAB_POPUP_FILE_NAME_HEADER"
 label_settings = SubResource("LabelSettings_1pvya")
 
-[node name="Line_FileName" type="LineEdit" parent="Content/VBox"]
+[node name="Line_FileName" type="LineEdit" parent="Content/VBox" unique_id=1410939778]
 unique_name_in_owner = true
 layout_mode = 2
 max_length = 48
@@ -80,7 +80,7 @@ clear_button_enabled = true
 script = ExtResource("4_nu1k6")
 regex_string = "[A-Za-z0-9-_]"
 
-[node name="Button_Submit" type="Button" parent="Content/VBox"]
+[node name="Button_Submit" type="Button" parent="Content/VBox" unique_id=1268615272]
 layout_mode = 2
 size_flags_vertical = 10
 text = "HOME_TAB_POPUP_SUBMIT"

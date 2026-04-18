@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cijispd6jofjx"]
+[gd_scene format=3 uid="uid://cijispd6jofjx"]
 
 [ext_resource type="Texture2D" uid="uid://chn6p8n28tqvn" path="res://asset/material/file/save.svg" id="1_a3xow"]
 [ext_resource type="Texture2D" uid="uid://w4iv2umffpap" path="res://asset/material/file/save_as.svg" id="2_d0cm0"]
@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://dnas6epfjca3m" path="res://asset/app/icon/front_door.png" id="5_yp0jb"]
 [ext_resource type="Script" uid="uid://m35v3iffy4cp" path="res://scene/main/header/actionbar/global/ActionbarFile.cs" id="6_8cwdy"]
 
-[node name="File" type="PopupMenu"]
+[node name="File" type="PopupMenu" unique_id=232404605]
 auto_translate_mode = 1
-size = Vector2i(250, 100)
+oversampling_override = 1.0
+size = Vector2i(363, 276)
+visible = true
 item_count = 8
 item_0/text = "MAIN_ACTIONBAR_FILE_SAVE"
 item_0/icon = ExtResource("1_a3xow")

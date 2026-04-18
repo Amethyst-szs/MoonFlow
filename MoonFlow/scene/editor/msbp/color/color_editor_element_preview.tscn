@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://f68g2wbg8gpk"]
+[gd_scene format=3 uid="uid://f68g2wbg8gpk"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_81uyn"]
 [ext_resource type="Script" uid="uid://ckjbjpqwxbpbt" path="res://scene/editor/msbt/tag_edit/anim/preview_beat.gd" id="1_lwk63"]
@@ -7,7 +7,7 @@
 [sub_resource type="RichTextEffect" id="RichTextEffect_q0bor"]
 script = ExtResource("1_lwk63")
 
-[node name="Preview" type="RichTextLabel"]
+[node name="Preview" type="RichTextLabel" unique_id=900281616]
 custom_minimum_size = Vector2(128, 0)
 theme_override_fonts/normal_font = ExtResource("1_81uyn")
 theme_override_fonts/bold_font = ExtResource("2_d6yhc")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://chshtl4kankbh"]
+[gd_scene format=3 uid="uid://chshtl4kankbh"]
 
 [ext_resource type="PackedScene" uid="uid://dn6k75166p7ua" path="res://scene/editor/event/node/event_flow_node_common.tscn" id="1_qackf"]
 [ext_resource type="Script" uid="uid://darhwgt18bnql" path="res://scene/editor/event/node/typedef/flow/EventFlowNodeEntryJump.cs" id="2_1em8n"]
@@ -8,19 +8,19 @@
 font_size = 13
 font_color = Color(1, 1, 1, 0.768627)
 
-[node name="EventFlowNodeJumpToEntryPoint" node_paths=PackedStringArray("JumpList") instance=ExtResource("1_qackf")]
+[node name="EventFlowNodeJumpToEntryPoint" unique_id=1199272489 node_paths=PackedStringArray("JumpList") instance=ExtResource("1_qackf")]
 script = ExtResource("2_1em8n")
 JumpList = NodePath("Content/Display/Option_JumpTarget")
 
-[node name="HSeparator" type="HSeparator" parent="Content/Display" index="2"]
+[node name="HSeparator" type="HSeparator" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="2" unique_id=1970026555]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Content/Display" index="3"]
+[node name="Label" type="Label" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="3" unique_id=1435280769]
 layout_mode = 2
 text = "EVENT_FLOW_NODE_JUMP_ENTRY_POINT_TARGET_HEADER"
 label_settings = SubResource("LabelSettings_5q6jw")
 
-[node name="Option_JumpTarget" type="OptionButton" parent="Content/Display" index="4"]
+[node name="Option_JumpTarget" type="OptionButton" parent="Content/Display" parent_id_path=PackedInt32Array(1428691307) index="4" unique_id=704045661]
 custom_minimum_size = Vector2(224, 0)
 layout_mode = 2
 theme = ExtResource("3_cr68a")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c5upu8m5vshym"]
+[gd_scene format=3 uid="uid://c5upu8m5vshym"]
 
 [ext_resource type="Theme" uid="uid://b2d1f54edqxpw" path="res://asset/theme/world/world_editor_shine_list.tres" id="1_nqyww"]
 [ext_resource type="Script" uid="uid://b5u1vwanne6a4" path="res://scene/editor/world/shine/WorldShineEditor.cs" id="1_yi0vg"]
@@ -26,7 +26,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="WorldShineEditor" type="MarginContainer" node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "ScenarioBitFlags", "SpinTranslationX", "SpinTranslationY", "SpinTranslationZ", "QuestBitFlags", "LineOptionalId")]
+[node name="WorldShineEditor" type="MarginContainer" unique_id=360625482 node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "ScenarioBitFlags", "SpinTranslationX", "SpinTranslationY", "SpinTranslationZ", "QuestBitFlags", "LineOptionalId")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 121.0
@@ -52,18 +52,18 @@ SpinTranslationZ = NodePath("Content/VBox_Trans/HBox_Values/Spin_Z")
 QuestBitFlags = NodePath("Content/Fold_Extra/Layout/QuestBitFlags")
 LineOptionalId = NodePath("Content/Fold_Extra/Layout/Line_OptionalId")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=1293154556]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="HSep_Head" type="HSeparator" parent="Content"]
+[node name="HSep_Head" type="HSeparator" parent="Content" unique_id=869877430]
 layout_mode = 2
 
-[node name="Grid_NameId" type="GridContainer" parent="Content"]
+[node name="Grid_NameId" type="GridContainer" parent="Content" unique_id=1898208570]
 layout_mode = 2
 columns = 2
 
-[node name="Label_StageHead" type="Label" parent="Content/Grid_NameId"]
+[node name="Label_StageHead" type="Label" parent="Content/Grid_NameId" unique_id=790148743]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_TOOLTIP"
@@ -73,7 +73,7 @@ text = "WORLD_EDITOR_SHINE_EDITOR_STAGE_NAME_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_ObjIdHead" type="Label" parent="Content/Grid_NameId"]
+[node name="Label_ObjIdHead" type="Label" parent="Content/Grid_NameId" unique_id=1391402505]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_TOOLTIP"
@@ -83,14 +83,14 @@ text = "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Option_StageName" type="OptionButton" parent="Content/Grid_NameId"]
+[node name="Option_StageName" type="OptionButton" parent="Content/Grid_NameId" unique_id=1366139284]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_n8mta")
 text_overrun_behavior = 3
 script = ExtResource("2_a2ycu")
 
-[node name="Line_ObjId" type="LineEdit" parent="Content/Grid_NameId"]
+[node name="Line_ObjId" type="LineEdit" parent="Content/Grid_NameId" unique_id=1933905481]
 layout_mode = 2
 placeholder_text = "WORLD_EDITOR_SHINE_EDITOR_OBJ_ID_PLACEHOLDER"
 max_length = 126
@@ -100,16 +100,16 @@ script = ExtResource("4_qgqcx")
 regex_string = "[A-Za-z0-9_]"
 is_return_if_empty = true
 
-[node name="HSep_Spacer" type="HSeparator" parent="Content"]
+[node name="HSep_Spacer" type="HSeparator" parent="Content" unique_id=562364113]
 layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = ExtResource("6_j4rlp")
 
-[node name="Grid_UniqueHintType" type="GridContainer" parent="Content"]
+[node name="Grid_UniqueHintType" type="GridContainer" parent="Content" unique_id=827374949]
 layout_mode = 2
 columns = 2
 
-[node name="Label_UniqueIdHead" type="Label" parent="Content/Grid_UniqueHintType"]
+[node name="Label_UniqueIdHead" type="Label" parent="Content/Grid_UniqueHintType" unique_id=1524992746]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_TOOLTIP"
@@ -119,7 +119,7 @@ text = "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_HintIdHead" type="Label" parent="Content/Grid_UniqueHintType"]
+[node name="Label_HintIdHead" type="Label" parent="Content/Grid_UniqueHintType" unique_id=177414516]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_TOOLTIP"
@@ -129,13 +129,13 @@ text = "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HBox_UniqueId" type="HBoxContainer" parent="Content/Grid_UniqueHintType"]
+[node name="HBox_UniqueId" type="HBoxContainer" parent="Content/Grid_UniqueHintType" unique_id=463110388]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 12
 
-[node name="Spin_UniqueId" type="SpinBox" parent="Content/Grid_UniqueHintType/HBox_UniqueId"]
+[node name="Spin_UniqueId" type="SpinBox" parent="Content/Grid_UniqueHintType/HBox_UniqueId" unique_id=673687637]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -147,14 +147,14 @@ alignment = 1
 prefix = "UID"
 custom_arrow_step = 1.0
 
-[node name="Button_UniqueIdAuto" type="Button" parent="Content/Grid_UniqueHintType/HBox_UniqueId"]
+[node name="Button_UniqueIdAuto" type="Button" parent="Content/Grid_UniqueHintType/HBox_UniqueId" unique_id=1220916698]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_UNIQUE_ID_AUTO_BUTTON_TOOLTIP"
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 24
 icon = ExtResource("5_gwbnv")
 
-[node name="Texture_DuplicateWarn" type="TextureRect" parent="Content/Grid_UniqueHintType/HBox_UniqueId"]
+[node name="Texture_DuplicateWarn" type="TextureRect" parent="Content/Grid_UniqueHintType/HBox_UniqueId" unique_id=873247571]
 self_modulate = Color(1, 0.808, 0.28, 0.866667)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -164,13 +164,13 @@ texture = ExtResource("6_dnj4b")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HBox_HintId" type="HBoxContainer" parent="Content/Grid_UniqueHintType"]
+[node name="HBox_HintId" type="HBoxContainer" parent="Content/Grid_UniqueHintType" unique_id=380196432]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 12
 
-[node name="Spin_HintId" type="SpinBox" parent="Content/Grid_UniqueHintType/HBox_HintId"]
+[node name="Spin_HintId" type="SpinBox" parent="Content/Grid_UniqueHintType/HBox_HintId" unique_id=1651401491]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -182,14 +182,14 @@ alignment = 1
 prefix = "Hint"
 custom_arrow_step = 1.0
 
-[node name="Button_HintIdAuto" type="Button" parent="Content/Grid_UniqueHintType/HBox_HintId"]
+[node name="Button_HintIdAuto" type="Button" parent="Content/Grid_UniqueHintType/HBox_HintId" unique_id=2059901014]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_HINT_ID_AUTO_BUTTON_TOOLTIP"
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 24
 icon = ExtResource("5_gwbnv")
 
-[node name="Texture_DuplicateWarn" type="TextureRect" parent="Content/Grid_UniqueHintType/HBox_HintId"]
+[node name="Texture_DuplicateWarn" type="TextureRect" parent="Content/Grid_UniqueHintType/HBox_HintId" unique_id=126955782]
 self_modulate = Color(1, 0.808, 0.28, 0.866667)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -199,16 +199,16 @@ texture = ExtResource("6_dnj4b")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HSep_Spacer2" type="HSeparator" parent="Content"]
+[node name="HSep_Spacer2" type="HSeparator" parent="Content" unique_id=1191411475]
 layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = ExtResource("6_j4rlp")
 
-[node name="Grid_QuestScenario" type="GridContainer" parent="Content"]
+[node name="Grid_QuestScenario" type="GridContainer" parent="Content" unique_id=1216149403]
 layout_mode = 2
 columns = 2
 
-[node name="Label_BitFlagHead" type="Label" parent="Content/Grid_QuestScenario"]
+[node name="Label_BitFlagHead" type="Label" parent="Content/Grid_QuestScenario" unique_id=1276454202]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_TOOLTIP"
@@ -218,7 +218,7 @@ text = "WORLD_EDITOR_SHINE_EDITOR_SCENARIO_BIT_FLAGS_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Label_TypeHead" type="Label" parent="Content/Grid_QuestScenario"]
+[node name="Label_TypeHead" type="Label" parent="Content/Grid_QuestScenario" unique_id=577965662]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_TYPE_TOOLTIP"
@@ -228,7 +228,7 @@ text = "WORLD_EDITOR_SHINE_EDITOR_TYPE_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ScenarioBitFlags" type="VBoxContainer" parent="Content/Grid_QuestScenario"]
+[node name="ScenarioBitFlags" type="VBoxContainer" parent="Content/Grid_QuestScenario" unique_id=1618667122]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -238,13 +238,13 @@ total_bits = 15
 rows = 2
 button_size = Vector2(26, 26)
 
-[node name="HBox_Type" type="HBoxContainer" parent="Content/Grid_QuestScenario"]
+[node name="HBox_Type" type="HBoxContainer" parent="Content/Grid_QuestScenario" unique_id=1843238228]
 layout_mode = 2
 theme = ExtResource("9_pftfw")
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Check_Multi" type="Button" parent="Content/Grid_QuestScenario/HBox_Type"]
+[node name="Check_Multi" type="Button" parent="Content/Grid_QuestScenario/HBox_Type" unique_id=814037989]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -256,7 +256,7 @@ icon = ExtResource("9_curtr")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Check_Rock" type="Button" parent="Content/Grid_QuestScenario/HBox_Type"]
+[node name="Check_Rock" type="Button" parent="Content/Grid_QuestScenario/HBox_Type" unique_id=1197431225]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -268,7 +268,7 @@ icon = ExtResource("10_ojn6k")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Check_Achievement" type="Button" parent="Content/Grid_QuestScenario/HBox_Type"]
+[node name="Check_Achievement" type="Button" parent="Content/Grid_QuestScenario/HBox_Type" unique_id=1854334826]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -280,15 +280,15 @@ icon = ExtResource("11_8gd1o")
 icon_alignment = 1
 expand_icon = true
 
-[node name="HSep_Spacer3" type="HSeparator" parent="Content"]
+[node name="HSep_Spacer3" type="HSeparator" parent="Content" unique_id=1817865835]
 layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = ExtResource("6_j4rlp")
 
-[node name="VBox_Trans" type="VBoxContainer" parent="Content"]
+[node name="VBox_Trans" type="VBoxContainer" parent="Content" unique_id=313718662]
 layout_mode = 2
 
-[node name="Label_TransHead" type="Label" parent="Content/VBox_Trans"]
+[node name="Label_TransHead" type="Label" parent="Content/VBox_Trans" unique_id=248794658]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
@@ -298,10 +298,10 @@ text = "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HBox_Values" type="HBoxContainer" parent="Content/VBox_Trans"]
+[node name="HBox_Values" type="HBoxContainer" parent="Content/VBox_Trans" unique_id=984815716]
 layout_mode = 2
 
-[node name="Spin_X" type="SpinBox" parent="Content/VBox_Trans/HBox_Values"]
+[node name="Spin_X" type="SpinBox" parent="Content/VBox_Trans/HBox_Values" unique_id=1219531344]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -314,7 +314,7 @@ alignment = 1
 suffix = "X"
 custom_arrow_step = 100.0
 
-[node name="Spin_Y" type="SpinBox" parent="Content/VBox_Trans/HBox_Values"]
+[node name="Spin_Y" type="SpinBox" parent="Content/VBox_Trans/HBox_Values" unique_id=947449871]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -327,7 +327,7 @@ alignment = 1
 suffix = "Y"
 custom_arrow_step = 100.0
 
-[node name="Spin_Z" type="SpinBox" parent="Content/VBox_Trans/HBox_Values"]
+[node name="Spin_Z" type="SpinBox" parent="Content/VBox_Trans/HBox_Values" unique_id=1927652402]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -340,12 +340,12 @@ alignment = 1
 suffix = "Z"
 custom_arrow_step = 100.0
 
-[node name="HSep_Spacer4" type="HSeparator" parent="Content"]
+[node name="HSep_Spacer4" type="HSeparator" parent="Content" unique_id=1957915249]
 layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = ExtResource("6_j4rlp")
 
-[node name="Fold_Extra" type="FoldableContainer" parent="Content"]
+[node name="Fold_Extra" type="FoldableContainer" parent="Content" unique_id=1734841163]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j4rlp")
@@ -353,11 +353,11 @@ folded = true
 title = "WORLD_SHINE_EDITOR_FOLD_EXTRA_OPTIONS"
 title_alignment = 1
 
-[node name="Layout" type="VBoxContainer" parent="Content/Fold_Extra"]
+[node name="Layout" type="VBoxContainer" parent="Content/Fold_Extra" unique_id=1989444333]
 visible = false
 layout_mode = 2
 
-[node name="Label_QuestHead" type="Label" parent="Content/Fold_Extra/Layout"]
+[node name="Label_QuestHead" type="Label" parent="Content/Fold_Extra/Layout" unique_id=150932124]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_TOOLTIP"
@@ -367,7 +367,7 @@ text = "WORLD_EDITOR_SHINE_EDITOR_QUEST_BIT_FLAGS_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="QuestBitFlags" type="VBoxContainer" parent="Content/Fold_Extra/Layout"]
+[node name="QuestBitFlags" type="VBoxContainer" parent="Content/Fold_Extra/Layout" unique_id=282523407]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -378,12 +378,12 @@ allow_primary_bit_selection = true
 primary_bit_icon = ExtResource("11_afu5f")
 total_bits = 15
 
-[node name="HSep_Spacer5" type="HSeparator" parent="Content/Fold_Extra/Layout"]
+[node name="HSep_Spacer5" type="HSeparator" parent="Content/Fold_Extra/Layout" unique_id=1039582455]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = ExtResource("6_j4rlp")
 
-[node name="Label_OptionalIdHead" type="Label" parent="Content/Fold_Extra/Layout"]
+[node name="Label_OptionalIdHead" type="Label" parent="Content/Fold_Extra/Layout" unique_id=1380711173]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_TOOLTIP"
@@ -393,7 +393,7 @@ text = "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_HEADER"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Line_OptionalId" type="LineEdit" parent="Content/Fold_Extra/Layout"]
+[node name="Line_OptionalId" type="LineEdit" parent="Content/Fold_Extra/Layout" unique_id=569963534]
 layout_mode = 2
 placeholder_text = "WORLD_EDITOR_SHINE_EDITOR_OPTIONAL_ID_PLACEHOLDER"
 max_length = 126

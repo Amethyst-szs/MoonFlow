@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://6ksxl1g3hcvy"]
+[gd_scene format=3 uid="uid://6ksxl1g3hcvy"]
 
 [ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="1_wueba"]
 [ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="2_jp2i6"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://d31ycdn7h62g0" path="res://asset/engine/heart.svg" id="4_ce2xx"]
 [ext_resource type="Script" uid="uid://cdfukihg1yaun" path="res://scene/main/header/actionbar/global/ActionbarHelp.cs" id="5_tp4w4"]
 
-[node name="Help" type="PopupMenu"]
+[node name="Help" type="PopupMenu" unique_id=1088892312]
 auto_translate_mode = 1
-size = Vector2i(309, 100)
+oversampling_override = 1.0
+size = Vector2i(488, 371)
+visible = true
 item_count = 8
 item_0/text = "MAIN_ACTIONBAR_HELP_CURRENT_APP"
 item_0/icon = ExtResource("1_wueba")

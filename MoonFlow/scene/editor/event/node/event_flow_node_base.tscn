@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://0cdy5iuxlvqd"]
+[gd_scene format=3 uid="uid://0cdy5iuxlvqd"]
 
 [ext_resource type="Theme" uid="uid://rub3asjuwm5w" path="res://asset/theme/event/node/event_node.tres" id="1_dkxm3"]
 [ext_resource type="Script" uid="uid://clcb7rnpd0wrj" path="res://scene/editor/event/node/EventFlowNodeBase.cs" id="1_f1ryd"]
@@ -17,7 +17,7 @@ content_margin_left = 4.0
 content_margin_right = 4.0
 bg_color = Color(0, 0, 0, 0.309804)
 
-[node name="EventFlowNode" type="Node2D" node_paths=PackedStringArray("PortIn", "PortOutList", "RootPanel", "SelectionPanel", "EditorCommentDisplay", "DebugDataDisplay")]
+[node name="EventFlowNode" type="Node2D" unique_id=1651946774 node_paths=PackedStringArray("PortIn", "PortOutList", "RootPanel", "SelectionPanel", "EditorCommentDisplay", "DebugDataDisplay")]
 script = ExtResource("1_f1ryd")
 PortIn = NodePath("Content/Ports/PortHolder_In/Port_In")
 PortOutList = NodePath("Content/Ports/PortHolder_Out/PortList_Out")
@@ -26,71 +26,71 @@ SelectionPanel = NodePath("Content/Panel_Selection")
 EditorCommentDisplay = NodePath("Content/Extra/VBox_ExtraDisplay/Label_EditorComment")
 DebugDataDisplay = NodePath("Content/Extra/VBox_ExtraDisplay/Label_Debug")
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=466449151]
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 1
 theme = ExtResource("1_dkxm3")
 
-[node name="Ports" type="HBoxContainer" parent="Content"]
+[node name="Ports" type="HBoxContainer" parent="Content" unique_id=1492469599]
 z_index = 1
 layout_mode = 2
 theme = ExtResource("4_pe2ue")
 
-[node name="PortHolder_In" type="Control" parent="Content/Ports"]
+[node name="PortHolder_In" type="Control" parent="Content/Ports" unique_id=2115040503]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Port_In" parent="Content/Ports/PortHolder_In" instance=ExtResource("3_xs8rq")]
+[node name="Port_In" parent="Content/Ports/PortHolder_In" unique_id=544625999 instance=ExtResource("3_xs8rq")]
 layout_mode = 0
 offset_left = -24.0
 offset_bottom = 24.0
 
-[node name="PortHolder_Out" type="Control" parent="Content/Ports"]
+[node name="PortHolder_Out" type="Control" parent="Content/Ports" unique_id=619359673]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="PortList_Out" type="VBoxContainer" parent="Content/Ports/PortHolder_Out"]
+[node name="PortList_Out" type="VBoxContainer" parent="Content/Ports/PortHolder_Out" unique_id=819347562]
 layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
 theme_override_constants/separation = 12
 script = ExtResource("4_x5hdg")
 
-[node name="Display" type="VBoxContainer" parent="Content"]
+[node name="Display" type="VBoxContainer" parent="Content" unique_id=1428691307]
 layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="HBox_Name" type="HBoxContainer" parent="Content/Display"]
+[node name="HBox_Name" type="HBoxContainer" parent="Content/Display" unique_id=1690362829]
 layout_mode = 2
 
-[node name="Label_Name" type="Label" parent="Content/Display/HBox_Name"]
+[node name="Label_Name" type="Label" parent="Content/Display/HBox_Name" unique_id=1544007756]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label_Type" type="Label" parent="Content/Display"]
+[node name="Label_Type" type="Label" parent="Content/Display" unique_id=1954870436]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 label_settings = SubResource("LabelSettings_h5ieb")
 
-[node name="Panel_Selection" type="Panel" parent="Content"]
+[node name="Panel_Selection" type="Panel" parent="Content" unique_id=1493906731]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("5_vyepf")
 
-[node name="Extra" type="Control" parent="Content"]
+[node name="Extra" type="Control" parent="Content" unique_id=2027771505]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="VBox_ExtraDisplay" type="VBoxContainer" parent="Content/Extra"]
+[node name="VBox_ExtraDisplay" type="VBoxContainer" parent="Content/Extra" unique_id=1088184530]
 layout_mode = 0
 offset_top = 16.0
 offset_right = 182.0
@@ -99,26 +99,26 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="Label_EditorComment" type="Label" parent="Content/Extra/VBox_ExtraDisplay"]
+[node name="Label_EditorComment" type="Label" parent="Content/Extra/VBox_ExtraDisplay" unique_id=750368891]
 z_index = -25
 custom_minimum_size = Vector2(182, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xs1ce")
 autowrap_mode = 3
 
-[node name="Label_Debug" type="Label" parent="Content/Extra/VBox_ExtraDisplay"]
+[node name="Label_Debug" type="Label" parent="Content/Extra/VBox_ExtraDisplay" unique_id=1499908739]
 z_index = -25
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xs1ce")
 
-[node name="Area_DragCollider" type="Area2D" parent="." node_paths=PackedStringArray("content")]
+[node name="Area_DragCollider" type="Area2D" parent="." unique_id=552435002 node_paths=PackedStringArray("content")]
 z_index = 1
 collision_layer = 2
 monitorable = false
 script = ExtResource("5_ey2sh")
 content = NodePath("../Content")
 
-[node name="Shape" type="CollisionShape2D" parent="Area_DragCollider"]
+[node name="Shape" type="CollisionShape2D" parent="Area_DragCollider" unique_id=111597241]
 debug_color = Color(0.221667, 0, 0.7, 0.419608)
 
 [connection signal="resized" from="Content" to="." method="OnNodeResized"]

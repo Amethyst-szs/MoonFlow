@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5b01vfsh7pwp"]
+[gd_scene format=3 uid="uid://c5b01vfsh7pwp"]
 
 [ext_resource type="Script" uid="uid://cq6kx2rkcg6i8" path="res://scene/home/HomeRoot.cs" id="1_tasle"]
 [ext_resource type="Texture2D" uid="uid://bmdqpdc2pxqey" path="res://asset/app/icon/home.png" id="2_k2opa"]
@@ -29,7 +29,7 @@ font = ExtResource("7_jixnq")
 [sub_resource type="LabelSettings" id="LabelSettings_a46lk"]
 font = ExtResource("7_jixnq")
 
-[node name="Home" type="Control"]
+[node name="Home" type="Control" unique_id=1018298052]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +45,7 @@ ActionbarScenes = Array[PackedScene]([ExtResource("3_lfduu")])
 AppGuideId = "home"
 AppGuideScene = "res://scene/home/guide/home_guide.tscn"
 
-[node name="Layout" type="HSplitContainer" parent="."]
+[node name="Layout" type="HSplitContainer" parent="." unique_id=980180518]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,17 +55,18 @@ grow_vertical = 2
 theme = ExtResource("3_1qod8")
 theme_override_constants/separation = 12
 theme_override_styles/split_bar_background = ExtResource("4_bfnf5")
-split_offset = -50000
+split_offsets = PackedInt32Array(-50000)
 dragging_enabled = false
 dragger_visibility = 2
+split_offset = -50000
 
-[node name="ToolList" type="PanelContainer" parent="Layout"]
+[node name="ToolList" type="PanelContainer" parent="Layout" unique_id=1698068408]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("8_eqwqn")
 theme_override_styles/panel = ExtResource("8_y8tkp")
 
-[node name="Scroll" type="ScrollContainer" parent="Layout/ToolList"]
+[node name="Scroll" type="ScrollContainer" parent="Layout/ToolList" unique_id=1054105825]
 layout_mode = 2
 horizontal_scroll_mode = 0
 script = ExtResource("7_52bqg")
@@ -74,15 +75,15 @@ allow_horizontal_scroll = false
 force_vertical_scrolling = true
 metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
 
-[node name="ScrollContent" type="VBoxContainer" parent="Layout/ToolList/Scroll"]
+[node name="ScrollContent" type="VBoxContainer" parent="Layout/ToolList/Scroll" unique_id=1985239547]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Header" type="VBoxContainer" parent="Layout/ToolList/Scroll/ScrollContent"]
+[node name="Header" type="VBoxContainer" parent="Layout/ToolList/Scroll/ScrollContent" unique_id=880479217]
 layout_mode = 2
 
-[node name="Label_ToolHeader" type="Label" parent="Layout/ToolList/Scroll/ScrollContent/Header"]
+[node name="Label_ToolHeader" type="Label" parent="Layout/ToolList/Scroll/ScrollContent/Header" unique_id=2124172969]
 layout_mode = 2
 mouse_filter = 1
 text = "HOME_TOOL_LIST_HEADER"
@@ -90,17 +91,17 @@ label_settings = SubResource("LabelSettings_eqwqn")
 horizontal_alignment = 1
 text_overrun_behavior = 1
 
-[node name="HSeparator" type="HSeparator" parent="Layout/ToolList/Scroll/ScrollContent/Header"]
+[node name="HSeparator" type="HSeparator" parent="Layout/ToolList/Scroll/ScrollContent/Header" unique_id=458049343]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 16
 
-[node name="List" type="VBoxContainer" parent="Layout/ToolList/Scroll/ScrollContent"]
+[node name="List" type="VBoxContainer" parent="Layout/ToolList/Scroll/ScrollContent" unique_id=1223054582]
 layout_mode = 2
 theme_override_constants/separation = 8
 script = ExtResource("9_xgyp5")
 
-[node name="Button_ToolText" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
+[node name="Button_ToolText" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" unique_id=278711429 node_paths=PackedStringArray("ToolDestination")]
 layout_mode = 2
 tooltip_text = "TOOL_TEXT_TOOLTIP"
 mouse_filter = 1
@@ -113,7 +114,7 @@ script = ExtResource("9_eqwqn")
 ToolScene = ExtResource("12_xb81g")
 ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="Button_ToolTranslate" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
+[node name="Button_ToolTranslate" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" unique_id=396420334 node_paths=PackedStringArray("ToolDestination")]
 layout_mode = 2
 tooltip_text = "TOOL_TRANSLATE_TOOLTIP"
 mouse_filter = 1
@@ -125,7 +126,7 @@ script = ExtResource("9_eqwqn")
 ToolScene = ExtResource("13_a46lk")
 ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="Button_ToolEvent" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
+[node name="Button_ToolEvent" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" unique_id=976358901 node_paths=PackedStringArray("ToolDestination")]
 layout_mode = 2
 tooltip_text = "TOOL_EVENT_TOOLTIP"
 mouse_filter = 1
@@ -137,7 +138,7 @@ script = ExtResource("9_eqwqn")
 ToolScene = ExtResource("9_l2bha")
 ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="Button_ToolWorld" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
+[node name="Button_ToolWorld" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" unique_id=1957102933 node_paths=PackedStringArray("ToolDestination")]
 layout_mode = 2
 tooltip_text = "TOOL_WORLD_TOOLTIP"
 mouse_filter = 1
@@ -149,7 +150,7 @@ script = ExtResource("9_eqwqn")
 ToolScene = ExtResource("6_ps61c")
 ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="Button_ToolProject" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" node_paths=PackedStringArray("ToolDestination")]
+[node name="Button_ToolProject" type="Button" parent="Layout/ToolList/Scroll/ScrollContent/List" unique_id=2079517202 node_paths=PackedStringArray("ToolDestination")]
 layout_mode = 2
 tooltip_text = "TOOL_PROJECT_TOOLTIP"
 mouse_filter = 1
@@ -161,17 +162,17 @@ script = ExtResource("9_eqwqn")
 ToolScene = ExtResource("20_lfduu")
 ToolDestination = NodePath("../../../../../ToolContent")
 
-[node name="ToolContent" type="PanelContainer" parent="Layout"]
+[node name="ToolContent" type="PanelContainer" parent="Layout" unique_id=849926808]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("8_y8tkp")
 
-[node name="Label_Placeholder" type="Label" parent="Layout/ToolContent"]
+[node name="Label_Placeholder" type="Label" parent="Layout/ToolContent" unique_id=961327253]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "HOME_NO_TOOL_SELECTED_PLACEHOLDER"
 label_settings = SubResource("LabelSettings_a46lk")
 horizontal_alignment = 1
 
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+[node name="ResourcePreloader" type="ResourcePreloader" parent="." unique_id=1651283015]
 resources = [PackedStringArray("app_msbt_editor"), [ExtResource("6_bc8ek")]]

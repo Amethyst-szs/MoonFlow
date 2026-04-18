@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcwcfl0xs4bna"]
+[gd_scene format=3 uid="uid://bcwcfl0xs4bna"]
 
 [ext_resource type="PackedScene" uid="uid://dgh2onvx6k4ft" path="res://scene/home/tools/msbt/tab_msbt_base.tscn" id="1_210fs"]
 
-[node name="Text" instance=ExtResource("1_210fs")]
+[node name="Text" unique_id=1733887905 instance=ExtResource("1_210fs")]
 IsEnableTranslationFeatures = true
 
 [editable path="Popup_RenameMsbt"]

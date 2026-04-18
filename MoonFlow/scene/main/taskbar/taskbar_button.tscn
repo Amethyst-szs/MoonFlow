@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bckw1ahq16d0v"]
+[gd_scene format=3 uid="uid://bckw1ahq16d0v"]
 
 [ext_resource type="Script" uid="uid://d03s3tlli3hv5" path="res://scene/main/taskbar/TaskbarButton.cs" id="1_jb15g"]
 [ext_resource type="Texture2D" uid="uid://cycmibna7j4xu" path="res://asset/material/window/close.svg" id="2_ynsus"]
@@ -8,7 +8,7 @@ content_margin_bottom = 2.0
 bg_color = Color(1, 0.424, 0.04, 0)
 draw_center = false
 
-[node name="TaskbarButton" type="Button" node_paths=PackedStringArray("AppCloser")]
+[node name="TaskbarButton" type="Button" unique_id=234128739 node_paths=PackedStringArray("AppCloser")]
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_default_cursor_shape = 2
@@ -21,7 +21,7 @@ expand_icon = true
 script = ExtResource("1_jb15g")
 AppCloser = NodePath("Button_AppCloser")
 
-[node name="Button_AppCloser" type="Button" parent="."]
+[node name="Button_AppCloser" type="Button" parent="." unique_id=812972403]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -38,11 +38,11 @@ theme_override_colors/icon_hover_color = Color(1, 0.121569, 0.121569, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 0.12, 0.12, 1)
 theme_override_constants/icon_max_width = 24
 theme_override_icons/icon = ExtResource("2_ynsus")
-theme_override_styles/focus = SubResource("StyleBoxFlat_gcg3p")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_gcg3p")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gcg3p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_gcg3p")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gcg3p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gcg3p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcg3p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_gcg3p")
+theme_override_styles/focus = SubResource("StyleBoxFlat_gcg3p")
 flat = true
 
 [connection signal="pressed" from="Button_AppCloser" to="." method="TryCloseApp"]

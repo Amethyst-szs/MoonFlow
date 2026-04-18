@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cei1tg8ys1x2u"]
+[gd_scene format=3 uid="uid://cei1tg8ys1x2u"]
 
 [ext_resource type="Theme" uid="uid://pv7wa46kuqjf" path="res://asset/theme/home/home_tab_world.tres" id="1_but3c"]
 [ext_resource type="Script" uid="uid://8mxhw4wtgh7s" path="res://scene/home/tools/world/tab_world.gd" id="2_qshap"]
@@ -22,7 +22,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.415686)
 shadow_offset = Vector2(12, 12)
 
-[node name="TabWorld" type="Control"]
+[node name="TabWorld" type="Control" unique_id=306802212]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -33,7 +33,7 @@ grow_vertical = 2
 theme = ExtResource("1_but3c")
 script = ExtResource("2_qshap")
 
-[node name="Margin_Select" type="MarginContainer" parent="."]
+[node name="Margin_Select" type="MarginContainer" parent="." unique_id=229350583]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -43,19 +43,19 @@ offset_top = -244.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ThroughLine" type="HSeparator" parent="Margin_Select"]
+[node name="ThroughLine" type="HSeparator" parent="Margin_Select" unique_id=1922114371]
 z_index = 2
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/separator = SubResource("StyleBoxLine_i384y")
 
-[node name="Margin_Content" type="MarginContainer" parent="Margin_Select"]
+[node name="Margin_Content" type="MarginContainer" parent="Margin_Select" unique_id=72508002]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 2
 
-[node name="Scroll_Content" type="ScrollContainer" parent="Margin_Select/Margin_Content"]
+[node name="Scroll_Content" type="ScrollContainer" parent="Margin_Select/Margin_Content" unique_id=1111747648]
 z_index = 1
 clip_contents = false
 custom_minimum_size = Vector2(0, 210)
@@ -70,7 +70,7 @@ follow_focus_margin = 30
 allow_vertical_scroll = false
 force_horizontal_scrolling = true
 
-[node name="List" type="HBoxContainer" parent="Margin_Select/Margin_Content/Scroll_Content"]
+[node name="List" type="HBoxContainer" parent="Margin_Select/Margin_Content/Scroll_Content" unique_id=1716589431]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -79,14 +79,14 @@ alignment = 1
 script = ExtResource("4_hb7y2")
 ButtonResource = ExtResource("2_wiuva")
 
-[node name="Header" type="MarginContainer" parent="."]
+[node name="Header" type="MarginContainer" parent="." unique_id=467432568]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 
-[node name="Label_Header" type="Label" parent="Header"]
+[node name="Label_Header" type="Label" parent="Header" unique_id=349850139]
 layout_mode = 2
 text = "HOME_TAB_WORLD_HEADER"
 label_settings = SubResource("LabelSettings_0v056")

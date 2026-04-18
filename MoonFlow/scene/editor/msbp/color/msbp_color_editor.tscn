@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://041p6wwk4vvx"]
+[gd_scene format=3 uid="uid://041p6wwk4vvx"]
 
 [ext_resource type="Script" uid="uid://br1b788olso5d" path="res://scene/editor/msbp/color/MsbpColorEditor.cs" id="1_fmpb3"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_gpn8b"]
@@ -42,7 +42,7 @@ font = ExtResource("7_4dmpa")
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[node name="MsbpColorEditorApp" type="Control" node_paths=PackedStringArray("ElementHolder", "ColorPickerHolder", "ColorPicker")]
+[node name="MsbpColorEditorApp" type="Control" unique_id=1961939136 node_paths=PackedStringArray("ElementHolder", "ColorPickerHolder", "ColorPicker")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +64,7 @@ AppFlags = 115
 AppContentSaveType = 4100064255
 UnsavedChangesScene = ExtResource("3_5s4ya")
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=2132978908]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,14 +74,14 @@ grow_vertical = 2
 theme = ExtResource("5_vj61p")
 theme_override_styles/panel = ExtResource("4_4fny0")
 
-[node name="Margin" type="MarginContainer" parent="Content"]
+[node name="Margin" type="MarginContainer" parent="Content" unique_id=4526442]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 24
 
-[node name="Scroll_Content" type="ScrollContainer" parent="Content/Margin"]
+[node name="Scroll_Content" type="ScrollContainer" parent="Content/Margin" unique_id=1994335335]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ic1sj")
 follow_focus = true
@@ -91,20 +91,20 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 force_vertical_scrolling = true
 
-[node name="Layout" type="VBoxContainer" parent="Content/Margin/Scroll_Content"]
+[node name="Layout" type="VBoxContainer" parent="Content/Margin/Scroll_Content" unique_id=1441079553]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="Label_Header" type="Label" parent="Content/Margin/Scroll_Content/Layout"]
+[node name="Label_Header" type="Label" parent="Content/Margin/Scroll_Content/Layout" unique_id=643983339]
 layout_mode = 2
 mouse_filter = 1
 text = "MSBP_COLOR_EDITOR_APP_HEADER"
 label_settings = SubResource("LabelSettings_oybk2")
 horizontal_alignment = 1
 
-[node name="Label_ReadOnlyWarn" type="Label" parent="Content/Margin/Scroll_Content/Layout"]
+[node name="Label_ReadOnlyWarn" type="Label" parent="Content/Margin/Scroll_Content/Layout" unique_id=1307952537]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -113,20 +113,20 @@ label_settings = SubResource("LabelSettings_aln5j")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="Content/Margin/Scroll_Content/Layout"]
+[node name="HSeparator" type="HSeparator" parent="Content/Margin/Scroll_Content/Layout" unique_id=1942644320]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="HBox_TableHeader" type="HBoxContainer" parent="Content/Margin/Scroll_Content/Layout"]
+[node name="HBox_TableHeader" type="HBoxContainer" parent="Content/Margin/Scroll_Content/Layout" unique_id=1320175688]
 layout_mode = 2
 
-[node name="Header_Color" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader"]
+[node name="Header_Color" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader" unique_id=243529761]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("5_21sd3")
 
-[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_Color"]
+[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_Color" unique_id=1293383000]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -135,13 +135,13 @@ label_settings = SubResource("LabelSettings_clgfl")
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="Header_PreviewB" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader"]
+[node name="Header_PreviewB" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader" unique_id=25072342]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("8_dwog8")
 
-[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_PreviewB"]
+[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_PreviewB" unique_id=433267069]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -150,13 +150,13 @@ label_settings = SubResource("LabelSettings_17jwe")
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="Header_PreviewW" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader"]
+[node name="Header_PreviewW" type="PanelContainer" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader" unique_id=2004112549]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("9_qc2bw")
 
-[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_PreviewW"]
+[node name="Label" type="Label" parent="Content/Margin/Scroll_Content/Layout/HBox_TableHeader/Header_PreviewW" unique_id=707373060]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -165,24 +165,24 @@ label_settings = SubResource("LabelSettings_prxu4")
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="VBox_ColorList" type="VBoxContainer" parent="Content/Margin/Scroll_Content/Layout"]
+[node name="VBox_ColorList" type="VBoxContainer" parent="Content/Margin/Scroll_Content/Layout" unique_id=102686791]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Popup_Picker" type="Popup" parent="."]
+[node name="Popup_Picker" type="Popup" parent="." unique_id=373499950]
 transparent_bg = true
 size = Vector2i(346, 501)
 transparent = true
 theme = ExtResource("5_vj61p")
 
-[node name="Panel_Picker" type="PanelContainer" parent="Popup_Picker"]
+[node name="Panel_Picker" type="PanelContainer" parent="Popup_Picker" unique_id=1680143605]
 offset_right = 306.0
 offset_bottom = 485.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = ExtResource("12_h18l2")
 
-[node name="Picker" type="ColorPicker" parent="Popup_Picker/Panel_Picker"]
+[node name="Picker" type="ColorPicker" parent="Popup_Picker/Panel_Picker" unique_id=819749682]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4

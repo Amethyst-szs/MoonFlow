@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdcam0c6j5qr2"]
+[gd_scene format=3 uid="uid://cdcam0c6j5qr2"]
 
 [ext_resource type="PackedScene" uid="uid://0cdy5iuxlvqd" path="res://scene/editor/event/node/event_flow_node_base.tscn" id="1_em0m4"]
 [ext_resource type="Script" uid="uid://d3o0xdnijlueg" path="res://scene/editor/event/node/EventFlowEntryPoint.cs" id="2_0b7pp"]
@@ -11,7 +11,7 @@
 font = ExtResource("3_7mblp")
 font_size = 18
 
-[node name="EventFlowEntryPoint" node_paths=PackedStringArray("NameEdit", "RectDuplicateKeyWarning", "RectEmptyKeyWarning") instance=ExtResource("1_em0m4")]
+[node name="EventFlowEntryPoint" unique_id=150251464 node_paths=PackedStringArray("NameEdit", "RectDuplicateKeyWarning", "RectEmptyKeyWarning") instance=ExtResource("1_em0m4")]
 script = ExtResource("2_0b7pp")
 NameEdit = NodePath("Content/Display/Line_Name")
 RectDuplicateKeyWarning = NodePath("Content/Display/HBox_Warnings/Rect_WarnDuplicate")
@@ -26,7 +26,7 @@ visible = false
 [node name="Label_Type" parent="Content/Display" index="1"]
 label_settings = SubResource("LabelSettings_xu247")
 
-[node name="Line_Name" type="LineEdit" parent="Content/Display" index="2"]
+[node name="Line_Name" type="LineEdit" parent="Content/Display" index="2" unique_id=773315889]
 custom_minimum_size = Vector2(224, 0)
 layout_mode = 2
 theme = ExtResource("3_c4ybk")
@@ -37,10 +37,10 @@ context_menu_enabled = false
 script = ExtResource("4_245uo")
 regex_string = "[A-Za-z0-9-_]"
 
-[node name="HBox_Warnings" type="HBoxContainer" parent="Content/Display" index="3"]
+[node name="HBox_Warnings" type="HBoxContainer" parent="Content/Display" index="3" unique_id=1817682129]
 layout_mode = 2
 
-[node name="Rect_WarnDuplicate" type="TextureRect" parent="Content/Display/HBox_Warnings" index="0"]
+[node name="Rect_WarnDuplicate" type="TextureRect" parent="Content/Display/HBox_Warnings" index="0" unique_id=721953976]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -51,7 +51,7 @@ theme = ExtResource("3_c4ybk")
 texture = ExtResource("6_pnxp5")
 stretch_mode = 5
 
-[node name="Rect_WarnEmpty" type="TextureRect" parent="Content/Display/HBox_Warnings" index="1"]
+[node name="Rect_WarnEmpty" type="TextureRect" parent="Content/Display/HBox_Warnings" index="1" unique_id=1554712047]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3

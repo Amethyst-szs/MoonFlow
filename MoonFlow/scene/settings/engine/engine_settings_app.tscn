@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpoxm31ltuycw"]
+[gd_scene format=3 uid="uid://bpoxm31ltuycw"]
 
 [ext_resource type="Script" uid="uid://dsnyneosc47m5" path="res://scene/settings/engine/EngineSettingsApp.cs" id="1_uf06t"]
 [ext_resource type="Texture2D" uid="uid://xpef8b4oi3ps" path="res://asset/app/icon/settings.png" id="2_7515s"]
@@ -35,7 +35,7 @@ VBoxContainer/constants/separation = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0oyq"]
 
-[node name="EngineSettingsApp" type="Control"]
+[node name="EngineSettingsApp" type="Control" unique_id=840881098]
 auto_translate_mode = 1
 layout_mode = 3
 anchors_preset = 15
@@ -49,7 +49,7 @@ AppTaskbarTitle = "Settings"
 AppIcon = ExtResource("2_7515s")
 AppFlags = 35
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=596239767]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,22 +59,23 @@ grow_vertical = 2
 theme = ExtResource("3_t3cmk")
 theme_override_styles/panel = SubResource("StyleBoxFlat_blbrj")
 
-[node name="HSplit" type="HSplitContainer" parent="Content"]
+[node name="HSplit" type="HSplitContainer" parent="Content" unique_id=1666251778]
 layout_mode = 2
 theme_override_constants/separation = 4
+split_offsets = PackedInt32Array(-220)
 split_offset = -220
 
-[node name="Category" type="HBoxContainer" parent="Content/HSplit"]
+[node name="Category" type="HBoxContainer" parent="Content/HSplit" unique_id=892290199]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="VBoxContainer" parent="Content/HSplit/Category"]
+[node name="Content" type="VBoxContainer" parent="Content/HSplit/Category" unique_id=405793191]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Label_CatHeader" type="Label" parent="Content/HSplit/Category/Content"]
+[node name="Label_CatHeader" type="Label" parent="Content/HSplit/Category/Content" unique_id=1265967756]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "ENGINE_SETTINGS_APP_CATEGORY_HEADER"
@@ -82,10 +83,10 @@ label_settings = SubResource("LabelSettings_m8qj0")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSep" type="HSeparator" parent="Content/HSplit/Category/Content"]
+[node name="HSep" type="HSeparator" parent="Content/HSplit/Category/Content" unique_id=1229482254]
 layout_mode = 2
 
-[node name="Button_General" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+[node name="Button_General" type="Button" parent="Content/HSplit/Category/Content" unique_id=332109845 node_paths=PackedStringArray("target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -96,7 +97,7 @@ target = NodePath("../../../Content/Scroll/VBox/Page_General")
 is_default_page = true
 filter_type = 1
 
-[node name="Button_Graph" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+[node name="Button_Graph" type="Button" parent="Content/HSplit/Category/Content" unique_id=309577391 node_paths=PackedStringArray("target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -106,7 +107,7 @@ script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_Graph")
 filter_type = 1
 
-[node name="Button_World" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+[node name="Button_World" type="Button" parent="Content/HSplit/Category/Content" unique_id=1806898867 node_paths=PackedStringArray("target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -116,7 +117,7 @@ script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_World")
 filter_type = 1
 
-[node name="Button_FTP" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+[node name="Button_FTP" type="Button" parent="Content/HSplit/Category/Content" unique_id=464201132 node_paths=PackedStringArray("target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -126,7 +127,7 @@ script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_FTP")
 filter_type = 1
 
-[node name="Button_Keybind" type="Button" parent="Content/HSplit/Category/Content" node_paths=PackedStringArray("target")]
+[node name="Button_Keybind" type="Button" parent="Content/HSplit/Category/Content" unique_id=1374385882 node_paths=PackedStringArray("target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -136,11 +137,11 @@ script = ExtResource("4_ombcx")
 target = NodePath("../../../Content/Scroll/VBox/Page_Keybind")
 filter_type = 1
 
-[node name="HSep_BottomAlignment" type="HSeparator" parent="Content/HSplit/Category/Content"]
+[node name="HSep_BottomAlignment" type="HSeparator" parent="Content/HSplit/Category/Content" unique_id=1096864914]
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Button_Exit" type="Button" parent="Content/HSplit/Category/Content"]
+[node name="Button_Exit" type="Button" parent="Content/HSplit/Category/Content" unique_id=627359423]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -149,41 +150,41 @@ icon = ExtResource("4_d1iky")
 text_overrun_behavior = 3
 icon_alignment = 2
 
-[node name="VSeparator" type="VSeparator" parent="Content/HSplit/Category"]
+[node name="VSeparator" type="VSeparator" parent="Content/HSplit/Category" unique_id=4848165]
 layout_mode = 2
 theme_override_styles/separator = ExtResource("6_xjfkm")
 
-[node name="Content" type="PanelContainer" parent="Content/HSplit"]
+[node name="Content" type="PanelContainer" parent="Content/HSplit" unique_id=1436936652]
 material = ExtResource("8_uka3c")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_b01h6")
 theme_override_styles/panel = ExtResource("7_h42e4")
 
-[node name="Scroll" type="ScrollContainer" parent="Content/HSplit/Content"]
+[node name="Scroll" type="ScrollContainer" parent="Content/HSplit/Content" unique_id=821963296]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_t0oyq")
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="VBox" type="VBoxContainer" parent="Content/HSplit/Content/Scroll"]
+[node name="VBox" type="VBoxContainer" parent="Content/HSplit/Content/Scroll" unique_id=52862201]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Page_General" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("6_cicul")]
+[node name="Page_General" parent="Content/HSplit/Content/Scroll/VBox" unique_id=1160389606 instance=ExtResource("6_cicul")]
 layout_mode = 2
 
-[node name="Page_Graph" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("9_v00pt")]
+[node name="Page_Graph" parent="Content/HSplit/Content/Scroll/VBox" unique_id=409472668 instance=ExtResource("9_v00pt")]
 layout_mode = 2
 
-[node name="Page_World" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("12_vav82")]
+[node name="Page_World" parent="Content/HSplit/Content/Scroll/VBox" unique_id=108423047 instance=ExtResource("12_vav82")]
 layout_mode = 2
 
-[node name="Page_FTP" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("13_wlmhm")]
+[node name="Page_FTP" parent="Content/HSplit/Content/Scroll/VBox" unique_id=2126571325 instance=ExtResource("13_wlmhm")]
 layout_mode = 2
 
-[node name="Page_Keybind" parent="Content/HSplit/Content/Scroll/VBox" instance=ExtResource("12_k2v0t")]
+[node name="Page_Keybind" parent="Content/HSplit/Content/Scroll/VBox" unique_id=2126921454 instance=ExtResource("12_k2v0t")]
 layout_mode = 2
 
 [connection signal="pressed" from="Content/HSplit/Category/Content/Button_Exit" to="." method="OnSaveAndExit"]

@@ -1,162 +1,162 @@
-[gd_scene load_steps=4 format=3 uid="uid://5cs2aobtcf6w"]
+[gd_scene format=3 uid="uid://5cs2aobtcf6w"]
 
 [ext_resource type="Theme" uid="uid://kv7uhw5rsffg" path="res://asset/theme/common/foldable_container_theme.tres" id="1_qd1ao"]
 [ext_resource type="PackedScene" uid="uid://euc30cq3n857" path="res://scene/settings/engine/common/page_header.tscn" id="1_tikfe"]
 [ext_resource type="PackedScene" uid="uid://7rqudtj0ycdw" path="res://scene/settings/engine/keybind/panel_keybind_editor.tscn" id="2_6ag4b"]
 
-[node name="Page_Keybind" type="VBoxContainer"]
+[node name="Page_Keybind" type="VBoxContainer" unique_id=926204241]
 theme = ExtResource("1_qd1ao")
 
-[node name="Header" parent="." instance=ExtResource("1_tikfe")]
+[node name="Header" parent="." unique_id=225031658 instance=ExtResource("1_tikfe")]
 layout_mode = 2
 
-[node name="Label_Head" parent="Header/Layout" index="0"]
+[node name="Label_Head" parent="Header/Layout" parent_id_path=PackedInt32Array(225031658, 209024878) index="0" unique_id=53255930]
 text = "ENGINE_SETTINGS_APP_CATEGORY_KEYBIND"
 
-[node name="Fold_UI" type="FoldableContainer" parent="."]
+[node name="Fold_UI" type="FoldableContainer" parent="." unique_id=514599224]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
 title = "ENGINE_SETTINGS_PAGE_KEYBIND_UI"
 
-[node name="VBox_UI" type="VBoxContainer" parent="Fold_UI"]
+[node name="VBox_UI" type="VBoxContainer" parent="Fold_UI" unique_id=954963817]
 visible = false
 layout_mode = 2
 
-[node name="CloseApp" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="CloseApp" parent="Fold_UI/VBox_UI" unique_id=800731459 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_close_app"
 
-[node name="Refresh" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="Refresh" parent="Fold_UI/VBox_UI" unique_id=214405443 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_refresh"
 
-[node name="Find" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="Find" parent="Fold_UI/VBox_UI" unique_id=701739391 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_find"
 
-[node name="FindSearch" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="FindSearch" parent="Fold_UI/VBox_UI" unique_id=239654651 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_find_search"
 
-[node name="AppNavLeft" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="AppNavLeft" parent="Fold_UI/VBox_UI" unique_id=2117482455 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_app_nav_left"
 
-[node name="AppNavRight" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="AppNavRight" parent="Fold_UI/VBox_UI" unique_id=505412813 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_app_nav_right"
 
-[node name="AppNavHome" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="AppNavHome" parent="Fold_UI/VBox_UI" unique_id=1798878722 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_app_nav_home"
 
-[node name="Screenshot" parent="Fold_UI/VBox_UI" instance=ExtResource("2_6ag4b")]
+[node name="Screenshot" parent="Fold_UI/VBox_UI" unique_id=813705848 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_screenshot"
 
-[node name="Fold_FileManage" type="FoldableContainer" parent="."]
+[node name="Fold_FileManage" type="FoldableContainer" parent="." unique_id=106039450]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
 title = "ENGINE_SETTINGS_PAGE_KEYBIND_FILE_MANAGE"
 
-[node name="VBox_FileManage" type="VBoxContainer" parent="Fold_FileManage"]
+[node name="VBox_FileManage" type="VBoxContainer" parent="Fold_FileManage" unique_id=1898715793]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Save" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="Save" parent="Fold_FileManage/VBox_FileManage" unique_id=1376045548 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_save"
 
-[node name="SaveAs" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="SaveAs" parent="Fold_FileManage/VBox_FileManage" unique_id=215983914 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_save_as"
 
-[node name="SaveAll" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="SaveAll" parent="Fold_FileManage/VBox_FileManage" unique_id=98815467 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_save_all"
 
-[node name="Rename" parent="Fold_FileManage/VBox_FileManage" instance=ExtResource("2_6ag4b")]
+[node name="Rename" parent="Fold_FileManage/VBox_FileManage" unique_id=873127438 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_rename"
 
-[node name="Fold_Project" type="FoldableContainer" parent="."]
+[node name="Fold_Project" type="FoldableContainer" parent="." unique_id=94233754]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
 title = "ENGINE_SETTINGS_PAGE_KEYBIND_PROJECT"
 
-[node name="VBox_Project" type="VBoxContainer" parent="Fold_Project"]
+[node name="VBox_Project" type="VBoxContainer" parent="Fold_Project" unique_id=2116981951]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Reload" parent="Fold_Project/VBox_Project" instance=ExtResource("2_6ag4b")]
+[node name="Reload" parent="Fold_Project/VBox_Project" unique_id=2095096947 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "home_actionbar_reload"
 
-[node name="Close" parent="Fold_Project/VBox_Project" instance=ExtResource("2_6ag4b")]
+[node name="Close" parent="Fold_Project/VBox_Project" unique_id=94863933 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "home_actionbar_close"
 
-[node name="Fold_Msbt" type="FoldableContainer" parent="."]
+[node name="Fold_Msbt" type="FoldableContainer" parent="." unique_id=1141424327]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
 title = "ENGINE_SETTINGS_PAGE_KEYBIND_MSBT"
 
-[node name="VBox_Msbt" type="VBoxContainer" parent="Fold_Msbt"]
+[node name="VBox_Msbt" type="VBoxContainer" parent="Fold_Msbt" unique_id=29617107]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="AddTag" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="AddTag" parent="Fold_Msbt/VBox_Msbt" unique_id=1136470663 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_add_tag"
 
-[node name="EditTag" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="EditTag" parent="Fold_Msbt/VBox_Msbt" unique_id=1732628015 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_edit_tag"
 
-[node name="Add" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="Add" parent="Fold_Msbt/VBox_Msbt" unique_id=2078734188 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "msbt_add_entry"
 
-[node name="Reset" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="Reset" parent="Fold_Msbt/VBox_Msbt" unique_id=270985862 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "msbt_reset_entry"
 
-[node name="Delete" parent="Fold_Msbt/VBox_Msbt" instance=ExtResource("2_6ag4b")]
+[node name="Delete" parent="Fold_Msbt/VBox_Msbt" unique_id=736120265 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "msbt_delete_entry"
 
-[node name="Fold_Event" type="FoldableContainer" parent="."]
+[node name="Fold_Event" type="FoldableContainer" parent="." unique_id=1260234634]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
 title = "ENGINE_SETTINGS_PAGE_KEYBIND_EVENT"
 
-[node name="VBox_Event" type="VBoxContainer" parent="Fold_Event"]
+[node name="VBox_Event" type="VBoxContainer" parent="Fold_Event" unique_id=1653789928]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="AddNode" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="AddNode" parent="Fold_Event/VBox_Event" unique_id=290085155 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_graph_inject"
 
-[node name="ResetZoom" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="ResetZoom" parent="Fold_Event/VBox_Event" unique_id=74364891 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_graph_reset_zoom"
 
-[node name="Debug" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="Debug" parent="Fold_Event/VBox_Event" unique_id=1701131763 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_toggle_debug"
 is_debug_only = true
 
-[node name="StepByStepDebug" parent="Fold_Event/VBox_Event" instance=ExtResource("2_6ag4b")]
+[node name="StepByStepDebug" parent="Fold_Event/VBox_Event" unique_id=976578811 instance=ExtResource("2_6ag4b")]
 layout_mode = 2
 input_action = "ui_graph_step_by_step_debug"
 is_debug_only = true

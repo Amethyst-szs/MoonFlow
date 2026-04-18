@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://euc30cq3n857"]
+[gd_scene format=3 uid="uid://euc30cq3n857"]
 
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="1_2mlpu"]
 
@@ -11,12 +11,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_av5ml"]
 
-[node name="Header" type="Control"]
+[node name="Header" type="Control" unique_id=2143565340]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Layout" type="VBoxContainer" parent="."]
+[node name="Layout" type="VBoxContainer" parent="." unique_id=209024878]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -27,13 +27,13 @@ offset_bottom = 41.0
 grow_horizontal = 2
 rotation = 0.0349066
 
-[node name="Label_Head" type="Label" parent="Layout"]
+[node name="Label_Head" type="Label" parent="Layout" unique_id=53255930]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "ENGINE_SETTINGS_APP_CATEGORY_"
 label_settings = SubResource("LabelSettings_skk56")
 
-[node name="HSep_Head" type="HSeparator" parent="Layout"]
+[node name="HSep_Head" type="HSeparator" parent="Layout" unique_id=1455710246]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_av5ml")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://iqyjx7fu40nl"]
+[gd_scene format=3 uid="uid://iqyjx7fu40nl"]
 
 [ext_resource type="Script" uid="uid://cul1qixdpqm3l" path="res://async/gui/AsyncDisplay.cs" id="1_7xgbo"]
 [ext_resource type="Theme" uid="uid://bi124pyc35ecm" path="res://asset/theme/async/async.tres" id="1_wl5ln"]
@@ -45,7 +45,7 @@ func _gui_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 "
 
-[node name="AsyncDisplay" type="PanelContainer" node_paths=PackedStringArray("LabelTitleKey", "LabelDescKey", "LabelProgress", "LabelException", "ProgressBar")]
+[node name="AsyncDisplay" type="PanelContainer" unique_id=2123759499 node_paths=PackedStringArray("LabelTitleKey", "LabelDescKey", "LabelProgress", "LabelException", "ProgressBar")]
 z_index = 10
 custom_minimum_size = Vector2(260, 48)
 anchors_preset = 3
@@ -66,37 +66,37 @@ LabelProgress = NodePath("Content/Label_Progress")
 LabelException = NodePath("Content/Label_Exception")
 ProgressBar = NodePath("ProgressBar")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1889189183]
 material = SubResource("CanvasItemMaterial_e6hq7")
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 2
 show_percentage = false
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=788127011]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label_Title" type="Label" parent="Content"]
+[node name="Label_Title" type="Label" parent="Content" unique_id=841623980]
 custom_minimum_size = Vector2(141.65, 0)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_c8051")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_Progress" type="Label" parent="Content"]
+[node name="Label_Progress" type="Label" parent="Content" unique_id=1071122009]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_eyguj")
 horizontal_alignment = 1
 
-[node name="Label_Desc" type="Label" parent="Content"]
+[node name="Label_Desc" type="Label" parent="Content" unique_id=695048911]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_1v2qt")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_Exception" type="Label" parent="Content"]
+[node name="Label_Exception" type="Label" parent="Content" unique_id=646606598]
 visible = false
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2

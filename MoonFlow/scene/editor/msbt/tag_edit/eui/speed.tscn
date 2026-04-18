@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr4mm65m1ls4x"]
+[gd_scene format=3 uid="uid://dr4mm65m1ls4x"]
 
 [ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_w51ye"]
 [ext_resource type="Script" uid="uid://dfq031824p2v3" path="res://scene/editor/msbt/tag_edit/eui/Speed.cs" id="2_ugtaw"]
@@ -14,11 +14,11 @@ func _on_value_changed(_value) -> void:
 	get_line_edit().release_focus()
 "
 
-[node name="Speed" instance=ExtResource("1_w51ye")]
+[node name="Speed" unique_id=1427981173 instance=ExtResource("1_w51ye")]
 title = "TAG_EDIT_SCENE_HEADER_EUI_SPEED"
 script = ExtResource("2_ugtaw")
 
-[node name="Spin_Percent" type="SpinBox" parent="Panel/Content" index="0"]
+[node name="Spin_Percent" type="SpinBox" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="0" unique_id=1282872699]
 unique_name_in_owner = true
 auto_translate_mode = 2
 layout_mode = 2
@@ -30,32 +30,32 @@ suffix = "%"
 select_all_on_focus = true
 script = SubResource("GDScript_j5j0l")
 
-[node name="Grid" type="GridContainer" parent="Panel/Content" index="1"]
+[node name="Grid" type="GridContainer" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="1" unique_id=1395717529]
 layout_mode = 2
 columns = 2
 
-[node name="Button_Slow" type="Button" parent="Panel/Content/Grid" index="0"]
+[node name="Button_Slow" type="Button" parent="Panel/Content/Grid" index="0" unique_id=1538240162]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "TAG_EDIT_SCENE_HEADER_EUI_SPEED_SLOW"
 icon = ExtResource("3_smblw")
 clip_text = true
 
-[node name="Button_Normal" type="Button" parent="Panel/Content/Grid" index="1"]
+[node name="Button_Normal" type="Button" parent="Panel/Content/Grid" index="1" unique_id=870127049]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "TAG_EDIT_SCENE_HEADER_EUI_SPEED_NORMAL"
 icon = ExtResource("4_h41jn")
 clip_text = true
 
-[node name="Button_Fast" type="Button" parent="Panel/Content/Grid" index="2"]
+[node name="Button_Fast" type="Button" parent="Panel/Content/Grid" index="2" unique_id=1178061523]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "TAG_EDIT_SCENE_HEADER_EUI_SPEED_FAST"
 icon = ExtResource("5_kw3dj")
 clip_text = true
 
-[node name="Button_VeryFast" type="Button" parent="Panel/Content/Grid" index="3"]
+[node name="Button_VeryFast" type="Button" parent="Panel/Content/Grid" index="3" unique_id=1663393431]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "TAG_EDIT_SCENE_HEADER_EUI_SPEED_VERY_FAST"

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d3lkqxfgd0ex7"]
+[gd_resource type="Theme" format=3 uid="uid://d3lkqxfgd0ex7"]
 
 [ext_resource type="FontFile" uid="uid://c5btw8xoivg1g" path="res://asset/font/FontNewRodin.ttf" id="1_fw20g"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_i33r6"]

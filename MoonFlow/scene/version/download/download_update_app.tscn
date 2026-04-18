@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c06qrr7k28ena"]
+[gd_scene format=3 uid="uid://c06qrr7k28ena"]
 
 [ext_resource type="Script" uid="uid://dfrob5sc2aiih" path="res://scene/version/download/DownloadUpdateApp.cs" id="1_33jf8"]
 [ext_resource type="Theme" uid="uid://d3lkqxfgd0ex7" path="res://asset/theme/front_door/project_load.tres" id="1_hjsav"]
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		visible_characters = text.length() - 3
 "
 
-[node name="DownloadUpdateApp" type="Control" node_paths=PackedStringArray("ContainerDownload", "ProgressDownload", "LabelProgressDownload", "ContainerExtract", "ContainerFailure", "LabelFailInfo", "LabelFailExtract")]
+[node name="DownloadUpdateApp" type="Control" unique_id=825411206 node_paths=PackedStringArray("ContainerDownload", "ProgressDownload", "LabelProgressDownload", "ContainerExtract", "ContainerFailure", "LabelFailInfo", "LabelFailExtract")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,7 +70,7 @@ AppTaskbarTitle = "Update"
 AppIcon = ExtResource("3_twj5p")
 AppFlags = 42
 
-[node name="Content" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="." unique_id=210336094]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,67 +80,67 @@ grow_vertical = 2
 theme = ExtResource("3_4qt2b")
 theme_override_styles/panel = ExtResource("2_rjhkt")
 
-[node name="VBox" type="VBoxContainer" parent="Content"]
+[node name="VBox" type="VBoxContainer" parent="Content" unique_id=219731792]
 custom_minimum_size = Vector2(640, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="StatusIcon" parent="Content/VBox" instance=ExtResource("4_gcxw3")]
+[node name="StatusIcon" parent="Content/VBox" unique_id=662378964 instance=ExtResource("4_gcxw3")]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="VBox_Download" type="VBoxContainer" parent="Content/VBox"]
+[node name="VBox_Download" type="VBoxContainer" parent="Content/VBox" unique_id=911674440]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label_DownloadHeader" type="Label" parent="Content/VBox/VBox_Download"]
+[node name="Label_DownloadHeader" type="Label" parent="Content/VBox/VBox_Download" unique_id=1481778466]
 layout_mode = 2
 text = "DOWNLOAD_UPDATE_APP_HEADER_DOWNLOAD_PROGRESS"
 label_settings = SubResource("LabelSettings_741w2")
 horizontal_alignment = 1
 
-[node name="HSep" type="HSeparator" parent="Content/VBox/VBox_Download"]
+[node name="HSep" type="HSeparator" parent="Content/VBox/VBox_Download" unique_id=944061573]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Progress_Download" type="ProgressBar" parent="Content/VBox/VBox_Download"]
+[node name="Progress_Download" type="ProgressBar" parent="Content/VBox/VBox_Download" unique_id=175618186]
 layout_mode = 2
 
-[node name="Label_ByteProg" type="Label" parent="Content/VBox/VBox_Download"]
+[node name="Label_ByteProg" type="Label" parent="Content/VBox/VBox_Download" unique_id=222763179]
 auto_translate_mode = 2
 layout_mode = 2
 text = "0.00mb/0.00mb"
 label_settings = SubResource("LabelSettings_rs0dg")
 horizontal_alignment = 1
 
-[node name="VBox_Extract" type="VBoxContainer" parent="Content/VBox"]
+[node name="VBox_Extract" type="VBoxContainer" parent="Content/VBox" unique_id=1944161754]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label_ExtractHeader" type="Label" parent="Content/VBox/VBox_Extract"]
+[node name="Label_ExtractHeader" type="Label" parent="Content/VBox/VBox_Extract" unique_id=373300653]
 layout_mode = 2
 text = "DOWNLOAD_UPDATE_APP_HEADER_EXTRACT_PROGRESS"
 label_settings = SubResource("LabelSettings_741w2")
 horizontal_alignment = 1
 
-[node name="HSep" type="HSeparator" parent="Content/VBox/VBox_Extract"]
+[node name="HSep" type="HSeparator" parent="Content/VBox/VBox_Extract" unique_id=615321015]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Progress_Extract" type="ProgressBar" parent="Content/VBox/VBox_Extract"]
+[node name="Progress_Extract" type="ProgressBar" parent="Content/VBox/VBox_Extract" unique_id=1507587302]
 layout_mode = 2
 indeterminate = true
 editor_preview_indeterminate = false
 
-[node name="VBox_Error" type="VBoxContainer" parent="Content/VBox"]
+[node name="VBox_Error" type="VBoxContainer" parent="Content/VBox" unique_id=1537734326]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label_FailHead" type="Label" parent="Content/VBox/VBox_Error"]
+[node name="Label_FailHead" type="Label" parent="Content/VBox/VBox_Error" unique_id=862521363]
 layout_mode = 2
 text = "DOWNLOAD_UPDATE_APP_FAILED_HEADER"
 label_settings = SubResource("LabelSettings_pw0w1")
@@ -148,11 +148,11 @@ horizontal_alignment = 1
 visible_characters_behavior = 1
 script = SubResource("GDScript_02rkp")
 
-[node name="HSeparator_Error" type="HSeparator" parent="Content/VBox/VBox_Error"]
+[node name="HSeparator_Error" type="HSeparator" parent="Content/VBox/VBox_Error" unique_id=1340451533]
 modulate = Color(1, 0.05, 0.05, 1)
 layout_mode = 2
 
-[node name="Label_ExtractFail" type="Label" parent="Content/VBox/VBox_Error"]
+[node name="Label_ExtractFail" type="Label" parent="Content/VBox/VBox_Error" unique_id=81223288]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "DOWNLOAD_UPDATE_APP_FAILED_EXTRACT_INFO"
@@ -160,17 +160,17 @@ label_settings = SubResource("LabelSettings_rs0dg")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_FailInfo" type="Label" parent="Content/VBox/VBox_Error"]
+[node name="Label_FailInfo" type="Label" parent="Content/VBox/VBox_Error" unique_id=72861090]
 auto_translate_mode = 2
 layout_mode = 2
 label_settings = SubResource("LabelSettings_rs0dg")
 horizontal_alignment = 1
 
-[node name="HBox_Options" type="HBoxContainer" parent="Content/VBox/VBox_Error"]
+[node name="HBox_Options" type="HBoxContainer" parent="Content/VBox/VBox_Error" unique_id=60856911]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button_Accept" type="Button" parent="Content/VBox/VBox_Error/HBox_Options"]
+[node name="Button_Accept" type="Button" parent="Content/VBox/VBox_Error/HBox_Options" unique_id=360590121]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -178,7 +178,7 @@ text = "DOWNLOAD_UPDATE_APP_QUIT_AFTER_FAIL_BUTTON"
 icon = ExtResource("9_bmugd")
 icon_alignment = 2
 
-[node name="Button_GitHub" type="Button" parent="Content/VBox/VBox_Error/HBox_Options"]
+[node name="Button_GitHub" type="Button" parent="Content/VBox/VBox_Error/HBox_Options" unique_id=1473474818]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -187,7 +187,7 @@ icon = ExtResource("3_twj5p")
 icon_alignment = 2
 script = ExtResource("10_eji8g")
 
-[node name="DotPlayable" type="Control" parent="."]
+[node name="DotPlayable" type="Control" parent="." unique_id=509391126]
 z_index = 3
 layout_mode = 1
 anchors_preset = 7
@@ -202,7 +202,7 @@ grow_vertical = 0
 scale = Vector2(2, 2)
 mouse_filter = 1
 
-[node name="DotPlayable" parent="DotPlayable" instance=ExtResource("8_5vt1d")]
+[node name="DotPlayable" parent="DotPlayable" unique_id=626979912 instance=ExtResource("8_5vt1d")]
 appear_delay_sec = 1.0
 
 [connection signal="pressed" from="Content/VBox/VBox_Error/HBox_Options/Button_Accept" to="." method="OnAcceptFailureScreen"]

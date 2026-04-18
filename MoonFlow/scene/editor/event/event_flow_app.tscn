@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://myiyk7kteiqb"]
+[gd_scene format=3 uid="uid://myiyk7kteiqb"]
 
 [ext_resource type="Script" uid="uid://daft0hydp7x1k" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
@@ -75,7 +75,7 @@ func _ready():
 		queue_free()
 "
 
-[node name="EventFlowApp" type="Control" node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder", "GraphBlockHolder", "PopupMetadata")]
+[node name="EventFlowApp" type="Control" unique_id=1505579125 node_paths=PackedStringArray("GraphCanvas", "BackgroundCanvas", "GraphNodeHolder", "GraphBlockHolder", "PopupMetadata")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,10 +97,10 @@ AppContentSaveType = 4100129791
 UnsavedChangesScene = ExtResource("2_7ecjt")
 WikiPage = ExtResource("4_boih4")
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=883745643]
 layer = -2
 
-[node name="Rect" type="ColorRect" parent="Background" node_paths=PackedStringArray("graph")]
+[node name="Rect" type="ColorRect" parent="Background" unique_id=978709175 node_paths=PackedStringArray("graph")]
 material = SubResource("ShaderMaterial_1sx65")
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,39 +112,39 @@ color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 script = ExtResource("4_e62qm")
 graph = NodePath("../../Graph")
 
-[node name="Graph" type="CanvasLayer" parent="."]
+[node name="Graph" type="CanvasLayer" parent="." unique_id=422773532]
 layer = -2
 script = ExtResource("5_5dp1p")
 
-[node name="Graph_ScrollNavigation" type="Node" parent="Graph" node_paths=PackedStringArray("ui_bar_holder")]
+[node name="Graph_ScrollNavigation" type="Node" parent="Graph" unique_id=649435347 node_paths=PackedStringArray("ui_bar_holder")]
 script = ExtResource("6_va4yh")
 zoom_min = 0.1
 zoom_max = 3.0
 ui_bar_holder = NodePath("../../ScollNavigationBars")
 cursor_icon = ExtResource("8_70kp1")
 
-[node name="OriginLines" type="Node2D" parent="Graph"]
+[node name="OriginLines" type="Node2D" parent="Graph" unique_id=1532264664]
 self_modulate = Color(1, 1, 1, 0.184314)
 z_index = -15
 script = ExtResource("8_4n4mt")
 
-[node name="Area_MouseSelection" type="Area2D" parent="Graph" node_paths=PackedStringArray("shape")]
+[node name="Area_MouseSelection" type="Area2D" parent="Graph" unique_id=649244887 node_paths=PackedStringArray("shape")]
 z_index = 2
 collision_mask = 2
 monitoring = false
 script = ExtResource("7_mr57c")
 shape = NodePath("Area_Shape")
 
-[node name="Area_Shape" type="CollisionShape2D" parent="Graph/Area_MouseSelection"]
+[node name="Area_Shape" type="CollisionShape2D" parent="Graph/Area_MouseSelection" unique_id=1779887649]
 shape = SubResource("RectangleShape2D_v3jgl")
 debug_color = Color(0, 0.595, 0.7, 0.513726)
 
-[node name="BlocksHolder" type="Node2D" parent="Graph"]
+[node name="BlocksHolder" type="Node2D" parent="Graph" unique_id=1776024084]
 
-[node name="NodeHolder" type="Node2D" parent="Graph"]
+[node name="NodeHolder" type="Node2D" parent="Graph" unique_id=684528110]
 script = ExtResource("8_je2jj")
 
-[node name="ScollNavigationBars" type="Control" parent="." node_paths=PackedStringArray("graph", "node_holder", "block_holder")]
+[node name="ScollNavigationBars" type="Control" parent="." unique_id=1188102749 node_paths=PackedStringArray("graph", "node_holder", "block_holder")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,7 +159,7 @@ node_holder = NodePath("../Graph/NodeHolder")
 block_holder = NodePath("../Graph/BlocksHolder")
 metadata/_edit_lock_ = true
 
-[node name="HScroll" type="HScrollBar" parent="ScollNavigationBars"]
+[node name="HScroll" type="HScrollBar" parent="ScollNavigationBars" unique_id=1833806966]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -173,7 +173,7 @@ max_value = 1152.0
 page = 1152.0
 custom_step = 120.0
 
-[node name="VScroll" type="VScrollBar" parent="ScollNavigationBars"]
+[node name="VScroll" type="VScrollBar" parent="ScollNavigationBars" unique_id=1767042929]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -188,64 +188,64 @@ max_value = 648.0
 page = 648.0
 custom_step = 120.0
 
-[node name="Header" type="MarginContainer" parent="."]
+[node name="Header" type="MarginContainer" parent="." unique_id=1940710764]
 layout_mode = 0
 offset_right = 130.0
 offset_bottom = 46.0
 theme = ExtResource("9_1hwnx")
 
-[node name="UI" type="VBoxContainer" parent="Header"]
+[node name="UI" type="VBoxContainer" parent="Header" unique_id=21880750]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="Label_StepByStepDebugger" type="Label" parent="Header/UI"]
+[node name="Label_StepByStepDebugger" type="Label" parent="Header/UI" unique_id=2100453305]
 visible = false
 layout_mode = 2
 text = "EVENT_FLOW_APP_STEP_BY_STEP_DEBUGGER_HEADER"
 label_settings = SubResource("LabelSettings_ygme5")
 
-[node name="HBox_ZoomControl" type="HBoxContainer" parent="Header/UI"]
+[node name="HBox_ZoomControl" type="HBoxContainer" parent="Header/UI" unique_id=1762418369]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Button_ZoomOut" type="Button" parent="Header/UI/HBox_ZoomControl"]
+[node name="Button_ZoomOut" type="Button" parent="Header/UI/HBox_ZoomControl" unique_id=994596127]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_OUT"
 mouse_default_cursor_shape = 2
 icon = ExtResource("10_k8svk")
 
-[node name="Button_ZoomReset" type="Button" parent="Header/UI/HBox_ZoomControl"]
+[node name="Button_ZoomReset" type="Button" parent="Header/UI/HBox_ZoomControl" unique_id=1026091166]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_RESET"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_e8ok1")
 icon = ExtResource("11_uvpj5")
 
-[node name="Button_ZoomIn" type="Button" parent="Header/UI/HBox_ZoomControl"]
+[node name="Button_ZoomIn" type="Button" parent="Header/UI/HBox_ZoomControl" unique_id=1196918791]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_ZOOM_IN"
 mouse_default_cursor_shape = 2
 icon = ExtResource("12_570rd")
 
-[node name="HBox_Tools" type="HBoxContainer" parent="Header/UI"]
+[node name="HBox_Tools" type="HBoxContainer" parent="Header/UI" unique_id=1089533275]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Button_InjectNode" type="Button" parent="Header/UI/HBox_Tools"]
+[node name="Button_InjectNode" type="Button" parent="Header/UI/HBox_Tools" unique_id=1841507280]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_INJECT_NODE"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_8p0il")
 icon = ExtResource("14_co2bl")
 
-[node name="Button_DeleteNodes" type="Button" parent="Header/UI/HBox_Tools"]
+[node name="Button_DeleteNodes" type="Button" parent="Header/UI/HBox_Tools" unique_id=455019051]
 layout_mode = 2
 tooltip_text = "EVENT_FLOW_APP_BUTTON_DELETE_NODES"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_7271u")
 icon = ExtResource("19_74ak0")
 
-[node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_Tools"]
+[node name="Button_DebugDataView" type="Button" parent="Header/UI/HBox_Tools" unique_id=1954004234]
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "EVENT_FLOW_APP_BUTTON_DEBUG_MODE"
@@ -255,11 +255,11 @@ shortcut = SubResource("Shortcut_bx36p")
 icon = ExtResource("12_scho0")
 script = SubResource("GDScript_mtjrf")
 
-[node name="VBox_DebugTools" type="VBoxContainer" parent="Header/UI"]
+[node name="VBox_DebugTools" type="VBoxContainer" parent="Header/UI" unique_id=1391021334]
 visible = false
 layout_mode = 2
 
-[node name="Line_SelectId" type="LineEdit" parent="Header/UI/VBox_DebugTools"]
+[node name="Line_SelectId" type="LineEdit" parent="Header/UI/VBox_DebugTools" unique_id=2008984232]
 layout_mode = 2
 theme = ExtResource("20_x5ttv")
 placeholder_text = "EVENT_FLOW_APP_DEBUG_SELECT_BY_ID"
@@ -267,7 +267,7 @@ max_length = 6
 script = ExtResource("21_xbido")
 regex_string = "[0-9]"
 
-[node name="Popup_NodeMetadataEditor" parent="." instance=ExtResource("25_puyck")]
+[node name="Popup_NodeMetadataEditor" parent="." unique_id=1695963661 instance=ExtResource("25_puyck")]
 visible = false
 
 [connection signal="FileOpenComplete" from="." to="ScollNavigationBars" method="_on_window_size_changed"]

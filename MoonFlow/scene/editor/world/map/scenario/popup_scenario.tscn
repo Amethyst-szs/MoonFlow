@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuafhgvkvobnb"]
+[gd_scene format=3 uid="uid://cuafhgvkvobnb"]
 
 [ext_resource type="StyleBox" uid="uid://bt3nl2ux8w6qr" path="res://asset/theme/common/stylebox/common_panel_app_root.tres" id="1_gxxq4"]
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="1_mx0r3"]
@@ -11,7 +11,7 @@
 font = ExtResource("3_h6oq1")
 font_size = 18
 
-[node name="Popup_Scenario" type="PopupPanel" node_paths=PackedStringArray("ScenarioPicker", "LabelTypeDefault", "LabelTypeOverride", "ButtonMakeOverride", "ButtonRemoveOverride")]
+[node name="Popup_Scenario" type="PopupPanel" unique_id=1983558671 node_paths=PackedStringArray("ScenarioPicker", "LabelTypeDefault", "LabelTypeOverride", "ButtonMakeOverride", "ButtonRemoveOverride")]
 transparent_bg = false
 oversampling_override = 1.0
 title = "WORLD_EDITOR_MAP_SCENARIO_MANAGER_TITLE"
@@ -31,7 +31,7 @@ LabelTypeOverride = NodePath("Content/Layout/Label_TypeOverrides")
 ButtonMakeOverride = NodePath("Content/Layout/Button_ConvertToOverride")
 ButtonRemoveOverride = NodePath("Content/Layout/Button_RemoveOverride")
 
-[node name="Content" type="MarginContainer" parent="."]
+[node name="Content" type="MarginContainer" parent="." unique_id=59610379]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,17 +44,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 10
 
-[node name="Layout" type="VBoxContainer" parent="Content"]
+[node name="Layout" type="VBoxContainer" parent="Content" unique_id=789148335]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label_Scenario" type="Label" parent="Content/Layout"]
+[node name="Label_Scenario" type="Label" parent="Content/Layout" unique_id=843032760]
 layout_mode = 2
 text = "WORLD_EDITOR_MAP_SCENARIO"
 label_settings = SubResource("LabelSettings_xbeug")
 horizontal_alignment = 1
 
-[node name="ScenarioPicker" type="VBoxContainer" parent="Content/Layout"]
+[node name="ScenarioPicker" type="VBoxContainer" parent="Content/Layout" unique_id=1799789470]
 layout_mode = 2
 theme = ExtResource("4_h6oq1")
 script = ExtResource("5_xbeug")
@@ -64,36 +64,36 @@ total_bits = 15
 button_size = Vector2(32, 42)
 metadata/_custom_type_script = "uid://dlwdmhejeb1cq"
 
-[node name="HSeparator" type="HSeparator" parent="Content/Layout"]
+[node name="HSeparator" type="HSeparator" parent="Content/Layout" unique_id=1554725797]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label_TypeDefault" type="Label" parent="Content/Layout"]
+[node name="Label_TypeDefault" type="Label" parent="Content/Layout" unique_id=1791834097]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 text = "WORLD_EDITOR_MAP_SCENARIO_TYPE_DEFAULT"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label_TypeOverrides" type="Label" parent="Content/Layout"]
+[node name="Label_TypeOverrides" type="Label" parent="Content/Layout" unique_id=1730828415]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 text = "WORLD_EDITOR_MAP_SCENARIO_TYPE_OVERRIDE"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator2" type="HSeparator" parent="Content/Layout"]
+[node name="HSeparator2" type="HSeparator" parent="Content/Layout" unique_id=57418145]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Button_ConvertToOverride" type="Button" parent="Content/Layout"]
+[node name="Button_ConvertToOverride" type="Button" parent="Content/Layout" unique_id=144787021]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE_TOOLTIP"
 mouse_default_cursor_shape = 2
 text = "WORLD_EDITOR_MAP_SCENARIO_BUTTON_MAKE_OVERRIDE"
 text_overrun_behavior = 3
 
-[node name="Button_RemoveOverride" type="Button" parent="Content/Layout"]
+[node name="Button_RemoveOverride" type="Button" parent="Content/Layout" unique_id=184978641]
 layout_mode = 2
 tooltip_text = "WORLD_EDITOR_MAP_SCENARIO_BUTTON_REMOVE_OVERRIDE_TOOLTIP"
 mouse_default_cursor_shape = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdgrcigpyveoj"]
+[gd_scene format=3 uid="uid://cdgrcigpyveoj"]
 
 [ext_resource type="Script" uid="uid://fpfk0d3hm4gn" path="res://scene/settings/romfs/path_display.gd" id="1_gb6pm"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_1o7wq"]
@@ -16,29 +16,29 @@ font_size = 13
 font_size = 13
 font_color = Color(0.72, 0.72, 0.72, 1)
 
-[node name="PathDisplay" type="HBoxContainer"]
+[node name="PathDisplay" type="HBoxContainer" unique_id=1588529051]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0
 grow_horizontal = 2
 script = ExtResource("1_gb6pm")
 
-[node name="Panel_Label" type="PanelContainer" parent="."]
+[node name="Panel_Label" type="PanelContainer" parent="." unique_id=547588207]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f0seq")
 
-[node name="Label" type="Label" parent="Panel_Label"]
+[node name="Label" type="Label" parent="Panel_Label" unique_id=500436539]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_svss0")
 horizontal_alignment = 1
 
-[node name="Panel_Path" type="PanelContainer" parent="."]
+[node name="Panel_Path" type="PanelContainer" parent="." unique_id=1648439765]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f0seq")
 
-[node name="Label_Set" type="Label" parent="Panel_Path"]
+[node name="Label_Set" type="Label" parent="Panel_Path" unique_id=1487847012]
 visible = false
 layout_mode = 2
 label_settings = SubResource("LabelSettings_vtur7")
@@ -46,14 +46,14 @@ horizontal_alignment = 1
 text_overrun_behavior = 3
 text_direction = 2
 
-[node name="Label_Unset" type="Label" parent="Panel_Path"]
+[node name="Label_Unset" type="Label" parent="Panel_Path" unique_id=1879087599]
 layout_mode = 2
 text = "ROMFS_CONFIG_NO_PATH"
 label_settings = SubResource("LabelSettings_5g6us")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Button_Delete" type="Button" parent="."]
+[node name="Button_Delete" type="Button" parent="." unique_id=1360816739]
 layout_mode = 2
 tooltip_text = "ROMFS_ACCESSOR_CONFIG_DELETE_PATH_BUTTON_TOOLTIP"
 mouse_default_cursor_shape = 2
