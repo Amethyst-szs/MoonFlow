@@ -109,10 +109,12 @@ theme = ExtResource("5_7wt0y")
 [node name="File" parent="Content/Header/Content/Actionbar" unique_id=1912306348 instance=ExtResource("5_mm1ql")]
 
 [node name="Project" parent="Content/Header/Content/Actionbar" unique_id=753505065 instance=ExtResource("6_q2oic")]
+size = Vector2i(455, 204)
 
 [node name="Help" parent="Content/Header/Content/Actionbar" unique_id=1917269645 instance=ExtResource("7_tyv27")]
 
 [node name="Debug" parent="Content/Header/Content/Actionbar" unique_id=1748662790 instance=ExtResource("8_676lm")]
+size = Vector2i(609, 339)
 
 [node name="Center" type="VSeparator" parent="Content/Header/Content" unique_id=489569012]
 layout_mode = 2
@@ -189,5 +191,6 @@ texture = ExtResource("11_kyve8")
 stretch_mode = 5
 script = SubResource("GDScript_vdahq")
 
+[connection signal="MoonFlowCloseRequest" from="Content/Header/Content/Actionbar/File" to="." method="OnWindowCloseRequest"]
 [connection signal="pressed" from="Content/Header/Content/Button_Mini" to="." method="OnAppSceneServerWrapperFocusFirst"]
 [connection signal="pressed" from="Content/Header/Content/Button_Close" to="." method="OnAppSceneServerWrapperCloseActive"]
