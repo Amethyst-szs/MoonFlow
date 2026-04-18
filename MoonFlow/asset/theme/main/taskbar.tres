@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://2yk8byukiy02"]
+[gd_resource type="Theme" format=3 uid="uid://2yk8byukiy02"]
 
 [ext_resource type="StyleBox" uid="uid://blp0uj3c82ngl" path="res://asset/theme/main/stylebox/taskbar_normal.tres" id="1_l6yyo"]
 [ext_resource type="StyleBox" uid="uid://bnkb2ow3rj55t" path="res://asset/theme/main/stylebox/taskbar_hover.tres" id="1_lyel1"]

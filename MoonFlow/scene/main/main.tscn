@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://38ktfo0b5x45"]
+[gd_scene format=3 uid="uid://38ktfo0b5x45"]
 
 [ext_resource type="Theme" uid="uid://cm3u0ms3lnnsc" path="res://asset/theme/main/header.tres" id="2_l0p7s"]
 [ext_resource type="StyleBox" uid="uid://bj81tw2atasw3" path="res://asset/theme/main/stylebox/header_panel.tres" id="3_gs3nu"]
@@ -67,7 +67,7 @@ func _ready():
 	queue_free()
 "
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" unique_id=2081134118]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +77,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("13_jlow7")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=725208677]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +87,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Header" type="PanelContainer" parent="Content" node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose", "FtpStatusIndicator", "LabelVersion", "ActionbarInjectable")]
+[node name="Header" type="PanelContainer" parent="Content" unique_id=1799412857 node_paths=PackedStringArray("ButtonAppMinimize", "ButtonAppClose", "FtpStatusIndicator", "LabelVersion", "ActionbarInjectable")]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_l0p7s")
@@ -99,64 +99,64 @@ FtpStatusIndicator = NodePath("Content/HBox_FTP")
 LabelVersion = NodePath("Content/Label_Version")
 ActionbarInjectable = NodePath("Content/Actionbar")
 
-[node name="Content" type="HBoxContainer" parent="Content/Header"]
+[node name="Content" type="HBoxContainer" parent="Content/Header" unique_id=1045190983]
 layout_mode = 2
 
-[node name="Actionbar" type="MenuBar" parent="Content/Header/Content"]
+[node name="Actionbar" type="MenuBar" parent="Content/Header/Content" unique_id=1333845419]
 layout_mode = 2
 theme = ExtResource("5_7wt0y")
 
-[node name="File" parent="Content/Header/Content/Actionbar" instance=ExtResource("5_mm1ql")]
+[node name="File" parent="Content/Header/Content/Actionbar" unique_id=1912306348 instance=ExtResource("5_mm1ql")]
 
-[node name="Project" parent="Content/Header/Content/Actionbar" instance=ExtResource("6_q2oic")]
+[node name="Project" parent="Content/Header/Content/Actionbar" unique_id=753505065 instance=ExtResource("6_q2oic")]
 
-[node name="Help" parent="Content/Header/Content/Actionbar" instance=ExtResource("7_tyv27")]
+[node name="Help" parent="Content/Header/Content/Actionbar" unique_id=1917269645 instance=ExtResource("7_tyv27")]
 
-[node name="Debug" parent="Content/Header/Content/Actionbar" instance=ExtResource("8_676lm")]
+[node name="Debug" parent="Content/Header/Content/Actionbar" unique_id=1748662790 instance=ExtResource("8_676lm")]
 
-[node name="Center" type="VSeparator" parent="Content/Header/Content"]
+[node name="Center" type="VSeparator" parent="Content/Header/Content" unique_id=489569012]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_hlewa")
 
-[node name="HBox_FTP" parent="Content/Header/Content" instance=ExtResource("20_gtms6")]
+[node name="HBox_FTP" parent="Content/Header/Content" unique_id=186830621 instance=ExtResource("20_gtms6")]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Button_Mini" type="Button" parent="Content/Header/Content"]
+[node name="Button_Mini" type="Button" parent="Content/Header/Content" unique_id=1759289771]
 layout_mode = 2
 tooltip_text = "MAIN_HEADER_MINIMIZE_CURRENT_APP"
 icon = ExtResource("7_3uat5")
 
-[node name="Button_Close" type="Button" parent="Content/Header/Content"]
+[node name="Button_Close" type="Button" parent="Content/Header/Content" unique_id=563064783]
 layout_mode = 2
 tooltip_text = "MAIN_HEADER_CLOSE_CURRENT_APP"
 shortcut = SubResource("Shortcut_x3u1l")
 icon = ExtResource("8_nx1ih")
 
-[node name="Label_Version" type="Label" parent="Content/Header/Content"]
+[node name="Label_Version" type="Label" parent="Content/Header/Content" unique_id=1965087072]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_bfc3n")
 
-[node name="Apps" type="Control" parent="Content"]
+[node name="Apps" type="Control" parent="Content" unique_id=1268167692]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="TaskbarPanel" type="PanelContainer" parent="Content"]
+[node name="TaskbarPanel" type="PanelContainer" parent="Content" unique_id=55732144]
 layout_mode = 2
 theme = ExtResource("6_2jriu")
 theme_override_styles/panel = ExtResource("27_lysc8")
 
-[node name="Taskbar" type="Control" parent="Content/TaskbarPanel"]
+[node name="Taskbar" type="Control" parent="Content/TaskbarPanel" unique_id=61529081]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("4_kco4x")
 TaskbarPanelDefault = ExtResource("27_lysc8")
 TaskbarPanelReadOnlyProj = ExtResource("29_vg48i")
 
-[node name="Alert" type="VBoxContainer" parent="."]
+[node name="Alert" type="VBoxContainer" parent="." unique_id=1465865351]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -169,7 +169,7 @@ grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("14_dvyda")
 
-[node name="BootAnimation" type="PanelContainer" parent="."]
+[node name="BootAnimation" type="PanelContainer" parent="." unique_id=583980454]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -181,7 +181,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q8ej3")
 script = SubResource("GDScript_wf0d5")
 
-[node name="Texture_Logo" type="TextureRect" parent="BootAnimation"]
+[node name="Texture_Logo" type="TextureRect" parent="BootAnimation" unique_id=437389629]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
