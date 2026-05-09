@@ -29,6 +29,12 @@ public partial class TabMsbt : HSplitContainer
 	public bool IsEnableTranslationFeatures { get; private set; } = false;
 	public string TranslationLanguage { get; private set; } = "USen";
 
+	// ~~~~~~~ Searching and Filtering ~~~~~~~ //
+
+	private string FileSearchString = ""; 
+	private bool FileSearchIsModifiedOnly = false;
+	private bool FileSearchIsCustomOnly = false; 
+
 	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
 	[Export, ExportGroup("Internal References")]
@@ -50,7 +56,6 @@ public partial class TabMsbt : HSplitContainer
 	// ~~~~~~~~~~~~~~~ Scripts ~~~~~~~~~~~~~~~ //
 
 	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
-	private GDScript DoublePressButton = GD.Load<GDScript>("res://scene/common/button/double_click_button.gd");
 
 	#endregion
 
@@ -217,23 +222,12 @@ public partial class TabMsbt : HSplitContainer
 		if (IsEnableTranslationFeatures && isDefaultLangAtEpoch)
 			return false;
 
-		var button = DoublePressButton.New().As<Button>();
-		button.ToggleMode = true;
-		button.Name = key;
-		button.Text = key;
-		button.Alignment = HorizontalAlignment.Left;
-		UpdateFileButtonModulation(file, key, button);
-
-		button.TooltipText = file.Name;
-		if (world != null)
-			button.TooltipText += '\n' + world.Display;
-
-		if (box.IsInsideTree())
-			button.FocusNeighborLeft = box.GetPath();
+		var button = new MsbtFileListButton();
+		button.InitButton(file, key, box, world, GetActiveLanguage());
 
 		// These signals are automatically disconnected on free by DoublePressButton gdscript code
-		button.Connect("pressed", Callable.From(new Action(() => OnFilePressed(file, key, button))));
-		button.Connect("double_pressed", Callable.From(OnFooterOpenFilePressed));
+		button.Connect(BaseButton.SignalName.Pressed, Callable.From(new Action(() => OnFilePressed(file, key, button))));
+		button.Connect(MsbtFileListButton.SignalName.DoublePressed, Callable.From(OnFooterOpenFilePressed));
 
 		box.AddChild(button);
 		return true;
@@ -309,7 +303,18 @@ public partial class TabMsbt : HSplitContainer
 
 	private void OnLineSearchTextChanged(string txt)
 	{
-		HomeRoot.RecursiveFileSearch(FileListScroll, txt);
+		FileSearchString = txt;
+		UpdateFileListSearch();
+	}
+	private void OnFileFilterPropertyIsModifiedOnlyChanged(bool state)
+	{
+		FileSearchIsModifiedOnly = state;
+		UpdateFileListSearch();
+	}
+	private void OnFileFilterPropertyIsCustomOnlyChanged(bool state)
+	{
+		FileSearchIsCustomOnly = state;
+		UpdateFileListSearch();
 	}
 
 	private void OnTranslationLanguageSelected(string lang)
@@ -339,6 +344,77 @@ public partial class TabMsbt : HSplitContainer
 		DisplayServer.ClipboardSet(hash);
 
 		GD.Print(hash + " added to system clipboard!");
+	}
+
+	#endregion
+
+	#region Search & Filter
+
+	public void UpdateFileListSearch()
+	{
+		UpdateFileListSearchLayer(FileListArchives);
+	}
+	private void UpdateFileListSearchLayer(Control root)
+	{
+		if (root is MsbtFileListButton listButton)
+		{
+			listButton.Visible = IsNodeAllowedBySearch(listButton);
+			return;
+		}
+
+		if (root is Button button && root.GetScript().As<Script>() == DropdownButton)
+		{
+			var dropdownChild = button.Get("dropdown").As<Control>();
+			if (dropdownChild == null)
+				return;
+			
+			UpdateFileListSearchLayer(dropdownChild);
+
+			if (IsFileListUsingSearchOrFilter())
+			{
+				button.Visible = HomeRoot.IsAnyChildVisible<MsbtFileListButton>(dropdownChild);
+				button.SetPressedNoSignal(button.Visible);
+				dropdownChild.Visible = button.Visible;
+			}
+			else
+			{
+				button.Visible = true;
+				button.SetPressedNoSignal(false);
+				dropdownChild.Visible = false;
+			}
+
+			return;
+		}
+
+		if (root is Container)
+		{
+			// if (IsFileListUsingSearchOrFilter())
+			// 	HomeRoot.SetVisibleIfAnyChildVisible<MsbtFileListButton>(root);
+
+			foreach (var child in root.GetChildren())
+				if (child.GetType().IsSubclassOf(typeof(Control)))
+					UpdateFileListSearchLayer(child as Control);
+
+			return;
+		}
+
+		if (root is HSeparator)
+		{
+			root.Visible = !IsFileListUsingSearchOrFilter();
+			return;
+		}
+	}
+
+	private bool IsNodeAllowedBySearch(MsbtFileListButton node)
+	{
+		if (FileSearchIsModifiedOnly && node.IsDateAtUnixEpoch(GetActiveLanguage()))
+			return false;
+
+		return node.FileKey.Contains(FileSearchString, StringComparison.OrdinalIgnoreCase);
+	}
+	private bool IsFileListUsingSearchOrFilter()
+	{
+		return FileSearchString != string.Empty || FileSearchIsModifiedOnly || FileSearchIsCustomOnly;
 	}
 
 	#endregion

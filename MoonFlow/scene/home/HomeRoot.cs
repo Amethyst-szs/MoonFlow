@@ -73,15 +73,21 @@ public partial class HomeRoot : AppScene
 		root.Visible = IsAnyChildVisible<T>(root);
 	}
 
-	public static bool IsAnyChildVisible<T>(Control initialRoot, Control root = null)
+	public static bool IsAnyChildVisible<T>(Control root)
 	{
-		root ??= initialRoot;
+		foreach (var child in root.GetChildren())
+			if (IsAnyChildVisibleRecursive<T>(child as Control))
+				return true;
 
-		if (root != initialRoot && root.Visible && root.GetType() == typeof(T))
+		return false;
+	}
+	private static bool IsAnyChildVisibleRecursive<T>(Control root)
+	{
+		if (root.Visible && root.GetType() == typeof(T))
 			return true;
 
 		foreach (var child in root.GetChildren())
-			if (IsAnyChildVisible<T>(initialRoot, child as Control))
+			if (IsAnyChildVisibleRecursive<T>(child as Control))
 				return true;
 
 		return false;

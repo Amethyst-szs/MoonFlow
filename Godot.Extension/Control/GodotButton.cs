@@ -9,7 +9,7 @@ public static partial class Extension
 		if (node is not Control)
 			return;
 
-		if (node.GetType() == typeof(Button))
+		if (node is Button || node.GetType().IsSubclassOf(typeof(Button)))
 		{
 			if (isEmitSignal)
 				(node as Button).ButtonPressed = false;

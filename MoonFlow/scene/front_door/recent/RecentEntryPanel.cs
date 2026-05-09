@@ -41,12 +41,18 @@ public partial class RecentEntryPanel : PanelContainer
             return;
         }
 
+        if (!IsInstanceValid(this))
+            return;
+
         LabelWarnMissing.CallDeferred(MethodName.Hide);
 
         // Load information from this project's config file
         // This can take a bit especially for network directories, hence why this is an async task
         var config = new ProjectConfig(projPath);
         string nickname = config.LocalConfig.Data.ProjectNickname;
+
+        if (!IsInstanceValid(this))
+            return;
 
         if (nickname != null)
         {

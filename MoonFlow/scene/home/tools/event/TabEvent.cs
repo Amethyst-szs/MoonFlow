@@ -35,7 +35,6 @@ public partial class TabEvent : HSplitContainer
 	private TabEventFileAccessor FileAccessor = null;
 
 	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
-	private GDScript DoublePressButton = GD.Load<GDScript>("res://scene/common/button/double_click_button.gd");
 
 	public EventDataArchive SelectedArchive { get; private set; } = null;
 	public string SelectedEvent { get; private set; } = null;
@@ -168,20 +167,20 @@ public partial class TabEvent : HSplitContainer
 		{
 			var item = file.TrimSuffix(".byml");
 
-			var button = DoublePressButton.New().As<Button>();
-			button.ToggleMode = true;
-			button.Name = file.Replace(".", "");
-			button.Text = item;
-			button.TooltipText = arc.Name;
-			button.Alignment = HorizontalAlignment.Left;
+            var button = new DoubleClickButton
+            {
+                ToggleMode = true,
+                Name = file.Replace(".", ""),
+                Text = item,
+                TooltipText = arc.Name,
+                Alignment = HorizontalAlignment.Left
+            };
 
-			// These signals are automatically disconnected on free by DoublePressButton gdscript code
-			var pressCall = Callable.From(() => OnEventFilePressed(arc, file, button));
-			button.Connect(Button.SignalName.Pressed, pressCall);
-			button.Connect(Button.SignalName.FocusEntered, pressCall);
-
-			button.Connect("double_pressed",
-				Callable.From(() => OnEventFileOpened(arc, file)));
+            // These signals are automatically disconnected on free by DoublePressButton gdscript code
+            var pressCall = Callable.From(() => OnEventFilePressed(arc, file, button));
+			button.Connect(BaseButton.SignalName.Pressed, pressCall);
+			button.Connect(Control.SignalName.FocusEntered, pressCall);
+			button.Connect(DoubleClickButton.SignalName.DoublePressed, Callable.From(() => OnEventFileOpened(arc, file)));
 
 			container.AddChild(button);
 		}

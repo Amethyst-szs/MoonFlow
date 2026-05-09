@@ -3,9 +3,13 @@
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_66n6i"]
 [ext_resource type="Script" uid="uid://bn8g146v3u4sb" path="res://scene/home/tools/msbt/TabMsbt.cs" id="2_44jli"]
 [ext_resource type="Texture2D" uid="uid://cbn2fyulkjaa1" path="res://asset/material/file/search_small.svg" id="4_fbv2x"]
+[ext_resource type="Texture2D" uid="uid://boeum2gvo74kg" path="res://asset/material/file/filter_alt.svg" id="5_hxecx"]
 [ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="5_tdq3c"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="6_b3nkc"]
+[ext_resource type="Texture2D" uid="uid://cgtps2ds2pw72" path="res://asset/material/file/modify.svg" id="6_frp4o"]
+[ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/extra.svg" id="7_66n6i"]
 [ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_ewps6"]
+[ext_resource type="Texture2D" uid="uid://cq3gi88c6rxln" path="res://asset/material/file/sort.svg" id="8_66n6i"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="10_ucfko"]
 [ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="11_xxbal"]
 [ext_resource type="Texture2D" uid="uid://g3gxcj4c4niq" path="res://asset/material/file/cut.svg" id="12_y4ly6"]
@@ -21,6 +25,46 @@
 [ext_resource type="Script" uid="uid://bekwxtkt8mv73" path="res://scene/home/tools/msbt/TabMsbtFileAccessor.cs" id="23_1536k"]
 [ext_resource type="Script" uid="uid://b5ft5qin4fqgk" path="res://scene/app/components/dialog_center_text.gd" id="24_wjb0a"]
 [ext_resource type="PackedScene" uid="uid://cskp7so180vjn" path="res://scene/home/tools/msbt/popup_msbt_create.tscn" id="25_rhf50"]
+
+[sub_resource type="GDScript" id="GDScript_frp4o"]
+script/source = "extends MenuButton
+
+signal toggle_filter_modified(state: bool)
+signal toggle_filter_custom(state: bool)
+
+func _ready() -> void:
+	get_popup().hide_on_checkable_item_selection = false
+	get_popup().id_pressed.connect(_on_menu_id_checked)
+
+func _on_menu_id_checked(id: int) -> void:
+	var idx: int = get_popup().get_item_index(id)
+	var old_state: bool = get_popup().is_item_checked(idx)
+	get_popup().set_item_checked(idx, !old_state)
+	
+	match(id):
+		0: toggle_filter_modified.emit(!old_state)
+		1: toggle_filter_custom.emit(!old_state)
+
+func _on_toggled(_toggled_on: bool) -> void:
+	var is_any_item_checked: bool = false
+	for i in range(get_popup().item_count):
+		if get_popup().is_item_checked(i):
+			is_any_item_checked = true
+			break
+	
+	if is_any_item_checked:
+		set_pressed_no_signal(true)
+"
+
+[sub_resource type="GDScript" id="GDScript_66n6i"]
+script/source = "extends MenuButton
+
+func _ready() -> void:
+	get_popup().id_pressed.connect(_on_menu_id_checked)
+
+func _on_menu_id_checked(id: int) -> void:
+	pass
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
 font_color = Color(0.996078, 0.498039, 0.176471, 1)
@@ -106,7 +150,10 @@ metadata/_tab_index = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Line_Search" type="LineEdit" parent="FileList" unique_id=347096590]
+[node name="HBox_Filtering" type="HBoxContainer" parent="FileList" unique_id=384726901]
+layout_mode = 2
+
+[node name="Line_Search" type="LineEdit" parent="FileList/HBox_Filtering" unique_id=347096590]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
@@ -116,6 +163,37 @@ clear_button_enabled = true
 caret_blink = true
 right_icon = ExtResource("4_fbv2x")
 script = ExtResource("5_tdq3c")
+
+[node name="Menu_Filter" type="MenuButton" parent="FileList/HBox_Filtering" unique_id=1671025184]
+visible = false
+layout_mode = 2
+icon = ExtResource("5_hxecx")
+flat = false
+item_count = 2
+popup/item_0/text = "HOME_TAB_TEXT_FILTER_MENU_MODIFIED_FILES_ONLY"
+popup/item_0/icon = ExtResource("6_frp4o")
+popup/item_0/checkable = 1
+popup/item_0/id = 0
+popup/item_1/text = "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
+popup/item_1/icon = ExtResource("7_66n6i")
+popup/item_1/checkable = 1
+popup/item_1/id = 1
+script = SubResource("GDScript_frp4o")
+
+[node name="Menu_Sort" type="MenuButton" parent="FileList/HBox_Filtering" unique_id=2047256890]
+layout_mode = 2
+icon = ExtResource("8_66n6i")
+flat = false
+item_count = 2
+popup/item_0/text = "HOME_TAB_TEXT_FILTER_MENU_MODIFIED_FILES_ONLY"
+popup/item_0/icon = ExtResource("6_frp4o")
+popup/item_0/checkable = 1
+popup/item_0/id = 0
+popup/item_1/text = "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
+popup/item_1/icon = ExtResource("7_66n6i")
+popup/item_1/checkable = 1
+popup/item_1/id = 1
+script = SubResource("GDScript_66n6i")
 
 [node name="HSep" type="HSeparator" parent="FileList" unique_id=519461755]
 layout_mode = 2
@@ -468,7 +546,10 @@ dialog_autowrap = true
 cancel_button_text = "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("24_wjb0a")
 
-[connection signal="text_changed" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
+[connection signal="text_changed" from="FileList/HBox_Filtering/Line_Search" to="." method="OnLineSearchTextChanged"]
+[connection signal="toggle_filter_custom" from="FileList/HBox_Filtering/Menu_Filter" to="." method="OnFileFilterPropertyIsCustomOnlyChanged"]
+[connection signal="toggle_filter_modified" from="FileList/HBox_Filtering/Menu_Filter" to="." method="OnFileFilterPropertyIsModifiedOnlyChanged"]
+[connection signal="toggled" from="FileList/HBox_Filtering/Menu_Filter" to="FileList/HBox_Filtering/Menu_Filter" method="_on_toggled"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut" to="TabMsbtFileAccessor" method="OnCutFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste" to="TabMsbtFileAccessor" method="OnPasteFile"]
