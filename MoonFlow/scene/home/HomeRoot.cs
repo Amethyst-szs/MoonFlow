@@ -83,6 +83,9 @@ public partial class HomeRoot : AppScene
 	}
 	private static bool IsAnyChildVisibleRecursive<T>(Control root)
 	{
+		if (root == null)
+			return false;
+
 		if (root.Visible && root.GetType() == typeof(T))
 			return true;
 

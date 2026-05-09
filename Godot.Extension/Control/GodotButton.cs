@@ -23,4 +23,21 @@ public static partial class Extension
 		foreach (var child in node.GetChildren())
 			DeselectAllButtons(child);
 	}
+
+	public static void DeselectAllButtonsOfClass<T>(this Node node, bool isEmitSignal = false)
+	{
+		if (node is T)
+		{
+			if (isEmitSignal)
+				(node as Button).ButtonPressed = false;
+			else
+				(node as Button).SetPressedNoSignal(false);
+		}
+
+		if (node.GetChildCount() == 0)
+			return;
+
+		foreach (var child in node.GetChildren())
+			DeselectAllButtonsOfClass<T>(child);
+	}
 }

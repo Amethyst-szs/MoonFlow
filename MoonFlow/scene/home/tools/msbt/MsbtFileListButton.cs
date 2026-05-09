@@ -44,10 +44,19 @@ public partial class MsbtFileListButton : DoubleClickButton
 		else SelfModulate = Colors.White;
 	}
 
-    public bool IsDateAtUnixEpoch(string activeLanguage)
+    public int GetFileSize()
+    {
+        return FileArchive.Content[FileKey].Count;
+    }
+
+    public DateTime GetLastModifiedTime(string activeLanguage)
     {
         var meta = ProjectManager.GetMSBTMetaHolder(activeLanguage) ?? throw new NullReferenceException();
-        var t = meta.GetLastModifiedTime(FileArchive, FileKey);
+        return meta.GetLastModifiedTime(FileArchive, FileKey);
+    }
+    public bool IsDateAtUnixEpoch(string activeLanguage)
+    {
+        var t = GetLastModifiedTime(activeLanguage);
 		return t.ToFileTimeUtc() == DateTime.UnixEpoch.ToFileTimeUtc();
     }
 }

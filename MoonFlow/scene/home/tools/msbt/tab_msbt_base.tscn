@@ -5,11 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://cbn2fyulkjaa1" path="res://asset/material/file/search_small.svg" id="4_fbv2x"]
 [ext_resource type="Texture2D" uid="uid://boeum2gvo74kg" path="res://asset/material/file/filter_alt.svg" id="5_hxecx"]
 [ext_resource type="Script" uid="uid://cnr7wp5xav5qe" path="res://scene/common/line_edit/search_line_edit.gd" id="5_tdq3c"]
+[ext_resource type="Texture2D" uid="uid://b85ne86tc7myy" path="res://asset/material/file/folder.svg" id="5_uedl2"]
 [ext_resource type="StyleBox" uid="uid://dbrnkjm7jxcy0" path="res://asset/theme/common/stylebox/common_hsep_minimal.tres" id="6_b3nkc"]
 [ext_resource type="Texture2D" uid="uid://cgtps2ds2pw72" path="res://asset/material/file/modify.svg" id="6_frp4o"]
 [ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/extra.svg" id="7_66n6i"]
 [ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_ewps6"]
 [ext_resource type="Texture2D" uid="uid://cq3gi88c6rxln" path="res://asset/material/file/sort.svg" id="8_66n6i"]
+[ext_resource type="Script" uid="uid://dlgai6yebksht" path="res://scene/home/tools/msbt/FileListSortMenu.cs" id="9_44jli"]
 [ext_resource type="StyleBox" uid="uid://dd5nsf4eyx6ul" path="res://asset/theme/home/stylebox/home_panel_footer.tres" id="10_ucfko"]
 [ext_resource type="Texture2D" uid="uid://bfh2d8077e1b8" path="res://asset/material/file/copy.svg" id="11_xxbal"]
 [ext_resource type="Texture2D" uid="uid://g3gxcj4c4niq" path="res://asset/material/file/cut.svg" id="12_y4ly6"]
@@ -54,16 +56,6 @@ func _on_toggled(_toggled_on: bool) -> void:
 	
 	if is_any_item_checked:
 		set_pressed_no_signal(true)
-"
-
-[sub_resource type="GDScript" id="GDScript_66n6i"]
-script/source = "extends MenuButton
-
-func _ready() -> void:
-	get_popup().id_pressed.connect(_on_menu_id_checked)
-
-func _on_menu_id_checked(id: int) -> void:
-	pass
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_dgqq0"]
@@ -165,7 +157,6 @@ right_icon = ExtResource("4_fbv2x")
 script = ExtResource("5_tdq3c")
 
 [node name="Menu_Filter" type="MenuButton" parent="FileList/HBox_Filtering" unique_id=1671025184]
-visible = false
 layout_mode = 2
 icon = ExtResource("5_hxecx")
 flat = false
@@ -184,16 +175,36 @@ script = SubResource("GDScript_frp4o")
 layout_mode = 2
 icon = ExtResource("8_66n6i")
 flat = false
-item_count = 2
-popup/item_0/text = "HOME_TAB_TEXT_FILTER_MENU_MODIFIED_FILES_ONLY"
-popup/item_0/icon = ExtResource("6_frp4o")
+item_count = 7
+popup/item_0/text = "SORT_MODE_DEFAULT"
 popup/item_0/checkable = 1
+popup/item_0/checked = true
 popup/item_0/id = 0
-popup/item_1/text = "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
-popup/item_1/icon = ExtResource("7_66n6i")
+popup/item_1/text = "SORT_MODE_ALPHABETICAL"
 popup/item_1/checkable = 1
 popup/item_1/id = 1
-script = SubResource("GDScript_66n6i")
+popup/item_2/text = "SORT_MODE_ALPHABETICAL_REVERSE"
+popup/item_2/checkable = 1
+popup/item_2/id = 2
+popup/item_3/text = "SORT_MODE_LAST_MODIFIED"
+popup/item_3/checkable = 1
+popup/item_3/id = 3
+popup/item_4/text = "SORT_MODE_LAST_MODIFIED_REVERSE"
+popup/item_4/checkable = 1
+popup/item_4/id = 4
+popup/item_5/text = "SORT_MODE_FILE_SIZE"
+popup/item_5/checkable = 1
+popup/item_5/id = 5
+popup/item_6/text = "SORT_MODE_FILE_SIZE_REVERSE"
+popup/item_6/checkable = 1
+popup/item_6/id = 6
+script = ExtResource("9_44jli")
+
+[node name="Button_UseOrganization" type="Button" parent="FileList/HBox_Filtering" unique_id=1177744638]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("5_uedl2")
 
 [node name="HSep" type="HSeparator" parent="FileList" unique_id=519461755]
 layout_mode = 2
@@ -550,6 +561,8 @@ script = ExtResource("24_wjb0a")
 [connection signal="toggle_filter_custom" from="FileList/HBox_Filtering/Menu_Filter" to="." method="OnFileFilterPropertyIsCustomOnlyChanged"]
 [connection signal="toggle_filter_modified" from="FileList/HBox_Filtering/Menu_Filter" to="." method="OnFileFilterPropertyIsModifiedOnlyChanged"]
 [connection signal="toggled" from="FileList/HBox_Filtering/Menu_Filter" to="FileList/HBox_Filtering/Menu_Filter" method="_on_toggled"]
+[connection signal="SortMethodChanged" from="FileList/HBox_Filtering/Menu_Sort" to="." method="OnSortModeChanged"]
+[connection signal="toggled" from="FileList/HBox_Filtering/Button_UseOrganization" to="." method="OnCheckUseOrganizationToggled"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut" to="TabMsbtFileAccessor" method="OnCutFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste" to="TabMsbtFileAccessor" method="OnPasteFile"]

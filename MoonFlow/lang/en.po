@@ -1315,7 +1315,7 @@ msgstr "MSBT"
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
 msgstr "Loading Text Editor..."
 
-#: scene/editor/msbt/msbt_editor.tscn
+#: scene/editor/msbt/msbt_editor.tscn:3
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH"
 msgstr "Refreshing Text Editor..."
 
@@ -1385,27 +1385,27 @@ msgstr "Contributors & Credits"
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_PUBLISHER"
 msgstr "Game Publisher"
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:7
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "SCENARIO_NAME"
 msgstr "Power Moons"
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:8
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "CHECKPOINT"
 msgstr "Checkpoints"
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:9
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "LOCATION_NAME_AREA"
 msgstr "Locations"
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:10
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "RACE"
 msgstr "Koopa Freerunning"
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:11
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "QUEST"
 msgstr "Quests"
@@ -1434,15 +1434,15 @@ msgstr "File Name:"
 msgid "HOME_TAB_POPUP_SUBMIT"
 msgstr "Submit"
 
-#: scene/home/tools/msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd:4
 msgid "HOME_MSBT_POPUP_TITLE_DUPLICATE"
 msgstr "Duplicate File"
 
-#: scene/home/tools/msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd:5
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr "Create New File"
 
-#: scene/home/tools/msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd:6
 msgid "HOME_MSBT_POPUP_TITLE_RENAME"
 msgstr "Rename File"
 
@@ -2402,27 +2402,27 @@ msgstr ""
 "Reduce CPU usage by setting the strength of the\n"
 "Low-Processor mode. ( REQUIRES RESTART )"
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:7
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "DISABLED"
 msgstr "Disabled"
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:8
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "MINIMAL"
 msgstr "Minimal"
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:9
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "STANDARD"
 msgstr "Normal"
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:10
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "STRONG"
 msgstr "Strong"
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:11
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "VERY_STRONG"
 msgstr "ULTRA"
@@ -2937,7 +2937,7 @@ msgstr "C# Packages"
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT_ADDONS"
 msgstr "Godot Packages"
 
-#: scene/common/screenshot/screenshot_capture.gd
+#: scene/common/screenshot/screenshot_capture.gd:9
 msgid "SCREENSHOT_FILE_DIALOG_TITLE"
 msgstr "Save Screenshot to a File"
 
@@ -3224,27 +3224,27 @@ msgstr "Onward!"
 msgid "HOME_GUIDE_POPUP_BUTTON_WIKI"
 msgstr "Open Wiki"
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:3
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "INVALID_PATH"
 msgstr "Invalid path for project!"
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:4
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "NO_PROJECT_FILE"
 msgstr "Check you picked the right folder, or create a new project!"
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:5
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "INVALID_PROJECT_FILE"
 msgstr "A project does exist here, but it seems invalid!"
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:6
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "ROMFS_MISSING_PATH_FOR_PROJECT_VERSION"
 msgstr "This project requires a romfs path for "
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:8
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "PROJECT_FILE_ALREADY_EXISTS"
 msgstr "This folder already contains a project!"
@@ -3964,6 +3964,42 @@ msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
 msgstr "Hide Moon Icons Based on Preview Scenario"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_FILTER_MENU_MODIFIED_FILES_ONLY"
+msgstr "Modified Only"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
+msgstr "Custom Only"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_DEFAULT"
+msgstr "Default"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_ALPHABETICAL"
+msgstr "Alphabetical (A to Z)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_ALPHABETICAL_REVERSE"
+msgstr "Alphabetical (Z to A)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_LAST_MODIFIED"
+msgstr "Last Modified (New to Old)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_LAST_MODIFIED_REVERSE"
+msgstr "Last Modified (Old to New)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_FILE_SIZE"
+msgstr "File Size (Large to Small)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_FILE_SIZE_REVERSE"
+msgstr "File Size (Small to Large)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
 msgstr ""
 "Cannot translate to the project's default language, change translation "
@@ -4185,11 +4221,6 @@ msgstr "This may take a minute or two..."
 msgid "MAIN_ACTIONBAR_HOME_FIND_SEARCH_STRING_IN_MSBT"
 msgstr "Locate Text File/Entry"
 
-#: scene/home/actionbar/actionbar_home_find.tscn
-#: scene/main/header/actionbar/global/actionbar_file.tscn
-msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
-msgstr "Quit MoonFlow"
-
 #: scene/main/header/actionbar/global/actionbar_debug.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
 msgstr "Debug Project"
@@ -4245,6 +4276,10 @@ msgstr "Close File"
 #: scene/main/header/actionbar/global/actionbar_file.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
 msgstr "Open MoonFlow Settings"
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
+msgstr "Quit MoonFlow"
 
 #: scene/main/header/actionbar/global/actionbar_help.tscn
 msgid "MAIN_ACTIONBAR_HELP_CURRENT_APP"
@@ -4315,6 +4350,9 @@ msgstr ""
 #: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
 msgstr "No results!"
+
+msgid "MoonFlow"
+msgstr "MoonFlow"
 
 #~ msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
 #~ msgstr "System Data"

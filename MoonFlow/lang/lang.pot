@@ -1376,7 +1376,7 @@ msgstr ""
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_FIRST"
 msgstr ""
 
-#: scene/editor/msbt/msbt_editor.tscn
+#: scene/editor/msbt/msbt_editor.tscn:3
 msgid "MSBT_EDITOR_LOADING_OVERLAY_TEXT_REFRESH"
 msgstr ""
 
@@ -1440,27 +1440,27 @@ msgstr ""
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_PUBLISHER"
 msgstr ""
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:7
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "SCENARIO_NAME"
 msgstr ""
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:8
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "CHECKPOINT"
 msgstr ""
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:9
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "LOCATION_NAME_AREA"
 msgstr ""
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:10
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "RACE"
 msgstr ""
 
-#: scene/editor/msbt/list/container/stage_message_category_table.gd
+#: scene/editor/msbt/list/container/stage_message_category_table.gd:11
 msgctxt "MSBT_ENTRY_STAGE_MESSAGE_CATEGORY"
 msgid "QUEST"
 msgstr ""
@@ -1489,15 +1489,15 @@ msgstr ""
 msgid "HOME_TAB_POPUP_SUBMIT"
 msgstr ""
 
-#: scene/home/tools/msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd:4
 msgid "HOME_MSBT_POPUP_TITLE_DUPLICATE"
 msgstr ""
 
-#: scene/home/tools/msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd:5
 msgid "HOME_MSBT_POPUP_TITLE_NEW"
 msgstr ""
 
-#: scene/home/tools/msbt/popup_msbt_create.gd
+#: scene/home/tools/msbt/popup_msbt_create.gd:6
 msgid "HOME_MSBT_POPUP_TITLE_RENAME"
 msgstr ""
 
@@ -2366,10 +2366,6 @@ msgid "ENGINE_SETTINGS_PAGE_GENERAL_LOCALE_HEADER"
 msgstr ""
 
 #: scene/settings/engine/page/general.tscn
-msgid ""
-msgstr ""
-
-#: scene/settings/engine/page/general.tscn
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_LANGUAGE_DOCUMENTATION_SOURCE_TOOLTIP"
 msgstr ""
 
@@ -2425,27 +2421,27 @@ msgstr ""
 msgid "ENGINE_SETTINGS_PAGE_GENERAL_PERFORMANCE_LOW_PROCESSOR_TOOLTIP"
 msgstr ""
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:7
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "DISABLED"
 msgstr ""
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:8
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "MINIMAL"
 msgstr ""
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:9
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "STANDARD"
 msgstr ""
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:10
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "STRONG"
 msgstr ""
 
-#: scene/settings/engine/page/general.tscn
+#: scene/settings/engine/page/general.tscn:11
 msgctxt "ENGINE_SETTINGS_LOW_PROCESSOR_OPTIONS"
 msgid "VERY_STRONG"
 msgstr ""
@@ -2916,7 +2912,7 @@ msgstr ""
 msgid "FRONT_DOOR_CONTRIBUTOR_HEADER_GODOT_ADDONS"
 msgstr ""
 
-#: scene/common/screenshot/screenshot_capture.gd
+#: scene/common/screenshot/screenshot_capture.gd:9
 msgid "SCREENSHOT_FILE_DIALOG_TITLE"
 msgstr ""
 
@@ -3189,27 +3185,27 @@ msgstr ""
 msgid "HOME_GUIDE_POPUP_BUTTON_WIKI"
 msgstr ""
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:3
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "INVALID_PATH"
 msgstr ""
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:4
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "NO_PROJECT_FILE"
 msgstr ""
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:5
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "INVALID_PROJECT_FILE"
 msgstr ""
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:6
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "ROMFS_MISSING_PATH_FOR_PROJECT_VERSION"
 msgstr ""
 
-#: scene/front_door/ui/quickbar_error_label.gd
+#: scene/front_door/ui/quickbar_error_label.gd:8
 msgctxt "FRONT_DOOR_OPEN_ERROR"
 msgid "PROJECT_FILE_ALREADY_EXISTS"
 msgstr ""
@@ -3864,6 +3860,42 @@ msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
 msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_FILTER_MENU_MODIFIED_FILES_ONLY"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_DEFAULT"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_ALPHABETICAL"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_ALPHABETICAL_REVERSE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_LAST_MODIFIED"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_LAST_MODIFIED_REVERSE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_FILE_SIZE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "SORT_MODE_FILE_SIZE_REVERSE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
 msgstr ""
 
@@ -4073,11 +4105,6 @@ msgstr ""
 msgid "MAIN_ACTIONBAR_HOME_FIND_SEARCH_STRING_IN_MSBT"
 msgstr ""
 
-#: scene/home/actionbar/actionbar_home_find.tscn
-#: scene/main/header/actionbar/global/actionbar_file.tscn
-msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
-msgstr ""
-
 #: scene/main/header/actionbar/global/actionbar_debug.tscn
 msgid "MAIN_ACTIONBAR_DEBUG_SET_PROJECT_AS_DEBUG"
 msgstr ""
@@ -4132,6 +4159,10 @@ msgstr ""
 
 #: scene/main/header/actionbar/global/actionbar_file.tscn
 msgid "MAIN_ACTIONBAR_ENGINE_SETTINGS"
+msgstr ""
+
+#: scene/main/header/actionbar/global/actionbar_file.tscn
+msgid "MAIN_ACTIONBAR_QUIT_MOONFLOW"
 msgstr ""
 
 #: scene/main/header/actionbar/global/actionbar_help.tscn
@@ -4200,4 +4231,7 @@ msgstr ""
 
 #: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
+msgstr ""
+
+msgid "MoonFlow"
 msgstr ""

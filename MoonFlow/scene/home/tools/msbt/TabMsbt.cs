@@ -31,9 +31,10 @@ public partial class TabMsbt : HSplitContainer
 
 	// ~~~~~~~ Searching and Filtering ~~~~~~~ //
 
-	private string FileSearchString = ""; 
+	private string FileSearchString = "";
 	private bool FileSearchIsModifiedOnly = false;
-	private bool FileSearchIsCustomOnly = false; 
+	private bool FileSearchIsCustomOnly = false;
+	private bool FileListIsUseOrganization = true;
 
 	// ~~~~~~~~~ Internal References ~~~~~~~~~ //
 
@@ -240,7 +241,7 @@ public partial class TabMsbt : HSplitContainer
 	private void OnFilePressed(SarcFile archive, string key, Button button)
 	{
 		// Remove old selection
-		FileListArchives.DeselectAllButtons();
+		FileListArchives.DeselectAllButtonsOfClass<MsbtFileListButton>();
 
 		// Get last modified time
 		var meta = ProjectManager.GetMSBTMetaHolder(GetActiveLanguage());
@@ -316,6 +317,21 @@ public partial class TabMsbt : HSplitContainer
 		FileSearchIsCustomOnly = state;
 		UpdateFileListSearch();
 	}
+	private void OnSortModeChanged(FileListSortMenu.SortMode mode)
+	{
+		if (mode == FileListSortMenu.SortMode.Default)
+		{
+			ReloadInterface(true);
+			return;
+		}
+
+		UpdateFileListSort(FileListArchives, mode);
+	}
+	private void OnCheckUseOrganizationToggled(bool state)
+	{
+		FileListIsUseOrganization = state;
+		UpdateFileListSearch();
+	}
 
 	private void OnTranslationLanguageSelected(string lang)
 	{
@@ -367,8 +383,16 @@ public partial class TabMsbt : HSplitContainer
 			var dropdownChild = button.Get("dropdown").As<Control>();
 			if (dropdownChild == null)
 				return;
-			
+
 			UpdateFileListSearchLayer(dropdownChild);
+
+			if (!FileListIsUseOrganization)
+			{
+				button.Visible = false;
+				button.SetPressedNoSignal(false);
+				dropdownChild.Visible = HomeRoot.IsAnyChildVisible<MsbtFileListButton>(dropdownChild);
+				return;
+			}
 
 			if (IsFileListUsingSearchOrFilter())
 			{
@@ -405,6 +429,85 @@ public partial class TabMsbt : HSplitContainer
 		}
 	}
 
+	private void UpdateFileListSort(Node root, FileListSortMenu.SortMode mode)
+	{
+		if (root is HSeparator hsep)
+		{
+			hsep.Hide();
+			return;
+		}
+
+		if (root.GetChildCount() == 0)
+			return;
+
+		switch (mode)
+		{
+			case FileListSortMenu.SortMode.Alphabet:
+				SortFileListItemsByAlphabetical(root, false);
+				break;
+			case FileListSortMenu.SortMode.AlphabetReverse:
+				SortFileListItemsByAlphabetical(root, true);
+				break;
+			case FileListSortMenu.SortMode.LastModified:
+				SortFileListItemsByLastModified(root, GetActiveLanguage(), false);
+				break;
+			case FileListSortMenu.SortMode.LastModifiedReverse:
+				SortFileListItemsByLastModified(root, GetActiveLanguage(), true);
+				break;
+			case FileListSortMenu.SortMode.Size:
+				SortFileListItemsBySize(root, false);
+				break;
+			case FileListSortMenu.SortMode.SizeReverse:
+				SortFileListItemsBySize(root, true);
+				break;
+		}
+
+		foreach (var child in root.GetChildren())
+			if (child.GetType().IsSubclassOf(typeof(Control)))
+				UpdateFileListSort(child as Control, mode);
+	}
+
+	private static void SortFileListItemsByAlphabetical(Node root, bool isReverse)
+	{
+		var children = root.GetChildren().Where((node) => node is MsbtFileListButton).Cast<MsbtFileListButton>().ToList();
+		children.Sort((a, b) => string.Compare(a.Name, b.Name) * (isReverse ? -1 : 1));
+
+		for (int i = 0; i < children.Count; i++)
+			root.MoveChild(children[i], i);
+	}
+	private static void SortFileListItemsByLastModified(Node root, string activeLang, bool isReverse)
+	{
+		var children = root.GetChildren().Where((node) => node is MsbtFileListButton).Cast<MsbtFileListButton>().ToList();
+		children.Sort((a, b) =>
+		{
+			var aDate = a.GetLastModifiedTime(activeLang);
+			var bDate = b.GetLastModifiedTime(activeLang);
+			var result = bDate.CompareTo(aDate) * (isReverse ? -1 : 1);
+			if (result == 0)
+				return string.Compare(a.Name, b.Name);
+
+			return result;
+		});
+
+		for (int i = 0; i < children.Count; i++)
+			root.MoveChild(children[i], i);
+	}
+	private static void SortFileListItemsBySize(Node root, bool isReverse)
+	{
+		var children = root.GetChildren().Where((node) => node is MsbtFileListButton).Cast<MsbtFileListButton>().ToList();
+		children.Sort((a, b) =>
+		{
+			var result = b.GetFileSize().CompareTo(a.GetFileSize()) * (isReverse ? -1 : 1);
+			if (result == 0)
+				return string.Compare(a.Name, b.Name);
+
+			return result;
+		});
+
+		for (int i = 0; i < children.Count; i++)
+			root.MoveChild(children[i], i);
+	}
+
 	private bool IsNodeAllowedBySearch(MsbtFileListButton node)
 	{
 		if (FileSearchIsModifiedOnly && node.IsDateAtUnixEpoch(GetActiveLanguage()))
@@ -424,12 +527,9 @@ public partial class TabMsbt : HSplitContainer
 	public void ReloadInterface(bool isRunReady)
 	{
 		var oldSelection = SelectedFile;
-		var oldScroll = FileListScroll.ScrollVertical;
 
 		if (isRunReady)
 			_Ready();
-
-		FileListScroll.SetDeferred(ScrollContainer.PropertyName.ScrollVertical, oldScroll);
 
 		if (oldSelection == null)
 			return;
