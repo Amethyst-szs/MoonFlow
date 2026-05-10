@@ -168,6 +168,17 @@ public class ProjectLanguageMetaFile(string path) : ProjectFileFormatBase<Projec
         WriteFile();
     }
 
+    public void RenameEntryTableElement(SarcMsbtFile arc, string oldLabel, string newLabel)
+    {
+        // Move EntryTable contents
+        var sourceLabelHash = CalcHash(arc.Sarc.Name, arc.Name, oldLabel);
+        var targetLabelHash = CalcHash(arc.Sarc.Name, arc.Name, newLabel);
+
+        var entryMeta = GetMetadata(sourceLabelHash);
+        Data.EntryTable[targetLabelHash] = entryMeta;
+        Data.EntryTable.Remove(sourceLabelHash);
+    }
+
     public void EntryRemove(SarcFile sourceArc, string sourceEntry)
     {
         // Remove FileTable contents

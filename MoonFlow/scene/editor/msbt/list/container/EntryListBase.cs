@@ -92,7 +92,12 @@ public abstract partial class EntryListBase : VBoxContainer
         }
 
         // Emit signal for main editor to handle editor content
-        EmitSignal(SignalName.EntrySelected, label);
+        EmitSignalEntrySelected(label);
+    }
+
+    public void OnEntryRenameRequest(EntryLabelButton button, string newLabel)
+    {
+        Editor.OnRequestRenameSelectedEntrySubmitted(button, newLabel);
     }
 
     #endregion

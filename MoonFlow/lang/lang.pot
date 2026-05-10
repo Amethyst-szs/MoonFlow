@@ -111,6 +111,7 @@
 # res://scene/common/msbt_lookup/select_entry/popup_msbt_select_entry.tscn
 # res://scene/common/msbt_lookup/select_entry/popup_msbt_select_entry_only_label.tscn
 # res://scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
+# res://scene/editor/msbt/list/label/entry_label_button.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1389,6 +1390,10 @@ msgid "MSBT_SEARCH_ENTRIES"
 msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_FILTER_ONLY_MODIFIED_LABELS_BUTTON_TOOLTIP"
+msgstr ""
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr ""
 
@@ -1398,6 +1403,10 @@ msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_ADD"
+msgstr ""
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RENAME"
 msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn

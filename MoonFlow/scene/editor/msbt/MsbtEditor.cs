@@ -365,6 +365,28 @@ public partial class MsbtEditor : PanelContainer
 		editor.SetModified();
 	}
 
+	public void OnRequestRenameSelectedEntrySubmitted(EntryLabelButton button, string newLabel)
+	{
+		string oldLabel = button.EntryLabel;
+
+		// Update MSBT entry
+		foreach (var file in FileList.Values)
+			file.RenameEntry(oldLabel, newLabel);
+		
+		// Update metadata
+		var metaH = ProjectManager.GetMSBTMetaHolder(CurrentLanguage);
+		metaH.RenameEntryTableElement(File, oldLabel, newLabel);
+
+		// Update interface with new label name
+		button.OnRenameRequestCompleted(newLabel);
+
+		var contentEditor = EntryContentHolder.FindChild(oldLabel, false, false);
+		contentEditor.Name = newLabel;
+
+		OnEntryModified(EntryContentSelection);
+		OnEntryListSelection(newLabel);
+	}
+
 	private void OnDeleteEntryTrash()
 	{
 		if (!IsInstanceValid(EntryList.EntryListSelection) || !IsInstanceValid(EntryContentSelection))
@@ -446,10 +468,13 @@ public partial class MsbtEditor : PanelContainer
 			FileTitleName.Text += '*';
 
 		// Alert other nodes of the content modification
-		var entryName = entryEditor.Entry.Name;
-		EmitSignal(SignalName.ContentModified, entryName);
+		if (entryEditor != null)
+		{
+			var entryName = entryEditor.Entry.Name;
+			EmitSignal(SignalName.ContentModified, entryName);
 
-		EntryListHolder.OnEntrySelectedOrModified(entryName);
+			EntryListHolder.OnEntrySelectedOrModified(entryName);
+		}
 	}
 
 	private void OnLanguagePickerSelectedLang(string lang, int idx)

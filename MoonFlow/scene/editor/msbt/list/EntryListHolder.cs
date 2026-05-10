@@ -104,6 +104,11 @@ public partial class EntryListHolder : VBoxContainer
 		EntryList.UpdateSearch(str);
 	}
 
+	private void OnRequestRenameSelectedEntry()
+	{
+		EntryList.EntryListSelection?.BeginEntryLabelRename();
+	}
+
 	private void OnRequestDeleteEntry()
 	{
 		var selection = EntryList.EntryListSelection;

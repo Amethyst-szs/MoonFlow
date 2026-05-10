@@ -180,6 +180,7 @@ popup/item_1/text = "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
 popup/item_1/icon = ExtResource("7_66n6i")
 popup/item_1/checkable = 1
 popup/item_1/id = 1
+popup/item_1/disabled = true
 script = SubResource("GDScript_frp4o")
 
 [node name="Menu_Sort" type="MenuButton" parent="FileList/HBox_Filtering" unique_id=2047256890]

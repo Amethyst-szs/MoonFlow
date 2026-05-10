@@ -37,7 +37,29 @@ Icon = ExtResource("5_dlnhu")
 TextBankKey = "IconUntranslated"
 Modulate = Color(1, 0.65, 0.65, 1)
 
-[node name="EntryLabelButton" type="Button" unique_id=1564706840 node_paths=PackedStringArray("LabelRich")]
+[sub_resource type="GDScript" id="GDScript_aj8qc"]
+script/source = "extends LineEdit
+
+signal text_cancelled
+signal focus_exited_without_cancel
+
+var is_just_cancel: bool = false
+
+func _gui_input(event: InputEvent) -> void:
+	if !visible: return
+	is_just_cancel = false
+	
+	if event is InputEventKey:
+		if (event as InputEventKey).keycode == KEY_ESCAPE && event.pressed:
+			is_just_cancel = true
+			text_cancelled.emit()
+			get_viewport().set_input_as_handled()
+
+func _on_focus_exited() -> void:
+	if !is_just_cancel: focus_exited_without_cancel.emit()
+"
+
+[node name="EntryLabelButton" type="Button" unique_id=1564706840 node_paths=PackedStringArray("LabelRich", "LabelEditLine")]
 auto_translate_mode = 2
 offset_right = 8.0
 offset_bottom = 8.0
@@ -50,6 +72,7 @@ icon_alignment = 2
 expand_icon = true
 script = ExtResource("1_mbybi")
 LabelRich = NodePath("Margin/Label")
+LabelEditLine = NodePath("Margin/LineEdit")
 IconDefault = SubResource("Resource_12i87")
 IconUnsaved = SubResource("Resource_lgman")
 IconModified = SubResource("Resource_516x6")
@@ -76,3 +99,17 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Margin" unique_id=868265169]
+visible = false
+layout_mode = 2
+placeholder_text = "MSBT_ENTRY_NAME"
+max_length = 128
+flat = true
+select_all_on_focus = true
+script = SubResource("GDScript_aj8qc")
+
+[connection signal="focus_exited" from="Margin/LineEdit" to="Margin/LineEdit" method="_on_focus_exited"]
+[connection signal="focus_exited_without_cancel" from="Margin/LineEdit" to="." method="EndEntryLabelRename"]
+[connection signal="text_cancelled" from="Margin/LineEdit" to="." method="EndEntryLabelRenameCancel"]
+[connection signal="text_submitted" from="Margin/LineEdit" to="." method="EndEntryLabelRename" unbinds=1]

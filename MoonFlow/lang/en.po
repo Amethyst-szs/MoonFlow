@@ -1328,6 +1328,10 @@ msgid "MSBT_SEARCH_ENTRIES"
 msgstr "Search Entries"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_FILTER_ONLY_MODIFIED_LABELS_BUTTON_TOOLTIP"
+msgstr "Toggle showing unmodified entries"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
 msgstr "Entry Name"
 
@@ -1341,11 +1345,15 @@ msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_ADD"
-msgstr "Add new Entries"
+msgstr "Pull up menu to add new entries"
+
+#: scene/editor/msbt/list/entry_list_holder.tscn
+msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RENAME"
+msgstr "Rename selected entry"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_TRASH"
-msgstr "Delete Selected Entry"
+msgstr "Delete selected entry"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_FOOTER_BUTTON_TOOLTIP_RESET"

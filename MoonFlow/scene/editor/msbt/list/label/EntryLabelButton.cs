@@ -11,6 +11,11 @@ public partial class EntryLabelButton : Button
 
 	[Export, ExportGroup("Internal References")]
 	private RichTextLabel LabelRich;
+	[Export]
+	private LineEdit LabelEditLine;
+
+	[Signal]
+    public delegate void EntryRenameRequestEventHandler(EntryLabelButton self, string newLabel);
 
 	private ProjectLanguageMetaBucketEntry EntryMeta;
 	private ProjectLanguageMetaBucketEntry EntryMetaSourceLang;
@@ -23,23 +28,18 @@ public partial class EntryLabelButton : Button
 
 	public void SetupButton(EntryListBase parent, string key, string label, bool isStageMessage)
 	{
+		LabelRich.Show();
+		LabelEditLine.Hide();
+
 		EntryLabel = key;
 		Name = key;
 
 		UpdateIcon();
 
-		Connect(SignalName.Pressed, Callable.From(() => parent.OnEntrySelected(label)));
-		Connect(SignalName.ButtonDown, Callable.From(() => parent.OnEntrySelected(label)));
-		Connect(SignalName.MouseEntered, Callable.From(() => parent.OnEntryHovered(label)));
-
-		// Setup rich text label for normal layouts
-		if (!isStageMessage)
-		{
-			LabelRich.QueueFree();
-
-			Text = label;
-			return;
-		}
+		Connect(SignalName.Pressed, Callable.From(() => parent.OnEntrySelected(EntryLabel)));
+		Connect(SignalName.ButtonDown, Callable.From(() => parent.OnEntrySelected(EntryLabel)));
+		Connect(SignalName.MouseEntered, Callable.From(() => parent.OnEntryHovered(EntryLabel)));
+		Connect(SignalName.EntryRenameRequest, Callable.From(new Action<EntryLabelButton, string>(parent.OnEntryRenameRequest)));
 		
 		// Temporary implementation before larger refactor
 		LabelRich.Text = label;
@@ -62,6 +62,37 @@ public partial class EntryLabelButton : Button
 		// LabelRich.AddText(string.Format(" - {0}", parameter));
 		// LabelRich.PopAll();
 	}
+
+	#region Rename
+
+	public void BeginEntryLabelRename()
+	{
+		LabelRich.Hide();
+		LabelEditLine.Show();
+		LabelEditLine.Text = EntryLabel;
+		LabelEditLine.GrabFocus();
+	}
+	public void EndEntryLabelRename()
+	{
+		LabelRich.Show();
+		LabelEditLine.Hide();
+
+		if (LabelEditLine.Text != EntryLabel)
+			EmitSignalEntryRenameRequest(this, LabelEditLine.Text);
+	}
+	public void EndEntryLabelRenameCancel()
+	{
+		LabelRich.Show();
+		LabelEditLine.Hide();
+	}
+	public void OnRenameRequestCompleted(string newName)
+	{
+		EntryLabel = newName;
+		Name = newName;
+		LabelRich.Text = newName;
+	}
+
+	#endregion
 
 	#region Status Icons
 
