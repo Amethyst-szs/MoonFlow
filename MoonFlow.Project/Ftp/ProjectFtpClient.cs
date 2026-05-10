@@ -82,6 +82,9 @@ public static partial class ProjectFtpClient
         Client?.Dispose();
         Client = null;
 
+        RemoteQueue.Clear();
+        IsQueueActive = false;
+
         StatusIndicator.SetStatusDisconnected();
         StatusIndicator.EmitEventDisconnected();
 
@@ -96,6 +99,9 @@ public static partial class ProjectFtpClient
 
         Client.Dispose();
         Client = null;
+
+        RemoteQueue.Clear();
+        IsQueueActive = false;
 
         StatusIndicator?.SetStatusDisconnected();
         StatusIndicator?.EmitEventDisconnected();

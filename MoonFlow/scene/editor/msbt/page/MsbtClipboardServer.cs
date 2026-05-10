@@ -92,6 +92,10 @@ public static class MsbtClipboardServer
             pasteContent = Clipboard.Copy();
         }
 
+        // If the page has zero elements, insert an empty string element to have something to paste into
+        if (page.Count == 0)
+            page.Add(new MsbtTextElement(string.Empty));
+
         // Get the element index targetted by the charIdx
         int localPosition = charIdx;
         int elementIdx = page.CalcElementIdxAtCharPos(ref localPosition);

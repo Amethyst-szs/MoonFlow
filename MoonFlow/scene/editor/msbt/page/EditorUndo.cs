@@ -41,10 +41,6 @@ public partial class MsbtPageEditor : TextEdit
 
     public new void Undo()
     {
-        // If the activity time is running, perform an early undo entry
-        if (!ActivityTimer.IsStopped())
-            RegisterUndoEntry();
-
         // Return early if undo tree is unprepared
         if (UndoTree.Count < 2) return;
         if (UndoTreePosition >= UndoTree.Count) return;
@@ -53,7 +49,11 @@ public partial class MsbtPageEditor : TextEdit
         UndoTreePosition++;
         var d = UndoTree[^UndoTreePosition];
 
-        Page = d.PageClone;
+        // Replace all elements in page with the undo tree's clone elements
+        Page.Clear();
+        foreach (var item in d.PageClone)
+            Page.Add(item.Clone());
+
         ReloadTextEdit();
         SetCaretLine(d.CaretLine);
         SetCaretColumn(d.CaretColumn);
