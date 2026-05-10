@@ -95,8 +95,8 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("8_aj8qc")
 theme_override_font_sizes/normal_font_size = 16
-fit_content = true
 scroll_active = false
+autowrap_mode = 0
 shortcut_keys_enabled = false
 vertical_alignment = 1
 

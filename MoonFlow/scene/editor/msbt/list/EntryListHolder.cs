@@ -103,6 +103,10 @@ public partial class EntryListHolder : VBoxContainer
 	{
 		EntryList.UpdateSearch(str);
 	}
+	private void OnUpdateFilterModifiedOnly(bool state)
+	{
+		EntryList.UpdateFilterModifiedOnly(state);
+	}
 
 	private void OnRequestRenameSelectedEntry()
 	{

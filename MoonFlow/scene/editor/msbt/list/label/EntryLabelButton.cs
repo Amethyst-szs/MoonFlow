@@ -149,4 +149,10 @@ public partial class EntryLabelButton : Button
 	}
 
 	#endregion
+
+	#region Utility
+
+	public bool IsEntryModifiedInBaseLanguage() { return EntryMetaSourceLang.IsModified(); }
+
+	#endregion
 }

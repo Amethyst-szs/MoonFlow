@@ -105,6 +105,7 @@ public abstract partial class EntryListBase : VBoxContainer
     #region Search
 
     private string EntrySearchString = "";
+    private bool EntrySearchIsFilterOnlyModified = false;
 
     public void UpdateEntryCount()
     {
@@ -114,6 +115,11 @@ public abstract partial class EntryListBase : VBoxContainer
     public void UpdateSearch(string searchStr)
     {
         EntrySearchString = searchStr;
+        OnSearchEntryListUpdated(EntrySearchString);
+    }
+    public void UpdateFilterModifiedOnly(bool state)
+    {
+        EntrySearchIsFilterOnlyModified = state;
         OnSearchEntryListUpdated(EntrySearchString);
     }
 
@@ -126,7 +132,7 @@ public abstract partial class EntryListBase : VBoxContainer
         int entryCount = Editor.File.GetEntryCount();
 
         // If search is cleared, show all
-        if (match == string.Empty)
+        if (match == string.Empty && !EntrySearchIsFilterOnlyModified)
         {
             ShowAllEntries(this);
             UpdateDropdownMenuContainers();
@@ -170,10 +176,21 @@ public abstract partial class EntryListBase : VBoxContainer
 
         if (node is EntryLabelButton button && !name.EndsWith("_Dropdown"))
         {
-            var isMatch = name.Contains(EntrySearchString, StringComparison.OrdinalIgnoreCase);
-            button.Visible = isMatch;
+            if (EntrySearchIsFilterOnlyModified && !button.IsEntryModifiedInBaseLanguage())
+            {
+                button.Hide();
+                return;
+            }
 
-            matchCount += isMatch ? 1 : 0;
+            if (!name.Contains(EntrySearchString, StringComparison.OrdinalIgnoreCase))
+            {
+                button.Hide();
+                return;
+            }
+
+            button.Visible = true;
+            matchCount += 1;
+            return;
         }
 
         foreach (var child in node.GetChildren())

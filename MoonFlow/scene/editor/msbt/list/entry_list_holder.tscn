@@ -168,6 +168,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [connection signal="text_changed" from="HBox_Search/Line_Search" to="." method="OnUpdateSearch"]
+[connection signal="toggled" from="HBox_Search/Button_FilterModified" to="." method="OnUpdateFilterModifiedOnly"]
 [connection signal="text_changed" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameChanged"]
 [connection signal="text_submitted" from="Controls/VBox/HBox_AddEntry/Line_EntryName" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnAddEntryNameSubmitted"]
 [connection signal="pressed" from="Controls/VBox/HBox_AddEntry/Button_Add" to="Controls/VBox/HBox_AddEntry/Line_EntryName" method="OnEntrySubmitButtonPressed"]

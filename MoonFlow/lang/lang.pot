@@ -2734,6 +2734,11 @@ msgstr ""
 
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"
+msgid "ui_find_search"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
 msgid "msbt_add_entry"
 msgstr ""
 
@@ -2850,6 +2855,11 @@ msgstr ""
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"
 msgid "msbt_reset_entry"
+msgstr ""
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_filter_modified"
 msgstr ""
 
 #: addons/podb/input_map.tres

@@ -1329,7 +1329,7 @@ msgstr "Search Entries"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_FILTER_ONLY_MODIFIED_LABELS_BUTTON_TOOLTIP"
-msgstr "Toggle showing unmodified entries"
+msgstr "Toggle filtering out unmodified entries"
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_ENTRY_NAME"
@@ -2758,6 +2758,11 @@ msgstr "Find Text Entry"
 
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"
+msgid "ui_find_search"
+msgstr "Search Text Files for String"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
 msgid "msbt_add_entry"
 msgstr "Add Text Entry"
 
@@ -2875,6 +2880,11 @@ msgstr "Help"
 msgctxt "INPUT_MAP"
 msgid "msbt_reset_entry"
 msgstr "Reset Text Entry"
+
+#: addons/podb/input_map.tres
+msgctxt "INPUT_MAP"
+msgid "msbt_filter_modified"
+msgstr "Filter to Modified Entries"
 
 #: addons/podb/input_map.tres
 msgctxt "INPUT_MAP"

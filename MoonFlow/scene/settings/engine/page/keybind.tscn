@@ -132,6 +132,10 @@ input_action = "msbt_reset_entry"
 layout_mode = 2
 input_action = "msbt_delete_entry"
 
+[node name="FilterModified" parent="Fold_Msbt/VBox_Msbt" unique_id=246213434 instance=ExtResource("2_6ag4b")]
+layout_mode = 2
+input_action = "msbt_filter_modified"
+
 [node name="Fold_Event" type="FoldableContainer" parent="." unique_id=1260234634]
 layout_mode = 2
 mouse_default_cursor_shape = 2
