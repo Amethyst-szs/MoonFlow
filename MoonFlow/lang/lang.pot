@@ -3860,11 +3860,19 @@ msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
 msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_FILTER_MENU_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_FILTER_MENU_MODIFIED_FILES_ONLY"
 msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_SORT_MENU_TOOLTIP"
 msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
@@ -3893,6 +3901,10 @@ msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "SORT_MODE_FILE_SIZE_REVERSE"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ORGANIZATION_BUTTON_TOOLTIP"
 msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn

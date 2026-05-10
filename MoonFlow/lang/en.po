@@ -3964,12 +3964,20 @@ msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
 msgstr "Hide Moon Icons Based on Preview Scenario"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_FILTER_MENU_TOOLTIP"
+msgstr "Filter"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_FILTER_MENU_MODIFIED_FILES_ONLY"
 msgstr "Modified Only"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_FILTER_MENU_CUSTOM_FILES_ONLY"
 msgstr "Custom Only"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_SORT_MENU_TOOLTIP"
+msgstr "Sort"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "SORT_MODE_DEFAULT"
@@ -3998,6 +4006,10 @@ msgstr "File Size (Large to Small)"
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "SORT_MODE_FILE_SIZE_REVERSE"
 msgstr "File Size (Small to Large)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_TEXT_ORGANIZATION_BUTTON_TOOLTIP"
+msgstr "Toggle Organizational Dropdowns"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
@@ -4365,9 +4377,6 @@ msgstr "MoonFlow"
 
 #~ msgid "HOME_SUBTAB_SOURCE_TEXT"
 #~ msgstr "Source"
-
-#~ msgid "HOME_SUBTAB_TRANSLATION_TOOLTIP"
-#~ msgstr "Provide translations for modified text"
 
 #~ msgid "HOME_SUBTAB_TRANSLATION"
 #~ msgstr "Translation"

@@ -52,6 +52,13 @@ public partial class TabMsbt : HSplitContainer
 	private BoxContainer FooterTranslation = null;
 
 	[Export]
+	private MenuButton ButtonFileListFilter = null;
+	[Export]
+	private FileListSortMenu ButtonFileListSort = null;
+	[Export]
+	private Button ButtonFileListOrganization = null;
+
+	[Export]
 	private TabMsbtFileAccessor FileAccessor = null;
 
 	// ~~~~~~~~~~~~~~~ Scripts ~~~~~~~~~~~~~~~ //
@@ -81,6 +88,23 @@ public partial class TabMsbt : HSplitContainer
 		// Setup footer based on type
 		FooterSourceText.Visible = !IsEnableTranslationFeatures;
 		FooterTranslation.Visible = IsEnableTranslationFeatures;
+
+		// Setup file list config buttons and filter/sort state
+		FileSearchIsModifiedOnly = EngineSettings.GetSetting<bool>("moonflow/home_msbt/is_filter_modified", false);
+		FileSearchIsCustomOnly = EngineSettings.GetSetting<bool>("moonflow/home_msbt/is_filter_custom", false);
+		FileListIsUseOrganization = EngineSettings.GetSetting<bool>("moonflow/home_msbt/is_use_organize", true);
+		var sortMode = EngineSettings.GetSetting<FileListSortMenu.SortMode>("moonflow/home_msbt/sort_mode", 0);
+		
+		ButtonFileListFilter.SetPressedNoSignal(FileSearchIsModifiedOnly || FileSearchIsCustomOnly);
+		ButtonFileListFilter.GetPopup().SetItemChecked(0, FileSearchIsModifiedOnly);
+		ButtonFileListFilter.GetPopup().SetItemChecked(1, FileSearchIsCustomOnly);
+		ButtonFileListSort.SetCurrentSortModeInMenu((int)sortMode);
+		ButtonFileListOrganization.SetPressedNoSignal(FileListIsUseOrganization);
+
+		if (FileSearchIsModifiedOnly || FileSearchIsCustomOnly || !FileListIsUseOrganization)
+			UpdateFileListSearch();
+		if (sortMode != FileListSortMenu.SortMode.Default)
+			OnSortModeChanged(sortMode);
 	}
 
 	private void CreateArchiveDropdown(SarcFile file)
@@ -310,15 +334,19 @@ public partial class TabMsbt : HSplitContainer
 	private void OnFileFilterPropertyIsModifiedOnlyChanged(bool state)
 	{
 		FileSearchIsModifiedOnly = state;
+		EngineSettings.SetSetting("moonflow/home_msbt/is_filter_modified", state);
 		UpdateFileListSearch();
 	}
 	private void OnFileFilterPropertyIsCustomOnlyChanged(bool state)
 	{
 		FileSearchIsCustomOnly = state;
+		EngineSettings.SetSetting("moonflow/home_msbt/is_filter_custom", state);
 		UpdateFileListSearch();
 	}
 	private void OnSortModeChanged(FileListSortMenu.SortMode mode)
 	{
+		EngineSettings.SetSetting("moonflow/home_msbt/sort_mode", (int)mode);
+
 		if (mode == FileListSortMenu.SortMode.Default)
 		{
 			ReloadInterface(true);
@@ -330,6 +358,7 @@ public partial class TabMsbt : HSplitContainer
 	private void OnCheckUseOrganizationToggled(bool state)
 	{
 		FileListIsUseOrganization = state;
+		EngineSettings.SetSetting("moonflow/home_msbt/is_use_organize", state);
 		UpdateFileListSearch();
 	}
 
@@ -424,7 +453,7 @@ public partial class TabMsbt : HSplitContainer
 
 		if (root is HSeparator)
 		{
-			root.Visible = !IsFileListUsingSearchOrFilter();
+			root.Visible = !IsFileListUsingSearchOrFilter() && FileListIsUseOrganization;
 			return;
 		}
 	}

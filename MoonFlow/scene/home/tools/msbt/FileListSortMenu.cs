@@ -26,11 +26,15 @@ public partial class FileListSortMenu : MenuButton
 
     private void OnPopupIndexPressed(int idx)
     {
+        SetCurrentSortModeInMenu(idx);
+        SortMode mode = (SortMode)idx;
+        EmitSignalSortMethodChanged(mode);
+    }
+
+    public void SetCurrentSortModeInMenu(int idx)
+    {
         PopupMenu menu = GetPopup();
         for (int i = 0; i < menu.ItemCount; i++)
             menu.SetItemChecked(i, idx == i);
-
-        SortMode mode = (SortMode)idx;
-        EmitSignalSortMethodChanged(mode);
     }
 }
