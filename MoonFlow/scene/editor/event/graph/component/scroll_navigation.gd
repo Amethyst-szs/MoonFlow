@@ -91,21 +91,21 @@ func _handle_wheel_down() -> void:
 	_handle_zoom(new_scale)
 
 func _on_button_zoom_out_pressed():
-	zoom_pivot = get_window().size / 2
+	zoom_pivot = get_window().size / 2.0
 	
 	var factor := -zoom_factor * 2.5
 	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
 	_handle_zoom(new_scale)
 
 func _on_button_zoom_in_pressed():
-	zoom_pivot = get_window().size / 2
+	zoom_pivot = get_window().size / 2.0
 	
 	var factor := zoom_factor * 2.5
 	var new_scale := Vector2(parent.scale.x + factor, parent.scale.y + factor)
 	_handle_zoom(new_scale)
 
 func _on_button_zoom_reset_pressed():
-	zoom_pivot = get_window().size / 2
+	zoom_pivot = get_window().size / 2.0
 	_handle_zoom(Vector2.ONE)
 
 func _handle_zoom(new_scale: Vector2) -> void:
