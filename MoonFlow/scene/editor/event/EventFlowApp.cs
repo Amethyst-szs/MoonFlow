@@ -345,5 +345,11 @@ public partial class EventFlowApp : AppScene
         PopupMetadata.SetupPopup(source);
     }
 
+    private static void OnSliderGridSnapSizeChanged(float size)
+    {
+        EngineSettings.SetSetting("moonflow/event_graph/grid_snap_size", size);
+        EngineSettings.Save();
+    }
+
     #endregion
 }

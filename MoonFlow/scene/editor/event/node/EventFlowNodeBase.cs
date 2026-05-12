@@ -71,7 +71,6 @@ public partial class EventFlowNodeBase : Node2D
 	}
 
 	public Vector2 RawPosition;
-	private const float PositionSnapSize = 16.0F;
 
 	// ~~~~~~~~~~~~~~ Callables ~~~~~~~~~~~~~~ //
 
@@ -106,13 +105,14 @@ public partial class EventFlowNodeBase : Node2D
 
 		InitCallables();
 
+		//// TODO: Remove this?
 		// Setup node position
-		RawPosition = new Vector2(
-			MathF.Floor(Position.X / PositionSnapSize) * PositionSnapSize,
-			MathF.Floor(Position.Y / PositionSnapSize) * PositionSnapSize
-		);
+		// RawPosition = new Vector2(
+		// 	MathF.Floor(Position.X / PositionSnapSize) * PositionSnapSize,
+		// 	MathF.Floor(Position.Y / PositionSnapSize) * PositionSnapSize
+		// );
 
-		Position = RawPosition;
+		// Position = RawPosition;
 
 		// Hide selection panel
 		SelectionPanel.Hide();
@@ -216,15 +216,11 @@ public partial class EventFlowNodeBase : Node2D
 	{
 		Vector2 oldPos = Position;
 		RawPosition += dist;
+		Position = CalcPositionSnapToGrid(RawPosition);
 
-		Vector2 snapPos;
-		snapPos.X = MathF.Floor(RawPosition.X / PositionSnapSize) * PositionSnapSize;
-		snapPos.Y = MathF.Floor(RawPosition.Y / PositionSnapSize) * PositionSnapSize;
-		Position = snapPos;
+		Metadata.Position = Position;
 
-		Metadata.Position = snapPos;
-
-		if (snapPos != oldPos)
+		if (Position != oldPos)
 		{
 			EmitSignal(SignalName.NodeMoved);
 			SetNodeModified();
@@ -235,11 +231,7 @@ public partial class EventFlowNodeBase : Node2D
 
 	private void OnNodeDragEnded()
 	{
-		Vector2 snapPos;
-		snapPos.X = MathF.Floor(RawPosition.X / PositionSnapSize) * PositionSnapSize;
-		snapPos.Y = MathF.Floor(RawPosition.Y / PositionSnapSize) * PositionSnapSize;
-
-		RawPosition = snapPos;
+		RawPosition = CalcPositionSnapToGrid(RawPosition);
 		DrawDebugLabel();
 	}
 
@@ -251,15 +243,11 @@ public partial class EventFlowNodeBase : Node2D
 	{
 		Vector2 oldPos = Position;
 		RawPosition = pos;
+		Position = CalcPositionSnapToGrid(RawPosition);
 
-		Vector2 snapPos;
-		snapPos.X = MathF.Floor(RawPosition.X / PositionSnapSize) * PositionSnapSize;
-		snapPos.Y = MathF.Floor(RawPosition.Y / PositionSnapSize) * PositionSnapSize;
-		Position = snapPos;
+		Metadata.Position = Position;
 
-		Metadata.Position = snapPos;
-
-		if (snapPos != oldPos)
+		if (Position != oldPos)
 		{
 			EmitSignal(SignalName.NodeMoved);
 			SetNodeModified();
@@ -318,6 +306,16 @@ public partial class EventFlowNodeBase : Node2D
 			return property + ": " + "null\n";
 		
 		return property + ": " + value.ToString() + "\n";
+	}
+
+	private static Vector2 CalcPositionSnapToGrid(Vector2 pos)
+	{
+		float snapSize = EngineSettings.GetSetting<float>("moonflow/event_graph/grid_snap_size", 16.0f);
+
+		Vector2 snapPos;
+		snapPos.X = MathF.Floor(pos.X / snapSize) * snapSize;
+		snapPos.Y = MathF.Floor(pos.Y / snapSize) * snapSize;
+		return snapPos;
 	}
 
 	#endregion
