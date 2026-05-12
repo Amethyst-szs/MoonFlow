@@ -33,5 +33,6 @@ public partial class ParamEditorInt : EventNodeParamEditorBase
 	private void SetValue(int value)
 	{
 		Node.Content.TrySetParam(Param, value);
+		OnPropertyModified();
 	}
 }

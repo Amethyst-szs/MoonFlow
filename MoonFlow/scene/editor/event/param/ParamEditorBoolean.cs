@@ -33,5 +33,6 @@ public partial class ParamEditorBoolean : EventNodeParamEditorBase
 	private void SetValue(bool state)
 	{
 		Node.Content.TrySetParam(Param, state);
+		OnPropertyModified();
 	}
 }

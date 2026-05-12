@@ -33,5 +33,6 @@ public partial class ParamEditorFloat : EventNodeParamEditorBase
 	private void SetValue(float value)
 	{
 		Node.Content.TrySetParam(Param, value);
+		OnPropertyModified();
 	}
 }

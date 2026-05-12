@@ -36,4 +36,9 @@ public abstract partial class EventNodeParamEditorBase : HBoxContainer
         Node.ParamAddDropdownHolder.RemoveChild(this);
         Node.ParamHolder.AddChild(this);
     }
+
+    protected void OnPropertyModified()
+    {
+        Node?.SetNodeModified();
+    }
 }
