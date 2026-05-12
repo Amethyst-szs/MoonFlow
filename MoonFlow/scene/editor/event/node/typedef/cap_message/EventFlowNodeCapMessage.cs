@@ -81,7 +81,7 @@ public partial class EventFlowNodeCapMessage : EventFlowNodeMessageTalk
 		if (entry == null)
 		{
 			LabelTextSource.Modulate = Colors.Crimson;
-			LabelTextSource.Text = Tr("EVENT_FLOW_NODE_MESSAGE_TALK_SOURCE_PLACEHOLDER");
+			LabelTextSource.Text = Tr("INVALID_BODY_WARNING", "EVENT_NODE_MESSAGE_RESOLVER_CONFIG");
 			return;
 		}
 

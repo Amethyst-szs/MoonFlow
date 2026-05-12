@@ -121,7 +121,8 @@ public partial class PortOut : TextureRect
 
 	// ~~~~~~~~~~ Constant Textures ~~~~~~~~~~ //
 
-	public static readonly Texture2D TexPortTxt = GD.Load<Texture2D>("res://asset/material/graph/port_txt.svg");
+	public static readonly Texture2D TexPortTxt = GD.Load<Texture2D>("uid://v1gw0s2jqb6c");
+	public static readonly Texture2D TexPortInvalid = GD.Load<Texture2D>("uid://vou0i55ynvdu");
 
 	// ~~~~~~~~~~ Signal Definitions ~~~~~~~~~ //
 
@@ -179,13 +180,26 @@ public partial class PortOut : TextureRect
 			caseEvent.MessageData = resolver;
 
 		// Assign tooltip to port
+		const string TR_KEY_WARN = "INVALID_PORT_WARNING";
+		const string TR_KEY_GUIDE = "PORT_TXT_INPUT_GUIDE";
+		const string TR_CONTEXT = "EVENT_NODE_MESSAGE_RESOLVER_CONFIG";
+
 		var holder = ProjectManager.GetMSBTArchives();
 		SarcFile arc = holder.GetArchiveByFileName(caseEvent.MessageData.MessageArchive);
 		var msbt = arc.GetFileMSBT(caseEvent.MessageData.MessageFile + ".msbt", new MsbtElementFactoryProjectSmo());
 
-		var txt = msbt.GetEntry(caseEvent.MessageData.LabelName);
+		if (!msbt.IsContainKey(caseEvent.MessageData.LabelName))
+		{
+			Texture = TexPortInvalid;
+			Modulate = Colors.Red;
+			TooltipText = Tr(TR_KEY_WARN, TR_CONTEXT) + '\n' + Tr(TR_KEY_GUIDE, TR_CONTEXT);
+			return;
+		}
 
-		TooltipText = txt.GetRawText(true);
+		var txt = msbt.GetEntry(caseEvent.MessageData.LabelName);
+		Texture = TexPortTxt;
+		Modulate = PortColor;
+		TooltipText = txt.GetRawText(true) + Tr(TR_KEY_GUIDE, TR_CONTEXT);
 	}
 
 	#endregion

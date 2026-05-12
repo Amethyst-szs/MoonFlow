@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TranslationBank" format=3 uid="uid://b4dr831v685sg"]
+
+[ext_resource type="Script" uid="uid://jgwiowbmiv34" path="res://addons/podb/translation_db.gd" id="1_odaoi"]
+
+[resource]
+script = ExtResource("1_odaoi")
+context = "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
+keys = Array[String](["INVALID_BODY_WARNING", "INVALID_PORT_WARNING", "PORT_TXT_INPUT_GUIDE"])
+metadata/_custom_type_script = "uid://jgwiowbmiv34"

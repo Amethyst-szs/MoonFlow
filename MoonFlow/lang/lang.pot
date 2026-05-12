@@ -112,6 +112,7 @@
 # res://scene/common/msbt_lookup/select_entry/popup_msbt_select_entry_only_label.tscn
 # res://scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 # res://scene/editor/msbt/list/label/entry_label_button.tscn
+# res://scene/editor/event/node/component/message_resolve_config_txt.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -4262,6 +4263,21 @@ msgstr ""
 
 #: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
+msgstr ""
+
+#: scene/editor/event/node/component/message_resolve_config_txt.tres
+msgctxt "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
+msgid "INVALID_BODY_WARNING"
+msgstr ""
+
+#: scene/editor/event/node/component/message_resolve_config_txt.tres
+msgctxt "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
+msgid "INVALID_PORT_WARNING"
+msgstr ""
+
+#: scene/editor/event/node/component/message_resolve_config_txt.tres
+msgctxt "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
+msgid "PORT_TXT_INPUT_GUIDE"
 msgstr ""
 
 msgid "MoonFlow"

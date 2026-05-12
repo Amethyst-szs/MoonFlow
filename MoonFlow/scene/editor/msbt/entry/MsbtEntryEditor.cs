@@ -36,7 +36,14 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 		}
 
 		// Get access to the desired entry in the default language
-		EntrySourceLanguage = Parent.FileList[Parent.DefaultLanguage].GetEntry(Entry.Name);
+		var defaultLangMsbt = Parent.FileList[Parent.DefaultLanguage];
+		if (!defaultLangMsbt.IsContainKey(Entry.Name))
+		{
+			this.QueueFreeAllChildren();
+			throw new MsbtException("Default language does not have " + Entry.Name);
+		}
+
+		EntrySourceLanguage = defaultLangMsbt.GetEntry(Entry.Name);
 
 		// Setup pages and page separators
 		BuildSeparator(-1);

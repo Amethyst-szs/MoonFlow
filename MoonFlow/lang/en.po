@@ -4381,6 +4381,21 @@ msgstr ""
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
 msgstr "No results!"
 
+#: scene/editor/event/node/component/message_resolve_config_txt.tres
+msgctxt "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
+msgid "INVALID_BODY_WARNING"
+msgstr "Linked source text could not be found!"
+
+#: scene/editor/event/node/component/message_resolve_config_txt.tres
+msgctxt "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
+msgid "INVALID_PORT_WARNING"
+msgstr "Text for dialogue port missing!"
+
+#: scene/editor/event/node/component/message_resolve_config_txt.tres
+msgctxt "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
+msgid "PORT_TXT_INPUT_GUIDE"
+msgstr "(Ctrl+Left Click to change text)"
+
 msgid "MoonFlow"
 msgstr "MoonFlow"
 

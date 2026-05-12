@@ -250,6 +250,12 @@ public partial class EventFlowNodeMessageBalloon : EventFlowNodeCommon
 		var msbt = arc.GetFileMSBT(msg.MessageFile + ".msbt", new MsbtElementFactoryProjectSmo());
 
 		var entry = msbt.GetEntry(msg.LabelName);
+		if (entry == null)
+		{
+			LabelTextSource.Modulate = Colors.Crimson;
+			LabelTextSource.Text = Tr("INVALID_BODY_WARNING", "EVENT_NODE_MESSAGE_RESOLVER_CONFIG");
+			return;
+		}
 
 		switch(entry.Pages.Count)
 		{
