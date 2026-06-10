@@ -1323,6 +1323,16 @@ msgstr "Refreshing Text Editor..."
 msgid "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
 msgstr "Alt-Code preview:"
 
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_TOOL_MASS_ADD_LABELS_INPUT_BOX_PLACEHOLDER_TEXT"
+msgstr ""
+"Input all labels you wish to add, separated by line breaks.\n"
+"Any labels input with invalid characters will be ignored."
+
+#: scene/editor/msbt/msbt_editor.tscn
+msgid "MSBT_TOOL_MASS_ADD_LABELS_SUBMIT_BUTTON"
+msgstr "Submit Label List"
+
 #: scene/editor/msbt/list/entry_list_holder.tscn
 msgid "MSBT_SEARCH_ENTRIES"
 msgstr "Search Entries"
@@ -4403,6 +4413,10 @@ msgstr "Text for dialogue port missing!"
 msgctxt "EVENT_NODE_MESSAGE_RESOLVER_CONFIG"
 msgid "PORT_TXT_INPUT_GUIDE"
 msgstr "(Ctrl+Left Click to change text)"
+
+#: scene/editor/msbt/actionbar/actionbar_msbt_extra.tscn
+msgid "MAIN_ACTIONBAR_MSBT_MASS_ADD_LABELS"
+msgstr "Add Labels in Bulk"
 
 msgid "MoonFlow"
 msgstr "MoonFlow"

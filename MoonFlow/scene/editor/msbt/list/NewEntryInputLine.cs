@@ -10,7 +10,7 @@ public partial class NewEntryInputLine : LineEdit
     private TextureRect InvalidWarning = null;
 
     [GeneratedRegex(@"[^A-Za-z0-9@_-]")]
-	private static partial Regex InvalidInputTest();
+	public static partial Regex InvalidInputTest();
 
     public override void _Ready()
     {

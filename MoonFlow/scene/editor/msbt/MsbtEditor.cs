@@ -69,6 +69,9 @@ public partial class MsbtEditor : PanelContainer
 	[Export, ExportSubgroup("Alt Code Handling")]
 	public MsbtEditorAltCode AltCodeHandler;
 
+	[Export, ExportSubgroup("Tools")]
+	public Container ContainerMassAddLabels;
+
 	// ~~~~~~~~~~~~ Packed Scenes ~~~~~~~~~~~~ //
 
 	[Export, ExportGroup("Packed Scenes")]
@@ -480,6 +483,25 @@ public partial class MsbtEditor : PanelContainer
 	private void OnLanguagePickerSelectedLang(string lang, int idx)
 	{
 		SetTranslationModeState(lang);
+	}
+
+	private void OnMassImportLabelsToolSubmit(string fullText)
+	{
+		List<string> list = [.. fullText.Split('\n')];
+		for (int i = 0; i < list.Count; i++)
+		{
+			if (NewEntryInputLine.InvalidInputTest().IsMatch(list[i]))
+			{
+				list.RemoveAt(i);
+				i--;
+			}
+		}
+
+		foreach (var item in list)
+		{
+			if (!File.IsContainKey(item) && item != string.Empty)
+				OnAddEntryNameSubmitted(item);
+		}
 	}
 
 	#endregion

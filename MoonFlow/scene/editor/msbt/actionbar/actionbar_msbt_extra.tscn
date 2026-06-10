@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dv7j7vstqhia0"]
+
+[ext_resource type="Texture2D" uid="uid://bsrqtic8ahapp" path="res://asset/material/graph/block.svg" id="1_0br6f"]
+[ext_resource type="Script" uid="uid://b0v5woymt7imu" path="res://scene/editor/msbt/actionbar/ActionbarMsbtExtra.cs" id="2_0br6f"]
+
+[node name="MSBT" type="PopupMenu" unique_id=862163023]
+auto_translate_mode = 1
+oversampling_override = 1.0
+size = Vector2i(510, 276)
+visible = true
+item_count = 1
+item_0/text = "MAIN_ACTIONBAR_MSBT_MASS_ADD_LABELS"
+item_0/icon = ExtResource("1_0br6f")
+item_0/id = 0
+script = ExtResource("2_0br6f")
