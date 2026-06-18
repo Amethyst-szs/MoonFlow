@@ -162,7 +162,7 @@ public partial class EventFlowApp : AppScene
         EmitSignalEntryPointListModified();
     }
 
-    private EventFlowNodeCommon InitNode(Nindot.Al.EventFlow.Node node, MethodInfo factory)
+    private EventFlowNodeCommon InitNode(Nindot.Al.EventFlow.Node node, MethodInfo factory, GraphMetaBucketNode meta = null)
     {
         if (node.Id == int.MinValue)
             throw new EventFlowException("Node initilized without an Id!");
@@ -176,8 +176,10 @@ public partial class EventFlowApp : AppScene
         nodeEdit.InitContent(node, Graph);
 
         // Setup metadata access (Node position, comments, and other additional info)
-        Metadata.Nodes.TryGetValue(node.Id, out GraphMetaBucketNode data);
-        nodeEdit.InitContentMetadata(Metadata, data);
+        if (meta == null)
+            Metadata.Nodes.TryGetValue(node.Id, out meta);
+
+        nodeEdit.InitContentMetadata(Metadata, meta);
 
         return nodeEdit;
     }
@@ -284,10 +286,10 @@ public partial class EventFlowApp : AppScene
 
     #region Backend Util
 
-    public EventFlowNodeCommon InjectNewNode(Nindot.Al.EventFlow.Node node)
+    public EventFlowNodeCommon InjectNewNode(Nindot.Al.EventFlow.Node node, GraphMetaBucketNode meta = null)
     {
         var factory = typeof(EventFlowNodeFactory).GetMethod("Create");
-        return InitNode(node, factory);
+        return InitNode(node, factory, meta);
     }
 
     public void InjectNodeConnections(EventFlowNodeCommon node)

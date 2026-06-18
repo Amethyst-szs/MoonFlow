@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Nindot.Al.EventFlow;
+
+using MoonFlow.Project;
 
 namespace MoonFlow.Scene.EditorEvent;
 
@@ -10,6 +13,7 @@ public static class GraphNodeClipboardServer
 {
     private static readonly List<Node> Nodes = [];
     private static readonly Dictionary<int, Godot.Vector2> NodePositions = [];
+    private static readonly Dictionary<int, GraphMetaBucketNode> NodeMeta = [];
 
     public static void Copy(IList<EventFlowNodeCommon> cNodes)
     {
@@ -19,14 +23,17 @@ public static class GraphNodeClipboardServer
         // Clear current clipboard contents
         Nodes.Clear();
         NodePositions.Clear();
+        NodeMeta.Clear();
 
-        // Create a list of all node positions
+        // Create a list of all node positions and metadata
         foreach (var node in cNodes)
+        {
             NodePositions.Add(node.Content.Id, node.GlobalPosition);
+            NodeMeta.Add(node.Content.Id, node.Metadata.Copy());
+        }
 
         // Push all node positions to be based on 0,0 origin
-        var lowest = new Godot.Vector2(NodePositions.Select(p => p.Value.X).Min(),
-            NodePositions.Select(p => p.Value.Y).Min());
+        var lowest = new Godot.Vector2(NodePositions.Min(p => p.Value.X), NodePositions.Min(p => p.Value.Y));
         
         foreach (var pos in NodePositions)
             NodePositions[pos.Key] = pos.Value - lowest;
@@ -87,7 +94,12 @@ public static class GraphNodeClipboardServer
         var nodeEditors = new List<EventFlowNodeCommon>();
 
         foreach (var node in Nodes)
-            nodeEditors.Add(context.Parent.InjectNewNode(node));
+        {
+            // This returning a null value is okay
+            NodeMeta.TryGetValue(node.Id, out GraphMetaBucketNode metaBucket);
+
+            nodeEditors.Add(context.Parent.InjectNewNode(node, metaBucket));
+        }
 
         await context.ToSignal(Godot.Engine.GetMainLoop(), "process_frame");
 
@@ -170,6 +182,13 @@ public static class GraphNodeClipboardServer
         {
             NodePositions.Remove(oldId);
             NodePositions.Add(node.Id, pos);
+        }
+
+        // Update Metadata list to match new id
+        if (NodeMeta.TryGetValue(oldId, out GraphMetaBucketNode metaBucket))
+        {
+            NodeMeta.Remove(oldId);
+            NodeMeta.Add(node.Id, metaBucket);
         }
 
         return (int)newId;

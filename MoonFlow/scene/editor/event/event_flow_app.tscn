@@ -254,6 +254,7 @@ toggle_mode = true
 icon = ExtResource("19_jiohh")
 
 [node name="VBox_Snap" type="VBoxContainer" parent="Header/UI/HBox_Control" unique_id=699864153]
+visible = false
 layout_mode = 2
 
 [node name="Label_Snap" type="Label" parent="Header/UI/HBox_Control/VBox_Snap" unique_id=2074211592]
