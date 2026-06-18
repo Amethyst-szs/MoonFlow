@@ -178,9 +178,10 @@ public partial class EventFlowApp : AppScene
         // Setup metadata access (Node position, comments, and other additional info)
         if (meta == null)
             Metadata.Nodes.TryGetValue(node.Id, out meta);
+        else // If the metadata doesn't know about a node of this ID already, register that here
+            Metadata.Nodes.TryAdd(node.Id, meta);
 
         nodeEdit.InitContentMetadata(Metadata, meta);
-
         return nodeEdit;
     }
 
