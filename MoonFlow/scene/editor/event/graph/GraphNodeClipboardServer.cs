@@ -98,7 +98,7 @@ public static class GraphNodeClipboardServer
             // This returning a null value is okay
             NodeMeta.TryGetValue(node.Id, out GraphMetaBucketNode metaBucket);
 
-            nodeEditors.Add(context.Parent.InjectNewNode(node, metaBucket));
+            nodeEditors.Add(context.Parent.InjectNewNode(node, metaBucket.Copy()));
         }
 
         await context.ToSignal(Godot.Engine.GetMainLoop(), "process_frame");

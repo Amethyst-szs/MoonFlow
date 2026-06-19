@@ -97,6 +97,9 @@ public partial class EventFlowApp : AppScene
         // Create metadata-only block objects
         InitBlockList();
 
+        // Cleanup metadata in-case it contains extra unused data in node list
+        Metadata.CleanupStaleMetadata(Graph);
+
         // If this is the first opening of this file, auto-arrange all nodes
         if (Metadata.IsFirstOpen)
         {
@@ -179,7 +182,7 @@ public partial class EventFlowApp : AppScene
         if (meta == null)
             Metadata.Nodes.TryGetValue(node.Id, out meta);
         else // If the metadata doesn't know about a node of this ID already, register that here
-            Metadata.Nodes.TryAdd(node.Id, meta);
+            Metadata.Nodes[node.Id] = meta;
 
         nodeEdit.InitContentMetadata(Metadata, meta);
         return nodeEdit;
@@ -276,6 +279,7 @@ public partial class EventFlowApp : AppScene
 
         // Write metadata holder
         display.UpdateProgress(1, 2);
+        Metadata.CleanupStaleMetadata(Graph);
         MetadataHolder.WriteFile();
 
         // Reset flag

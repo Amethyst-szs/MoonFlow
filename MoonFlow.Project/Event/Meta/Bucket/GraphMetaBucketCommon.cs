@@ -23,6 +23,19 @@ public class GraphMetaBucketCommon : IProjectFileFormatDataRoot
     [JsonInclude]
     public Dictionary<string, GraphMetaBucketBlock> Blocks = [];
 
+    #region Utility (General)
+
+    public void CleanupStaleMetadata(Nindot.Al.EventFlow.Graph graph)
+    {
+        foreach (var key in Nodes.Keys)
+        {
+            if (!graph.Nodes.ContainsKey(key))
+                Nodes.Remove(key);
+        }
+    }
+
+    #endregion
+
     #region Utility (Entry Points)
 
     public GraphMetaBucketEntryPoint GetEntryPointByUid(string uid)
