@@ -144,7 +144,7 @@ public class ProjectState(string path, ProjectConfig config)
 
         // Preload archives for default language
         loadScreen.LoadingUpdateProgress("LOAD_MSBT");
-        MsgStudioText = new(Path, Config.GetDefaultLanguage());
+        MsgStudioText = new(Path, Config.GetDefaultLanguage(), loadScreen);
 
         var defaultLanguageArcs = MsgStudioText.DefaultLanguage;
 

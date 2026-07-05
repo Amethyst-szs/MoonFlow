@@ -11,7 +11,7 @@ public class ProjectMessageStudioText : Dictionary<string, ProjectLanguageHolder
     public string Path { get; private set; } = null;
     public ProjectLanguageHolder DefaultLanguage { get; private set; } = null;
 
-    public ProjectMessageStudioText(string projectPath, string defaultLang)
+    public ProjectMessageStudioText(string projectPath, string defaultLang, IProjectLoadingScene loadScene)
     {
         GD.Print("Reading MSBT Archives...");
 
@@ -31,7 +31,10 @@ public class ProjectMessageStudioText : Dictionary<string, ProjectLanguageHolder
         langs.Remove("Common");
 
         foreach (var lang in langs)
+        {
+            loadScene.LoadingUpdateProgress("LOAD_MSBT", lang);
             Add(lang, new ProjectLanguageHolder(projectPath, lang));
+        }
 
         // Assign DefaultLanguage reference to item with key defaultLang
         if (!ContainsKey(defaultLang))
