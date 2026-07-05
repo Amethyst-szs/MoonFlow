@@ -118,8 +118,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Line_Search" type="LineEdit" parent="FileList" unique_id=1963443475]
+[node name="HBox_Filtering" type="HBoxContainer" parent="FileList" unique_id=1654424969]
 layout_mode = 2
+
+[node name="Line_Search" type="LineEdit" parent="FileList/HBox_Filtering" unique_id=1963443475]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "HOME_TAB_SEARCH_FILES_PLACEHOLDER"
 max_length = 32
 context_menu_enabled = false
@@ -464,7 +468,7 @@ dialog_autowrap = true
 cancel_button_text = "HOME_TAB_EVENT_DIALOG_CONFIRM_DELETE_CANCEL"
 script = ExtResource("15_j2wr0")
 
-[connection signal="text_validated" from="FileList/Line_Search" to="." method="OnLineSearchTextChanged"]
+[connection signal="text_validated" from="FileList/HBox_Filtering/Line_Search" to="." method="OnLineSearchTextChanged"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Reload" to="." method="GenerateFileList"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Copy" to="TabEventFileAccessor" method="OnCopyFile"]
 [connection signal="pressed" from="FileList/Footer/HBox/Button_Cut" to="TabEventFileAccessor" method="OnCutFile"]

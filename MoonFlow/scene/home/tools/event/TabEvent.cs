@@ -34,7 +34,7 @@ public partial class TabEvent : HSplitContainer
 	[Export]
 	private TabEventFileAccessor FileAccessor = null;
 
-	private GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
+	private static readonly GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
 
 	public EventDataArchive SelectedArchive { get; private set; } = null;
 	public string SelectedEvent { get; private set; } = null;
@@ -216,7 +216,7 @@ public partial class TabEvent : HSplitContainer
 	private void OnEventFilePressed(EventDataArchive archive, string key, Button button)
 	{
 		// Setup selection
-		ArchiveHolder.DeselectAllButtons();
+		ArchiveHolder.DeselectAllButtonsOfClass<DoubleClickButton>();
 
 		button.SetPressedNoSignal(true);
 		button.GrabFocus();
@@ -258,10 +258,7 @@ public partial class TabEvent : HSplitContainer
 		EventFlowApp.OpenApp(SelectedArchive, SelectedEvent);
 	}
 
-	private void OnLineSearchTextChanged(string txt)
-	{
-		HomeRoot.RecursiveFileSearch(ArchiveHolder, txt);
-	}
+	private void OnLineSearchTextChanged(string txt) { RecursiveArchiveDropdownFilter(ArchiveHolder, txt); }
 
 	private void OnButtonCopyGraphDebugHashPressed()
 	{
@@ -277,6 +274,74 @@ public partial class TabEvent : HSplitContainer
 	#endregion
 
 	#region Utilties
+
+	public static void RecursiveArchiveDropdownFilter(Control root, string term)
+	{
+		if (root is MarginContainer)
+			return;
+
+		if (root is Button button && button.GetScript().As<Script>() == DropdownButton)
+		{
+			FilterArchiveDropdown(button, term);
+			return;
+		}
+
+		if (root is HSeparator)
+			root.Visible = term == string.Empty;
+
+		if (root.GetChildCount() == 0)
+			return;
+
+		foreach (var child in root.GetChildren())
+		{
+			if (child.GetType().IsSubclassOf(typeof(Control)))
+				RecursiveArchiveDropdownFilter(child as Control, term);
+		}
+	}
+	public static void FilterArchiveDropdown(Button button, string term)
+	{
+		var dropdownChild = button.Get("dropdown").As<Control>();
+		if (dropdownChild == null)
+			return;
+		
+		Node dropdownListNode = dropdownChild.GetChild(0);
+		if (dropdownListNode == null)
+			return;
+
+		bool isMatchInArchive = TryFindAnyAndFilterArchiveDropdownContent(dropdownListNode as Control, term);
+
+		if (term == string.Empty)
+		{
+			button.ButtonPressed = false;
+			button.Show();
+			return;
+		}
+
+		if (isMatchInArchive || button.Name.ToString().Contains(term, StringComparison.OrdinalIgnoreCase))
+		{
+			button.ButtonPressed = true;
+			button.Show();
+			return;
+		}
+
+		button.ButtonPressed = false;
+		button.Hide();
+	}
+	public static bool TryFindAnyAndFilterArchiveDropdownContent(Control root, string term)
+	{
+		bool isAnyVisible = false;
+
+		foreach (var child in root.GetChildren())
+		{
+			if (child is not Button button)
+				continue;
+
+			button.Visible = term == string.Empty || child.Name.ToString().Contains(term, StringComparison.OrdinalIgnoreCase);
+			isAnyVisible |= button.Visible;
+		}
+
+		return isAnyVisible;
+	}
 
 	private static void UpdateDropdownButtonModulate(EventDataArchive arc, Button button)
 	{

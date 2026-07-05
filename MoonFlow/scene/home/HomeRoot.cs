@@ -9,63 +9,12 @@ namespace MoonFlow.Scene.Home;
 [SceneUid("uid://c5b01vfsh7pwp"), Icon("res://asset/app/icon/home.png")]
 public partial class HomeRoot : AppScene
 {
-	private static readonly GDScript DropdownButton = GD.Load<GDScript>("res://scene/common/button/dropdown_checkbox.gd");
-
 	public override async Task<bool> TryCloseFromTreeQuit()
 	{
 		return true;
 	}
 
 	#region Node Utility
-
-	public static void RecursiveFileSearch(Control root, string term)
-	{
-		// Part of an old hacky fix, no longer needed?
-		// if (root.Name.ToString().StartsWith("NotInSearch_"))
-		// {
-		// 	if (root is MarginContainer)
-		// 		root.Hide();
-		// 	else
-		// 		root.Visible = term == string.Empty;
-
-		// 	if (root is Button b)
-		// 		b.SetPressedNoSignal(false);
-
-		// 	return;
-		// }
-
-		if (root is Button button)
-		{
-			if (root.GetScript().As<Script>() != DropdownButton)
-			{
-				root.Visible = root.Name.ToString().Contains(term, StringComparison.OrdinalIgnoreCase);
-			}
-			else
-			{
-				root.Visible = term == string.Empty;
-				button.SetPressedNoSignal(false);
-
-				var dropdownChild = root.Get("dropdown").As<Control>();
-				if (dropdownChild != null)
-					dropdownChild.Visible = !root.Visible;
-			}
-		}
-
-		if (root is HSeparator)
-			root.Visible = term == string.Empty;
-
-		if (term != string.Empty && root is MarginContainer)
-			SetVisibleIfAnyChildVisible<Button>(root);
-
-		if (root.GetChildCount() == 0)
-			return;
-
-		foreach (var child in root.GetChildren())
-		{
-			if (child.GetType().IsSubclassOf(typeof(Control)))
-				RecursiveFileSearch(child as Control, term);
-		}
-	}
 
 	public static async void SetVisibleIfAnyChildVisible<T>(Control root)
 	{
