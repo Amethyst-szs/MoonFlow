@@ -542,6 +542,13 @@ public partial class TabMsbt : HSplitContainer
 		if (FileSearchIsModifiedOnly && node.IsDateAtUnixEpoch(GetActiveLanguage()))
 			return false;
 
+		if (FileSearchIsCustomOnly)
+		{
+			var arcs = ProjectManager.GetMSBTArchives(GetActiveLanguage());
+			if (arcs.IsMsbtFileInBaseRomfs(node.FileKey))
+				return false;
+		}
+
 		return node.FileKey.Contains(FileSearchString, StringComparison.OrdinalIgnoreCase);
 	}
 	private bool IsFileListUsingSearchOrFilter()
