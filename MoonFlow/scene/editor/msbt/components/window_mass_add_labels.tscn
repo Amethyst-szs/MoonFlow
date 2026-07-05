@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c12e0fj0nmls8"]
+
+[ext_resource type="PackedScene" uid="uid://w8bixght3ptk" path="res://scene/editor/msbt/tag_edit/tag_edit_scene_base.tscn" id="1_e3c8d"]
+[ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="2_f2iur"]
+[ext_resource type="Script" uid="uid://bxxsciaurh3yr" path="res://scene/editor/msbt/components/WindowMassAddLabels.cs" id="2_xjpqa"]
+
+[sub_resource type="GDScript" id="GDScript_xjpqa"]
+script/source = "extends TextEdit
+
+signal submitted(txt: String)
+
+func _emit_submit() -> void:
+	submitted.emit(text)
+"
+
+[node name="Window_MassAddLabels" unique_id=1028333143 instance=ExtResource("1_e3c8d")]
+title = "MSBT_TOOL_WINDOW_HEADER_MASS_ADD_LABELS"
+script = ExtResource("2_xjpqa")
+
+[node name="Text_MassInput" type="TextEdit" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="0" unique_id=263565647]
+custom_minimum_size = Vector2(512, 320)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(0.88, 0.88, 0.88, 0.84313726)
+theme_override_fonts/font = ExtResource("2_f2iur")
+placeholder_text = "MSBT_TOOL_MASS_ADD_LABELS_INPUT_BOX_PLACEHOLDER_TEXT"
+wrap_mode = 1
+script = SubResource("GDScript_xjpqa")
+
+[node name="Button_Submit" type="Button" parent="Panel/Content" parent_id_path=PackedInt32Array(666658722) index="1" unique_id=1830618790]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "MSBT_TOOL_MASS_ADD_LABELS_SUBMIT_BUTTON"
+
+[connection signal="TextSubmitted" from="." to="." method="queue_free" unbinds=1]
+[connection signal="focus_exited" from="." to="." method="queue_free"]
+[connection signal="submitted" from="Panel/Content/Text_MassInput" to="." method="_EmitSignalTextSubmitted"]
+[connection signal="pressed" from="Panel/Content/Button_Submit" to="Panel/Content/Text_MassInput" method="_emit_submit"]

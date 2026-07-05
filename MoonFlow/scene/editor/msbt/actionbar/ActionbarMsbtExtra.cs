@@ -1,7 +1,7 @@
+using System;
 using Godot;
-using MoonFlow.Project;
+
 using MoonFlow.Scene.Main;
-using MoonFlow.Scene.Settings;
 
 namespace MoonFlow.Scene.EditorMsbt;
 
@@ -24,7 +24,13 @@ public partial class ActionbarMsbtExtra : ActionbarItemBase
 		AppScene app = AppSceneServer.GetActiveApp();
 		if (app is not MsbtAppHolder msbt)
 			return;
-		
-		msbt.Editor.ContainerMassAddLabels.Show();
+
+		var popup = SceneCreator<WindowMassAddLabels>.Create();
+		popup.Connect(WindowMassAddLabels.SignalName.TextSubmitted,
+			Callable.From(new Action<string>(msbt.Editor.OnMassImportLabelsToolSubmit))
+		);
+
+		msbt.Editor.AddChild(popup);
+		popup.PopupCentered();
 	}
 }

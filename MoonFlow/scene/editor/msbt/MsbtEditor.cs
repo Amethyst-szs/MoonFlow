@@ -69,9 +69,6 @@ public partial class MsbtEditor : PanelContainer
 	[Export, ExportSubgroup("Alt Code Handling")]
 	public MsbtEditorAltCode AltCodeHandler;
 
-	[Export, ExportSubgroup("Tools")]
-	public Container ContainerMassAddLabels;
-
 	// ~~~~~~~~~~~~ Packed Scenes ~~~~~~~~~~~~ //
 
 	[Export, ExportGroup("Packed Scenes")]
@@ -485,7 +482,7 @@ public partial class MsbtEditor : PanelContainer
 		SetTranslationModeState(lang);
 	}
 
-	private void OnMassImportLabelsToolSubmit(string fullText)
+	public void OnMassImportLabelsToolSubmit(string fullText)
 	{
 		List<string> list = [.. fullText.Split('\n')];
 		for (int i = 0; i < list.Count; i++)

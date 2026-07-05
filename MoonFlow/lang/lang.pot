@@ -114,6 +114,7 @@
 # res://scene/editor/msbt/list/label/entry_label_button.tscn
 # res://scene/editor/event/node/component/message_resolve_config_txt.tres
 # res://scene/editor/msbt/actionbar/actionbar_msbt_extra.tscn
+# res://scene/editor/msbt/components/window_mass_add_labels.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -1385,14 +1386,6 @@ msgstr ""
 
 #: scene/editor/msbt/msbt_editor.tscn
 msgid "MSBT_EDITOR_ALT_CODE_INPUT_PREVIEW_HEADER"
-msgstr ""
-
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "MSBT_TOOL_MASS_ADD_LABELS_INPUT_BOX_PLACEHOLDER_TEXT"
-msgstr ""
-
-#: scene/editor/msbt/msbt_editor.tscn
-msgid "MSBT_TOOL_MASS_ADD_LABELS_SUBMIT_BUTTON"
 msgstr ""
 
 #: scene/editor/msbt/list/entry_list_holder.tscn
@@ -4299,6 +4292,18 @@ msgstr ""
 
 #: scene/editor/msbt/actionbar/actionbar_msbt_extra.tscn
 msgid "MAIN_ACTIONBAR_MSBT_MASS_ADD_LABELS"
+msgstr ""
+
+#: scene/editor/msbt/components/window_mass_add_labels.tscn
+msgid "MSBT_TOOL_WINDOW_HEADER_MASS_ADD_LABELS"
+msgstr ""
+
+#: scene/editor/msbt/components/window_mass_add_labels.tscn
+msgid "MSBT_TOOL_MASS_ADD_LABELS_INPUT_BOX_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/editor/msbt/components/window_mass_add_labels.tscn
+msgid "MSBT_TOOL_MASS_ADD_LABELS_SUBMIT_BUTTON"
 msgstr ""
 
 msgid "MoonFlow"
