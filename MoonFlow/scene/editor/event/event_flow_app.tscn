@@ -131,9 +131,10 @@ color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 script = ExtResource("4_e62qm")
 graph = NodePath("../../Graph")
 
-[node name="Graph" type="CanvasLayer" parent="." unique_id=422773532]
+[node name="Graph" type="CanvasLayer" parent="." unique_id=422773532 node_paths=PackedStringArray("OriginLines")]
 layer = -2
 script = ExtResource("5_5dp1p")
+OriginLines = NodePath("OriginLines")
 
 [node name="Graph_ScrollNavigation" type="Node" parent="Graph" unique_id=649435347 node_paths=PackedStringArray("ui_bar_holder")]
 script = ExtResource("6_va4yh")

@@ -104,9 +104,9 @@ public static class GraphNodeClipboardServer
         await context.ToSignal(Godot.Engine.GetMainLoop(), "process_frame");
 
         // Setup connections and positions between newly injected nodes
+        var screenSize = context.GetWindow().Size / 2;
         var factor = Godot.Vector2.One / context.Scale;
-        var offset = context.Offset * factor;
-        offset -= (Godot.Vector2)context.GetWindow().Size / 2.5F * factor;
+        var offset = (context.Offset * factor) - (screenSize * factor);
 
         foreach (var node in nodeEditors)
         {

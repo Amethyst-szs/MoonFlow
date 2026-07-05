@@ -16,6 +16,9 @@ public partial class GraphCanvas : CanvasLayer
     public EventFlowApp Parent { get; protected set; } = null;
     public GraphNodeUndoRedoServer UndoRedoServer = null;
 
+    [Export, ExportGroup("Internal References")]
+    public Node2D OriginLines { get; private set; } = null;
+
     public override async void _Ready()
     {
         Parent = this.FindParentByType<EventFlowApp>();
@@ -111,10 +114,8 @@ public partial class GraphCanvas : CanvasLayer
     private void OpenInjectMenuFromMouse()
     {
         // Copy the position of the mouse pointer into the inject target
-        var mouse = Parent.GetLocalMousePosition();
-        var factor = Vector2.One / Scale;
-        InjectNodePosition = mouse - (Offset * factor);
-
+        var mouse = OriginLines.GetLocalMousePosition();
+        InjectNodePosition = mouse;
         InjectScreenPosition = Parent.GetGlobalMousePosition();
 
         // Access inject menu
@@ -127,11 +128,11 @@ public partial class GraphCanvas : CanvasLayer
     private void OpenInjectMenu()
     {
         // Copy the position of the mouse pointer into the inject target
-        var center = GetWindow().Size / 2;
         var factor = Vector2.One / Scale;
-        InjectNodePosition = center - (Offset * factor);
+        var screenSize = GetWindow().Size / 2;
 
-        InjectScreenPosition = center;
+        InjectNodePosition = (-Offset * factor) + (screenSize * factor);
+        InjectScreenPosition = screenSize;
 
         // Access inject menu
         var node = ProjectManager.SceneRoot.FindChild(PopupInjectGraphNode.DefaultNodeName, false, false);
