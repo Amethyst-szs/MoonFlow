@@ -27,11 +27,14 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if is_warp_cursor:
+			_handle_mouse_wrap()
 			is_warp_cursor = false
 			return
 		
 		if is_drag:
-			_handle_screen_movement(event.relative * pan_factor)
+			if _is_mouse_on_same_display_screen():
+				_handle_screen_movement(event.relative * pan_factor)
+			
 			_handle_mouse_wrap()
 			get_viewport().set_input_as_handled()
 			return
@@ -145,3 +148,9 @@ func _update_position_for_scroll_navigation_ui() -> void:
 	var pos := parent.offset * factor
 	
 	graph_offset_changed.emit(pos, factor)
+
+func _is_mouse_on_same_display_screen() -> bool:
+	var mouse_pos := DisplayServer.mouse_get_position()
+	var screen := get_window().current_screen
+	var mouse_screen := DisplayServer.get_screen_from_rect(Rect2(mouse_pos, Vector2.ONE))
+	return screen == mouse_screen
