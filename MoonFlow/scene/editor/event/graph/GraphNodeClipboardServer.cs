@@ -67,9 +67,10 @@ public static class GraphNodeClipboardServer
         if (Nodes.Count == 0)
             return [];
         
-        // Get list of ids from the paste context
+        // Create a list of ids that exist in the paste context and graph context
         var ctxNodes = context.Parent.GraphNodeHolder.GetChildren();
         var ctxIdList = new List<int>();
+        Nodes.ForEach((n) => ctxIdList.Add(n.Id));
 
         foreach (var node in ctxNodes)
         {
@@ -80,9 +81,8 @@ public static class GraphNodeClipboardServer
             ctxIdList.Add(((EventFlowNodeCommon)node).Content.Id);
         }
 
-        // Reassign clipboard node ids to not conflict with any ids in context
-        foreach (var node in Nodes)
-            ctxIdList.Add(ReassignIdsInList(Nodes, node, ctxIdList));
+        // Reassign clipboard node ids to not conflict with any ids with any value in the previously created context
+        Nodes.ForEach((n) => ctxIdList.Add(ReassignIdsInList(Nodes, n, ctxIdList)));
 
         // Insert new data into graph data
         var graph = context.Graph;
