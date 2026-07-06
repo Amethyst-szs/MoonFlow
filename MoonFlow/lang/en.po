@@ -2468,6 +2468,20 @@ msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
 msgstr "Visual"
 
 #: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS_BACKGROUND_SHADER"
+msgstr "Background Theme"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_USE_SHADER_PARALLAX_TOOLTIP"
+msgstr ""
+"Adds a small amount of parallax scrolling to the\n"
+"background of the event editor"
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_USE_SHADER_PARALLAX"
+msgstr "Background Parallax"
+
+#: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND_TOOLTIP"
 msgstr ""
 "Replaces the pattern background of the event editor with\n"
@@ -4422,8 +4436,32 @@ msgstr ""
 msgid "MSBT_TOOL_MASS_ADD_LABELS_SUBMIT_BUTTON"
 msgstr "Submit Label List"
 
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "Checkerboard"
+msgstr "Checkerboard"
+
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "Default"
+msgstr "Rightward Diamonds"
+
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "GridLines"
+msgstr "Graph Paper"
+
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "Swirl"
+msgstr "Vortex"
+
 msgid "MoonFlow"
 msgstr "MoonFlow"
+
+#~ msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+#~ msgid "Test"
+#~ msgstr "Test"
 
 #~ msgid "MAIN_ACTIONBAR_DATABASES_SYSTEMDATA_HEADER"
 #~ msgstr "System Data"

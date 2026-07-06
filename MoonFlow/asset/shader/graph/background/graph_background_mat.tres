@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ctf4ioi8jah3c"]
+
+[ext_resource type="Script" uid="uid://bd11ygborcgfi" path="res://asset/shader/graph/background/graph_background_mat.gd" id="1_c1jv6"]
+[ext_resource type="Shader" uid="uid://c7r76dsbqxwpv" path="res://asset/shader/graph/background/graph_bg_default.gdshader" id="2_f6jrq"]
+[ext_resource type="Shader" uid="uid://km7odjagfoyx" path="res://asset/shader/graph/background/graph_bg_grid_lines.gdshader" id="2_gfbwd"]
+[ext_resource type="Shader" uid="uid://8gvdbbkmqis2" path="res://asset/shader/graph/background/graph_bg_swirl.gdshader" id="2_ri4dr"]
+[ext_resource type="Shader" uid="uid://b2sqi7l1n40hp" path="res://asset/shader/graph/background/graph_bg_checkerboard.gdshader" id="3_34cn6"]
+
+[resource]
+shader = ExtResource("2_ri4dr")
+shader_parameter/graph_position = Vector2(0, 0)
+shader_parameter/dot_size = Vector2(45, 45)
+shader_parameter/parallax = 0.9
+script = ExtResource("1_c1jv6")
+theme_dict = Dictionary[String, Shader]({
+"Checkerboard": ExtResource("3_34cn6"),
+"Default": ExtResource("2_f6jrq"),
+"GridLines": ExtResource("2_gfbwd"),
+"Swirl": ExtResource("2_ri4dr")
+})
+translation_context = "EVENT_GRAPH_BACKGROUND_SHADER"

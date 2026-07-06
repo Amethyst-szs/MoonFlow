@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://ddjtqhdysil2g" path="res://scene/settings/engine/common/common_engine_setting_toggle_boolean.gd" id="2_rm84r"]
 [ext_resource type="Theme" uid="uid://bbndf5ewp2sd1" path="res://asset/theme/msbt/msbt_editor_theme.tres" id="3_l4qnn"]
 [ext_resource type="Script" uid="uid://c7d6t4txld2aw" path="res://scene/settings/engine/common/common_engine_setting_slide_float.gd" id="3_oinyb"]
+[ext_resource type="Script" uid="uid://b5l8edu8w0osl" path="res://scene/settings/engine/graph/graph_option_background_shader.gd" id="3_qbsxm"]
+[ext_resource type="Material" uid="uid://ctf4ioi8jah3c" path="res://asset/shader/graph/background/graph_background_mat.tres" id="4_fgfmu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g3f1a"]
 font = ExtResource("1_2xewp")
@@ -38,6 +40,34 @@ label_settings = SubResource("LabelSettings_g3f1a")
 layout_mode = 2
 theme_override_constants/separation = 24
 
+[node name="Label_BackgroundShader" type="Label" parent="VBox_Visual" unique_id=1638437676]
+layout_mode = 2
+text = "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS_BACKGROUND_SHADER"
+
+[node name="Option_BackgroundShader" type="OptionButton" parent="VBox_Visual" unique_id=1833749166]
+layout_mode = 2
+script = ExtResource("3_qbsxm")
+info = ExtResource("4_fgfmu")
+
+[node name="HSep_Spacer" type="HSeparator" parent="VBox_Visual" unique_id=1063540557]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
+
+[node name="Check_UseParallax" type="CheckBox" parent="VBox_Visual" unique_id=1459835088]
+layout_mode = 2
+tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_USE_SHADER_PARALLAX_TOOLTIP"
+mouse_default_cursor_shape = 2
+text = "ENGINE_SETTINGS_PAGE_GRAPH_USE_SHADER_PARALLAX"
+script = ExtResource("2_rm84r")
+key = "moonflow/event_graph/is_parallax_background"
+default_value = true
+
+[node name="HSep_Spacer3" type="HSeparator" parent="VBox_Visual" unique_id=1256166429]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
+
 [node name="Check_DisableShaderBG" type="CheckBox" parent="VBox_Visual" unique_id=354948928]
 layout_mode = 2
 tooltip_text = "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND_TOOLTIP"
@@ -46,7 +76,7 @@ text = "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND"
 script = ExtResource("2_rm84r")
 key = "moonflow/event_graph/disable_background"
 
-[node name="HSep_Spacer" type="HSeparator" parent="VBox_Visual" unique_id=1063540557]
+[node name="HSep_Spacer2" type="HSeparator" parent="VBox_Visual" unique_id=584603750]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
@@ -135,5 +165,7 @@ suffix = "x"
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u7hcg")
+
+[connection signal="item_selected" from="VBox_Visual/Option_BackgroundShader" to="VBox_Visual/Option_BackgroundShader" method="_on_item_selected"]
 
 [editable path="Header"]

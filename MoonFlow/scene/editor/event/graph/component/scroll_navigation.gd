@@ -27,7 +27,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if is_warp_cursor:
-			_handle_mouse_wrap()
 			is_warp_cursor = false
 			return
 		

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://daft0hydp7x1k" path="res://scene/editor/event/EventFlowApp.cs" id="1_rd7f7"]
 [ext_resource type="PackedScene" uid="uid://b4j4g3xghg0a5" path="res://scene/app/components/dialog_unsaved_changes.tscn" id="2_7ecjt"]
 [ext_resource type="Texture2D" uid="uid://b7wobkf5wytp3" path="res://asset/app/icon/eventflow.png" id="2_7jypk"]
-[ext_resource type="Shader" uid="uid://c7r76dsbqxwpv" path="res://asset/shader/graph/graph_background.gdshader" id="3_budwu"]
 [ext_resource type="Resource" uid="uid://o4ehsw6vvdii" path="res://addons/wiki/paths/event.tres" id="4_boih4"]
 [ext_resource type="Script" uid="uid://dlsc7qjusm2rc" path="res://scene/editor/event/graph/component/graph_background_rect.gd" id="4_e62qm"]
 [ext_resource type="Script" uid="uid://c7pppkxxtn4hm" path="res://scene/editor/event/graph/GraphCanvas.cs" id="5_5dp1p"]
+[ext_resource type="Material" uid="uid://ctf4ioi8jah3c" path="res://asset/shader/graph/background/graph_background_mat.tres" id="5_e0bq6"]
 [ext_resource type="Script" uid="uid://bqhjii85ppta0" path="res://scene/editor/event/graph/component/scroll_navigation.gd" id="6_va4yh"]
 [ext_resource type="Script" uid="uid://gxi1583fyhka" path="res://scene/editor/event/graph/component/mouse_selection.gd" id="7_mr57c"]
 [ext_resource type="Script" uid="uid://buvvh4x4dmbjm" path="res://scene/editor/event/graph/component/axis_line_renderer.gd" id="8_4n4mt"]
@@ -26,11 +26,6 @@
 [ext_resource type="Theme" uid="uid://dbung3qmbw5gp" path="res://asset/theme/common/app_common.tres" id="20_x5ttv"]
 [ext_resource type="Script" uid="uid://du00yf8ptmkni" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="21_xbido"]
 [ext_resource type="PackedScene" uid="uid://toha7mro71ue" path="res://scene/editor/event/meta/popup_event_metadata.tscn" id="25_puyck"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sx65"]
-shader = ExtResource("3_budwu")
-shader_parameter/graph_position = Vector2(0, 0)
-shader_parameter/dot_size = Vector2(45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3jgl"]
 
@@ -120,7 +115,7 @@ WikiPage = ExtResource("4_boih4")
 layer = -2
 
 [node name="Rect" type="ColorRect" parent="Background" unique_id=978709175 node_paths=PackedStringArray("graph")]
-material = SubResource("ShaderMaterial_1sx65")
+material = ExtResource("5_e0bq6")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

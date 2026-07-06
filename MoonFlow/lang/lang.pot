@@ -115,6 +115,7 @@
 # res://scene/editor/event/node/component/message_resolve_config_txt.tres
 # res://scene/editor/msbt/actionbar/actionbar_msbt_extra.tscn
 # res://scene/editor/msbt/components/window_mass_add_labels.tscn
+# res://asset/shader/graph/background/graph_background_mat.tres
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2491,6 +2492,18 @@ msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS"
 msgstr ""
 
 #: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_VISUALS_BACKGROUND_SHADER"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_USE_SHADER_PARALLAX_TOOLTIP"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
+msgid "ENGINE_SETTINGS_PAGE_GRAPH_USE_SHADER_PARALLAX"
+msgstr ""
+
+#: scene/settings/engine/page/graph.tscn
 msgid "ENGINE_SETTINGS_PAGE_GRAPH_DISABLE_SHADER_BACKGROUND_TOOLTIP"
 msgstr ""
 
@@ -4304,6 +4317,26 @@ msgstr ""
 
 #: scene/editor/msbt/components/window_mass_add_labels.tscn
 msgid "MSBT_TOOL_MASS_ADD_LABELS_SUBMIT_BUTTON"
+msgstr ""
+
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "Checkerboard"
+msgstr ""
+
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "Default"
+msgstr ""
+
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "GridLines"
+msgstr ""
+
+#: asset/shader/graph/background/graph_background_mat.tres
+msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
+msgid "Swirl"
 msgstr ""
 
 msgid "MoonFlow"
