@@ -23,7 +23,7 @@ public class BymlFile(Dictionary<string, object> dict, ushort version) : Diction
 
         return file;
     }
-    public bool WriteFile(MemoryStream stream) { return BymlFileAccess.WriteFile(stream, this); }
+    public bool WriteFile(MemoryStream stream) { return BymlFileAccess.WriteFile(stream, this, null); }
 
     public Type GetType(string key) { return this[key].GetType(); }
     public Type GetType(int index) { return Values.ElementAt(index).GetType(); }

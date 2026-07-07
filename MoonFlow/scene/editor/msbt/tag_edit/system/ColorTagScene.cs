@@ -17,30 +17,18 @@ public partial class ColorTagScene : TagEditScene
 
         Tag = tag as MsbtTagElementSystemColor;
 
-        // Get color list from project
-        var msbp = ProjectManager.GetMSBP();
-        var colorList = msbp.Color_GetList();
-        var colorLabelList = msbp.Color_GetLabelList();
-
-        if (colorList.Count != colorLabelList.Count)
-            throw new LMSException("Color list and color label list are different lengths!");
-
         // Setup swatches
+        var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
         var swatchHolder = GetNode<HBoxContainer>("%Swatch");
-        for (int i = 0; i < colorList.Count; i++)
+        int maxColorCount = colorResolver.ColorGradiationList.Count;
+        
+        for (int i = 0; i < maxColorCount; i++)
         {
-            var e = colorList[i];
-            var color = Color.Color8(e.R, e.G, e.B, e.A);
-            var label = colorLabelList[i];
+            var gradiation = colorResolver.ColorGradiationList[i];
 
-            var button = new Button
-            {
-                SelfModulate = color,
-                CustomMinimumSize = new Vector2(32, 32),
-                TooltipText = label,
-            };
-
-            button.Connect(Button.SignalName.Pressed, Callable.From(() => OnSwatchSelect(button)));
+            var button = SceneCreator<ColorTagSceneSwatch>.Create();
+            button.Init(gradiation);
+            button.Connect(BaseButton.SignalName.Pressed, Callable.From(() => OnSwatchSelect(button)));
 
             swatchHolder.AddChild(button);
 

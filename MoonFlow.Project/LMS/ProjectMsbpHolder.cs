@@ -14,12 +14,13 @@ namespace MoonFlow.Project;
 
 public class ProjectMsbpHolder
 {
-    public SarcMsbpFile Project;
+    private readonly SarcMsbpFile Project;
+    public readonly ProjectColorResolver ColorResolver;
 
     private const string LocalFilePath = "LocalizedData/Common/ProjectData.szs";
     private const string ProjectDataFileName = "ProjectData.msbp";
 
-    public ProjectMsbpHolder(string projectPath)
+    public ProjectMsbpHolder(string projectPath, ProjectConfig info)
     {
         var path = projectPath + LocalFilePath;
 
@@ -37,13 +38,13 @@ public class ProjectMsbpHolder
         if (!archive.Content.ContainsKey(ProjectDataFileName))
             throw new SarcFileException("File does not contain" + ProjectDataFileName);
 
-        // Get msbp from archive
         Project = archive.GetFileMSBP(ProjectDataFileName);
+        ColorResolver = new(Project, info);
 
         GD.Print("Parsed Project MSBP");
     }
 
-    #region Reload Routine
+    #region Saving
 
     public void ReloadProjectSources(ProjectLanguageHolder arcs, ProjectDatabaseHolder worldDB)
     {
@@ -81,6 +82,12 @@ public class ProjectMsbpHolder
         // Sort database alphabetically
         db.Sort();
 
+        WriteProjectDataArchive();
+    }
+
+    public void WriteProjectDataArchive()
+    {
+        ColorResolver.TryWriteColorData();
         Project.WriteArchive();
     }
 
@@ -120,6 +127,8 @@ public class ProjectMsbpHolder
 
         PublishFile("StageMessage", msbt, db);
     }
+
+    public SarcMsbpFile GetRawMsbpFile() { return Project; }
 
     #endregion
 }

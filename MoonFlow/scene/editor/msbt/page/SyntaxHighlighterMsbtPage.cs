@@ -50,11 +50,11 @@ public partial class SyntaxHighlighterMsbtPage : SyntaxHighlighter
             MsbtBaseElement e = edit.Page[elementIdx];
 
             // If this element is a color tag, change text color
-            if (e.GetType() == typeof(MsbtTagElementSystemColor) && edit.Project != null)
+            if (e.GetType() == typeof(MsbtTagElementSystemColor) && edit.ColorResolver != null)
             {
                 var colorTag = (MsbtTagElementSystemColor)e;
-                colorTag.GetColor(edit.Project, out BlockColor.Entry c, out string _);
-                TextColor = new() { { "color", Color.Color8(c.R, c.G, c.B, c.A) } };
+                var color = edit.ColorResolver.GetTopColor(colorTag.GetColorIdx());
+                TextColor = new() { { "color", color } };
             }
 
             // Assign the current column's color

@@ -32,7 +32,7 @@ public partial class TabMsbtFileAccessor : TabFileAccessorBase
 			PasteButton.Disabled = !isCopyPaste || CopyContent == null;
 
 		// Check if file is deletable
-		var msbpDB = ProjectManager.GetMSBP().Project.Content;
+		var msbpDB = ProjectManager.GetMSBPHolder().GetRawMsbpFile().Project.Content;
 		var selectTarget = selection.Name.TrimSuffix(".msbt") + ".mstxt";
 
 		var result = msbpDB.Find(s => s.EndsWith(selectTarget));

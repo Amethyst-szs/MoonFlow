@@ -184,6 +184,14 @@ public class BlockHashTable(byte[] data, string typeName, int offset, FileBase p
         }
     }
 
+    public void ClearTable()
+    {
+        foreach (var entry in HashEntryList)
+        {
+            entry.EmptyLabelList();
+        }
+    }
+
     // ====================================================== //
     // === Calculation and Getter utilities for LMS files === //
     // ====================================================== //

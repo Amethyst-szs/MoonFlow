@@ -101,7 +101,6 @@ public abstract class MsbtTagElement : MsbtBaseElement
     public void SetTagNameUnsafe(ushort name) { TagName = name; }
 
     public abstract string GetTextureName(int parameter);
-    public virtual Color GetModulateColor(MsbpFile project) { return Color.White; }
 }
 
 public abstract class MsbtTagElementWithTextData : MsbtTagElement

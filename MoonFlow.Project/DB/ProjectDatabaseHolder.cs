@@ -138,7 +138,7 @@ public class ProjectDatabaseHolder
             throw new Exception(name + "does not exist in WorldList.szs");
 
         using MemoryStream stream = new();
-        if (!BymlFileAccess.WriteFile(stream, data))
+        if (!BymlFileAccess.WriteFile(stream, data, new Byml.YamlTypeConverterEx()))
             throw new Exception("Byml writer exception");
 
         ArchiveWorldList.Content[name] = stream.ToArray();

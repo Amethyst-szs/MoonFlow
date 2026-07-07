@@ -56,7 +56,6 @@ public static partial class ProjectManager
 
 
     public static ProjectMsbpHolder GetMSBPHolder() { return Project?.MsgStudioProject; }
-    public static SarcMsbpFile GetMSBP() { return Project?.MsgStudioProject?.Project; }
 
     public static ProjectMessageStudioText GetMSBT() { return Project?.MsgStudioText; }
     public static ProjectLanguageHolder GetMSBTArchives() { return Project?.MsgStudioText?.DefaultLanguage; }

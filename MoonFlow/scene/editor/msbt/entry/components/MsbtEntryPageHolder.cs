@@ -1,4 +1,5 @@
 using Godot;
+using MoonFlow.Project;
 
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
@@ -23,7 +24,7 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 	[Signal]
 	public delegate void DebugHashCopyEventHandler();
 
-	public MsbtEntryPageHolder Init(SarcMsbpFile project, MsbtPage page, MsbtPage pageSourcePreview)
+	public MsbtEntryPageHolder Init(MsbtPage page, MsbtPage pageSourcePreview)
 	{
 		// Create page editor (and optionally source preview)
 		PageEditor = CreatePageEditor();
@@ -35,14 +36,16 @@ public partial class MsbtEntryPageHolder : HBoxContainer
 		SizeFlagsHorizontal = SizeFlags.ExpandFill;
 
 		// Setup page editor
-		PageEditor.Init(project, page);
+		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
+
+		PageEditor.Init(colorResolver, page);
 		AddChild(PageEditor);
 		MoveChild(PageEditor, 0);
 
 		// Setup source preview
 		if (IsInstanceValid(PageSourcePreview))
 		{
-			PageSourcePreview.Init(project, pageSourcePreview);
+			PageSourcePreview.Init(colorResolver, pageSourcePreview);
 			PageSourcePreview.Editable = false;
 			AddChild(PageSourcePreview);
 		}

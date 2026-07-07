@@ -22,28 +22,22 @@ public partial class MsbpColorEditor : AppScene
 	private ColorPicker ColorPicker;
 
 	private Node ColorPickerTarget = null;
+	private bool IsEditFocusBottom = false;
 
 	protected override void AppInit()
 	{
-		// Get list of colors
-		var msbp = ProjectManager.GetMSBP();
-		var labels = msbp.Color_GetLabelList();
-
 		// Create color table
-		foreach (var label in labels)
+		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
+		foreach (var color in colorResolver.ColorGradiationList)
 		{
 			var element = ElementScene.Instantiate<HBoxContainer>();
 			ElementHolder.AddChild(element);
 
-			element.Call("setup", label, msbp.Color_Get(label).ToGodotColor());
+			element.Call("setup", color.Name, color.Top, color.Bottom, color.IsGradient);
 
-			element.Connect("color_picker_request", Callable.From(
-				new Action<Node>(OnColorPickerRequest)
-			));
-
-			element.Connect("name_modified", Callable.From(
-				new Action<string, string>(OnColorNameChanged)
-			));
+			element.Connect("name_modified", Callable.From(new Action<Node, string>(OnColorNameChanged)));
+			element.Connect("color_top_picker_request", Callable.From(new Action<Node>(OnColorTopPickerRequest)));
+			element.Connect("color_bottom_picker_request", Callable.From(new Action<Node>(OnColorBottomPickerRequest)));
 		}
 
 		// Setup signals with header
@@ -63,7 +57,7 @@ public partial class MsbpColorEditor : AppScene
 	{
 		// Write ProjectData archive to disk
 		display.UpdateProgress(0, 1);
-		ProjectManager.GetMSBP().WriteArchive();
+		ProjectManager.GetMSBPHolder().WriteProjectDataArchive();
 
 		// Reset flags
 		display.UpdateProgress(1, 1);
@@ -74,58 +68,84 @@ public partial class MsbpColorEditor : AppScene
 
 	#region Signals
 
-	private void OnColorPickerRequest(Node source)
+	private void OnColorTopPickerRequest(Node source)
 	{
 		// Assign picker target
 		ColorPickerTarget = source;
+		IsEditFocusBottom = false;
 
 		// Set picker's current color
-		var msbp = ProjectManager.GetMSBP();
-		ColorPicker.Color = msbp.Color_Get(source.Name).ToGodotColor();
+		ColorPicker.Color = GetTopColor(source);
+		ColorPickerHolder.Position = (Vector2I)GetGlobalMousePosition();
+		ColorPickerHolder.Popup();
+	}
+	private void OnColorBottomPickerRequest(Node source)
+	{
+		// Assign picker target
+		ColorPickerTarget = source;
+		IsEditFocusBottom = true;
 
-		// Spawn picker
+		// Set picker's current color
+		ColorPicker.Color = GetBottomColor(source);
 		ColorPickerHolder.Position = (Vector2I)GetGlobalMousePosition();
 		ColorPickerHolder.Popup();
 	}
 
 	private void OnColorPickerColorChanged(Color c)
 	{
-		var name = ColorPickerTarget.Name;
+		if (ColorPickerTarget == null)
+			return;
+		
+		bool isGradientEditMode = ColorPickerTarget.Call("is_gradient_mode").AsBool();
+		int targetIdx = ColorPickerTarget.GetIndex();
+	
+		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
+		var gradiation = colorResolver.ColorGradiationList[targetIdx];
 
-		var msbp = ProjectManager.GetMSBP();
-		var idx = msbp.Color_GetIndex(name);
-		if (idx == -1)
-			throw new Exception("Cannot set color of " + ColorPickerTarget);
+		if (!isGradientEditMode)
+		{
+			gradiation.Top = c;
+			gradiation.Bottom = c;
+		}
+		else
+		{
+			if (IsEditFocusBottom)
+				gradiation.Bottom = c;
+			else
+				gradiation.Top = c;
+		}
 
-		msbp.Color_Remove(name);
-		msbp.Color_AddNew(name, c.ToMsbpColor());
-		msbp.Color_MoveIndex(name, idx);
+		ColorPickerTarget.Call("set_colors", gradiation.Top, gradiation.Bottom);
 
-		ColorPickerTarget.Call("set_color", c);
+		colorResolver.ColorGradiationList[targetIdx] = gradiation;
+		IsModified = true;
+	}
+
+	private void OnColorNameChanged(Node source, string newName)
+	{
+		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
+		int targetIdx = ColorPickerTarget.GetIndex();
+
+		var gradiation = colorResolver.ColorGradiationList[targetIdx];
+		gradiation.Name = newName;
+		colorResolver.ColorGradiationList[targetIdx] = gradiation;
 
 		IsModified = true;
 	}
 
-	private void OnColorNameChanged(string oldName, string newName)
+	#endregion
+
+	#region Utility
+
+	private static Color GetTopColor(Node source)
 	{
-		var msbp = ProjectManager.GetMSBP();
-
-		// Get color instance
-		var colorIdx = msbp.Color_GetIndex(oldName);
-		if (colorIdx == -1)
-			throw new NullReferenceException("Could not find color with name " + oldName);
-
-		var color = msbp.Color_Get(colorIdx);
-
-		// Ensure new name isn't already used
-		if (msbp.Color_GetIndex(newName) != -1)
-			throw new Exception("Requested name \"" + newName + "\" is already used!");
-
-		msbp.Color_Remove(oldName);
-		msbp.Color_AddNew(newName, color);
-		msbp.Color_MoveIndex(newName, colorIdx);
-
-		IsModified = true;
+		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
+		return colorResolver.GetTopColor(source.GetIndex());
+	}
+	private static Color GetBottomColor(Node source)
+	{
+		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
+		return colorResolver.GetBottomColor(source.GetIndex());
 	}
 
 	#endregion

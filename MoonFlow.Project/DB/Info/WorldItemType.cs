@@ -31,7 +31,7 @@ public class WorldItemType()
             throw new SarcFileException("Missing " + filePath);
 
         using MemoryStream stream = new();
-        if (!BymlFileAccess.WriteFile(stream, list))
+        if (!BymlFileAccess.WriteFile(stream, list, new Byml.YamlTypeConverterEx()))
             throw new Exception("Byml writer exception");
         
         file.Content[filePath] = stream.ToArray();

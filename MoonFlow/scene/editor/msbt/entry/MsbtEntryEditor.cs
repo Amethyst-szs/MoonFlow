@@ -72,7 +72,7 @@ public partial class MsbtEntryEditor(MsbtEditor parent, MsbtEntry entry, Project
 
 			holder.Connect(MsbtEntryPageHolder.SignalName.DebugHashCopy, Callable.From(OnDebugHashCopy));
 
-			holder.Init(Parent.Project, page, pageSourcePreview);
+			holder.Init(page, pageSourcePreview);
 			AddChild(holder);
 			BuildSeparator(i);
 		}

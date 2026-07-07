@@ -85,7 +85,7 @@ public partial class TagWheelButton : Button
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementVoice())]);
 				return;
 			case ButtonTypes.Tag_String:
-				var msbp = ProjectManager.GetMSBP();
+				var msbp = ProjectManager.GetMSBPHolder().GetRawMsbpFile();
 				EmitSignal(SignalName.AddTag, [new TagWheelTagResult(new MsbtTagElementString(msbp, "ReplaceString"))]);
 				return;
 			case ButtonTypes.Tag_ProjectTag:

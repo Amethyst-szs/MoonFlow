@@ -113,11 +113,5 @@ public class BlockColor(byte[] data, string typeName, int offset, MsbpFile paren
         Colors.Insert(endIndex, c);
     }
 
-    internal void RemoveColor(int idx)
-    {
-        if (idx >= Colors.Count)
-            return;
-
-        Colors.RemoveAt(idx);
-    }
+    internal void Clear() { Colors.Clear(); }
 }

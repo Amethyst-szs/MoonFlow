@@ -43,6 +43,8 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public bool IsDebug() { return Data.Flags.DebugProject; }
     public bool IsAlwaysUpgrade() { return Data.Flags.AlwaysUpgrade; }
 
+    public bool IsUseExtensionTextColorEdit() { return Data.Flags.IsUseExtensionTextColorEdit; }
+
     // ~~~~~~~~~~~~~~~~ Target ~~~~~~~~~~~~~~~ //
 
     public bool IsEngineTargetOk(string hash)
@@ -87,6 +89,8 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
         data = Data;
         return true;
     }
+
+    public void SetUseExtensionTextColorEdit(bool state) { Data.Flags.IsUseExtensionTextColorEdit = state; }
 
     #endregion
 }

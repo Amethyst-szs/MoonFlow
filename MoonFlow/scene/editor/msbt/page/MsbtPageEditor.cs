@@ -3,12 +3,14 @@ using Godot;
 using Nindot.LMS.Msbp;
 using Nindot.LMS.Msbt;
 
+using MoonFlow.Project;
+
 namespace MoonFlow.Scene.EditorMsbt;
 
 [GlobalClass]
 public partial class MsbtPageEditor : TextEdit
 {
-    public SarcMsbpFile Project = null;
+    public ProjectColorResolver ColorResolver = null;
     public MsbtPage Page = null;
 
     public Timer ActivityTimer = new();
@@ -32,13 +34,13 @@ public partial class MsbtPageEditor : TextEdit
             ActivityTimer.QueueFree();
     }
 
-    public MsbtPageEditor Init(SarcMsbpFile project, MsbtPage page)
+    public MsbtPageEditor Init(ProjectColorResolver colorResolver, MsbtPage page)
     {
         // Ensure page is assigned to a value (can be passed as null)
         bool isPagePassedAsNull = page == null;
         page ??= [];
         
-        Project = project;
+        ColorResolver = colorResolver;
         Page = page;
 
         PrepareTextEdit();

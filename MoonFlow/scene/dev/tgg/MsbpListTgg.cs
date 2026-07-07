@@ -17,7 +17,7 @@ public partial class MsbpListTgg : VBoxContainer
 		if (!Visible)
 			return;
 
-		var proj = ProjectManager.GetMSBP();
+		var proj = ProjectManager.GetMSBPHolder().GetRawMsbpFile();
 
 		foreach (var child in GetChildren())
 			child.QueueFree();

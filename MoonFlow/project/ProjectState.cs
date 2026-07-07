@@ -140,7 +140,7 @@ public class ProjectState(string path, ProjectConfig config)
     {
         // Setup MSBP holder
         loadScreen.LoadingUpdateProgress("LOAD_MSBP");
-        MsgStudioProject = new(Path);
+        MsgStudioProject = new(Path, Config);
 
         // Preload archives for default language
         loadScreen.LoadingUpdateProgress("LOAD_MSBT");

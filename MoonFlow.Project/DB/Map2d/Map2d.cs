@@ -74,7 +74,7 @@ public partial class Map2d
         };
 
         using MemoryStream stream = new();
-        if (!BymlFileAccess.WriteFile(stream, output))
+        if (!BymlFileAccess.WriteFile(stream, output, new Byml.YamlTypeConverterEx()))
             throw new Exception("Failed to write BYML data!");
 
         Archive.Content[FileName] = stream.ToArray();

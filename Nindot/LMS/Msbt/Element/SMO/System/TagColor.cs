@@ -47,18 +47,6 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemBase
     {
         return _color;
     }
-    public void GetColor(MsbpFile project, out BlockColor.Entry color, out string name)
-    {
-        if (_color == 0xFFFF)
-        {
-            color = new BlockColor.Entry(255, 255, 255, 255);
-            name = "Reset to Default";
-            return;
-        }
-
-        color = project.Color_Get(_color);
-        name = project.Color_GetLabel(_color);
-    }
 
     public void SetColor(MsbpFile project, string color)
     {
@@ -77,12 +65,5 @@ public class MsbtTagElementSystemColor : MsbtTagElementSystemBase
     {
         if (_color == 0xFFFF) return "System_ColorReset";
         else return "System_Color";
-    }
-    public override Color GetModulateColor(MsbpFile project)
-    {
-        if (project == null) return Color.White;
-
-        GetColor(project, out BlockColor.Entry color, out string _);
-        return Color.FromArgb(color.R, color.G, color.B);
     }
 };

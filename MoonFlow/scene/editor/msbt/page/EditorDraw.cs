@@ -39,17 +39,12 @@ public partial class MsbtPageEditor : TextEdit
             {
                 var tag = (MsbtTagElement)item;
                 var tex = GetTagTexture(tag);
+                var color = Colors.White;
 
-                var color = tag.GetModulateColor(Project);
-                if (color != System.Drawing.Color.White)
-                {
-                    var colorGodot = Color.Color8(color.R, color.G, color.B, color.A);
-                    DrawTextureRect(tex, glyphRect, false, colorGodot);
-                }
-                else
-                {
-                    DrawTextureRect(tex, glyphRect, false, null);
-                }
+                if (item is MsbtTagElementSystemColor colorTag)
+                    color = ColorResolver.GetTopColor(colorTag.GetColorIdx());
+
+                DrawTextureRect(tex, glyphRect, false, color);
             }
 
             if (item.IsTagClose())

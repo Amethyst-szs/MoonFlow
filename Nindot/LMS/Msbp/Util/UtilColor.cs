@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -36,7 +37,7 @@ public partial class MsbpFile : FileBase
     }
     public BlockColor.Entry Color_Get(int idx)
     {
-        if (!Color_IsFileContainData()) return null;
+        if (!Color_IsFileContainData() || idx >= Color_GetCount()) return null;
 
         return Color.GetColor(idx);
     }
@@ -48,7 +49,7 @@ public partial class MsbpFile : FileBase
     }
     public string Color_GetLabel(int idx)
     {
-        if (!Color_IsFileContainData()) return null;
+        if (!Color_IsFileContainData() || idx >= Color_GetCount()) return null;
 
         return ColorLabels.GetLabelList()[idx];
     }
@@ -83,11 +84,11 @@ public partial class MsbpFile : FileBase
         Color.MoveColor(oldIndex, oldIndex + offset);
         ColorLabels.MoveItemByOffset(name, offset);
     }
-    public void Color_Remove(string name)
+    public void Color_RemoveAll()
     {
         if (!Color_IsFileContainData()) return;
 
-        int idx = ColorLabels.RemoveItem(name);
-        Color.RemoveColor(idx);
+        ColorLabels.ClearTable();
+        Color.Clear();
     }
 }

@@ -23,7 +23,7 @@ public partial class MsbtAppHolder : AppScene
 		Editor = GetNode<MsbtEditor>("MsbtEditor");
 	}
 
-	public void SetupEditor(SarcMsbpFile msgProject, string lang, string archiveName, string key)
+	public void SetupEditor(string lang, string archiveName, string key)
 	{
 		if (Editor == null)
 			throw new NullReferenceException("Wait for Ready before calling SetupEditor!");
@@ -48,7 +48,7 @@ public partial class MsbtAppHolder : AppScene
 
 		// Create msbt object and open file in editor
 		AppTaskbarTitle = key;
-		Editor.OpenFile(msgProject, TextFiles, lang);
+		Editor.OpenFile(TextFiles, lang);
 		return;
 	}
 
@@ -57,15 +57,14 @@ public partial class MsbtAppHolder : AppScene
 		// Create editor application
 		var editor = AppSceneServer.CreateApp<MsbtAppHolder>(archiveName + key);
 
-		// Access project and language code
-		var msbp = ProjectManager.GetMSBP();
+		// Access language code
 		lang ??= ProjectManager.GetDefaultLang();
 
 		// Pause for the next process frame to allow screen redraw
 		await Extension.WaitProcessFrame(editor);
 
 		// Setup and return editor
-		editor.SetupEditor(msbp, lang, archiveName, key);
+		editor.SetupEditor(lang, archiveName, key);
 		return editor;
 	}
 

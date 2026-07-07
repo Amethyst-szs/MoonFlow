@@ -51,7 +51,7 @@ public class WorldShineList(string name, List<ShineInfo> list) : List<ShineInfo>
         };
 
         using MemoryStream stream = new();
-        if (!BymlFileAccess.WriteFile(stream, input))
+        if (!BymlFileAccess.WriteFile(stream, input, new Byml.YamlTypeConverterEx()))
             throw new Exception("Byml writer exception");
         
         file.Content[filePath] = stream.ToArray();

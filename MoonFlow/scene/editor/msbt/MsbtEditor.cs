@@ -19,7 +19,6 @@ public partial class MsbtEditor : PanelContainer
 
 	// ~~~~~~~~~~~~~~~ Content ~~~~~~~~~~~~~~~ //
 
-	public SarcMsbpFile Project { get; private set; } = null;
 	public SarcMsbtFile File { get; private set; } = null;
 	public Dictionary<string, SarcMsbtFile> FileList { get; private set; } = null;
 	public string DefaultLanguage { get; private set; } = "USen";
@@ -105,8 +104,8 @@ public partial class MsbtEditor : PanelContainer
 	private async Task InitEditor()
 	{
 		// Ensure we have a valid pointer to the file and project
-		if (File == null || Project == null)
-			throw new Exception("Cannot init MsbtEditor without File and Project");
+		if (File == null)
+			throw new Exception("Cannot init MsbtEditor without File");
 
 		// Show loading overlay if not already visible
 		if (!LoadingOverlay.Visible)
@@ -212,7 +211,7 @@ public partial class MsbtEditor : PanelContainer
 
 	#region Read and Write
 
-	public void OpenFile(SarcMsbpFile project, Dictionary<string, SarcMsbtFile> msbtList, string lang)
+	public void OpenFile(Dictionary<string, SarcMsbtFile> msbtList, string lang)
 	{
 		// Grab the default SarcMsbtFile using lang
 		if (!msbtList.TryGetValue(lang, out SarcMsbtFile defaultMsbt))
@@ -222,7 +221,6 @@ public partial class MsbtEditor : PanelContainer
 				throw new Exception("TextFiles doesn't have default language or USen!");
 		}
 
-		Project = project;
 		File = defaultMsbt;
 		FileList = msbtList;
 

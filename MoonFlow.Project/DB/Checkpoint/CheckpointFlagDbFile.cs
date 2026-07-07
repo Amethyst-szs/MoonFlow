@@ -135,7 +135,7 @@ public class CheckpointFlagDbFile : List<CheckpointFlagInfo>
             bymlSource["FlagList"] = null;
 
         using MemoryStream stream = new();
-        BymlFileAccess.WriteFile(stream, bymlSource);
+        BymlFileAccess.WriteFile(stream, bymlSource, new Byml.YamlTypeConverterEx());
 
         string bymlName = FormatFileName(HomeStage, Scenario);
         target.Add(bymlName, stream.ToArray());

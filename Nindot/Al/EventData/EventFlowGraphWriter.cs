@@ -27,7 +27,7 @@ public partial class Graph
         if (!WriteBuild(out Dictionary<string, object> build)) return false;
 
         using MemoryStream stream = new();
-        if (!BymlFileAccess.WriteFile(stream, new BymlFile(build, _bymlVersion))) return false;
+        if (!BymlFileAccess.WriteFile(stream, new BymlFile(build, _bymlVersion), null)) return false;
 
         data = stream.ToArray();
         return true;

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cb8bqvfemf6dj"]
+
+[ext_resource type="Script" uid="uid://fubp1oueowyb" path="res://scene/editor/msbt/tag_edit/system/ColorTagSceneSwatch.cs" id="1_n3fjh"]
+[ext_resource type="Shader" uid="uid://dxpcpw2fngg8f" path="res://asset/shader/gradient/top_bottom_modulate.gdshader" id="2_vqydk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqydk"]
+content_margin_left = 4.0
+content_margin_top = 6.0
+content_margin_right = 4.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5ruq"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 6.0
+expand_margin_top = 7.0
+expand_margin_right = 6.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="Theme" id="Theme_n3fjh"]
+Button/styles/disabled = SubResource("StyleBoxFlat_vqydk")
+Button/styles/focus = SubResource("StyleBoxFlat_p5ruq")
+Button/styles/hover = SubResource("StyleBoxFlat_vqydk")
+Button/styles/normal = SubResource("StyleBoxFlat_vqydk")
+Button/styles/pressed = SubResource("StyleBoxFlat_vqydk")
+
+[node name="Swatch" type="Button" unique_id=265951717]
+custom_minimum_size = Vector2(32, 32)
+theme = SubResource("Theme_n3fjh")
+script = ExtResource("1_n3fjh")
+GradiationShader = ExtResource("2_vqydk")
