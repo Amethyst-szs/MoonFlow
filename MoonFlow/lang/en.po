@@ -36,8 +36,8 @@ msgstr "Romfs Config"
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
 msgid "CONFIG_CONFIG_DESCRIPTION"
 msgstr ""
-"Please provide paths to your original unmodified Super Mario Odyssey Romfs. "
-"You can add a path for each game version, or just the game version you'll be "
+"Please provide paths to your original unmodified Super Mario Odyssey Romfs. You "
+"can add a path for each game version, or just the game version you'll be "
 "working with."
 
 #: scene/settings/romfs/romfs_accessor_config_app.tscn
@@ -241,9 +241,9 @@ msgstr "Upgrade Project?"
 #: scene/front_door/load/project_loading.tscn
 msgid "LOADING_UPGRADE_PROJECT_CONFIRMATION_DESCRIPTION"
 msgstr ""
-"This project was last opened on an older version of MoonFlow! Would you like "
-"to upgrade the project to use this version of MoonFlow instead? Make sure to "
-"back up your work before upgrading in case of any unexpected issues."
+"This project was last opened on an older version of MoonFlow! Would you like to "
+"upgrade the project to use this version of MoonFlow instead? Make sure to back "
+"up your work before upgrading in case of any unexpected issues."
 
 #: scene/front_door/load/project_loading.tscn
 msgid "LOADING_UPGRADE_ALWAYS"
@@ -1244,8 +1244,8 @@ msgstr "Key"
 msgid "TAG_EDIT_SCENE_STRING_WARNING"
 msgstr ""
 "WARNING:\n"
-"This tag isn't fully understood, and may cause issues when edited! Only "
-"touch this if you know what you're doing."
+"This tag isn't fully understood, and may cause issues when edited! Only touch "
+"this if you know what you're doing."
 
 #: scene/editor/msbt/tag_edit/time/component.tscn
 msgid "TAG_EDIT_SCENE_HEADER_TIME_COMPONENT"
@@ -1990,23 +1990,19 @@ msgstr "Search Files"
 msgid "HOME_TAB_EVENT_REFRESH_LIST_TOOLTIP"
 msgstr "Refresh File List"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_COPY_FILE_TOOLTIP"
 msgstr "Copy Selected File"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_CUT_FILE_TOOLTIP"
 msgstr "Cut Selected File"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_PASTE_FILE_TOOLTIP"
 msgstr "Paste Selected File"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_DUPLICATE_FILE_TOOLTIP"
 msgstr "Duplicate Selected File"
 
@@ -2018,13 +2014,11 @@ msgstr "New Event Archive"
 msgid "HOME_TAB_EVENT_NEW_EVENT_TOOLTIP"
 msgstr "New Event Graph"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_RENAME_FILE_TOOLTIP"
 msgstr "Rename Selected File"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_DELETE_FILE_TOOLTIP"
 msgstr "Delete Selected File"
 
@@ -2044,13 +2038,11 @@ msgstr "Archive Name:"
 msgid "HOME_TAB_EVENT_GRAPH_FILE_SIZE"
 msgstr "Graph Size:"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_COPY_DEBUG_HASH_HEADER"
 msgstr "Metadata Hash"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_COPY_DEBUG_HASH"
 msgstr "Copy to Clipboard"
 
@@ -2058,18 +2050,15 @@ msgstr "Copy to Clipboard"
 msgid "HOME_TAB_EVENT_OPEN_FILE"
 msgstr "Open Graph"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_TITLE"
 msgstr "File already exists!"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_OK"
 msgstr "Ok"
 
-#: scene/home/tools/event/tab_event.tscn
-#: scene/home/tools/msbt/tab_msbt_base.tscn
+#: scene/home/tools/event/tab_event.tscn scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_DUPLICATE_NAME_DESC"
 msgstr "A file using this name already exists, try a different name."
 
@@ -2532,19 +2521,23 @@ msgstr ""
 "Color Pallete"
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
-msgid "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
-msgstr ""
-"Using this editor requires setting up the color palette extension.\n"
-"Extension list can be found in the project tab of\n"
-"your project's home page."
-
-#: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
 msgstr "Color Settings"
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW"
 msgstr "Customizable Previews"
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_ADD_NEW_COLOR"
+msgstr "Create New Color"
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
+msgstr ""
+"Using this editor requires setting up the color palette extension.\n"
+"Extension list can be found in the project tab of\n"
+"your project's home page."
 
 #: scene/editor/msbp/color/color_editor_element.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
@@ -2619,8 +2612,8 @@ msgstr "Confirm"
 msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DESCRIPTION"
 msgstr ""
 "Just checking, you sure you want to remove this power moon from the list? If "
-"you want to skip this dialog in the future, hold ctrl while pressing the "
-"delete button."
+"you want to skip this dialog in the future, hold ctrl while pressing the delete "
+"button."
 
 #: scene/editor/world/shine/world_shine_editor_holder.tscn
 msgid "WORLD_EDITOR_SHINE_DIALOG_CONFIRM_DELETE_CANCEL"
@@ -3180,8 +3173,8 @@ msgstr "Save"
 #: scene/editor/msbt/components/dialog_language_change_unsaved.tscn
 msgid "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_TEXT"
 msgstr ""
-"Changing languages will save the changes you've made to this file. Are you "
-"sure you'd like to save?"
+"Changing languages will save the changes you've made to this file. Are you sure "
+"you'd like to save?"
 
 #: scene/editor/msbt/components/dialog_language_change_unsaved.tscn
 msgid "UNSAVED_CHANGES_DIALOG_MSBT_CHANGING_LANGUAGE_CANCEL"
@@ -3255,9 +3248,9 @@ msgstr "Get with the Flow"
 #: scene/home/guide/home_guide.tscn
 msgid "HOME_GUIDE_POPUP_DESCRIPTION_INFO"
 msgstr ""
-"Looks like this is your first project, welcome! If you get stuck at any "
-"point, you can access the wiki both in-app and online through the help menu "
-"at the top.\n"
+"Looks like this is your first project, welcome! If you get stuck at any point, "
+"you can access the wiki both in-app and online through the help menu at the "
+"top.\n"
 "\n"
 "Happy modding, take care and good luck!"
 
@@ -3323,13 +3316,13 @@ msgstr ""
 msgid "LOADING_EXCEPTION_MSBT_ENTRY_PARSER_EXPLANATION"
 msgstr ""
 "Uh oh, looks like you have some corrupted data! To be more specific, one of "
-"your MSBT files has a corrupt tag header, resulting in it being impossible "
-"to correctly parse.\n"
+"your MSBT files has a corrupt tag header, resulting in it being impossible to "
+"correctly parse.\n"
 "\n"
 "If you're creating a new project from scratch, this likely means your romfs "
 "dump is invalid or otherwise corrupted, try re-dumping your game files! If "
-"you're creating a new MoonFlow project on top of previously modded files, "
-"it's likely these modded files are invalid in some way.\n"
+"you're creating a new MoonFlow project on top of previously modded files, it's "
+"likely these modded files are invalid in some way.\n"
 "\n"
 "Below is exactly which file's entry threw the exception:"
 
@@ -3797,7 +3790,7 @@ msgstr ""
 
 #: scene/main/header/ftp/ftp_status_indicator.tscn
 msgid "FTP_STATUS_TOOL_MENU_BUTTON_DELETE_EXEFS_REMOTE"
-msgstr "Delete remote ExeFs"
+msgstr "Delete remote exefs"
 
 #: scene/main/header/ftp/ftp_status_indicator_tooltip_message_text.tres
 msgctxt "FTP_STATUS_INDICATOR_TOOLTIP"
@@ -4001,8 +3994,7 @@ msgstr ""
 "moons collectable in the current preview scenario. This is determined\n"
 "by the \"Valid Scenarios\" field in the moon's properties.\n"
 "\n"
-"When disabled, all moons will be displayed regardless of the preview "
-"scenario."
+"When disabled, all moons will be displayed regardless of the preview scenario."
 
 #: scene/settings/engine/page/world.tscn
 msgid "ENGINE_SETTINGS_PAGE_WORLD_MAP_HIDE_ICONS_BY_MAP_SCENARIO"
@@ -4059,8 +4051,8 @@ msgstr "Toggle Organizational Dropdowns"
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
 msgstr ""
-"Cannot translate to the project's default language, change translation "
-"language below!"
+"Cannot translate to the project's default language, change translation language "
+"below!"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
@@ -4101,9 +4093,9 @@ msgstr "Ok"
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_ERROR_DIALOG_WORLD_LIST_DESC"
 msgstr ""
-"This name doesn't seem to connect to a real stage! Make sure to check for "
-"any typos, and make sure to add your stage to the WorldList before creating "
-"the text file."
+"This name doesn't seem to connect to a real stage! Make sure to check for any "
+"typos, and make sure to add your stage to the WorldList before creating the "
+"text file."
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_TITLE"
@@ -4116,49 +4108,25 @@ msgstr "Yes I'm sure."
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DESCRIPTION"
 msgstr ""
-"Deleting MSBT files cannot be undone. Removing files required by the game "
-"can cause crashes and other glitches. Are you absolutely sure you want to "
-"delete this?"
+"Deleting MSBT files cannot be undone. Removing files required by the game can "
+"cause crashes and other glitches. Are you absolutely sure you want to delete "
+"this?"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr "Wait, no, go back!"
 
 #: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
-msgstr "MoonFlow Project"
+msgid "HOME_TAB_PROJECT_HEADER_TAB_CONFIG"
+msgstr "Config"
 
 #: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
-msgstr ""
-"A project's nickname is stored locally and not committed to\n"
-"version control. It has no effect on the project, and just helps\n"
-"you distinguish between this project and others in similar\n"
-"directories."
+msgid "HOME_TAB_PROJECT_HEADER_TAB_TOOLS"
+msgstr "Tools"
 
 #: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
-msgstr "Nickname:"
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
-msgstr "My Super Project"
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
-msgstr "System Databases"
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
-msgstr "Regenerate CheckpointFlagInfo"
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MSBP_TOOLS"
-msgstr "Message Studio Project"
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
-msgstr "Color Palette Editor"
+msgid "HOME_TAB_PROJECT_HEADER_TAB_EXTENSION"
+msgstr "Exefs Extensions"
 
 #: async/gui/async_display.tscn
 msgid "ASYNC_DISPLAY_EXCEPTION"
@@ -4401,8 +4369,8 @@ msgstr "Find"
 #: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_INVALID_SEARCH_REQUEST"
 msgstr ""
-"Search for the text that shows up in-game (in your project's default "
-"language), and you'll get a list of results from most to least confident."
+"Search for the text that shows up in-game (in your project's default language), "
+"and you'll get a list of results from most to least confident."
 
 #: scene/common/msbt_lookup/find_search/popup_msbt_find_search_entry.tscn
 msgid "POPUP_MSBT_FIND_SEARCH_ENTRY_NO_RESULTS_MESSAGE"
@@ -4461,8 +4429,119 @@ msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
 msgid "Swirl"
 msgstr "Vortex"
 
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_LOCAL_ONLY_CONFIG_HEADER_TOOLTIP"
+msgstr ""
+"(These settings are stored locally per-project and not shared\n"
+"with other users through version control)"
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_LOCAL_ONLY_CONFIG_HEADER"
+msgstr "Local-Only Config"
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+msgstr ""
+"A project's nickname is stored locally and not committed to\n"
+"version control. It has no effect on the project, and just helps\n"
+"you distinguish between this project and others in similar\n"
+"directories."
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
+msgstr "Nickname:"
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
+msgstr "My Flowing Project"
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DANGER_ZONE_HEADER_TOOLTIP"
+msgstr ""
+"(Make sure you have your projects backed up with\n"
+"version control before changing these!)"
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DANGER_ZONE_HEADER"
+msgstr "Unsafe Zone"
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DEFAULT_LANGUAGE_HEADER_TOOLTIP"
+msgstr ""
+"Some metadata for text is default language specific, so changing\n"
+"default language could cause some MoonFlow editor data to\n"
+"break or be inaccessible until swapped back, proceed\n"
+"with caution!"
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DEFAULT_LANGUAGE_HEADER"
+msgstr "Default Language (Reloads project)"
+
+#: scene/home/tools/project/subtab_extra_tools.tscn
+msgid "HOME_TAB_PROJECT_EXTRA_TOOLS_SYSTEM_DATA_HEADER"
+msgstr "System Data Tools"
+
+#: scene/home/tools/project/subtab_extra_tools.tscn
+msgid "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
+msgstr "Regenerate CheckpointFlagInfo"
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING"
+msgstr "WARNING: Code required!"
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING_DESC"
+msgstr ""
+"These features will NOT function without additional code patches provided by an "
+"exefs mod.\n"
+"\n"
+"All extensions include extensive documentation and code samples for setup, but "
+"if you're developing a project that is purely a romfs patch with no subsdk/"
+"executable patch, these features WILL cause game crashes and unintended "
+"behavior.\n"
+"\n"
+"By accepting and activating these features, you are confirming this project "
+"will always be played alongside an exefs patch that adds support for the "
+"feature."
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING_ACCEPT_BUTTON"
+msgstr "I Understand and Accept"
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_COLOR_PALETTE_HEADER"
+msgstr "Color Palette Editor"
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_COLOR_PALETTE_DESCRIPTION"
+msgstr ""
+"Create user-defined text colors and text gradients with the Color Palette "
+"Editor in the text tab of the project's homepage.\n"
+"\n"
+"Stores extra data in LocalizedData/Common/ProjectData"
+
+#: scene/home/tools/project/common/extension_toggle_panel.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_INFO_LOCAL_TOOLTIP"
+msgstr "View code patch information with the in-app documentation"
+
+#: scene/home/tools/project/common/extension_toggle_panel.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_INFO_ONLINE_TOOLTIP"
+msgstr "View code patch information with the online documentation"
+
 msgid "MoonFlow"
 msgstr "MoonFlow"
+
+#~ msgid "placeholder"
+#~ msgstr "placeholder"
+
+#~ msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
+#~ msgstr "MoonFlow Project"
+
+#~ msgid "HOME_TAB_PROJECT_MSBP_TOOLS"
+#~ msgstr "Message Studio Project"
+
+#~ msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
+#~ msgstr "Color Palette Editor"
 
 #~ msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_WHITE"
 #~ msgstr "Preview (Light)"

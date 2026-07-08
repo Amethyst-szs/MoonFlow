@@ -2,34 +2,43 @@
 
 [ext_resource type="Theme" uid="uid://ddexy01pp37b1" path="res://asset/theme/home/home.tres" id="1_dvg6o"]
 [ext_resource type="Texture2D" uid="uid://ddbjk8qy03n3e" path="res://asset/material/window/setting.svg" id="2_exw8r"]
-[ext_resource type="Script" uid="uid://sr6781n8r8yp" path="res://scene/home/tools/project/TabProject.cs" id="2_w5mgl"]
 [ext_resource type="Texture2D" uid="uid://bd8rjetrkks0f" path="res://asset/material/graph/extra.svg" id="3_2sfc6"]
 [ext_resource type="Script" uid="uid://dmsuek6cxe0yc" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_otm3d"]
 [ext_resource type="Theme" uid="uid://c22jcvgv3n3qw" path="res://asset/theme/home/home_list_tabs.tres" id="3_pj55y"]
-[ext_resource type="Texture2D" uid="uid://bw1k40r0kuu1r" path="res://asset/nindot/special/checkpoint_white.png" id="4_70wej"]
-[ext_resource type="Script" uid="uid://ngjbg3thuodi" path="res://scene/home/tools/project/component/SubtabMoonflowProject.cs" id="4_crvj7"]
 [ext_resource type="Texture2D" uid="uid://bsrqtic8ahapp" path="res://asset/material/graph/block.svg" id="4_gepc1"]
 [ext_resource type="StyleBox" uid="uid://binjmxbf7rse2" path="res://asset/theme/home/stylebox/home_tab_container_bar_background_panel.tres" id="4_wv0te"]
 [ext_resource type="Script" uid="uid://01w768f3wdbw" path="res://scene/common/button/exclusive_category_button.gd" id="6_iub1o"]
-[ext_resource type="Script" uid="uid://bv1qthwpwjsxw" path="res://scene/common/button/dropdown_checkbox.gd" id="7_3akrv"]
-[ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="8_o81hq"]
 [ext_resource type="StyleBox" uid="uid://bs2v8yiuqopt8" path="res://asset/theme/home/stylebox/home_tab_background_panel.tres" id="9_m4xvy"]
+[ext_resource type="PackedScene" uid="uid://pqau8hflc3uk" path="res://scene/home/tools/project/subtab_config_info.tscn" id="11_icpts"]
+[ext_resource type="PackedScene" uid="uid://67dntjdqrfqd" path="res://scene/home/tools/project/subtab_extra_tools.tscn" id="12_pj55y"]
+[ext_resource type="PackedScene" uid="uid://4olgr72mqv5p" path="res://scene/home/tools/project/subtab_extensions.tscn" id="13_wv0te"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_8co0p"]
+[sub_resource type="InputEventKey" id="InputEventKey_osxru"]
 device = -1
 command_or_control_autoremap = true
+shift_pressed = true
 keycode = 49
 
 [sub_resource type="Shortcut" id="Shortcut_yofi8"]
-events = [SubResource("InputEventKey_8co0p")]
+events = [SubResource("InputEventKey_osxru")]
 
-[sub_resource type="InputEventKey" id="InputEventKey_qcbp3"]
+[sub_resource type="InputEventKey" id="InputEventKey_icpts"]
 device = -1
 command_or_control_autoremap = true
+shift_pressed = true
 keycode = 50
 
+[sub_resource type="Shortcut" id="Shortcut_icpts"]
+events = [SubResource("InputEventKey_icpts")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_pj55y"]
+device = -1
+command_or_control_autoremap = true
+shift_pressed = true
+keycode = 51
+
 [sub_resource type="Shortcut" id="Shortcut_qx5qf"]
-events = [SubResource("InputEventKey_qcbp3")]
+events = [SubResource("InputEventKey_pj55y")]
 
 [node name="Project" type="VBoxContainer" unique_id=1477992099]
 anchors_preset = 15
@@ -39,7 +48,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_dvg6o")
 theme_override_constants/separation = 0
-script = ExtResource("2_w5mgl")
 metadata/_tab_index = 0
 
 [node name="Panel_TabList" type="PanelContainer" parent="." unique_id=1879887194]
@@ -90,7 +98,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 toggle_mode = true
 action_mode = 0
-shortcut = SubResource("Shortcut_qx5qf")
+shortcut = SubResource("Shortcut_icpts")
 text = "HOME_TAB_PROJECT_HEADER_TAB_TOOLS"
 icon = ExtResource("3_2sfc6")
 icon_alignment = 2
@@ -118,6 +126,7 @@ mouse_filter = 2
 theme_override_styles/panel = ExtResource("9_m4xvy")
 
 [node name="Config" type="ScrollContainer" parent="Content" unique_id=972711282]
+visible = false
 layout_mode = 2
 script = ExtResource("3_otm3d")
 drag_with_mouse = false
@@ -125,86 +134,26 @@ allow_horizontal_scroll = false
 force_vertical_scrolling = true
 metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
 
-[node name="Content" type="VBoxContainer" parent="Content/Config" unique_id=187119058]
+[node name="Content" parent="Content/Config" unique_id=317608512 instance=ExtResource("11_icpts")]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="Check_MfProject" type="CheckBox" parent="Content/Config/Content" unique_id=981073205 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
+[node name="HSeparator5" parent="Content/Config/Content" index="0" unique_id=639518157]
 mouse_filter = 1
-text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../MfProject")
 
-[node name="MfProject" type="MarginContainer" parent="Content/Config/Content" unique_id=2141055595 node_paths=PackedStringArray("LineNickname")]
-layout_mode = 2
-script = ExtResource("4_crvj7")
-LineNickname = NodePath("VBox_MfProject/Nickname/Line_Nickname")
-
-[node name="VBox_MfProject" type="VBoxContainer" parent="Content/Config/Content/MfProject" unique_id=312705319]
-layout_mode = 2
-
-[node name="Nickname" type="HBoxContainer" parent="Content/Config/Content/MfProject/VBox_MfProject" unique_id=1725601834]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Label_Nickname" type="Label" parent="Content/Config/Content/MfProject/VBox_MfProject/Nickname" unique_id=350423487]
-layout_mode = 2
-tooltip_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+[node name="HSeparator4" parent="Content/Config/Content" index="2" unique_id=160355788]
 mouse_filter = 1
-mouse_default_cursor_shape = 16
-text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
 
-[node name="Line_Nickname" type="LineEdit" parent="Content/Config/Content/MfProject/VBox_MfProject/Nickname" unique_id=610614901]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="HSeparator" parent="Content/Config/Content" index="4" unique_id=1463323030]
 mouse_filter = 1
-placeholder_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
-max_length = 32
 
-[node name="Check_SystemData" type="CheckBox" parent="Content/Config/Content" unique_id=1518063308 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
+[node name="HSeparator2" parent="Content/Config/Content" index="6" unique_id=1923359008]
 mouse_filter = 1
-text = "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../SystemData")
 
-[node name="SystemData" type="MarginContainer" parent="Content/Config/Content" unique_id=299466136]
-layout_mode = 2
-
-[node name="VBox_System" type="VBoxContainer" parent="Content/Config/Content/SystemData" unique_id=431521139]
-layout_mode = 2
-
-[node name="Button_CheckpointListTask" type="Button" parent="Content/Config/Content/SystemData/VBox_System" unique_id=142216575]
-layout_mode = 2
+[node name="Option_DefaultLanguage" parent="Content/Config/Content/DefaultLanguage" parent_id_path=PackedInt32Array(317608512, 1120684689) index="1" unique_id=2100996502]
 mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
-icon = ExtResource("4_70wej")
-alignment = 0
-
-[node name="Check_Msbp" type="CheckBox" parent="Content/Config/Content" unique_id=1291820876 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_PROJECT_MSBP_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../Msbp")
-
-[node name="Msbp" type="MarginContainer" parent="Content/Config/Content" unique_id=827775652]
-layout_mode = 2
-
-[node name="VBox_Msbp" type="VBoxContainer" parent="Content/Config/Content/Msbp" unique_id=1647386928]
-layout_mode = 2
-
-[node name="Button_MsbpColors" type="Button" parent="Content/Config/Content/Msbp/VBox_Msbp" unique_id=1130490782]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
-icon = ExtResource("8_o81hq")
-alignment = 0
 
 [node name="Tools" type="ScrollContainer" parent="Content" unique_id=87820308]
+visible = false
 layout_mode = 2
 script = ExtResource("3_otm3d")
 drag_with_mouse = false
@@ -212,84 +161,8 @@ allow_horizontal_scroll = false
 force_vertical_scrolling = true
 metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
 
-[node name="Content" type="VBoxContainer" parent="Content/Tools" unique_id=1449923272]
+[node name="Content" parent="Content/Tools" unique_id=726653236 instance=ExtResource("12_pj55y")]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Check_MfProject" type="CheckBox" parent="Content/Tools/Content" unique_id=1540756298 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../MfProject")
-
-[node name="MfProject" type="MarginContainer" parent="Content/Tools/Content" unique_id=939272292 node_paths=PackedStringArray("LineNickname")]
-layout_mode = 2
-script = ExtResource("4_crvj7")
-LineNickname = NodePath("VBox_MfProject/Nickname/Line_Nickname")
-
-[node name="VBox_MfProject" type="VBoxContainer" parent="Content/Tools/Content/MfProject" unique_id=1862299512]
-layout_mode = 2
-
-[node name="Nickname" type="HBoxContainer" parent="Content/Tools/Content/MfProject/VBox_MfProject" unique_id=1375026212]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Label_Nickname" type="Label" parent="Content/Tools/Content/MfProject/VBox_MfProject/Nickname" unique_id=590964470]
-layout_mode = 2
-tooltip_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
-mouse_filter = 1
-mouse_default_cursor_shape = 16
-text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
-
-[node name="Line_Nickname" type="LineEdit" parent="Content/Tools/Content/MfProject/VBox_MfProject/Nickname" unique_id=1933221980]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-placeholder_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
-max_length = 32
-
-[node name="Check_SystemData" type="CheckBox" parent="Content/Tools/Content" unique_id=927520446 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../SystemData")
-
-[node name="SystemData" type="MarginContainer" parent="Content/Tools/Content" unique_id=278144750]
-layout_mode = 2
-
-[node name="VBox_System" type="VBoxContainer" parent="Content/Tools/Content/SystemData" unique_id=1913312292]
-layout_mode = 2
-
-[node name="Button_CheckpointListTask" type="Button" parent="Content/Tools/Content/SystemData/VBox_System" unique_id=202051700]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
-icon = ExtResource("4_70wej")
-alignment = 0
-
-[node name="Check_Msbp" type="CheckBox" parent="Content/Tools/Content" unique_id=1830020144 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_PROJECT_MSBP_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../Msbp")
-
-[node name="Msbp" type="MarginContainer" parent="Content/Tools/Content" unique_id=1312286289]
-layout_mode = 2
-
-[node name="VBox_Msbp" type="VBoxContainer" parent="Content/Tools/Content/Msbp" unique_id=918999538]
-layout_mode = 2
-
-[node name="Button_MsbpColors" type="Button" parent="Content/Tools/Content/Msbp/VBox_Msbp" unique_id=975650026]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
-icon = ExtResource("8_o81hq")
-alignment = 0
 
 [node name="Extensions" type="ScrollContainer" parent="Content" unique_id=1973607686]
 layout_mode = 2
@@ -299,91 +172,15 @@ allow_horizontal_scroll = false
 force_vertical_scrolling = true
 metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
 
-[node name="Content" type="VBoxContainer" parent="Content/Extensions" unique_id=896872380]
+[node name="Margin" type="MarginContainer" parent="Content/Extensions" unique_id=487582607]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 12
 
-[node name="Check_MfProject" type="CheckBox" parent="Content/Extensions/Content" unique_id=333787981 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../MfProject")
-
-[node name="MfProject" type="MarginContainer" parent="Content/Extensions/Content" unique_id=220207784 node_paths=PackedStringArray("LineNickname")]
-layout_mode = 2
-script = ExtResource("4_crvj7")
-LineNickname = NodePath("VBox_MfProject/Nickname/Line_Nickname")
-
-[node name="VBox_MfProject" type="VBoxContainer" parent="Content/Extensions/Content/MfProject" unique_id=1665893548]
+[node name="Content" parent="Content/Extensions/Margin" unique_id=538272680 instance=ExtResource("13_wv0te")]
 layout_mode = 2
 
-[node name="Nickname" type="HBoxContainer" parent="Content/Extensions/Content/MfProject/VBox_MfProject" unique_id=1515850501]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Label_Nickname" type="Label" parent="Content/Extensions/Content/MfProject/VBox_MfProject/Nickname" unique_id=1310444914]
-layout_mode = 2
-tooltip_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
-mouse_filter = 1
-mouse_default_cursor_shape = 16
-text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
-
-[node name="Line_Nickname" type="LineEdit" parent="Content/Extensions/Content/MfProject/VBox_MfProject/Nickname" unique_id=1449253796]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-placeholder_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
-max_length = 32
-
-[node name="Check_SystemData" type="CheckBox" parent="Content/Extensions/Content" unique_id=28745542 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../SystemData")
-
-[node name="SystemData" type="MarginContainer" parent="Content/Extensions/Content" unique_id=1794601182]
-layout_mode = 2
-
-[node name="VBox_System" type="VBoxContainer" parent="Content/Extensions/Content/SystemData" unique_id=1095070006]
-layout_mode = 2
-
-[node name="Button_CheckpointListTask" type="Button" parent="Content/Extensions/Content/SystemData/VBox_System" unique_id=1727484666]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
-icon = ExtResource("4_70wej")
-alignment = 0
-
-[node name="Check_Msbp" type="CheckBox" parent="Content/Extensions/Content" unique_id=989679927 node_paths=PackedStringArray("dropdown")]
-layout_mode = 2
-mouse_filter = 1
-text = "HOME_TAB_PROJECT_MSBP_TOOLS"
-script = ExtResource("7_3akrv")
-dropdown = NodePath("../Msbp")
-
-[node name="Msbp" type="MarginContainer" parent="Content/Extensions/Content" unique_id=478367479]
-layout_mode = 2
-
-[node name="VBox_Msbp" type="VBoxContainer" parent="Content/Extensions/Content/Msbp" unique_id=1836310227]
-layout_mode = 2
-
-[node name="Button_MsbpColors" type="Button" parent="Content/Extensions/Content/Msbp/VBox_Msbp" unique_id=1091460912]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
-icon = ExtResource("8_o81hq")
-alignment = 0
-
-[connection signal="text_submitted" from="Content/Config/Content/MfProject/VBox_MfProject/Nickname/Line_Nickname" to="Content/Config/Content/MfProject" method="OnTextSubmittedProjectNickname"]
-[connection signal="pressed" from="Content/Config/Content/SystemData/VBox_System/Button_CheckpointListTask" to="." method="OnGenerateDatabaseCheckpointFlag"]
-[connection signal="pressed" from="Content/Config/Content/Msbp/VBox_Msbp/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
-[connection signal="text_submitted" from="Content/Tools/Content/MfProject/VBox_MfProject/Nickname/Line_Nickname" to="Content/Tools/Content/MfProject" method="OnTextSubmittedProjectNickname"]
-[connection signal="pressed" from="Content/Tools/Content/SystemData/VBox_System/Button_CheckpointListTask" to="." method="OnGenerateDatabaseCheckpointFlag"]
-[connection signal="pressed" from="Content/Tools/Content/Msbp/VBox_Msbp/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
-[connection signal="text_submitted" from="Content/Extensions/Content/MfProject/VBox_MfProject/Nickname/Line_Nickname" to="Content/Extensions/Content/MfProject" method="OnTextSubmittedProjectNickname"]
-[connection signal="pressed" from="Content/Extensions/Content/SystemData/VBox_System/Button_CheckpointListTask" to="." method="OnGenerateDatabaseCheckpointFlag"]
-[connection signal="pressed" from="Content/Extensions/Content/Msbp/VBox_Msbp/Button_MsbpColors" to="." method="OnOpenMsbpColorEditor"]
+[editable path="Content/Config/Content"]

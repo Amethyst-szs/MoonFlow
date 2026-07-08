@@ -12,6 +12,8 @@ internal class ProjectConfigBucketFlags
     internal bool FirstBoot { get; set; } = true;
     [JsonInclude]
     internal bool AlwaysUpgrade { get; set; } = false;
+    [JsonInclude]
+    internal bool AcceptedExtensionWarning { get; set; } = false;
 
     [JsonInclude]
     internal bool DebugProject { get; set; } = false;

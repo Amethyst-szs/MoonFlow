@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://diqnbbspn2hhb"]
+
+[ext_resource type="StyleBox" uid="uid://cyvpc4g3fu3h0" path="res://asset/theme/home/stylebox/home_project_extension_panel_off.tres" id="1_j4jpt"]
+[ext_resource type="StyleBox" uid="uid://ds33q7tp426x8" path="res://asset/theme/home/stylebox/home_project_extension_panel_on.tres" id="2_83oov"]
+[ext_resource type="Script" uid="uid://ku80ytfifasj" path="res://scene/home/tools/project/common/ExtensionTogglePanel.cs" id="2_sgif5"]
+[ext_resource type="Theme" uid="uid://bajosqw3blmjp" path="res://asset/theme/event/graph/event_graph_ui_header.tres" id="2_tbqxj"]
+[ext_resource type="Texture2D" uid="uid://dti6ok2kka208" path="res://asset/material/debug/debug.svg" id="4_j4jpt"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="6_83oov"]
+[ext_resource type="Texture2D" uid="uid://bpryhnkiti42q" path="res://asset/material/wiki/github.svg" id="7_83oov"]
+[ext_resource type="Texture2D" uid="uid://2tktgsvkpti8" path="res://asset/material/wiki/docs.svg" id="7_qqeh4"]
+[ext_resource type="Script" uid="uid://d3cnisiq47k5j" path="res://addons/wiki/access/WikiAccessButton.cs" id="8_0jwkc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqeh4"]
+font = ExtResource("6_83oov")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mwdje"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.7882353)
+
+[node name="ExtensionTogglePanel" type="PanelContainer" unique_id=762045616 node_paths=PackedStringArray("ToggleButton")]
+custom_minimum_size = Vector2(420, 128)
+theme_override_styles/panel = ExtResource("1_j4jpt")
+script = ExtResource("2_sgif5")
+PanelExtensionOn = ExtResource("2_83oov")
+PanelExtensionOff = ExtResource("1_j4jpt")
+ToggleButton = NodePath("Content/HBoxContainer/Check")
+
+[node name="InfoAnchor" type="Control" parent="." unique_id=1679362421]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=750591588]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Content" unique_id=1102687339]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_qqeh4")
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Content" unique_id=254389811]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+texture = ExtResource("4_j4jpt")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Desc" type="Label" parent="Content" unique_id=149542170]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_mwdje")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content" unique_id=422140658]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+
+[node name="Button_InfoLocal" type="Button" parent="Content/HBoxContainer" unique_id=1036152283]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_EXTENSION_INFO_LOCAL_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_tbqxj")
+icon = ExtResource("7_qqeh4")
+script = ExtResource("8_0jwkc")
+IsAutoTooltip = false
+IsForceLocalWiki = true
+
+[node name="Check" type="CheckButton" parent="Content/HBoxContainer" unique_id=1181713816]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Button_InfoOnline" type="Button" parent="Content/HBoxContainer" unique_id=904495678]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_EXTENSION_INFO_ONLINE_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_tbqxj")
+icon = ExtResource("7_83oov")
+script = ExtResource("8_0jwkc")
+IsAutoTooltip = false
+IsForceRemoteWiki = true
+
+[connection signal="toggled" from="Content/HBoxContainer/Check" to="." method="OnToggleButtonToggleExtension"]

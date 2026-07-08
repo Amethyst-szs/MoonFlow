@@ -11,6 +11,12 @@ public partial class WikiAccessButton : Button
 {
 	[Export]
 	private WikiAccessorResource WikiTarget;
+	[Export]
+	private bool IsAutoTooltip = true;
+	[Export]
+	private bool IsForceLocalWiki = false;
+	[Export]
+	private bool IsForceRemoteWiki = false;
 
 	private string TooltipTextBase = "";
 
@@ -25,12 +31,23 @@ public partial class WikiAccessButton : Button
 		VisibilityChanged += SetupTooltipText;
 	}
 
-	public override void _Pressed() { WikiTarget.OpenWiki(); }
+	public override void _Pressed()
+	{
+		if (IsForceLocalWiki)
+			WikiTarget.OpenWikiLocal();
+		else if (IsForceRemoteWiki)
+			WikiTarget.OpenWikiRemote();
+		else
+			WikiTarget.OpenWiki();
+	}
 
 	#region Utility
 
 	private void SetupTooltipText()
 	{
+		if (!IsAutoTooltip)
+			return;
+
 		const string context = "WIKI_BUTTON_TOOLTIP";
 		var pathBase = EngineSettings.GetWiki();
 

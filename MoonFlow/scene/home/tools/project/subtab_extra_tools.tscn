@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://67dntjdqrfqd"]
+
+[ext_resource type="Script" uid="uid://dtbby6yp1k3e1" path="res://scene/home/tools/project/SubtabExtraTools.cs" id="1_yp12n"]
+[ext_resource type="Texture2D" uid="uid://bw1k40r0kuu1r" path="res://asset/nindot/special/checkpoint_white.png" id="2_rfpcm"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_twu3r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g16ky"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1jbpu"]
+font = ExtResource("2_twu3r")
+font_size = 18
+
+[node name="Content" type="VBoxContainer" unique_id=352154477]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_yp12n")
+
+[node name="HSeparator5" type="HSeparator" parent="." unique_id=141845995]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g16ky")
+
+[node name="Label_SystemData" type="Label" parent="." unique_id=143427680]
+layout_mode = 2
+mouse_filter = 1
+text = "HOME_TAB_PROJECT_EXTRA_TOOLS_SYSTEM_DATA_HEADER"
+label_settings = SubResource("LabelSettings_1jbpu")
+
+[node name="HSeparator4" type="HSeparator" parent="." unique_id=101683939]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g16ky")
+
+[node name="Button_CheckpointListTask" type="Button" parent="." unique_id=674341693]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
+icon = ExtResource("2_rfpcm")
+alignment = 0
+
+[connection signal="pressed" from="Button_CheckpointListTask" to="." method="OnGenerateDatabaseCheckpointFlag"]

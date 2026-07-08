@@ -45,10 +45,18 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public string GetSignature() { return Data.Signature; }
 
     public bool IsFirstBoot() { return Data.Flags.FirstBoot; }
-    public bool IsDebug() { return Data.Flags.DebugProject; }
     public bool IsAlwaysUpgrade() { return Data.Flags.AlwaysUpgrade; }
+    public bool IsAcceptedExtensionWarning() { return Data.Flags.AcceptedExtensionWarning; }
+    public bool IsDebug() { return Data.Flags.DebugProject; }
 
     public bool IsUseProjectExtensionColorPaletteEditor() { return IsUseProjectExtension(ExtensionType.ColorPaletteEditor); }
+    public bool IsUseProjectExtension(string extensionType)
+    {
+        if (!Enum.TryParse(extensionType, out ExtensionType type))
+            throw new Exception(extensionType + " is not a valid project extension type");
+
+        return IsUseProjectExtension(type);
+    }
     public bool IsUseProjectExtension(ExtensionType type) { return Data.ExtensionList.Contains(type.ToString()); }
 
     // ~~~~~~~~~~~~~~~~ Target ~~~~~~~~~~~~~~~ //
@@ -74,8 +82,11 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
 
     #region Write Utility
 
+    public void ForceChangeDefaultLanguage(string lang) { Data.DefaultLanguage = lang; }
+
     public void ClearFirstBootFlag() { Data.Flags.FirstBoot = false; }
     public void SetAlwaysAcceptUpgradeFlag() { Data.Flags.AlwaysUpgrade = true; }
+    public void SetAcceptedExtensionWarning(bool state) { Data.Flags.AcceptedExtensionWarning = state; }
     public void SetDebugState(bool isDebug) { Data.Flags.DebugProject = isDebug; }
     public void EnsureSignature() { _ = Data.Signature; } // The signature's get method generates a sig if not present
 

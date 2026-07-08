@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://pqau8hflc3uk"]
+
+[ext_resource type="Script" uid="uid://ngjbg3thuodi" path="res://scene/home/tools/project/SubtabConfigInfo.cs" id="1_i1vsq"]
+[ext_resource type="Texture2D" uid="uid://tpp5bvswoacd" path="res://asset/material/status/question.svg" id="2_fqkcr"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="3_4kyk3"]
+[ext_resource type="Script" uid="uid://bmda4txx4p70m" path="res://scene/common/language/LangPicker.cs" id="3_w6i2u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kyk3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4kyk3"]
+font = ExtResource("3_4kyk3")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_w6i2u"]
+font = ExtResource("3_4kyk3")
+font_size = 21
+font_color = Color(1, 0.3, 0.3, 1)
+
+[node name="Content" type="VBoxContainer" unique_id=317608512 node_paths=PackedStringArray("LineNickname")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_i1vsq")
+LineNickname = NodePath("Nickname/Line_Nickname")
+
+[node name="HSeparator5" type="HSeparator" parent="." unique_id=639518157]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4kyk3")
+
+[node name="Label_LocalOnly" type="Label" parent="." unique_id=264904670]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_LOCAL_ONLY_CONFIG_HEADER_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "HOME_TAB_PROJECT_LOCAL_ONLY_CONFIG_HEADER"
+label_settings = SubResource("LabelSettings_4kyk3")
+
+[node name="HSeparator4" type="HSeparator" parent="." unique_id=160355788]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4kyk3")
+
+[node name="Nickname" type="HBoxContainer" parent="." unique_id=497059005]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label_Nickname" type="Label" parent="Nickname" unique_id=1855741743]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
+
+[node name="Line_Nickname" type="LineEdit" parent="Nickname" unique_id=1486518224]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+placeholder_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
+max_length = 32
+
+[node name="TextureRect" type="TextureRect" parent="Nickname" unique_id=1984186670]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+mouse_default_cursor_shape = 16
+texture = ExtResource("2_fqkcr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1463323030]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label_DangerZone" type="Label" parent="." unique_id=502377719]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_DANGER_ZONE_HEADER_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "HOME_TAB_PROJECT_DANGER_ZONE_HEADER"
+label_settings = SubResource("LabelSettings_w6i2u")
+
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=1923359008]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4kyk3")
+
+[node name="DefaultLanguage" type="HBoxContainer" parent="." unique_id=1120684689]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label_DefaultLanguage" type="Label" parent="DefaultLanguage" unique_id=1034745794]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_DEFAULT_LANGUAGE_HEADER_TOOLTIP"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "HOME_TAB_PROJECT_DEFAULT_LANGUAGE_HEADER"
+
+[node name="Option_DefaultLanguage" type="OptionButton" parent="DefaultLanguage" unique_id=2100996502]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("3_w6i2u")
+AutomaticallySetGameVersion = true
+
+[node name="TextureRect" type="TextureRect" parent="DefaultLanguage" unique_id=678919795]
+layout_mode = 2
+tooltip_text = "HOME_TAB_PROJECT_DEFAULT_LANGUAGE_HEADER_TOOLTIP"
+mouse_default_cursor_shape = 16
+texture = ExtResource("2_fqkcr")
+expand_mode = 3
+stretch_mode = 5
+
+[connection signal="text_changed" from="Nickname/Line_Nickname" to="." method="OnTextSubmittedProjectNickname"]
+[connection signal="LangSelectedByUser" from="DefaultLanguage/Option_DefaultLanguage" to="." method="OnDefaultLanguageChangeSelectionMade"]

@@ -41,5 +41,8 @@ To navigate the documentation, use the sidebar to pick out what you're looking f
 - [FTP File Syncing](tools/ftp_syncing.md)
 - [Command Line Arguments](tools/command_line_arguments.md)
 
+## Exefs Extensions
+- [Color Palette Editor](exefs_extensions/color_palette_editor.md)
+
 ### Contributing
 - [Repository Outline](contributing/repo_outline.md)

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://4olgr72mqv5p"]
+
+[ext_resource type="Script" uid="uid://d3yhuvhhxg60k" path="res://scene/home/tools/project/SubtabExtensions.cs" id="1_6bmmi"]
+[ext_resource type="PackedScene" uid="uid://diqnbbspn2hhb" path="res://scene/home/tools/project/common/extension_toggle_panel.tscn" id="2_ej4b6"]
+[ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_h36m8"]
+[ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="3_mwdje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4toeo"]
+font = ExtResource("2_h36m8")
+font_size = 19
+
+[sub_resource type="LabelSettings" id="LabelSettings_h36m8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h36m8"]
+
+[node name="Content" type="VBoxContainer" unique_id=1473111447 node_paths=PackedStringArray("ExtensionList", "WarningAcceptButtonHolder")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 73.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("1_6bmmi")
+ExtensionList = NodePath("Body")
+WarningAcceptButtonHolder = NodePath("WarningAccept")
+
+[node name="WarningAccept" type="VBoxContainer" parent="." unique_id=1993492814]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Header" type="Label" parent="WarningAccept" unique_id=2023432365]
+layout_mode = 2
+text = "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING"
+label_settings = SubResource("LabelSettings_4toeo")
+
+[node name="Desc" type="Label" parent="WarningAccept" unique_id=1301845300]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING_DESC"
+label_settings = SubResource("LabelSettings_h36m8")
+autowrap_mode = 3
+
+[node name="VBox_AcceptField" type="VBoxContainer" parent="WarningAccept" unique_id=1057328779]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="WarningAccept/VBox_AcceptField" unique_id=1114202646]
+layout_mode = 2
+
+[node name="Button_Accept" type="Button" parent="WarningAccept/VBox_AcceptField" unique_id=831536882]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING_ACCEPT_BUTTON"
+alignment = 0
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=195874808]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_h36m8")
+
+[node name="Body" type="HFlowContainer" parent="." unique_id=1481103670]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+
+[node name="ColorPaletteEditor" parent="Body" unique_id=762045616 instance=ExtResource("2_ej4b6")]
+layout_mode = 2
+ExtensionId = "ColorPaletteEditor"
+
+[node name="Header" parent="Body/ColorPaletteEditor/Content" parent_id_path=PackedInt32Array(762045616, 750591588) index="0" unique_id=1102687339]
+text = "HOME_TAB_PROJECT_EXTENSION_COLOR_PALETTE_HEADER"
+
+[node name="Icon" parent="Body/ColorPaletteEditor/Content" parent_id_path=PackedInt32Array(762045616, 750591588) index="1" unique_id=254389811]
+texture = ExtResource("3_mwdje")
+
+[node name="Desc" parent="Body/ColorPaletteEditor/Content" parent_id_path=PackedInt32Array(762045616, 750591588) index="2" unique_id=149542170]
+text = "HOME_TAB_PROJECT_EXTENSION_COLOR_PALETTE_DESCRIPTION"
+
+[connection signal="pressed" from="WarningAccept/VBox_AcceptField/Button_Accept" to="." method="OnWarningAcceptButtonPressed"]
+
+[editable path="Body/ColorPaletteEditor"]

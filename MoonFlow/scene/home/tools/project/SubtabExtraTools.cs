@@ -8,7 +8,7 @@ using MoonFlow.Scene.EditorMsbt;
 
 namespace MoonFlow.Scene.Home;
 
-public partial class TabProject : VBoxContainer
+public partial class SubtabExtraTools : VBoxContainer
 {
     private void OnGenerateDatabaseCheckpointFlag()
 	{
@@ -19,6 +19,4 @@ public partial class TabProject : VBoxContainer
 		var db = ProjectManager.GetDB();
 		CheckpointFlagDbGenerator.Generate(db, display.UpdateProgress);
 	}
-
-    private static void OnOpenMsbpColorEditor() { AppSceneServer.CreateApp<MsbpColorEditor>(); }
 }

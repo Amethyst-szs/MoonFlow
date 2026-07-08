@@ -11,7 +11,7 @@ MoonFlow is a Super Mario Odyssey modding tool. Unlike lots of similar mod devel
 
 [^1]: If you're a developer wanting to use this project as a starting point for research other Action Library & LMS games, there is a fair bit of modularity built into the low-level Nindot library. It is not built with the intention of supporting other games however, so keep this in mind
 
-This tool is a GUI for RomFS development. It features no built-in support for reading, editing, or creating ExeFS patching. This means that out-of-the-box there is no way to integrate your custom game code into the tool if you drastically change the game's behavior.
+This tool is a GUI for RomFS development. It features no built-in support for reading, editing, or creating exefs patching. This means that out-of-the-box there is no way to integrate your custom game code into the tool if you drastically change the game's behavior.
 
 The mission of this project is *not* to be an "everything tool". It is not a replacement for any pre-existing level editors, model editors, texture editors, or any other tools. This is an expansion and improvement to your existing toolkit, not a complete replacement and likely never will be.
 

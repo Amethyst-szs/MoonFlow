@@ -16,6 +16,11 @@
 			"user_data.md"
 		]
 	},
+	"exefs_extensions": {
+		"__": [
+			"color_palette_editor.md"
+		]
+	},
 	"kingdoms": {
 		"__": [
 			"basics_kingdom_editor.md",

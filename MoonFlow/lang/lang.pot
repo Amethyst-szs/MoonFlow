@@ -116,6 +116,10 @@
 # res://scene/editor/msbt/actionbar/actionbar_msbt_extra.tscn
 # res://scene/editor/msbt/components/window_mass_add_labels.tscn
 # res://asset/shader/graph/background/graph_background_mat.tres
+# res://scene/home/tools/project/subtab_config_info.tscn
+# res://scene/home/tools/project/subtab_extra_tools.tscn
+# res://scene/home/tools/project/subtab_extensions.tscn
+# res://scene/home/tools/project/common/extension_toggle_panel.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -2552,7 +2556,7 @@ msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW"
 msgstr ""
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
-msgid "Create New Color"
+msgid "MSBP_COLOR_EDITOR_ADD_NEW_COLOR"
 msgstr ""
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
@@ -4019,47 +4023,15 @@ msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
-msgid "Config"
+msgid "HOME_TAB_PROJECT_HEADER_TAB_CONFIG"
 msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
+msgid "HOME_TAB_PROJECT_HEADER_TAB_TOOLS"
 msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_SYSTEM_DATA_TOOLS"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MSBP_TOOLS"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "Tools"
-msgstr ""
-
-#: scene/home/tools/project/tab_project.tscn
-msgid "Extensions"
+msgid "HOME_TAB_PROJECT_HEADER_TAB_EXTENSION"
 msgstr ""
 
 #: async/gui/async_display.tscn
@@ -4357,6 +4329,78 @@ msgstr ""
 #: asset/shader/graph/background/graph_background_mat.tres
 msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
 msgid "Swirl"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_LOCAL_ONLY_CONFIG_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_LOCAL_ONLY_CONFIG_HEADER"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_HEADER"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_NICKNAME_PLACEHOLDER"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DANGER_ZONE_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DANGER_ZONE_HEADER"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DEFAULT_LANGUAGE_HEADER_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/project/subtab_config_info.tscn
+msgid "HOME_TAB_PROJECT_DEFAULT_LANGUAGE_HEADER"
+msgstr ""
+
+#: scene/home/tools/project/subtab_extra_tools.tscn
+msgid "HOME_TAB_PROJECT_EXTRA_TOOLS_SYSTEM_DATA_HEADER"
+msgstr ""
+
+#: scene/home/tools/project/subtab_extra_tools.tscn
+msgid "HOME_TAB_PROJECT_SYSTEM_DATA_GENERATE_CHECKPOINT_DATABASE"
+msgstr ""
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING"
+msgstr ""
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING_DESC"
+msgstr ""
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_EXECUTABLE_PATCH_REQUIRED_WARNING_ACCEPT_BUTTON"
+msgstr ""
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_COLOR_PALETTE_HEADER"
+msgstr ""
+
+#: scene/home/tools/project/subtab_extensions.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_COLOR_PALETTE_DESCRIPTION"
+msgstr ""
+
+#: scene/home/tools/project/common/extension_toggle_panel.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_INFO_LOCAL_TOOLTIP"
+msgstr ""
+
+#: scene/home/tools/project/common/extension_toggle_panel.tscn
+msgid "HOME_TAB_PROJECT_EXTENSION_INFO_ONLINE_TOOLTIP"
 msgstr ""
 
 msgid "MoonFlow"
