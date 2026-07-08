@@ -2544,23 +2544,31 @@ msgid "MSBP_COLOR_EDITOR_APP_HEADER"
 msgstr ""
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
-msgid "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
-msgstr ""
-
-#: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
 msgstr ""
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
-msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_BLACK"
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW"
 msgstr ""
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
-msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_WHITE"
+msgid "Create New Color"
+msgstr ""
+
+#: scene/editor/msbp/color/msbp_color_editor.tscn
+msgid "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
 msgstr ""
 
 #: scene/editor/msbp/color/color_editor_element.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
+msgstr ""
+
+#: scene/editor/msbp/color/color_editor_element.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_CHECKBOX_GRADIANT"
+msgstr ""
+
+#: scene/editor/msbp/color/color_editor_element.tscn
+msgid "MSBP_COLOR_EDITOR_PREVIEW_BACKGROUND_TOOLTIP"
 msgstr ""
 
 #: scene/editor/msbp/color/color_editor_element_preview.tscn
@@ -4011,6 +4019,10 @@ msgid "HOME_TAB_TEXT_DIALOG_CONFIRM_DELETE_CANCEL"
 msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
+msgid "Config"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
 msgid "HOME_TAB_PROJECT_MOONFLOW_PROJECT_TOOLS"
 msgstr ""
 
@@ -4040,6 +4052,14 @@ msgstr ""
 
 #: scene/home/tools/project/tab_project.tscn
 msgid "HOME_TAB_PROJECT_MSBP_TOOL_COLOR_LIST"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "Tools"
+msgstr ""
+
+#: scene/home/tools/project/tab_project.tscn
+msgid "Extensions"
 msgstr ""
 
 #: async/gui/async_display.tscn

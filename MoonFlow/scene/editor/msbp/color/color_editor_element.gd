@@ -9,8 +9,8 @@ signal color_bottom_picker_request(source: Node)
 @onready var picker_top: Button = $Panel_Color/Layout/VBox_Pickers/Button_PickerTop
 @onready var picker_bottom: Button = $Panel_Color/Layout/VBox_Pickers/Button_PickerBottom
 
-@onready var preview_b: RichTextLabel = $Panel_PreviewBlack/Preview
-@onready var preview_w: RichTextLabel = $Panel_PreviewWhite/Preview
+@onready var preview_panel: ColorPickerButton = $PanelButton_Preview
+@onready var preview: RichTextLabel = $PanelButton_Preview/Margin/Preview
 
 func setup(n: String, top: Color, bottom: Color, is_gradiant: bool) -> void:
 	name = n
@@ -18,8 +18,10 @@ func setup(n: String, top: Color, bottom: Color, is_gradiant: bool) -> void:
 	gradiant_check.button_pressed = is_gradiant
 	picker_bottom.visible = is_gradiant
 	
-	preview_b.material = preview_b.material.duplicate()
-	preview_w.material = preview_w.material.duplicate()
+	if top.get_luminance() >= 0.5:
+		preview_panel.color = Color.BLACK
+	else:
+		preview_panel.color = Color.GHOST_WHITE
 	
 	set_colors(top, bottom)
 
@@ -27,10 +29,7 @@ func set_colors(top: Color, bottom: Color) -> void:
 	picker_top.self_modulate = top
 	picker_bottom.self_modulate = bottom
 	
-	(preview_b.material as ShaderMaterial).set_shader_parameter("first_color", top)
-	(preview_w.material as ShaderMaterial).set_shader_parameter("first_color", top)
-	(preview_b.material as ShaderMaterial).set_shader_parameter("second_color", bottom)
-	(preview_w.material as ShaderMaterial).set_shader_parameter("second_color", bottom)
+	preview.set_shader_colors(top, bottom)
 
 func is_gradient_mode() -> bool:
 	return gradiant_check.button_pressed
@@ -42,12 +41,16 @@ func _on_color_bottom_picker_request() -> void:
 	color_bottom_picker_request.emit(self)
 
 func _on_line_color_name_changed(txt: String) -> void:
-	# If there is already another color with this new name, cancel edit
-	if get_parent().find_child(txt, false, false):
-		var caret = line.caret_column
-		line.text = name
-		line.caret_column = caret
-		return
+	# This code can be ignored due to the unique color check done by the
+	# resolver. If the user leaves a duplicate name, the duplicate
+	# will just be renamed to "Color_#"
 	
-	name_modified.emit(name, txt)
+	# If there is already another color with this new name, cancel edit
+	#if get_parent().find_child(txt, false, false):
+		#var caret = line.caret_column
+		#line.text = name
+		#line.caret_column = caret
+		#return
+	
+	name_modified.emit(self, txt)
 	name = txt

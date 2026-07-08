@@ -8,7 +8,7 @@ using MoonFlow.Scene.EditorMsbt;
 
 namespace MoonFlow.Scene.Home;
 
-public partial class TabProject : HSplitContainer
+public partial class TabProject : VBoxContainer
 {
     private void OnGenerateDatabaseCheckpointFlag()
 	{

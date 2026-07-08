@@ -54,13 +54,12 @@ public class ProjectColorResolver
     {
         Project = projArc;
         Config = config;
-        Config.SetUseExtensionTextColorEdit(true);
         ColorGradiationList.Clear();
 
         var projArcContent = projArc.Sarc.Content;
 
         bool isExistGradiationData = projArcContent.TryGetValue(ExtensionFileName, out ArraySegment<byte> gradiationRawData);
-        if (!Config.IsUseExtensionTextColorEdit() || !isExistGradiationData)
+        if (!Config.IsUseProjectExtensionColorPaletteEditor() || !isExistGradiationData)
         {
             for (int i = 0; i < Project.Color_GetCount(); i++)
             {
@@ -90,7 +89,7 @@ public class ProjectColorResolver
 
     public void TryWriteColorData()
     {
-        if (!Config.IsUseExtensionTextColorEdit())
+        if (!Config.IsUseProjectExtensionColorPaletteEditor())
         {
             Project.Sarc.Content.Remove(ExtensionFileName);
             return;
@@ -137,6 +136,15 @@ public class ProjectColorResolver
             return Colors.White;
 
         return ColorGradiationList[idx].Bottom;
+    }
+
+    public bool IsColorNameUnique(string name)
+    {
+        foreach (var color in ColorGradiationList)
+            if (color.Name == name)
+                return false;
+        
+        return true;
     }
 
     private static string GetColorNameFromDictOrMsbp(Dictionary<string, object> dict, SarcMsbpFile project, int colorIdx)

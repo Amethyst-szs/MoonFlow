@@ -1,13 +1,48 @@
 [gd_scene format=3 uid="uid://f68g2wbg8gpk"]
 
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="1_81uyn"]
+[ext_resource type="Shader" uid="uid://ctlofdwa0jal3" path="res://asset/shader/gradient/label_top_bottom_modulate.gdshader" id="1_gpx5i"]
 [ext_resource type="Script" uid="uid://ckjbjpqwxbpbt" path="res://scene/editor/msbt/tag_edit/anim/preview_beat.gd" id="1_lwk63"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_d6yhc"]
+[ext_resource type="Script" uid="uid://bj4a11wnlwlir" path="res://scene/editor/msbt/tag_edit/anim/preview_tremble.gd" id="5_3rf7a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3rf7a"]
+shader = ExtResource("1_gpx5i")
+shader_parameter/first_color = Color(1, 1, 1, 1)
+shader_parameter/second_color = Color(1, 1, 1, 1)
+shader_parameter/rect_global_pos = Vector2(0, 0)
+shader_parameter/rect_size = Vector2(0, 0)
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_q0bor"]
 script = ExtResource("1_lwk63")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_6xhgh"]
+script = ExtResource("5_3rf7a")
+metadata/_custom_type_script = "uid://bj4a11wnlwlir"
+
+[sub_resource type="GDScript" id="GDScript_gpx5i"]
+script/source = "extends RichTextLabel
+
+func _ready() -> void:
+	material = material.duplicate()
+
+func _process(_delta: float) -> void:
+	var content_scale_factor: float = 1.0 / get_window().content_scale_factor
+	var window_size: Vector2 = Vector2(get_window().size) * content_scale_factor
+	
+	var content_pos: Vector2 = global_position / window_size
+	var content_size: Vector2 = get_global_rect().size / window_size
+	(material as ShaderMaterial).set_shader_parameter(\"rect_global_pos\", content_pos)
+	(material as ShaderMaterial).set_shader_parameter(\"rect_size\", content_size)
+
+func set_shader_colors(top: Color, bottom: Color) -> void:
+	(material as ShaderMaterial).set_shader_parameter(\"first_color\", top)
+	(material as ShaderMaterial).set_shader_parameter(\"second_color\", bottom)
+"
+
 [node name="Preview" type="RichTextLabel" unique_id=900281616]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_3rf7a")
 custom_minimum_size = Vector2(128, 0)
 theme_override_fonts/normal_font = ExtResource("1_81uyn")
 theme_override_fonts/bold_font = ExtResource("2_d6yhc")
@@ -16,4 +51,5 @@ bbcode_enabled = true
 text = "MSBP_COLOR_EDITOR_PREVIEW_TEXT"
 fit_content = true
 shortcut_keys_enabled = false
-custom_effects = [SubResource("RichTextEffect_q0bor")]
+custom_effects = [SubResource("RichTextEffect_q0bor"), SubResource("RichTextEffect_6xhgh")]
+script = SubResource("GDScript_gpx5i")

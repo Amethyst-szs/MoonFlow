@@ -9,6 +9,11 @@ namespace MoonFlow.Project;
 
 public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
 {
+    public enum ExtensionType
+    {
+        ColorPaletteEditor,
+    };
+
     public ProjectLocalConfig LocalConfig { get; private set; } = null;
 
     #region Init
@@ -43,7 +48,8 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public bool IsDebug() { return Data.Flags.DebugProject; }
     public bool IsAlwaysUpgrade() { return Data.Flags.AlwaysUpgrade; }
 
-    public bool IsUseExtensionTextColorEdit() { return Data.Flags.IsUseExtensionTextColorEdit; }
+    public bool IsUseProjectExtensionColorPaletteEditor() { return IsUseProjectExtension(ExtensionType.ColorPaletteEditor); }
+    public bool IsUseProjectExtension(ExtensionType type) { return Data.ExtensionList.Contains(type.ToString()); }
 
     // ~~~~~~~~~~~~~~~~ Target ~~~~~~~~~~~~~~~ //
 
@@ -73,6 +79,32 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
     public void SetDebugState(bool isDebug) { Data.Flags.DebugProject = isDebug; }
     public void EnsureSignature() { _ = Data.Signature; } // The signature's get method generates a sig if not present
 
+    public void SetUseProjectExtensionState(string extensionType, bool state)
+    {
+        if (!Enum.TryParse(extensionType, out ExtensionType type))
+            throw new Exception(extensionType + " is not a valid project extension type");
+    
+        SetUseProjectExtensionState(type, state);
+    }
+    public void SetUseProjectExtensionState(ExtensionType type, bool state)
+    {
+        if (state)
+            EnableUseProjectExtension(type);
+        else
+            DisableUseProjectExtension(type);
+    }
+    public void EnableUseProjectExtension(ExtensionType type)
+    {
+        string key = type.ToString();
+        if (!Data.ExtensionList.Contains(key))
+            Data.ExtensionList.Add(key);
+    }
+    public void DisableUseProjectExtension(ExtensionType type)
+    {
+        string key = type.ToString();
+        Data.ExtensionList.RemoveAll((s) => s == key);
+    }
+
     public void SetEngineTarget(string name, string hash, long time)
     {
         SetEngineTarget(name, hash, DateTime.FromFileTimeUtc(time));
@@ -89,8 +121,6 @@ public class ProjectConfig : ProjectFileFormatBase<ProjectConfigBucketCommon>
         data = Data;
         return true;
     }
-
-    public void SetUseExtensionTextColorEdit(bool state) { Data.Flags.IsUseExtensionTextColorEdit = state; }
 
     #endregion
 }

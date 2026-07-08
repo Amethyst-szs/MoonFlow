@@ -26,6 +26,11 @@ public static partial class ProjectManager
     }
 
     public static ProjectState GetProject() { return Project; }
+    public static ProjectConfig GetConfig()
+    {
+        if (Project == null) return null;
+        return Project.Config;
+    }
     public static RomfsVersion GetRomfsVersion()
     {
         if (Project == null) return RomfsVersion.INVALID_VERSION;

@@ -15,7 +15,4 @@ internal class ProjectConfigBucketFlags
 
     [JsonInclude]
     internal bool DebugProject { get; set; } = false;
-
-    [JsonInclude]
-    internal bool IsUseExtensionTextColorEdit { get; set; } = false;
 };

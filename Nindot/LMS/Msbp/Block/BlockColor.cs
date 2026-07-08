@@ -66,6 +66,8 @@ public class BlockColor(byte[] data, string typeName, int offset, MsbpFile paren
             Colors.Add(new Entry(data, pointer));
             pointer += 0x4;
         }
+
+        return;
     }
 
     protected override uint CalcDataSize()

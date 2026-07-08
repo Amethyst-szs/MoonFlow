@@ -1367,7 +1367,7 @@ msgstr "Select a Kingdom"
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_TAB_SHINE"
-msgstr "Moons"
+msgstr "Power Moons"
 
 #: scene/editor/world/world_editor_app.tscn
 msgid "WORLD_EDITOR_TAB_STAGE"
@@ -2534,32 +2534,37 @@ msgstr ""
 #: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_APP_READ_ONLY_WARNING"
 msgstr ""
-"This editor is currently READ-ONLY! The game seems to use hard-coded color "
-"values instead of this palette table. This editor is fully functional, but "
-"has no impact on the game. If an exefs patch is created to remedy this "
-"problem, the read-only restriction can be lifted."
+"Using this editor requires setting up the color palette extension.\n"
+"Extension list can be found in the project tab of\n"
+"your project's home page."
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
-msgstr "Color Editor"
+msgstr "Color Settings"
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
-msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_BLACK"
-msgstr "Preview (Dark)"
-
-#: scene/editor/msbp/color/msbp_color_editor.tscn
-msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_WHITE"
-msgstr "Preview (Light)"
+msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW"
+msgstr "Customizable Previews"
 
 #: scene/editor/msbp/color/color_editor_element.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_NAME_PLACEHOLDER_TEXT"
 msgstr "Color Name"
 
+#: scene/editor/msbp/color/color_editor_element.tscn
+msgid "MSBP_COLOR_EDITOR_TABLE_CHECKBOX_GRADIANT"
+msgstr "Enable Gradient"
+
+#: scene/editor/msbp/color/color_editor_element.tscn
+msgid "MSBP_COLOR_EDITOR_PREVIEW_BACKGROUND_TOOLTIP"
+msgstr ""
+"Click to change the background color\n"
+"of the text preview"
+
 #: scene/editor/msbp/color/color_editor_element_preview.tscn
 msgid "MSBP_COLOR_EDITOR_PREVIEW_TEXT"
 msgstr ""
-"[center]Preview [b]text[/b] [i]here[/i] [wave]wowie[/wave] [beat]123456[/"
-"beat]"
+"[center]The [b]quick brown[/b] [i]fox[/i] [wave]jumps[/wave] over the "
+"[beat]lazy[/beat] [tremble]dog[/tremble][/center]"
 
 #: scene/editor/event/node/event_flow_node_common.tscn
 msgid "EVENT_FLOW_NODE_NAME_EDIT_PLACEHOLDER"
@@ -4458,6 +4463,9 @@ msgstr "Vortex"
 
 msgid "MoonFlow"
 msgstr "MoonFlow"
+
+#~ msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_PREVIEW_WHITE"
+#~ msgstr "Preview (Light)"
 
 #~ msgctxt "EVENT_GRAPH_BACKGROUND_SHADER"
 #~ msgid "Test"

@@ -3,29 +3,21 @@
 [ext_resource type="Theme" uid="uid://bv475afvceima" path="res://asset/theme/msbp/color/msbp_color_editor.tres" id="1_00ii6"]
 [ext_resource type="StyleBox" uid="uid://dc7dabk10eeb5" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_edit.tres" id="1_m6c5j"]
 [ext_resource type="Script" uid="uid://cysf431v0j837" path="res://scene/editor/msbp/color/color_editor_element.gd" id="2_5xs7q"]
-[ext_resource type="StyleBox" uid="uid://dybfq2wo8ge5x" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_preview_black.tres" id="2_l4ct1"]
 [ext_resource type="Texture2D" uid="uid://dmf5mnl05uvt5" path="res://asset/nindot/lms/icon/System_Color.png" id="3_0d0pn"]
-[ext_resource type="StyleBox" uid="uid://dakwxngoo4qdv" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_element_panel_preview_white.tres" id="3_0x0g4"]
 [ext_resource type="Theme" uid="uid://bgm7xdd8rieur" path="res://asset/theme/common/app_color_swatch_button.tres" id="3_h36ao"]
 [ext_resource type="Shader" uid="uid://3cxnqpc3grs6" path="res://asset/shader/common/color_invert_mono.gdshader" id="4_4qx4e"]
-[ext_resource type="Shader" uid="uid://dxpcpw2fngg8f" path="res://asset/shader/gradient/top_bottom_modulate.gdshader" id="5_bv674"]
 [ext_resource type="Script" uid="uid://du00yf8ptmkni" path="res://scene/common/line_edit/filter_input_to_regex.gd" id="6_c447u"]
 [ext_resource type="PackedScene" uid="uid://f68g2wbg8gpk" path="res://scene/editor/msbp/color/color_editor_element_preview.tscn" id="8_5bfqn"]
+[ext_resource type="Script" uid="uid://cechfydpo4pwi" path="res://scene/common/button/color_picker_button_extra.gd" id="8_gcbwo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_npivg"]
 shader = ExtResource("4_4qx4e")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bv674"]
-shader = ExtResource("5_bv674")
-shader_parameter/first_color = Color(1, 1, 1, 1)
-shader_parameter/second_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yeoac"]
-shader = ExtResource("5_bv674")
-shader_parameter/first_color = Color(1, 1, 1, 1)
-shader_parameter/second_color = Color(1, 1, 1, 1)
-
 [node name="Element" type="HBoxContainer" unique_id=45516529]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 96.0
+grow_horizontal = 2
 theme = ExtResource("1_00ii6")
 script = ExtResource("2_5xs7q")
 
@@ -52,8 +44,9 @@ is_return_if_empty = true
 [node name="Check_GradiantMode" type="CheckBox" parent="Panel_Color/Layout/VBox_Config" unique_id=1843952708]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "MSBP_COLOR_EDITOR_TABLE_CHECKBOX_GRADIANT"
-text_overrun_behavior = 2
+text_overrun_behavior = 1
 
 [node name="VBox_Pickers" type="VBoxContainer" parent="Panel_Color/Layout" unique_id=2018312978]
 layout_mode = 2
@@ -64,6 +57,7 @@ self_modulate = Color(0, 1, 0, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme = ExtResource("3_h36ao")
 
 [node name="Texture_Icon" type="TextureRect" parent="Panel_Color/Layout/VBox_Pickers/Button_PickerTop" unique_id=1263650889]
@@ -88,6 +82,7 @@ self_modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme = ExtResource("3_h36ao")
 
 [node name="Texture_Icon" type="TextureRect" parent="Panel_Color/Layout/VBox_Pickers/Button_PickerBottom" unique_id=420231373]
@@ -107,27 +102,37 @@ grow_vertical = 2
 texture = ExtResource("3_0d0pn")
 expand_mode = 1
 
-[node name="Panel_PreviewBlack" type="PanelContainer" parent="." unique_id=441698400]
+[node name="PanelButton_Preview" type="ColorPickerButton" parent="." unique_id=556475219]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("2_l4ct1")
+tooltip_text = "MSBP_COLOR_EDITOR_PREVIEW_BACKGROUND_TOOLTIP"
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_00ii6")
+color = Color(0.06879827, 0.06879828, 0.06879828, 1)
+edit_alpha = false
+edit_intensity = false
+script = ExtResource("8_gcbwo")
+init_picker_shape = 1
+init_can_add_swatches = false
+init_presets_visible = false
 
-[node name="Preview" parent="Panel_PreviewBlack" unique_id=1563837752 instance=ExtResource("8_5bfqn")]
-material = SubResource("ShaderMaterial_bv674")
+[node name="Margin" type="MarginContainer" parent="PanelButton_Preview" unique_id=1524175836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="Preview" parent="PanelButton_Preview/Margin" unique_id=1563837752 instance=ExtResource("8_5bfqn")]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0, 0, 1, 1)
-
-[node name="Panel_PreviewWhite" type="PanelContainer" parent="." unique_id=1087354640]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("3_0x0g4")
-
-[node name="Preview" parent="Panel_PreviewWhite" unique_id=1269521727 instance=ExtResource("8_5bfqn")]
-material = SubResource("ShaderMaterial_yeoac")
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_colors/default_color = Color(0, 0, 1, 1)
+mouse_filter = 2
 
 [connection signal="text_validated" from="Panel_Color/Layout/VBox_Config/Line_ColorName" to="." method="_on_line_color_name_changed"]
 [connection signal="toggled" from="Panel_Color/Layout/VBox_Config/Check_GradiantMode" to="Panel_Color/Layout/VBox_Pickers/Button_PickerBottom" method="set_visible"]

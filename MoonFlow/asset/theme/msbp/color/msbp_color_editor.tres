@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://bo2ov2pm2ovec" path="res://asset/theme/front_door/stylebox/front_door_button_hover.tres" id="2_ue53d"]
 [ext_resource type="StyleBox" uid="uid://bdw4rs5jxfclg" path="res://asset/theme/front_door/stylebox/front_door_button_hover_pressed.tres" id="3_bp6po"]
 [ext_resource type="StyleBox" uid="uid://px5fuqpp8fob" path="res://asset/theme/front_door/stylebox/front_door_button_pressed.tres" id="5_08nt5"]
+[ext_resource type="StyleBox" uid="uid://bfgjw02pqlueh" path="res://asset/theme/msbp/color/stylebox/msbp_color_editor_picker_panel.tres" id="8_ie8lu"]
 [ext_resource type="FontFile" uid="uid://qavvjusvwj6a" path="res://asset/font/FontRodinDB.otf" id="8_yubxr"]
 [ext_resource type="StyleBox" uid="uid://dwt2fn0qqwydm" path="res://asset/theme/home/stylebox/home_tab_button_disabled.tres" id="9_0sg31"]
 [ext_resource type="StyleBox" uid="uid://b05defux4r3bw" path="res://asset/theme/home/stylebox/home_tab_button_focus.tres" id="10_fjn4h"]
@@ -26,6 +27,8 @@ ColorPickerButton/styles/hover_pressed = ExtResource("3_bp6po")
 ColorPickerButton/styles/normal = ExtResource("1_uxu3e")
 ColorPickerButton/styles/pressed = ExtResource("5_08nt5")
 HBoxContainer/constants/separation = 12
+Panel/styles/panel = ExtResource("8_ie8lu")
+PopupPanel/styles/panel = ExtResource("8_ie8lu")
 TabContainer/fonts/font = ExtResource("8_yubxr")
 TabContainer/styles/tab_disabled = ExtResource("9_0sg31")
 TabContainer/styles/tab_focus = ExtResource("10_fjn4h")

@@ -65,7 +65,7 @@ theme = ExtResource("1_h16wr")
 script = ExtResource("1_l606m")
 LabelHeaderWorldName = NodePath("Panel/HSplit/MapColumn/Layout/Header/Label_World")
 LabelHeaderInternalName = NodePath("Panel/HSplit/MapColumn/Layout/Header/Label_Internal")
-InfoBoxList = [NodePath("Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_PROPERTIES/VBox_Basic"), NodePath("Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_PROPERTIES/VBox_Scenario")]
+InfoBoxList = [NodePath("Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_PROPERTIES/Scroll/VBox/VBox_Basic"), NodePath("Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_PROPERTIES/Scroll/VBox/VBox_Scenario")]
 TabMap = NodePath("Panel/HSplit/MapColumn/Layout/Map")
 TabStageList = NodePath("Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_STAGES")
 VBoxShineList = NodePath("Panel/HSplit/Content/Content/WORLD_EDITOR_TAB_SHINE/Scroll/Content/ShineList")
@@ -138,15 +138,24 @@ layout_mode = 2
 theme = ExtResource("16_kjvln")
 theme_override_styles/panel = ExtResource("11_tue22")
 
-[node name="HBox" type="HBoxContainer" parent="Panel/HSplit/Content/Panel_TabList" unique_id=1544674398]
+[node name="TabScroll" type="ScrollContainer" parent="Panel/HSplit/Content/Panel_TabList" unique_id=199506337]
+layout_mode = 2
+vertical_scroll_mode = 0
+script = ExtResource("15_1ilnw")
+drag_with_mouse = false
+allow_vertical_scroll = false
+force_horizontal_scrolling = true
+metadata/_custom_type_script = "uid://dmsuek6cxe0yc"
+
+[node name="HBox" type="HBoxContainer" parent="Panel/HSplit/Content/Panel_TabList/TabScroll" unique_id=1544674398]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Button_TabShine" type="Button" parent="Panel/HSplit/Content/Panel_TabList/HBox" unique_id=1899755588 node_paths=PackedStringArray("target")]
+[node name="Button_TabShine" type="Button" parent="Panel/HSplit/Content/Panel_TabList/TabScroll/HBox" unique_id=1899755588 node_paths=PackedStringArray("target")]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -154,15 +163,14 @@ action_mode = 0
 shortcut = SubResource("Shortcut_gh544")
 text = "WORLD_EDITOR_TAB_SHINE"
 icon = ExtResource("14_q33et")
-text_overrun_behavior = 1
 icon_alignment = 2
 script = ExtResource("19_2lnn3")
-target = NodePath("../../../Content/WORLD_EDITOR_TAB_SHINE")
+target = NodePath("../../../../Content/WORLD_EDITOR_TAB_SHINE")
 is_default_page = true
 
-[node name="Button_TabStage" type="Button" parent="Panel/HSplit/Content/Panel_TabList/HBox" unique_id=1554965725 node_paths=PackedStringArray("target")]
+[node name="Button_TabStage" type="Button" parent="Panel/HSplit/Content/Panel_TabList/TabScroll/HBox" unique_id=1554965725 node_paths=PackedStringArray("target")]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -170,14 +178,13 @@ action_mode = 0
 shortcut = SubResource("Shortcut_fkocf")
 text = "WORLD_EDITOR_TAB_STAGE"
 icon = ExtResource("12_658qh")
-text_overrun_behavior = 1
 icon_alignment = 2
 script = ExtResource("19_2lnn3")
-target = NodePath("../../../Content/WORLD_EDITOR_TAB_STAGES")
+target = NodePath("../../../../Content/WORLD_EDITOR_TAB_STAGES")
 
-[node name="Button_TabProperties" type="Button" parent="Panel/HSplit/Content/Panel_TabList/HBox" unique_id=2078446954 node_paths=PackedStringArray("target")]
+[node name="Button_TabProperties" type="Button" parent="Panel/HSplit/Content/Panel_TabList/TabScroll/HBox" unique_id=2078446954 node_paths=PackedStringArray("target")]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -185,10 +192,9 @@ action_mode = 0
 shortcut = SubResource("Shortcut_fkocf")
 text = "WORLD_EDITOR_TAB_PROPERTIES"
 icon = ExtResource("15_rvvmc")
-text_overrun_behavior = 1
 icon_alignment = 2
 script = ExtResource("19_2lnn3")
-target = NodePath("../../../Content/WORLD_EDITOR_TAB_PROPERTIES")
+target = NodePath("../../../../Content/WORLD_EDITOR_TAB_PROPERTIES")
 
 [node name="Content" type="PanelContainer" parent="Panel/HSplit/Content" unique_id=1825969503]
 layout_mode = 2

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -52,6 +53,9 @@ public class ProjectConfigBucketCommon : IProjectFileFormatDataRoot
         }
         set => _signature = value;
     }
+
+    [JsonInclude]
+    internal List<string> ExtensionList = [];
 
     #endregion
 

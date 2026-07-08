@@ -20,25 +20,26 @@ public partial class MsbpColorEditor : AppScene
 	private Popup ColorPickerHolder;
 	[Export]
 	private ColorPicker ColorPicker;
+	[Export]
+	private Container NoExtensionWarning;
 
 	private Node ColorPickerTarget = null;
 	private bool IsEditFocusBottom = false;
 
 	protected override void AppInit()
 	{
+		// Ensure extension is enabled
+		ProjectConfig config = ProjectManager.GetConfig();
+		if (config == null || !config.IsUseProjectExtensionColorPaletteEditor())
+		{
+			NoExtensionWarning.Show();
+			return;
+		}
+
 		// Create color table
 		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
 		foreach (var color in colorResolver.ColorGradiationList)
-		{
-			var element = ElementScene.Instantiate<HBoxContainer>();
-			ElementHolder.AddChild(element);
-
-			element.Call("setup", color.Name, color.Top, color.Bottom, color.IsGradient);
-
-			element.Connect("name_modified", Callable.From(new Action<Node, string>(OnColorNameChanged)));
-			element.Connect("color_top_picker_request", Callable.From(new Action<Node>(OnColorTopPickerRequest)));
-			element.Connect("color_bottom_picker_request", Callable.From(new Action<Node>(OnColorBottomPickerRequest)));
-		}
+			CreateAndAddColorEditor(color);
 
 		// Setup signals with header
 		var header = ProjectManager.SceneRoot.NodeHeader;
@@ -124,7 +125,10 @@ public partial class MsbpColorEditor : AppScene
 	private void OnColorNameChanged(Node source, string newName)
 	{
 		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
-		int targetIdx = ColorPickerTarget.GetIndex();
+		int targetIdx = source.GetIndex();
+
+		if (!colorResolver.IsColorNameUnique(newName))
+			newName = CreateUniqueColorName(colorResolver);
 
 		var gradiation = colorResolver.ColorGradiationList[targetIdx];
 		gradiation.Name = newName;
@@ -133,9 +137,52 @@ public partial class MsbpColorEditor : AppScene
 		IsModified = true;
 	}
 
+	private void OnAddNewColorPressed()
+	{
+		var colorResolver = ProjectManager.GetMSBPHolder().ColorResolver;
+		string newItemName = CreateUniqueColorName(colorResolver);
+
+		ProjectColorResolver.ColorGradiation color = new (newItemName, Colors.White);
+		colorResolver.ColorGradiationList.Add(color);
+
+		CreateAndAddColorEditor(color);
+
+		IsModified = true;
+	}
+
 	#endregion
 
 	#region Utility
+
+	private void CreateAndAddColorEditor(ProjectColorResolver.ColorGradiation info)
+	{
+		var element = ElementScene.Instantiate<HBoxContainer>();
+		ElementHolder.AddChild(element);
+
+		element.Call("setup", info.Name, info.Top, info.Bottom, info.IsGradient);
+
+		element.Connect("name_modified", Callable.From(new Action<Node, string>(OnColorNameChanged)));
+		element.Connect("color_top_picker_request", Callable.From(new Action<Node>(OnColorTopPickerRequest)));
+		element.Connect("color_bottom_picker_request", Callable.From(new Action<Node>(OnColorBottomPickerRequest)));
+	}
+
+	private string CreateUniqueColorName(ProjectColorResolver resolver)
+	{
+		int newItemIdx = ElementHolder.GetChildCount();
+		string newItemName = null;
+		while (newItemName == null)
+		{
+			newItemName = "Color_" + newItemIdx.ToString();
+
+			if (!resolver.IsColorNameUnique(newItemName))
+			{
+				newItemName = null;
+				newItemIdx += 1;
+			}
+		}
+
+		return newItemName;
+	}
 
 	private static Color GetTopColor(Node source)
 	{
