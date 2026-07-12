@@ -3967,6 +3967,10 @@ msgid "HOME_TAB_TEXT_TRANSLATION_DEFAULT_LANG_WARNING"
 msgstr ""
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_EXTENSION_BUTTON_COLOR_PALETTE_EDITOR_BUTTON"
+msgstr ""
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr ""
 

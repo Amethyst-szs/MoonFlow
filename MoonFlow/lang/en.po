@@ -4055,6 +4055,10 @@ msgstr ""
 "below!"
 
 #: scene/home/tools/msbt/tab_msbt_base.tscn
+msgid "HOME_TAB_EXTENSION_BUTTON_COLOR_PALETTE_EDITOR_BUTTON"
+msgstr "Color Palette Editor (Extension)"
+
+#: scene/home/tools/msbt/tab_msbt_base.tscn
 msgid "HOME_TAB_NEW_FILE_TOOLTIP"
 msgstr "New File"
 

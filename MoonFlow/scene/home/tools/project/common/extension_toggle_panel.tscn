@@ -15,7 +15,7 @@ font = ExtResource("6_83oov")
 
 [sub_resource type="LabelSettings" id="LabelSettings_mwdje"]
 font_size = 12
-font_color = Color(1, 1, 1, 0.7882353)
+font_color = Color(1, 1, 1, 0.90588236)
 
 [node name="ExtensionTogglePanel" type="PanelContainer" unique_id=762045616 node_paths=PackedStringArray("ToggleButton")]
 custom_minimum_size = Vector2(420, 128)
@@ -32,6 +32,7 @@ size_flags_vertical = 0
 
 [node name="Content" type="VBoxContainer" parent="." unique_id=750591588]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Header" type="Label" parent="Content" unique_id=1102687339]
 layout_mode = 2

@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://g3gxcj4c4niq" path="res://asset/material/file/cut.svg" id="12_y4ly6"]
 [ext_resource type="Texture2D" uid="uid://8lrc2fwgcutm" path="res://asset/material/file/paste.svg" id="13_u1bdq"]
 [ext_resource type="Texture2D" uid="uid://0qfv1wl6bwps" path="res://asset/material/file/duplicate.svg" id="14_4agf0"]
+[ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="14_fbv2x"]
+[ext_resource type="Script" uid="uid://c4qgigl58kace" path="res://scene/home/tools/msbt/HBoxExtensionButtons.cs" id="14_tdq3c"]
 [ext_resource type="Texture2D" uid="uid://cpbi4wkt4nu1l" path="res://asset/material/file/add.svg" id="15_xpyjb"]
 [ext_resource type="Texture2D" uid="uid://dkpomoifywrox" path="res://asset/material/file/rename.svg" id="16_42xei"]
 [ext_resource type="Texture2D" uid="uid://y0xavbnqd465" path="res://asset/material/file/trash.svg" id="17_fc737"]
@@ -275,6 +277,24 @@ layout_mode = 2
 theme = SubResource("Theme_fwkao")
 alignment = 1
 
+[node name="HBox_ExtensionButtons" type="HBoxContainer" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=30203959 node_paths=PackedStringArray("ButtonMapping")]
+layout_mode = 2
+script = ExtResource("14_tdq3c")
+ButtonMapping = {
+"ColorPaletteEditor": NodePath("Button_ColorMsbpExt")
+}
+
+[node name="Button_ColorMsbpExt" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter/HBox_ExtensionButtons" unique_id=878059282]
+self_modulate = Color(1.1923875, 1.1923875, 1.1923875, 1)
+layout_mode = 2
+tooltip_text = "HOME_TAB_EXTENSION_BUTTON_COLOR_PALETTE_EDITOR_BUTTON"
+mouse_default_cursor_shape = 2
+icon = ExtResource("14_fbv2x")
+
+[node name="VSep2" type="VSeparator" parent="FileList/FileList/Footer/HBox_SourceTextFooter/HBox_ExtensionButtons" unique_id=293246625]
+self_modulate = Color(1, 1, 1, 0.439216)
+layout_mode = 2
+
 [node name="Button_Copy" type="Button" parent="FileList/FileList/Footer/HBox_SourceTextFooter" unique_id=161282687]
 layout_mode = 2
 tooltip_text = "HOME_TAB_COPY_FILE_TOOLTIP"
@@ -329,6 +349,7 @@ shortcut = SubResource("Shortcut_stxmf")
 icon = ExtResource("17_fc737")
 
 [node name="VBox_TranslationPicker" type="VBoxContainer" parent="FileList/FileList/Footer" unique_id=692024144]
+visible = false
 layout_mode = 2
 
 [node name="Label_Header" type="Label" parent="FileList/FileList/Footer/VBox_TranslationPicker" unique_id=1752334345]
@@ -584,6 +605,7 @@ script = ExtResource("24_wjb0a")
 [connection signal="toggled" from="FileList/HBox_Filtering/Menu_Filter" to="FileList/HBox_Filtering/Menu_Filter" method="_on_toggled"]
 [connection signal="SortMethodChanged" from="FileList/HBox_Filtering/Menu_Sort" to="." method="OnSortModeChanged"]
 [connection signal="toggled" from="FileList/HBox_Filtering/Button_UseOrganization" to="." method="OnCheckUseOrganizationToggled"]
+[connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/HBox_ExtensionButtons/Button_ColorMsbpExt" to="FileList/FileList/Footer/HBox_SourceTextFooter/HBox_ExtensionButtons" method="OnExtensionButtonColorPaletteEditorPressed"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Copy" to="TabMsbtFileAccessor" method="OnCopyFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Cut" to="TabMsbtFileAccessor" method="OnCutFile"]
 [connection signal="pressed" from="FileList/FileList/Footer/HBox_SourceTextFooter/Button_Paste" to="TabMsbtFileAccessor" method="OnPasteFile"]
