@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://diqnbbspn2hhb" path="res://scene/home/tools/project/common/extension_toggle_panel.tscn" id="2_ej4b6"]
 [ext_resource type="FontFile" uid="uid://ck8hgmw2q13d2" path="res://asset/font/FontRodinEB.otf" id="2_h36m8"]
 [ext_resource type="Texture2D" uid="uid://eyl1cf5stiss" path="res://asset/nindot/lms/icon/System_Color_ForWheel.png" id="3_mwdje"]
+[ext_resource type="Resource" uid="uid://boxxqwitwwdu4" path="res://addons/wiki/paths/extension_color_palette_editor.tres" id="5_4toeo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4toeo"]
 font = ExtResource("2_h36m8")
@@ -74,6 +75,12 @@ texture = ExtResource("3_mwdje")
 
 [node name="Desc" parent="Body/ColorPaletteEditor/Content" parent_id_path=PackedInt32Array(762045616, 750591588) index="2" unique_id=149542170]
 text = "HOME_TAB_PROJECT_EXTENSION_COLOR_PALETTE_DESCRIPTION"
+
+[node name="Button_InfoLocal" parent="Body/ColorPaletteEditor/Content/HBoxContainer" parent_id_path=PackedInt32Array(762045616, 422140658) index="0" unique_id=1036152283]
+WikiTarget = ExtResource("5_4toeo")
+
+[node name="Button_InfoOnline" parent="Body/ColorPaletteEditor/Content/HBoxContainer" parent_id_path=PackedInt32Array(762045616, 422140658) index="2" unique_id=904495678]
+WikiTarget = ExtResource("5_4toeo")
 
 [connection signal="pressed" from="WarningAccept/VBox_AcceptField/Button_Accept" to="." method="OnWarningAcceptButtonPressed"]
 

@@ -202,7 +202,6 @@ func _convert_markdown(source_text: String = "") -> String:
 	var within_backtick_block := false
 	var within_tilde_block := false
 	var within_code_block := false
-	var current_code_block_char_count: int
 	_within_table = false
 	_table_row = -1
 	_skip_line_break = false
@@ -236,32 +235,28 @@ func _convert_markdown(source_text: String = "") -> String:
 		# Handle fenced code blocks:
 		if not within_tilde_block and _denotes_fenced_code_block(line, "`"):
 			if within_backtick_block:
-				if line.strip_edges().length() >= current_code_block_char_count:
-					_converted_text = _converted_text.trim_suffix("\n")
-					_current_paragraph -= 1
-					_converted_text += "[/code]"
-					within_backtick_block = false
-					_debug("... closing backtick block")
-					continue
+				_converted_text = _converted_text.trim_suffix("\n")
+				_current_paragraph -= 1
+				_converted_text += "[/code]"
+				within_backtick_block = false
+				_debug("... closing backtick block")
+				continue
 			else:
 				_converted_text += "[code]"
 				within_backtick_block = true
-				current_code_block_char_count = line.strip_edges().length()
 				_debug("... opening backtick block")
 				continue
 		elif not within_backtick_block and _denotes_fenced_code_block(line, "~"):
 			if within_tilde_block:
-				if line.strip_edges().length() >= current_code_block_char_count:
-					_converted_text = _converted_text.trim_suffix("\n")
-					_current_paragraph -= 1
-					_converted_text += "[/code]"
-					within_tilde_block = false
-					_debug("... closing tilde block")
-					continue
+				_converted_text = _converted_text.trim_suffix("\n")
+				_current_paragraph -= 1
+				_converted_text += "[/code]"
+				within_tilde_block = false
+				_debug("... closing tilde block")
+				continue
 			else:
 				_converted_text += "[code]"
 				within_tilde_block = true
-				current_code_block_char_count = line.strip_edges().length()
 				_debug("... opening tilde block")
 				continue
 		if within_code_block: #ignore any formatting inside code block
@@ -665,11 +660,7 @@ func _debug(string: String) -> void:
 
 func _denotes_fenced_code_block(line: String, character: String) -> bool:
 	var stripped_line := line.strip_edges()
-	var count := stripped_line.count(character)
-	if count >= 3 and count==stripped_line.length():
-		return true
-	else:
-		return false
+	return stripped_line.begins_with(character.repeat(3))
 
 func _process_escaped_characters(line: String) -> String:
 	var regex := RegEx.create_from_string("\\\\" + _ESCAPEABLE_CHARACTERS_REGEX)
