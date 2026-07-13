@@ -2516,9 +2516,7 @@ msgstr ""
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_APP_HEADER"
-msgstr ""
-"Message Studio Project\n"
-"Color Pallete"
+msgstr "Color Palette Editor - Exefs Extension"
 
 #: scene/editor/msbp/color/msbp_color_editor.tscn
 msgid "MSBP_COLOR_EDITOR_TABLE_HEADER_COLOR"
