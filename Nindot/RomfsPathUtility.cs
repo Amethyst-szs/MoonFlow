@@ -75,7 +75,7 @@ public static class RomfsPathUtility
         FileStream filestream;
         SHA256 mySHA256 = SHA256.Create();
 
-        filestream = new FileStream(filePath, FileMode.Open)
+        filestream = new FileStream(filePath, FileMode.Open, FileAccess.Read)
         {
             Position = 0
         };
