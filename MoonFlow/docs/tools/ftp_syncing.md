@@ -18,7 +18,7 @@ In the settings page of MoonFlow is an **"FTP Syncing"** tab. Here you'll need t
 
 Once you have all the login details entered, attempt to connect! If all goes to plan, you'll get a successful connection to your switch. Now all your project's files will be synced automatically.
 
-Below the login info are additional options to configure how your files are synced, make sure to set these up to your preference and enviroment.
+Below the login info are additional options to configure how your files are synced, make sure to set these up to your preference and environment.
 
 ## Important Note for WSL
 If MoonFlow does not detect files being modified in your project, this is an issue with CS's `FileSystemWatcher`. This is a common problem for people on windows developing through WSL. At the moment there are two main solutions for this problem:
