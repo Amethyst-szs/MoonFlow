@@ -192,6 +192,7 @@ public partial class WorldEditorApp : AppScene
 		{
 			StageName = World.Name,
 			ScenarioName = "",
+			ObjectName = "シャイン", // Translates to Shine
 			ObjId = "obj0",
 			OptionalId = null,
 

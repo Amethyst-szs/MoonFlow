@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using Godot;
 
@@ -9,8 +10,6 @@ using MoonFlow.Project.Database;
 using MoonFlow.Project.Cache;
 using MoonFlow.Addons;
 using MoonFlow.Project.FTP;
-using System.Linq;
-using Nindot;
 
 namespace MoonFlow.Project;
 
@@ -166,7 +165,7 @@ public class ProjectState(string path, ProjectConfig config)
         var gitHash = GitInfo.GitCommitHash();
 
         if (!Config.IsEngineTargetOk(gitHash))
-            InitProjectUpgradingFromOldVersion(loadScreen, gitHash);
+            InitProjectUpgradingFromOldVersion(loadScreen);
 
         if (Config.IsFirstBoot())
             InitProjectFirstOpen(loadScreen);
@@ -180,13 +179,32 @@ public class ProjectState(string path, ProjectConfig config)
         IsInitComplete = true;
     }
 
-    private void InitProjectUpgradingFromOldVersion(ProjectLoading loadScreen, string gitHash)
+    private void InitProjectUpgradingFromOldVersion(ProjectLoading loadScreen)
     {
         loadScreen.LoadingUpdateProgress("LOAD_PROJECT_UPGRADE");
 
+        // Collect information on what version we're going from -> to
+        Config.GetEngineTarget(out string oldName, out string oldHash, out long oldDT);
+        string newName = GitInfo.GitVersionName();
+        string newHash = GitInfo.GitCommitHash();
+        long newDT = GitInfo.GitCommitUnixTime();
+
+        // Run relevant migrations
+        var migrationType = typeof(ProjectUpgradeMigrator);
+        MethodInfo[] migrationMethods = migrationType.GetMethods(BindingFlags.Public | BindingFlags.Static);
+
+        foreach (MethodInfo method in migrationMethods)
+        {
+            var attr = method.GetCustomAttribute<ProjectUpgradeMigrationMethod>();
+            if (attr == null || oldDT >= attr.TimeThreshold)
+                continue;
+
+            method.Invoke(null, [this]);
+        }
+
         // Finalize project upgrading
         Config.EnsureSignature();
-        Config.SetEngineTarget(GitInfo.GitVersionName(), gitHash, GitInfo.GitCommitUnixTime());
+        Config.SetEngineTarget(newName, newHash, newDT);
         Config.WriteFile();
     }
     private void InitProjectFirstOpen(ProjectLoading loadScreen)

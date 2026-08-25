@@ -32,6 +32,8 @@ public partial class WorldShineEditor : MarginContainer
 	private Button ButtonTypeMoonRock;
 	[Export]
 	private Button ButtonTypeAchievement;
+	[Export]
+	private Button ButtonTypeShop;
 
 	[Export]
 	private VBoxContainer ScenarioBitFlags;
@@ -66,6 +68,7 @@ public partial class WorldShineEditor : MarginContainer
 		ButtonTypeGrand.SetPressedNoSignal(shine.IsGrand);
 		ButtonTypeMoonRock.SetPressedNoSignal(shine.IsMoonRock);
 		ButtonTypeAchievement.SetPressedNoSignal(shine.IsAchievement);
+		ButtonTypeShop.SetPressedNoSignal(shine.IsShop);
 
 		BitFlagButtonHolder.SetTotalBits(ScenarioBitFlags, world.ScenarioNum);
 		BitFlagButtonHolder.SetValue(ScenarioBitFlags, shine.ProgressBitFlag);
@@ -162,6 +165,11 @@ public partial class WorldShineEditor : MarginContainer
 	private void OnTypeAchievementToggled(bool state)
 	{
 		Shine.IsAchievement = state;
+		EmitSignalContentModified();
+	}
+	private void OnTypeShopToggled(bool state)
+	{
+		Shine.IsShop = state;
 		EmitSignalContentModified();
 	}
 

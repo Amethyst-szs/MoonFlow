@@ -211,7 +211,6 @@ mouse_filter = 2
 theme_override_styles/panel = ExtResource("21_ojwgg")
 
 [node name="WORLD_EDITOR_TAB_SHINE" type="Control" parent="Panel/HSplit/Content/Content" unique_id=1101172742]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
