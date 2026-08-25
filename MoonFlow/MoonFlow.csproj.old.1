@@ -1,18 +1,17 @@
-<Project Sdk="Godot.NET.Sdk/4.7.2">
+<Project Sdk="Godot.NET.Sdk/4.6.2">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net8.0</TargetFramework>
-    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <NoWarn>IDE0130,IDE0160</NoWarn> <!-- Disable namespace folder structure matching -->
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Godot.Extension\Godot.Extension.csproj" />
     <ProjectReference Include="..\Module\BfresLibrary\BfresLibrary\BfresLibrary.csproj" />
+    <ProjectReference Include="..\MoonFlow.Project\MoonFlow.Project.csproj" />
     <ProjectReference Include="..\Nindot\Nindot.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="FluentFTP" Version="52.1.0" />
-    <PackageReference Include="FuzzySharp" Version="2.0.2" />
+    <PackageReference Include="ByteSize" Version="2.1.2" />
   </ItemGroup>
 </Project>
