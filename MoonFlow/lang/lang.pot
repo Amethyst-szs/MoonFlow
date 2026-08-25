@@ -2717,6 +2717,10 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_ACHIEVEMENT_TOOLTIP"
 msgstr ""
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_SHOP_TOOLTIP"
+msgstr ""
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
 msgstr ""
 

@@ -2714,6 +2714,10 @@ msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_ACHIEVEMENT_TOOLTIP"
 msgstr "Toadette Achievement"
 
 #: scene/editor/world/shine/world_shine_editor.tscn
+msgid "WORLD_EDITOR_SHINE_EDITOR_TYPE_SHOP_TOOLTIP"
+msgstr "Crazy Cap Shopping"
+
+#: scene/editor/world/shine/world_shine_editor.tscn
 msgid "WORLD_EDITOR_SHINE_EDITOR_TRANSLATION_VALUES_TOOLTIP"
 msgstr ""
 "Where in the world is this moon located? This value is\n"

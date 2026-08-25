@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
 using System.Numerics;
-using Nindot;
 
+using YamlDotNet.Serialization;
+
+using Nindot;
 using Nindot.LMS.Msbt;
 using Nindot.LMS.Msbt.TagLib;
 
@@ -12,6 +14,7 @@ public class ShineInfo
 {
     public string StageName;
     public string ScenarioName;
+    public string ObjectName;
 
     public string ObjId;
     public int UniqueId;
@@ -27,7 +30,20 @@ public class ShineInfo
 
     public Vector3 Trans = Vector3.Zero;
 
-    public ShineInfo() {}
+    /// <summary>
+    /// This property is not stored in the BYAML. Instead, it is a bool
+    /// representing the game's hardcoded string comparison. True when ObjectName == "ショップ店員",
+    /// False when any other name. Set this true/false to set ObjectName to
+    /// "ショップ店員" / "シャイン" ("Shop staff member" / "Shine")
+    /// </summary>
+    [YamlIgnore]
+    public bool IsShop
+    {
+        get { return ObjectName == "ショップ店員"; }
+        set { if (IsShop != value) ObjectName = value ? "ショップ店員" : "シャイン"; }
+    }
+
+    public ShineInfo() { }
 
     public MsbtEntry LookupDisplayName(SarcFile stageMessage)
     {

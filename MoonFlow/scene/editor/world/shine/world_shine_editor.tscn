@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c46b3cvbfpybx" path="res://asset/nindot/lms/icon/PictureFont_30.png" id="10_ojn6k"]
 [ext_resource type="Texture2D" uid="uid://2g01fvaywdt" path="res://asset/nindot/lms/icon/PictureFont_31.png" id="11_8gd1o"]
 [ext_resource type="Texture2D" uid="uid://y2to817674x2" path="res://asset/nindot/lms/icon/PictureFont_4A.png" id="11_afu5f"]
+[ext_resource type="Texture2D" uid="uid://bnfa76hawy2q8" path="res://asset/nindot/special/crazy_cap_shop.png" id="15_er3kn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4rlp"]
 content_margin_left = 12.0
@@ -26,7 +27,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="WorldShineEditor" type="MarginContainer" unique_id=360625482 node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "ScenarioBitFlags", "SpinTranslationX", "SpinTranslationY", "SpinTranslationZ", "QuestBitFlags", "LineOptionalId")]
+[node name="WorldShineEditor" type="MarginContainer" unique_id=360625482 node_paths=PackedStringArray("OptionStageName", "LineObjId", "SpinUID", "SpinHint", "TextureUIDWarning", "TextureHintWarning", "ButtonTypeGrand", "ButtonTypeMoonRock", "ButtonTypeAchievement", "ButtonTypeShop", "ScenarioBitFlags", "SpinTranslationX", "SpinTranslationY", "SpinTranslationZ", "QuestBitFlags", "LineOptionalId")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 121.0
@@ -45,6 +46,7 @@ TextureHintWarning = NodePath("Content/Grid_UniqueHintType/HBox_HintId/Texture_D
 ButtonTypeGrand = NodePath("Content/Grid_QuestScenario/HBox_Type/Check_Multi")
 ButtonTypeMoonRock = NodePath("Content/Grid_QuestScenario/HBox_Type/Check_Rock")
 ButtonTypeAchievement = NodePath("Content/Grid_QuestScenario/HBox_Type/Check_Achievement")
+ButtonTypeShop = NodePath("Content/Grid_QuestScenario/HBox_Type/Check_Shop")
 ScenarioBitFlags = NodePath("Content/Grid_QuestScenario/ScenarioBitFlags")
 SpinTranslationX = NodePath("Content/VBox_Trans/HBox_Values/Spin_X")
 SpinTranslationY = NodePath("Content/VBox_Trans/HBox_Values/Spin_Y")
@@ -280,6 +282,18 @@ icon = ExtResource("11_8gd1o")
 icon_alignment = 1
 expand_icon = true
 
+[node name="Check_Shop" type="Button" parent="Content/Grid_QuestScenario/HBox_Type" unique_id=176555882]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "WORLD_EDITOR_SHINE_EDITOR_TYPE_SHOP_TOOLTIP"
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("15_er3kn")
+icon_alignment = 1
+expand_icon = true
+
 [node name="HSep_Spacer3" type="HSeparator" parent="Content" unique_id=1817865835]
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -418,6 +432,7 @@ is_return_if_empty = true
 [connection signal="toggled" from="Content/Grid_QuestScenario/HBox_Type/Check_Multi" to="." method="OnTypeGrandToggled"]
 [connection signal="toggled" from="Content/Grid_QuestScenario/HBox_Type/Check_Rock" to="." method="OnTypeMoonRockToggled"]
 [connection signal="toggled" from="Content/Grid_QuestScenario/HBox_Type/Check_Achievement" to="." method="OnTypeAchievementToggled"]
+[connection signal="toggled" from="Content/Grid_QuestScenario/HBox_Type/Check_Shop" to="." method="OnTypeShopToggled"]
 [connection signal="value_changed" from="Content/VBox_Trans/HBox_Values/Spin_X" to="." method="OnTranslationXModified"]
 [connection signal="value_changed" from="Content/VBox_Trans/HBox_Values/Spin_Y" to="." method="OnTranslationYModified"]
 [connection signal="value_changed" from="Content/VBox_Trans/HBox_Values/Spin_Z" to="." method="OnTranslationZModified"]
